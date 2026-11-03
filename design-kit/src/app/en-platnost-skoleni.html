@@ -1,0 +1,63 @@
+<!--meta {"titulek":"Training validity","sablona":"app","role":"lektor","aktivni":"en-platnost-skoleni.html","demo":false,"lang":"en","cs_verze":"platnost-skoleni.html"} -->
+<!--spec {
+ "route":"/vysledky/platnost-skoleni (lang=en)","nazev":"Training validity","role":"instructor (branch administrators the same for their branches; organisation administrators also get a link to reminder settings)","sablona":"app",
+ "ucel":"Show who has a valid certificate, whose certificate expires soon and whose has expired – so training is repeated in time.",
+ "hlavni_akce":"Find people with “Expires soon” and “Expired”; Export validity (XLSX).",
+ "komponenty":["page-head","kpi","alert","filters","table-wrap","table--stack","stav","details","empty"],
+ "stavy":["Same states as platnost-skoleni.html: empty filter, no test issues certificates, reminders on (.alert--info “Reminders are sent 30 days before expiry.”), loading/error, permissions."],
+ "zmeny_ux":["Layout identical to the Czech page. “Expires soon” is shorter than “Brzy vyprší” in the status badge."],
+ "texty":[
+  {"dnes":"Platnost školení","nove":"Training validity","proc":"EN glossary."},
+  {"dnes":"Počítá se poslední osvědčení každé osoby z každého testu. „Brzy vyprší“ znamená do 30 dní.","nove":"We count each person’s latest certificate for each test. “Expires soon” means within 30 days.","proc":"Short sentences."},
+  {"dnes":"Platné · Brzy vyprší · Prošlé","nove":"Valid · Expires soon · Expired","proc":"Plain status words."},
+  {"dnes":"Připomínky e-mailem jsou vypnuté. Zapnout je může administrátor organizace v Nastavení organizace.","nove":"Email reminders are off. An organisation administrator can turn them on in Organisation settings.","proc":"EN glossary; says who and where."},
+  {"dnes":"Export platnosti (XLSX)","nove":"Export validity (XLSX)","proc":"Verb first."},
+  {"dnes":"Vydávat osvědčení při splnění","nove":"Issue a certificate on passing","proc":"Must match the test editor option label."}],
+ "pristupnost":["Same as the Czech page. Czech names wrapped in lang=\"cs\"."],
+ "poznamky_pro_kodera":["Data, sorting and export as in platnost-skoleni.html.","Glossary gap: Brzy vyprší / Prošlé → Expires soon / Expired.","Glossary gap: Nastavení organizace → Organisation settings."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <h1 class="t-titulek">Training validity</h1>
+ <div class="page-head__actions"><a class="btn" href="#">{{I:stahnout}}Export validity (XLSX)</a></div>
+</div>
+<p class="measure" style="margin-bottom:var(--s-4)">We count each person’s latest certificate for each test. “Expires soon” means within 30 days.</p>
+
+<div class="kpi" style="margin-bottom:var(--s-4)">
+ <div><span class="t-cislo">3</span><span class="t-maly">valid</span></div>
+ <div><span class="t-cislo">1</span><span class="t-maly">expires soon</span></div>
+ <div><span class="t-cislo">1</span><span class="t-maly">expired</span></div>
+</div>
+
+<div class="alert" style="margin-bottom:var(--s-4)">{{I:pozor}}<p>Email reminders are off. An organisation administrator can turn them on in Organisation settings.</p></div>
+
+<form class="filters" action="en-platnost-skoleni.html" method="get" aria-label="Filter certificates">
+ <div class="field"><label class="label" for="p-test">Test</label><select class="select" id="p-test"><option>All</option><option>Health and safety – practice test</option><option>Cyber security</option><option>Radiation protection (ZOZ)</option></select></div>
+ <div class="field"><label class="label" for="p-stav">Status</label><select class="select" id="p-stav"><option>All</option><option>Valid</option><option>Expires soon</option><option>Expired</option></select></div>
+ <div class="field"><label class="label" for="p-pob">Branch</label><select class="select" id="p-pob"><option>All</option><option>Prague</option></select></div>
+ <button class="btn" type="submit">{{I:filtr}}Filter</button>
+</form>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Certificate validity by person and test, 5 records</caption>
+  <thead><tr><th scope="col">Person</th><th scope="col">Training</th><th scope="col">Passed</th><th scope="col">Valid until</th><th scope="col">Status</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Person"><a href="en-vysledek-detail.html" lang="cs"><b>Jana Dvořáková</b></a></td><td data-label="Training">Annual cyber security training</td><td data-label="Passed" class="num">2&nbsp;Oct 2025</td><td data-label="Valid until" class="num"><time datetime="2026-10-01">1&nbsp;Oct 2026</time></td><td data-label="Status"><span class="stav stav--ne">{{I:minus-kruh}}Expired</span></td></tr>
+   <tr><td data-label="Person"><a href="en-vysledek-detail.html" lang="cs"><b>Petr Novotný</b></a></td><td data-label="Training">Annual cyber security training</td><td data-label="Passed" class="num">20&nbsp;Nov 2025</td><td data-label="Valid until" class="num"><time datetime="2026-11-19">19&nbsp;Nov 2026</time></td><td data-label="Status"><span class="stav stav--pozor">{{I:pozor}}Expires soon</span></td></tr>
+   <tr><td data-label="Person"><a href="en-vysledek-detail.html" lang="cs"><b>Ondřej Malý</b></a></td><td data-label="Training">Annual cyber security training</td><td data-label="Passed" class="num">3&nbsp;Nov 2026</td><td data-label="Valid until" class="num"><time datetime="2027-11-02">2&nbsp;Nov 2027</time></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Valid</span></td></tr>
+   <tr><td data-label="Person"><a href="en-vysledek-detail.html" lang="cs"><b>Radek Beneš</b></a></td><td data-label="Training">Annual cyber security training</td><td data-label="Passed" class="num">3&nbsp;Nov 2026</td><td data-label="Valid until" class="num"><time datetime="2027-11-02">2&nbsp;Nov 2027</time></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Valid</span></td></tr>
+   <tr><td data-label="Person"><a href="en-vysledek-detail.html" lang="cs"><b>Simona Králová</b></a></td><td data-label="Training">Annual cyber security training</td><td data-label="Passed" class="num">3&nbsp;Nov 2026</td><td data-label="Valid until" class="num"><time datetime="2027-11-02">2&nbsp;Nov 2027</time></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Valid</span></td></tr>
+  </tbody>
+ </table>
+</div>
+
+<details class="faq" style="margin-top:var(--s-4)"><summary>Who is not in this overview (3 certificates)</summary>
+ <div class="stack-2"><p>The overview and reminders link a person’s attempts by user account (assigned test, My tests) or by email for access codes.</p><p>Attempts from codes without an email, from public links and from supervised in-room exams cannot be reliably matched to the same person, so they get no reminder. You can find their certificates in <a href="en-vysledky.html">Results</a>.</p></div>
+</details>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">No match for the filter</p>
+  <div class="empty stack-2">{{I:hledat}}<p class="t-nadpis">No certificates match the filter</p><p class="t-maly">Only tests with “Issue a certificate on passing” turned on issue certificates.</p><p><a class="btn" href="en-platnost-skoleni.html">Clear filter</a></p></div></div>
+</section>

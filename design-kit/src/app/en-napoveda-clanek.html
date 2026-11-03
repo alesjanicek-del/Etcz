@@ -1,0 +1,79 @@
+<!--meta {"titulek":"Live monitor – Help","sablona":"app","role":"lektor","aktivni":"","demo":false,"lang":"en","cs_verze":"napoveda-clanek.html"} -->
+<!--spec {
+ "route":"/napoveda/… (lang=en)","nazev":"Help – article (template for 60 articles), English","role":"instructor (the template is the same for all roles; the “For roles” block says who the article is for)","sablona":"app",
+ "ucel":"English version of the help article template, shown on the Live monitor article.",
+ "hlavni_akce":"Read the steps; go to the related app page or the next article.",
+ "komponenty":["crumbs","page-head","layout-aside","toc","prose","stav","alert","card","row-between"],
+ "stavy":[
+  "Same states as the Czech page (napoveda-clanek.html). English wording:",
+  "article for another role: “These steps are for organisation administrators. Your role cannot do this.”",
+  "article not translated yet: .alert--info “This article is only available in Czech.” and the article body in lang=\"cs\" (proposal)."],
+ "zmeny_ux":[
+  "Same layout as the Czech version.",
+  "Interface names in bold match the English app exactly (Pause auto-refresh, Resume auto-refresh, Refresh now, Actions)."],
+ "texty":[
+  {"dnes":"Živý panel","nove":"Live monitor","proc":"EN glossary."},
+  {"dnes":"Opustil(a) okno 2× · Jiné zařízení · Odpojení 1×","nove":"Left window 2× · Other device · Disconnected 1×","proc":"Short status labels; no gendered form needed in English."},
+  {"dnes":"Pozastavit automatickou aktualizaci · Obnovit automatickou aktualizaci · Aktualizovat teď","nove":"Pause auto-refresh · Resume auto-refresh · Refresh now","proc":"Common UI terms; shorter than “automatic update”."},
+  {"dnes":"Opuštění okna samo o sobě neznamená podvod.","nove":"Leaving the window does not in itself mean cheating.","proc":"Keeps the emphasis of the Czech warning."},
+  {"dnes":"Otevřít Použití testů","nove":"Open Test assignments","proc":"EN glossary: test assignment; menu name."},
+  {"dnes":"Prodloužení času, převzetí a ukončení pokusu","nove":"Extending time, handover and ending an attempt","proc":"EN glossary: handover, attempt."},
+  {"dnes":"Kapitolu vytisknete klávesami Ctrl+P.","nove":"Press Ctrl+P to print this chapter.","proc":"Imperative."}],
+ "pristupnost":["Only one H1; article sections are H2 with ids for the toc.","toc is a nav with aria-label “On this page”.","Keyboard shortcuts in .kbd.","Previous/next: link text contains the article title."],
+ "poznamky_pro_kodera":["Template: crumbs (Help › section), H1, lead, toc from H2, .prose body, For roles, previous/next.","Article content is Markdown in content/napoveda/en/<category>/<slug>.md (translation: unofficial-draft).","Glossary gap: automatická aktualizace → auto-refresh.","Glossary gap: záznam průběhu → activity log."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-napoveda.html">Help</a></li><li><a href="#">For instructors</a></li><li><span aria-current="page">Live monitor</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Live monitor</h1><p class="t-perex measure">Follow an exam in real time. Each test taker’s status, time left and alerts when someone leaves the test window.</p></div></div>
+
+<div class="layout-aside">
+ <article class="prose">
+  <p>Every test assignment has a Live monitor in its details. It refreshes itself every 5 seconds. On the Overview page, there is a Live monitor link for every exam in progress.</p>
+  <p><a class="btn" href="en-pouziti.html">Open Test assignments</a></p>
+
+  <h2 id="ukazuje">What the monitor shows</h2>
+  <p>A summary above the table shows how many test takers are writing, how many have submitted and how many have passed. For each test taker:</p>
+  <ul>
+   <li><b>Status:</b> started, not opened yet, writing, submitted or timed out,</li>
+   <li><b>Answered:</b> how many questions out of the total,</li>
+   <li><b>Time left:</b> remaining time (“—” once submitted),</li>
+   <li><b>Result:</b> for submitted attempts, the percentage and Passed or Not passed,</li>
+   <li><b>Last activity,</b></li>
+   <li><b>Alerts</b> – see the table below.</li>
+  </ul>
+  <div class="table-wrap" style="contain:inline-size"><table class="table table--stack"><caption>Alerts in the live monitor</caption>
+   <thead><tr><th scope="col">Label</th><th scope="col">What it means</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Label"><span class="stav stav--pozor">{{I:pozor}}Left window 2×</span></td><td data-label="Meaning">The test taker switched to another window or app.</td></tr>
+    <tr><td data-label="Label"><span class="stav stav--info">{{I:obrazovka}}Other device</span></td><td data-label="Meaning">The test was handed over to another device.</td></tr>
+    <tr><td data-label="Label"><span class="stav stav--neutral">{{I:vlna}}Disconnected 1×</span></td><td data-label="Meaning">The test taker lost the connection; answers are sent once it is back.</td></tr>
+    <tr><td data-label="Label"><span class="stav stav--pozor">{{I:stit}}Monitoring: 3 events</span></td><td data-label="Meaning"><span>For a test with monitoring on, the number and type of events. See <a href="#">Exam monitoring</a>.</span></td></tr>
+   </tbody></table></div>
+
+  <h2 id="aktualizace">Auto-refresh</h2>
+  <p>The monitor refreshes itself every 5 seconds. Select <b>Pause auto-refresh</b> to stop it, for example when you want to read the data calmly or you use a screen reader.</p>
+  <p>The button changes to <b>Resume auto-refresh</b>. While paused, select <b>Refresh now</b> to load the current status. Your browser remembers the choice, even after you reload the page.</p>
+
+  <h2 id="upozorneni">How to read the alerts</h2>
+  <div class="alert">{{I:pozor}}<p><b>Leaving the window does not in itself mean cheating.</b> It may be a phone notification or a key pressed by mistake.</p></div>
+  <p>If an alert worries you, ask the test taker and follow the exam rules. You can find the full activity log in the <a href="en-vysledek-detail.html">result details</a>.</p>
+
+  <h2 id="akce">Actions for a test taker</h2>
+  <p>For an attempt in progress, select <b>Actions</b>. You can extend the time, allow handover to another device or end the attempt. The steps are in the chapter <a href="#">Extending time, handover and ending an attempt</a>.</p>
+
+  <p class="t-maly no-print">Press <span class="kbd">Ctrl</span>+<span class="kbd">P</span> to print this chapter. <a href="#">Download the full instructor guide as a PDF</a>.</p>
+ </article>
+
+ <aside class="stack-4" aria-label="Contents and roles for this article">
+  <nav class="toc no-print" aria-label="On this page">
+   <p class="t-stitek" style="margin-bottom:var(--s-2)">On this page</p>
+   <ol><li><a href="#ukazuje">What the monitor shows</a></li><li><a href="#aktualizace">Auto-refresh</a></li><li><a href="#upozorneni">How to read the alerts</a></li><li><a href="#akce">Actions for a test taker</a></li></ol>
+  </nav>
+  <dl class="meta" style="flex-direction:column"><div><dt>For roles</dt><dd>Instructor, Branch administrator, Organisation administrator</dd></div></dl>
+ </aside>
+</div>
+
+<nav class="grid-2 no-print" aria-label="More articles" style="margin-top:var(--s-5)">
+ <a class="card card--tenka stack-2" href="#" style="text-decoration:none;color:inherit"><span class="t-stitek row" style="gap:var(--s-1)">{{I:sipka-vlevo}}Previous</span><span class="t-nadpis">Supervised in-room exam with a waiting room</span></a>
+ <a class="card card--tenka stack-2" href="#" style="text-decoration:none;color:inherit;text-align:right"><span class="t-stitek row" style="gap:var(--s-1);justify-content:flex-end">Next{{I:sipka-vpravo}}</span><span class="t-nadpis">Extending time, handover and ending an attempt</span></a>
+</nav>

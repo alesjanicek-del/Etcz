@@ -1,0 +1,103 @@
+<!--meta {"titulek":"Check – OHS – practice test","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false,"lang":"en","cs_verze":"test-editor-kontrola.html"} -->
+<!--spec {
+ "route":"/testy/:id/upravit/kontrola (lang=en)","nazev":"Test editor – 3 Check – English","role":"instructor","sablona":"app",
+ "ucel":"Confirm the test can be used, how many unique test versions it allows and how it is set up – and use it straight away.",
+ "hlavni_akce":"Use test; secondary: Preview a test version, Do a trial run, Done",
+ "komponenty":["crumbs","page-head","meta","steps","alert--ok","alert--chyba","kpi","table-wrap","table--stack","dl","field","form-actions"],
+ "stavy":[
+  "Default: no errors, alert--ok and a Use test button (drawn).",
+  "Error: the test has errors – Check step locked; direct access shows alert--chyba with a list of errors and links; Use test is missing (drawn).",
+  "Too few test versions: expected attempts × 10 > versions – yellow alert advising a wider selection or shuffling (drawn).",
+  "Loading: Recalculate is a GET with the attempt count; result in aria-live.",
+  "No permission: with Read access, the test version preview is shown instead of the editor."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (test-editor-kontrola.html).",
+  "The settings list uses the same terms as the Settings step (EN).",
+  "“Enough test versions?” – EN heading is a question, as in Czech."],
+ "texty":[
+  {"dnes":"Test je bez chyb. Můžete ho použít.","nove":"The test has no errors. You can use it.","proc":"Full sentence, active voice."},
+  {"dnes":"Stačí variace?","nove":"Enough test versions?","proc":"Glossary: variace → test version."},
+  {"dnes":"Očekávaný počet pokusů","nove":"Expected number of attempts","proc":"Glossary: pokus → attempt."},
+  {"dnes":"Přepočítat","nove":"Recalculate","proc":"Verb."},
+  {"dnes":"Stačí","nove":"Enough","proc":"Short status word with icon."},
+  {"dnes":"Použít test","nove":"Use test","proc":"Verb first."},
+  {"dnes":"Hotovo, zpět na testy","nove":"Done, back to tests","proc":"Says where it leads."}],
+ "pristupnost":["Same as the Czech page: status alert right under the steps (role=alert on error); sections table with caption and data-label; recalculation result in aria-live=polite."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml.",
+  "Use test links to /pouziti/nove?test=:id (EN: en-pouziti-nove.html in the kit)."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-testy.html">Tests</a></li><li><span aria-current="page">OHS – practice test</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Edit test</p><h1 class="t-titulek">OHS – practice test</h1>
+  <dl class="meta"><div><dt>Branch</dt><dd>Prague</dd></div><div><dt>Owner</dt><dd>Lucie Lektorová</dd></div><div><dt>Edited</dt><dd>4 Sep 2026</dd></div></dl></div>
+</div>
+<ol class="steps" aria-label="Test editor steps" style="margin-bottom:var(--s-5);contain:inline-size">
+ <li><a class="hotovo" href="en-test-editor-sekce.html">Sections</a></li><li><a class="hotovo" href="en-test-editor-parametry.html">Settings</a></li><li><a href="en-test-editor-kontrola.html" aria-current="step">Check</a></li>
+</ol>
+
+<div class="stack-5">
+ <div class="alert alert--ok">{{I:check-kruh}}<p><b>The test has no errors.</b> You can use it.</p></div>
+
+ <div class="kpi">
+  <div><span class="t-cislo">10–12</span><span class="t-maly">questions in the test</span></div>
+  <div><span class="t-cislo">≥&nbsp;10,000</span><span class="t-maly">unique test versions</span></div>
+  <div><span class="t-cislo">1</span><span class="t-maly">section</span></div>
+  <div><span class="t-cislo">34</span><span class="t-maly">candidates in total</span></div>
+ </div>
+
+ <section class="stack" aria-labelledby="sekce-h">
+  <div class="row-between"><h2 id="sekce-h" class="t-nadpis">Sections</h2><a href="en-test-editor-sekce.html">Edit sections</a></div>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Test sections</caption>
+    <thead><tr><th scope="col">Section</th><th scope="col" class="num">Required</th><th scope="col" class="num">Candidates</th><th scope="col" class="num">At random</th><th scope="col" class="num">Weight</th></tr></thead>
+    <tbody><tr><td data-label="Section"><div><b>OHS</b><span class="t-maly">Sample bank: OHS – employee training</span></div></td><td data-label="Required" class="num">0</td><td data-label="Candidates" class="num">34</td><td data-label="At random" class="num">10–12</td><td data-label="Weight" class="num">1</td></tr></tbody>
+   </table>
+  </div>
+ </section>
+
+ <section class="card stack" aria-labelledby="var-h">
+  <h2 id="var-h" class="t-nadpis">Enough test versions?</h2>
+  <p class="t-maly measure">A lower estimate, not counting shuffled answers. As long as an unused test version is left, the next test taker gets it – online and on paper.</p>
+  <form class="row" action="en-test-editor-kontrola.html" method="get" style="align-items:flex-end">
+   <div class="field"><label class="label" for="ocek">Expected number of attempts</label><input class="input" id="ocek" name="pokusu" type="number" min="1" value="100" inputmode="numeric" style="max-width:160px"></div>
+   <button class="btn" type="submit">{{I:obnovit}}Recalculate</button>
+  </form>
+  <p aria-live="polite"><span class="stav stav--ok">{{I:check}}Enough</span> There are more than 10 times as many test versions as expected attempts.</p>
+ </section>
+
+ <section class="stack" aria-labelledby="par-h">
+  <div class="row-between"><h2 id="par-h" class="t-nadpis">Settings</h2><a href="en-test-editor-parametry.html">Edit settings</a></div>
+  <dl class="dl">
+   <dt>Time limit</dt><dd>no limit</dd>
+   <dt>Shuffle question order</dt><dd>yes</dd>
+   <dt>Question display</dt><dd>one question per page</dd>
+   <dt>Password</dt><dd>no</dd>
+   <dt>Attempts per person</dt><dd>unlimited</dd>
+   <dt>Test takers see</dt><dd>full evaluation with correct answers</dd>
+   <dt>Feedback</dt><dd>as soon as an answer is confirmed (practice test)</dd>
+   <dt>Scoring</dt><dd>custom – percentage correct, pass mark 80%</dd>
+   <dt>Official test</dt><dd>no</dd>
+   <dt>Certificate</dt><dd>no</dd>
+   <dt>Monitoring</dt><dd>off</dd>
+  </dl>
+ </section>
+
+ <div class="form-actions">
+  <a class="btn btn--hlavni" href="en-pouziti-nove.html">{{I:prehrat}}Use test</a>
+  <a class="btn" href="en-test-nahled.html">{{I:oko}}Preview a test version</a>
+  <a class="btn" href="#">Do a trial run</a>
+  <a class="btn btn--tiche" href="en-testy.html">Done, back to tests</a>
+ </div>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">Test with errors</p>
+ <div class="alert alert--chyba" role="alert">{{I:minus-kruh}}<div class="stack-2"><p class="alert__nadpis">The test has 2 errors. You cannot use it yet.</p>
+  <ul style="padding-left:var(--s-4)"><li>Fire safety section: you want to draw 12 questions, there are 8 candidates. <a href="en-test-sekce-detail.html">Edit the Fire safety section</a></li><li>The official test has no attempt limit. <a href="en-test-editor-parametry.html">Add it in settings</a></li></ul></div></div>
+ <p class="t-stitek">Too few test versions</p>
+ <div class="alert">{{I:pozor}}<p>There are 240 test versions and you expect 100 attempts. We recommend 10 times more. Widen the question selection or turn on shuffling.</p></div>
+</section>

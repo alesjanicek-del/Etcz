@@ -18,7 +18,7 @@ Záznam všech podstatných změn: kdo, kdy, jaká akce, u jakého záznamu a s 
 - schválení otázky,
 - anonymizace a ochrana záznamu.
 
-Záznamy nelze upravit ani ručně smazat. Po 60 měsících je aplikace automaticky odstraní (kapitola [Osobní údaje, anonymizace a export dat](#)<!-- cílová adresa kapitoly není v crawlu -->).
+Záznamy nelze upravit ani ručně smazat. Po 60 měsících je aplikace automaticky odstraní (kapitola Osobní údaje, anonymizace a export dat<!-- odkaz: adresa kapitoly není v crawlu -->).
 
 ## Filtr
 

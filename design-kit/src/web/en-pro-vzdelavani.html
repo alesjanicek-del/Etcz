@@ -1,0 +1,83 @@
+<!--meta {"titulek":"For schools, courses and training centres","popis":"Shared question banks for the whole instructor team, practice tests with feedback, final exams and a report for every graduate.","sablona":"web","aktivni":"en-pro-vzdelavani.html","lang":"en","cs_verze":"pro-vzdelavani.html"} -->
+<!--spec {
+ "route":"/en/education","nazev":"For education – English","role":"public – schools, instructors, training centres","sablona":"web (lang=en)",
+ "ucel":"Show schools and training centres how to share questions, run practice and final tests, and give graduates a report.",
+ "hlavni_akce":"Book a guided demo; secondary: Try the demo",
+ "komponenty":["hero","feature","grid-3","list-check","card","faq","cta-band"],
+ "stavy":["Static page – no states."],
+ "zmeny_ux":["Structure, anchor #strediska and components are the same as the Czech page (pro-vzdelavani.html); see its spec for the UX changes."],
+ "texty":[
+  {"dnes":"Společné soubory otázek pro celý tým lektorů","nove":"Shared question banks for the whole instructor team","proc":"Glossary: question bank, instructor."},
+  {"dnes":"Cvičné testy","nove":"Practice tests","proc":"Glossary."},
+  {"dnes":"Každý pokus se počítá do limitu tarifu.","nove":"Every attempt counts towards your plan’s limit.","proc":"Glossary: attempt, plan."},
+  {"dnes":"Skupiny studujících","nove":"Student groups","proc":"Same as the app menu (APP_EN)."},
+  {"dnes":"v sekci „Moje testy“","nove":"under “My tests”","proc":"App menu name for test takers; to be checked against the EN catalogue."},
+  {"dnes":"garant předmětu","nove":"subject lead","proc":"Glossary gap – proposed term."},
+  {"dnes":"Jak zajistíte, že studující neopisují?","nove":"How do you stop students copying?","proc":"Natural phrasing; “cheating” used in the answer."},
+  {"dnes":"dohled v učebně tedy nenahrazuje","nove":"so it does not replace supervision in the room","proc":"Here dohled = a person supervising, not the app’s monitoring feature."}],
+ "pristupnost":["Same as the Czech page: one H1, H2 sections, H3 blocks, FAQ via details/summary, anchor #strediska on a section with aria-labelledby."],
+ "poznamky_pro_kodera":["Glossary gap: studující → student (in education contexts; the app role is still test taker).","Glossary gap: absolvent → graduate.","Glossary gap: školicí středisko → training centre.","Glossary gap: garant předmětu → subject lead."],
+ "chybi_komponenta":[]
+} -->
+<section class="hero grid-bg">
+ <div class="container stack-4">
+  <p class="t-stitek">Schools, courses and training centres</p>
+  <h1 class="t-display measure">Shared question banks for the <span class="t-zvyraznit">whole instructor team</span></h1>
+  <p class="t-perex measure">Instructors share questions, every student gets a different test version, and statistics show which questions are unclear. Test online, in the room or on paper.</p>
+  <div class="row"><a class="btn btn--hlavni" href="en-ukazka.html">Book a guided demo</a><a class="btn" href="en-vyzkouset.html">Try the demo</a></div>
+  <p class="t-maly">The demo needs no registration.</p>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="vyuka">
+ <div class="container stack-5">
+  <div class="stack-2"><p class="t-stitek">For teaching and final exams</p><h2 id="vyuka" class="t-sekce">From practice to the final exam</h2></div>
+  <div class="grid-3">
+   <div class="feature"><h3 class="t-nadpis">Practice tests</h3><p>Instant feedback on every question, unlimited retakes and a public link for the whole course. Every attempt counts towards your plan’s limit.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Final exams</h3><p>Required questions, random picks from question banks, a time limit, grade bands and a report for every graduate.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Student groups</h3><p>Assign a test to a whole group. Students find it under “My tests” after signing in.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="otazky">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack"><p class="t-stitek">Statistics and versions</p><h2 id="otazky" class="t-sekce">Questions that get better</h2></div>
+  <ul class="list-check">
+   <li><span>Statistics for every question and its versions: success rate and how often it was used in tests.</span></li>
+   <li><span>Correcting a question creates a new version; past results are not recalculated.</span></li>
+   <li><span>Question approval by the subject lead (optional).</span></li>
+   <li><span>Subscript and superscript, tables and images for chemistry, physics and maths.</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section section--bila" id="strediska" aria-labelledby="strediska-h">
+ <div class="container stack-5">
+  <div class="stack-2"><p class="t-stitek">For training centres</p><h2 id="strediska-h" class="t-sekce">Graduates for many clients, one app</h2><p class="t-perex measure">Do you test course graduates for different companies and in different places? One app is all you need.</p></div>
+  <div class="grid-3">
+   <div class="feature"><h3 class="t-nadpis">End-of-course exam</h3><p>Participants join in the room with a code or QR code. You admit them to the test and follow the live monitor. They don’t need an account.</p></div>
+   <div class="feature"><h3 class="t-nadpis">A report for every graduate</h3><p>A PDF result report with a verification code for every attempt. The graduate’s employer can <a href="en-overeni.html">verify it online</a> on their own.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Branches and instructors</h3><p>Set up each location or team as a branch with its own instructors. Share question banks with read or edit permissions.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="faq">
+ <div class="container grid-2" style="align-items:start">
+  <h2 id="faq" class="t-sekce">Frequently asked questions from schools and instructors</h2>
+  <div class="faq">
+   <details><summary>How do you stop students copying?</summary><div><p>Every student gets their own test version: a different selection of questions from the bank, and a different order of questions and answers. In a supervised in-room exam, you admit students to the test yourself and see their status on the live monitor. The app does not lock the computer, so it does not replace supervision in the room.</p></div></details>
+   <details><summary>Can we print the test?</summary><div><p>Yes. A print batch creates any number of different test versions, answer sheets and separate answer keys for marking. Enter the paper results in the app and keep them together with the online results.</p></div></details>
+   <details><summary>Can the app handle chemical and mathematical notation?</summary><div><p>The question editor supports subscript and superscript, tables and images. You can add screen reader text to formulas, so students with visual impairments can take the test too.</p></div></details>
+   <details><summary>How quickly will we see which questions are badly worded?</summary><div><p>Statistics show, for every question and its versions, how often it was used in a test and how often students answered it correctly. When you correct a question, a new version is created. Past attempts stay scored against the original wording.</p></div></details>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">We’ll show you the app with your type of exam</h2><p>We’ll go through the app with you online (about 30&nbsp;minutes) and set up trial access for your organisation.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="en-ukazka.html">Book a guided demo</a><a class="btn" href="en-cenik.html">Pricing</a></div>
+ </div>
+</section>

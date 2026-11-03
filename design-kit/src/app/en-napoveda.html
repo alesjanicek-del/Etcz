@@ -1,0 +1,90 @@
+<!--meta {"titulek":"Help","sablona":"app","role":"lektor","aktivni":"","demo":false,"lang":"en","cs_verze":"napoveda.html"} -->
+<!--spec {
+ "route":"/napoveda (lang=en)","nazev":"Help – start page, English","role":"instructor (content by role: chapters for the signed-in role on top; other roles under Other roles)","sablona":"app",
+ "ucel":"English version of the help start page: find the steps for what you need to do – by searching, from the most common tasks or from the chapters for your role.",
+ "hlavni_akce":"Search help.",
+ "komponenty":["page-head","field","input","btn","card","grid-2","grid-3","list-check","faq (details)","alert"],
+ "stavy":[
+  "Same states as the Czech page (napoveda.html). English wording:",
+  "no search results: “We found nothing. Try another word or contact support.”",
+  "articles not yet translated: listed with the label “In Czech” and lang=\"cs\" on the link (proposal; translation status unofficial-draft)."],
+ "zmeny_ux":[
+  "Same layout as the Czech version. Card titles are up to 30% longer and wrap to 2 lines in the 3-column grid.",
+  "The search hint uses English example phrases; the note about typing without diacritics is dropped (not relevant in English).",
+  "Article content comes from content/napoveda/en/ (Markdown); a missing translation falls back to the Czech article."],
+ "texty":[
+  {"dnes":"Nápověda","nove":"Help","proc":"Same as the top bar link “Help for this page”."},
+  {"dnes":"Postupy podle toho, co potřebujete udělat. Nahoře jsou kapitoly pro vaši roli.","nove":"Step-by-step guides for what you need to do. Chapters for your role are at the top.","proc":"Short."},
+  {"dnes":"Například „zapomenuté heslo“, „prodloužit čas“ nebo „vytisknout klíče“. Diakritiku psát nemusíte.","nove":"For example “forgotten password”, “extend time” or “print answer keys”.","proc":"English examples; no diacritics in English."},
+  {"dnes":"Jak připravit a provést zkoušku zvláštní odborné způsobilosti","nove":"How to prepare and run a special professional competence exam","proc":"Glossary gap: zkouška zvláštní odborné způsobilosti."},
+  {"dnes":"Jak si test vyzkoušet nanečisto","nove":"How to do a trial run of a test","proc":"EN glossary: trial run."},
+  {"dnes":"Způsoby zadání testu","nove":"Ways to give a test","proc":"Plain; the description lists the EN glossary terms."},
+  {"dnes":"Prezenční zkouška s čekárnou","nove":"Supervised in-room exam with a waiting room","proc":"EN glossary."},
+  {"dnes":"Výsledky, protokol a zpřístupnění výsledků","nove":"Results, result reports and releasing results","proc":"EN glossary: result report, release results."},
+  {"dnes":"Pro objednatele","nove":"For customers","proc":"Glossary gap: objednatel → customer."},
+  {"dnes":"Nenašli jste, co potřebujete? Napište na … nebo volejte …","nove":"Can’t find what you need? Email … or call …","proc":"Contact directly."}],
+ "pristupnost":["Search: role=search, visible label.","Cards: the link is the H3, the description is plain text (no nested links).","Section H2s show the number of chapters."],
+ "poznamky_pro_kodera":["Search in EN ignores case; Czech articles shown as fallback are searched too.","Chapters and texts from today’s help; links lead to the napoveda-clanek template.","~60 articles in total.","Glossary gap: objednatel → customer.","Glossary gap: zkouška zvláštní odborné způsobilosti → special professional competence exam.","Glossary gap: studující → student (as in the menu “Student groups”)."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Help</h1><p class="measure">Step-by-step guides for what you need to do. Chapters for your role are at the top.</p></div></div>
+
+<form role="search" class="card card--papir stack" action="en-napoveda.html" method="get" style="max-width:var(--max-text);margin-bottom:var(--s-5)">
+ <div class="field"><label class="label" for="nq">Search help</label><span class="hint" id="nq-h">For example “forgotten password”, “extend time” or “print answer keys”.</span>
+  <div class="row" style="flex-wrap:nowrap;gap:var(--s-2)"><input class="input" id="nq" name="q" type="search" aria-describedby="nq-h"><button class="btn btn--hlavni" type="submit">{{I:hledat}}Search</button></div></div>
+</form>
+
+<section class="stack" aria-labelledby="ukoly" style="margin-bottom:var(--s-5)">
+ <h2 id="ukoly" class="t-nadpis">Most common tasks</h2>
+ <ul class="grid-2" style="list-style:none;padding:0;gap:var(--s-2) var(--s-4)">
+  <li><a href="#">How to prepare and run a special professional competence exam</a></li>
+  <li><a href="#">How to build a test</a></li>
+  <li><a href="#">How to do a trial run of a test</a></li>
+  <li><a href="#">How to create a question bank</a></li>
+  <li><a href="#">Why my question is missing from a test</a></li>
+  <li><a href="#">How to add an image to a question</a></li>
+  <li><a href="#">How to set up two-step verification</a></li>
+  <li><a href="#">How to switch the active branch</a></li>
+ </ul>
+</section>
+
+<section class="stack" aria-labelledby="lektor" style="margin-bottom:var(--s-5)">
+ <div class="row-between"><h2 id="lektor" class="t-nadpis">For instructors (14)</h2><a href="#">All chapters for instructors (14)</a></div>
+ <ul class="grid-3" style="list-style:none;padding:0">
+  <li class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Ways to give a test</a></h3><p class="t-maly">Supervised in-room exam, personal access codes, assigned to a group, public link and print. What you fill in and what you get.</p></li>
+  <li class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Supervised in-room exam with a waiting room</a></h3><p class="t-maly">An exam in the room without accounts: projector screen with a code and QR code, waiting room, locking entry and starting the test.</p></li>
+  <li class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="en-napoveda-clanek.html">Live monitor</a></h3><p class="t-maly">Follow an exam in real time. Each test taker’s status, time left and alerts when someone leaves the test window.</p></li>
+  <li class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Extending time, handover and ending an attempt</a></h3><p class="t-maly">How to give a test taker more time, let them continue on another device or end an attempt early.</p></li>
+  <li class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Results, result reports and releasing results</a></h3><p class="t-maly">Attempt details with an activity log, PDF result report, releasing results and XLSX export.</p></li>
+  <li class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Training validity and refresher reminders</a></h3><p class="t-maly">Who has a valid certificate, whose is about to expire and whose has expired. XLSX export and email reminders.</p></li>
+ </ul>
+ <p class="t-maly">8 more chapters: building a test, test version preview, monitoring, certificates, print, statistics, calendar and the professional competence exam.</p>
+</section>
+
+<section class="stack" aria-labelledby="zac" style="margin-bottom:var(--s-5)">
+ <div class="row-between"><h2 id="zac" class="t-nadpis">Getting started (6)</h2><a href="#">All Getting started chapters (6)</a></div>
+ <ul class="grid-3" style="list-style:none;padding:0">
+  <li class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Signing in, passwords and signing out</a></h3><p class="t-maly">First sign-in, forgotten password and signing out on all devices.</p></li>
+  <li class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Two-step verification</a></h3><p class="t-maly">Why you must set it up, how to turn it on and what to do if you lose your phone.</p></li>
+  <li class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Roles and permissions</a></h3><p class="t-maly">What administrators, instructors, question authors, students and test takers without an account can do.</p></li>
+ </ul>
+</section>
+
+<div class="grid-2" style="align-items:start">
+ <section class="stack" aria-labelledby="ostatni">
+  <h2 id="ostatni" class="t-nadpis">Other roles</h2>
+  <p class="t-maly">Useful when you need to know what a colleague can do.</p>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li><a href="#">For question authors (9)</a></li><li><a href="#">For test takers (9)</a></li><li><a href="#">For branch administrators (4)</a></li><li><a href="#">For organisation administrators (9)</a></li><li><a href="#">For customers (4)</a></li><li><a href="#">FAQ and glossary (2)</a></li>
+  </ul>
+ </section>
+ <section class="stack" aria-labelledby="stah">
+  <h2 id="stah" class="t-nadpis">Downloads and printouts</h2>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li class="row" style="gap:var(--s-2)">{{I:stahnout}}<a href="#">Instructions for test takers (PDF, 1 page)</a></li>
+   <li class="row" style="gap:var(--s-2)">{{I:stahnout}}<a href="#">Instructor guide (PDF)</a></li>
+   <li class="row" style="gap:var(--s-2)">{{I:info}}<a href="en-co-je-noveho.html">What’s new in the app</a></li>
+  </ul>
+  <div class="alert alert--info">{{I:napoveda}}<p>Can’t find what you need? Email <a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a> or call <a href="tel:+420725311531">+420&nbsp;725&nbsp;311&nbsp;531</a>.</p></div>
+ </section>
+</div>

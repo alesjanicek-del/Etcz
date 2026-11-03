@@ -1,0 +1,152 @@
+<!--meta {"titulek":"Health and safety – employee training · Question bank","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false,"lang":"en","cs_verze":"soubor-detail.html"} -->
+<!--spec {
+ "route":"/soubory/:id (lang=en)","nazev":"Question bank – detail – English","role":"instructor (also question author, administrator); actions depend on the permission for the bank","sablona":"app",
+ "ucel":"Show the contents of a question bank, find a question in it and work with it: add, import, export, reorder.",
+ "hlavni_akce":"New question; secondary: Import XLSX, Export XLSX, open a question, filter",
+ "komponenty":["crumbs","page-head","meta","faq (details)","tabs","filters","field","input","select","check","table table--stack","stav","pager","btn--male","empty","alert","dialog"],
+ "stavy":["Same states as the Czech page (soubor-detail.html): View permission, Owner permission, active filter (no reordering), empty bank, filter with no results, deleted questions, move to Deleted items dialog, loading / error."],
+ "zmeny_ux":[
+  "Layout as in the Czech version. English question text is about as long as Czech; table rows keep the same height.",
+  "Czech law references are given in the usual English form: Act No. 262/2006 Coll. (Labour Code), Section 106(2).",
+  "Full-text hint: “Ignores accents” instead of “works without diacritics” – clearer for English speakers."],
+ "texty":[
+  {"dnes":"Soubor otázek · Nová otázka","nove":"Question bank · New question","proc":"Glossary."},
+  {"dnes":"Fulltext (zadání, odpovědi, poznámka)","nove":"Full text (question, answers, note)","proc":"Plain English."},
+  {"dnes":"Koncept · Ke schválení · Schválená","nove":"Draft · Pending approval · Approved","proc":"Glossary."},
+  {"dnes":"Koš otázek · Přesunout soubor do koše","nove":"Deleted questions · Move bank to Deleted items","proc":"Glossary: Deleted items."},
+  {"dnes":"Ponechat soubor","nove":"Keep bank","proc":"Verb first; says what happens."},
+  {"dnes":"Posunout výš / níž: otázka 2","nove":"Move up / down: question 2","proc":"Button labels for screen readers."},
+  {"dnes":"Obtížnost: Základní · Pokročilá · Okruhy","nove":"Difficulty: Basic · Advanced · Topics","proc":"Sample tag lists translated."},
+  {"dnes":"zákon č. 262/2006 Sb., § 106 odst. 2","nove":"Act No. 262/2006 Coll. (Labour Code), Section 106(2)","proc":"Standard English citation of Czech legislation."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\". Screen reader announcement after reordering: “Question 2 is now in position 1”."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Question content is user content (question_pool.language); the demo shows an English version of the Czech sample set.","Glossary gap: Další akce → More actions","Glossary gap: Schválená (otázka) → Approved","Glossary gap: Více odpovědí → Multiple answers"],
+ "chybi_komponenta":["tag chip – as in the Czech page","icon buttons for ordering – as in the Czech page"]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-soubory.html">Question banks</a></li><li><span aria-current="page">Health and safety – employee training</span></li></ol></nav>
+
+<div class="page-head">
+ <div class="stack-2">
+  <p class="t-stitek">Question bank</p>
+  <h1 class="t-titulek">Sample set: Health and safety – employee training</h1>
+ </div>
+ <div class="page-head__actions">
+  <a class="btn" href="en-soubor-import.html">{{I:nahrat}}Import XLSX</a>
+  <a class="btn" href="#">{{I:stahnout}}Export XLSX</a>
+  <a class="btn btn--hlavni" href="en-otazka-editor.html">{{I:plus}}New question</a>
+ </div>
+</div>
+
+<div class="stack-4">
+ <dl class="meta">
+  <div><dt>Owner</dt><dd>Adam Autor</dd></div>
+  <div><dt>Branch</dt><dd>Prague</dd></div>
+  <div><dt>Your permission</dt><dd>Edit</dd></div>
+  <div><dt>Created</dt><dd>4 Sep 2026</dd></div>
+  <div><dt>Used in tests</dt><dd>1</dd></div>
+ </dl>
+
+ <div class="faq measure">
+  <details>
+   <summary>Description: Basic health and safety duties, PPE, workplace injuries and computer work.</summary>
+   <div class="stack-2"><p>Basic health and safety duties of employers, managers and employees, personal protective equipment, workplace injuries (including the rules in force from 1 Jan 2026), alcohol in the workplace, safety signs and computer work. For induction and refresher training.</p><p class="t-maly">Set version 1.2.0, content valid as of 28 Oct 2026. Status: template – the organisation is responsible for the content.</p></div>
+  </details>
+ </div>
+
+ <p class="t-maly">Tags in this bank: General tags (organisation, 0&nbsp;tags) · Difficulty (2) · Topics (5) · <a href="en-stitky.html">Manage tags</a></p>
+
+ <nav class="tabs" aria-label="Questions in this bank"><a href="en-soubor-detail.html" aria-current="page">Questions (34)</a><a href="#kos">Deleted questions</a></nav>
+
+ <form class="stack" action="en-soubor-detail.html" method="get" role="search" aria-label="Filter questions">
+  <div class="filters" style="margin-bottom:0">
+   <div class="field" style="flex:2 1 280px"><label class="label" for="q">Full text (question, answers, note)</label><input class="input" id="q" name="q" type="search" aria-describedby="q-h"><span class="hint" id="q-h">Ignores accents. Put a phrase in quotes; exclude a word with a minus sign.</span></div>
+   <div class="field"><label class="label" for="stav">Status</label><select class="select" id="stav" name="stav"><option>All statuses</option><option>Draft</option><option>Pending approval</option><option>Approved</option></select></div>
+  </div>
+  <div class="faq">
+   <details>
+    <summary>More filters: note, author, date, tags</summary>
+    <div class="stack">
+     <div class="grid-2">
+      <div class="field"><label class="label" for="pozn">Note contains</label><input class="input" id="pozn" name="poznamka"></div>
+      <div class="field"><label class="label" for="autor">Author</label><select class="select" id="autor" name="autor"><option>All authors</option><option>Adam Autor</option></select></div>
+      <div class="field"><label class="label" for="od">Created from</label><input class="input" id="od" name="od" type="date"></div>
+      <div class="field"><label class="label" for="do">Created to</label><input class="input" id="do" name="do" type="date"></div>
+     </div>
+     <fieldset class="stack-2"><legend>Tags</legend>
+      <div class="row"><label class="check"><input type="checkbox" name="s" value="zakl">Difficulty: Basic</label><label class="check"><input type="checkbox" name="s" value="pokr">Difficulty: Advanced</label><label class="check"><input type="checkbox" name="s" value="oopp">Topics: PPE</label><label class="check"><input type="checkbox" name="s" value="pz">Topics: Employee duties</label></div>
+     </fieldset>
+     <fieldset><legend>Questions must have</legend><div class="row"><label class="check"><input type="radio" name="sh" checked>at least one of the selected tags</label><label class="check"><input type="radio" name="sh">all selected tags</label></div></fieldset>
+    </div>
+   </details>
+  </div>
+  <div class="row"><button class="btn" type="submit">{{I:filtr}}Filter</button><a class="btn btn--tiche" href="en-soubor-detail.html">Clear filter</a></div>
+ </form>
+
+ <p class="t-maly" aria-live="polite">Questions found: <b class="t-cislo">34</b></p>
+
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption class="sr-only">Questions in the bank Health and safety – employee training, 1–5 of 34</caption>
+   <thead><tr><th scope="col" class="num">Order</th><th scope="col">Question</th><th scope="col">Tags</th><th scope="col">Status</th><th scope="col">Version</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Order" class="num"><div class="row" style="gap:var(--s-1);justify-content:flex-end;flex-wrap:nowrap"><span>1</span><button class="btn btn--male" type="button" aria-label="Move up: question 1" disabled>{{I:nahoru}}</button><button class="btn btn--male" type="button" aria-label="Move down: question 1">{{I:dolu}}</button></div></td>
+     <td data-label="Question"><div><a href="en-otazka-detail.html">An employee has reasonable grounds to believe that the assigned work would immediately and seriously endanger their life or health. Which statement is correct?</a><span class="t-maly">Note: Act No. 262/2006 Coll. (Labour Code), Section 106(2)</span></div></td>
+     <td data-label="Tags"><ul class="stack-2"><li><span class="stav stav--neutral" style="white-space:normal;line-height:1.3">Employee duties</span></li><li><span class="stav stav--neutral" style="white-space:normal;line-height:1.3">Basic</span></li></ul></td>
+     <td data-label="Status"><span class="stav stav--ok">{{I:check}}Approved</span></td><td data-label="Version"><div><span class="t-cislo">v1</span><span class="t-maly" style="white-space:nowrap">4 Sep 2026</span><span class="t-maly" style="white-space:nowrap">Adam Autor</span></div></td></tr>
+    <tr><td data-label="Order" class="num"><div class="row" style="gap:var(--s-1);justify-content:flex-end;flex-wrap:nowrap"><span>2</span><button class="btn btn--male" type="button" aria-label="Move up: question 2">{{I:nahoru}}</button><button class="btn btn--male" type="button" aria-label="Move down: question 2">{{I:dolu}}</button></div></td>
+     <td data-label="Question"><div><a href="en-otazka-detail.html">The employer wants to deduct part of the cost of health and safety training and workplace safety equipment from employees’ wages. Is this permitted?</a><span class="t-maly">Note: Act No. 262/2006 Coll. (Labour Code), Section 101(6)</span></div></td>
+     <td data-label="Tags"><ul class="stack-2"><li><span class="stav stav--neutral" style="white-space:normal;line-height:1.3">Employer duties</span></li><li><span class="stav stav--neutral" style="white-space:normal;line-height:1.3">Basic</span></li></ul></td>
+     <td data-label="Status"><span class="stav stav--ok">{{I:check}}Approved</span></td><td data-label="Version"><div><span class="t-cislo">v1</span><span class="t-maly" style="white-space:nowrap">4 Sep 2026</span><span class="t-maly" style="white-space:nowrap">Adam Autor</span></div></td></tr>
+    <tr><td data-label="Order" class="num"><div class="row" style="gap:var(--s-1);justify-content:flex-end;flex-wrap:nowrap"><span>3</span><button class="btn btn--male" type="button" aria-label="Move up: question 3">{{I:nahoru}}</button><button class="btn btn--male" type="button" aria-label="Move down: question 3">{{I:dolu}}</button></div></td>
+     <td data-label="Question"><div><a href="en-otazka-detail.html">Who does the Labour Code require to continuously identify hazardous factors and processes in the workplace, assess the risks and take measures?</a><span class="t-maly">Note: Act No. 262/2006 Coll. (Labour Code), Section 102(3) and (4)</span></div></td>
+     <td data-label="Tags"><ul class="stack-2"><li><span class="stav stav--neutral" style="white-space:normal;line-height:1.3">Employer duties</span></li><li><span class="stav stav--neutral" style="white-space:normal;line-height:1.3">Basic</span></li></ul></td>
+     <td data-label="Status"><span class="stav stav--ok">{{I:check}}Approved</span></td><td data-label="Version"><div><span class="t-cislo">v1</span><span class="t-maly" style="white-space:nowrap">4 Sep 2026</span><span class="t-maly" style="white-space:nowrap">Adam Autor</span></div></td></tr>
+    <tr><td data-label="Order" class="num"><div class="row" style="gap:var(--s-1);justify-content:flex-end;flex-wrap:nowrap"><span>4</span><button class="btn btn--male" type="button" aria-label="Move up: question 4">{{I:nahoru}}</button><button class="btn btn--male" type="button" aria-label="Move down: question 4">{{I:dolu}}</button></div></td>
+     <td data-label="Question"><div><a href="en-otazka-detail.html">In which situations must the employer provide an employee with training on health and safety regulations?</a> <span class="vice">Multiple answers</span><span class="t-maly">Note: Act No. 262/2006 Coll. (Labour Code), Section 103(2)</span></div></td>
+     <td data-label="Tags"><ul class="stack-2"><li><span class="stav stav--neutral" style="white-space:normal;line-height:1.3">Employer duties</span></li><li><span class="stav stav--neutral" style="white-space:normal;line-height:1.3">Advanced</span></li></ul></td>
+     <td data-label="Status"><span class="stav stav--ok">{{I:check}}Approved</span></td><td data-label="Version"><div><span class="t-cislo">v1</span><span class="t-maly" style="white-space:nowrap">4 Sep 2026</span><span class="t-maly" style="white-space:nowrap">Adam Autor</span></div></td></tr>
+    <tr><td data-label="Order" class="num"><div class="row" style="gap:var(--s-1);justify-content:flex-end;flex-wrap:nowrap"><span>5</span><button class="btn btn--male" type="button" aria-label="Move up: question 5">{{I:nahoru}}</button><button class="btn btn--male" type="button" aria-label="Move down: question 5">{{I:dolu}}</button></div></td>
+     <td data-label="Question"><div><a href="en-otazka-detail.html">Who decides the content and frequency of health and safety training and how employees’ knowledge is tested?</a><span class="t-maly">Note: Act No. 262/2006 Coll. (Labour Code), Section 103(3)</span></div></td>
+     <td data-label="Tags"><ul class="stack-2"><li><span class="stav stav--neutral" style="white-space:normal;line-height:1.3">Employer duties</span></li><li><span class="stav stav--neutral" style="white-space:normal;line-height:1.3">Advanced</span></li></ul></td>
+     <td data-label="Status"><span class="stav stav--pise">{{I:upravit}}Draft</span></td><td data-label="Version"><div><span class="t-cislo">v2</span><span class="t-maly" style="white-space:nowrap">4 Sep 2026</span><span class="t-maly" style="white-space:nowrap">Adam Autor</span></div></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="sr-only" aria-live="polite"></p>
+ <nav class="pager" aria-label="Question pages"><span aria-current="page">1</span><a href="#">2</a><a href="#" style="padding-inline:var(--s-3)">Next<span class="sr-only"> page</span></a></nav>
+
+ <section class="stack-2" aria-labelledby="dalsi-akce" style="margin-top:var(--s-4)">
+  <h2 id="dalsi-akce" class="t-nadpis">More actions</h2>
+  <div class="row"><a class="btn" href="en-soubor-formular.html">{{I:upravit}}Edit name and description</a><a class="btn" href="en-soubor-prava.html">{{I:uzivatele}}Bank permissions</a><button class="btn btn--nebezpecne" type="button">{{I:smazat}}Move bank to Deleted items</button></div>
+  <p class="t-maly">Only the owner can grant permissions and move the bank to Deleted items. You can restore a deleted bank for 30&nbsp;days.</p>
+ </section>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">View permission (instructor, no editing)</h3>
+  <div class="card stack">
+   <div class="row-between"><p class="t-nadpis">Sample set: Health and safety – employee training</p><a class="btn" href="#">{{I:stahnout}}Export XLSX</a></div>
+   <div class="alert alert--info">{{I:info}}<p>You have <b>View</b> permission: you can use the bank in tests and see statistics. Questions are edited by the owner (Adam Autor) or anyone with Edit permission.</p></div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Active filter – order cannot be changed</h3>
+  <div class="alert alert--info">{{I:filtr}}<p>A filter is on, so you can’t change the order of questions. <a href="en-soubor-detail.html">Clear filter</a></p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Empty bank</h3>
+  <div class="empty stack-2">{{I:soubor}}<p class="t-nadpis">This bank has no questions yet</p><p class="t-maly">Add the first question manually, or add several at once from an XLSX spreadsheet.</p><div class="row" style="justify-content:center"><a class="btn" href="en-otazka-editor.html">New question</a><a class="btn" href="en-soubor-import.html">Import XLSX</a></div></div>
+ </div>
+
+ <div class="stack" id="kos">
+  <h3 class="t-stitek">Confirm – move to Deleted items</h3>
+  <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="dk-h" style="position:static;margin:0">
+   <div class="dialog__body stack"><p id="dk-h" class="t-nadpis">Move bank to Deleted items?</p><p>The bank “Sample set: Health and safety – employee training” has 34 questions and is used by 1 test.</p><p>You can restore it from Deleted items within 30&nbsp;days. After that, it is permanently deleted.</p></div>
+   <div class="dialog__foot"><button class="btn" type="button">Keep bank</button><button class="btn btn--nebezpecne" type="button">{{I:smazat}}Move to Deleted items</button></div>
+  </div>
+ </div>
+</section>

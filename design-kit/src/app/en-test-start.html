@@ -1,0 +1,126 @@
+<!--meta {"titulek":"Cyber security: annual check – test introduction","sablona":"exam","role":"zkouseny","skip":"Skip to test introduction","lang":"en","cs_verze":"test-start.html"} -->
+<!--spec {
+ "route":"/t/start/:id (lang=en)","nazev":"Test introduction","role":"test taker","sablona":"exam",
+ "ucel":"Before the test starts, tell the test taker everything that affects their result: number of questions, time, pass mark, attempt, monitoring and training confirmation. Only then start the timer.",
+ "hlavni_akce":"Start test",
+ "komponenty":["exam-head","stav","kpi","list-check","card","alert","faq (details)","btn--hlavni","field","input"],
+ "stavy":["Same states as the Czech page (test-start.html): default, test password (wrong password shows attempts left), attempt in progress, test cannot start, no monitoring (card and header label hidden), extra time (KPI “22 min” + “including 50% extra time”), loading (“Preparing your test…”), attempts used up / passed → code page with an error."],
+ "zmeny_ux":[
+  "Layout as in the Czech version (test-start.html).",
+  "KPI labels are 1–2 words longer (time limit, pass mark); the 2-column grid on mobile still fits at 320 px.",
+  "Numbers in EN format: 80% without a space."],
+ "texty":[
+  {"dnes":"Roční ověření · Zdeněk Zkoušený","nove":"Annual check · Zdeněk Zkoušený (name marked lang=\"cs\")","proc":"Name is data."},
+  {"dnes":"otázek · časový limit · práh úspěšnosti · pokus","nove":"questions · time limit · pass mark · attempt","proc":"“Pass mark” is standard UK usage; EN glossary: attempt."},
+  {"dnes":"Čas běží od zahájení – i když okno zavřete.","nove":"The timer starts when you begin – and keeps running even if you close the window.","proc":"Active, direct."},
+  {"dnes":"Odpovědi se ukládají samy. Po odevzdání je už nezměníte.","nove":"Your answers are saved automatically. Once you submit, you cannot change them.","proc":"Irreversible step in normal text size."},
+  {"dnes":"Opakovat můžete jen při nesplnění.","nove":"You can retake the test only if you do not pass.","proc":"Plain words; matches Passed / Not passed."},
+  {"dnes":"Pokyny pořadatele · Pokyny ke zkoušce","nove":"Organiser’s instructions · Exam instructions","proc":"Makes clear who wrote the text."},
+  {"dnes":"Dohled je zapnutý. Zaznamenáme opuštění okna…","nove":"Monitoring is on. We record when you leave the window…","proc":"EN glossary: monitoring, not proctoring; says what is NOT used."},
+  {"dnes":"Co přesně se zaznamená","nove":"What exactly is recorded","proc":"Direct summary."},
+  {"dnes":"Na konci potvrdíte, že jste se seznámili se školením „Roční školení kybernetické bezpečnosti“.","nove":"At the end you will confirm that you have read and understood the training “Annual cyber security training”.","proc":"Same wording as the confirmation itself on the submit page (legal text, see en-test-odevzdani.html)."},
+  {"dnes":"Zahájit test","nove":"Start test","proc":"Verb first."},
+  {"dnes":"Heslo k testu · Heslo není správné. Můžete ho zadat ještě 2krát.","nove":"Test password · The password is not correct. You can try 2 more times.","proc":"Error + what is left."},
+  {"dnes":"Nápověda pro zkoušené","nove":"Help for test takers","proc":"EN glossary: test taker."}],
+ "pristupnost":[
+  "Same as the Czech page: one H1 (test name), cards with H2, KPI as dl, monitoring details in native details/summary.",
+  "The test taker’s name is wrapped in lang=\"cs\"; the training name is translated here as sample content – with Czech data the coder wraps it in lang=\"cs\"."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml; do not hard-code.",
+  "Organiser’s instructions and the training name are user content in the organisation’s language – not translated by the app.",
+  "Timer starts only after clicking Start test (POST).",
+  "Glossary gap: práh úspěšnosti → pass mark",
+  "Glossary gap: pokyny pořadatele → organiser’s instructions",
+  "Glossary gap: seznámit se se školením → read and understood the training (legal wording, see en-test-odevzdani.html)"],
+ "chybi_komponenta":["same as Czech: .kpi grid on 375 px, kpi as dl with inline flex column-reverse"]
+} -->
+<header class="exam-head"><div class="exam-head__in">
+ <p><b>Sample organisation (demo)</b></p>
+ <span class="stav stav--info" style="margin-left:auto">{{I:oko}}Monitoring on</span>
+</div></header>
+
+<main id="obsah" class="narrow stack-5">
+ <div class="stack-2">
+  <p class="t-stitek">Annual check · <span lang="cs">Zdeněk Zkoušený</span></p>
+  <h1 class="t-titulek">Cyber security: annual check</h1>
+ </div>
+
+ <dl class="kpi">
+  <div style="display:flex;flex-direction:column-reverse;justify-content:flex-end"><dt class="t-maly">questions</dt><dd class="t-cislo">12</dd></div>
+  <div style="display:flex;flex-direction:column-reverse;justify-content:flex-end"><dt class="t-maly">time limit</dt><dd class="t-cislo">15&nbsp;min</dd></div>
+  <div style="display:flex;flex-direction:column-reverse;justify-content:flex-end"><dt class="t-maly">pass mark</dt><dd class="t-cislo">80%</dd></div>
+  <div style="display:flex;flex-direction:column-reverse;justify-content:flex-end"><dt class="t-maly">attempt</dt><dd class="t-cislo">1 of 3</dd></div>
+ </dl>
+
+ <ul class="list-check">
+  <li>The timer starts when you begin – and keeps running even if you close the window.</li>
+  <li>Your answers are saved automatically. Once you submit, you cannot change them.</li>
+  <li>You can retake the test only if you do not pass.</li>
+ </ul>
+
+ <section class="card card--tenka stack-2" aria-labelledby="pokyny-h">
+  <p class="t-stitek">Organiser’s instructions</p>
+  <h2 id="pokyny-h" class="t-nadpis">Exam instructions</h2>
+  <p>The test has 12 questions and a time limit of 15&nbsp;minutes. The pass mark is 80%. You have 3 attempts.</p>
+  <p>This is a sample exam in the public demo. The data is not real and is deleted every night.</p>
+ </section>
+
+ <section class="card stack" aria-labelledby="dohled-h">
+  <h2 id="dohled-h" class="t-nadpis row" style="gap:var(--s-2)">{{I:oko}}Monitoring is on</h2>
+  <p>We record when you leave the window, leave full screen, copy or paste. No camera or microphone is used.</p>
+  <details class="faq">
+   <summary>What exactly is recorded</summary>
+   <div class="stack-2">
+    <ul class="list-check">
+     <li>Leaving the test window or tab – switching elsewhere, and on a phone also turning off the screen.</li>
+     <li>Leaving full screen. If your browser or assistive technology does not support it, take the test as normal.</li>
+     <li>Copying text and pasting from the clipboard.</li>
+    </ul>
+    <p>If you leave the window, you will see a notice when you come back. Your instructor sees the record with your result and in the result report. It is for information only – a person decides what happens next.</p>
+    <p>Do you use assistive technology that takes over the window, such as dictation? Tell your instructor before you start. You do not have to give a diagnosis.</p>
+    <p><a href="en-informace-o-zpracovani.html#dohled">How we process data during monitoring</a></p>
+   </div>
+  </details>
+ </section>
+
+ <div class="alert alert--info">{{I:info}}<p><b>This is a public demo.</b> Use a made-up name. Do not enter real personal data or passwords – even if the test asks for them.</p></div>
+
+ <div class="stack">
+  <div class="row" style="gap:var(--s-4)">
+   <a class="btn btn--hlavni" href="en-test-otazka-vice.html">Start test {{I:sipka-vpravo}}</a>
+   <p class="t-maly measure" style="flex:1 1 240px">At the end you will confirm that you have read and understood the training “Annual cyber security training”. Your confirmation is saved with the time and your name.</p>
+  </div>
+  <details class="faq">
+   <summary>More about this test</summary>
+   <div class="stack-2">
+    <p>We record how the test goes: when you start, which questions you view, changes to answers, leaving the window and submitting.</p>
+    <p>Do you need more time because of a disability or health condition? Ask your instructor before you start. They can also give you extra time during the test.</p>
+    <p><a href="en-informace-o-zpracovani.html">How we process your data</a> · <a href="en-napoveda.html">Help for test takers</a></p>
+   </div>
+  </details>
+ </div>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Test needs a password – entered wrongly</h3>
+   <form class="stack" action="#" method="post">
+    <div class="field">
+     <label class="label" for="heslo">Test password</label>
+     <span class="hint" id="heslo-h">Your instructor will tell you the password. It is not the access code.</span>
+     <input class="input" id="heslo" name="heslo" type="password" autocomplete="off" aria-invalid="true" aria-describedby="heslo-h heslo-e">
+     <span class="error" id="heslo-e">{{I:pozor}}The password is not correct. You can try 2 more times.</span>
+    </div>
+    <p><button class="btn" type="submit">Start test with password</button></p>
+   </form>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Attempt in progress</h3>
+   <div class="alert">{{I:hodiny}}<div class="stack-2"><p><b>You have an attempt in progress.</b> The timer kept running – 9&nbsp;minutes left.</p><p><a class="btn" href="en-test-otazka.html">Continue test</a></p></div></div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Test cannot start</h3>
+   <div class="alert alert--chyba" role="alert">{{I:pozor}}<p><b>The test cannot start right now.</b> This is not your fault. Contact your instructor.</p></div>
+  </div>
+ </section>
+</main>

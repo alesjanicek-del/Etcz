@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waiting room – Cyber security: annual check · exam-test</title>
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body class="grid-bg">
+<a class="skip" href="#obsah">Skip to content</a>
+<header class="exam-head"><div class="exam-head__in">
+ <p><b>Sample organisation (demo)</b></p>
+ <span class="stav stav--info" style="margin-left:auto"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>Monitoring on</span>
+</div></header>
+
+<main id="obsah" class="narrow stack-5" style="max-width:640px">
+ <section class="card card--papir stack-4" aria-labelledby="h1">
+  <div class="stack-2">
+   <p class="t-stitek">Waiting room · in-room exam</p>
+   <h1 id="h1" class="t-titulek">You are connected</h1>
+  </div>
+  <div class="alert" role="status"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><p class="alert__nadpis">Wait for your instructor to start the test.</p><p>Keep this page open. It updates by itself – the first question opens automatically.</p></div></div>
+  <dl class="dl">
+   <dt>Name in the result report</dt><dd><b lang="cs">Zdeněk Zkoušený</b></dd>
+   <dt>Exam</dt><dd>Cyber security: annual check</dd>
+   <dt>Exam code</dt><dd class="t-kod">4821</dd>
+   <dt>Joined</dt><dd class="t-cislo">17:32</dd>
+  </dl>
+  <p class="t-maly">Is your name spelt wrongly? Tell your instructor before the test starts.</p>
+ </section>
+
+ <section class="stack" aria-labelledby="prip-h">
+  <h2 id="prip-h" class="t-nadpis">Before the test starts</h2>
+  <ul class="list-check">
+   <li>Close other apps and turn off notifications.</li>
+   <li>Do not let your phone screen turn off. Leaving the test window is recorded.</li>
+   <li>Do you need extra time or an aid? Tell your instructor now.</li>
+  </ul>
+ </section>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Test starting</h3>
+   <div class="alert alert--ok" role="status"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4l13 8-13 8z"/></svg><p><b>The test is starting.</b> The first question will open in a few seconds.</p></div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Removed from the waiting room</h3>
+   <div class="alert alert--chyba" role="alert"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12h9"/></svg><div class="stack-2"><p><b>Your instructor removed you from the waiting room.</b> This may have been a mistake. Speak to them and join again.</p><p><a class="btn btn--male" href="en-live.html">Join again</a></p></div></div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Connection lost</h3>
+   <div class="alert" role="status"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><p><b>Connection lost.</b> We are trying to reconnect. Keep this page open.</p></div>
+  </div>
+ </section>
+</main>
+<script type="application/json" id="spec">{"route": "/live/:kod (lang=en)", "nazev": "Waiting room – test taker", "role": "test taker (supervised in-room exam)", "sablona": "cisty", "ucel": "Reassure the test taker that they are connected and do not need to do anything until the instructor starts the test. The page updates by itself.", "hlavni_akce": "Wait (no action); keep the page open", "komponenty": ["exam-head", "card--papir", "alert (role=status)", "dl", "alert", "list-check"], "stavy": ["Same states as the Czech page (cekarna-zkouseny.html): waiting, test starting, removed from the waiting room, connection lost (“Connection lost. We are trying to reconnect.”), no loading state, invalid waiting room link → en-live.html with an error."], "zmeny_ux": ["Layout as in the Czech version (cekarna-zkouseny.html).", "“Monitoring on” in the header is shorter than the Czech label – no wrapping at 320 px.", "The test taker’s name is shown as data and keeps its Czech form, marked lang=\"cs\"."], "texty": [{"dnes": "Jste připojeni", "nove": "You are connected", "proc": "Second person; plain."}, {"dnes": "Čekárna · prezenční zkouška", "nove": "Waiting room · in-room exam", "proc": "EN glossary: waiting room, supervised in-room exam (short form in a label)."}, {"dnes": "Počkejte, až lektor test spustí.", "nove": "Wait for your instructor to start the test.", "proc": "EN glossary: instructor; no “please” needed in a status."}, {"dnes": "Stránku nezavírejte. Obnovuje se sama – první otázka se otevře automaticky.", "nove": "Keep this page open. It updates by itself – the first question opens automatically.", "proc": "Positive instruction; says what happens."}, {"dnes": "Jméno v protokolu · Zkouška · Kód zkoušky · Připojeno", "nove": "Name in the result report · Exam · Exam code · Joined", "proc": "EN glossary: result report."}, {"dnes": "Dohled zapnutý", "nove": "Monitoring on", "proc": "EN glossary: monitoring (not proctoring)."}, {"dnes": "Než test začne", "nove": "Before the test starts", "proc": "Direct."}, {"dnes": "Lektor vás odebral z čekárny.", "nove": "Your instructor removed you from the waiting room.", "proc": "Active voice, with next step."}, {"dnes": "Spojení se přerušilo.", "nove": "Connection lost.", "proc": "Common short form."}], "pristupnost": ["Same as the Czech page: waiting state is p with role=status (aria-live=polite), removal is role=alert, connection details are a dl.", "Test taker’s name and the sample organisation name are data; the name is marked lang=\"cs\"."], "poznamky_pro_kodera": ["Strings from translations/*+intl-icu.en.yaml; do not hard-code.", "Status via SSE/WebSocket; fallback polling every 5 s.", "Data: demo, Zdeněk Zkoušený, exam code 4821 (sample), joined 17:32.", "Glossary gap: Ukázková organizace → Sample organisation"], "chybi_komponenta": ["waiting indicator (no spinner) – .alert with a clock icon, as in Czech"]}</script>
+</body>
+</html>

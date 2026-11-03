@@ -1,0 +1,46 @@
+<!--meta {"titulek":"Statistics","sablona":"app","role":"lektor","aktivni":"en-statistiky.html","demo":false,"lang":"en","cs_verze":"statistiky.html"} -->
+<!--spec {
+ "route":"/statistiky (lang=en)","nazev":"Statistics","role":"instructor (question authors see only the Question banks part; administrators see data of all their branches)","sablona":"app",
+ "ucel":"Statistics hub: how tests turn out and how questions in question banks perform.",
+ "hlavni_akce":"Open statistics for a test or a question bank.",
+ "komponenty":["page-head","alert","grid-2","card","table-wrap","table--stack","bar"],
+ "stavy":["Same states as statistiky.html: no attempts (“No submitted attempts yet”), author role, loading/error, permissions."],
+ "zmeny_ux":["Layout identical to the Czech page. Long sample names (“Sample set: …”) wrap in the first column."],
+ "texty":[
+  {"dnes":"Pokusy nanečisto se do statistik nezapočítávají.","nove":"Trial runs are not included in statistics.","proc":"EN glossary: trial run."},
+  {"dnes":"Počet osob, průměr a úspěšnost. Jen z použití, jejichž výsledky smíte vidět.","nove":"Number of people, average and pass rate. Only from test assignments whose results you can see.","proc":"EN glossary: test assignment."},
+  {"dnes":"Úspěšnost","nove":"Pass rate","proc":"Share of passed attempts."},
+  {"dnes":"Jak často se otázky objevují a kolik lidí odpoví správně – souhrnně i po verzích.","nove":"How often questions appear and how many people answer correctly – overall and by version.","proc":"Plain language."},
+  {"dnes":"Ukázková sada","nove":"Sample set","proc":"Name of the demo question banks."}],
+ "pristupnost":["Same as the Czech page; bar is aria-hidden, percentage is in the text."],
+ "poznamky_pro_kodera":["Data as in statistiky.html.","Glossary gap: Úspěšnost → pass rate (share of passed attempts); Správně → Correct (share of correct answers).","Glossary gap: Ukázková sada → Sample set."],
+ "chybi_komponenta":["mini bar in a table cell"]
+} -->
+<div class="page-head"><h1 class="t-titulek">Statistics</h1></div>
+<div class="alert alert--info" style="margin-bottom:var(--s-5)">{{I:info}}<p>Trial runs are not included in statistics.</p></div>
+
+<section class="stack" aria-labelledby="s-testy" style="margin-bottom:var(--s-5)">
+ <div class="stack-2"><h2 id="s-testy" class="t-nadpis">Tests</h2><p class="t-maly">Number of people, average and pass rate. Only from test assignments whose results you can see.</p></div>
+ <div class="table-wrap"><table class="table table--stack">
+  <caption class="sr-only">Test statistics</caption>
+  <thead><tr><th scope="col">Test</th><th scope="col" class="num">People</th><th scope="col" class="num">Average</th><th scope="col" style="min-width:180px">Pass rate</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Test"><a href="en-statistiky-test.html"><b>Cyber security – annual check</b></a></td><td data-label="People" class="num">6</td><td data-label="Average" class="num">72.7%</td><td data-label="Pass rate"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:50%"></span></span><span class="t-cislo">50%</span></span></td></tr>
+   <tr><td data-label="Test"><a href="en-statistiky-test.html"><b>Radiation protection – knowledge check (official, type ZOZ)</b></a></td><td data-label="People" class="num">2</td><td data-label="Average" class="num">94.9%</td><td data-label="Pass rate"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:50%"></span></span><span class="t-cislo">50%</span></span></td></tr>
+   <tr><td data-label="Test"><a href="en-statistiky-test.html"><b>Health and safety – practice test</b></a></td><td data-label="People" class="num">0</td><td data-label="Average" class="num">—</td><td data-label="Pass rate"><span class="t-maly">No submitted attempts yet</span></td></tr>
+  </tbody>
+ </table></div>
+</section>
+
+<section class="stack" aria-labelledby="s-soubory">
+ <div class="stack-2"><h2 id="s-soubory" class="t-nadpis">Question banks</h2><p class="t-maly">How often questions appear and how many people answer correctly – overall and by version.</p></div>
+ <div class="table-wrap"><table class="table table--stack">
+  <caption class="sr-only">Question bank statistics</caption>
+  <thead><tr><th scope="col">Question bank</th><th scope="col" class="num">Questions</th><th scope="col" class="num">Answers</th><th scope="col" class="num">Correct</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Question bank"><a href="en-statistiky-soubor.html"><b>Sample set: Cyber security – user training</b></a></td><td data-label="Questions" class="num">24</td><td data-label="Answers" class="num">72</td><td data-label="Correct" class="num">74.6%</td></tr>
+   <tr><td data-label="Question bank"><a href="en-statistiky-soubor.html"><b>Sample set: Radiation protection – basic principles</b></a></td><td data-label="Questions" class="num">33</td><td data-label="Answers" class="num">66</td><td data-label="Correct" class="num">93.9%</td></tr>
+   <tr><td data-label="Question bank"><a href="en-statistiky-soubor.html"><b>Sample set: Health and safety – employee training</b></a></td><td data-label="Questions" class="num">20</td><td data-label="Answers" class="num">0</td><td data-label="Correct" class="num">—</td></tr>
+  </tbody>
+ </table></div>
+</section>

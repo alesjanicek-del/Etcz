@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Continue your test on this device · exam-test</title>
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body class="grid-bg">
+<a class="skip" href="#obsah">Skip to handover code</a>
+<header class="exam-head"><div class="exam-head__in">
+ <a class="logo" href="../web/en-index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – home" width="146" height="24" style="height:24px;width:auto"></a>
+ <p class="t-stitek" style="margin-left:auto">Test handover</p>
+</div></header>
+
+<main id="obsah" class="narrow stack-5" style="max-width:600px">
+ <form class="card card--papir stack-4" action="en-test-otazka.html" method="post" aria-labelledby="h1">
+  <div class="stack-2">
+   <p class="t-stitek">Test in progress</p>
+   <h1 id="h1" class="t-titulek">Continue your test on this device</h1>
+  </div>
+  <p>Did you start the test on another device – maybe your phone battery ran out? Ask your instructor for a handover code. It is valid for 10&nbsp;minutes.</p>
+  <div class="field">
+   <label class="label" for="kod">Handover code</label>
+   <span class="hint" id="kod-h">Your instructor will give you this code. It is not the access code for the test.</span>
+   <input class="input input--kod" id="kod" name="kod" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="kod-h">
+  </div>
+  <ul class="list-check">
+   <li>The timer keeps running.</li>
+   <li>Your saved answers move with you.</li>
+   <li>The test is locked on the original device.</li>
+  </ul>
+  <button class="btn btn--hlavni" type="submit">Continue on this device</button>
+ </form>
+ <p class="t-maly">Did the outage cost you time? Tell your instructor. They can give you extra time. <a href="en-kod.html">Back to entering a test</a></p>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Invalid or expired code</h3>
+   <div class="card stack">
+    <div class="field">
+     <label class="label" for="kod2">Handover code</label>
+     <input class="input input--kod" id="kod2" value="7KQ2M9" autocomplete="off" aria-invalid="true" aria-describedby="kod2-e">
+     <span class="error" id="kod2-e"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg>This code is not valid or has expired. Ask your instructor for a new one.</span>
+    </div>
+   </div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Original device after handover</h3>
+   <div class="card card--tenka stack">
+    <p class="t-nadpis row" style="gap:var(--s-2)"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12"/><path d="M8 20h8M12 16v4"/></svg>The test is open on another device.</p>
+    <p>You can no longer continue it here. Your answers remain saved. If this was not you, tell your instructor straight away.</p>
+   </div>
+  </div>
+ </section>
+</main>
+<script type="application/json" id="spec">{"route": "/t/prevzeti (lang=en)", "nazev": "Handover to another device", "role": "test taker", "sablona": "exam", "ucel": "A test taker whose phone battery ran out, or who needs another computer, enters a code from the instructor and continues the test in progress. They must know that time keeps running and that the original device will be locked.", "hlavni_akce": "Enter the handover code and continue on this device", "komponenty": ["exam-head", "card--papir", "field", "input--kod", "hint", "btn--hlavni", "list-check", "error", "alert"], "stavy": ["Same states as the Czech page (test-prevzeti.html): default, invalid or expired code (valid for 10 minutes), original device after handover, official test (code issued only by an organisation or branch administrator), loading (“Taking over your test…”), code for another test → same error as invalid code."], "zmeny_ux": ["Layout as in the Czech version (test-prevzeti.html).", "The H1 “Continue your test on this device” wraps to 2–3 lines at 320 px, as in Czech.", "The button “Continue on this device” fits on one line at 320 px."], "texty": [{"dnes": "Převzetí testu", "nove": "Test handover", "proc": "EN glossary: handover code."}, {"dnes": "Rozpracovaný test", "nove": "Test in progress", "proc": "Same status term as in My tests."}, {"dnes": "Pokračovat v testu na tomto zařízení", "nove": "Continue your test on this device", "proc": "Says where you continue."}, {"dnes": "Začali jste test na jiném zařízení – třeba se vybil telefon? Požádejte lektora o kód pro převzetí. Platí 10 minut.", "nove": "Did you start the test on another device – maybe your phone battery ran out? Ask your instructor for a handover code. It is valid for 10 minutes.", "proc": "EN glossary: handover code, instructor."}, {"dnes": "Kód vám dá lektor. Není to přístupový kód k testu.", "nove": "Your instructor will give you this code. It is not the access code for the test.", "proc": "Keeps the two codes apart (EN glossary)."}, {"dnes": "Čas mezitím běží dál. · Uložené odpovědi se přenesou. · Na původním zařízení se test zablokuje.", "nove": "The timer keeps running. · Your saved answers move with you. · The test is locked on the original device.", "proc": "Short, concrete consequences."}, {"dnes": "Pokračovat na tomto zařízení", "nove": "Continue on this device", "proc": "Verb + where."}, {"dnes": "Kód není platný nebo už vypršel. Požádejte lektora o nový.", "nove": "This code is not valid or has expired. Ask your instructor for a new one.", "proc": "Error + next step."}, {"dnes": "Test je otevřený na jiném zařízení.", "nove": "The test is open on another device.", "proc": "Plain statement."}], "pristupnost": ["Same as the Czech page: one field with a visible label, hint and error via aria-describedby; autocomplete=off.", "After a successful handover the current question loads and focus moves to its H1; the screen reader also hears “Saved”."], "poznamky_pro_kodera": ["Strings from translations/*+intl-icu.en.yaml; do not hard-code.", "The handover code is single-use, valid for 10 minutes, issued by the instructor in the live monitor (Actions → Allow handover).", "The attempt is marked “Completed after handover to another device” in the result and the result report.", "Glossary gap: převzetí (testu) → handover"], "chybi_komponenta": []}</script>
+</body>
+</html>

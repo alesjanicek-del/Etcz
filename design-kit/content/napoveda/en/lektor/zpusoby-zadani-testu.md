@@ -21,7 +21,7 @@ The assignment belongs to your active branch.
 | Method | For whom | What you fill in | What you get |
 |---|---|---|---|
 | Supervised in-room exam | people in the room without an account | only the label | a waiting room, plus a code and QR code for the projector screen |
-| Personal access codes | named people without an account | **People**: one per line in the form `Name; email; extra time in %` (email and extra time are optional) | a code table that is shown only once. Print it with **Print** and hand out the codes, or email them straight away (option under **Send by email**, with an optional **Custom email text (optional)** field) |
+| Personal access codes | named people without an account | **People**: one per line in the form `Name; email; extra time in %` (email and extra time are optional) | a code table that is shown only once. Print it with **Print** and hand out the codes, or email them straight away (option under **Send by email**, plus a **Custom email text (optional)** field if you want one) |
 | Assigned to learners / a group | learners with an account | **Learner groups** or **Individual learners** | the test appears in their **My tests** |
 | Link (anonymous) | anyone with the link, practice tests | maximum attempts via the link, maximum attempts in progress at once, and whether to ask for a name | a link for test takers |
 | Print | paper exam | see [Printing paper test versions](tisk.md) | PDFs of question papers, answer sheets and answer keys |
