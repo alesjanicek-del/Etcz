@@ -1,0 +1,37 @@
+<!--meta {"titulek":"Page not found","popis":"This address does not exist or the page has moved.","sablona":"web","aktivni":"","lang":"en","cs_verze":"404.html"} -->
+<!--spec {
+ "route":"(error, /en/…)","nazev":"Page not found – English","role":"public – anyone with a broken link","sablona":"web (lang=en)",
+ "ucel":"Explain that the address does not exist and offer the most common destinations (verify a report, find your organisation, main pages).",
+ "hlavni_akce":"Go to the homepage; depending on the case: Verify report, Find your organisation",
+ "komponenty":["grid-bg","t-display","card","grid-3","t-kod"],
+ "stavy":["Single state (HTTP 404). App errors (403, 404 in the app) are handled by group A3: app/chyba-404.html, app/chyba-403.html."],
+ "zmeny_ux":["Structure and components are the same as the Czech page (404.html); see its spec for the UX changes."],
+ "texty":[
+  {"dnes":"Tuhle stránku jsme nenašli","nove":"We couldn’t find this page","proc":"Active, speaks for us."},
+  {"dnes":"Zkontrolujte adresu – odkaz mohl být zkrácený nebo neúplný.","nove":"Check the address – the link may have been shortened or cut off.","proc":"Plain English."},
+  {"dnes":"Přejít na úvodní stránku","nove":"Go to the homepage","proc":"Verb first."},
+  {"dnes":"Ověřit protokol","nove":"Verify report","proc":"Same as other EN pages."},
+  {"dnes":"Najít organizaci","nove":"Find your organisation","proc":"Verb first."},
+  {"dnes":"Jdete na test?","nove":"Taking a test?","proc":"Same as EN help page."},
+  {"dnes":"Kód chyby pro podporu: 404","nove":"Error code for support: 404","proc":"Plain English."}],
+ "pristupnost":["Page title “Page not found” – screen readers announce the error immediately.","Cards are whole links with descriptive text.","One H1."],
+ "poznamky_pro_kodera":["Return HTTP 404, not 200.","Error code in .t-kod (dynamic 404/410).","Serve this page for missing /en/… URLs, the Czech 404 elsewhere."],
+ "chybi_komponenta":[]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5">
+  <div class="stack-4">
+   <p class="t-stitek">Error <span class="t-kod">404</span></p>
+   <h1 class="t-display measure">We couldn’t find this page</h1>
+   <p class="t-perex measure">This address does not exist or the page has moved. Check the address – the link may have been shortened or cut off.</p>
+   <div class="row"><a class="btn btn--hlavni" href="en-index.html">Go to the homepage</a></div>
+  </div>
+  <div class="grid-3">
+   <a class="card stack-2" href="en-overeni.html" style="text-decoration:none;color:inherit"><span class="t-nadpis">Got a report or certificate?</span><span class="t-maly">Check that it’s genuine – no sign-in needed.</span><span class="row" style="gap:var(--s-2);color:var(--c-propiska);text-decoration:underline">Verify report {{I:sipka-vpravo}}</span></a>
+   <a class="card stack-2" href="en-najit-organizaci.html" style="text-decoration:none;color:inherit"><span class="t-nadpis">Want to sign in?</span><span class="t-maly">You sign in to the app at your organisation’s address.</span><span class="row" style="gap:var(--s-2);color:var(--c-propiska);text-decoration:underline">Find your organisation {{I:sipka-vpravo}}</span></a>
+   <div class="card card--tenka stack-2"><p class="t-nadpis">Taking a test?</p><p class="t-maly">Open the link from your instructor or the exam organiser again, or ask them for help.</p></div>
+  </div>
+  <nav aria-label="Main website pages" class="row"><a href="en-funkce.html">Features</a><a href="en-cenik.html">Pricing</a><a href="en-kontakt.html">Contact</a></nav>
+  <p class="t-maly">Error code for support: <span class="t-kod">404</span></p>
+ </div>
+</section>

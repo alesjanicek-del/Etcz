@@ -1,0 +1,58 @@
+<!--meta {"titulek":"New tag list","sablona":"app","role":"lektor","aktivni":"stitky.html","demo":false,"lang":"en","cs_verze":"stitky-formular.html"} -->
+<!--spec {
+ "route":"/stitky/novy (lang=en)","nazev":"New tag list – English","role":"instructor, question author, administrators (available scopes depend on the role)","sablona":"app",
+ "ucel":"Create a new tag list: name and scope (who will see and use it).",
+ "hlavni_akce":"Create list",
+ "komponenty":["crumbs","page-head","card","field","input","fieldset","choice","select","error-summary","form-actions","btn--hlavni"],
+ "stavy":["Same states as the Czech page (stitky-formular.html): Question bank scope without a bank selected, organisation administrator with all scopes, empty name, loading, no permission."],
+ "zmeny_ux":["Layout as in the Czech version; English labels are about as long."],
+ "texty":[
+  {"dnes":"Nový seznam štítků · Název seznamu štítků","nove":"New tag list · Tag list name","proc":"Glossary: tag list."},
+  {"dnes":"Kdo seznam uvidí a použije","nove":"Who will see and use the list","proc":"Plain English."},
+  {"dnes":"Jen pro mě (lektor) · Soubor otázek · Organizace · Pobočka","nove":"Only me (instructor) · Question bank · Organisation · Branch","proc":"Glossary; same as on Tag lists."},
+  {"dnes":"Založit seznam","nove":"Create list","proc":"Verb first."},
+  {"dnes":"Opravte prosím 1 údaj","nove":"Fix 1 problem","proc":"No “please”."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\"."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-stitky.html">Tag lists</a></li><li><span aria-current="page">New tag list</span></li></ol></nav>
+<div class="page-head"><h1 class="t-titulek">New tag list</h1></div>
+
+<form class="card stack-4 measure" action="en-stitky-detail.html" method="post" novalidate>
+ <div class="field"><label class="label" for="nazev">Tag list name</label><input class="input" id="nazev" name="nazev" aria-describedby="nazev-h"><span class="hint" id="nazev-h">For example, “Difficulty” or “Topics”.</span></div>
+ <fieldset class="stack-2">
+  <legend>Who will see and use the list</legend>
+  <label class="choice"><input type="radio" name="rozsah" value="lektor" checked><span class="stack-2"><b>Only me (instructor)</b><span class="t-maly">Only you will see and use the list, in all banks.</span></span></label>
+  <label class="choice"><input type="radio" name="rozsah" value="soubor"><span class="stack-2"><b>Question bank</b><span class="t-maly">Anyone with access to the selected bank will see it.</span></span></label>
+ </fieldset>
+ <div class="form-actions"><button class="btn btn--hlavni" type="submit">Create list</button><a class="btn btn--tiche" href="en-stitky.html">Cancel</a></div>
+</form>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Question bank scope – nothing selected</h3>
+  <div class="card stack-4 measure">
+   <div class="error-summary stack-2" role="alert" tabindex="-1"><p class="alert__nadpis">Fix 1 problem</p><ul style="padding-left:var(--s-4)"><li><a href="#soubor-e">Select a question bank.</a></li></ul></div>
+   <fieldset class="stack-2">
+    <legend>Who will see and use the list</legend>
+    <label class="choice"><input type="radio" name="rozsah-e" value="lektor"><span class="stack-2"><b>Only me (instructor)</b></span></label>
+    <label class="choice"><input type="radio" name="rozsah-e" value="soubor" checked><span class="stack-2"><b>Question bank</b><span class="t-maly">Anyone with access to the selected bank will see it.</span></span></label>
+    <div class="field" style="padding-left:var(--s-5)"><label class="label" for="soubor-e">Question bank</label><select class="select" id="soubor-e" aria-invalid="true" aria-describedby="soubor-e-err"><option>Select a question bank</option><option>Sample set: Health and safety – employee training</option><option>Sample set: Cyber security – user training</option><option>Sample set: Radiation protection – basic principles</option></select><p class="error" id="soubor-e-err">{{I:pozor}}Select a question bank.</p></div>
+   </fieldset>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Organisation administrator – all scopes</h3>
+  <fieldset class="card stack-2 measure">
+   <legend class="sr-only">Scopes for administrators</legend>
+   <label class="choice"><input type="radio" name="rozsah-a"><span class="stack-2"><b>Organisation</b><span class="t-maly">All instructors in the organisation.</span></span></label>
+   <label class="choice"><input type="radio" name="rozsah-a"><span class="stack-2"><b>Branch</b><span class="t-maly">Members of the selected branch.</span></span></label>
+   <label class="choice"><input type="radio" name="rozsah-a" checked><span class="stack-2"><b>Only me (instructor)</b><span class="t-maly">Only you.</span></span></label>
+   <label class="choice"><input type="radio" name="rozsah-a"><span class="stack-2"><b>Question bank</b><span class="t-maly">Anyone with access to the bank.</span></span></label>
+  </fieldset>
+ </div>
+</section>

@@ -1,0 +1,55 @@
+<!--meta {"titulek":"New exam date","sablona":"app","role":"lektor","aktivni":"kalendar.html","demo":false,"lang":"en","cs_verze":"kalendar-termin.html"} -->
+<!--spec {
+ "route":"/kalendar/novy, /kalendar/:id/upravit (lang=en)","nazev":"Exam date – form – English","role":"instructor","sablona":"app",
+ "ucel":"Add or edit an exam date so the app is not updated during it.",
+ "hlavni_akce":"Save exam date",
+ "komponenty":["crumbs","page-head","card","field","input","select","grid-2","alert--info","form-actions","error-summary","btn--nebezpecne"],
+ "stavy":[
+  "New date: empty form (drawn).",
+  "Edit: heading Edit exam date, prefilled fields and a Delete exam date button (drawn in Other page states).",
+  "Error: end before start – error-summary + .error under End (drawn).",
+  "Loading: save = POST and back to the calendar with the toast “Exam date saved”.",
+  "No permission: the creator, an organisation administrator and an instructor or branch administrator of the date’s branch; otherwise 403."],
+ "zmeny_ux":["Layout and behaviour as on the Czech page (kalendar-termin.html).","Select options are “test · label” from the branch’s open test assignments; EN labels are longer, the select wraps nothing (native select truncates options in the closed state – acceptable)."],
+ "texty":[
+  {"dnes":"Nový termín zkoušky","nove":"New exam date","proc":"Short heading."},
+  {"dnes":"Název – Například „Zkouška odborné způsobilosti – Brno“.","nove":"Name – For example, “Professional competence exam – Brno”.","proc":"Example in the hint."},
+  {"dnes":"V pražském čase. V době zkoušky a 2 hodiny před i po se aplikace neaktualizuje.","nove":"Prague time. The app is not updated during the exam or for 2 hours before and after.","proc":"One hint for both times."},
+  {"dnes":"Použití testu (nepovinné) – Bez vazby na použití","nove":"Test assignment (optional) – Not linked to a test assignment","proc":"Glossary: použití testu → test assignment."},
+  {"dnes":"Uložit termín","nove":"Save exam date","proc":"Verb + object."}],
+ "pristupnost":["Same as the Czech page: Start and End share a hint via aria-describedby; End error with aria-invalid + .error; error-summary links to the field."],
+ "poznamky_pro_kodera":["Strings from translations/*+intl-icu.en.yaml.","datetime-local; store in Europe/Prague. Error date in EN format: 5 Nov 2026, 10:00."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-kalendar.html">Exam calendar</a></li><li><span aria-current="page">New exam date</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Exam calendar</p><h1 class="t-titulek">New exam date</h1></div></div>
+
+<form class="card stack-4" action="en-kalendar.html" method="post" style="max-width:var(--max-text)">
+ <div class="field"><label class="label" for="nazev">Name</label><span class="hint" id="nazev-h">For example, “Professional competence exam – Brno”.</span><input class="input" id="nazev" name="nazev" aria-describedby="nazev-h"></div>
+ <fieldset class="stack-2" aria-describedby="cas-h"><legend>When</legend>
+  <span class="hint" id="cas-h">Prague time. The app is not updated during the exam or for 2&nbsp;hours before and after.</span>
+  <div class="grid-2" style="gap:var(--s-3)">
+   <div class="field"><label class="label" for="zacatek">Start</label><input class="input" id="zacatek" name="zacatek" type="datetime-local"></div>
+   <div class="field"><label class="label" for="konec">End</label><input class="input" id="konec" name="konec" type="datetime-local"></div>
+  </div>
+ </fieldset>
+ <div class="field"><label class="label" for="pouziti">Test assignment <span class="volitelne">(optional)</span></label>
+  <select class="select" id="pouziti" name="pouziti"><option>Not linked to a test assignment</option><option>OHS – practice test · Practice test on the website</option><option>Radiation protection – knowledge check · Supervised exam – room 2</option><option>Radiation protection – knowledge check · Knowledge check – session 1</option><option>Radiation protection – knowledge check · Assigned to a test taker</option><option>Cyber security – annual check · Assigned to a test taker</option><option>Cyber security – annual check · Annual training – access codes</option><option>OHS – practice test · Assigned to a test taker</option></select></div>
+ <div class="form-actions">
+  <button class="btn btn--hlavni" type="submit">Save exam date</button>
+  <a class="btn btn--tiche" href="en-kalendar.html">Cancel</a>
+ </div>
+</form>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">Editing an exam date</p>
+ <div class="card stack">
+  <h3 class="t-nadpis">Edit exam date</h3>
+  <div class="field"><label class="label" for="nazev-u">Name</label><input class="input" id="nazev-u" value="Supervised exam – room 2"></div>
+  <div class="form-actions"><button class="btn btn--hlavni" type="button">Save exam date</button><a class="btn btn--tiche" href="en-kalendar.html">Cancel</a><button class="btn btn--nebezpecne" type="button" style="margin-left:auto">{{I:smazat}}Delete exam date</button></div>
+ </div>
+ <p class="t-stitek">Error: end before start</p>
+ <div class="error-summary stack-2" role="alert" tabindex="-1"><p class="alert__nadpis">The exam date could not be saved</p><ul style="padding-left:var(--s-4)"><li><a href="#konec-x">The end must be after the start</a></li></ul></div>
+ <div class="field"><label class="label" for="konec-x">End</label><span class="error" id="konec-x-e">{{I:pozor}}The end must be after the start (5 Nov 2026, 10:00).</span><input class="input" id="konec-x" type="datetime-local" value="2026-11-05T09:00" aria-invalid="true" aria-describedby="konec-x-e" style="max-width:320px"></div>
+</section>

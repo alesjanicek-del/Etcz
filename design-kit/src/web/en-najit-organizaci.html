@@ -1,0 +1,87 @@
+<!--meta {"titulek":"Sign in to your organisation","popis":"Every organisation has its own address in exam-test. Enter it, or have sign-in links sent to you by email.","sablona":"web","aktivni":"","lang":"en","cs_verze":"najit-organizaci.html"} -->
+<!--spec {
+ "route":"/en/platform/find-organisation","nazev":"Find your organisation / sign in (English)","role":"public – organisation users (instructor, author, administrator, student)","sablona":"web (lang=en)",
+ "ucel":"Take users to their organisation’s sign-in page (own address) and steer test takers away from sign-in to their link and code.",
+ "hlavni_akce":"Continue to sign in (knows the address); secondary: Email me sign-in links",
+ "komponenty":["grid-2","card","field","input","hint","btn--hlavni","btn","alert--info","alert--chyba","alert--ok"],
+ "stavy":[
+  "main: two paths side by side (I know the address / I don’t) + notice for test takers",
+  "error – address does not exist: message next to the field, value stays, email path offered",
+  "error – invalid email: message next to the field",
+  "sent: confirmation that does not reveal whether an account exists",
+  "permissions: public page; signed-in users are redirected to their organisation"],
+ "zmeny_ux":["Structure, states and components are the same as the Czech page (najit-organizaci.html); see its spec for the UX changes.","Example address krajska-agentura is kept (sample organisation)."],
+ "texty":[
+  {"dnes":"Přihlášení do vaší organizace","nove":"Sign in to your organisation","proc":"Glossary: sign in (not log in)."},
+  {"dnes":"Jdete na test nebo zkoušku?","nove":"Taking a test or exam?","proc":"Same as EN help page."},
+  {"dnes":"Znám adresu organizace / Adresu neznám","nove":"I know my organisation’s address / I don’t know the address","proc":"First person, matches the user’s situation."},
+  {"dnes":"Pokračovat na přihlášení","nove":"Continue to sign in","proc":"Verb first."},
+  {"dnes":"Poslat odkazy e-mailem","nove":"Email me sign-in links","proc":"Verb first, says what happens."},
+  {"dnes":"Pracujete u provozovatele? Přihlášení pro provozovatele","nove":"Do you work for the operator? Operator sign-in","proc":"Plain English."},
+  {"dnes":"Organizaci s adresou „krajska-agentra“ jsme nenašli. Zkontrolujte překlep, nebo si pošlete odkazy e-mailem.","nove":"We couldn’t find an organisation with the address “krajska-agentra”. Check for a typo, or get sign-in links by email.","proc":"Says what to do."},
+  {"dnes":"Zkontrolujte e-mail","nove":"Check your email","proc":"Plain English."}],
+ "pristupnost":["Same as the Czech page: suffix is part of the hint and visible after the field; autocomplete=off for address, autocomplete=email; each form has its own H2 and aria-labelledby; sent confirmation role=status."],
+ "poznamky_pro_kodera":["Address: lower-case, strip “https://” and “.exam-test.cz” if pasted in full.","Email with links: same response whether or not an account exists.","Sample email jana.novakova@krajska-agentura.cz kept."],
+ "chybi_komponenta":["Field with a fixed suffix (input-group) – built from .row and .t-kod"]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5">
+  <div class="stack-4">
+   <h1 class="t-display measure">Sign in to your organisation</h1>
+   <p class="t-perex measure">Every organisation has its own address in exam-test, for example <span class="t-kod">organisation-name.exam-test.cz</span>. That’s where you sign in.</p>
+  </div>
+
+  <div class="alert alert--info" role="note" style="max-width:var(--max-text)">{{I:info}}<div class="stack-2"><p class="alert__nadpis">Taking a test or exam?</p><p>You don’t need to sign in. Open the link or address from your instructor or the exam organiser and enter your access code. Your code won’t work here – it belongs to your organisation’s address.</p></div></div>
+
+  <div class="grid-2" style="align-items:start">
+   <form class="card card--papir stack" action="../app/en-prihlaseni.html" method="get" aria-labelledby="znam">
+    <h2 id="znam" class="t-nadpis">I know my organisation’s address</h2>
+    <div class="field">
+     <label class="label" for="adresa">Organisation address</label>
+     <span class="hint" id="adresa-h">Only the first part of the address before <span class="t-kod">.exam-test.cz</span>, for example krajska-agentura.</span>
+     <div class="row" style="flex-wrap:nowrap;gap:var(--s-2)"><input style="min-width:0;flex:1" class="input" id="adresa" name="adresa" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="adresa-h"><span class="t-kod" aria-hidden="true">.exam-test.cz</span></div>
+    </div>
+    <div class="row"><button class="btn btn--hlavni" type="submit" style="white-space:normal">Continue to sign in</button></div>
+   </form>
+
+   <form class="card stack" action="#" method="post" aria-labelledby="neznam">
+    <h2 id="neznam" class="t-nadpis">I don’t know the address</h2>
+    <div class="field">
+     <label class="label" for="email">Your email</label>
+     <span class="hint" id="email-h">We’ll send sign-in links for every organisation where you have an account.</span>
+     <input class="input" type="email" id="email" name="email" autocomplete="email" inputmode="email" aria-describedby="email-h">
+    </div>
+    <div class="row"><button class="btn" type="submit">Email me sign-in links</button></div>
+   </form>
+  </div>
+
+  <p class="t-maly">Do you work for the operator? <a href="#">Operator sign-in</a></p>
+ </div>
+</section>
+
+<section class="section section--bila no-print" aria-labelledby="dalsi">
+ <div class="container stack-4">
+  <h2 id="dalsi" class="t-sekce">Other page states</h2>
+  <div class="grid-2" style="align-items:start">
+   <div class="stack">
+    <h3 class="t-nadpis">Organisation not found</h3>
+    <form class="card stack" action="#" method="get" aria-label="I know my organisation’s address – error">
+     <div class="field">
+      <label class="label" for="adresa-e">Organisation address</label>
+      <span class="hint" id="adresa-e-h">Only the first part of the address before <span class="t-kod">.exam-test.cz</span>, for example krajska-agentura.</span>
+      <p class="error" id="adresa-e-e">{{I:minus-kruh}}We couldn’t find an organisation with the address “krajska-agentra”. Check for a typo, or get sign-in links by email.</p>
+      <div class="row" style="flex-wrap:nowrap;gap:var(--s-2)"><input style="min-width:0;flex:1" class="input" id="adresa-e" name="adresa" value="krajska-agentra" autocomplete="off" aria-invalid="true" aria-describedby="adresa-e-h adresa-e-e"><span class="t-kod" aria-hidden="true">.exam-test.cz</span></div>
+     </div>
+     <div class="row"><button class="btn btn--hlavni" type="submit" style="white-space:normal">Continue to sign in</button></div>
+    </form>
+   </div>
+   <div class="stack">
+    <h3 class="t-nadpis">Links sent</h3>
+    <div class="card stack">
+     <div class="alert alert--ok" role="status">{{I:check}}<div><p class="alert__nadpis">Check your email</p><p>If <span style="overflow-wrap:anywhere">jana.novakova@krajska-agentura.cz</span> has an account in any organisation, we’ve sent sign-in links to it.</p></div></div>
+     <p class="t-maly">No email? Check your spam folder, or contact your organisation’s administrator.</p>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
