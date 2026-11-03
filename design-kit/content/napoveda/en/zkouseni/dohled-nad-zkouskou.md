@@ -21,7 +21,7 @@ Your camera image, sound, screen content and other apps are not recorded. Monito
 
 ## Warning after leaving the window
 
-If you leave the test window and come back, a warning may appear above the questions: “You left the test window. This has been recorded.” The warning does not block anything. Close it with **OK, continue** and carry on with the test. Screen readers read it out, and the focus stays where it was.
+If you leave the test window and come back, a warning may appear above the questions: “You left the test window. This has been recorded.” The warning does not block anything. Close it with **OK, got it** and carry on with the test. Screen readers read it out, and the focus stays where it was.
 
 Some tests submit automatically after you leave the window a set number of times. The start page and the text above the questions say after how many times this happens. A counter shows how many times you have already left the window. The answers saved up to that moment are submitted. The result page shows why the test was submitted.
 

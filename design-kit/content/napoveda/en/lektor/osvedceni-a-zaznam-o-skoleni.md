@@ -4,9 +4,9 @@ source: https://demo.exam-test.cz/napoveda/lektor/osvedceni-a-zaznam-o-skoleni
 translation: unofficial-draft
 ---
 
-A certificate with a validity period and QR code after passing the test, trainee confirmation before submitting, and a training record in PDF and XLSX.
+A certificate with a validity period and QR code after passing the test, training acknowledgement before submitting, and a training record in PDF and XLSX.
 
-When a test taker passes, the test can issue a certificate with an expiry date. Before they submit, it can require trainee confirmation. From the results, you can then download a training record with a list of the people trained. This is mainly useful for health and safety, fire safety or cyber security training.
+When a test taker passes, the test can issue a certificate with an expiry date. Before they submit, it can require training acknowledgement. From the results, you can then download a training record with a list of the people trained. This is mainly useful for health and safety, fire safety or cyber security training.
 
 ## Test settings
 
@@ -16,7 +16,7 @@ Open the test → **3. Parameters** → the **Certificate and training record** 
 - **Certificate validity (months)**: for example 12 or 24. Leave empty for a certificate with no expiry. A 24-month validity for a test passed on 28 Oct 2026 means “valid until 27 Oct 2028”.
 - **Training name**: shown on the certificate and in the training record. If you leave it empty, the test name is used.
 - **Trainer**: the trainer’s name. If you leave it empty, the instructor who created the test assignment is shown.
-- **Require trainee confirmation**: before submitting, the test taker ticks a box to confirm they have been briefed on the training.
+- **Require training acknowledgement**: before submitting, the test taker ticks a box to confirm they have been briefed on the training.
 - **Training syllabus**: the text the test taker was briefed on. It is shown with the confirmation and in the training record.
 
 You can change these settings even after test takers have taken the test for real. The change applies to attempts submitted after you save. Certificates already issued and confirmations already saved stay unchanged, because they are stored in the exam record on submission.
@@ -34,7 +34,7 @@ An official test does not issue certificates. The proof of an official exam is t
 
 After personal data is anonymised, or after a paper exam is corrected, the certificate can no longer be downloaded. The result details give the reason.
 
-## Trainee confirmation
+## Training acknowledgement
 
 On the summary before submitting, the test taker sees the training name, trainer and syllabus. They tick this text: “I confirm that I have been briefed on the content of the training “…” and that I understand it.” Without ticking it, they cannot submit the test themselves. Test takers learn about the confirmation on the test start page.
 

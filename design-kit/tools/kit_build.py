@@ -11,7 +11,7 @@ REVIZE = json.load(open('tools/revize.json')) if os.path.exists('tools/revize.js
 def rep(f):
     p = os.path.join('reports', f.replace('.html', '.json'))
     return json.load(open(p)) if os.path.exists(p) else None
-SKUP = [('W', 'Veřejný web'), ('A1', 'Aplikace · přihlášení, přehledy, otázky'), ('A2', 'Aplikace · testy, zadání, tisk, kalendář'), ('A3', 'Aplikace · výsledky, statistiky, správa, účet, nápověda'), ('Z', 'Zkoušený, e-mail a tiskové dokumenty'), ('EN', 'Angličtina – vzorové stránky')]
+SKUP = [('W', 'Veřejný web'), ('A1', 'Aplikace · přihlášení, přehledy, otázky'), ('A2', 'Aplikace · testy, zadání, tisk, kalendář'), ('A3', 'Aplikace · výsledky, statistiky, správa, účet, nápověda'), ('Z', 'Zkoušený, e-mail a tiskové dokumenty'), ('EN', 'Angličtina – první vzory'), ('EN-W', 'EN · veřejný web'), ('EN-A1', 'EN · přihlášení, přehledy, otázky'), ('EN-A2', 'EN · testy, zadání, tisk, kalendář'), ('EN-A3', 'EN · výsledky, statistiky, správa, účet, nápověda'), ('EN-Z', 'EN · zkoušený, e-mail a tisk')]
 HEAD = lambda t, cur: f'''<!doctype html>
 <html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="kit-stranka" content="1"><title>{t} · exam-test design kit</title><link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/brand.css">
 <style>.kit-nav{{display:flex;flex-wrap:wrap;gap:var(--s-1);margin-left:auto}}.kit-nav a{{display:inline-flex;align-items:center;min-height:var(--cil-min);padding:0 12px;color:var(--c-grafit);text-decoration:none;font-weight:var(--w-tucne);font-size:var(--t-maly)}}.kit-nav a[aria-current]{{background:var(--c-grafit);color:var(--c-papir)}}.site-header__in{{flex-wrap:wrap;padding-block:var(--s-2)}}@media (max-width:767px){{.kit-nav{{margin-left:0}}}}
@@ -34,7 +34,7 @@ def index():
         for p in [x for x in SM if x['skupina'] == g]:
             r = rep(p['soubor']); ex = os.path.exists(p['soubor'])
             if r and not (r['souhrn']['axe_chyby'] + r['souhrn']['vlastni_chyby']): ok += 1
-            th = 'assets/nahledy/' + p['soubor'].replace('/', '_').replace('.html', '.png')
+            th = 'assets/nahledy/' + p['soubor'].replace('/en-', '/').replace('/', '_').replace('.html', '.png')
             img = f'<img src="{th}" alt="" width="400" height="250" loading="lazy">' if os.path.exists(th) else '<div style="aspect-ratio:16/10;background:var(--c-papir);border-bottom:var(--b-silna) solid var(--c-grafit)"></div>'
             link = f'<a href="{p["soubor"]}"><b>{E(p["nazev"])}</b></a>' if ex else f'<b>{E(p["nazev"])}</b> <span class="t-maly">(chybí)</span>'
             cards += f'<li class="pg">{img}<div class="pg__t">{link}<span class="t-stitek" style="text-transform:none;letter-spacing:0">{E(p["route"])}</span><span class="t-maly">{E(p.get("role", "veřejnost"))}</span><span class="row" style="margin-top:auto">{stav(r)}<a class="btn btn--tiche btn--male" href="audit.html#{p["soubor"].replace("/", "-").replace(".html", "")}">Specifikace<span class="sr-only">: {E(p["nazev"])} ({E(p["soubor"])})</span></a></span></div></li>'

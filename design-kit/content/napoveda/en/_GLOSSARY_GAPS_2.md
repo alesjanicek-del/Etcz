@@ -18,7 +18,7 @@ These terms appear in the instructor and question author help but are missing fr
 | odpovědní list | answer sheet | |
 | klíč / klíče a vyhodnocovací tabulka | answer key / answer keys and scoring table | “scoring table” as in obecne/glosar.md. |
 | kód variace | version code | From the glossary. Field **Version code**. |
-| záznam průběhu / průběh testu | activity record / test activity | **Test activity (record)** in attempt details. |
+| záznam průběhu / průběh testu | activity log / test activity | **Test activity (record)** in attempt details. |
 | záznam o zkoušce (neměnný) | exam record | The stored, unchangeable record of the attempt. Not the result report. |
 | protokol o zkoušce (úřední spis) | official exam minutes | The authority’s own document, to which the result report is attached. Kept apart from “result report”. |
 | výpis pro zkoušeného | test taker’s summary | The reduced PDF a test taker downloads. |
@@ -27,7 +27,7 @@ These terms appear in the instructor and question author help but are missing fr
 | povinná / vyloučená otázka | mandatory / excluded question | Checkboxes **Mandatory**, **Exclude**. |
 | povolené / zakázané štítky | allowed / blocked tags | |
 | rozsah (seznamu štítků) | scope | |
-| proškolený / potvrzení proškoleného | trainee / trainee confirmation | **Require trainee confirmation**. |
+| proškolený / potvrzení proškoleného | trainee / training acknowledgement | **Require training acknowledgement**. |
 | školitel / osnova školení | trainer / training syllabus | |
 | připomínky opakování školení | refresher training reminders | Aligned with the admin agent. Article title “Training validity and refresher reminders”. |
 | výjimka z dohledu | monitoring exemption | **Monitoring exemptions**. |
@@ -46,7 +46,7 @@ These terms appear in the instructor and question author help but are missing fr
 | Testy a zkoušení · Vyhodnocení · Otázky · Správa | **Tests and exams** · **Evaluation** · **Questions** · **Administration** | Same as zaciname/rozvrzeni-obrazovky. |
 | Použití testů | **Test assignments** | From the glossary (použití testu). |
 | Použít · Použít test | **Assign** · **Assign test** | Verb form of “test assignment”. |
-| Základ · Sekce · Parametry · Kontrola | **Basics** · **Sections** · **Parameters** · **Check** | “Review” would clash with **Review and submit**. |
+| Základ · Sekce · Parametry · Kontrola | **Basics** · **Sections** · **Settings** · **Check** | “Review” would clash with **Review and submit**. |
 | Zkusit nanečisto | **Start trial run** | Verb first. zaciname/zkusebni-provoz uses **Trial run**. Pick one. |
 | Náhled variace · Jiná variace | **Preview test version** · **Another version** | |
 | Uzamknout vstup a spustit test | **Lock entry and start test** | |
@@ -85,4 +85,4 @@ These terms appear in the instructor and question author help but are missing fr
 - **Czech law references** (Labour Code Sections 103 and 316(3), SÚIP ref. 2932/1.30/22-2) are translated descriptively. They are not official translations of the law.
 - **Sample data** such as “Jan Novák (1985)” and `Jan Novák; ; 50` stays in Czech. The search example `zareni -alfa` became `radiation -alpha`.
 - **Screen reader example**: “caesium one hundred and thirty-seven”. This is British spelling. A Czech screen reader would still need Czech text.
-- The text of the trainee confirmation checkbox (“I confirm that I have been briefed on…”) and the warning “You left the test window. We have recorded this.” are UI strings. Check them against the EN catalogue.
+- The text of the training acknowledgement checkbox (“I confirm that I have been briefed on…”) and the warning “You left the test window. We have recorded this.” are UI strings. Check them against the EN catalogue.

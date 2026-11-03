@@ -18,9 +18,9 @@ Once you submit, you can no longer change your answers.
 
 When time runs out, the app submits the test automatically. All answers saved before the time limit ended are kept.
 
-## Confirmation of training
+## Training acknowledgement
 
-For some training (for example, health and safety), your organisation needs proof that you have been made aware of the training content. On the summary before submitting, you then see a **Confirmation of training** box with the training name, the trainer and the syllabus.
+For some training (for example, health and safety), your organisation needs proof that you have been made aware of the training content. On the summary before submitting, you then see a **Training acknowledgement** box with the training name, the trainer and the syllabus.
 
 1. Read the syllabus.
 2. Tick “I confirm that I have read and understood the training content…”.

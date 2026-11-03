@@ -54,7 +54,7 @@ How to give a test taker more time, let them continue on another device or end a
 
 ## [Results, result reports and releasing results](vysledky-a-protokol.md)
 
-Results by role and branch, attempt details with an activity record, PDF result report, releasing results and XLSX export.
+Results by role and branch, attempt details with an activity log, PDF result report, releasing results and XLSX export.
 
 - Where to find exam results
 - How to download a result report
@@ -62,10 +62,10 @@ Results by role and branch, attempt details with an activity record, PDF result 
 
 ## [Certificates and training records](osvedceni-a-zaznam-o-skoleni.md)
 
-A certificate with a validity period and QR code after passing the test, trainee confirmation before submitting, and a training record in PDF and XLSX.
+A certificate with a validity period and QR code after passing the test, training acknowledgement before submitting, and a training record in PDF and XLSX.
 
 - How to issue certificates with a validity period
-- How to require trainee confirmation
+- How to require training acknowledgement
 - How to download a training record
 
 ## [Exam monitoring](dohled-nad-zkouskou.md)

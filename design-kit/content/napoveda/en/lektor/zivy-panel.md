@@ -27,7 +27,7 @@ The monitor refreshes itself every 5 seconds. To stop it, select **Pause auto-re
 
 ## How to read alerts
 
-Leaving the window does not in itself mean cheating. It may be a phone notification or a key pressed by mistake. If an alert concerns you, ask the test taker and follow the exam rules. You can find the full activity record in the result details.
+Leaving the window does not in itself mean cheating. It may be a phone notification or a key pressed by mistake. If an alert concerns you, ask the test taker and follow the exam rules. You can find the full activity log in the result details.
 
 ## Actions for a test taker
 

@@ -451,3 +451,4 @@ h1,h2,h3,.t-display,.t-sekce,.t-titulek,.t-nadpis{overflow-wrap:break-word;hyphe
 .kod,.t-kod{white-space:normal;overflow-wrap:normal;word-break:normal}
 @media (max-width:479px){.kod{font-size:var(--t-text);letter-spacing:.06em;padding:8px 10px}}
 .layout-aside .kod,.card .kod{font-size:var(--t-text);letter-spacing:.06em}
+.table-wrap{position:relative}

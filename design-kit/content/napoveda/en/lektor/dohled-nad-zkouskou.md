@@ -14,7 +14,7 @@ Events are information for you. They do not automatically mean cheating. The win
 
 Open the test → **3. Parameters** → the **Exam monitoring** section. The **Exam monitoring** field has four options:
 
-- **Off** (default): leaving the window is recorded only in the activity record.
+- **Off** (default): leaving the window is recorded only in the activity log.
 - **Record only**: all monitoring events are recorded. The test taker sees no warning.
 - **Record and warn test taker**: when the test taker returns to the window, they see the warning “You left the test window. We have recorded this.” The warning does not block anything, and screen readers read it out.
 - **Submit after leaving the window repeatedly**: set the number in **Submit after this many times leaving the window** (default 3). The field appears once you choose this mode. When the test taker leaves the window that many times, the test is submitted with the answers saved so far. It is evaluated like a normal submission. The test taker sees a counter, and the result page tells them why the test was submitted.

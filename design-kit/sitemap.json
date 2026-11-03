@@ -762,5 +762,743 @@
   "nazev": "Question – English (vzor)",
   "role": "zkouseny",
   "skupina": "EN"
+ },
+ {
+  "soubor": "web/en-funkce.html",
+  "route": "/funkce",
+  "nazev": "Funkce podle rolí (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-pro-urady.html",
+  "route": "/pro-urady",
+  "nazev": "Pro úřady (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-pro-firmy.html",
+  "route": "/pro-firmy",
+  "nazev": "Pro firmy a BOZP (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-pro-vzdelavani.html",
+  "route": "/pro-vzdelavani",
+  "nazev": "Pro školy, kurzy a střediska (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-sablony-testu.html",
+  "route": "/sablony-testu",
+  "nazev": "Šablony testů a služby (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-bezpecnost.html",
+  "route": "/bezpecnost",
+  "nazev": "Bezpečnost a data (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-cenik.html",
+  "route": "/cenik",
+  "nazev": "Ceník (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-kontakt.html",
+  "route": "/kontakt",
+  "nazev": "Kontakt (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-ukazka.html",
+  "route": "/ukazka (dnes /demo)",
+  "nazev": "Ukázka s průvodcem – poptávka (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-ukazka-odeslano.html",
+  "route": "/ukazka/odeslano",
+  "nazev": "Poptávka odeslána (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-vyzkouset.html",
+  "route": "/vyzkouset",
+  "nazev": "Vyzkoušet demo – výběr role (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-overeni.html",
+  "route": "/overeni",
+  "nazev": "Ověření protokolu – formulář (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-overeni-vysledek.html",
+  "route": "/overeni?kod=…",
+  "nazev": "Ověření protokolu – výsledek (platný i neplatný) (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-napoveda.html",
+  "route": "/napoveda",
+  "nazev": "Nápověda – rozcestník (veřejná) (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-najit-organizaci.html",
+  "route": "/platforma/najit-organizaci",
+  "nazev": "Najít organizaci / přihlášení (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-podminky.html",
+  "route": "/podminky",
+  "nazev": "Obchodní podmínky (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-ochrana-osobnich-udaju.html",
+  "route": "/ochrana-osobnich-udaju",
+  "nazev": "Ochrana osobních údajů a cookies (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-zpracovatelska-smlouva.html",
+  "route": "/zpracovatelska-smlouva",
+  "nazev": "Zpracovatelská smlouva (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-prohlaseni-o-pristupnosti.html",
+  "route": "/prohlaseni-o-pristupnosti",
+  "nazev": "Prohlášení o přístupnosti (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "web/en-404.html",
+  "route": "(chyba)",
+  "nazev": "Stránka nenalezena (EN)",
+  "skupina": "EN-W"
+ },
+ {
+  "soubor": "app/en-prihlaseni.html",
+  "route": "/prihlaseni",
+  "nazev": "Přihlášení (EN)",
+  "role": "všichni",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-prihlaseni-2fa.html",
+  "route": "/prihlaseni/overeni",
+  "nazev": "Ověření ve dvou krocích (EN)",
+  "role": "všichni",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-prihlaseni-odkaz.html",
+  "route": "/prihlaseni/odkaz",
+  "nazev": "Přihlášení odkazem z e-mailu (EN)",
+  "role": "všichni",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-lektor-prehled.html",
+  "route": "/",
+  "nazev": "Přehled – lektor (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-autor-prehled.html",
+  "route": "/",
+  "nazev": "Přehled – autor otázek (EN)",
+  "role": "autor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-soubory.html",
+  "route": "/soubory",
+  "nazev": "Soubory otázek (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-soubor-detail.html",
+  "route": "/soubory/:id",
+  "nazev": "Soubor otázek – detail (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-soubor-formular.html",
+  "route": "/soubory/novy, /soubory/:id/upravit",
+  "nazev": "Nový / upravit soubor otázek (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-soubor-prava.html",
+  "route": "/soubory/:id/prava",
+  "nazev": "Práva k souboru otázek (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-soubor-import.html",
+  "route": "/soubory/:id/import",
+  "nazev": "Import otázek z XLSX (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-otazka-editor.html",
+  "route": "/otazky/nova, /otazky/:id/upravit",
+  "nazev": "Editor otázky (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-otazka-detail.html",
+  "route": "/otazky/:id",
+  "nazev": "Otázka – detail (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-otazka-nahled.html",
+  "route": "/otazky/:id/nahled",
+  "nazev": "Náhled otázky pro zkoušeného (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-otazka-historie.html",
+  "route": "/otazky/:id/historie",
+  "nazev": "Historie verzí otázky (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-otazky-hledat.html",
+  "route": "/otazky/hledat",
+  "nazev": "Hledat otázky (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-stitky.html",
+  "route": "/stitky",
+  "nazev": "Seznamy štítků (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-stitky-detail.html",
+  "route": "/stitky/:id",
+  "nazev": "Seznam štítků – detail (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-stitky-formular.html",
+  "route": "/stitky/novy",
+  "nazev": "Nový seznam štítků (EN)",
+  "role": "lektor",
+  "skupina": "EN-A1"
+ },
+ {
+  "soubor": "app/en-testy.html",
+  "route": "/testy",
+  "nazev": "Testy (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-test-novy.html",
+  "route": "/testy/novy",
+  "nazev": "Nový test (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-test-editor-sekce.html",
+  "route": "/testy/:id/upravit/sekce",
+  "nazev": "Editor testu – 1 Sekce (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-test-sekce-detail.html",
+  "route": "/testy/:id/sekce/:id",
+  "nazev": "Sekce testu – výběr otázek (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-test-editor-parametry.html",
+  "route": "/testy/:id/upravit/parametry",
+  "nazev": "Editor testu – 2 Parametry (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-test-editor-kontrola.html",
+  "route": "/testy/:id/upravit/kontrola",
+  "nazev": "Editor testu – 3 Kontrola (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-test-nahled.html",
+  "route": "/testy/:id/nahled",
+  "nazev": "Náhled variace / nanečisto (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-test-prava.html",
+  "route": "/testy/:id/prava",
+  "nazev": "Práva k testu (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-pouziti.html",
+  "route": "/pouziti",
+  "nazev": "Použití testů (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-pouziti-nove.html",
+  "route": "/pouziti/nove",
+  "nazev": "Použít test – výběr způsobu (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-pouziti-prezencni.html",
+  "route": "/pouziti/nove?typ=LIVE",
+  "nazev": "Nové použití – prezenční zkouška (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-pouziti-kody.html",
+  "route": "/pouziti/nove?typ=CODE",
+  "nazev": "Nové použití – osobní kódy (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-pouziti-prideleni.html",
+  "route": "/pouziti/nove?typ=ASSIGNMENT",
+  "nazev": "Nové použití – přidělení (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-pouziti-odkaz.html",
+  "route": "/pouziti/nove?typ=LINK",
+  "nazev": "Nové použití – veřejný odkaz (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-zivy-panel.html",
+  "route": "/pouziti/:id",
+  "nazev": "Živý panel (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-cekarna-lektor.html",
+  "route": "/pouziti/:id (čekárna)",
+  "nazev": "Prezenční zkouška – čekárna (lektor) (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-promitaci-plocha.html",
+  "route": "/pouziti/:id/plocha",
+  "nazev": "Promítací plocha (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-tisk.html",
+  "route": "/tisk",
+  "nazev": "Tisk – dávky (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-tisk-nova-davka.html",
+  "route": "/pouziti/nove?typ=PRINT",
+  "nazev": "Nová tisková dávka (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-tisk-davka.html",
+  "route": "/tisk/:id",
+  "nazev": "Tisková dávka – detail (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-tisk-zapis.html",
+  "route": "/tisk/:id/papirove-odpovedi",
+  "nazev": "Zápis papírových odpovědí (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-kalendar.html",
+  "route": "/kalendar",
+  "nazev": "Kalendář zkoušek (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-kalendar-termin.html",
+  "route": "/kalendar/novy, /kalendar/:id/upravit",
+  "nazev": "Termín zkoušky – formulář (EN)",
+  "role": "lektor",
+  "skupina": "EN-A2"
+ },
+ {
+  "soubor": "app/en-vysledky.html",
+  "route": "/vysledky",
+  "nazev": "Výsledky – všechny (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-vysledky-prezencni.html",
+  "route": "/vysledky/prezencni",
+  "nazev": "Výsledky – prezenční zkoušky (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-vysledky-pridelene.html",
+  "route": "/vysledky/pridelene",
+  "nazev": "Výsledky – přidělené testy (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-vysledky-pridelene-detail.html",
+  "route": "/vysledky/pridelene/:id",
+  "nazev": "Přidělený test – kdo splnil (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-vysledek-detail.html",
+  "route": "/vysledky/:id",
+  "nazev": "Detail pokusu (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-platnost-skoleni.html",
+  "route": "/vysledky/platnost-skoleni",
+  "nazev": "Platnost školení (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-statistiky.html",
+  "route": "/statistiky",
+  "nazev": "Statistiky (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-statistiky-test.html",
+  "route": "/statistiky/test/:id",
+  "nazev": "Statistiky testu (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-statistiky-soubor.html",
+  "route": "/statistiky/soubor/:id",
+  "nazev": "Statistiky souboru otázek (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-statistiky-otazka.html",
+  "route": "/statistiky/otazka/:id",
+  "nazev": "Statistiky otázky (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-admin-prehled.html",
+  "route": "/",
+  "nazev": "Přehled – administrátor pobočky (EN)",
+  "role": "admin",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-ke-schvaleni.html",
+  "route": "/ke-schvaleni",
+  "nazev": "Otázky ke schválení (EN)",
+  "role": "admin",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-otazka-schvalit.html",
+  "route": "/otazky/:id/schvalit",
+  "nazev": "Schválení otázky (EN)",
+  "role": "admin",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-uzivatele.html",
+  "route": "/sprava/uzivatele",
+  "nazev": "Uživatelé (EN)",
+  "role": "admin",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-uzivatel-detail.html",
+  "route": "/sprava/uzivatele/:id",
+  "nazev": "Uživatel – detail (EN)",
+  "role": "admin",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-uzivatel-formular.html",
+  "route": "/sprava/uzivatele/novy, /:id/upravit",
+  "nazev": "Pozvat / upravit uživatele (EN)",
+  "role": "admin",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-skupiny.html",
+  "route": "/sprava/skupiny",
+  "nazev": "Skupiny studujících (EN)",
+  "role": "admin",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-skupina-formular.html",
+  "route": "/sprava/skupiny/nova",
+  "nazev": "Nová skupina studujících (EN)",
+  "role": "admin",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-audit.html",
+  "route": "/sprava/audit",
+  "nazev": "Záznam změn (audit) (EN)",
+  "role": "admin",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-ucet.html",
+  "route": "/ucet",
+  "nazev": "Můj účet (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-co-je-noveho.html",
+  "route": "/co-je-noveho",
+  "nazev": "Co je nového (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-napoveda.html",
+  "route": "/napoveda",
+  "nazev": "Nápověda – rozcestník (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-napoveda-clanek.html",
+  "route": "/napoveda/…",
+  "nazev": "Nápověda – článek (šablona pro 60 článků) (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-prohlaseni-o-pristupnosti.html",
+  "route": "/prohlaseni-o-pristupnosti",
+  "nazev": "Prohlášení o přístupnosti (v aplikaci) (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-informace-o-zpracovani.html",
+  "route": "/informace-o-zpracovani",
+  "nazev": "Informace o zpracování osobních údajů (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-schranka-dema.html",
+  "route": "/schranka-dema",
+  "nazev": "Schránka dema (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-schranka-email.html",
+  "route": "/schranka-dema/:id",
+  "nazev": "Schránka dema – e-mail (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-chyba-404.html",
+  "route": "(chyba)",
+  "nazev": "Stránka nenalezena (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-chyba-403.html",
+  "route": "(chyba)",
+  "nazev": "Přístup odepřen (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-demo-nedostupne.html",
+  "route": "(demo)",
+  "nazev": "V demu není k dispozici (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-odhlaseni-hrozi.html",
+  "route": "(dialog)",
+  "nazev": "Přihlášení brzy vyprší – dialog (EN)",
+  "role": "lektor",
+  "skupina": "EN-A3"
+ },
+ {
+  "soubor": "app/en-moje-testy.html",
+  "route": "/moje-testy",
+  "nazev": "Moje testy (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-moje-vysledky.html",
+  "route": "/moje-vysledky",
+  "nazev": "Moje výsledky (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-kod.html",
+  "route": "/kod",
+  "nazev": "Vstup do testu kódem (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-live.html",
+  "route": "/live",
+  "nazev": "Připojit se k prezenční zkoušce (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-cekarna-zkouseny.html",
+  "route": "/live/:kod",
+  "nazev": "Čekárna – zkoušený (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-test-start.html",
+  "route": "/t/start/:id",
+  "nazev": "Úvod testu (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-test-otazka-vice.html",
+  "route": "/t/:id (více odpovědí)",
+  "nazev": "Otázka (více správných, s obrázkem) (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-test-vypadek.html",
+  "route": "/t/:id (offline)",
+  "nazev": "Otázka – výpadek připojení (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-test-prevzeti.html",
+  "route": "/t/prevzeti",
+  "nazev": "Převzetí na jiném počítači (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-test-odevzdani.html",
+  "route": "/t/:id/odevzdat",
+  "nazev": "Odevzdání testu (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-test-vysledek.html",
+  "route": "/t/:id/vysledek",
+  "nazev": "Výsledek pokusu (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "app/en-email-pozvanka.html",
+  "route": "(e-mail)",
+  "nazev": "E-mail: přístupový kód / pozvánka (EN)",
+  "role": "zkouseny",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "tisk/en-zadani.html",
+  "route": "(PDF)",
+  "nazev": "Zadání (A4) (EN)",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "tisk/en-odpovedni-list.html",
+  "route": "(PDF)",
+  "nazev": "Odpovědní list (A4) (EN)",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "tisk/en-klice.html",
+  "route": "(PDF)",
+  "nazev": "Klíče a vyhodnocovací tabulka (A4) (EN)",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "tisk/en-protokol.html",
+  "route": "(PDF)",
+  "nazev": "Protokol o výsledku (A4) (EN)",
+  "skupina": "EN-Z"
+ },
+ {
+  "soubor": "tisk/en-osvedceni.html",
+  "route": "(PDF)",
+  "nazev": "Osvědčení / záznam o školení (A4) (EN)",
+  "skupina": "EN-Z"
  }
 ]

@@ -1,6 +1,6 @@
-<!--meta {"titulek":"New student group","sablona":"app","role":"admin","aktivni":"en-skupiny.html","demo":false,"lang":"en","cs_verze":"skupina-formular.html"} -->
+<!--meta {"titulek":"New learner group","sablona":"app","role":"admin","aktivni":"en-skupiny.html","demo":false,"lang":"en","cs_verze":"skupina-formular.html"} -->
 <!--spec {
- "route":"/sprava/skupiny/nova (lang=en)","nazev":"New student group","role":"admin","sablona":"app",
+ "route":"/sprava/skupiny/nova (lang=en)","nazev":"New learner group","role":"admin","sablona":"app",
  "ucel":"Create a group in a branch; add members on its detail page.",
  "hlavni_akce":"Create group.",
  "komponenty":["crumbs","page-head","field","input","select","hint","error","error-summary","form-actions"],
@@ -16,8 +16,8 @@
  "poznamky_pro_kodera":["Behaviour as in skupina-formular.html."],
  "chybi_komponenta":[]
 } -->
-<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-skupiny.html">Student groups</a></li><li><span aria-current="page">New group</span></li></ol></nav>
-<div class="page-head"><h1 class="t-titulek">New student group</h1></div>
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-skupiny.html">Learner groups</a></li><li><span aria-current="page">New group</span></li></ol></nav>
+<div class="page-head"><h1 class="t-titulek">New learner group</h1></div>
 <form class="stack-4" action="en-skupiny.html" method="post" style="max-width:var(--max-text)">
  <div class="field"><label class="label" for="nz">Group name</label><span class="hint" id="nz-h">For example, “New employees – November”.</span><input class="input" id="nz" name="nazev" aria-describedby="nz-h"></div>
  <div class="field"><label class="label" for="pb">Branch</label><span class="hint" id="pb-h">You can add only students of this branch to the group.</span><select class="select" id="pb" name="pobocka" aria-describedby="pb-h" style="max-width:320px"><option>Prague</option></select></div>

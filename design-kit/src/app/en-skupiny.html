@@ -1,27 +1,27 @@
-<!--meta {"titulek":"Student groups","sablona":"app","role":"admin","aktivni":"en-skupiny.html","demo":false,"lang":"en","cs_verze":"skupiny.html"} -->
+<!--meta {"titulek":"Learner groups","sablona":"app","role":"admin","aktivni":"en-skupiny.html","demo":false,"lang":"en","cs_verze":"skupiny.html"} -->
 <!--spec {
- "route":"/sprava/skupiny (lang=en)","nazev":"Student groups","role":"admin (branch administrators see groups of their branches, organisation administrators all)","sablona":"app",
+ "route":"/sprava/skupiny (lang=en)","nazev":"Learner groups","role":"admin (branch administrators see groups of their branches, organisation administrators all)","sablona":"app",
  "ucel":"Groups make it easy to assign a test to several students at once.",
  "hlavni_akce":"New group; open a group and edit its members.",
  "komponenty":["page-head","table-wrap","table--stack","empty","alert"],
  "stavy":["Same states as skupiny.html: empty (drawn below), after creating (“Group created. Add students to it.”), after deleting, loading/error, permissions."],
  "zmeny_ux":["Layout identical to the Czech page."],
  "texty":[
-  {"dnes":"Skupiny studujících","nove":"Student groups","proc":"Same as the menu (APP_EN)."},
+  {"dnes":"Skupiny studujících","nove":"Learner groups","proc":"Same as the menu (APP_EN)."},
   {"dnes":"Skupina usnadní přidělení testu více studujícím najednou.","nove":"A group makes it easy to assign a test to several students at once.","proc":"EN glossary: assigned to a group."},
   {"dnes":"Nová skupina · Založit první skupinu","nove":"New group · Create your first group","proc":"Verb first."},
   {"dnes":"Skupina smazána. Studující zůstali zachováni.","nove":"Group deleted. The students have been kept.","proc":"Says what did not change."}],
  "pristupnost":["Same as the Czech page."],
- "poznamky_pro_kodera":["Data as in skupiny.html (sample groups are illustrative).","Glossary gap: studující → student; skupina studujících → student group."],
+ "poznamky_pro_kodera":["Data as in skupiny.html (sample groups are illustrative).","Glossary gap: studující → student; skupina studujících → learner group."],
  "chybi_komponenta":[]
 } -->
 <div class="page-head">
- <div class="stack-2"><h1 class="t-titulek">Student groups</h1><p class="t-maly">A group makes it easy to assign a test to several students at once.</p></div>
+ <div class="stack-2"><h1 class="t-titulek">Learner groups</h1><p class="t-maly">A group makes it easy to assign a test to several students at once.</p></div>
  <div class="page-head__actions"><a class="btn btn--hlavni" href="en-skupina-formular.html">{{I:plus}}New group</a></div>
 </div>
 <div class="table-wrap">
  <table class="table table--stack">
-  <caption class="sr-only">Student groups, 2 groups</caption>
+  <caption class="sr-only">Learner groups, 2 groups</caption>
   <thead><tr><th scope="col">Group</th><th scope="col">Branch</th><th scope="col" class="num">Members</th><th scope="col" class="num">Assigned tests</th></tr></thead>
   <tbody>
    <tr><td data-label="Group"><a href="#"><b>New employees – November</b></a></td><td data-label="Branch">Prague</td><td data-label="Members" class="num">12</td><td data-label="Assigned tests" class="num">2</td></tr>

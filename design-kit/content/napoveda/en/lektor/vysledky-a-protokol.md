@@ -4,7 +4,7 @@ source: https://demo.exam-test.cz/napoveda/lektor/vysledky-a-protokol
 translation: unofficial-draft
 ---
 
-Results by role and branch, attempt details with an activity record, PDF result report, releasing results and XLSX export.
+Results by role and branch, attempt details with an activity log, PDF result report, releasing results and XLSX export.
 
 ## Who sees which results
 
@@ -45,7 +45,7 @@ Details for specialists (checksums) are in the collapsed **Technical details** s
 
 ## Result report (PDF)
 
-In the attempt details, select **Result report (PDF)**. The result report contains the organisation’s logo and details, the time limit and extra time, all questions and answers, and the result. It also has the activity record, the verification code and a QR code for checking authenticity (see [Verifying a result report](../zkouseni/overeni-protokolu.md)).
+In the attempt details, select **Result report (PDF)**. The result report contains the organisation’s logo and details, the time limit and extra time, all questions and answers, and the result. It also has the activity log, the verification code and a QR code for checking authenticity (see [Verifying a result report](../zkouseni/overeni-protokolu.md)).
 
 Test takers can only download a test taker’s summary. It has the same verification code. But it shows questions only as far as the test’s results display setting allows (never with correct answers for an official test). The summary is marked as such in its header. So for the file (for example, as an annex to the official exam minutes), keep the result report downloaded here, in the attempt details.
 

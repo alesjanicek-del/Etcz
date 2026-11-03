@@ -6,7 +6,7 @@ translation: unofficial-draft
 
 The Basics → Sections → Parameters → Check wizard. Mandatory and randomly picked questions, tags, time, password, grading and official mode.
 
-Open **Tests and exams → Tests → New test**. The wizard has four steps: **Basics**, **Sections**, **Parameters** and **Check**.
+Open **Tests and exams → Tests → New test**. The wizard has four steps: **Basics**, **Sections**, **Settings** and **Check**.
 
 ## Step 1: Basics
 
@@ -66,7 +66,7 @@ Choose one of the organisation’s preset grading methods, or **Custom grading f
 
 ### Certificate and training record
 
-**Issue certificate on pass** with a validity period in months, **Training name**, **Trainer**, **Require trainee confirmation** and **Training syllabus**. See [Certificates and training records](osvedceni-a-zaznam-o-skoleni.md) for details.
+**Issue certificate on pass** with a validity period in months, **Training name**, **Trainer**, **Require training acknowledgement** and **Training syllabus**. See [Certificates and training records](osvedceni-a-zaznam-o-skoleni.md) for details.
 
 Save with **Save and go to check**.
 

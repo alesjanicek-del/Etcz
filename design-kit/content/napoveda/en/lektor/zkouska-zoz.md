@@ -50,7 +50,7 @@ Candidates with a disability ask for extra time in advance. You set it on their 
 ## 5. Evaluation and result report
 
 1. When the assignment is over, select **Close**.
-2. Check the results in **Results**. For each attempt, you can view the activity record (see [Results and result reports](vysledky-a-protokol.md)).
+2. Check the results in **Results**. For each attempt, you can view the activity log (see [Results and result reports](vysledky-a-protokol.md)).
 3. Download the **Result report (PDF)** for the file. The result report has a verification code and a QR code.
 4. If results are released by the instructor, release the results.
 

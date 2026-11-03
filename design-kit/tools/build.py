@@ -115,7 +115,7 @@ def web_en(meta, body):
 
 APP_EN = {'Přehled':'Overview','Otázky':'Questions','Soubory otázek':'Question banks','Hledat otázky':'Search questions','Štítky':'Tags','Ke schválení':'Pending approval',
  'Zkoušení':'Testing','Testy':'Tests','Použití testů':'Test assignments','Tisk':'Print','Kalendář':'Calendar','Vyhodnocení':'Results','Výsledky':'Results',
- 'Platnost školení':'Training validity','Statistiky':'Statistics','Správa pobočky':'Branch admin','Uživatelé':'Users','Skupiny studujících':'Student groups','Záznam změn':'Change log',
+ 'Platnost školení':'Training validity','Statistiky':'Statistics','Správa pobočky':'Branch admin','Uživatelé':'Users','Skupiny studujících':'Learner groups','Záznam změn':'Change log',
  'Moje testy':'My tests','Moje výsledky':'My results'}
 def appnav(role, a, mobile=False, lang='cs'):
     out = []

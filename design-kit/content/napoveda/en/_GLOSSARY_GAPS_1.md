@@ -21,7 +21,7 @@ Terms used in these help articles that are missing from the binding glossary (`_
 | Přehled | **Overview** | Not “dashboard”. |
 | Otázky · Testy a zkoušení · Vyhodnocení · Správa · Účet a podpora | **Questions** · **Tests and exams** · **Evaluation** · **Administration** · **Account and support** | Menu groups. Not yet in an EN kit page. |
 | Aktivní pobočka · Přepnout | **Active branch** · **Switch** | |
-| Spustit zkoušení | **Start testing** | en-admin-prehled.html; en-lektor-prehled.html uses “Run a test”. Pick one. |
+| Spustit zkoušení | **Start testing** | en-admin-prehled.html; en-lektor-prehled.html uses “Start testing”. Pick one. |
 | Probíhající zkoušení · Poslední výsledky | **Tests in progress** · **Latest results** | en-lektor-prehled.html. |
 | průvodce První kroky · Zobrazit průvodce prvními kroky | **Getting started** guide · **Show the first steps guide** | Kit calls the guide “Getting started”, same as the help category. The “show again” label is not in the kit. |
 | Schránka dema | **Demo mailbox** | en-schranka-dema.html. |
@@ -51,10 +51,10 @@ Terms used in these help articles that are missing from the binding glossary (`_
 | Uložit a přejít k odevzdání | **Save and review** | Not in the kit. Needs a decision. |
 | ← Předchozí · Uložit · Potvrdit odpověď · Zkusit uložit znovu | **← Previous** · **Save** · **Confirm answer** · **Try saving again** | |
 | Jak test funguje | **How the test works** | |
-| Rozumím (upozornění na opuštění okna) | **OK, continue** | en-test-otazka.html. en-odhlaseni-hrozi.html uses “OK, got it” for the same CS word. |
+| Rozumím (upozornění na opuštění okna) | **OK, got it** | en-test-otazka.html. en-odhlaseni-hrozi.html uses “OK, got it” for the same CS word. |
 | Přejít na celou obrazovku | **Go full screen** | |
 | Zpět k otázkám · Test odevzdán | **Back to questions** · **Test submitted** | |
-| Potvrzení o seznámení se školením | **Confirmation of training** | en-test-odevzdani.html. |
+| Potvrzení o seznámení se školením | **Training acknowledgement** | en-test-odevzdani.html. |
 | Stáhnout protokol (PDF) · Stáhnout osvědčení (PDF) | **Download result report (PDF)** · **Download certificate (PDF)** | |
 | výpis pro zkoušeného | **test taker’s copy** | Header label on the downloaded result report. |
 | Stáhnout PDF · Stáhnout osvědčení (Moje výsledky) | **Result report (PDF)** · **Certificate (PDF)** | en-moje-vysledky.html. |
