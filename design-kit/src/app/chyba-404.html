@@ -1,0 +1,33 @@
+<!--meta {"titulek":"Stránka nenalezena","sablona":"app","role":"lektor","aktivni":"","demo":false} -->
+<!--spec {
+ "route":"(chyba)","nazev":"Stránka nenalezena","role":"lektor (přihlášený uživatel libovolné role; nepřihlášený vidí stejný obsah v šabloně cisty bez menu)","sablona":"app",
+ "ucel":"Říct, že stránka neexistuje (nebo byla smazána), a nabídnout cestu dál – bez slepé uličky.",
+ "hlavni_akce":"Přejít na Přehled; hledat v nápovědě.",
+ "komponenty":["card--papir","t-kod","btn","field","input","list-check"],
+ "stavy":[
+  "nepřihlášený: šablona cisty, místo Přehledu tlačítko Přihlásit se.",
+  "smazaný záznam v koši (soubor otázek, otázka): místo 404 hláška „Položka je v koši“ s odkazem na Koš – návrh.",
+  "neplatný odkaz z e-mailu: viz demo-nedostupne (v demu) nebo stránka Odkaz už neplatí (A1)."],
+ "zmeny_ux":[
+  "Kód chyby drobně jako štítek, nadpis lidsky („Tuhle stránku jsme nenašli“).",
+  "Tři nejčastější příčiny a jedna hlavní akce; vyhledávání v nápovědě přímo na stránce.",
+  "Menu zůstává (šablona app), uživatel se nemusí vracet tlačítkem Zpět."],
+ "texty":[
+  {"dnes":"(obecná chybová stránka serveru)","nove":"Tuhle stránku jsme nenašli","proc":"Lidsky, bez technického kódu v nadpisu."},
+  {"dnes":"(chybí)","nove":"Přejít na Přehled","proc":"Tlačítko říká, co se stane."}],
+ "pristupnost":["H1 popisuje chybu; title stránky „Stránka nenalezena · exam-test“.","Kód 404 je jen doplněk (t-stitek)."],
+ "poznamky_pro_kodera":["HTTP status 404.","Odkaz Přehled podle role (HOME)."],
+ "chybi_komponenta":[]
+} -->
+<div class="card card--papir stack-4" style="max-width:var(--max-text);margin-top:var(--s-4)">
+ <p class="t-stitek">Chyba 404</p>
+ <h1 class="t-titulek">Tuhle stránku jsme nenašli</h1>
+ <p>Adresa může být neúplná, stránka mohla být smazána, nebo vede na záznam z&nbsp;jiné pobočky.</p>
+ <ul class="list-check">
+  <li><span>Zkontrolujte adresu, pokud jste ji psali ručně.</span></li>
+  <li><span>Záznam z&nbsp;jiné pobočky uvidíte po přepnutí aktivní pobočky v&nbsp;horní liště.</span></li>
+  <li><span>Smazané otázky a soubory otázek jsou 30 dní v&nbsp;koši.</span></li>
+ </ul>
+ <div class="row"><a class="btn btn--hlavni" href="lektor-prehled.html">{{I:domu}}Přejít na Přehled</a><a class="btn btn--tiche" href="napoveda.html">Otevřít nápovědu</a></div>
+ <form role="search" class="field" action="napoveda.html" method="get"><label class="label" for="q404">Hledat v nápovědě</label><div class="row" style="flex-wrap:nowrap;gap:var(--s-2)"><input class="input" id="q404" type="search" name="q"><button class="btn" type="submit">Hledat</button></div></form>
+</div>

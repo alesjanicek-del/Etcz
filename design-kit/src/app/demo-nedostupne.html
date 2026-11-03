@@ -1,0 +1,33 @@
+<!--meta {"titulek":"V demu není k dispozici","sablona":"app","role":"lektor","aktivni":"","demo":true} -->
+<!--spec {
+ "route":"(demo)","nazev":"V demu není k dispozici","role":"lektor (v demu pro všechny role)","sablona":"app",
+ "ucel":"Když návštěvník dema otevře funkci, která v demu nejde (nastavení organizace, faktury, skutečné odeslání e-mailu), vysvětlit proč a nabídnout další krok.",
+ "hlavni_akce":"Ukázka s průvodcem (domluvit); vedlejší: Zpět do dema.",
+ "komponenty":["demo-bar","card--papir","list-check","btn"],
+ "stavy":[
+  "funkce není v demu (nakresleno): název funkce + co by v plné verzi udělala.",
+  "odkaz po nočním smazání: „Data dema se ve 3:00 smazala. Spusťte demo znovu.“ + Vyzkoušet demo znovu.",
+  "akce by poslala e-mail: přesměrování do Schránky dema místo této stránky."],
+ "zmeny_ux":[
+  "Šablona app (menu zůstává) – návštěvník je uprostřed dema a má se snadno vrátit.",
+  "Říká, co funkce v plné verzi dělá, aby návštěvník nepřišel o informaci.",
+  "Dvě akce: Ukázka s průvodcem (hlavní, prodejní cíl) a Zpět na Přehled dema."],
+ "texty":[
+  {"dnes":"(obecná hláška)","nove":"Nastavení organizace v demu nejde","proc":"Konkrétně."},
+  {"dnes":"Domluvit ukázku","nove":"Ukázka s průvodcem","proc":"Slovník."}],
+ "pristupnost":["H1 konkrétní.","Odkazy s jasným cílem."],
+ "poznamky_pro_kodera":["Název funkce a popis z mapy nedostupných funkcí dema.","Demo lišta (.demo-bar) zůstává nahoře."],
+ "chybi_komponenta":[]
+} -->
+<div class="card card--papir stack-4" style="max-width:var(--max-text);margin-top:var(--s-4)">
+ <p class="t-stitek">Veřejné demo</p>
+ <h1 class="t-titulek">Nastavení organizace v&nbsp;demu nejde</h1>
+ <p>Demo sdílí jedna ukázková organizace, proto její nastavení nemůžete měnit. V&nbsp;plné verzi tady administrátor organizace nastaví:</p>
+ <ul class="list-check">
+  <li><span>způsoby hodnocení a schvalování otázek,</span></li>
+  <li><span>připomínky konce platnosti školení e-mailem,</span></li>
+  <li><span>dobu uchování výsledků a povinné ověření ve dvou krocích.</span></li>
+ </ul>
+ <p>Chcete to vidět na vlastní organizaci? Ukážeme vám aplikaci online, asi za 30 minut.</p>
+ <div class="row"><a class="btn btn--hlavni" href="../web/ukazka.html">Ukázka s průvodcem</a><a class="btn" href="lektor-prehled.html">Zpět na Přehled dema</a></div>
+</div>

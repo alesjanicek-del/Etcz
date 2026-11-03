@@ -1,0 +1,127 @@
+<!--meta {"titulek":"Sekce – BOZP – cvičný test","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false} -->
+<!--spec {
+ "route":"/testy/:id/upravit/sekce","nazev":"Editor testu – 1 Sekce","role":"lektor","sablona":"app",
+ "ucel":"Určit, ze kterých souborů otázek se test skládá a kolik otázek se z každého losuje. Souhrn ukáže, zda otázky stačí.",
+ "hlavni_akce":"Pokračovat na parametry; vedlejší: Přidat sekci, Upravit sekci",
+ "komponenty":["crumbs","page-head","meta","steps","card","kpi","stav","alert","field","select","form-actions","btn--male","btn--tiche"],
+ "stavy":[
+  "výchozí: 1 sekce v pořádku (nakresleno).",
+  "prázdný: test bez sekce – .empty „Test zatím nemá žádnou sekci“ a formulář Přidat sekci hned pod ním; krok Parametry i Kontrola jsou dostupné, ale Kontrola ukáže chybu „Test nemá žádnou sekci“.",
+  "chyba: sekce s nedostatkem otázek – karta má stav--ne a alert--chyba s konkrétní příčinou a odkazem Upravit sekci (nakresleno). Krok Kontrola je zamčený (span s textem „zamčeno“ místo odkazu).",
+  "chyba formuláře: nevybraný soubor otázek – .error u selectu.",
+  "načítání: přidání sekce je POST + přesměrování zpět s kotvou na novou sekci.",
+  "bez oprávnění: s právem Čtení se editor neotevře – odkaz Upravit v seznamu se mění na Náhled; přímý přístup vrací 403."],
+ "zmeny_ux":[
+  "Editor má 3 kroky (Sekce, Parametry, Kontrola) v komponentě .steps; Základ (název, pokyny) je v kroku Parametry. Lektor tráví čas hlavně v sekcích, proto jsou první.",
+  "Souhrn sekce je .kpi se 4 čísly (Povinné, Kandidátů, Náhodně, Možných výběrů) místo řádku textu – čísla jsou porovnatelná napříč sekcemi.",
+  "Ikonová tlačítka pořadí sekcí (Posunout nahoru/dolů) mají aria-label; Odebrat sekci je .btn--nebezpecne a ptá se dialogem.",
+  "Chyba v sekci říká příčinu a co s ní: „Chcete losovat 12 otázek, ale kandidátů je jen 8.“",
+  "Formulář Přidat sekci je karta pod sekcemi s jedním tlačítkem; nadpis sekce je nepovinný (předvyplní se názvem souboru)."],
+ "texty":[
+  {"dnes":"2. Sekce","nove":"Sekce (krok 1 ze 3)","proc":"Krokování ukazuje komponenta .steps; nadpis nepotřebuje číslo."},
+  {"dnes":"Každá sekce vybírá otázky z jednoho souboru otázek: povinné otázky dostane každý zkoušený, ostatní se losují z kandidátů po vyloučení a filtrech štítků.","nove":"Každá sekce vybírá otázky z jednoho souboru otázek. Povinné otázky dostane každý zkoušený. Ostatní se losují z kandidátů.","proc":"Tři krátké věty místo jedné dlouhé; vyloučení a štítky vysvětluje detail sekce."},
+  {"dnes":"– vyberte soubor otázek –","nove":"Vyberte soubor otázek","proc":"Bez pomlček; je to výzva, ne hodnota."},
+  {"dnes":"Ukázková sada: BOZP — školení zaměstnanců · váha 1","nove":"Soubor otázek: Ukázková sada: BOZP – školení zaměstnanců · Váha v hodnocení: 1","proc":"Celé pojmy, metadata v .meta."},
+  {"dnes":"Pokračovat na parametry","nove":"Pokračovat na parametry","proc":"Beze změny – říká, co se stane."}],
+ "pristupnost":[
+  "Kroky: ol.steps s aria-label „Kroky editoru testu“, aktuální krok aria-current=step; zamčený krok je span (ne odkaz) s viditelným textem „Kontrola zamčena“ a ikonou zámku.",
+  "Každá sekce je section s aria-labelledby na svůj nadpis H2; souhrn .kpi je dl? – ne: div se čtyřmi dvojicemi číslo + popisek ve stejném prvku, čte se „34 Kandidátů“.",
+  "Tlačítka Posunout nahoru/dolů mají aria-label s názvem sekce; po přesunu se fokus vrátí na stejné tlačítko a stavová zpráva v aria-live oznámí „Sekce BOZP je teď 1. z 2“.",
+  "Odebrat sekci otevře .dialog (nativní dialog, fokus na Zrušit)."],
+ "poznamky_pro_kodera":[
+  "Možných výběrů: dolní odhad z backendu (≥ 10 000).",
+  "Select Soubor otázek nabízí jen soubory, které lektor smí použít v testu.",
+  "Pořadí sekcí: POST /sekce/:id/posun?smer=nahoru|dolu; JS volitelně bez reloadu.",
+  "Kotva #sekce-2 u nově přidané sekce."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="testy.html">Testy</a></li><li><span aria-current="page">BOZP – cvičný test</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2">
+  <p class="t-stitek">Úprava testu</p>
+  <h1 class="t-titulek">BOZP – cvičný test</h1>
+  <dl class="meta"><div><dt>Pobočka</dt><dd>Praha</dd></div><div><dt>Vlastník</dt><dd>Lucie Lektorová</dd></div><div><dt>Upraveno</dt><dd>4. 9. 2026</dd></div></dl>
+ </div>
+ <div class="page-head__actions"><a class="btn" href="test-nahled.html">{{I:oko}}Náhled variace</a></div>
+</div>
+
+<ol class="steps" aria-label="Kroky editoru testu" style="margin-bottom:var(--s-5);contain:inline-size">
+ <li><a href="test-editor-sekce.html" aria-current="step">Sekce</a></li>
+ <li><a href="test-editor-parametry.html">Parametry</a></li>
+ <li><a href="test-editor-kontrola.html">Kontrola</a></li>
+</ol>
+
+<div class="stack-5">
+ <div class="stack-2 measure">
+  <h2 class="t-nadpis">Sekce</h2>
+  <p>Každá sekce vybírá otázky z jednoho souboru otázek. Povinné otázky dostane každý zkoušený. Ostatní se losují z kandidátů.</p>
+ </div>
+
+ <section class="card stack" id="sekce-1" aria-labelledby="s1-h">
+  <div class="row-between" style="align-items:flex-start">
+   <div class="stack-2">
+    <h3 id="s1-h" class="t-nadpis"><span class="t-cislo">01</span> BOZP</h3>
+    <dl class="meta"><div><dt>Soubor otázek</dt><dd>Ukázková sada: BOZP – školení zaměstnanců</dd></div><div><dt>Váha v hodnocení</dt><dd>1</dd></div></dl>
+   </div>
+   <span class="stav stav--ok">{{I:check}}V pořádku</span>
+  </div>
+  <div class="kpi">
+   <div><span class="t-cislo">0</span><span class="t-maly">povinných</span></div>
+   <div><span class="t-cislo">34</span><span class="t-maly">kandidátů</span></div>
+   <div><span class="t-cislo">10–12</span><span class="t-maly">losuje se náhodně</span></div>
+   <div><span class="t-cislo">≥&nbsp;10&nbsp;000</span><span class="t-maly">možných výběrů</span></div>
+  </div>
+  <div class="row-between">
+   <a class="btn btn--male" href="test-sekce-detail.html">{{I:upravit}}Upravit sekci<span class="sr-only"> BOZP</span></a>
+   <div class="row" style="gap:var(--s-2)">
+    <button class="btn btn--male" type="button" aria-label="Posunout sekci BOZP nahoru" disabled>{{I:nahoru}}</button>
+    <button class="btn btn--male" type="button" aria-label="Posunout sekci BOZP dolů" disabled>{{I:dolu}}</button>
+    <button class="btn btn--male btn--nebezpecne" type="button">{{I:smazat}}Odebrat sekci<span class="sr-only"> BOZP</span></button>
+   </div>
+  </div>
+ </section>
+
+ <form class="card card--tenka stack" action="test-editor-sekce.html#sekce-2" method="post" aria-labelledby="pridat-h">
+  <h3 id="pridat-h" class="t-nadpis">Přidat sekci</h3>
+  <div class="grid-2">
+   <div class="field">
+    <label class="label" for="soubor">Soubor otázek</label>
+    <span class="hint" id="soubor-h">Nabízí se jen soubory, které smíte použít v testu.</span>
+    <select class="select" id="soubor" name="soubor" aria-describedby="soubor-h"><option value="">Vyberte soubor otázek</option><option>Ukázková sada: BOZP – školení zaměstnanců</option><option>Ukázková sada: Kybernetická bezpečnost – školení uživatelů</option><option>Ukázková sada: Radiační ochrana – základní principy</option></select>
+   </div>
+   <div class="field">
+    <label class="label" for="nadpis">Nadpis sekce <span class="volitelne">(nepovinné)</span></label>
+    <span class="hint" id="nadpis-h">Když ho nevyplníte, použije se název souboru otázek.</span>
+    <input class="input" id="nadpis" name="nadpis" aria-describedby="nadpis-h">
+   </div>
+  </div>
+  <div><button class="btn" type="submit">{{I:plus}}Přidat sekci</button></div>
+ </form>
+
+ <div class="form-actions">
+  <a class="btn btn--hlavni" href="test-editor-parametry.html">Pokračovat na parametry {{I:sipka-vpravo}}</a>
+  <a class="btn btn--tiche" href="testy.html">Zpět na testy</a>
+ </div>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Chyba: málo otázek v sekci</p>
+ <ol class="steps" aria-label="Kroky editoru testu (ukázka se zamčenou kontrolou)" style="contain:inline-size">
+  <li><a href="test-editor-sekce.html" aria-current="step">Sekce</a></li>
+  <li><a href="test-editor-parametry.html">Parametry</a></li>
+  <li><span>{{I:zamek}}Kontrola zamčena</span></li>
+ </ol>
+ <section class="card stack" aria-labelledby="s2-h">
+  <div class="row-between" style="align-items:flex-start">
+   <div class="stack-2">
+    <h3 id="s2-h" class="t-nadpis"><span class="t-cislo">02</span> Požární ochrana</h3>
+    <dl class="meta"><div><dt>Soubor otázek</dt><dd>Požární ochrana – zaměstnanci</dd></div><div><dt>Váha v hodnocení</dt><dd>1</dd></div></dl>
+   </div>
+   <span class="stav stav--ne">{{I:minus-kruh}}Chyba</span>
+  </div>
+  <div class="alert alert--chyba">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Otázky nestačí</p><p>Chcete losovat 12 otázek, ale kandidátů je jen 8. Snižte počet nebo povolte víc štítků.</p><p><a href="test-sekce-detail.html">Upravit sekci Požární ochrana</a></p></div></div>
+ </section>
+ <p class="t-stitek">Test bez sekce</p>
+ <div class="empty stack-2">{{I:slozka}}<p><b>Test zatím nemá žádnou sekci.</b></p><p class="t-maly">Přidejte první sekci ze souboru otázek ve formuláři níže.</p></div>
+</section>

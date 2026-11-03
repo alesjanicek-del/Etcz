@@ -1,0 +1,157 @@
+<!--meta {"titulek":"Sekce BOZP – BOZP – cvičný test","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false} -->
+<!--spec {
+ "route":"/testy/:id/sekce/:id","nazev":"Sekce testu – výběr otázek","role":"lektor","sablona":"app",
+ "ucel":"Nastavit, kolik otázek se ze souboru losuje, které jsou povinné nebo vyloučené a jakými štítky se výběr omezí.",
+ "hlavni_akce":"Uložit sekci (zpět na přehled sekcí); vedlejší: Uložit a zůstat",
+ "komponenty":["crumbs","page-head","steps","layout-aside","card","dl","stav","field","input","fieldset","check","table-wrap","table--stack","form-actions","alert"],
+ "stavy":[
+  "výchozí: sekce v pořádku, souhrn vpravo (nakresleno).",
+  "chyba: rozsah nejméně > nejvíce nebo málo kandidátů – souhrn přepne stav na Chyba a alert--chyba řekne příčinu; pole s chybou aria-invalid + .error (nakresleno).",
+  "prázdný filtr otázek: „Filtru „alkohol“ neodpovídá žádná otázka.“ v řádku tabulky.",
+  "načítání: souhrn se přepočítá po změně (debounce 400 ms); během výpočtu text „Přepočítávám…“ v aria-live.",
+  "bez oprávnění: soubor otázek, který lektor přestal smět používat, je jen pro čtení – alert--info nahoře a pole disabled."],
+ "zmeny_ux":[
+  "Povinná / Vyloučit jsou 3 vzájemně výlučné volby v řádku (Losovat, Povinná, Vyloučit) místo dvou zaškrtávátek, která šlo zaškrtnout obě.",
+  "Štítky se vybírají zaškrtávátky ve fieldsetu místo seznamu s Ctrl+klik – ovladatelné dotykem i klávesnicí.",
+  "Souhrn sekce je v pravém sloupci (layout-aside, na desktopu sticky) – lektor vidí dopad každé změny, aniž by posouval stránku. Na mobilu má být nad formulářem (viz poznámky pro kodéra).",
+  "Rozsah náhodného výběru je jedna řádka „Losovat od – do“ se dvěma poli vedle sebe.",
+  "Tabulka otázek ukazuje prvních 10 a tlačítko Zobrazit všech 34; filtr zužuje jen zobrazení (volby skrytých otázek se zachovají)."],
+ "texty":[
+  {"dnes":"Souhrn sekce (přepočítá se při změně)","nove":"Souhrn sekce","proc":"Přepočítání je vidět; hlásí ho aria-live."},
+  {"dnes":"Náhodně vybrat nejméně / Náhodně vybrat nejvíce – Stejná hodnota jako „nejméně“ = pevný počet.","nove":"Losovat náhodně: od / do – Kromě povinných otázek. Stejné číslo v obou polích = pevný počet.","proc":"Jedna myšlenka, jedno místo."},
+  {"dnes":"Povolené štítky … Více položek vyberete se stisknutou klávesou Ctrl.","nove":"Losovat jen otázky se štítky (nepovinné) – Nic nezaškrtnete = bez omezení.","proc":"Odpadá instrukce ke Ctrl; label říká účinek."},
+  {"dnes":"Zakázané štítky","nove":"Nelosovat otázky se štítky (nepovinné)","proc":"Činně a srozumitelně."},
+  {"dnes":"Zpět bez uložení","nove":"Zrušit změny","proc":"Kratší, stejný význam."}],
+ "pristupnost":[
+  "Souhrn sekce je aside s aria-labelledby; řádek stavu (V pořádku / Chyba + věta) je v aria-live=polite, čísla v dl nejsou live (neopakují se při každé změně).",
+  "Volba v řádku otázky: fieldset by v tabulce nešel, proto radio skupina s name=q1 a každý label má sr-only číslo otázky („Povinná: otázka 1“). Záhlaví sloupců Losovat / Povinná / Vyloučit jsou th scope=col.",
+  "Pole Losovat od/do jsou ve fieldsetu s legend „Losovat náhodně“, každé má vlastní label.",
+  "Fieldsety štítků mají legend; zaškrtávátka v .check (cíl 44 px)."],
+ "poznamky_pro_kodera":[
+  "Data z dema: soubor Ukázková sada: BOZP – školení zaměstnanců, 34 schválených otázek, štítky: Základní, Pokročilá, OOPP, Povinnosti zaměstnance, Povinnosti zaměstnavatele, Pracovní úraz, Vedoucí zaměstnanci.",
+  "Souhrn: GET /sekce/:id/souhrn?… vrací Povinné, Kandidátů, Náhodně, Možných výběrů a případnou chybu.",
+  "Hodnoty radio: losovat (výchozí) | povinna | vyloucit; na server jako mandatory[] / excluded[].",
+  "Pod 1024 px přesunout aside Souhrn sekce nad formulář (order:-1) – layout-aside to dnes neumí. Na desktopu position:sticky; top:var(--s-4).","Neschválené otázky se nelosují; ve sloupci Stav mají stav--neutral „Koncept“."],
+ "chybi_komponenta":["layout-aside s bočním panelem nahoře na mobilu (modifikátor, např. .layout-aside--panel-nahore)"]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="testy.html">Testy</a></li><li><a href="test-editor-sekce.html">BOZP – cvičný test</a></li><li><span aria-current="page">Sekce BOZP</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Úprava sekce</p><h1 class="t-titulek">Sekce BOZP</h1>
+  <dl class="meta"><div><dt>Test</dt><dd>BOZP – cvičný test</dd></div><div><dt>Soubor otázek</dt><dd>Ukázková sada: BOZP – školení zaměstnanců</dd></div></dl></div>
+</div>
+<ol class="steps" aria-label="Kroky editoru testu" style="margin-bottom:var(--s-5);contain:inline-size">
+ <li><a href="test-editor-sekce.html" aria-current="step">Sekce</a></li><li><a href="test-editor-parametry.html">Parametry</a></li><li><a href="test-editor-kontrola.html">Kontrola</a></li>
+</ol>
+
+<form class="layout-aside" action="test-editor-sekce.html" method="post">
+ <div class="stack-5" style="min-width:0">
+  <fieldset class="stack">
+   <legend class="t-nadpis" style="margin-bottom:var(--s-3)">Výběr otázek</legend>
+   <div class="grid-2">
+    <div class="field"><label class="label" for="nadpis">Nadpis sekce</label><input class="input" id="nadpis" name="nadpis" value="BOZP"></div>
+    <div class="field"><label class="label" for="vaha">Váha v hodnocení</label><span class="hint" id="vaha-h">Kolikrát víc váží body této sekce.</span><input class="input" id="vaha" name="vaha" type="number" min="1" value="1" inputmode="numeric" aria-describedby="vaha-h" style="max-width:120px"></div>
+   </div>
+   <fieldset class="stack-2" aria-describedby="los-h">
+    <legend>Losovat náhodně</legend>
+    <span class="hint" id="los-h">Kromě povinných otázek. Stejné číslo v obou polích = pevný počet.</span>
+    <div class="row">
+     <div class="field"><label class="label" for="od">od</label><input class="input" id="od" name="od" type="number" min="0" value="10" inputmode="numeric" style="max-width:120px"></div>
+     <div class="field"><label class="label" for="do">do</label><input class="input" id="do" name="do" type="number" min="0" value="12" inputmode="numeric" style="max-width:120px"></div>
+     <span class="t-maly" style="align-self:flex-end;padding-bottom:var(--s-2)">otázek</span>
+    </div>
+   </fieldset>
+  </fieldset>
+
+  <section class="stack" aria-labelledby="otazky-h">
+   <div class="stack-2">
+    <h2 id="otazky-h" class="t-nadpis">Povinné a vyloučené otázky</h2>
+    <p class="t-maly">Povinnou otázku dostane každý zkoušený. Vyloučená se nikdy nevylosuje. Ostatní se losují.</p>
+   </div>
+   <div class="field" role="search"><label class="label" for="filtr">Filtrovat otázky</label><span class="hint" id="filtr-h">Jen zužuje zobrazení. Volby u skrytých otázek zůstanou.</span><input class="input" id="filtr" type="search" aria-describedby="filtr-h" style="max-width:420px"></div>
+   <div class="table-wrap">
+    <table class="table table--stack">
+     <caption class="sr-only">Otázky souboru Ukázková sada: BOZP – školení zaměstnanců (zobrazeno 4 z 34)</caption>
+     <thead><tr><th scope="col">Otázka</th><th scope="col">Štítky</th><th scope="col">Losovat</th><th scope="col">Povinná</th><th scope="col">Vyloučit</th></tr></thead>
+     <tbody>
+      <tr><td data-label="Otázka"><span><span class="t-cislo">1</span> Zaměstnanec má důvodně za to, že přidělená práce by bezprostředně ohrozila jeho život nebo zdraví. Co platí?</span></td><td data-label="Štítky"><span>Povinnosti zaměstnance, Základní</span></td>
+       <td data-label="Losovat"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q1" value="losovat" checked><span class="sr-only">Losovat: otázka 1</span></label></td>
+       <td data-label="Povinná"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q1" value="povinna"><span class="sr-only">Povinná: otázka 1</span></label></td>
+       <td data-label="Vyloučit"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q1" value="vyloucit"><span class="sr-only">Vyloučit: otázka 1</span></label></td></tr>
+      <tr><td data-label="Otázka"><span><span class="t-cislo">2</span> Zaměstnavatel chce zaměstnancům strhávat ze mzdy část nákladů na školení BOZP. Je to přípustné?</span></td><td data-label="Štítky"><span>Povinnosti zaměstnavatele, Základní</span></td>
+       <td data-label="Losovat"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q2" value="losovat" checked><span class="sr-only">Losovat: otázka 2</span></label></td>
+       <td data-label="Povinná"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q2" value="povinna"><span class="sr-only">Povinná: otázka 2</span></label></td>
+       <td data-label="Vyloučit"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q2" value="vyloucit"><span class="sr-only">Vyloučit: otázka 2</span></label></td></tr>
+      <tr><td data-label="Otázka"><span><span class="t-cislo">3</span> Komu zákoník práce ukládá povinnost soustavně vyhledávat nebezpečné činitele a vyhodnocovat rizika?</span></td><td data-label="Štítky"><span>Povinnosti zaměstnavatele, Základní</span></td>
+       <td data-label="Losovat"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q3" value="losovat" checked><span class="sr-only">Losovat: otázka 3</span></label></td>
+       <td data-label="Povinná"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q3" value="povinna"><span class="sr-only">Povinná: otázka 3</span></label></td>
+       <td data-label="Vyloučit"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q3" value="vyloucit"><span class="sr-only">Vyloučit: otázka 3</span></label></td></tr>
+      <tr><td data-label="Otázka"><span><span class="t-cislo">4</span> Ve kterých situacích je zaměstnavatel povinen zajistit zaměstnanci školení o předpisech BOZP? <span class="vice">více</span></span></td><td data-label="Štítky"><span>Povinnosti zaměstnavatele, Pokročilá</span></td>
+       <td data-label="Losovat"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q4" value="losovat" checked><span class="sr-only">Losovat: otázka 4</span></label></td>
+       <td data-label="Povinná"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q4" value="povinna"><span class="sr-only">Povinná: otázka 4</span></label></td>
+       <td data-label="Vyloučit"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q4" value="vyloucit"><span class="sr-only">Vyloučit: otázka 4</span></label></td></tr>
+     </tbody>
+    </table>
+   </div>
+   <div><button class="btn btn--male" type="button">Zobrazit všech 34 otázek</button></div>
+  </section>
+
+  <section class="stack" aria-labelledby="stitky-h">
+   <div class="stack-2"><h2 id="stitky-h" class="t-nadpis">Štítky</h2><p class="t-maly">Nabízejí se jen štítky, které smíte použít. Pravidla se štítky jiných lektorů zůstanou zachována.</p></div>
+   <fieldset aria-describedby="pov-h">
+    <legend>Losovat jen otázky se štítky <span class="volitelne t-maly">(nepovinné)</span></legend>
+    <span class="hint" id="pov-h">Nic nezaškrtnete = bez omezení.</span>
+    <div class="grid-3" style="gap:0 var(--s-4)">
+     <label class="check"><input type="checkbox" name="pov[]">Základní</label><label class="check"><input type="checkbox" name="pov[]">Pokročilá</label><label class="check"><input type="checkbox" name="pov[]">OOPP</label><label class="check"><input type="checkbox" name="pov[]">Povinnosti zaměstnance</label><label class="check"><input type="checkbox" name="pov[]">Povinnosti zaměstnavatele</label><label class="check"><input type="checkbox" name="pov[]">Pracovní úraz</label><label class="check"><input type="checkbox" name="pov[]">Vedoucí zaměstnanci</label>
+    </div>
+   </fieldset>
+   <fieldset>
+    <legend>Otázka musí mít</legend>
+    <label class="check"><input type="radio" name="musi" checked>alespoň jeden ze zaškrtnutých štítků</label>
+    <label class="check"><input type="radio" name="musi">všechny zaškrtnuté štítky</label>
+   </fieldset>
+   <fieldset>
+    <legend>Nelosovat otázky se štítky <span class="volitelne t-maly">(nepovinné)</span></legend>
+    <div class="grid-3" style="gap:0 var(--s-4)">
+     <label class="check"><input type="checkbox" name="zak[]">Základní</label><label class="check"><input type="checkbox" name="zak[]">Pokročilá</label><label class="check"><input type="checkbox" name="zak[]">OOPP</label><label class="check"><input type="checkbox" name="zak[]">Povinnosti zaměstnance</label><label class="check"><input type="checkbox" name="zak[]">Povinnosti zaměstnavatele</label><label class="check"><input type="checkbox" name="zak[]">Pracovní úraz</label><label class="check"><input type="checkbox" name="zak[]">Vedoucí zaměstnanci</label>
+    </div>
+   </fieldset>
+  </section>
+
+  <div class="form-actions">
+   <button class="btn btn--hlavni" type="submit">Uložit sekci</button>
+   <button class="btn" type="submit" name="zustat" value="1">Uložit a zůstat</button>
+   <a class="btn btn--tiche" href="test-editor-sekce.html">Zrušit změny</a>
+  </div>
+ </div>
+
+ <aside class="card card--papir stack" aria-labelledby="souhrn-h" style="align-self:start">
+  <h2 id="souhrn-h" class="t-stitek">Souhrn sekce</h2>
+  <dl class="dl" style="grid-template-columns:1fr auto">
+   <dt>Povinné</dt><dd class="t-cislo">0</dd>
+   <dt>Kandidátů</dt><dd class="t-cislo">34</dd>
+   <dt>Losuje se náhodně</dt><dd class="t-cislo">10–12</dd>
+   <dt>Možných výběrů</dt><dd class="t-cislo">≥&nbsp;10&nbsp;000</dd>
+  </dl>
+  <p aria-live="polite"><span class="stav stav--ok">{{I:check}}V pořádku</span></p>
+ </aside>
+</form>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Chyba: rozsah a souhrn</p>
+ <div class="grid-2">
+  <fieldset class="stack-2">
+   <legend>Losovat náhodně</legend>
+   <div class="row">
+    <div class="field"><label class="label" for="od-x">od</label><input class="input" id="od-x" type="number" value="14" aria-invalid="true" aria-describedby="od-x-e" style="max-width:120px"></div>
+    <div class="field"><label class="label" for="do-x">do</label><input class="input" id="do-x" type="number" value="12" style="max-width:120px"></div>
+   </div>
+   <span class="error" id="od-x-e">{{I:pozor}}Číslo „od“ musí být menší nebo stejné jako „do“.</span>
+  </fieldset>
+  <div class="card card--papir stack">
+   <p class="t-stitek">Souhrn sekce</p>
+   <p><span class="stav stav--ne">{{I:minus-kruh}}Chyba</span></p>
+   <div class="alert alert--chyba">{{I:pozor}}<p>Rozsah losování neplatí: „od“ je větší než „do“.</p></div>
+  </div>
+ </div>
+</section>

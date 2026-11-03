@@ -1,0 +1,77 @@
+<!--meta {"titulek":"Ověření protokolu","popis":"Ověřte pravost protokolu o zkoušce nebo osvědčení exam-test. Stačí ověřovací kód z protokolu, přihlášení není potřeba.","sablona":"web","aktivni":""} -->
+<!--spec {
+ "route":"/overeni","nazev":"Ověření protokolu – formulář","role":"veřejnost – kdokoli s protokolem (zaměstnavatel, úřad, zkoušený)","sablona":"web",
+ "ucel":"Umožnit komukoli bez přihlášení ověřit, že protokol nebo osvědčení je pravé a nezměněné.",
+ "hlavni_akce":"Ověřit protokol",
+ "komponenty":["card card--papir","field","input--kod","hint","error","btn--hlavni","num-step","alert--info"],
+ "stavy":[
+  "prázdný (hlavní): formulář; přijde-li ?kod= z QR kódu, stránka rovnou zobrazí výsledek (overeni-vysledek.html)",
+  "chyba – špatný formát: hláška u pole s počtem zadaných znaků; hodnota zůstává",
+  "chyba – příliš mnoho pokusů: alert (omezení počtu zadání kódu, viz Bezpečnost); konkrétní dobu čekání doplní kodér podle limitu aplikace",
+  "načítání: tlačítko „Ověřuji…“ aria-disabled, obvykle okamžitě",
+  "výsledek (platný / nenalezený / změněný …): overeni-vysledek.html",
+  "oprávnění: veřejná stránka"],
+ "zmeny_ux":[
+  "Formulář je hlavní obsah stránky ve velké kartě; vstupní pole s monospace písmem (.input--kod) a velkými písmeny.",
+  "Pod formulářem 3 kroky „Jak ověření funguje“ a co ověření potvrzuje / nepotvrzuje (z nápovědy pro zkoušené) – dnes stránka nic nevysvětluje.",
+  "Tlačítko „Ověřit“ → „Ověřit protokol“ (sloveso + co).",
+  "Upozornění na nesoulad: vzor fragmentu index.html má příklad kódu ET-7Q4K-92MX, skutečný formát je 4× 5 znaků – sjednotit (index je mimo moji skupinu)."],
+ "texty":[
+  {"dnes":"Ověření protokolu o zkoušce","nove":"Ověřit protokol o zkoušce","proc":"Činně; stejné slovo jako tlačítko."},
+  {"dnes":"Ověřovací kód z protokolu nebo osvědčení","nove":"beze změny (label)","proc":"Přesné."},
+  {"dnes":"Kód najdete v protokolu nebo v osvědčení u QR kódu. Má 20 znaků ve tvaru XXXXX-XXXXX-XXXXX-XXXXX; pomlčky a mezery psát nemusíte.","nove":"Najdete ho v protokolu nebo v osvědčení u QR kódu. Má 20 znaků ve tvaru XXXXX-XXXXX-XXXXX-XXXXX. Pomlčky a mezery psát nemusíte.","proc":"Kratší věty."},
+  {"dnes":"Ověřit","nove":"Ověřit protokol","proc":"Tlačítko říká co."},
+  {"dnes":"(nové)","nove":"Kód má 20 znaků. Zadali jste 12. Zkontrolujte ho podle protokolu.","proc":"Návrh hlášky – říká, co je špatně a co udělat."}],
+ "pristupnost":[
+  "Pole má viditelný label, hint a chybu v aria-describedby; autocomplete=off, autocapitalize=characters, spellcheck=false.",
+  "Nepoužívat maxlength (uživatel by nepoznal oříznutí) – kontrola délky až při odeslání.",
+  "Výsledek ověření se načte jako nová stránka s H1 – čtečka ohlásí výsledek."],
+ "poznamky_pro_kodera":["Normalizace: odstranit mezery a pomlčky, převést na velká písmena.","GET /overeni?kod=… (QR kód vede přímo na výsledek)."],
+ "chybi_komponenta":[]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <div class="stack-4">
+   <p class="t-stitek">Ověření pravosti · bez přihlášení</p>
+   <h1 class="t-display">Ověřit protokol o&nbsp;zkoušce</h1>
+   <p class="t-perex">Zjistěte, zda je protokol nebo osvědčení pravé a od zkoušky ho nikdo nezměnil.</p>
+  </div>
+  <form class="card card--papir stack" action="overeni-vysledek.html" method="get" aria-label="Ověření protokolu">
+   <div class="field">
+    <label class="label" for="kod">Ověřovací kód z&nbsp;protokolu nebo osvědčení</label>
+    <span class="hint" id="kod-h">Najdete ho v&nbsp;protokolu nebo v&nbsp;osvědčení u&nbsp;QR kódu. Má 20&nbsp;znaků ve tvaru <span class="t-kod">XXXXX-XXXXX-XXXXX-XXXXX</span>. Pomlčky a mezery psát nemusíte.</span>
+    <input class="input input--kod" id="kod" name="kod" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="kod-h">
+   </div>
+   <div class="row"><button class="btn btn--hlavni" type="submit">Ověřit protokol</button></div>
+  </form>
+
+  <div class="stack-4">
+   <h2 class="t-sekce">Jak ověření funguje</h2>
+   <ol class="stack-4">
+    <li class="num-step"><span class="t-cislo">01</span><div class="stack-2"><h3 class="t-nadpis">Naskenujte QR kód</h3><p>QR kód z&nbsp;protokolu nebo osvědčení otevře výsledek ověření rovnou. Nebo kód opište do pole výše.</p></div></li>
+    <li class="num-step"><span class="t-cislo">02</span><div class="stack-2"><h3 class="t-nadpis">Porovnejte údaje</h3><p>Stránka ukáže organizaci, test, datum a výsledek. Porovnejte je s&nbsp;papírem.</p></div></li>
+    <li class="num-step"><span class="t-cislo">03</span><div class="stack-2"><h3 class="t-nadpis">Zkontrolujte platnost osvědčení</h3><p>Patří-li ke zkoušce osvědčení, uvidíte i název školení, datum „Platí do“ a stav osvědčení.</p></div></li>
+   </ol>
+   <div class="alert alert--info" role="note">{{I:info}}<div class="stack-2"><p class="alert__nadpis">Co ověření potvrzuje</p><p>Že údaje odpovídají záznamu pořízenému při zkoušce a že je od té doby nikdo nezměnil. Neposuzuje, zda zkouška splnila požadavky předpisů.</p><p>Kvůli ochraně osobních údajů se jméno zkoušeného zobrazí jen jako iniciály, například „J.&nbsp;N.“</p></div></div>
+   <p><a href="napoveda.html#overeni">Nápověda: co znamenají jednotlivé výsledky ověření</a></p>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila no-print" aria-labelledby="dalsi">
+ <div class="container stack-4" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <h2 id="dalsi" class="t-sekce">Další stavy stránky</h2>
+  <h3 class="t-nadpis">Chyba: kód ve špatném tvaru</h3>
+  <form class="card stack" action="#" method="get" aria-label="Ověření protokolu – chyba">
+   <div class="field">
+    <label class="label" for="kod-e">Ověřovací kód z&nbsp;protokolu nebo osvědčení</label>
+    <span class="hint" id="kod-e-h">Najdete ho v&nbsp;protokolu nebo v&nbsp;osvědčení u&nbsp;QR kódu. Má 20&nbsp;znaků ve tvaru <span class="t-kod">XXXXX-XXXXX-XXXXX-XXXXX</span>. Pomlčky a mezery psát nemusíte.</span>
+    <p class="error" id="kod-e-e">{{I:minus-kruh}}Kód má 20&nbsp;znaků. Zadali jste 12. Zkontrolujte ho podle protokolu.</p>
+    <input class="input input--kod" id="kod-e" name="kod" value="H5SAY-GVTNY-ED" autocomplete="off" aria-invalid="true" aria-describedby="kod-e-h kod-e-e">
+   </div>
+   <div class="row"><button class="btn btn--hlavni" type="submit">Ověřit protokol</button></div>
+  </form>
+  <h3 class="t-nadpis">Chyba: příliš mnoho pokusů</h3>
+  <div class="alert alert--chyba" role="alert">{{I:pozor}}<div><p class="alert__nadpis">Zadali jste příliš mnoho kódů za sebou</p><p>Z&nbsp;bezpečnostních důvodů zadávání na chvíli omezujeme. Zkuste to znovu za několik minut.</p></div></div>
+ </div>
+</section>

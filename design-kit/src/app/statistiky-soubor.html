@@ -1,0 +1,52 @@
+<!--meta {"titulek":"Statistiky souboru otázek","sablona":"app","role":"lektor","aktivni":"statistiky.html","demo":false} -->
+<!--spec {
+ "route":"/statistiky/soubor/:id","nazev":"Statistiky souboru otázek","role":"lektor (autor otázek stejně – hlavní uživatel; administrátor organizace vidí rozpad za všechny pobočky)","sablona":"app",
+ "ucel":"Najít otázky, které jsou příliš těžké, příliš snadné nebo se ve zkouškách objevují v neaktuální verzi.",
+ "hlavni_akce":"Seřadit podle úspěšnosti a otevřít problematickou otázku.",
+ "komponenty":["crumbs","page-head","alert","toolbar","select","table-wrap","table--stack","bar","stav","details"],
+ "stavy":[
+  "bez dat: všechny řádky s „0 / 0“ a úspěšnost „—“; nad tabulkou .alert--info „Soubor zatím nebyl v žádném odevzdaném pokusu.“",
+  "skryto: pobočky s méně než 5 záznamy ukazují „< 5“ / „skryto“.",
+  "neaktuální verze: štítek stav--pozor „Neaktuální verze“ u otázky.",
+  "načítání / chyba: jako ostatní tabulky.",
+  "oprávnění: soubory, ke kterým má uživatel právo; jinak 403."],
+ "zmeny_ux":[
+  "Tabulka má řazení (select Seřadit podle) – dnes pevné pořadí podle čísla otázky.",
+  "Úspěšnost i pruhem; pod 50 % šrafovaný pruh (pozor) – nápadné těžké otázky.",
+  "Tři sloupce zobrazení sloučeny: Zobrazena (pokusů) zůstává, Zařazena do variací a Zobrazení celkem jsou v rozbalení Po verzích.",
+  "Dlouhé vysvětlení o ochraně dat zkráceno na 2 věty."],
+ "texty":[
+  {"dnes":"Souhrn za celou organizaci (včetně pokusů na papíře, bez pokusů nanečisto). Rozpad po pobočkách vidíte jen pro data ve svém rozsahu; je-li z ostatních poboček méně než 5 záznamů, souhrn se skryje („skryto“), aby z něj nešly dopočítat. Zobrazení se počítají jen u online pokusů.","nove":"Souhrn za celou organizaci, včetně papírových pokusů, bez pokusů nanečisto. Údaje z cizích poboček s méně než 5 záznamy jsou skryté.","proc":"Věta měla 40 slov; detail o online zobrazení přesunut do nápovědy sloupce."},
+  {"dnes":"Ukázková sada: BOZP — školení zaměstnanců","nove":"Ukázková sada: Kybernetická bezpečnost – školení uživatelů","proc":"Návrh ukazuje soubor s daty; pomlčka –."},
+  {"dnes":"Použita neaktuální verze","nove":"Neaktuální verze","proc":"Krátký štítek; vysvětlení v title řádku Po verzích."}],
+ "pristupnost":["Caption tabulky obsahuje aktuální řazení.","Pruh aria-hidden, procenta textem.","Po verzích = details v buňce; summary obsahuje číslo otázky („Po verzích: otázka 5“)."],
+ "poznamky_pro_kodera":["Úspěšnost = správně / vyhodnoceno.","Ukázková čísla: 6 pokusů z návrhu Výsledky.","Text otázky zkrátit na 120 znaků s „…“."],
+ "chybi_komponenta":["mini-pruh v buňce tabulky"]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="statistiky.html">Statistiky</a></li><li><span aria-current="page">Kybernetická bezpečnost – školení uživatelů</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Ukázková sada: Kybernetická bezpečnost – školení uživatelů</h1><p class="t-maly measure">Souhrn za celou organizaci, včetně papírových pokusů, bez pokusů nanečisto. Údaje z&nbsp;cizích poboček s&nbsp;méně než 5 záznamy jsou skryté.</p></div></div>
+
+<div class="toolbar">
+ <div class="field" style="min-width:220px"><label class="label" for="ss-razeni">Seřadit podle</label><select class="select" id="ss-razeni"><option>Úspěšnosti, od nejnižší</option><option>Čísla otázky</option><option>Počtu zobrazení</option></select></div>
+ <p class="t-maly">24 otázek · 6 pokusů</p>
+</div>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Otázky souboru, řazeno podle úspěšnosti od nejnižší</caption>
+  <thead><tr><th scope="col" class="num">#</th><th scope="col">Otázka</th><th scope="col" class="num">Zobrazena</th><th scope="col" class="num">Správně</th><th scope="col" style="min-width:170px">Úspěšnost</th><th scope="col">Verze</th></tr></thead>
+  <tbody>
+   <tr><td data-label="#" class="num">5</td><td data-label="Otázka"><span><a href="statistiky-otazka.html">Do pracovní schránky vám přišel e-mail, který vám připadá podezřelý…</a><span class="t-maly">Povinná</span></span></td><td data-label="Zobrazena" class="num">6</td><td data-label="Správně" class="num">2 / 6</td><td data-label="Úspěšnost"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:33%"></span></span><span class="t-cislo">33,3&nbsp;%</span></span></td><td data-label="Verze"><span class="stav stav--pozor">{{I:pozor}}Neaktuální verze</span></td></tr>
+   <tr><td data-label="#" class="num">11</td><td data-label="Otázka"><a href="statistiky-otazka.html">Čím se spear phishing liší od běžného hromadného phishingu?</a></td><td data-label="Zobrazena" class="num">6</td><td data-label="Správně" class="num">3 / 6</td><td data-label="Úspěšnost"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:50%"></span></span><span class="t-cislo">50,0&nbsp;%</span></span></td><td data-label="Verze">v1</td></tr>
+   <tr><td data-label="#" class="num">7</td><td data-label="Otázka"><a href="statistiky-otazka.html">Volá vám „technická podpora“ známého výrobce softwaru…</a></td><td data-label="Zobrazena" class="num">5</td><td data-label="Správně" class="num">3 / 5</td><td data-label="Úspěšnost"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:60%"></span></span><span class="t-cislo">60,0&nbsp;%</span></span></td><td data-label="Verze">v1</td></tr>
+   <tr><td data-label="#" class="num">1</td><td data-label="Otázka"><a href="statistiky-otazka.html">Co označuje pojem pretexting?</a></td><td data-label="Zobrazena" class="num">6</td><td data-label="Správně" class="num">5 / 6</td><td data-label="Úspěšnost"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:83%"></span></span><span class="t-cislo">83,3&nbsp;%</span></span></td><td data-label="Verze">v1</td></tr>
+   <tr><td data-label="#" class="num">3</td><td data-label="Otázka"><span><a href="statistiky-otazka.html">Na parkovišti před budovou najdete USB flash disk s nálepkou „Mzdy 2026“…</a><span class="t-maly">Povinná</span></span></td><td data-label="Zobrazena" class="num">6</td><td data-label="Správně" class="num">6 / 6</td><td data-label="Úspěšnost"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:100%"></span></span><span class="t-cislo">100,0&nbsp;%</span></span></td><td data-label="Verze">v1</td></tr>
+  </tbody>
+ </table>
+</div>
+<p class="t-maly" style="margin-top:var(--s-2)">Zobrazeno 5 z&nbsp;24 otázek. Zobrazení se počítají jen u&nbsp;online pokusů.</p>
+<details class="faq" style="margin-top:var(--s-4)"><summary>Po verzích a pobočkách: otázka 5</summary><div>
+ <div class="table-wrap"><table class="table table--stack"><caption class="sr-only">Otázka 5 po verzích</caption>
+  <thead><tr><th scope="col">Verze</th><th scope="col" class="num">Zařazena do variací</th><th scope="col" class="num">Zobrazena (pokusů)</th><th scope="col" class="num">Zobrazení celkem</th><th scope="col" class="num">Správně / vyhodnoceno</th></tr></thead>
+  <tbody><tr><td data-label="Verze">v1 (4.&nbsp;9.&nbsp;2026)</td><td data-label="Zařazena" class="num">4</td><td data-label="Zobrazena" class="num">4</td><td data-label="Zobrazení" class="num">5</td><td data-label="Správně" class="num">1 / 4</td></tr><tr><td data-label="Verze">v2 (2.&nbsp;11.&nbsp;2026) aktuální</td><td data-label="Zařazena" class="num">2</td><td data-label="Zobrazena" class="num">2</td><td data-label="Zobrazení" class="num">2</td><td data-label="Správně" class="num">1 / 2</td></tr><tr><td data-label="Verze">Ostatní pobočky</td><td data-label="Zařazena" class="num">skryto</td><td data-label="Zobrazena" class="num">&lt;&nbsp;5</td><td data-label="Zobrazení" class="num">&lt;&nbsp;5</td><td data-label="Správně" class="num">skryto</td></tr></tbody></table></div>
+</div></details>

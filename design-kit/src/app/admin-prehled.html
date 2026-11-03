@@ -1,0 +1,74 @@
+<!--meta {"titulek":"Přehled","sablona":"app","role":"admin","aktivni":"admin-prehled.html","demo":false} -->
+<!--spec {
+ "route":"/","nazev":"Přehled – administrátor pobočky","role":"admin","sablona":"app",
+ "ucel":"Po přihlášení ukázat administrátorovi pobočky, co čeká na něj (schválení), co právě běží a jak dopadly poslední zkoušky.",
+ "hlavni_akce":"Spustit zkoušení; vyřídit otázky ke schválení.",
+ "komponenty":["page-head","alert","kpi","card","card__head","table-wrap","table--stack","grid-3","stav"],
+ "stavy":[
+  "nic ke schválení: žlutý alert zmizí.",
+  "nic neprobíhá: v kartě Probíhající zkoušení věta „Teď neprobíhá žádné zkoušení.“ + odkaz Použití testů.",
+  "první přihlášení (prázdná pobočka): karta „Začněte tady“ se 3 kroky (Pozvat lektory, Založit soubor otázek, Sestavit test) místo KPI.",
+  "načítání / chyba: KPI s pomlčkou, alert chyby nad kartami.",
+  "rozdíl rolí: lektor má stejný přehled bez alertu schválení a bez karty Správa pobočky (lektor-prehled, skupina A1)."],
+ "zmeny_ux":[
+  "Upozornění na otázky ke schválení je první blok s počtem a jedním odkazem.",
+  "KPI (právě píše / odevzdáno dnes / nesplnilo) podle referenčního návrhu l_prehled.",
+  "Probíhající zkoušení jako tabulka: test, způsob, píše, odevzdáno, odkaz Živý panel s názvem – dnes 7× stejný odkaz „Živý panel“.",
+  "Karta „Co si v demu vyzkoušet“ nahrazena kartou Správa pobočky (Uživatelé, Skupiny, Záznam změn) – platí i mimo demo.",
+  "Poslední výsledky se stavovým štítkem a odkazem na všechny."],
+ "texty":[
+  {"dnes":"Otázky ke schválení: 1","nove":"1 otázka čeká na vaše schválení. · Zobrazit otázky ke schválení","proc":"Věta + akce."},
+  {"dnes":"Živý panel (7× stejný text)","nove":"Živý panel: název použití","proc":"Účel odkazu (WCAG 2.4.4)."},
+  {"dnes":"Odkaz (anonymní) / Přístupové kódy pro osoby / Přidělení studujícím / skupině","nove":"Veřejný odkaz / Osobní kódy / Přiděleno","proc":"Slovník."},
+  {"dnes":"81,3 % splněno","nove":"81,3 % + štítek Splněno","proc":"Stav ikonou a slovem."}],
+ "pristupnost":["H1 pozdrav; karty mají H2.","Odkazy Živý panel mají v textu název použití (zkrácený vizuálně přes sr-only doplněk).","KPI: číslo a popisek čte čtečka spolu."],
+ "poznamky_pro_kodera":["KPI za aktivní pobočku, dnešní den.","Probíhající: max. 5 řádků, zbytek pod odkazem Všechna použití.","Poslední výsledky: 5 nejnovějších."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <h1 class="t-titulek">Dobrý den, Barbora</h1>
+ <div class="page-head__actions"><a class="btn" href="otazka-editor.html">{{I:plus}}Nová otázka</a><a class="btn" href="test-novy.html">{{I:plus}}Nový test</a><a class="btn btn--hlavni" href="pouziti-nove.html">{{I:prehrat}}Spustit zkoušení</a></div>
+</div>
+
+<div class="alert" style="margin-bottom:var(--s-4)">{{I:pozor}}<p><b>1 otázka čeká na vaše schválení.</b> <a href="ke-schvaleni.html">Zobrazit otázky ke schválení</a></p></div>
+
+<div class="kpi" style="margin-bottom:var(--s-5)">
+ <div><span class="t-cislo">3</span><span class="t-maly">právě píše</span></div>
+ <div><span class="t-cislo">8</span><span class="t-maly">odevzdáno dnes</span></div>
+ <div><span class="t-cislo">3</span><span class="t-maly">nesplnilo – k&nbsp;řešení</span></div>
+</div>
+
+<section class="card" aria-labelledby="prob" style="margin-bottom:var(--s-5)">
+ <div class="card__head"><h2 id="prob" class="t-nadpis">Probíhající zkoušení</h2><a href="pouziti.html">Všechna použití (7)</a></div>
+ <div class="table-wrap" style="border:0">
+  <table class="table table--stack"><caption class="sr-only">Probíhající zkoušení, 4 z 7</caption>
+   <thead><tr><th scope="col">Test</th><th scope="col">Způsob</th><th scope="col" class="num">Píše</th><th scope="col" class="num">Odevzdáno</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+   <tbody>
+    <tr><td data-label="Test"><span><b>Radiační ochrana – ověření znalostí</b><span class="t-maly">Učebna 2</span></span></td><td data-label="Způsob">Prezenční zkouška</td><td data-label="Píše" class="num">3</td><td data-label="Odevzdáno" class="num">4</td><td data-label="Akce"><a href="zivy-panel.html">Živý panel<span class="sr-only">: Radiační ochrana, učebna 2</span></a></td></tr>
+    <tr><td data-label="Test"><span><b>Kybernetická bezpečnost</b><span class="t-maly">Roční školení</span></span></td><td data-label="Způsob">Osobní kódy</td><td data-label="Píše" class="num">0</td><td data-label="Odevzdáno" class="num">6</td><td data-label="Akce"><a href="zivy-panel.html">Živý panel<span class="sr-only">: Kybernetická bezpečnost, roční školení</span></a></td></tr>
+    <tr><td data-label="Test"><span><b>Radiační ochrana – ověření znalostí</b><span class="t-maly">1. termín</span></span></td><td data-label="Způsob">Osobní kódy</td><td data-label="Píše" class="num">0</td><td data-label="Odevzdáno" class="num">2</td><td data-label="Akce"><a href="zivy-panel.html">Živý panel<span class="sr-only">: Radiační ochrana, 1. termín</span></a></td></tr>
+    <tr><td data-label="Test"><span><b>BOZP – cvičný test</b><span class="t-maly">Cvičný test na webu</span></span></td><td data-label="Způsob">Veřejný odkaz</td><td data-label="Píše" class="num">0</td><td data-label="Odevzdáno" class="num">0</td><td data-label="Akce"><a href="zivy-panel.html">Živý panel<span class="sr-only">: BOZP, cvičný test na webu</span></a></td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<div class="grid-2" style="align-items:start">
+ <section class="card stack" aria-labelledby="posl">
+  <div class="card__head" style="margin:0"><h2 id="posl" class="t-nadpis">Poslední výsledky</h2><a href="vysledky.html">Výsledky pobočky</a></div>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li class="row-between"><span><a href="vysledek-detail.html">Radek Beneš</a><span class="t-maly" style="display:block">Kybernetická bezpečnost · 81,3&nbsp;%</span></span><span class="stav stav--ok">{{I:check}}Splněno</span></li>
+   <li class="row-between"><span><a href="vysledek-detail.html">Ondřej Malý</a><span class="t-maly" style="display:block">Kybernetická bezpečnost · 100,0&nbsp;%</span></span><span class="stav stav--ok">{{I:check}}Splněno</span></li>
+   <li class="row-between"><span><a href="vysledek-detail.html">Simona Králová</a><span class="t-maly" style="display:block">Kybernetická bezpečnost · 77,8&nbsp;%</span></span><span class="stav stav--ne">{{I:minus-kruh}}Nesplněno</span></li>
+   <li class="row-between"><span><a href="vysledek-detail.html">Michaela Fialová</a><span class="t-maly" style="display:block">Radiační ochrana · 90,3&nbsp;%</span></span><span class="stav stav--ok">{{I:check}}Splněno</span></li>
+  </ul>
+ </section>
+ <section class="card stack" aria-labelledby="sprava">
+  <h2 id="sprava" class="t-nadpis">Správa pobočky</h2>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li class="row-between"><span><a href="uzivatele.html">Uživatelé</a><span class="t-maly" style="display:block">Lektoři, autoři a studující pobočky</span></span><span class="t-cislo">3</span></li>
+   <li class="row-between"><span><a href="skupiny.html">Skupiny studujících</a><span class="t-maly" style="display:block">Pro přidělení testu více lidem najednou</span></span><span class="t-cislo">0</span></li>
+   <li class="row-between"><span><a href="audit.html">Záznam změn</a><span class="t-maly" style="display:block">Kdo, kdy a co změnil nebo stáhl</span></span><span class="t-cislo">115</span></li>
+  </ul>
+ </section>
+</div>

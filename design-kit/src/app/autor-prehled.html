@@ -1,0 +1,91 @@
+<!--meta {"titulek":"Přehled","sablona":"app","role":"autor","aktivni":"autor-prehled.html","demo":false} -->
+<!--spec {
+ "route":"/","nazev":"Přehled – autor otázek","role":"autor","sablona":"app",
+ "ucel":"Ukázat autorovi stav jeho otázek (koncepty, ke schválení, vrácené k opravě) a rychlý vstup do souborů otázek.",
+ "hlavni_akce":"Nová otázka; vedlejší: otevřít soubor otázek, opravit vrácenou otázku",
+ "komponenty":["page-head","kpi","table table--stack","stav","alert","empty","btn--hlavni"],
+ "stavy":[
+  "výchozí: 3 čísla stavů otázek, Moje otázky v procesu schválení, Moje soubory otázek",
+  "vráceno do konceptu: alert nahoře s počtem a odkazem; v tabulce řádek se stavem Vráceno a komentářem schvalovatele",
+  "prázdný – žádný soubor: empty „Zatím nemáte žádný soubor otázek“ s tlačítkem Nový soubor otázek",
+  "prázdný – nic nečeká: v tabulce Moje otázky věta „Žádná otázka nečeká na schválení.“",
+  "schvalování vypnuté organizací: KPI a tabulka Moje otázky se skryjí; zůstane Moje soubory otázek",
+  "načítání: kostra tabulek; chyba: alert--chyba s Načíst znovu",
+  "bez oprávnění: autor nevidí zkoušení ani výsledky jednotlivců (jen Statistiky)"],
+ "zmeny_ux":[
+  "Odstraněny bloky Probíhající zkoušení a Poslední výsledky – autor zkoušení nespouští a dnes vidí dvě prázdné sekce.",
+  "Nová čísla podle stavů otázky (Koncept → Ke schválení → Schválená) a vrácené otázky jako první úkol.",
+  "Tabulka Moje soubory otázek s počtem otázek a čekajících na schválení – nejčastější cesta autora.",
+  "Nová otázka je hlavní tlačítko; aplikace se nejdřív zeptá na soubor (jako dnes)."],
+ "texty":[
+  {"dnes":"Dobrý den, Adam Autor","nove":"Dobrý den, Adame","proc":"Kratší nadpis; plné jméno je v horní liště. Pozor na 5. pád – pokud jej neumíme, použít „Dobrý den“."},
+  {"dnes":"Žádné otevřené použití testu.","nove":"(blok odstraněn)","proc":"Pro roli autor nerelevantní."},
+  {"dnes":"Zatím žádné odevzdané pokusy.","nove":"(blok odstraněn)","proc":"Autor nevidí výsledky jednotlivců."},
+  {"dnes":"Ke schválení: 1","nove":"[Ke schválení] stav + číslo 1 ve sloupci","proc":"Stav slovem, číslo zvlášť."}],
+ "pristupnost":[
+  "KPI jsou odkazy na Hledat otázky s filtrem stavu.",
+  "Tabulky s caption; názvy souborů jsou odkazy (jedinečný text).",
+  "Komentář schvalovatele je v buňce jako běžný text, ne v title."],
+ "poznamky_pro_kodera":[
+  "Koncepty / Ke schválení / Vráceno: otázky, jejichž poslední verzi vytvořil přihlášený autor.",
+  "Moje soubory otázek: soubory s právem Vlastník nebo Editace, řazené podle poslední změny.",
+  "Demo: pod nadpisem karta „Co si v demu vyzkoušet“ (Soubory otázek, Nová otázka, Schránka dema)."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <h1 class="t-titulek">Dobrý den, Adame</h1>
+ <div class="page-head__actions">
+  <a class="btn" href="soubory.html">{{I:slozka}}Soubory otázek</a>
+  <a class="btn btn--hlavni" href="otazka-editor.html">{{I:plus}}Nová otázka</a>
+ </div>
+</div>
+
+<div class="stack-5">
+ <div class="kpi" role="list" aria-label="Moje otázky podle stavu" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+  <div role="listitem"><a href="otazky-hledat.html" style="display:block;color:inherit;text-decoration:none"><span class="t-cislo">0</span><span class="t-maly">rozpracované koncepty</span></a></div>
+  <div role="listitem"><a href="otazky-hledat.html" style="display:block;color:inherit;text-decoration:none"><span class="t-cislo">1</span><span class="t-maly">čeká na schválení</span></a></div>
+  <div role="listitem"><a href="otazky-hledat.html" style="display:block;color:inherit;text-decoration:none"><span class="t-cislo">0</span><span class="t-maly">vráceno k opravě</span></a></div>
+ </div>
+
+ <section class="stack" aria-labelledby="moje">
+  <div class="row-between"><h2 id="moje" class="t-nadpis">Moje otázky ve schvalování</h2><a href="otazky-hledat.html">Hledat otázky</a></div>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Moje otázky ve schvalování</caption>
+    <thead><tr><th scope="col">Zadání</th><th scope="col">Soubor otázek</th><th scope="col">Stav</th><th scope="col" class="num">Verze</th><th scope="col">Odesláno</th></tr></thead>
+    <tbody>
+     <tr><td data-label="Zadání"><a href="otazka-detail.html">Které z hesel je nejbezpečnější?</a></td><td data-label="Soubor otázek">Kybernetická bezpečnost – školení uživatelů</td><td data-label="Stav"><span class="stav stav--pise">{{I:hodiny}}Ke schválení</span></td><td data-label="Verze" class="num">v1</td><td data-label="Odesláno" class="t-cislo" style="white-space:nowrap">3. 11. 2026 03:00</td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+
+ <section class="stack" aria-labelledby="soub">
+  <div class="row-between"><h2 id="soub" class="t-nadpis">Moje soubory otázek</h2><a href="soubory.html">Všechny soubory otázek</a></div>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Soubory otázek, které vlastníte nebo smíte upravovat</caption>
+    <thead><tr><th scope="col">Název</th><th scope="col">Vaše právo</th><th scope="col" class="num">Otázek</th><th scope="col" class="num">Ke schválení</th></tr></thead>
+    <tbody>
+     <tr><td data-label="Název"><a href="soubor-detail.html">Ukázková sada: BOZP – školení zaměstnanců</a></td><td data-label="Vaše právo">Vlastník</td><td data-label="Otázek" class="num">34</td><td data-label="Ke schválení" class="num">0</td></tr>
+     <tr><td data-label="Název"><a href="soubor-detail.html">Ukázková sada: Kybernetická bezpečnost – školení uživatelů</a></td><td data-label="Vaše právo">Vlastník</td><td data-label="Otázek" class="num">36</td><td data-label="Ke schválení" class="num">1</td></tr>
+     <tr><td data-label="Název"><a href="soubor-detail.html">Ukázková sada: Radiační ochrana – základní principy</a></td><td data-label="Vaše právo">Vlastník</td><td data-label="Otázek" class="num">36</td><td data-label="Ke schválení" class="num">0</td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Otázka vrácená k opravě</h3>
+  <div class="alert" role="status">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">1 otázku vám schvalovatel vrátil do konceptu.</p><p>„Které z hesel je nejbezpečnější?“ – Barbora Veselá: „Doplňte do zpětné vazby, proč je delší heslo bezpečnější.“</p><p><a class="btn btn--male" href="otazka-editor.html">{{I:upravit}}Opravit otázku</a></p></div></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Žádný soubor otázek</h3>
+  <div class="empty stack-2">{{I:slozka}}<p class="t-nadpis">Zatím nemáte žádný soubor otázek</p><p class="t-maly">Soubor je pojmenovaný okruh otázek, například „Radiační ochrana“. Otázky pak přidáte ručně nebo importem z XLSX.</p><p><a class="btn" href="soubor-formular.html">Nový soubor otázek</a></p></div>
+ </div>
+</section>

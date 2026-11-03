@@ -1,0 +1,62 @@
+<!--meta {"titulek":"Uživatelé","sablona":"app","role":"admin","aktivni":"uzivatele.html","demo":false} -->
+<!--spec {
+ "route":"/sprava/uzivatele","nazev":"Uživatelé","role":"admin (administrátor pobočky vidí uživatele svých poboček; administrátor organizace všechny a navíc roli Administrátor organizace a Autor otázek)","sablona":"app",
+ "ucel":"Najít uživatele pobočky, zkontrolovat jejich role a stav a pozvat nové.",
+ "hlavni_akce":"Pozvat uživatele; otevřít detail uživatele.",
+ "komponenty":["page-head","filters","input","select","table-wrap","table--stack","stav","toolbar","alert","empty"],
+ "stavy":[
+  "prázdný filtr: .empty „Nikdo neodpovídá filtru“ + Zrušit filtr.",
+  "po pozvání: .alert--ok „Pozvánka odešla na e-mail… Odkaz platí 7 dní.“",
+  "limit tarifu: .alert „Máte 10 z 10 pracovníků podle tarifu. Studující se nepočítají.“ a Pozvat uživatele je pro pracovníky nedostupné.",
+  "načítání / chyba: jako ostatní tabulky.",
+  "oprávnění: lektor a autor nemají položku Správa – 403."],
+ "zmeny_ux":[
+  "Stav ikonou a slovem: Aktivní / Pozvánka čeká / Neaktivní; značka Ověření zapnuto jako druhý řádek.",
+  "Role a pobočka rozdělené: role tučně, pobočka šedě – dnes „Lektor – Návštěvník 3474“ v jednom řetězci.",
+  "Jméno je odkaz na detail.",
+  "Počitadlo pracovníků vůči tarifu nad tabulkou (návrh) – limit dnes uživatel zjistí až chybou."],
+ "texty":[
+  {"dnes":"Uživatelé (3)","nove":"Celkem 3 (caption + počet pod tabulkou)","proc":"Bez opakování H1."},
+  {"dnes":"aktivní","nove":"Aktivní (štítek s ikonou)","proc":"Stav ikonou a slovem."},
+  {"dnes":"Hledat","nove":"Hledat jméno, e-mail nebo osobní číslo","proc":"Label říká, co se hledá."},
+  {"dnes":"Všechny role / Všechny pobočky","nove":"Všechny","proc":"Kontext dává label."}],
+ "pristupnost":["Filtr: každé pole má label.","Caption tabulky.","E-maily se lámou (overflow-wrap) – žádné vodorovné posouvání na mobilu."],
+ "poznamky_pro_kodera":["Hledá v jménu, e-mailu a osobním čísle, bez diakritiky.","Řazení podle příjmení.","Pracovníci = administrátoři + lektoři + autoři; studující se nepočítají."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <h1 class="t-titulek">Uživatelé</h1>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="uzivatel-formular.html">{{I:plus}}Pozvat uživatele</a></div>
+</div>
+
+<form class="filters" action="uzivatele.html" method="get" aria-label="Filtr uživatelů">
+ <div class="field" style="flex:2 1 240px"><label class="label" for="u-q">Hledat jméno, e-mail nebo osobní číslo</label><input class="input" id="u-q" type="search"></div>
+ <div class="field"><label class="label" for="u-role">Role</label><select class="select" id="u-role"><option>Všechny</option><option>Administrátor pobočky</option><option>Lektor</option><option>Autor otázek</option><option>Studující</option></select></div>
+ <div class="field"><label class="label" for="u-pob">Pobočka</label><select class="select" id="u-pob"><option>Všechny</option><option>Praha</option></select></div>
+ <button class="btn" type="submit">{{I:filtr}}Filtrovat</button>
+</form>
+
+<p class="t-maly" style="margin-bottom:var(--s-3)">Pracovníci podle tarifu: <span class="t-cislo">2 z&nbsp;10</span>. Studující se nepočítají.</p>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Uživatelé, 3 osoby</caption>
+  <thead><tr><th scope="col">Jméno</th><th scope="col">E-mail</th><th scope="col">Role</th><th scope="col">Stav</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Jméno"><a href="uzivatel-detail.html"><b>Barbora Veselá</b></a></td><td data-label="E-mail" style="overflow-wrap:anywhere">admin.barbora@demo.example</td><td data-label="Role"><span><b>Administrátor pobočky</b><span class="t-maly">Praha</span></span></td><td data-label="Stav"><span class="stav stav--ok">{{I:check}}Aktivní</span></td></tr>
+   <tr><td data-label="Jméno"><a href="uzivatel-detail.html"><b>Lucie Lektorová</b></a></td><td data-label="E-mail" style="overflow-wrap:anywhere">lektor.lucie@demo.example</td><td data-label="Role"><span><b>Lektor</b><span class="t-maly">Praha</span></span></td><td data-label="Stav"><span class="stav stav--ok">{{I:check}}Aktivní</span></td></tr>
+   <tr><td data-label="Jméno"><a href="uzivatel-detail.html"><b>Zdeněk Zkoušený</b></a></td><td data-label="E-mail" style="overflow-wrap:anywhere">zkouseny.zdenek@demo.example</td><td data-label="Role"><span><b>Studující</b><span class="t-maly">Praha</span></span></td><td data-label="Stav"><span class="stav stav--ok">{{I:check}}Aktivní</span></td></tr>
+  </tbody>
+ </table>
+</div>
+<p class="t-maly" style="margin-top:var(--s-2)">Celkem 3</p>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Po pozvání</p>
+  <div class="alert alert--ok" role="status">{{I:check}}<p>Pozvánka odešla na jan.novak@demo.example. Odkaz pro nastavení hesla platí 7 dní.</p></div></div>
+ <div class="stack-2"><p class="t-stitek">Další stavy uživatele v tabulce</p>
+  <div class="row"><span class="stav stav--pozor">{{I:email}}Pozvánka čeká</span><span class="stav stav--neutral">{{I:minus-kruh}}Neaktivní</span><span class="stav stav--info">{{I:zamek}}Ověření zapnuto</span></div></div>
+ <div class="stack-2"><p class="t-stitek">Filtru nic neodpovídá</p>
+  <div class="empty stack-2">{{I:hledat}}<p class="t-nadpis">Nikdo neodpovídá filtru</p><p><a class="btn" href="uzivatele.html">Zrušit filtr</a></p></div></div>
+</section>

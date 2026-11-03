@@ -1,0 +1,79 @@
+<!--meta {"titulek":"Nový test","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false} -->
+<!--spec {
+ "route":"/testy/novy","nazev":"Nový test","role":"lektor","sablona":"app",
+ "ucel":"Založit test jen s názvem a pokyny pro zkoušené; sekce a parametry se nastaví v editoru hned potom.",
+ "hlavni_akce":"Založit test a pokračovat (do editoru, krok 1 Sekce)",
+ "komponenty":["crumbs","page-head","steps","field","textarea","hint","alert--info","form-actions","error-summary"],
+ "stavy":[
+  "výchozí: prázdný formulář, fokus v poli Název testu (nakresleno).",
+  "chyba: prázdný název – error-summary nahoře s odkazem na pole, pole aria-invalid + .error (nakresleno).",
+  "načítání: po odeslání tlačítko aria-disabled a text „Zakládám test…“; server přesměruje do editoru.",
+  "bez oprávnění: organizace lektorům zakázala zakládání – stránka vrací 403 (chyba-403.html) s vysvětlením; tlačítko Nový test se v seznamu nezobrazuje."],
+ "zmeny_ux":[
+  "Editor testu má 3 kroky (Sekce → Parametry → Kontrola) místo 4. Krok Základ se mění na jednorázový formulář Nový test; název a úvodní stránku pak upravíte v kroku Parametry.",
+  "Nad formulářem je náhled kroků, které následují – lektor ví, co ho čeká, ještě než test založí.",
+  "Pole Popis a Úvodní stránka jsou označená (nepovinné); povinné pole je jen název.",
+  "Informace o pobočce je v alertu u tlačítka, ne v patičce formuláře – je vidět, kam test patří, v okamžiku rozhodnutí."],
+ "texty":[
+  {"dnes":"Název testu (povinné)","nove":"Název testu","proc":"Povinná pole se neoznačují; označují se nepovinná."},
+  {"dnes":"Popis – Interní popis pro lektory; zkoušený ho neuvidí.","nove":"Popis pro lektory (nepovinné) – Zkoušený ho neuvidí.","proc":"Komu je pole určené, říká už label; hint je kratší."},
+  {"dnes":"Úvodní stránka – Text, který zkoušený uvidí před zahájením testu (pokyny, informace o zpracování osobních údajů). Řádkování se zachová.","nove":"Pokyny pro zkoušené (nepovinné) – Zkoušený je uvidí před zahájením testu. Například délku testu nebo informaci o zpracování osobních údajů.","proc":"Label říká obsah, ne technický název stránky; věty pod 20 slov."},
+  {"dnes":"Test bude založen v pobočce Návštěvník 8982 (aktivní pobočka).","nove":"Test založíte v pobočce Praha. Pobočku změníte v horní liště.","proc":"Činný rod, řekne i jak to změnit."}],
+ "pristupnost":[
+  "Náhled kroků je obyčejný číslovaný seznam (ne .steps) – test ještě neexistuje, kroky nejsou odkazy ani aktuální krok.",
+  "Hinty jsou propojené přes aria-describedby; při chybě se do aria-describedby přidá id chyby.",
+  "error-summary má role=alert, tabindex=-1 a po odeslání dostane fokus; odkaz vede na #nazev.",
+  "Fokus po načtení do pole Název testu (autofocus jen na této stránce, je to jediné povinné pole)."],
+ "poznamky_pro_kodera":[
+  "Úvodní stránka je prostý text, řádkování se zachová (white-space:pre-line na zobrazení).",
+  "Po založení redirect na /testy/:id/upravit/sekce.",
+  "Max. délka názvu převzít z backendu (dnes neuvedena); počítadlo znaků není potřeba."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="testy.html">Testy</a></li><li><span aria-current="page">Nový test</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Zkoušení</p><h1 class="t-titulek">Nový test</h1></div></div>
+
+<div class="stack-4" style="max-width:var(--max-text)">
+ <div class="stack-2">
+  <p class="t-maly" id="kroky-popis">Po založení nastavíte ve 3 krocích:</p>
+  <ol class="row" aria-describedby="kroky-popis" style="gap:var(--s-2) var(--s-4)"><li class="row" style="gap:var(--s-2)"><span class="t-cislo">01</span>Sekce</li><li class="row" style="gap:var(--s-2)"><span class="t-cislo">02</span>Parametry</li><li class="row" style="gap:var(--s-2)"><span class="t-cislo">03</span>Kontrola</li></ol>
+ </div>
+
+ <form class="card stack-4" action="test-editor-sekce.html" method="post" novalidate>
+  <div class="field">
+   <label class="label" for="nazev">Název testu</label>
+   <span class="hint" id="nazev-h">Zkoušený ho uvidí v záhlaví testu i v protokolu.</span>
+   <input class="input" id="nazev" name="nazev" aria-describedby="nazev-h" autocomplete="off" required>
+  </div>
+  <div class="field">
+   <label class="label" for="popis">Popis pro lektory <span class="volitelne">(nepovinné)</span></label>
+   <span class="hint" id="popis-h">Zkoušený ho neuvidí.</span>
+   <textarea class="textarea" id="popis" name="popis" aria-describedby="popis-h" style="min-height:96px"></textarea>
+  </div>
+  <div class="field">
+   <label class="label" for="uvod">Pokyny pro zkoušené <span class="volitelne">(nepovinné)</span></label>
+   <span class="hint" id="uvod-h">Zkoušený je uvidí před zahájením testu. Například délku testu nebo informaci o zpracování osobních údajů.</span>
+   <textarea class="textarea" id="uvod" name="uvod" aria-describedby="uvod-h"></textarea>
+  </div>
+  <div class="alert alert--info">{{I:info}}<p>Test založíte v pobočce <b>Praha</b>. Pobočku změníte v horní liště.</p></div>
+  <div class="form-actions">
+   <button class="btn btn--hlavni" type="submit">Založit test a pokračovat {{I:sipka-vpravo}}</button>
+   <a class="btn btn--tiche" href="testy.html">Zrušit</a>
+  </div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Chyba: chybí název</p>
+ <div class="error-summary stack-2" role="alert" tabindex="-1">
+  <p class="alert__nadpis">Test se nepodařilo založit</p>
+  <ul style="padding-left:var(--s-4)"><li><a href="#nazev-x">Vyplňte název testu</a></li></ul>
+ </div>
+ <div class="field">
+  <label class="label" for="nazev-x">Název testu</label>
+  <span class="hint" id="nazev-x-h">Zkoušený ho uvidí v záhlaví testu i v protokolu.</span>
+  <span class="error" id="nazev-x-e">{{I:pozor}}Vyplňte název testu.</span>
+  <input class="input" id="nazev-x" aria-invalid="true" aria-describedby="nazev-x-h nazev-x-e">
+ </div>
+</section>

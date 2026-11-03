@@ -1,0 +1,107 @@
+<!--meta {"titulek":"Kontrola – BOZP – cvičný test","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false} -->
+<!--spec {
+ "route":"/testy/:id/upravit/kontrola","nazev":"Editor testu – 3 Kontrola","role":"lektor","sablona":"app",
+ "ucel":"Ověřit, že test lze použít, kolik unikátních variací umožní a jak je nastavený – a rovnou ho použít.",
+ "hlavni_akce":"Použít test; vedlejší: Náhled variace, Zkusit nanečisto, Hotovo",
+ "komponenty":["crumbs","page-head","meta","steps","alert--ok","alert--chyba","kpi","table-wrap","table--stack","dl","field","form-actions"],
+ "stavy":[
+  "výchozí: test bez chyb, alert--ok a tlačítko Použít test (nakresleno).",
+  "chyba: test má chyby – krok Kontrola je v .steps zamčený a přímý přístup ukáže alert--chyba se seznamem chyb a odkazy do sekcí; Použít test chybí (nakresleno).",
+  "málo variací: očekávaný počet pokusů × 10 > variací – alert (žlutý) s radou rozšířit výběr nebo zapnout míchání (nakresleno).",
+  "načítání: Přepočítat je GET s parametrem pokusu; výsledek v aria-live.",
+  "bez oprávnění: s právem Čtení se místo editoru ukazuje Náhled variace."],
+ "zmeny_ux":[
+  "Výsledek kontroly je nahoře jako alert (V pořádku / N chyb), ne uprostřed stránky mezi tabulkami.",
+  "Klíčová čísla (otázek v testu, unikátních variací, sekcí) jsou v .kpi.",
+  "Parametry jsou dl se stejnými pojmy jako v kroku Parametry a odkazem Upravit parametry.",
+  "Kalkulačka variací: pole Očekávaný počet pokusů + Přepočítat a jedna věta výsledku („Variací stačí pro 1 000 pokusů“).",
+  "Jedno hlavní tlačítko Použít test; Hotovo je tiché a vede zpět na Testy."],
+ "texty":[
+  {"dnes":"Bez chyb Test lze použít.","nove":"Test je bez chyb. Můžete ho použít.","proc":"Celá věta, činně."},
+  {"dnes":"Dolní odhad (výběr otázek a jejich pořadí; míchání odpovědí se nepočítá). Stejně počítá tisk i zkoušení online: dokud zbývá nepoužitá variace, dostane ji další zkoušený.","nove":"Dolní odhad bez míchání odpovědí. Dokud zbývá nepoužitá variace, dostane ji další zkoušený – online i na papíře.","proc":"Kratší, bez závorek."},
+  {"dnes":"Doporučujeme alespoň 10× více variací, než kolik čekáte pokusů.","nove":"Doporučujeme alespoň 10× víc variací, než čekáte pokusů.","proc":"Beze změny smyslu, kratší."},
+  {"dnes":"Výsledky: Plné vyhodnocení se správnými odpověďmi a zpětnou vazbou","nove":"Zkoušený uvidí: plné vyhodnocení se správnými odpověďmi","proc":"Pojem z kroku Parametry („Co zkoušený uvidí po odevzdání“)."},
+  {"dnes":"Hotovo","nove":"Hotovo, zpět na testy","proc":"Tlačítko říká, kam vede."}],
+ "pristupnost":[
+  "Alert stavu je první obsah pod kroky; při chybě má role=alert.",
+  "Tabulka sekcí má caption a data-label; čísla .num.",
+  "Výsledek přepočtu je v p aria-live=polite (jen věta, ne celá stránka).",
+  "Zamčený krok Kontrola: span (ne odkaz) s textem „Kontrola zamčena“."],
+ "poznamky_pro_kodera":[
+  "Data z dema: 1 sekce BOZP, 0 povinných, 34 kandidátů, 10–12 náhodně, váha 1, ≥ 10 000 variací.",
+  "Tlačítko Použít test vede na /pouziti/nove?test=:id.",
+  "Kontrola počítá stejně jako tisk: unikátní = výběr otázek, pořadí otázek, pořadí odpovědí."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="testy.html">Testy</a></li><li><span aria-current="page">BOZP – cvičný test</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Úprava testu</p><h1 class="t-titulek">BOZP – cvičný test</h1>
+  <dl class="meta"><div><dt>Pobočka</dt><dd>Praha</dd></div><div><dt>Vlastník</dt><dd>Lucie Lektorová</dd></div><div><dt>Upraveno</dt><dd>4. 9. 2026</dd></div></dl></div>
+</div>
+<ol class="steps" aria-label="Kroky editoru testu" style="margin-bottom:var(--s-5);contain:inline-size">
+ <li><a class="hotovo" href="test-editor-sekce.html">Sekce</a></li><li><a class="hotovo" href="test-editor-parametry.html">Parametry</a></li><li><a href="test-editor-kontrola.html" aria-current="step">Kontrola</a></li>
+</ol>
+
+<div class="stack-5">
+ <div class="alert alert--ok">{{I:check-kruh}}<p><b>Test je bez chyb.</b> Můžete ho použít.</p></div>
+
+ <div class="kpi">
+  <div><span class="t-cislo">10–12</span><span class="t-maly">otázek v testu</span></div>
+  <div><span class="t-cislo">≥&nbsp;10&nbsp;000</span><span class="t-maly">unikátních variací</span></div>
+  <div><span class="t-cislo">1</span><span class="t-maly">sekce</span></div>
+ </div>
+
+ <section class="stack" aria-labelledby="sekce-h">
+  <div class="row-between"><h2 id="sekce-h" class="t-nadpis">Sekce</h2><a href="test-editor-sekce.html">Upravit sekce</a></div>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Sekce testu</caption>
+    <thead><tr><th scope="col">Sekce</th><th scope="col" class="num">Povinné</th><th scope="col" class="num">Kandidátů</th><th scope="col" class="num">Náhodně</th><th scope="col" class="num">Váha</th></tr></thead>
+    <tbody><tr><td data-label="Sekce"><div><b>BOZP</b><span class="t-maly">Ukázková sada: BOZP – školení zaměstnanců</span></div></td><td data-label="Povinné" class="num">0</td><td data-label="Kandidátů" class="num">34</td><td data-label="Náhodně" class="num">10–12</td><td data-label="Váha" class="num">1</td></tr></tbody>
+   </table>
+  </div>
+ </section>
+
+ <section class="card stack" aria-labelledby="var-h">
+  <h2 id="var-h" class="t-nadpis">Stačí variace?</h2>
+  <p class="t-maly measure">Dolní odhad bez míchání odpovědí. Dokud zbývá nepoužitá variace, dostane ji další zkoušený – online i na papíře.</p>
+  <form class="row" action="test-editor-kontrola.html" method="get" style="align-items:flex-end">
+   <div class="field"><label class="label" for="ocek">Očekávaný počet pokusů</label><input class="input" id="ocek" name="pokusu" type="number" min="1" value="100" inputmode="numeric" style="max-width:160px"></div>
+   <button class="btn" type="submit">{{I:obnovit}}Přepočítat</button>
+  </form>
+  <p aria-live="polite"><span class="stav stav--ok">{{I:check}}Stačí</span> Variací je víc než 10× tolik, kolik čekáte pokusů.</p>
+ </section>
+
+ <section class="stack" aria-labelledby="par-h">
+  <div class="row-between"><h2 id="par-h" class="t-nadpis">Parametry</h2><a href="test-editor-parametry.html">Upravit parametry</a></div>
+  <dl class="dl">
+   <dt>Časový limit</dt><dd>bez limitu</dd>
+   <dt>Míchat pořadí otázek</dt><dd>ano</dd>
+   <dt>Zobrazení otázek</dt><dd>jedna otázka na stránku</dd>
+   <dt>Heslo</dt><dd>ne</dd>
+   <dt>Pokusů na osobu</dt><dd>neomezeně</dd>
+   <dt>Zkoušený uvidí</dt><dd>plné vyhodnocení se správnými odpověďmi</dd>
+   <dt>Zpětná vazba</dt><dd>ihned po potvrzení odpovědi (cvičný test)</dd>
+   <dt>Hodnocení</dt><dd>vlastní – procento správných, práh 80&nbsp;%</dd>
+   <dt>Úřední test</dt><dd>ne</dd>
+   <dt>Osvědčení</dt><dd>ne</dd>
+   <dt>Dohled</dt><dd>vypnutý</dd>
+  </dl>
+ </section>
+
+ <div class="form-actions">
+  <a class="btn btn--hlavni" href="pouziti-nove.html">{{I:prehrat}}Použít test</a>
+  <a class="btn" href="test-nahled.html">{{I:oko}}Náhled variace</a>
+  <a class="btn" href="#">Zkusit nanečisto</a>
+  <a class="btn btn--tiche" href="testy.html">Hotovo, zpět na testy</a>
+ </div>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Test s chybami</p>
+ <div class="alert alert--chyba" role="alert">{{I:minus-kruh}}<div class="stack-2"><p class="alert__nadpis">Test má 2 chyby. Zatím ho nelze použít.</p>
+  <ul style="padding-left:var(--s-4)"><li>Sekce Požární ochrana: chcete losovat 12 otázek, kandidátů je 8. <a href="test-sekce-detail.html">Upravit sekci Požární ochrana</a></li><li>Úřední test nemá nastavený počet pokusů. <a href="test-editor-parametry.html">Doplnit v parametrech</a></li></ul></div></div>
+ <p class="t-stitek">Málo variací</p>
+ <div class="alert">{{I:pozor}}<p>Variací je 240, čekáte 100 pokusů. Doporučujeme 10× víc. Rozšiřte výběr otázek nebo zapněte míchání pořadí.</p></div>
+</section>

@@ -1,0 +1,50 @@
+<!--meta {"titulek":"E-mail ve Schránce dema","sablona":"app","role":"lektor","aktivni":"","demo":true} -->
+<!--spec {
+ "route":"/schranka-dema/:id","nazev":"Schránka dema – e-mail","role":"lektor (v demu pro všechny role)","sablona":"app",
+ "ucel":"Ukázat jeden e-mail tak, jak by ho dostal příjemce, a nechat návštěvníka kliknout na odkaz v něm.",
+ "hlavni_akce":"Otevřít vstup do testu z e-mailu.",
+ "komponenty":["crumbs","page-head","dl","alert","email","email__head","email__body","kod","btn","details"],
+ "stavy":[
+  "e-mail s neplatným odkazem (po smazání dema / kód použit): odkaz vede na demo-nedostupne nebo na hlášku kódu.",
+  "pozvánka uživatele: stejná šablona, místo kódu tlačítko Nastavit heslo.",
+  "mimo demo: 404."],
+ "zmeny_ux":[
+  "Hlavička schránky (Komu, Čas) oddělená od náhledu e-mailu .email – je jasné, co je obal a co e-mail.",
+  "Upozornění „Ukázka – tento e-mail nebyl odeslán.“ jako žlutý alert nad náhledem.",
+  "Kód v e-mailu komponentou .kod; tlačítko Otevřít vstup do testu jako .btn--hlavni.",
+  "Textová podoba sbalená v details."],
+ "texty":[
+  {"dnes":"← Zpět do Schránky dema","nove":"Drobečky: Schránka dema / E-mail","proc":"Jednotná navigace."},
+  {"dnes":"Kybernetická bezpečnost — roční ověření","nove":"Kybernetická bezpečnost – roční ověření","proc":"Pomlčka."},
+  {"dnes":"Osobní přístupový kód pro: Emil Erben","nove":"Přístupový kód pro Emila Erbena","proc":"Slovník: Přístupový kód (vstup do testu); bez dvojtečky."},
+  {"dnes":"Kód je osobní, nepředávejte ho dalším lidem. Výsledek testu se zapíše k vašemu jménu.","nove":"(beze změny)","proc":"Odpovídá pravidlům."}],
+ "pristupnost":["Náhled e-mailu je region s aria-label „Náhled e-mailu“; v něm H2 = nadpis e-mailu.","Odkaz v e-mailu má jasný text, adresa je i textem pro případ nefunkčního tlačítka."],
+ "poznamky_pro_kodera":["Obsah e-mailu z šablony e-mailu (skupina Z, email-pozvanka); tady jen obal schránky.","Kód NKKQW-Q8VNF je z dema."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="schranka-dema.html">Schránka dema</a></li><li><span aria-current="page">Přístupový kód – Emil Erben</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Přístupový kód k&nbsp;testu „Kybernetická bezpečnost – roční ověření“</h1>
+ <dl class="meta"><div><dt>Komu</dt><dd style="overflow-wrap:anywhere">emil.erben@demo.example</dd></div><div><dt>Čas</dt><dd>3.&nbsp;11.&nbsp;2026 18:27</dd></div><div><dt>Od</dt><dd>Ukázková organizace (demo)</dd></div></dl></div></div>
+
+<div class="alert" style="margin-bottom:var(--s-4);max-width:600px">{{I:info}}<p>Ukázka – tento e-mail nebyl odeslán.</p></div>
+
+<section class="email" aria-label="Náhled e-mailu" style="margin:0">
+ <div class="email__head"><p><b>Ukázková organizace (demo)</b></p><p class="t-maly">exam-test</p></div>
+ <div class="email__body stack">
+  <h2 class="t-nadpis">Přístupový kód k&nbsp;testu</h2>
+  <p>Dobrý den,</p>
+  <p>organizace Ukázková organizace (demo) vám zadala test <b>Kybernetická bezpečnost – roční ověření</b>.</p>
+  <p>Přístupový kód pro Emila Erbena:</p>
+  <p><span class="kod">NKKQW-Q8VNF</span></p>
+  <p><a class="btn btn--hlavni" href="kod.html">Otevřít vstup do testu</a></p>
+  <p class="t-maly">Na stránce zadejte kód uvedený výše. Pokud tlačítko nefunguje, zkopírujte do prohlížeče adresu https://demo.exam-test.cz/kod.</p>
+  <ul class="list-check t-maly">
+   <li><span>Časový limit: 15&nbsp;minut.</span></li>
+   <li><span>Kód je osobní, nepředávejte ho dalším lidem. Výsledek testu se zapíše k&nbsp;vašemu jménu.</span></li>
+   <li><span>Po odevzdání můžete kód zadat znovu a podívat se na výsledek, pokud to pořadatel dovoluje.</span></li>
+  </ul>
+  <hr class="rule-tenka">
+  <p class="t-maly">E-mail jste dostali, protože organizace Ukázková organizace (demo) zadala tuto adresu k&nbsp;přístupovému kódu.</p>
+ </div>
+</section>
+<details class="faq" style="max-width:600px;margin-top:var(--s-4)"><summary>Textová podoba e-mailu</summary><div><p class="t-maly">Stejný obsah jako prostý text – pro poštovní programy bez HTML.</p></div></details>

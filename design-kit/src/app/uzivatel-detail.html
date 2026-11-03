@@ -1,0 +1,88 @@
+<!--meta {"titulek":"Lucie Lektorová – uživatel","sablona":"app","role":"admin","aktivni":"uzivatele.html","demo":false} -->
+<!--spec {
+ "route":"/sprava/uzivatele/:id","nazev":"Uživatel – detail","role":"admin (administrátor pobočky smí měnit jen uživatele, který má všechny role ve spravovaných pobočkách; jinak jen čtení)","sablona":"app",
+ "ucel":"Spravovat jednoho uživatele: údaje, role v pobočkách, pozvánku, deaktivaci a zrušení ověření ve dvou krocích.",
+ "hlavni_akce":"Upravit údaje; přidat nebo odebrat roli.",
+ "komponenty":["crumbs","page-head","stav","layout-aside","dl","table-wrap","table--stack","field","select","card","alert","dialog"],
+ "stavy":[
+  "pozvánka čeká: štítek Pozvánka čeká, akce Odeslat pozvánku znovu / Zrušit pozvánku.",
+  "neaktivní: štítek Neaktivní, akce Aktivovat místo Deaktivovat.",
+  "uživatel mimo rozsah (role v jiné pobočce, autor): .alert--info „Tohoto uživatele spravuje administrátor organizace.“ a všechny akce skryté.",
+  "odebrání role: potvrzovací .dialog „Odebrat roli Lektor v pobočce Praha?“ s tlačítky Odebrat roli / Ponechat.",
+  "zrušení 2FA: dialog s povinným Důvodem (min. 5 znaků); chyba u pole.",
+  "oprávnění: lektor 403."],
+ "zmeny_ux":[
+  "Hlavička se stavem a jedním hlavním tlačítkem Upravit údaje; ostatní akce (pozvánka, deaktivace) v pravém sloupci s vysvětlením důsledku.",
+  "Ověření ve dvou krocích má vlastní kartu s postupem zrušení (z nápovědy) – dnes je jen řádek v údajích.",
+  "Odebrat roli: text odkazu obsahuje roli a pobočku.",
+  "Přidat roli je malý formulář pod tabulkou rolí; hint vysvětluje, kdy je pobočka povinná."],
+ "texty":[
+  {"dnes":"vypnuto (pro roli uživatele povinné – nastaví se při přihlášení)","nove":"Vypnuto. Pro tuto roli je povinné – uživatel si ho nastaví při příštím přihlášení.","proc":"Dvě krátké věty místo závorky."},
+  {"dnes":"Odebrat roli Administrátor pobočky","nove":"Odebrat roli (+ sr-only: Lektor, Praha)","proc":"Účel odkazu."},
+  {"dnes":"Povinné pro administrátora pobočky, lektora a studujícího.","nove":"Lektor, studující a administrátor pobočky musí mít pobočku.","proc":"Činně."},
+  {"dnes":"bez prodloužení","nove":"Bez prodloužení","proc":"Velké písmeno na začátku hodnoty."}],
+ "pristupnost":["Destruktivní akce (Deaktivovat, Zrušit ověření) mají potvrzovací dialog s fokusem na nadpisu a návratem fokusu.","Tabulka rolí s caption.","Stav uživatele ikonou + slovem."],
+ "poznamky_pro_kodera":["Deaktivace odhlásí uživatele ze všech zařízení.","Zrušení 2FA: uživatel dostane e-mail, akce do auditu.","Detail je v návrhu pro Lucii Lektorovou (jiný uživatel než přihlášená Barbora)."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="uzivatele.html">Uživatelé</a></li><li><span aria-current="page">Lucie Lektorová</span></li></ol></nav>
+<div class="page-head">
+ <div class="row"><h1 class="t-titulek">Lucie Lektorová</h1><span class="stav stav--ok">{{I:check}}Aktivní</span></div>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="uzivatel-formular.html">{{I:upravit}}Upravit údaje</a></div>
+</div>
+
+<div class="layout-aside">
+ <div class="stack-5">
+  <section class="stack" aria-labelledby="udaje">
+   <h2 id="udaje" class="t-nadpis">Údaje</h2>
+   <dl class="dl">
+    <dt>E-mail</dt><dd style="overflow-wrap:anywhere">lektor.lucie@demo.example</dd>
+    <dt>Osobní číslo</dt><dd>—</dd>
+    <dt>Prodloužení času</dt><dd>Bez prodloužení</dd>
+    <dt>Poslední přihlášení</dt><dd class="t-cislo">3.&nbsp;11.&nbsp;2026 18:33</dd>
+   </dl>
+  </section>
+
+  <section class="stack" aria-labelledby="role">
+   <h2 id="role" class="t-nadpis">Role</h2>
+   <div class="table-wrap"><table class="table table--stack">
+    <caption class="sr-only">Role uživatele v pobočkách</caption>
+    <thead><tr><th scope="col">Role</th><th scope="col">Pobočka</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+    <tbody><tr><td data-label="Role"><b>Lektor</b></td><td data-label="Pobočka">Praha</td><td data-label="Akce"><button class="btn btn--tiche btn--male" type="button">Odebrat roli<span class="sr-only">: Lektor, Praha</span></button></td></tr></tbody>
+   </table></div>
+   <form class="filters" action="#" method="post" aria-labelledby="pridat">
+    <p id="pridat" class="sr-only">Přidat roli</p>
+    <div class="field"><label class="label" for="r-role">Role</label><select class="select" id="r-role"><option>Administrátor pobočky</option><option>Lektor</option><option>Studující</option></select></div>
+    <div class="field"><label class="label" for="r-pob">Pobočka</label><select class="select" id="r-pob" aria-describedby="r-pob-h"><option>Praha</option></select></div>
+    <button class="btn" type="submit">{{I:plus}}Přidat roli</button>
+   </form>
+   <p class="t-maly" id="r-pob-h">Lektor, studující a administrátor pobočky musí mít pobočku. Jeden uživatel může mít víc rolí v&nbsp;různých pobočkách.</p>
+  </section>
+ </div>
+
+ <aside class="stack-4" aria-label="Zabezpečení a přístup">
+  <section class="card stack" aria-labelledby="dvak">
+   <h2 id="dvak" class="t-stitek">Ověření ve dvou krocích</h2>
+   <p><span class="stav stav--neutral">{{I:zamek}}Vypnuto</span></p>
+   <p class="t-maly">Pro tuto roli je povinné – uživatel si ho nastaví při příštím přihlášení.</p>
+   <details class="faq"><summary>Uživatel ztratil telefon</summary><div class="stack-2"><p class="t-maly">Nejdřív ověřte totožnost, například telefonicky na známé číslo. Nikdy nerušte ověření jen na základě e-mailu.</p><button class="btn btn--male btn--nebezpecne" type="button">Zrušit ověření ve dvou krocích</button></div></details>
+  </section>
+  <section class="card stack" aria-labelledby="pristup">
+   <h2 id="pristup" class="t-stitek">Přístup</h2>
+   <p class="t-maly">Deaktivovaný uživatel se nepřihlásí a odhlásí se ze všech zařízení. Výsledky a otázky zůstanou.</p>
+   <button class="btn btn--nebezpecne" type="button">Deaktivovat uživatele</button>
+  </section>
+ </aside>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Zrušení ověření – dialog (zobrazen staticky)</p>
+  <div class="dialog" style="position:static;margin:0">
+   <div class="dialog__body stack"><h3 class="t-nadpis">Zrušit ověření ve dvou krocích?</h3><p>Lucie Lektorová bude odhlášena a dostane e-mail. Při dalším přihlášení si ověření nastaví znovu.</p>
+    <div class="field"><label class="label" for="duvod">Důvod</label><span class="hint" id="duvod-h">Alespoň 5 znaků. Zapíše se do záznamu změn.</span><input class="input" id="duvod" aria-invalid="true" aria-describedby="duvod-e duvod-h" value="tel"><span class="error" id="duvod-e">{{I:pozor}}Důvod musí mít alespoň 5 znaků.</span></div></div>
+   <div class="dialog__foot"><button class="btn" type="button">Ponechat ověření</button><button class="btn btn--nebezpecne" type="button">Zrušit ověření</button></div>
+  </div></div>
+ <div class="stack-2"><p class="t-stitek">Mimo váš rozsah</p>
+  <div class="alert alert--info">{{I:info}}<p>Uživatel má roli i v&nbsp;jiné pobočce. Údaje, deaktivaci a ověření mu mění administrátor organizace.</p></div></div>
+</section>

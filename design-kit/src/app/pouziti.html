@@ -1,0 +1,66 @@
+<!--meta {"titulek":"Použití testů","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false} -->
+<!--spec {
+ "route":"/pouziti","nazev":"Použití testů","role":"lektor","sablona":"app",
+ "ucel":"Přehled všech zadání testů (zkoušky v učebně, kódy, přidělení, odkazy). Odtud lektor otevře živý panel nebo čekárnu.",
+ "hlavni_akce":"Otevřít živý panel použití (název testu v řádku); vedlejší: Použít test (nové použití)",
+ "komponenty":["page-head","tabs","table-wrap","table--stack","stav","btn--male","empty","alert--info"],
+ "stavy":[
+  "výchozí: 7 otevřených použití z dema (nakresleno).",
+  "prázdný: „Zatím nemáte žádné otevřené použití.“ + odkaz na Testy (nakresleno).",
+  "Včetně uzavřených: druhá záložka, uzavřená mají stav--neutral „Uzavřeno“ a datum uzavření.",
+  "načítání: server renderuje; počty Píše / Odevzdáno jsou stav při načtení (živě jen v živém panelu).",
+  "bez oprávnění: lektor vidí použití své pobočky; použití jiných lektorů jen pro čtení (bez Uzavřít)."],
+ "zmeny_ux":[
+  "Nové použití jde založit i odsud (Použít test → výběr testu); dnes jen věta s návodem.",
+  "Způsob má ikonu a jednotný pojem ze slovníku (Prezenční zkouška, Osobní kódy, Přiděleno, Veřejný odkaz, Tisk).",
+  "Název testu a označení použití jsou v jedné buňce (označení je to, čím lektor použití rozlišuje), test je odkaz na živý panel.",
+  "Stav ikonou + slovem: Čekárna (pise), Probíhá (info), Otevřeno (neutral), Uzavřeno (neutral).",
+  "Sloupec Pobočka odpadá – je v horní liště; při více pobočkách přidat filtr."],
+ "texty":[
+  {"dnes":"Odkaz (anonymní)","nove":"Veřejný odkaz","proc":"Slovník."},
+  {"dnes":"Přidělení studujícím / skupině","nove":"Přiděleno","proc":"Slovník."},
+  {"dnes":"Přístupové kódy pro osoby","nove":"Osobní kódy","proc":"Slovník."},
+  {"dnes":"Test spustíte z přehledu testů tlačítkem Použít – prezenční zkouškou, přístupovými kódy, přidělením studujícím, odkazem nebo tiskem.","nove":"Jedno zadání testu (zkouška, kódy, odkaz…) je jedno použití. Nové založíte tlačítkem Použít test.","proc":"Vysvětlí pojem a nabídne akci; bez výčtu."},
+  {"dnes":"Probíhá / odevzdáno: 0 / 6","nove":"Píše 0 · Odevzdalo 6","proc":"Stejné pojmy jako souhrn živého panelu."},
+  {"dnes":"otevřeno / čekárna","nove":"Otevřeno / Čekárna (stav s ikonou)","proc":"Stav vždy ikonou + slovem."}],
+ "pristupnost":[
+  "Tabulka má caption „Otevřená použití (7)“ (sr-only) a data-label.",
+  "Odkaz v řádku je název testu + sr-only označení („BOZP – cvičný test, Cvičný test na webu“) – každý odkaz je jednoznačný.",
+  "Záložky v nav s aria-current."],
+ "poznamky_pro_kodera":[
+  "Data z dema (3. 11. 2026 18:27). Řazení: nejnovější nahoře; čekárny vždy nahoře.",
+  "Odkaz u prezenční zkoušky v čekárně vede na čekárnu (cekarna-lektor.html), ostatní na živý panel.",
+  "Tisk se tu nezobrazuje – tiskové dávky jsou v sekci Tisk."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Zkoušení</p><h1 class="t-titulek">Použití testů</h1>
+  <p class="t-maly measure">Jedno zadání testu (zkouška, kódy, odkaz…) je jedno použití. Nové založíte tlačítkem Použít test.</p></div>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="testy.html">{{I:prehrat}}Použít test</a></div>
+</div>
+<nav class="tabs" aria-label="Filtr použití" style="margin-bottom:var(--s-4);contain:inline-size">
+ <a href="pouziti.html" aria-current="page">Otevřená (7)</a><a href="#">Včetně uzavřených</a>
+</nav>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Otevřená použití (7)</caption>
+  <thead><tr><th scope="col">Test a označení</th><th scope="col">Způsob</th><th scope="col" class="num">Píše</th><th scope="col" class="num">Odevzdalo</th><th scope="col">Vytvořeno</th><th scope="col">Stav</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Test"><div><a href="cekarna-lektor.html"><b>Radiační ochrana – ověření znalostí</b><span class="sr-only">, Prezenční zkouška – učebna 2</span></a><span class="t-maly">Prezenční zkouška – učebna 2</span></div></td><td data-label="Způsob"><span class="row" style="gap:var(--s-2)">{{I:obrazovka}}Prezenční zkouška</span></td><td data-label="Píše" class="num">0</td><td data-label="Odevzdalo" class="num">0</td><td data-label="Vytvořeno"><span class="t-cislo">3. 11. 18:27</span></td><td data-label="Stav"><span class="stav stav--pise">{{I:hodiny}}Čekárna</span></td></tr>
+   <tr><td data-label="Test"><div><a href="zivy-panel.html"><b>BOZP – cvičný test</b><span class="sr-only">, Cvičný test na webu</span></a><span class="t-maly">Cvičný test na webu</span></div></td><td data-label="Způsob"><span class="row" style="gap:var(--s-2)">{{I:odkaz}}Veřejný odkaz</span></td><td data-label="Píše" class="num">3</td><td data-label="Odevzdalo" class="num">4</td><td data-label="Vytvořeno"><span class="t-cislo">3. 11. 18:27</span></td><td data-label="Stav"><span class="stav stav--info">{{I:prehrat}}Probíhá</span></td></tr>
+   <tr><td data-label="Test"><div><a href="zivy-panel.html"><b>Radiační ochrana – ověření znalostí</b><span class="sr-only">, Ověření znalostí – 1. termín</span></a><span class="t-maly">Ověření znalostí – 1. termín</span></div></td><td data-label="Způsob"><span class="row" style="gap:var(--s-2)">{{I:klic}}Osobní kódy</span></td><td data-label="Píše" class="num">0</td><td data-label="Odevzdalo" class="num">2</td><td data-label="Vytvořeno"><span class="t-cislo">3. 11. 18:27</span></td><td data-label="Stav"><span class="stav stav--neutral">Otevřeno</span></td></tr>
+   <tr><td data-label="Test"><div><a href="zivy-panel.html"><b>Kybernetická bezpečnost – roční ověření</b><span class="sr-only">, Roční školení – přístupové kódy</span></a><span class="t-maly">Roční školení – přístupové kódy</span></div></td><td data-label="Způsob"><span class="row" style="gap:var(--s-2)">{{I:klic}}Osobní kódy</span></td><td data-label="Píše" class="num">0</td><td data-label="Odevzdalo" class="num">6</td><td data-label="Vytvořeno"><span class="t-cislo">3. 11. 18:27</span></td><td data-label="Stav"><span class="stav stav--neutral">Otevřeno</span></td></tr>
+   <tr><td data-label="Test"><div><a href="zivy-panel.html"><b>Radiační ochrana – ověření znalostí</b><span class="sr-only">, Přiděleno zkoušenému (radiační ochrana)</span></a><span class="t-maly">Přiděleno zkoušenému</span></div></td><td data-label="Způsob"><span class="row" style="gap:var(--s-2)">{{I:uzivatele}}Přiděleno</span></td><td data-label="Píše" class="num">0</td><td data-label="Odevzdalo" class="num">0</td><td data-label="Vytvořeno"><span class="t-cislo">3. 11. 18:27</span></td><td data-label="Stav"><span class="stav stav--neutral">Otevřeno</span></td></tr>
+   <tr><td data-label="Test"><div><a href="zivy-panel.html"><b>Kybernetická bezpečnost – roční ověření</b><span class="sr-only">, Přiděleno zkoušenému (kybernetická bezpečnost)</span></a><span class="t-maly">Přiděleno zkoušenému</span></div></td><td data-label="Způsob"><span class="row" style="gap:var(--s-2)">{{I:uzivatele}}Přiděleno</span></td><td data-label="Píše" class="num">0</td><td data-label="Odevzdalo" class="num">0</td><td data-label="Vytvořeno"><span class="t-cislo">3. 11. 18:27</span></td><td data-label="Stav"><span class="stav stav--neutral">Otevřeno</span></td></tr>
+   <tr><td data-label="Test"><div><a href="zivy-panel.html"><b>BOZP – cvičný test</b><span class="sr-only">, Přiděleno zkoušenému (BOZP)</span></a><span class="t-maly">Přiděleno zkoušenému</span></div></td><td data-label="Způsob"><span class="row" style="gap:var(--s-2)">{{I:uzivatele}}Přiděleno</span></td><td data-label="Píše" class="num">0</td><td data-label="Odevzdalo" class="num">0</td><td data-label="Vytvořeno"><span class="t-cislo">3. 11. 18:27</span></td><td data-label="Stav"><span class="stav stav--neutral">Otevřeno</span></td></tr>
+  </tbody>
+ </table>
+</div>
+<p class="t-maly" style="margin-top:var(--s-3)">Tiskové dávky najdete v části <a href="tisk.html">Tisk</a>.</p>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Žádné otevřené použití</p>
+ <div class="empty stack-2">{{I:prehrat}}<p><b>Zatím nemáte žádné otevřené použití.</b></p><p class="t-maly">V seznamu testů klikněte u testu na Použít a vyberte způsob zkoušení.</p><p><a class="btn" href="testy.html">Přejít na testy</a></p></div>
+</section>

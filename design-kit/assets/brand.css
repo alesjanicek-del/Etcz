@@ -364,3 +364,19 @@ legend{padding:0;font-weight:var(--w-tucne)}
 /* promítací plocha (velké písmo pro projektor) */
 .projektor{min-height:100vh;display:grid;place-items:center;background:var(--c-grafit);color:var(--c-papir);text-align:center;padding:var(--s-5)}
 .projektor .kod{font-size:var(--t-display);background:var(--c-papir);color:var(--c-grafit);border:0}
+
+/* ---------- Doplňky v1.1 (z návrhů stránek) ---------- */
+.section--grafit .list-check li::before{background:var(--c-zvyraznovac)}
+[id]{scroll-margin-top:96px}
+.table--stack th[scope=row]{white-space:normal}
+.input,.select,.textarea{min-width:0}
+.input-group{display:flex;align-items:stretch}
+.input-group .input{flex:1}
+.input-group__suffix{display:flex;align-items:center;padding:0 12px;border:var(--b-silna) solid var(--c-pole-okraj);border-left:0;background:var(--c-papir);font-family:var(--f-mono);font-weight:var(--w-mono-tucne);font-size:var(--t-maly);white-space:nowrap}
+.page-nav{display:flex;flex-wrap:wrap;gap:var(--s-2)}
+.choice input[type=radio],.choice input[type=checkbox]{appearance:none;flex:none;width:24px;height:24px;margin:2px 0 0;border:var(--b-silna) solid var(--c-grafit);background:var(--c-bila);display:grid;place-content:center}
+.choice input[type=radio]{border-radius:50%}
+.choice input:checked{background:var(--c-grafit)}
+.choice input[type=radio]:checked::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--c-zvyraznovac)}
+.prose-layout{display:grid;gap:var(--s-5);grid-template-columns:1fr}
+@media (min-width:1024px){.prose-layout{grid-template-columns:260px 1fr}.prose-layout>.toc{position:sticky;top:96px;align-self:start}}

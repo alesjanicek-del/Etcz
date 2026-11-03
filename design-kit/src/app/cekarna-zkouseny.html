@@ -1,0 +1,79 @@
+<!--meta {"titulek":"Čekárna – Kybernetická bezpečnost — roční ověření","sablona":"cisty","role":"zkouseny"} -->
+<!--spec {
+ "route":"/live/:kod","nazev":"Čekárna – zkoušený","role":"zkoušený (prezenční zkouška)","sablona":"cisty",
+ "ucel":"Ujistit zkoušeného, že je připojený a nemusí nic dělat, dokud lektor test nespustí. Stránka se obnovuje sama.",
+ "hlavni_akce":"Počkat (žádná akce); stránku nezavírat",
+ "komponenty":["exam-head","card--papir","alert (role=status)","dl","alert","list-check"],
+ "stavy":[
+  "čekání (nakresleno): „Počkejte, až lektor test spustí.“",
+  "test se spouští (nakresleno): role=status, za pár sekund se otevře první otázka",
+  "odebrán z čekárny (nakresleno): .alert--chyba + odkaz Připojit se znovu",
+  "výpadek spojení v čekárně: .alert „Spojení se přerušilo. Zkoušíme se znovu připojit.“ – po obnovení zmizí",
+  "načítání: není (stránka je hned hotová, stav se mění přes serverové události)",
+  "bez oprávnění: neplatný odkaz čekárny → live.html s chybou"],
+ "zmeny_ux":[
+  "Velký stav „Čekáte na spuštění“ + co dělat (nic, nezavírat) + kontrola údajů (jméno, zkouška). Dnes je jen jedna věta.",
+  "Zkoušený vidí své jméno tak, jak půjde do protokolu – při překlepu může lektora požádat o opravu ještě před testem.",
+  "Krátká příprava: vypnout oznámení, nezhasínat telefon – opuštění okna se při dohledu zaznamená (z nápovědy).",
+  "Návrh: jemná animace tří teček je zakázaná při prefers-reduced-motion (brand.css to řeší globálně)."],
+ "texty":[
+  {"dnes":"Počkejte, až lektor test spustí","nove":"Počkejte, až lektor test spustí.","proc":"Beze změny – jasné."},
+  {"dnes":"Stránku nezavírejte, obnovuje se sama.","nove":"Stránku nezavírejte. Obnovuje se sama – první otázka se otevře automaticky.","proc":"Doplněno, co se stane."},
+  {"dnes":"Test se spouští","nove":"Test se spouští. První otázka se otevře za pár sekund.","proc":"Řekne, že nemá nic dělat."},
+  {"dnes":"Byli jste odebráni z čekárny","nove":"Lektor vás odebral z čekárny. Obraťte se na něj a připojte se znovu.","proc":"Činně, s dalším krokem."}],
+ "pristupnost":[
+  "Stav čekání je p s role=status (aria-live=polite): změna na „Test se spouští“ se přečte bez přesunu fokusu.",
+  "Po spuštění testu se načte stránka otázky a fokus jde na H1 otázky (viz test-otazka).",
+  "Odebrání z čekárny = role=alert (důležitá změna).",
+  "Údaje o připojení jsou dl (popisek – hodnota)."],
+ "poznamky_pro_kodera":[
+  "Stav přes SSE/WebSocket; záložně polling každých 5 s.",
+  "Data: demo, Zdeněk Zkoušený, kód zkoušky 4821 (ukázka), připojeno 17:32."],
+ "chybi_komponenta":["indikátor čekání (bez spinneru) – použit .alert s ikonou hodiny (.stav je nowrap a na 320 px přetéká)"]
+} -->
+<header class="exam-head"><div class="exam-head__in">
+ <p><b>Ukázková organizace (demo)</b></p>
+ <span class="stav stav--info" style="margin-left:auto">{{I:oko}}Dohled zapnutý</span>
+</div></header>
+
+<main id="obsah" class="narrow stack-5" style="max-width:640px">
+ <section class="card card--papir stack-4" aria-labelledby="h1">
+  <div class="stack-2">
+   <p class="t-stitek">Čekárna · prezenční zkouška</p>
+   <h1 id="h1" class="t-titulek">Jste připojeni</h1>
+  </div>
+  <div class="alert" role="status">{{I:hodiny}}<div><p class="alert__nadpis">Počkejte, až lektor test spustí.</p><p>Stránku nezavírejte. Obnovuje se sama – první otázka se otevře automaticky.</p></div></div>
+  <dl class="dl">
+   <dt>Jméno v&nbsp;protokolu</dt><dd><b>Zdeněk Zkoušený</b></dd>
+   <dt>Zkouška</dt><dd>Kybernetická bezpečnost — roční ověření</dd>
+   <dt>Kód zkoušky</dt><dd class="t-kod">4821</dd>
+   <dt>Připojeno</dt><dd class="t-cislo">17:32</dd>
+  </dl>
+  <p class="t-maly">Jméno je napsané špatně? Řekněte to lektorovi ještě před spuštěním.</p>
+ </section>
+
+ <section class="stack" aria-labelledby="prip-h">
+  <h2 id="prip-h" class="t-nadpis">Než test začne</h2>
+  <ul class="list-check">
+   <li>Zavřete ostatní aplikace a&nbsp;vypněte oznámení.</li>
+   <li>Nezhasínejte obrazovku telefonu. Opuštění okna se zaznamená.</li>
+   <li>Potřebujete víc času nebo pomůcku? Řekněte to lektorovi teď.</li>
+  </ul>
+ </section>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Test se spouští</h3>
+   <div class="alert alert--ok" role="status">{{I:prehrat}}<p><b>Test se spouští.</b> První otázka se otevře za pár sekund.</p></div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Odebrán z&nbsp;čekárny</h3>
+   <div class="alert alert--chyba" role="alert">{{I:minus-kruh}}<div class="stack-2"><p><b>Lektor vás odebral z&nbsp;čekárny.</b> Mohlo se to stát omylem. Obraťte se na něj a&nbsp;připojte se znovu.</p><p><a class="btn btn--male" href="live.html">Připojit se znovu</a></p></div></div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Spojení se přerušilo</h3>
+   <div class="alert" role="status">{{I:pozor}}<p><b>Spojení se přerušilo.</b> Zkoušíme se znovu připojit. Stránku nezavírejte.</p></div>
+  </div>
+ </section>
+</main>

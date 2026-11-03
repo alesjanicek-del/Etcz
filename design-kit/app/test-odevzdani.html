@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zkontrolovat a odevzdat – Kybernetická bezpečnost — roční ověření · exam-test</title>
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body class="grid-bg">
+<a class="skip" href="#obsah">Přeskočit na souhrn</a>
+<header class="exam-head"><div class="exam-head__in">
+ <p class="t-stitek">Kybernetická bezpečnost — roční ověření</p>
+ <div class="row" style="gap:var(--s-2);margin-left:auto">
+  <p class="t-maly row" style="gap:var(--s-1)" role="status"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12.5l5 5L20 6.5"/></svg>Uloženo 14:16</p>
+  <span class="stav stav--info"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>Dohled<span class="sr-only"> je zapnutý</span></span>
+  <div class="timer" role="timer"><span class="sr-only">Zbývající čas: </span>14:40</div>
+ </div>
+ <p class="sr-only" aria-live="polite" id="cas-hlaseni"></p>
+</div></header>
+
+<main id="obsah" class="narrow stack-4" style="padding-bottom:160px">
+ <h1 class="t-titulek" tabindex="-1">Zkontrolujte a odevzdejte</h1>
+
+ <div class="alert"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div class="stack" style="flex:1">
+  <p><b>Zodpovězeno 6 z 12 otázek.</b> Nezodpovězené můžete ještě doplnit:</p>
+  <nav class="qgrid" aria-label="Nezodpovězené otázky" style="grid-template-columns:repeat(auto-fill,52px)">
+   <a href="#" aria-label="Doplnit otázku 2">2</a><a href="#" aria-label="Doplnit otázku 4">4</a><a href="#" aria-label="Doplnit otázku 6">6</a><a href="#" aria-label="Doplnit otázku 8">8</a><a href="#" aria-label="Doplnit otázku 10">10</a><a href="#" aria-label="Doplnit otázku 12">12</a>
+  </nav>
+  <p>K&nbsp;návratu jste si označili otázku <a href="#" aria-label="Vrátit se k otázce 5">5</a>.</p>
+ </div></div>
+
+ <form class="stack-4" action="test-vysledek.html" method="post">
+  <section class="card stack" aria-labelledby="pot-h">
+   <div class="stack-2">
+    <p class="t-stitek">Než odevzdáte</p>
+    <h2 id="pot-h" class="t-nadpis">Potvrzení o&nbsp;seznámení se školením</h2>
+    <p class="t-maly">Roční školení kybernetické bezpečnosti · školitel Ing. Pavla Školitelová</p>
+   </div>
+   <hr class="rule-tenka">
+   <h3 class="t-stitek">Osnova školení</h3>
+   <ul class="list-check grid-2" style="gap:var(--s-2) var(--s-4)">
+    <li>Phishing a&nbsp;podvodné zprávy</li>
+    <li>Hesla, správce hesel a&nbsp;ověření ve dvou krocích</li>
+    <li>Bezpečná práce s&nbsp;e-mailem a&nbsp;přílohami</li>
+    <li>Hlášení bezpečnostních incidentů</li>
+   </ul>
+   <hr class="rule-tenka">
+   <label class="check"><input type="checkbox" id="potvrzeni" name="potvrzeni" aria-describedby="pot-dusledky"><b>Potvrzuji, že jsem se seznámil(a) s&nbsp;obsahem školení „Roční školení kybernetické bezpečnosti“ v&nbsp;rozsahu uvedené osnovy a&nbsp;že mu rozumím.</b></label>
+   <ul id="pot-dusledky" class="list-check" style="padding-left:var(--s-5)">
+    <li>Potvrzení se uloží s&nbsp;časem a&nbsp;vaším jménem jako doklad o&nbsp;školení.</li>
+    <li>Po odevzdání ho nejde vzít zpět.</li>
+    <li>Obsahu nerozumíte? Zeptejte se lektora dřív, než test odevzdáte.</li>
+   </ul>
+  </section>
+
+  <p id="nevratne"><b>Po odevzdání už odpovědi ani potvrzení nezměníte.</b> Když vyprší čas, test se odevzdá sám – bez potvrzení.</p>
+
+  <div class="exam-foot" style="flex-wrap:wrap">
+   <a class="btn btn--tiche" href="test-otazka.html" style="flex:1 1 auto"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>Zpět k&nbsp;otázkám</a>
+   <button class="btn btn--hlavni" type="submit" aria-describedby="nevratne" style="flex:1 1 auto">Odevzdat test</button>
+  </div>
+ </form>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Odevzdání bez potvrzení</h3>
+   <div class="error-summary stack-2" role="alert" tabindex="-1" aria-labelledby="es-h">
+    <p id="es-h"><b>Test zatím není odevzdaný.</b></p>
+    <ul style="padding-left:var(--s-4)"><li><a href="#potvrzeni2">Zaškrtněte potvrzení o&nbsp;seznámení se školením</a></li></ul>
+   </div>
+   <div class="card stack-2">
+    <label class="check"><input type="checkbox" id="potvrzeni2" aria-invalid="true" aria-describedby="pot2-e"><b>Potvrzuji, že jsem se seznámil(a) s&nbsp;obsahem školení „Roční školení kybernetické bezpečnosti“ v&nbsp;rozsahu uvedené osnovy a&nbsp;že mu rozumím.</b></label>
+    <p class="error" id="pot2-e"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg>Bez potvrzení test odevzdat nelze. Obsahu nerozumíte? Zeptejte se lektora.</p>
+   </div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Vše zodpovězeno</h3>
+   <div class="alert alert--ok"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12.5l5 5L20 6.5"/></svg><p><b>Zodpovězeno 12 z 12 otázek.</b> Můžete odevzdat.</p></div>
+  </div>
+ </section>
+</main>
+<script type="application/json" id="spec">{"route": "/t/:id/odevzdat", "nazev": "Odevzdání testu", "role": "zkoušený", "sablona": "exam", "ucel": "Poslední kontrola před nevratným krokem: co zbývá doplnit, potvrzení o seznámení se školením a jedno tlačítko Odevzdat test.", "hlavni_akce": "Potvrdit seznámení se školením a odevzdat test", "komponenty": ["exam-head", "timer", "stav", "alert", "qgrid", "card", "check", "error-summary", "error", "exam-foot", "btn--hlavni"], "stavy": ["nezodpovězené otázky (nakresleno): žlutý pruh s odkazy na čísla otázek", "vše zodpovězeno (nakresleno): zelený pruh „Zodpovězeno 12 z 12 otázek.“", "odevzdání bez potvrzení (nakresleno): .error-summary nahoře + aria-invalid a .error u zaškrtávacího pole", "test bez potvrzení školení: karta Potvrzení se nezobrazí", "vypršení času: test se odevzdá sám bez potvrzení a zobrazí se výsledek s poznámkou „Odevzdáno po vypršení času, bez potvrzení školení“", "odesílání: tlačítko aria-busy=true, text „Odevzdáváme…“; offline viz test-vypadek", "bez oprávnění: test už odevzdaný → přesměrování na výsledek"], "zmeny_ux": ["Souhrn je zároveň potvrzením – bez dalšího dialogu „Opravdu odevzdat?“. Nevratnost je napsaná běžným textem přímo nad tlačítkem (dnes potvrzovací dialog + drobný text).", "Nezodpovězené otázky jsou odkazy jako dlaždice (.qgrid) – na mobilu je trefíte palcem. Otázky k návratu mají vlastní řádek.", "Text potvrzení školení zkrácen na 3 body pod zaškrtávacím polem; dnes je to jeden odstavec se 6 větami.", "Na mobilu je Odevzdat test dole v .exam-foot na dosah palce, Zpět k otázkám vedle (tiché tlačítko).", "Lišta: místo pruhu postupu jen stav uložení, dohled a časomíra – na souhrnu je postup ve žlutém pruhu."], "texty": [{"dnes": "Odevzdání testu", "nove": "Zkontrolujte a odevzdejte", "proc": "Říká, co má zkoušený udělat."}, {"dnes": "Zodpovězeno 6 z 12 otázek. Zbývající čas ukazuje časomíra v záhlaví stránky.", "nove": "Zodpovězeno 6 z 12 otázek. Nezodpovězené můžete ještě doplnit:", "proc": "Časomíra je vidět, netřeba ji popisovat; věta vede k akci."}, {"dnes": "Potvrzuji, že jsem se seznámil(a) s obsahem školení „Roční školení kybernetické bezpečnosti“ v rozsahu uvedené osnovy a že mu rozumím.", "nove": "beze změny", "proc": "Právní text – zůstává doslovně."}, {"dnes": "Potvrďte jen to, co je pravda. Pokud obsahu školení nerozumíte, test zatím neodevzdávejte a zeptejte se lektora. Potvrzení se uloží s časem a vaším jménem do záznamu o zkoušce. Organizace ho může použít jako doklad o školení. Po odevzdání ho nejde změnit ani vzít zpět, stejně jako odpovědi. Bez potvrzení test odevzdat nelze. Když vyprší čas, test se odevzdá bez něj.", "nove": "3 body: Potvrzení se uloží s časem a vaším jménem jako doklad o školení. / Po odevzdání ho nejde vzít zpět. / Obsahu nerozumíte? Zeptejte se lektora dřív, než test odevzdáte. + u tlačítka: Když vyprší čas, test se odevzdá sám – bez potvrzení.", "proc": "Krátké věty, každá věc jednou; „Potvrďte jen to, co je pravda“ vyplývá z bodu 3."}, {"dnes": "(dialog) Odevzdat test? …", "nove": "Po odevzdání už odpovědi ani potvrzení nezměníte.", "proc": "Nevratné věci běžným textem u tlačítka místo dialogu."}], "pristupnost": ["H1 Zkontrolujte a odevzdejte; karta potvrzení H2, osnova H3.", "Odkazy na otázky mají aria-label „Doplnit otázku 2“; seznam je nav s aria-label „Nezodpovězené otázky“.", "Zaškrtávací pole potvrzení je skutečný checkbox (.check) s popisem přes aria-describedby na seznam důsledků.", "Chyba: po odeslání bez potvrzení se fokus přesune na .error-summary (tabindex=-1, role=alert); odkaz vede na checkbox (#potvrzeni).", "Nevratnost je běžný text u tlačítka a součást aria-describedby tlačítka Odevzdat test.", "Časomíra role=timer, hlášení jen v 5. a 1. minutě; stav uložení role=status.", "Na mobilu je .exam-foot připnutý; .exam-body/narrow má spodní odsazení, aby obsah nezakryl."], "poznamky_pro_kodera": ["Dynamické: počty, čísla nezodpovězených a označených otázek, název školení, školitel, osnova (z nastavení testu).", "Odevzdat test = POST; bez zaškrtnutí server vrátí stejnou stránku s chybou (žádný disabled stav tlačítka – vždy klikatelné, chyba se vysvětlí).", ".exam-foot má flex-wrap a tlačítka flex 1 1 auto, aby se na 320 px zalomila pod sebe místo přetečení.", "Data: demo, 6 z 12 zodpovězeno, nezodpovězené 2, 4, 6, 8, 10, 12; k návratu 5."], "chybi_komponenta": ["odkazy na otázky v souhrnu – použita .qgrid s pevnou šířkou dlaždic (inline grid-template-columns)", ".exam-foot pro 2 dlouhá tlačítka na 320 px – inline flex-wrap"]}</script>
+</body>
+</html>

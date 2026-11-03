@@ -1,0 +1,93 @@
+<!--meta {"titulek":"Moje výsledky","sablona":"app","role":"zkouseny","aktivni":"moje-vysledky.html","demo":false} -->
+<!--spec {
+ "route":"/moje-vysledky","nazev":"Moje výsledky","role":"zkoušený (studující s účtem)","sablona":"app",
+ "ucel":"Přehled všech odevzdaných pokusů s výsledkem, protokolem a osvědčením – na jednom místě a kdykoli znovu.",
+ "hlavni_akce":"Stáhnout protokol nebo osvědčení",
+ "komponenty":["page-head","table-wrap","table--stack","stav","num","empty","alert"],
+ "stavy":[
+  "seznam (nakresleno): splněno s platným osvědčením, nesplněno, výsledek zatím nezveřejněn, prošlé osvědčení",
+  "prázdný (nakresleno): „Zatím jste neodevzdali žádný test.“ + odkaz na Moje testy",
+  "chyba načtení: .alert--chyba „Výsledky se nepodařilo načíst.“ + Zkusit znovu",
+  "načítání: tabulka s aria-busy=true a 3 prázdnými řádky",
+  "bez oprávnění: nepřihlášený → přihlášení"],
+ "zmeny_ux":[
+  "Tabulka místo dnešního prázdného textu: test, odevzdáno, výsledek (procenta + stav), osvědčení s datem platí do, akce.",
+  "Nezveřejněný výsledek má vlastní stav „Zatím nezveřejněno“ místo prázdné buňky; je jasné, že výsledek existuje.",
+  "Prošlé osvědčení má stav ikonou + slovem a tip, že školení je potřeba zopakovat.",
+  "Na mobilu se řádky skládají (.table--stack) a akce jsou pod sebou."],
+ "texty":[
+  {"dnes":"Zatím jste neodevzdali žádný test.","nove":"Zatím jste neodevzdali žádný test. Přidělené testy najdete v Moje testy.","proc":"Doplněn další krok."},
+  {"dnes":"zatím nezveřejněno","nove":"Nezveřejněno (stav) + „Až lektor výsledek zpřístupní“","proc":"Krátký stav se vejde na 320 px; vysvětlení v buňce Ke stažení."},
+  {"dnes":"Stáhnout PDF","nove":"Protokol (PDF) + skryté „: název testu“","proc":"Jasné, co se stahuje; účel odkazu."},
+  {"dnes":"Stáhnout osvědčení","nove":"Osvědčení (PDF)","proc":"Krátce v tabulce; formát v textu."}],
+ "pristupnost":[
+  "Tabulka má caption (sr-only) „Odevzdané testy, nejnovější nahoře“, th scope=col, data-label u každé td pro mobilní zobrazení.",
+  "Odkazy na stažení mají skrytý název testu, aby se daly rozlišit v seznamu odkazů čtečky.",
+  "Stav ikonou + slovem; procenta .num.",
+  "Řádek nemá vlastní klikací plochu – jen odkazy v buňce Akce."],
+ "poznamky_pro_kodera":[
+  "Řazení podle data odevzdání, nejnovější nahoře; stránkování po 20.",
+  "Protokol = výpis pro zkoušeného; osvědčení jen u splněného pokusu s osvědčením.",
+  "Data: ukázka navazující na demo (dnešní demo zkoušený zatím nic neodevzdal); kód ET-7Q4K-92MX jako v test-vysledek."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <div class="stack-2">
+  <h1 class="t-titulek">Moje výsledky</h1>
+  <p class="t-maly">Odevzdané testy, protokoly a osvědčení.</p>
+ </div>
+</div>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Odevzdané testy, nejnovější nahoře</caption>
+  <thead><tr><th scope="col">Test</th><th scope="col">Odevzdáno</th><th scope="col" class="num">Výsledek</th><th scope="col">Stav</th><th scope="col">Osvědčení</th><th scope="col">Ke stažení</th></tr></thead>
+  <tbody>
+   <tr>
+    <td data-label="Test"><span><b>Kybernetická bezpečnost — roční ověření</b><span class="t-maly">pokus 1 z 3</span></span></td>
+    <td data-label="Odevzdáno" class="t-cislo">3.&nbsp;11.&nbsp;2026 <span>17:41</span></td>
+    <td data-label="Výsledek" class="num">83,3&nbsp;%</td>
+    <td data-label="Stav"><span class="stav stav--ok">{{I:check}}Splněno</span></td>
+    <td data-label="Osvědčení">platí do 2.&nbsp;11.&nbsp;2027</td>
+    <td data-label="Ke stažení"><span class="stack-2"><span><a href="../tisk/protokol.html">Protokol (PDF)<span class="sr-only">: Kybernetická bezpečnost, 3. 11. 2026</span></a></span><span><a href="../tisk/osvedceni.html">Osvědčení (PDF)<span class="sr-only">: Kybernetická bezpečnost, 3. 11. 2026</span></a></span></span></td>
+   </tr>
+   <tr>
+    <td data-label="Test"><span><b>Radiační ochrana — ověření znalostí (úřední, typ ZOZ)</b><span class="t-maly">pokus 1 z 1</span></span></td>
+    <td data-label="Odevzdáno" class="t-cislo">28.&nbsp;10.&nbsp;2026 10:12</td>
+    <td data-label="Výsledek" class="num">–</td>
+    <td data-label="Stav"><span class="stav stav--neutral">{{I:hodiny}}Nezveřejněno</span></td>
+    <td data-label="Osvědčení">–</td>
+    <td data-label="Ke stažení"><span class="t-maly">Až lektor výsledek zpřístupní</span></td>
+   </tr>
+   <tr>
+    <td data-label="Test"><span><b>BOZP — cvičný test</b><span class="t-maly">pokus 2</span></span></td>
+    <td data-label="Odevzdáno" class="t-cislo">14.&nbsp;10.&nbsp;2026 8:55</td>
+    <td data-label="Výsledek" class="num">60,0&nbsp;%</td>
+    <td data-label="Stav"><span class="stav stav--ne">{{I:minus-kruh}}Nesplněno</span></td>
+    <td data-label="Osvědčení">–</td>
+    <td data-label="Ke stažení"><a href="../tisk/protokol.html">Protokol (PDF)<span class="sr-only">: BOZP — cvičný test, 14. 10. 2026</span></a></td>
+   </tr>
+   <tr>
+    <td data-label="Test"><span><b>Kybernetická bezpečnost — roční ověření</b><span class="t-maly">pokus 1 z 3</span></span></td>
+    <td data-label="Odevzdáno" class="t-cislo">2.&nbsp;11.&nbsp;2025 9:20</td>
+    <td data-label="Výsledek" class="num">91,7&nbsp;%</td>
+    <td data-label="Stav"><span class="stav stav--ok">{{I:check}}Splněno</span></td>
+    <td data-label="Osvědčení"><span class="stack-2" style="align-items:flex-end"><span class="stav stav--pozor">{{I:pozor}}Prošlé</span><span class="t-maly">platilo do 1.&nbsp;11.&nbsp;2026</span></span></td>
+    <td data-label="Ke stažení"><span class="stack-2"><span><a href="../tisk/protokol.html">Protokol (PDF)<span class="sr-only">: Kybernetická bezpečnost, 2. 11. 2025</span></a></span><span><a href="../tisk/osvedceni.html">Osvědčení (PDF)<span class="sr-only">: Kybernetická bezpečnost, 2. 11. 2025</span></a></span></span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p class="t-maly" style="margin-top:var(--s-3)">Pravost protokolu i&nbsp;osvědčení ověří kdokoli podle ověřovacího kódu na <a href="../web/overeni.html">stránce ověření</a>.</p>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2">
+  <h3 class="t-stitek">Prázdný seznam</h3>
+  <div class="empty stack-2">{{I:check-kruh}}<p><b>Zatím jste neodevzdali žádný test.</b></p><p class="t-maly">Přidělené testy najdete v&nbsp;<a href="moje-testy.html">Moje testy</a>.</p></div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Chyba načtení</h3>
+  <div class="alert alert--chyba" role="alert">{{I:pozor}}<div class="stack-2"><p><b>Výsledky se nepodařilo načíst.</b> Zkuste to za chvíli znovu.</p><p><button class="btn btn--male" type="button">Zkusit znovu</button></p></div></div>
+ </div>
+</section>

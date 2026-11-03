@@ -1,0 +1,129 @@
+<!--meta {"titulek":"Import otázek z XLSX","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false} -->
+<!--spec {
+ "route":"/soubory/:id/import","nazev":"Import otázek z XLSX","role":"lektor, autor otázek, administrátor organizace – s právem Editace nebo Vlastník k souboru","sablona":"app",
+ "ucel":"Hromadně vložit nebo aktualizovat otázky v souboru z tabulky XLSX, s náhledem před uložením. V demu stránka není (návrh podle nápovědy Import a export otázek).",
+ "hlavni_akce":"Zobrazit náhled → Potvrdit import",
+ "komponenty":["crumbs","page-head","steps","card","field","input[type=file]","check","faq (details)","table table--stack","kpi","stav","alert","error-summary","form-actions","btn--hlavni"],
+ "stavy":[
+  "krok 1 – nahrání: šablona ke stažení, popis sloupců, pole XLSX a ZIP, volba Založit chybějící štítky",
+  "chyba souboru: jiný formát než XLSX, víc než 10&nbsp;MB, ZIP nad 60&nbsp;MB nebo obrázek nad 5&nbsp;MB – chyba u pole, nic se nenahraje",
+  "krok 2 – náhled: souhrn (nové, nové verze, beze změny, přeskočené) a tabulka řádků s akcí a chybou; Potvrdit import / Nahrát jiný soubor",
+  "náhled jen s chybami: Potvrdit import je neaktivní s vysvětlením",
+  "krok 3 – hotovo: alert--ok s počty a odkazem na soubor; nové verze dostanou nově vzniklé variace",
+  "zpracování: progress text „Načítám řádek 120 z 340…“ v role=status; tlačítka aria-disabled",
+  "bez oprávnění: bez Editace → 403; v demu stránka „V demu není k dispozici“"],
+ "zmeny_ux":[
+  "Import je nový průvodce ve 3 krocích (Nahrát – Náhled – Hotovo) – dnes ho demo nenabízí a popis je jen v nápovědě.",
+  "Popis sloupců šablony je přímo na stránce v rozbalovacím bloku (externi_id, typ, text, odpoved_1–10, spravne, body, stitky…).",
+  "Náhled ukazuje akci u každého řádku slovem a ikonou (Nová otázka, Nová verze, Beze změny, Přeskočeno) a u přeskočených konkrétní chybu s číslem řádku.",
+  "Přeskočené řádky lze stáhnout jako XLSX k opravě (návrh).",
+  "Varování u souboru použitého v testech: nové verze dostanou nově vzniklé variace, rozpracované pokusy ne."],
+ "texty":[
+  {"dnes":"(nápověda) Stáhnout prázdnou šablonu (XLSX)","nove":"Stáhnout prázdnou šablonu (XLSX)","proc":"Ponecháno."},
+  {"dnes":"(nápověda) Zobrazit náhled. Zatím se nic neuloží.","nove":"Zobrazit náhled · Zatím se nic neuloží.","proc":"Ponecháno; věta hned pod tlačítkem."},
+  {"dnes":"(nápověda) Potvrdit import, nebo nahrajte jiný soubor","nove":"Potvrdit import · Nahrát jiný soubor","proc":"Dvě tlačítka se slovesem."},
+  {"dnes":"(nápověda) Obrázky (ZIP, nepovinné)","nove":"Obrázky v archivu ZIP (nepovinné)","proc":"Nepovinnost v labelu dle pravidel."},
+  {"dnes":"(nápověda) nová otázka, nová verze, beze změny nebo přeskočení","nove":"Nová otázka · Nová verze · Beze změny · Přeskočeno","proc":"Stavy jako štítky – jedno slovo pro jednu věc."}],
+ "pristupnost":[
+  "Pole souboru: nativní input type=file s labelem a nápovědou (formát, velikost) v aria-describedby; accept=.xlsx a .zip.",
+  "Průběh zpracování v role=status; výsledek náhledu dostane fokus na nadpis Náhled importu.",
+  "Tabulka náhledu má caption s počty; chyba řádku je text v buňce, ne jen barva.",
+  "Stav ikonou + slovem: Nová otázka (plus), Nová verze (obnovit), Beze změny (check), Přeskočeno (minus-kruh)."],
+ "poznamky_pro_kodera":[
+  "Sloupce: externi_id, typ (SINGLE / MULTI), text, odpoved_1 až odpoved_10 (aspoň 4), spravne (např. 1;3), body (1–100, výchozí 1), stitky (Seznam:Štítek;…), zpetna_vazba_ok, zpetna_vazba_chyba, poznamka, obrazek, obrazek_popis.",
+  "Stejné externi_id = aktualizace (nová verze). Vzorce v buňkách se neprovádějí, čtou se jen hodnoty.",
+  "obrazek_popis „dekorativní“ = dekorativní obrázek; prázdný popis informativního obrázku = řádek přeskočen.",
+  "Náhled drží server do potvrzení (max. 30&nbsp;min), pak je potřeba nahrát znovu.","K rozhodnutí: v jakém stavu jsou importované otázky při zapnutém schvalování (koncept / ke schválení) – nápověda to neuvádí."],
+ "chybi_komponenta":["pole pro nahrání souboru (drop zóna) – použit nativní input type=file s .input","stav řádku importu (Nová otázka / Nová verze) – použito .stav--info / .stav--neutral"]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="soubory.html">Soubory otázek</a></li><li><a href="soubor-detail.html">BOZP – školení zaměstnanců</a></li><li><span aria-current="page">Import XLSX</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Ukázková sada: BOZP – školení zaměstnanců</p><h1 class="t-titulek">Import otázek z XLSX</h1></div></div>
+
+<div class="stack-4">
+ <ol class="steps" aria-label="Postup importu" tabindex="0" style="width:0;min-width:100%">
+  <li style="min-width:0"><span aria-current="step">Nahrát</span></li><li style="min-width:0"><span>Náhled</span></li><li style="min-width:0"><span>Hotovo</span></li>
+ </ol>
+
+ <div class="alert">{{I:pozor}}<p>Soubor používá 1 test. Importované nové verze dostanou jen nově vzniklé variace. Rozpracované pokusy a vytištěné variace zůstanou na původní verzi.</p></div>
+
+ <form class="card stack-4" action="#nahled" method="post" enctype="multipart/form-data" novalidate>
+  <div class="stack-2">
+   <h2 class="t-nadpis">1. Připravte tabulku</h2>
+   <p>Vyplňte šablonu, nebo použijte <a href="#">export tohoto souboru</a> – má stejný formát.</p>
+   <p><a class="btn" href="#">{{I:stahnout}}Stáhnout prázdnou šablonu (XLSX)</a></p>
+  </div>
+  <div class="faq">
+   <details>
+    <summary>Co vyplnit ve sloupcích</summary>
+    <dl class="dl"><dt class="t-kod">externi_id</dt><dd>Váš identifikátor. Stejné ID otázku aktualizuje a vznikne nová verze.</dd><dt class="t-kod">typ</dt><dd>SINGLE (jedna správná) nebo MULTI (více správných).</dd><dt class="t-kod">text,<br>odpoved_1–10</dt><dd>Zadání a odpovědi, alespoň 4.</dd><dt class="t-kod">spravne</dt><dd>Čísla správných odpovědí, například 1;3.</dd><dt class="t-kod">body</dt><dd>1 až 100, výchozí 1.</dd><dt class="t-kod">stitky</dt><dd>Seznam:Štítek;Seznam:Štítek – jen ze seznamů, které smíte v souboru použít.</dd><dt class="t-kod">zpetna_vazba_ok,<br>zpetna_vazba_chyba,<br>poznamka</dt><dd>Nepovinné.</dd><dt class="t-kod">obrazek,<br>obrazek_popis</dt><dd>Název souboru v archivu ZIP (více oddělte ;) a jeho popis, nebo „dekorativní“.</dd></dl>
+   </details>
+  </div>
+
+  <h2 class="t-nadpis">2. Nahrajte soubory</h2>
+  <div class="field">
+   <label class="label" for="xlsx">Tabulka s otázkami (XLSX)</label>
+   <input class="input" id="xlsx" name="xlsx" type="file" accept=".xlsx" aria-describedby="xlsx-h">
+   <p class="hint" id="xlsx-h">Nejvýše 10&nbsp;MB. Vzorce v buňkách se neprovádějí, načtou se jen hodnoty.</p>
+  </div>
+  <div class="field">
+   <label class="label" for="zip">Obrázky v archivu ZIP <span class="volitelne">(nepovinné)</span></label>
+   <input class="input" id="zip" name="zip" type="file" accept=".zip" aria-describedby="zip-h">
+   <p class="hint" id="zip-h">PNG, JPEG nebo WebP, každý nejvýše 5&nbsp;MB, celý archiv nejvýše 60&nbsp;MB.</p>
+  </div>
+  <label class="check"><input type="checkbox" name="zalozit" aria-describedby="zal-h"><span class="stack-2"><span>Založit chybějící štítky</span><span class="hint" id="zal-h">Neexistující štítek se založí v uvedeném seznamu, pokud ho smíte spravovat. Jinak bude řádek přeskočen.</span></span></label>
+  <div class="form-actions"><button class="btn btn--hlavni" type="submit">Zobrazit náhled</button><span class="t-maly">Zatím se nic neuloží.</span><a class="btn btn--tiche" href="soubor-detail.html">Zrušit import</a></div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Chyba souboru</h3>
+  <div class="card stack">
+   <div class="field">
+    <label class="label" for="xlsx-e">Tabulka s otázkami (XLSX)</label>
+    <input class="input" id="xlsx-e" type="file" accept=".xlsx" aria-invalid="true" aria-describedby="xlsx-e-err">
+    <p class="error" id="xlsx-e-err">{{I:pozor}}Soubor otazky.csv není XLSX. Uložte tabulku v Excelu jako „Sešit Excelu (.xlsx)“.</p>
+   </div>
+  </div>
+ </div>
+
+ <div class="stack" id="nahled">
+  <h3 class="t-stitek">Krok 2 – náhled importu</h3>
+  <div class="card stack-4">
+   <ol class="steps" aria-label="Postup importu – náhled" tabindex="0" style="width:0;min-width:100%"><li class="hotovo" style="min-width:0"><span>Nahrát</span></li><li style="min-width:0"><span aria-current="step">Náhled</span></li><li style="min-width:0"><span>Hotovo</span></li></ol>
+   <div class="stack-2"><p class="t-nadpis" tabindex="-1">Náhled importu: otazky-bozp.xlsx</p><p>Zkontrolujte, co se stane s každým řádkem. Uloží se až po potvrzení.</p></div>
+   <div class="kpi" role="list" aria-label="Souhrn náhledu" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+    <div role="listitem"><span class="t-cislo">12</span><span class="t-maly">nových otázek</span></div>
+    <div role="listitem"><span class="t-cislo">3</span><span class="t-maly">nové verze</span></div>
+    <div role="listitem"><span class="t-cislo">31</span><span class="t-maly">beze změny</span></div>
+    <div role="listitem"><span class="t-cislo">2</span><span class="t-maly">přeskočeno</span></div>
+   </div>
+   <div class="table-wrap">
+    <table class="table table--stack">
+     <caption>Řádky s nějakou změnou nebo chybou (17 ze 48)</caption>
+     <thead><tr><th scope="col" class="num">Řádek</th><th scope="col">externi_id</th><th scope="col">Zadání</th><th scope="col">Akce</th><th scope="col">Poznámka k řádku</th></tr></thead>
+     <tbody>
+      <tr><td data-label="Řádek" class="num">2</td><td data-label="externi_id" class="t-kod">BOZP-001</td><td data-label="Zadání">Zaměstnanec má důvodně za to, že přidělená práce…</td><td data-label="Akce"><span class="stav stav--info">{{I:obnovit}}Nová verze</span></td><td data-label="Poznámka">Změněna odpověď 3.</td></tr>
+      <tr><td data-label="Řádek" class="num">36</td><td data-label="externi_id" class="t-kod">BOZP-035</td><td data-label="Zadání">Kdo vede knihu úrazů?</td><td data-label="Akce"><span class="stav stav--neutral">{{I:plus}}Nová otázka</span></td><td data-label="Poznámka">—</td></tr>
+      <tr><td data-label="Řádek" class="num">41</td><td data-label="externi_id" class="t-kod">BOZP-040</td><td data-label="Zadání">Které značky označují únikový východ?</td><td data-label="Akce"><span class="stav stav--ne">{{I:minus-kruh}}Přeskočeno</span></td><td data-label="Poznámka">Obrázek „vychod.png“ nemá popis. Doplňte obrazek_popis, nebo napište „dekorativní“.</td></tr>
+      <tr><td data-label="Řádek" class="num">47</td><td data-label="externi_id" class="t-kod">BOZP-046</td><td data-label="Zadání">Jak dlouho se uchovává záznam o úrazu?</td><td data-label="Akce"><span class="stav stav--ne">{{I:minus-kruh}}Přeskočeno</span></td><td data-label="Poznámka">Má jen 3 odpovědi. Otázka musí mít alespoň 4.</td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p class="t-maly"><a href="#">Stáhnout přeskočené řádky k opravě (XLSX)</a> · <a href="#">Zobrazit i řádky beze změny (31)</a></p>
+   <div class="form-actions"><button class="btn btn--hlavni" type="button">Potvrdit import 15 otázek</button><a class="btn" href="#xlsx">{{I:nahrat}}Nahrát jiný soubor</a></div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Zpracování</h3>
+  <div class="alert alert--info" role="status">{{I:hodiny}}<p>Načítám řádek 120 z 340… Stránku nezavírejte.</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Krok 3 – hotovo</h3>
+  <div class="alert alert--ok" role="status">{{I:check}}<div class="stack-2"><p class="alert__nadpis">Import je hotový: 12 nových otázek a 3 nové verze.</p><p>2 řádky byly přeskočeny.</p><p><a href="soubor-detail.html">Zpět na soubor otázek</a></p></div></div>
+ </div>
+</section>

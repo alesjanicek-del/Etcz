@@ -1,0 +1,57 @@
+<!--meta {"titulek":"Přihlášení brzy vyprší","sablona":"app","role":"lektor","aktivni":"vysledky.html","demo":false} -->
+<!--spec {
+ "route":"(dialog)","nazev":"Přihlášení brzy vyprší – dialog","role":"lektor (administrace: po 30 min nečinnosti; studující po 60 min; stejný dialog)","sablona":"app",
+ "ucel":"2 minuty před odhlášením pro nečinnost upozornit a nabídnout prodloužení – aby uživatel nepřišel o rozepsanou práci (WCAG 2.2.1).",
+ "hlavni_akce":"Prodloužit přihlášení (nebo Esc).",
+ "komponenty":["dialog","dialog__body","dialog__foot","timer","btn--hlavni","alert"],
+ "stavy":[
+  "odpočet (nakresleno): zbývající čas v .timer, aktualizace po 1 s jen vizuálně; čtečka dostane hlášení jen v 2:00, 1:00 a 0:30.",
+  "limit 12 hodin: stejný dialog bez tlačítka Prodloužit – text „Přihlášení platí nejvýše 12 hodin. Uložte práci a přihlaste se znovu.“ a tlačítko Rozumím.",
+  "vypršelo: přesměrování na přihlášení s hláškou „Odhlásili jsme vás kvůli nečinnosti. Po přihlášení se vrátíte na stejnou stránku.“",
+  "více karet: aktivita v jedné kartě prodlouží všechny (localStorage exam-test:session-activity)."],
+ "zmeny_ux":[
+  "Dialog říká přesný čas do odhlášení a co se stane s rozepsanou prací.",
+  "Hlavní tlačítko Prodloužit přihlášení má fokus; Esc také prodlouží (podle prohlášení o přístupnosti).",
+  "Vedlejší akce Odhlásit se teď pro sdílené počítače."],
+ "texty":[
+  {"dnes":"Prodloužit přihlášení","nove":"Prodloužit přihlášení","proc":"Beze změny – odpovídá pravidlům."},
+  {"dnes":"(upozornění před odhlášením)","nove":"Za 2 minuty vás odhlásíme","proc":"Konkrétně, činně."}],
+ "pristupnost":[
+  "role=alertdialog, aria-labelledby na nadpis, aria-describedby na vysvětlení.",
+  "V produkci showModal(): fokus na Prodloužit přihlášení, past fokusu, Esc = prodloužit, po zavření fokus zpět na původní prvek.",
+  "Odpočet má aria-live=off; samostatný sr-only region ohlásí 1:00 a 0:30.",
+  "V návrhu je dialog nakreslen jako <dialog open> (nemodální) nad stránkou – modální backdrop se staticky nevykreslí."],
+ "poznamky_pro_kodera":["Pod dialogem je stránka Výsledky (zjednodušeně).","Časy: administrace 30 min, studující 60 min, konzole 15 min; upozornění 2 min předem; maximum 12 h."],
+ "chybi_komponenta":["ztmavení stránky pod nemodálním dialogem (backdrop existuje jen pro showModal)"]
+} -->
+<div class="page-head"><h1 class="t-titulek">Výsledky</h1></div>
+<div class="table-wrap" aria-hidden="true">
+ <table class="table table--stack"><caption class="sr-only">Odevzdané pokusy (stránka pod dialogem)</caption>
+  <thead><tr><th scope="col">Zkoušený</th><th scope="col">Test</th><th scope="col" class="num">Výsledek</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Zkoušený">Filip Zeman</td><td data-label="Test">Kybernetická bezpečnost</td><td data-label="Výsledek" class="num">37,5&nbsp;%</td></tr>
+   <tr><td data-label="Zkoušený">Tereza Doležalová</td><td data-label="Test">Kybernetická bezpečnost</td><td data-label="Výsledek" class="num">47,1&nbsp;%</td></tr>
+   <tr><td data-label="Zkoušený">Ondřej Malý</td><td data-label="Test">Kybernetická bezpečnost</td><td data-label="Výsledek" class="num">100,0&nbsp;%</td></tr>
+  </tbody>
+ </table>
+</div>
+
+<dialog open class="dialog" role="alertdialog" aria-labelledby="dlg-h" aria-describedby="dlg-p" style="position:fixed;top:var(--s-6);z-index:30">
+ <div class="dialog__body stack">
+  <div class="row-between"><h2 id="dlg-h" class="t-nadpis">Za 2 minuty vás odhlásíme</h2><span class="timer" aria-hidden="true">1:58</span></div>
+  <p id="dlg-p">Delší dobu jste v&nbsp;aplikaci nic nedělali. Rozepsaná otázka v&nbsp;editoru zůstane uložená v&nbsp;této kartě prohlížeče a po přihlášení ji obnovíte.</p>
+  <p class="t-maly">Přihlášení prodlouží i klávesa <span class="kbd">Esc</span>.</p>
+ </div>
+ <div class="dialog__foot"><button class="btn btn--tiche" type="button">{{I:odhlasit}}Odhlásit se teď</button><button class="btn btn--hlavni" type="button" autofocus>Prodloužit přihlášení</button></div>
+</dialog>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-7)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Limit 12 hodin – nejde prodloužit</p>
+  <div class="dialog" style="position:static;margin:0">
+   <div class="dialog__body stack"><h3 class="t-nadpis">Přihlášení za 2 minuty skončí</h3><p>Přihlášení platí nejvýše 12 hodin a prodloužit ho nejde. Uložte práci a přihlaste se znovu.</p></div>
+   <div class="dialog__foot"><button class="btn btn--hlavni" type="button">Rozumím</button></div>
+  </div></div>
+ <div class="stack-2"><p class="t-stitek">Po odhlášení (stránka přihlášení)</p>
+  <div class="alert alert--info" style="max-width:var(--max-text)">{{I:info}}<p>Odhlásili jsme vás kvůli nečinnosti. Po přihlášení se vrátíte na stejnou stránku.</p></div></div>
+</section>

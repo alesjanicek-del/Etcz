@@ -1,0 +1,63 @@
+<!--meta {"titulek":"Pozvat uživatele","sablona":"app","role":"admin","aktivni":"uzivatele.html","demo":false} -->
+<!--spec {
+ "route":"/sprava/uzivatele/novy, /:id/upravit","nazev":"Pozvat / upravit uživatele","role":"admin","sablona":"app",
+ "ucel":"Pozvat nového uživatele do pobočky (nebo upravit údaje stávajícího) – heslo si nastaví sám z e-mailu.",
+ "hlavni_akce":"Založit a odeslat pozvánku (úprava: Uložit změny).",
+ "komponenty":["crumbs","page-head","field","input","select","fieldset","check (radio)","hint","error-summary","error","form-actions","alert"],
+ "stavy":[
+  "chyba odeslání: .error-summary s odkazy + chyby u polí (nakresleno níže: chybí e-mail, e-mail už existuje).",
+  "úprava: titulek „Upravit uživatele“, e-mail jen pro čtení s hintem „Přihlašovací e-mail může změnit jen administrátor organizace.“, pole Role a Pobočka chybí (role se mění na detailu), tlačítko Uložit změny.",
+  "limit tarifu: .alert nad formulářem, role pracovníků v selectu disabled.",
+  "oprávnění: 403."],
+ "zmeny_ux":[
+  "Povinná pole bez označení; nepovinné Osobní číslo má „(nepovinné)“ – dnes „(povinné)“ u pěti polí.",
+  "Prodloužení času jako skupina přepínačů ve fieldset (4 volby viditelné) místo selectu; dlouhé vysvětlení zkráceno do hintu.",
+  "Úvodní odstavec zkrácen na 2 věty; „Heslo uživatele nikdy neuvidíte“ zůstává – je to důležité.",
+  "Tlačítko Zrušit jako tichý odkaz zpět."],
+ "texty":[
+  {"dnes":"Uživatel dostane e-mail s jednorázovým odkazem (platí 7 dní), kde si sám nastaví heslo. Heslo uživatele nikdy neuvidíte. Další role a pobočky přidáte na detailu uživatele.","nove":"Uživatel dostane e-mail s odkazem, kde si sám nastaví heslo. Odkaz platí 7 dní a heslo nikdy neuvidíte.","proc":"Kratší; další role zmíněny u pole Role."},
+  {"dnes":"(povinné)","nove":"(bez označení); nepovinné pole „(nepovinné)“","proc":"Pravidlo formulářů."},
+  {"dnes":"Pro osoby, které potřebují víc času, např. kvůli zdravotnímu postižení. Uplatní se ve všech časově omezených testech. Časový limit se po prodloužení zaokrouhluje nahoru na celé minuty (u velmi krátkých testů tak vyjde o něco víc).","nove":"Pro osoby, které potřebují víc času, např. kvůli zdravotnímu znevýhodnění. Platí ve všech testech s časovým limitem.","proc":"Zaokrouhlení přesunuto do nápovědy; „znevýhodnění“ podle prohlášení o přístupnosti."},
+  {"dnes":"– vyberte roli –","nove":"Vyberte roli","proc":"Bez pomlček."},
+  {"dnes":"Uživatele zvete do své pobočky.","nove":"Další role a pobočky přidáte na detailu uživatele.","proc":"Užitečnější informace."}],
+ "pristupnost":["Každé pole label + hint v aria-describedby.","Chyby: aria-invalid, .error s id, error-summary nahoře přebírá fokus.","Přepínače ve fieldset/legend.","autocomplete=name / email."],
+ "poznamky_pro_kodera":["E-mail validovat na serveru (existence v organizaci).","Role nabízet jen v rozsahu administrátora (bez Administrátora organizace).","Po odeslání návrat na seznam s alertem."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="uzivatele.html">Uživatelé</a></li><li><span aria-current="page">Pozvat uživatele</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Pozvat uživatele</h1><p class="measure">Uživatel dostane e-mail s&nbsp;odkazem, kde si sám nastaví heslo. Odkaz platí 7 dní a heslo nikdy neuvidíte.</p></div></div>
+
+<form class="stack-4" action="uzivatele.html" method="post" style="max-width:var(--max-text)">
+ <div class="field"><label class="label" for="jm">Jméno a příjmení</label><input class="input" id="jm" name="jmeno" autocomplete="name"></div>
+ <div class="field"><label class="label" for="em">E-mail</label><span class="hint" id="em-h">Sem odejde pozvánka s&nbsp;odkazem pro nastavení hesla.</span><input class="input" id="em" name="email" type="email" autocomplete="email" aria-describedby="em-h"></div>
+ <div class="field"><label class="label" for="oc">Osobní číslo <span class="volitelne">(nepovinné)</span></label><span class="hint" id="oc-h">Např. číslo zaměstnance.</span><input class="input" id="oc" name="osobni_cislo" aria-describedby="oc-h" style="max-width:280px"></div>
+ <fieldset class="stack-2" aria-describedby="pc-h">
+  <legend>Prodloužení času v testech</legend>
+  <span class="hint" id="pc-h">Pro osoby, které potřebují víc času, např. kvůli zdravotnímu znevýhodnění. Platí ve všech testech s&nbsp;časovým limitem.</span>
+  <div class="row" style="gap:0 var(--s-4)">
+   <label class="check"><input type="radio" name="pc" checked><span>Bez prodloužení</span></label>
+   <label class="check"><input type="radio" name="pc"><span>o 25&nbsp;%</span></label>
+   <label class="check"><input type="radio" name="pc"><span>o 50&nbsp;%</span></label>
+   <label class="check"><input type="radio" name="pc"><span>o 100&nbsp;% (dvojnásobek)</span></label>
+  </div>
+ </fieldset>
+ <div class="grid-2" style="gap:var(--s-3)">
+  <div class="field"><label class="label" for="ro">Role</label><select class="select" id="ro" name="role"><option value="">Vyberte roli</option><option>Administrátor pobočky</option><option>Lektor</option><option>Studující</option></select></div>
+  <div class="field"><label class="label" for="po">Pobočka</label><select class="select" id="po" name="pobocka"><option>Praha</option></select></div>
+ </div>
+ <p class="t-maly">Další role a pobočky přidáte na detailu uživatele.</p>
+ <div class="form-actions"><button class="btn btn--hlavni" type="submit">{{I:email}}Založit a odeslat pozvánku</button><a class="btn btn--tiche" href="uzivatele.html">Zrušit</a></div>
+</form>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6);max-width:var(--max-text)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Chyby po odeslání</p>
+  <div class="error-summary" role="alert" aria-labelledby="es"><p id="es" class="alert__nadpis">Pozvánku nejde odeslat – opravte 2 pole</p><ul style="padding-left:var(--s-4)"><li><a href="#em2">Zadejte e-mail.</a></li><li><a href="#ro2">Vyberte roli.</a></li></ul></div>
+  <div class="field"><label class="label" for="em2">E-mail</label><input class="input" id="em2" type="email" aria-invalid="true" aria-describedby="em2-e"><span class="error" id="em2-e">{{I:pozor}}Zadejte e-mail, např. jan.novak@firma.cz.</span></div>
+  <div class="field"><label class="label" for="ro2">Role</label><select class="select" id="ro2" aria-invalid="true" aria-describedby="ro2-e"><option>Vyberte roli</option></select><span class="error" id="ro2-e">{{I:pozor}}Vyberte roli.</span></div>
+ </div>
+ <div class="stack-2"><p class="t-stitek">Úprava – e-mail jen pro čtení</p>
+  <div class="field"><label class="label" for="em3">E-mail</label><span class="hint" id="em3-h">Přihlašovací e-mail může změnit jen administrátor organizace. Po změně se uživatel odhlásí ze všech zařízení.</span><input class="input" id="em3" readonly value="lektor.lucie@demo.example" aria-describedby="em3-h"></div>
+  <div class="form-actions"><button class="btn btn--hlavni" type="button">Uložit změny</button><a class="btn btn--tiche" href="uzivatel-detail.html">Zrušit úpravy</a></div>
+ </div>
+</section>

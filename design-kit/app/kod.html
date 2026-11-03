@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vstup do testu kódem · exam-test</title>
+<meta name="description" content="Zadejte přístupový kód, který jste dostali od pořadatele zkoušky.">
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body class="grid-bg">
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+<header class="exam-head"><div class="exam-head__in">
+ <a class="logo" href="../web/index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – úvodní stránka" width="146" height="24" style="height:24px;width:auto"></a>
+</div></header>
+
+<main id="obsah" class="narrow stack-5" style="max-width:600px">
+ <form class="card card--papir stack-4" action="test-start.html" method="post" aria-labelledby="h1">
+  <div class="stack-2">
+   <p class="t-stitek">Zkoušený bez účtu</p>
+   <h1 id="h1" class="t-titulek">Vstup do testu</h1>
+  </div>
+  <div class="field">
+   <label class="label" for="kod">Přístupový kód</label>
+   <span class="hint" id="kod-h">Kód jste dostali od pořadatele – na papíře nebo e-mailem. Má 10 znaků. Na pomlčkách, mezerách ani velikosti písmen nezáleží.</span>
+   <input class="input input--kod" id="kod" name="kod" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="kod-h">
+  </div>
+  <button class="btn btn--hlavni" type="submit">Pokračovat k&nbsp;testu <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+  <p class="t-maly">Kód můžete zadat i&nbsp;po odevzdání. Pokud test dovoluje další pokus, zahájíte ho. Jinak uvidíte výsledek, jakmile ho pořadatel zpřístupní.</p>
+ </form>
+
+ <section class="stack" aria-labelledby="jine-h">
+  <h2 id="jine-h" class="t-nadpis">Jiná cesta k&nbsp;testu</h2>
+  <div class="feature"><p><a href="live.html"><b>Připojit se k&nbsp;prezenční zkoušce</b></a></p><p class="t-maly">Jste na zkoušce v&nbsp;učebně? Kód najdete na promítací ploše.</p></div>
+  <div class="feature"><p><a href="test-prevzeti.html"><b>Zadat kód pro převzetí</b></a></p><p class="t-maly">Začali jste test na jiném zařízení, třeba se vybil telefon? Kód vám dá lektor.</p></div>
+  <div class="feature"><p><a href="prihlaseni.html"><b>Přihlásit se k&nbsp;účtu studujícího</b></a></p><p class="t-maly">Máte účet? Přidělené testy najdete v&nbsp;Moje testy.</p></div>
+ </section>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Neplatný kód</h3>
+   <div class="card stack">
+    <div class="error-summary stack-2" role="alert" tabindex="-1"><p><b>Do testu se zatím nedostanete.</b></p><ul style="padding-left:var(--s-4)"><li><a href="#kod2">Kód není platný</a></li></ul></div>
+    <div class="field">
+     <label class="label" for="kod2">Přístupový kód</label>
+     <span class="hint" id="kod2-h">Má 10 znaků. Na pomlčkách, mezerách ani velikosti písmen nezáleží.</span>
+     <input class="input input--kod" id="kod2" value="XXXXX-YYYYY" autocomplete="off" aria-invalid="true" aria-describedby="kod2-h kod2-e">
+     <span class="error" id="kod2-e"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg>Kód není platný. Zkontrolujte, jak jste ho opsali – pozor na 0 a&nbsp;O.</span>
+    </div>
+    <p class="t-maly"><a href="napoveda-clanek.html">Co dělat, když kód nefunguje</a></p>
+   </div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Příliš mnoho pokusů</h3>
+   <div class="alert alert--chyba" role="alert"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><p><b>Kód jste zadali příliš mnohokrát.</b> Zkuste to znovu po 18:45. Jde o&nbsp;ochranu proti hádání kódů.</p></div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Test teď není dostupný</h3>
+   <div class="alert alert--info"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="15"/><path d="M4 10h16M8 3v4M16 3v4"/></svg><p><b>Test s&nbsp;tímto kódem teď není dostupný.</b> Ještě nezačal, nebo už skončil. Termín si ověřte u&nbsp;pořadatele.</p></div>
+  </div>
+ </section>
+</main>
+<script type="application/json" id="spec">{"route": "/kod", "nazev": "Vstup do testu kódem", "role": "zkoušený (bez účtu)", "sablona": "cisty", "ucel": "Nejrychlejší cesta k testu pro zkoušeného s přístupovým kódem. Jedno pole, jedno tlačítko; ostatní cesty (prezenční zkouška, převzetí) jsou odkazy.", "hlavni_akce": "Opsat přístupový kód a pokračovat k testu", "komponenty": ["exam-head", "card--papir", "field", "input--kod", "hint", "btn--hlavni", "error-summary", "error", "alert", "feature"], "stavy": ["výchozí (nakresleno)", "neplatný kód (nakresleno): .error-summary + aria-invalid, rada na zaměnitelné znaky a odkaz do nápovědy", "příliš mnoho pokusů (nakresleno): pole zablokované do uvedeného času", "test teď není dostupný (nakresleno): kód je platný, ale mimo termín", "využité pokusy / test splněn: .alert--info „Využili jste všechny povolené pokusy.“ nebo „Test jste už splnili. Další pokus není potřeba.“ + odkaz na výsledek, pokud je zpřístupněný", "načítání: tlačítko aria-busy, text „Ověřujeme kód…“", "bez oprávnění: stránka je veřejná"], "zmeny_ux": ["Pole Kód pro převzetí se stěhuje na vlastní stránku (test-prevzeti.html). Dnes jsou na jedné stránce 2 formuláře a 2 tlačítka „Pokračovat…“, což mate.", "Pod formulářem jsou 2 rozcestníky jako odkazové řádky: Prezenční zkouška (kód z promítací plochy) a Převzetí testu na jiném zařízení.", "Nápověda u pole je kratší: co je kód, kde ho najdu, na čem nezáleží. Věta o zadání kódu po odevzdání je pod formulářem.", "Chybová hláška obsahuje radu (0 a O) a odkaz do nápovědy otevřený ve stejném okně – dnes se otevírá nové okno."], "texty": [{"dnes": "Kód jste dostali od pořadatele zkoušky. Má 10 znaků (písmena a číslice). Pomlčky a mezery nevadí.", "nove": "Kód jste dostali od pořadatele – na papíře nebo e-mailem. Má 10 znaků. Na pomlčkách, mezerách ani velikosti písmen nezáleží.", "proc": "Kde ho najdu + na čem nezáleží, jednou."}, {"dnes": "Pokračovat", "nove": "Pokračovat k testu", "proc": "Tlačítko říká, kam vede."}, {"dnes": "Kód není platný. Zkontrolujte, zda jste ho opsali správně (velikost písmen nehraje roli). Co dělat, když kód nefunguje (otevře se v novém okně)", "nove": "Kód není platný. Zkontrolujte, jak jste ho opsali – pozor na 0 a O. Co dělat, když kód nefunguje", "proc": "Konkrétní rada z nápovědy; bez nového okna."}, {"dnes": "Jste na prezenční zkoušce? Zadejte kód z promítací plochy.", "nove": "Jste na zkoušce v učebně? Připojit se k prezenční zkoušce", "proc": "Slovník: Prezenční zkouška; odkaz s účelem."}, {"dnes": "Pokračovat v rozpracovaném testu / Začali jste test na jiném zařízení (např. se vybil telefon)? …", "nove": "Začali jste test na jiném zařízení? Zadat kód pro převzetí", "proc": "Samostatná stránka; slovník: Kód pro převzetí."}], "pristupnost": ["Pole má viditelný label, hint přes aria-describedby, autocomplete=off, autocapitalize=characters, spellcheck=false, inputmode=text.", "Chyba: .error-summary s role=alert a odkazem na pole; pole aria-invalid=true a .error v aria-describedby.", "Zablokované zadávání: pole disabled + text s časem běžnou velikostí; po uplynutí se pole odblokuje a stav se ohlásí přes role=status.", "Odkazové řádky mají celý text v odkazu (účel odkazu je jasný bez okolí).", "Jediné H1; rozcestník H2."], "poznamky_pro_kodera": ["Kód normalizovat: odstranit mezery a pomlčky, převést na velká písmena; formát v placeholderu není (placeholder není nápověda).", "Ochrana proti hádání: po 5 chybách blokace na 15 min (hodnoty dle backendu), čas v hlášce.", "Stejný kód zadaný po odevzdání vede na výsledek nebo další pokus."], "chybi_komponenta": ["odkazový řádek (celá plocha odkaz s ikonou) – použit .feature s odkazem"]}</script>
+</body>
+</html>

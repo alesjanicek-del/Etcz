@@ -1,0 +1,131 @@
+<!--meta {"titulek": "Informace o zpracování osobních údajů", "sablona": "app", "role": "lektor", "aktivni": "", "demo": false} -->
+<!--spec {
+ "route": "/informace-o-zpracovani",
+ "nazev": "Informace o zpracování osobních údajů",
+ "role": "lektor (text je určen hlavně zkoušeným; zobrazí se i v rozhraní testu bez menu)",
+ "sablona": "app",
+ "ucel": "Informace podle čl. 13 a 14 GDPR pro osoby, které vyplňují test: kdo je správce, jaké údaje a proč, jak dlouho, práva, dohled a cookies.",
+ "hlavni_akce": "Přečíst shrnutí; najít oddíl (toc).",
+ "komponenty": [
+  "page-head",
+  "card--papir",
+  "list-check",
+  "layout-aside",
+  "prose",
+  "prose-pravni",
+  "toc"
+ ],
+ "stavy": [
+  "Statická stránka; doba uchování (12 měsíců) a název správce se dosazují z nastavení organizace.",
+  "Tisk: .no-print skryje toc a tlačítko.",
+  "Veřejná stránka – odkaz z úvodu testu."
+ ],
+ "zmeny_ux": [
+  "Nahoře „V kostce“ – 6 bodů srozumitelně pro zkoušeného (nové, nezávazné).",
+  "Plné znění beze změny obsahu; výčty jako odrážky s tučným pojmem před dvojtečkou.",
+  "Obsah (toc) vpravo – dokument má 11 oddílů."
+ ],
+ "texty": [
+  {
+   "dnes": "(celé znění)",
+   "nove": "beze změny – jen struktura",
+   "proc": "Právní text obsahově nepřepisujeme."
+  },
+  {
+   "dnes": "(chybí)",
+   "nove": "V kostce – 6 bodů",
+   "proc": "Srozumitelnost pro zkoušeného."
+  }
+ ],
+ "pristupnost": [
+  "Jediné H1, oddíly H2.",
+  "Tučné pojmy v odrážkách jsou <b> uvnitř textu – čtečka je čte souvisle.",
+  "Shrnutí je označené jako nezávazné."
+ ],
+ "poznamky_pro_kodera": [
+  "Doba uchování, správce a seznam dalších zpracovatelů dynamicky z nastavení.",
+  "Stejný zdroj použít pro tisk."
+ ],
+ "chybi_komponenta": [
+  ".prose-pravni není v brand.css (check.js ho jen vynechává z kontroly délky vět) – doporučeno doplnit styl, např. odsazení h3 a čísla odstavců"
+ ]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Informace o zpracování osobních údajů</h1><p class="t-maly measure">Správce: Ukázková organizace (demo) · pro zkoušené</p></div><div class="page-head__actions no-print"><button class="btn" type="button" onclick="window.print()">{{I:tisk}}Vytisknout</button></div></div>
+<section class="card card--papir stack" aria-labelledby="kostka" style="max-width:var(--max-text);margin-bottom:var(--s-5)">
+ <h2 id="kostka" class="t-nadpis">V kostce</h2>
+ <ul class="list-check"><li><span>Správcem je vaše organizace (Ukázková organizace (demo)). Aplikaci provozuje ABUCO ICT s.r.o. jako zpracovatel.</span></li><li><span>Zpracovává se jméno, vaše odpovědi, výsledek a technický záznam průběhu testu.</span></li><li><span>Údaje se po 12 měsících od odevzdání anonymizují. Ověřovací kód protokolu platí dál.</span></li><li><span>Dohled nepoužívá kameru, mikrofon ani umělou inteligenci. O výsledku rozhoduje vždy člověk.</span></li><li><span>Jen nezbytné cookies, žádné analytické ani reklamní.</span></li><li><span>Svá práva uplatníte u správce. Stížnost můžete podat u Úřadu pro ochranu osobních údajů.</span></li></ul>
+ <p class="t-maly">Shrnutí je jen pro orientaci. Závazné je plné znění níže.</p>
+</section>
+<div class="layout-aside">
+<article class="prose prose-pravni" aria-label="Plné znění">
+<p>Informace podle čl. 13 a 14 nařízení (EU) 2016/679 (GDPR) pro osoby, které v aplikaci exam-test vyplňují test nebo skládají zkoušku.</p>
+<h2 id="spravce">Správce</h2>
+<p>Správcem osobních údajů je Ukázková organizace (demo).</p>
+<h2 id="zpracovatel">Zpracovatel</h2>
+<p>Aplikaci pro správce provozuje ABUCO ICT s.r.o., se sídlem Třebohostická 987/5, 100 00 Praha 10, IČO 29153905 jako zpracovatel na základě smlouvy o zpracování osobních údajů (čl. 28 GDPR). Údaje zpracovává jen na pokyn správce. Servery a další zpracovatele (hosting, odesílání e-mailů) uvádí seznam dalších zpracovatelů; údaje se ukládají v Evropské unii. Služba časového razítka dostává jen kryptografický otisk záznamů, ne osobní údaje.</p>
+<h2 id="jake-udaje-a-proc">Jaké údaje a proč</h2>
+<ul>
+<li><b>Identifikace:</b> jméno a příjmení, případně e-mail nebo jiný identifikátor, pokud je zkouška vyžaduje (u anonymního testu přes odkaz se jméno nevyžaduje).</li>
+<li><b>Průběh a výsledek:</b> zobrazená variace testu, zvolené odpovědi, bodové hodnocení, výsledek a protokol o zkoušce s ověřovacím kódem.</li>
+<li><b>Technický záznam průběhu:</b> čas zahájení, zobrazení otázek, změny odpovědí, opuštění okna, odevzdání, IP adresa a typ prohlížeče – slouží k prokázání řádného průběhu zkoušky a k řešení námitek.</li>
+<li><b>Hlášení problému (pokud ho během testu odešlete):</b> kontaktní údaje a text hlášení – slouží k jeho vyřízení.</li>
+<li><b>Osvědčení a potvrzení o školení (jen u testů, které je vydávají nebo vyžadují):</b> název školení, datum splnění a konec platnosti osvědčení, text potvrzení, že jste byli seznámeni s obsahem školení, a čas potvrzení – slouží jako doklad o školení a k evidenci jeho platnosti.</li>
+<li><b>Připomínky konce platnosti osvědčení (pokud je správce zapnul):</b> e-mail z vašeho účtu nebo zadaný u přístupového kódu – slouží k upozornění, že je třeba školení zopakovat. Seznam osob, kterým platnost končí, dostane i pověřený pracovník správce.</li>
+</ul>
+<p>Účel: provedení, vyhodnocení a prokazatelné zdokumentování testu nebo zkoušky a vydání protokolu o výsledku.</p>
+<p>Odkud údaje máme: od vás (údaje zadané při vstupu do testu a odpovědi) nebo od správce, který vás ke zkoušce přihlásil (jméno, identifikátor, e-mail pro zaslání přístupového kódu).</p>
+<h2 id="pravni-zaklad">Právní základ</h2>
+<ul>
+<li><b>Provedení a vyhodnocení zkoušky, vydání protokolu a technický záznam průběhu (prokázání řádného průběhu zkoušky a řešení námitek):</b> plnění právní povinnosti a výkon veřejné moci podle předpisů, které zkoušku upravují – čl. 6 odst. 1 písm. c) a e) GDPR.</li>
+<li><b>Kurz nebo školení na základě smlouvy (mimo výkon veřejné moci):</b> plnění smlouvy – čl. 6 odst. 1 písm. b) GDPR.</li>
+<li><b>Osvědčení, potvrzení o školení a připomínky jeho opakování u zaměstnanců:</b> plnění právní povinnosti zaměstnavatele školit zaměstnance a vést o tom dokumentaci (například školení o bezpečnosti a ochraně zdraví při práci podle zákoníku práce) – čl. 6 odst. 1 písm. c) GDPR.</li>
+</ul>
+<p>Konkrétní právní předpis a účel uvádí správce ve svých informacích o zpracování osobních údajů.</p>
+<h2 id="jak-dlouho-udaje-uchovavame">Jak dlouho údaje uchováváme</h2>
+<p>Osobní údaje u výsledků zkoušek se uchovávají po dobu, kterou stanovil správce: v aplikaci je nastaveno 12 měsíců od odevzdání. Je-li správce povinen ukládat protokoly o zkouškách podle zvláštního předpisu nebo svého spisového a skartačního plánu, řídí se uložení tímto předpisem nebo plánem. Po uplynutí doby se údaje v aplikaci automaticky anonymizují: smaže se jméno, identifikátor, vazba na účet, IP adresy i uložený PDF protokol se jménem, zůstane jen anonymní statistický záznam a ověřitelnost protokolu. Úřední záznamy, které je správce povinen uchovat déle (např. v probíhajícím řízení), může správce před anonymizací chránit; o tom rozhoduje správce.</p>
+<p>Patří-li k pokusu osvědčení, které ještě platí, anonymizuje se pokus nejdříve 30 dnů po konci platnosti osvědčení, i když doba uchování uplynula dřív. Jinak by osvědčení přišlo o jméno a připomínka by se neodeslala. Osvědčení bez omezení platnosti uchování neprodlužuje. Požádáte-li o výmaz a správce vaší žádosti vyhoví, osvědčení už nepůjde stáhnout.</p>
+<p>Další osobní údaje se v aplikaci anonymizují nebo mažou po těchto lhůtách: popisek a e-mail nepoužitého přístupového kódu 12 měsíců po skončení zkoušky, jméno v čekárně prezenční zkoušky, kterou jste nezačali, 1 měsíc od poslední aktivity, kontaktní údaje a text vyřízeného hlášení problému 24 měsíců od vyřízení, záznamy změn (kdo z pracovníků správce co udělal) 60 měsíců. Zálohy aplikace se uchovávají nejvýše 30 dnů; anonymizované údaje proto v zálohách zaniknou nejpozději 30 dnů po anonymizaci.</p>
+<p>Ověřitelnost protokolu po anonymizaci i po skončení smlouvy správce s provozovatelem zajišťuje záznam bez jména a identifikátoru: ověřovací kód, kryptografické otisky, časové razítko, název testu a organizace, datum, výsledek a u osvědčení konec jeho platnosti. Z něj už nelze zjistit, komu protokol patří. Po skončení smlouvy se tento záznam uchovává 5 let; potom se protokol na ověřovací stránce už neověří. Správce může nechat tento záznam smazat dříve nebo z něj vypustit výsledek.</p>
+<h2 id="prijemci">Příjemci</h2>
+<p>Údaje vidí pověření pracovníci správce (lektoři, administrátoři) v rozsahu svých oprávnění a provozovatel aplikace jako zpracovatel. Technik podpory provozovatele vstoupí do organizace jen se souhlasem správce a detail výsledků přitom neotevře. Kdo zná ověřovací kód z protokolu, uvidí na ověřovací stránce iniciály jména (do anonymizace), název testu a organizace, datum a výsledek zkoušky, u osvědčení i název školení a do kdy platí – kód proto sdílejte jen s tím, komu chcete výsledek doložit. Údaje se nepředávají do třetích zemí ani mezinárodním organizacím.</p>
+<h2 id="automatizovane-vyhodnoceni">Automatizované vyhodnocení</h2>
+<p>Test se boduje automaticky podle předem nastavených pravidel hodnocení. O důsledcích výsledku (např. uznání zkoušky) rozhoduje správce. Máte právo vyjádřit svůj názor, napadnout výsledek a požádat, aby ho přezkoumal člověk na straně správce.</p>
+<h2 id="vase-prava">Vaše práva</h2>
+<p>Máte právo na přístup ke svým osobním údajům (včetně kopie výsledků a protokolů), na opravu, výmaz (pokud správce není povinen údaje uchovat), omezení zpracování, přenositelnost (u zpracování na základě smlouvy) a právo vznést námitku proti zpracování, které je nezbytné pro splnění úkolu ve veřejném zájmu nebo při výkonu veřejné moci (čl. 6 odst. 1 písm. e) GDPR). Žádosti uplatněte u správce; správce odpoví nejpozději do jednoho měsíce. Máte také právo podat stížnost u Úřadu pro ochranu osobních údajů, Pplk. Sochora 27, 170 00 Praha 7, uoou.gov.cz.</p>
+<h2 id="povinnost-poskytnout-udaje">Povinnost poskytnout údaje</h2>
+<p>Bez jména (a identifikátoru, pokud ho zkouška vyžaduje) nelze zkoušku přiřadit ke konkrétní osobě a vydat protokol. Anonymní testy přes odkaz osobní údaje nevyžadují.</p>
+<h2 id="dohled-nad-zkouskou">Dohled nad zkouškou</h2>
+<p>Jen u testů, u kterých správce dohled zapnul. Dozvíte se to předem na úvodní stránce testu, kde je i přesný rozsah, a během testu je to připomenuté nad otázkami. Bez zapnutého dohledu se zaznamenává jen opuštění okna jako součást technického záznamu průběhu.</p>
+<ul>
+<li><b>Co se zaznamenává:</b> čas, kdy jste opustili okno nebo kartu s testem a kdy jste se vrátili, případně odchod z celé obrazovky, snaha zkopírovat text otázek nebo vložit text ze schránky a odpověď na otázku rychlejší než nastavený počet sekund. Zaznamenává se jen to, co se děje na stránce testu.</li>
+<li><b>Co se nezaznamenává:</b> obraz z kamery, zvuk z mikrofonu, obsah obrazovky, biometrické údaje, jiné aplikace a okna ani otisk vašeho zařízení. Dohled nepoužívá umělou inteligenci a nepočítá žádné skóre podezřelosti; lektorovi jen ukáže, které události a kolikrát nastaly.</li>
+<li><b>Účel a právní základ:</b> odradit od podvádění a doložit řádný průběh zkoušky. Záznam je součástí technického záznamu průběhu a protokolu a platí pro něj stejný právní základ jako pro technický záznam průběhu (viz Právní základ) a stejná doba uchování. Proti zpracování na základě oprávněného zájmu nebo veřejného zájmu můžete vznést námitku u správce.</li>
+<li><b>Kdo záznam vidí:</b> lektor a pověření pracovníci správce u výsledku, v protokolu a ve statistikách testu. Na veřejné ověřovací stránce ani v archivu ověření se události dohledu nezobrazují; ověřovací stránka u automaticky odevzdaného pokusu uvede jen, zda ho správce posoudil a zda výsledek uznal, nebo pokus zneplatnil.</li>
+<li><b>Kdo rozhoduje:</b> události jsou jen informace pro lektora a správce. O tom, zda něco znamenají, a o případném dalším postupu rozhoduje vždy člověk.</li>
+<li><b>Automatické odevzdání:</b> pokud správce nastavil odevzdání po opakovaném opuštění okna, test se při uvedeném počtu opuštění odevzdá sám s dosud uloženými odpověďmi a vyhodnotí se stejně jako při odevzdání vámi. Jde o automatizovaný krok. Máte právo vyjádřit svůj názor, napadnout odevzdání i výsledek a požádat, aby je přezkoumal člověk na straně správce (čl. 22 odst. 3 GDPR). Žádost uplatněte u správce, nejlépe hned po zkoušce, a uveďte, proč jste okno opustili (například technický problém nebo pomůcka). Správce odevzdání posoudí a výsledek buď uzná, nebo pokus zneplatní a umožní vám náhradní pokus, který se nezapočítá do počtu pokusů. Rozhodnutí s důvodem se zapíše k výsledku a do protokolu a dostanete ho e-mailem, máte-li u účtu nebo přístupového kódu e-mail.</li>
+<li><b>Zdravotní znevýhodnění a pomůcky:</b> některé pomůcky (například diktování nebo samostatná lupa) a upozornění systému mohou opuštění okna vyvolat, i když test nepřerušíte. Používáte-li takovou pomůcku, řekněte to lektorovi předem; může vám nastavit výjimku „jen zaznamenat“ (bez upozornění a odevzdání) nebo „bez dohledu“. Lektor u výjimky zapíše jen obecný důvod, například „asistivní technologie“. Informaci o pomůcce nemusíte zdůvodňovat diagnózou.</li>
+</ul>
+<h2 id="cookies-a-uloziste-prohlizece">Cookies a úložiště prohlížeče</h2>
+<p>Používáme jen cookies a úložiště prohlížeče, které jsou nezbytné, aby služba fungovala tak, jak o ni žádáte. K jejich použití proto nepotřebujeme souhlas. Analytické, reklamní ani sledovací cookies, měřicí skripty ani obsah třetích stran (písma, mapy, videa) nepoužíváme.</p>
+<ul>
+<li><b>Relace (__Host-ETSESS):</b> přihlášení, ověření ve dvou krocích, přístup ke zkoušce zadaný kódem a ochrana formulářů. Platí do zavření prohlížeče. Přihlášení skončí odhlášením, po nečinnosti (v administraci po 30 minutách, studující po 60 minutách, konzole provozovatele po 15 minutách) a nejpozději 12 hodin od přihlášení (konzole provozovatele 4 hodiny). Ostatní údaje relace, například přístup ke zkoušce zadaný kódem, server smaže nejpozději po 12 hodinách bez aktivity.</li>
+<li><b>Ochrana formulářů (__Host-csrf-token_…):</b> jednorázová náhodná hodnota proti podvržení formuláře. Platí do zavření prohlížeče.</li>
+<li><b>Rozpracovaný pokus (__Host-et_a_…):</b> spojuje rozpracovaný test s vaším prohlížečem, aby ho nikdo nemohl dokončit z jiného zařízení. Platí 1 den.</li>
+<li><b>Prezenční zkouška (__Host-et_l_…):</b> pozná vaše zařízení v čekárně prezenční zkoušky. Platí do zavření prohlížeče.</li>
+<li><b>Veřejné demo (demo_visit):</b> jen na adrese dema; pozná, že se vracíte, a vrátí vás do vaší ukázkové pobočky. Obsahuje náhodné číslo návštěvy a zvolenou roli. Platí do nejbližšího nočního smazání dema (3:00).</li>
+<li><b>Úložiště relace prohlížeče (sessionStorage):</b> během testu dočasně drží odpovědi, které se kvůli výpadku spojení ještě neuložily na server, a oznámení pro zkoušeného (exam-queue-…, exam-notice-…, exam-announced-…). U testu s dohledem nad zkouškou a nabídkou celé obrazovky si navíc pamatuje, že jste test psali na celé obrazovce, aby se na další otázce mohla obnovit (exam-fs-…, jen příznak ano/ne). Neuložené odpovědi se po obnovení spojení odešlou jako běžné uložení odpovědi; ostatní hodnoty zůstávají jen ve vašem prohlížeči. V editoru otázek se sem průběžně ukládá rozepsaný obsah otázky, abyste ho po odhlášení pro nečinnost mohli obnovit (exam-test:question-draft:…, klíč obsahuje označení organizace a vašeho účtu); koncept se smaže odhlášením, nejpozději po 12 hodinách. Vše v tomto úložišti se smaže zavřením karty prohlížeče.</li>
+<li><b>Místní úložiště prohlížeče (localStorage):</b> čas vaší poslední aktivity v administraci, aby upozornění před odhlášením platilo stejně ve všech otevřených kartách (exam-test:session-activity), a volba pozastavení automatické aktualizace živého panelu (exam-test:frame-refresh-paused:…, jen příznak ano/ne). Neobsahuje osobní údaje a zůstává v prohlížeči i po jeho zavření, dokud ho nesmažete; časový údaj se při další aktivitě přepíše.</li>
+</ul>
+</article>
+<aside aria-label="Obsah dokumentu"><nav class="toc no-print" aria-label="Obsah" style="position:sticky;top:var(--s-3)"><p class="t-stitek" style="margin-bottom:var(--s-2)">Obsah</p><ol><li><a href="#spravce">Správce</a></li>
+<li><a href="#zpracovatel">Zpracovatel</a></li>
+<li><a href="#jake-udaje-a-proc">Jaké údaje a proč</a></li>
+<li><a href="#pravni-zaklad">Právní základ</a></li>
+<li><a href="#jak-dlouho-udaje-uchovavame">Jak dlouho údaje uchováváme</a></li>
+<li><a href="#prijemci">Příjemci</a></li>
+<li><a href="#automatizovane-vyhodnoceni">Automatizované vyhodnocení</a></li>
+<li><a href="#vase-prava">Vaše práva</a></li>
+<li><a href="#povinnost-poskytnout-udaje">Povinnost poskytnout údaje</a></li>
+<li><a href="#dohled-nad-zkouskou">Dohled nad zkouškou</a></li>
+<li><a href="#cookies-a-uloziste-prohlizece">Cookies a úložiště prohlížeče</a></li></ol></nav></aside>
+</div>

@@ -1,0 +1,88 @@
+<!--meta {"titulek":"Nápověda","sablona":"app","role":"lektor","aktivni":"","demo":false} -->
+<!--spec {
+ "route":"/napoveda","nazev":"Nápověda – rozcestník","role":"lektor (obsah podle role: rozbalené jsou kapitoly role přihlášeného; ostatní role v části Ostatní role)","sablona":"app",
+ "ucel":"Najít postup k tomu, co právě potřebujete udělat – vyhledáním, z nejčastějších úkolů nebo z kapitol pro vaši roli.",
+ "hlavni_akce":"Hledat v nápovědě.",
+ "komponenty":["page-head","field","input","btn","card","grid-2","grid-3","list-check","faq (details)","alert"],
+ "stavy":[
+  "výsledky hledání: stejná stránka, pod polem seznam článků s úryvkem; žádný výsledek → „Nic jsme nenašli. Zkuste jiné slovo nebo napište podpoře.“",
+  "odkaz „Nápověda k této stránce“ z horní lišty otevírá rovnou článek ke stránce (napoveda-clanek), ne rozcestník.",
+  "role autor / admin / zkoušený: v části Kapitoly pro vás jiné sekce (pro zkoušeného jen Pro zkoušené).",
+  "chyba hledání: .alert--chyba nad výsledky."],
+ "zmeny_ux":[
+  "Vyhledávání nahoře jako hlavní akce s příklady v hintu.",
+  "Nejčastější úkoly jako 2sloupcový seznam odkazů – dnes 10 odkazů pod sebou.",
+  "Kapitoly pro lektora (14) jako karty v mřížce s jednou větou popisu; sekce mají počet v nadpisu.",
+  "Ostatní role sbalené (details) – jsou potřeba výjimečně.",
+  "Ke stažení vpravo dole s formátem v odkazu."],
+ "texty":[
+  {"dnes":"Postupy pro práci s aplikací podle toho, co potřebujete udělat. Kapitoly pro vaši roli jsou rozbalené, ostatní najdete níže.","nove":"Postupy podle toho, co potřebujete udělat. Nahoře jsou kapitoly pro vaši roli.","proc":"Kratší."},
+  {"dnes":"Způsoby zadání testu – Prezenční zkouška, přístupové kódy pro osoby, přidělení studujícím, anonymní odkaz a tisk.","nove":"Prezenční zkouška, osobní kódy, přidělení skupině, veřejný odkaz a tisk. Co vyplníte a co dostanete.","proc":"Slovník."},
+  {"dnes":"Výsledky, protokol a uvolnění výsledků","nove":"Výsledky, protokol a zpřístupnění výsledků","proc":"Slovník: Zpřístupnit výsledky."},
+  {"dnes":"Celá sekce pro lektory","nove":"Všechny kapitoly pro lektory (14)","proc":"Jedinečný text odkazu."},
+  {"dnes":"Nenašli jste, co potřebujete? Obraťte se na podporu.","nove":"Nenašli jste, co potřebujete? Napište na podpora@exam-test.cz nebo volejte +420 725 311 531.","proc":"Kontakt přímo, bez dalšího kliknutí."}],
+ "pristupnost":["Hledání: role=search, label viditelný.","Karty: odkaz je nadpis H3, popis je obyčejný text (celá karta neklikací – žádné vnořené odkazy).","Sekce H2 s počtem kapitol."],
+ "poznamky_pro_kodera":["Hledá bez diakritiky.","Kapitoly a texty z dnešní nápovědy; odkazy vedou na šablonu napoveda-clanek.","~60 článků celkem."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Nápověda</h1><p class="measure">Postupy podle toho, co potřebujete udělat. Nahoře jsou kapitoly pro vaši roli.</p></div></div>
+
+<form role="search" class="card card--papir stack" action="napoveda.html" method="get" style="max-width:var(--max-text);margin-bottom:var(--s-5)">
+ <div class="field"><label class="label" for="nq">Hledat v nápovědě</label><span class="hint" id="nq-h">Například „zapomenuté heslo“, „prodloužit čas“ nebo „vytisknout klíče“. Diakritiku psát nemusíte.</span>
+  <div class="row" style="flex-wrap:nowrap;gap:var(--s-2)"><input class="input" id="nq" name="q" type="search" aria-describedby="nq-h"><button class="btn btn--hlavni" type="submit">{{I:hledat}}Hledat</button></div></div>
+</form>
+
+<section class="stack" aria-labelledby="ukoly" style="margin-bottom:var(--s-5)">
+ <h2 id="ukoly" class="t-nadpis">Nejčastější úkoly</h2>
+ <ul class="grid-2" style="list-style:none;padding:0;gap:var(--s-2) var(--s-4)">
+  <li><a href="#">Jak připravit a provést zkoušku zvláštní odborné způsobilosti</a></li>
+  <li><a href="#">Jak sestavit test</a></li>
+  <li><a href="#">Jak si test vyzkoušet nanečisto</a></li>
+  <li><a href="#">Jak založit soubor otázek</a></li>
+  <li><a href="#">Proč v testu chybí moje otázka</a></li>
+  <li><a href="#">Jak vložit obrázek do otázky</a></li>
+  <li><a href="#">Jak nastavit ověření ve dvou krocích</a></li>
+  <li><a href="#">Jak přepnout aktivní pobočku</a></li>
+ </ul>
+</section>
+
+<section class="stack" aria-labelledby="lektor" style="margin-bottom:var(--s-5)">
+ <div class="row-between"><h2 id="lektor" class="t-nadpis">Pro lektory (14)</h2><a href="#">Všechny kapitoly pro lektory (14)</a></div>
+ <div class="grid-3">
+  <article class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Způsoby zadání testu</a></h3><p class="t-maly">Prezenční zkouška, osobní kódy, přidělení skupině, veřejný odkaz a tisk. Co vyplníte a co dostanete.</p></article>
+  <article class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Prezenční zkouška s čekárnou</a></h3><p class="t-maly">Zkouška v&nbsp;místnosti bez účtů: promítací plocha s&nbsp;kódem a QR kódem, čekárna, uzamčení vstupu a spuštění testu.</p></article>
+  <article class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="napoveda-clanek.html">Živý panel</a></h3><p class="t-maly">Sledování zkoušky v&nbsp;reálném čase. Stav každého zkoušeného, zbývající čas a upozornění na opuštění okna.</p></article>
+  <article class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Prodloužení času, převzetí a ukončení pokusu</a></h3><p class="t-maly">Jak zkoušenému přidat čas, povolit pokračování na jiném zařízení nebo pokus předčasně ukončit.</p></article>
+  <article class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Výsledky, protokol a zpřístupnění výsledků</a></h3><p class="t-maly">Detail pokusu se záznamem průběhu, protokol PDF, zpřístupnění výsledků a export XLSX.</p></article>
+  <article class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Platnost školení a připomínky opakování</a></h3><p class="t-maly">Kdo má platné osvědčení, komu brzy vyprší a kdo má prošlé. Export XLSX a připomínky e-mailem.</p></article>
+ </div>
+ <p class="t-maly">Dalších 8 kapitol: sestavení testu, náhled variace, dohled, osvědčení, tisk, statistiky, kalendář a zkouška odborné způsobilosti.</p>
+</section>
+
+<section class="stack" aria-labelledby="zac" style="margin-bottom:var(--s-5)">
+ <div class="row-between"><h2 id="zac" class="t-nadpis">Začínáme (6)</h2><a href="#">Všechny kapitoly Začínáme (6)</a></div>
+ <div class="grid-3">
+  <article class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Přihlášení, heslo a odhlášení</a></h3><p class="t-maly">První přihlášení, zapomenuté heslo a odhlášení na všech zařízeních.</p></article>
+  <article class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Ověření ve dvou krocích</a></h3><p class="t-maly">Proč ho musíte nastavit, jak ho zapnout a co dělat při ztrátě telefonu.</p></article>
+  <article class="card card--tenka stack-2"><h3 class="t-text" style="font-weight:var(--w-tucne)"><a href="#">Role a oprávnění</a></h3><p class="t-maly">Co smí administrátor, lektor, autor otázek, studující a zkoušený bez účtu.</p></article>
+ </div>
+</section>
+
+<div class="grid-2" style="align-items:start">
+ <section class="stack" aria-labelledby="ostatni">
+  <h2 id="ostatni" class="t-nadpis">Ostatní role</h2>
+  <p class="t-maly">Hodí se, když potřebujete vědět, co může udělat kolega.</p>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li><a href="#">Pro autory otázek (9)</a></li><li><a href="#">Pro zkoušené (9)</a></li><li><a href="#">Pro administrátory poboček (4)</a></li><li><a href="#">Pro administrátory organizace (9)</a></li><li><a href="#">Pro objednatele (4)</a></li><li><a href="#">Časté otázky a slovníček (2)</a></li>
+  </ul>
+ </section>
+ <section class="stack" aria-labelledby="stah">
+  <h2 id="stah" class="t-nadpis">Ke stažení a k tisku</h2>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li class="row" style="gap:var(--s-2)">{{I:stahnout}}<a href="#">Pokyny pro zkoušené (PDF, 1 strana)</a></li>
+   <li class="row" style="gap:var(--s-2)">{{I:stahnout}}<a href="#">Příručka pro lektora (PDF)</a></li>
+   <li class="row" style="gap:var(--s-2)">{{I:info}}<a href="co-je-noveho.html">Co je nového v aplikaci</a></li>
+  </ul>
+  <div class="alert alert--info">{{I:napoveda}}<p>Nenašli jste, co potřebujete? Napište na <a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a> nebo volejte <a href="tel:+420725311531">+420&nbsp;725&nbsp;311&nbsp;531</a>.</p></div>
+ </section>
+</div>

@@ -1,0 +1,80 @@
+<!--meta {"titulek":"Převzetí testu na tomto zařízení","sablona":"exam","role":"zkouseny","skip":"Přeskočit na zadání kódu"} -->
+<!--spec {
+ "route":"/t/prevzeti","nazev":"Převzetí na jiném počítači","role":"zkoušený","sablona":"exam",
+ "ucel":"Zkoušený, kterému se vybil telefon nebo potřebuje jiný počítač, zadá kód od lektora a pokračuje v rozpracovaném testu. Musí vědět, že čas běží a že se původní zařízení zablokuje.",
+ "hlavni_akce":"Zadat kód pro převzetí a pokračovat na tomto zařízení",
+ "komponenty":["exam-head","card--papir","field","input--kod","hint","btn--hlavni","list-check","error","alert"],
+ "stavy":[
+  "výchozí (nakresleno)",
+  "neplatný nebo prošlý kód (nakresleno): kód platí 10 minut",
+  "původní zařízení po převzetí (nakresleno): „Test je otevřen na jiném zařízení.“ – bez ovládání testu",
+  "úřední test: kód vydává jen administrátor organizace nebo pobočky (věta v hintu)",
+  "načítání: tlačítko aria-busy, text „Přebíráme test…“",
+  "bez oprávnění: kód patří k jinému testu → stejná chyba jako neplatný kód"],
+ "zmeny_ux":[
+  "Převzetí má vlastní stránku s jedním polem. Dnes je druhý formulář na stránce Vstup do testu a snadno se zamění s přístupovým kódem.",
+  "Tři důsledky převzetí jsou vidět před zadáním: čas běží dál, odpovědi se přenesou, původní zařízení se zablokuje.",
+  "Hlavička nemá časomíru – test na tomto zařízení ještě neběží; čas se ukáže hned po převzetí."],
+ "texty":[
+  {"dnes":"Pokračovat v rozpracovaném testu","nove":"Pokračovat v testu na tomto zařízení","proc":"Kde se pokračuje."},
+  {"dnes":"Začali jste test na jiném zařízení (např. se vybil telefon)? Požádejte lektora o kód pro převzetí a zadejte ho sem. Test bude pokračovat zde, čas mezitím běží dál.","nove":"Začali jste test na jiném zařízení – třeba se vybil telefon? Požádejte lektora o kód pro převzetí. Platí 10 minut.","proc":"Kratší věty; doplněna platnost z nápovědy."},
+  {"dnes":"Kód pro převzetí od lektora","nove":"Kód pro převzetí","proc":"Slovník; „od lektora“ je v hintu."},
+  {"dnes":"Pokračovat na tomto zařízení","nove":"Pokračovat na tomto zařízení","proc":"Beze změny – sloveso + kde."},
+  {"dnes":"Test je otevřen na jiném zařízení","nove":"Test je otevřený na jiném zařízení. Tady už v něm nemůžete pokračovat.","proc":"Doplněn důsledek."}],
+ "pristupnost":[
+  "Jedno pole s viditelným labelem, hint a chyba přes aria-describedby; autocomplete=off.",
+  "Po úspěšném převzetí se načte aktuální otázka a fokus jde na její H1; čtečka uslyší i stav „Uloženo“.",
+  "Zablokované původní zařízení: H1 + text, žádné skryté ovládání; role=alert jen při změně za běhu."],
+ "poznamky_pro_kodera":[
+  "Kód pro převzetí je jednorázový, platí 10 minut, vydává ho lektor v živém panelu (Akce → Povolit převzetí).",
+  "Po převzetí: původní relace dostane událost a přepne se na stav „otevřený na jiném zařízení“.",
+  "Pokus se ve výsledku a protokolu označí „Dokončeno po převzetí na jiném zařízení“."],
+ "chybi_komponenta":[]
+} -->
+<header class="exam-head"><div class="exam-head__in">
+ <a class="logo" href="../web/index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – úvodní stránka" width="146" height="24" style="height:24px;width:auto"></a>
+ <p class="t-stitek" style="margin-left:auto">Převzetí testu</p>
+</div></header>
+
+<main id="obsah" class="narrow stack-5" style="max-width:600px">
+ <form class="card card--papir stack-4" action="test-otazka.html" method="post" aria-labelledby="h1">
+  <div class="stack-2">
+   <p class="t-stitek">Rozpracovaný test</p>
+   <h1 id="h1" class="t-titulek">Pokračovat v&nbsp;testu na tomto zařízení</h1>
+  </div>
+  <p>Začali jste test na jiném zařízení – třeba se vybil telefon? Požádejte lektora o&nbsp;kód pro převzetí. Platí 10&nbsp;minut.</p>
+  <div class="field">
+   <label class="label" for="kod">Kód pro převzetí</label>
+   <span class="hint" id="kod-h">Kód vám dá lektor. Není to přístupový kód k&nbsp;testu.</span>
+   <input class="input input--kod" id="kod" name="kod" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="kod-h">
+  </div>
+  <ul class="list-check">
+   <li>Čas mezitím běží dál.</li>
+   <li>Uložené odpovědi se přenesou.</li>
+   <li>Na původním zařízení se test zablokuje.</li>
+  </ul>
+  <button class="btn btn--hlavni" type="submit">Pokračovat na tomto zařízení</button>
+ </form>
+ <p class="t-maly">Přišli jste kvůli výpadku o&nbsp;čas? Řekněte to lektorovi. Může vám čas prodloužit. <a href="kod.html">Zpět na vstup do testu</a></p>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Neplatný nebo prošlý kód</h3>
+   <div class="card stack">
+    <div class="field">
+     <label class="label" for="kod2">Kód pro převzetí</label>
+     <input class="input input--kod" id="kod2" value="7KQ2M9" autocomplete="off" aria-invalid="true" aria-describedby="kod2-e">
+     <span class="error" id="kod2-e">{{I:pozor}}Kód není platný nebo už vypršel. Požádejte lektora o&nbsp;nový.</span>
+    </div>
+   </div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Původní zařízení po převzetí</h3>
+   <div class="card card--tenka stack">
+    <p class="t-nadpis row" style="gap:var(--s-2)">{{I:obrazovka}}Test je otevřený na jiném zařízení.</p>
+    <p>Tady už v&nbsp;něm nemůžete pokračovat. Odpovědi zůstávají uložené. Pokud jste to nebyli vy, řekněte to hned lektorovi.</p>
+   </div>
+  </div>
+ </section>
+</main>

@@ -1,0 +1,123 @@
+<!--meta {"titulek":"Výsledek ověření protokolu","popis":"Výsledek ověření pravosti protokolu o zkoušce exam-test.","sablona":"web","aktivni":""} -->
+<!--spec {
+ "route":"/overeni?kod=…","nazev":"Ověření protokolu – výsledek (platný i neplatný)","role":"veřejnost – kdokoli s ověřovacím kódem","sablona":"web",
+ "ucel":"Jednoznačně říct, zda je protokol pravý, a ukázat údaje k porovnání s papírem (organizace, test, datum, výsledek, osvědčení).",
+ "hlavni_akce":"Porovnat údaje s protokolem; vedlejší: Ověřit jiný kód",
+ "komponenty":["stav","alert--ok|chyba|pozor|info","card card--papir","dl","kod","btn"],
+ "stavy":[
+  "platný (hlavní): Protokol je pravý + časové razítko; osvědčení platné",
+  "nenalezený: Záznam s tímto kódem nebyl nalezen – zkontrolujte opis kódu; pole s kódem předvyplněné k opravě",
+  "neplatný – změněn: Záznam neodpovídá – byl změněn; kontaktujte pořadatele",
+  "neplatný – nahrazen / zneplatněn: platí opravný záznam nebo náhradní pokus s uvedeným kódem (odkaz na jeho ověření)",
+  "čeká na razítko: Záznam je uložen, časové razítko dostane do hodiny",
+  "osvědčení prošlé: u platného protokolu stav osvědčení „prošlé“ (stav--ne), protokol zůstává pravý",
+  "anonymizovaný záznam: místo iniciál „osobní údaje anonymizovány“; ověření funguje",
+  "organizace aplikaci již nepoužívá: ověřeno proti archivu (alert--info)",
+  "oprávnění: veřejná stránka"],
+ "zmeny_ux":[
+  "Výsledek je první věc pod H1: velký stav ikonou + slovem (Pravý / Nenalezen / Změněn), ne jen barva.",
+  "Údaje k porovnání jako dl v kartě „na papíře“ – vypadá jako výtah protokolu, lze porovnat řádek po řádku.",
+  "Osvědčení má vlastní blok se stavem platnosti (platné / prošlé / neplatné).",
+  "Vysvětlení „Co ověření potvrzuje“ je u výsledku, ne jen v nápovědě.",
+  "Formulář pro ověření jiného kódu je pod výsledkem (předvyplněný u stavu nenalezen)."],
+ "texty":[
+  {"dnes":"Protokol odpovídá záznamu v aplikaci a je opatřen časovým razítkem.","nove":"beze změny (podtitul stavu „Protokol je pravý“)","proc":"Odpovídá pravidlům; nově nad ním krátký výsledek."},
+  {"dnes":"Záznam s tímto kódem nebyl nalezen.","nove":"Záznam s tímto kódem nebyl nalezen. Zkontrolujte, zda jste kód opsali správně.","proc":"Doplněno co udělat (text z nápovědy)."},
+  {"dnes":"Záznam neodpovídá – byl změněn.","nove":"Záznam neodpovídá – byl změněn. Kontaktujte pořadatele zkoušky.","proc":"Doplněno co udělat (text z nápovědy)."},
+  {"dnes":"Záznam je uložen. Časové razítko dostane do hodiny, potom můžete ověření zopakovat.","nove":"beze změny","proc":"Odpovídá pravidlům."}],
+ "pristupnost":[
+  "H1 obsahuje výsledek („Protokol je pravý“) – čtečka ho ohlásí jako první.",
+  "Stav vždy ikonou + slovem (check / minus-kruh / pozor), barva jen doplňuje.",
+  "Ověřovací kód v .t-kod; iniciály s vysvětlením proč.",
+  "Odkaz „Ověřit jiný kód“ vede na formulář s labelem."],
+ "poznamky_pro_kodera":["Data: demo pokus Ondřej Malý (iniciály O. M.), Kybernetická bezpečnost — roční ověření, 3. 11. 2026, 100,0 %, kód H5SAY-GVTNY-EDXAP-67SXD, osvědčení platí do 2. 11. 2027.","Název organizace v demu není v podkladech – použito „Ukázková organizace, pobočka Praha“.","Varianty hlášek a jejich význam: nápověda Pro zkoušené › Ověření pravosti protokolu."],
+ "chybi_komponenta":[]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <div class="stack-4">
+   <p class="t-stitek">Výsledek ověření · kód <span class="t-kod">H5SAY-GVTNY-EDXAP-67SXD</span></p>
+   <p><span class="stav stav--ok">{{I:check}}Pravý</span></p>
+   <h1 class="t-display">Protokol je pravý</h1>
+   <p class="t-perex">Protokol odpovídá záznamu v&nbsp;aplikaci a je opatřen časovým razítkem. Porovnejte zobrazené údaje s&nbsp;papírem.</p>
+  </div>
+
+  <div class="card card--papir stack">
+   <h2 class="t-nadpis">Údaje z&nbsp;ověřeného záznamu</h2>
+   <dl class="dl">
+    <dt>Organizace</dt><dd>Ukázková organizace, pobočka Praha</dd>
+    <dt>Test</dt><dd>Kybernetická bezpečnost — roční ověření</dd>
+    <dt>Zkoušený</dt><dd>O.&nbsp;M. <span class="t-maly">(jen iniciály kvůli ochraně osobních údajů)</span></dd>
+    <dt>Datum zkoušky</dt><dd><span class="t-cislo">3. 11. 2026</span></dd>
+    <dt>Výsledek</dt><dd class="row" style="gap:var(--s-2)"><span class="t-cislo">100,0&nbsp;%</span><span class="stav stav--ok">{{I:check}}Splněno</span></dd>
+    <dt>Ověřovací kód</dt><dd class="t-kod">H5SAY-GVTNY-EDXAP-67SXD</dd>
+   </dl>
+  </div>
+
+  <div class="card stack">
+   <div class="row-between"><h2 class="t-nadpis">Osvědčení</h2><span class="stav stav--ok">{{I:check}}Platné</span></div>
+   <dl class="dl">
+    <dt>Školení</dt><dd>Roční školení kybernetické bezpečnosti</dd>
+    <dt>Platí do</dt><dd><span class="t-cislo">2. 11. 2027</span></dd>
+    <dt>Stav osvědčení</dt><dd>platné</dd>
+   </dl>
+   <p class="t-maly">Datum konce platnosti je součástí ověřovaného záznamu, takže ho nikdo dodatečně nezmění. Osvědčení vydává uvedená organizace, nejde o&nbsp;doklad úřadu.</p>
+  </div>
+
+  <div class="alert alert--info" role="note">{{I:info}}<p>Ověření potvrzuje, že údaje odpovídají záznamu pořízenému při zkoušce a že je od té doby nikdo nezměnil. Neposuzuje, zda zkouška splnila požadavky předpisů.</p></div>
+  <div class="row"><a class="btn" href="overeni.html">Ověřit jiný kód</a><a class="btn btn--tiche" href="napoveda.html#overeni">Co znamenají výsledky ověření</a></div>
+ </div>
+</section>
+
+<section class="section section--bila no-print" aria-labelledby="dalsi">
+ <div class="container stack-5" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <h2 id="dalsi" class="t-sekce">Další stavy stránky</h2>
+
+  <div class="stack">
+   <h3 class="t-nadpis">Nenalezený kód</h3>
+   <div class="card stack">
+    <p><span class="stav stav--ne">{{I:minus-kruh}}Nenalezen</span></p>
+    <p class="t-titulek">Záznam s&nbsp;tímto kódem nebyl nalezen</p>
+    <p>Zkontrolujte, zda jste kód opsali správně. Nejčastěji se plete <span class="t-kod">0</span> a&nbsp;<span class="t-kod">O</span> nebo chybí jeden znak.</p>
+    <form class="stack" action="overeni-vysledek.html" method="get" aria-label="Ověřit kód znovu">
+     <div class="field"><label class="label" for="kod-n">Ověřovací kód z&nbsp;protokolu nebo osvědčení</label><input class="input input--kod" id="kod-n" name="kod" value="H5SAY-GVTNY-EDXAP-67SXO" autocomplete="off" spellcheck="false"></div>
+     <div class="row"><button class="btn btn--hlavni" type="submit">Ověřit znovu</button></div>
+    </form>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-nadpis">Neplatný: záznam byl změněn</h3>
+   <div class="card stack">
+    <p><span class="stav stav--ne">{{I:minus-kruh}}Neplatný</span></p>
+    <p class="t-titulek">Záznam neodpovídá – byl změněn</p>
+    <div class="alert alert--chyba" role="alert">{{I:pozor}}<p>Záznam byl po odevzdání změněn. Protokolu nevěřte a kontaktujte pořadatele zkoušky.</p></div>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-nadpis">Neplatný: protokol byl nahrazen</h3>
+   <div class="card stack">
+    <p><span class="stav stav--ne">{{I:minus-kruh}}Neplatí</span></p>
+    <p class="t-titulek">Protokol byl nahrazen opravným záznamem</p>
+    <p>Papírová zkouška byla opravena (chyba při přepisu odpovědí). Platný je protokol s&nbsp;ověřovacím kódem <a class="t-kod" href="overeni-vysledek.html?kod=B9RBR-ZBBW8-XNNQV-R4Z6Y">B9RBR-ZBBW8-XNNQV-R4Z6Y</a>.</p>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-nadpis">Čeká na časové razítko</h3>
+   <div class="card stack">
+    <p><span class="stav stav--pise">{{I:hodiny}}Ověření se dokončuje</span></p>
+    <p>Záznam je uložen. Časové razítko dostane do hodiny, potom můžete ověření zopakovat.</p>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-nadpis">Osvědčení prošlé</h3>
+   <div class="card stack">
+    <div class="row-between"><p class="t-nadpis">Osvědčení</p><span class="stav stav--ne">{{I:minus-kruh}}Prošlé</span></div>
+    <p>Platnost skončila, školení je potřeba zopakovat. Protokol sám zůstává pravý.</p>
+   </div>
+  </div>
+ </div>
+</section>

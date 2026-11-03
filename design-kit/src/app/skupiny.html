@@ -1,0 +1,43 @@
+<!--meta {"titulek":"Skupiny studujících","sablona":"app","role":"admin","aktivni":"skupiny.html","demo":false} -->
+<!--spec {
+ "route":"/sprava/skupiny","nazev":"Skupiny studujících","role":"admin (administrátor pobočky skupiny svých poboček, administrátor organizace všechny)","sablona":"app",
+ "ucel":"Skupiny usnadní přidělení testu více studujícím najednou.",
+ "hlavni_akce":"Nová skupina; otevřít skupinu a upravit členy.",
+ "komponenty":["page-head","table-wrap","table--stack","empty","alert"],
+ "stavy":[
+  "prázdný (dnes v demu): .empty s vysvětlením a tlačítkem Nová skupina (nakresleno níže).",
+  "po založení: .alert--ok „Skupina založena. Přidejte do ní studující.“",
+  "po smazání: .alert--ok „Skupina smazána. Studující zůstali zachováni.“",
+  "načítání / chyba: jako ostatní tabulky.",
+  "oprávnění: lektor a autor 403."],
+ "zmeny_ux":[
+  "Tabulka s počtem členů a počtem přidělených testů (návrh) – je vidět, která skupina se používá.",
+  "Prázdný stav má jednu akci a krátké vysvětlení, k čemu skupina slouží."],
+ "texty":[
+  {"dnes":"Zatím tu není žádná skupina. Skupina usnadní přidělení testu více studujícím najednou – založte ji tlačítkem „Nová skupina“ a přidejte do ní studující pobočky.","nove":"Zatím tu není žádná skupina. Skupina usnadní přidělení testu více studujícím najednou.","proc":"Návod na tlačítko je zbytečný, tlačítko je hned pod textem."}],
+ "pristupnost":["Caption tabulky.","Odkaz = název skupiny."],
+ "poznamky_pro_kodera":["Ukázkové skupiny nejsou z dema (v demu žádná není) – ilustrují vyplněný stav."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <div class="stack-2"><h1 class="t-titulek">Skupiny studujících</h1><p class="t-maly">Skupina usnadní přidělení testu více studujícím najednou.</p></div>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="skupina-formular.html">{{I:plus}}Nová skupina</a></div>
+</div>
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Skupiny studujících, 2 skupiny</caption>
+  <thead><tr><th scope="col">Skupina</th><th scope="col">Pobočka</th><th scope="col" class="num">Členů</th><th scope="col" class="num">Přidělených testů</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Skupina"><a href="#"><b>Noví zaměstnanci – listopad</b></a></td><td data-label="Pobočka">Praha</td><td data-label="Členů" class="num">12</td><td data-label="Přidělených testů" class="num">2</td></tr>
+   <tr><td data-label="Skupina"><a href="#"><b>Sklad – směna B</b></a></td><td data-label="Pobočka">Praha</td><td data-label="Členů" class="num">8</td><td data-label="Přidělených testů" class="num">1</td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Žádná skupina (dnešní stav dema)</p>
+  <div class="empty stack-2">{{I:uzivatele}}<p class="t-nadpis">Zatím tu není žádná skupina</p><p class="t-maly">Skupina usnadní přidělení testu více studujícím najednou.</p><p><a class="btn" href="skupina-formular.html">Založit první skupinu</a></p></div></div>
+ <div class="stack-2"><p class="t-stitek">Po smazání</p>
+  <div class="alert alert--ok" role="status">{{I:check}}<p>Skupina smazána. Studující zůstali zachováni.</p></div></div>
+</section>

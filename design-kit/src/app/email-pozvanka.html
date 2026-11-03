@@ -1,0 +1,93 @@
+<!--meta {"titulek":"E-mail: přístupový kód k testu","sablona":"cisty","role":"zkouseny","body_class":"grid-bg"} -->
+<!--spec {
+ "route":"(e-mail)","nazev":"E-mail: přístupový kód / pozvánka","role":"zkoušený (příjemce)","sablona":"cisty",
+ "ucel":"Doručit zkoušenému osobní přístupový kód a jednu jasnou cestu do testu. E-mail musí fungovat i jako prostý text a v klientech bez obrázků.",
+ "hlavni_akce":"Otevřít vstup do testu a zadat kód",
+ "komponenty":["email","email__head","email__body","kod","btn--hlavni","dl","rule-tenka"],
+ "stavy":[
+  "HTML verze (nakresleno) a textová verze (nakresleno pod ní – posílá se jako multipart/alternative)",
+  "kód s heslem k testu: přidá se řádek „Heslo k testu vám sdělí lektor.“ (heslo se e-mailem neposílá)",
+  "test s termínem: přidá se řádek „Test je dostupný od 15. 1. 2027 9:00 do 15. 1. 2027 12:00.“",
+  "prodloužený čas: „Časový limit: 22 minut (včetně prodloužení o 50 %).“",
+  "demo: e-mail se neodesílá, je ve Schránce dema s pruhem „Ukázka – tento e-mail nebyl odeslán.“",
+  "chyba doručení: lektor vidí stav u kódu (mimo tento e-mail)"],
+ "zmeny_ux":[
+  "Kód je velký mono text v rámečku (.kod) hned pod oslovením – zkoušený ho najde bez čtení.",
+  "Jedno tlačítko Otevřít vstup do testu; adresa pro ruční opsání je hned pod ním.",
+  "Pravidla (osobní kód, výsledek ke jménu, zadání po odevzdání) jsou 3 krátké body místo 3 odstavců.",
+  "Patička s důvodem e-mailu a správcem údajů zůstává, jen kratší věty.",
+  "Návrh: předmět bez názvu organizace na konci (je v odesílateli) – kratší v náhledu schránky."],
+ "texty":[
+  {"dnes":"Přístupový kód k testu „Kybernetická bezpečnost — roční ověření“ – Ukázková organizace (demo)","nove":"Přístupový kód k testu „Kybernetická bezpečnost — roční ověření“","proc":"Organizace je v odesílateli; předmět se vejde do náhledu."},
+  {"dnes":"organizace Ukázková organizace (demo) vám zadala test „Kybernetická bezpečnost — roční ověření“.","nove":"Ukázková organizace (demo) vám zadala test „Kybernetická bezpečnost — roční ověření“.","proc":"Bez zdvojeného „organizace“."},
+  {"dnes":"Na stránce zadejte kód uvedený výše. Pokud tlačítko nefunguje, zkopírujte do prohlížeče adresu https://demo.exam-test.cz/kod.","nove":"Tlačítko nefunguje? Otevřete adresu demo.exam-test.cz/kod a kód opište.","proc":"Kratší, činně."},
+  {"dnes":"Kód je osobní, nepředávejte ho dalším lidem. Výsledek testu se zapíše k vašemu jménu.","nove":"Kód je osobní. Nepředávejte ho dalším lidem – výsledek se zapíše k vašemu jménu.","proc":"Příčina a důsledek v jedné větě."},
+  {"dnes":"Po odevzdání můžete kód zadat znovu a podívat se na výsledek, pokud to pořadatel dovoluje a výsledek už zveřejnil.","nove":"Po odevzdání kód zadejte znovu a uvidíte výsledek, pokud ho pořadatel zpřístupní.","proc":"Slovník: Zpřístupnit výsledky."},
+  {"dnes":"E-mail jste dostali, protože organizace Ukázková organizace (demo) zadala tuto adresu k vašemu přístupovému kódu. Organizace je správcem vašich osobních údajů; informace o zpracování najdete na … Aplikaci exam-test pro ni provozuje ABUCO ICT s.r.o. Pokud test nečekáte, e-mail ignorujte. Na tento e-mail neodpovídejte.","nove":"Tento e-mail jste dostali, protože Ukázková organizace (demo) zadala vaši adresu k přístupovému kódu. Správcem vašich údajů je tato organizace. Informace o zpracování údajů. Aplikaci provozuje ABUCO ICT s.r.o. Test nečekáte? E-mail ignorujte. Na e-mail neodpovídejte.","proc":"Kratší věty, stejný obsah."}],
+ "pristupnost":[
+  "E-mail má lang=cs, jednoduchou jednosloupcovou tabulku s role=presentation (v kódu e-mailu), nadpis H1 v těle.",
+  "Kód je text, ne obrázek; ve textové verzi na samostatném řádku.",
+  "Tlačítko je odkaz s textem; barvy splňují kontrast 4,5:1 i v klientech, které přebarvují pozadí (rámeček grafit).",
+  "Textová verze má stejný obsah ve stejném pořadí.",
+  "Náhled zde je fragment stránky; skutečný e-mail používá inline styly a systémová písma (Arial), ne webfonty."],
+ "poznamky_pro_kodera":[
+  "Proměnné: jméno, organizace, název testu, kód, URL /kod (s doménou organizace), časový limit, případně termín a prodloužení.",
+  "Šablona: max. šířka 600 px, inline CSS, logo organizace (alt = název organizace), fallback bez obrázků.",
+  "Odkaz tlačítka může obsahovat kód v URL (/kod?k=…) – pak se pole předvyplní; kód se ale vždy zobrazí i textem.",
+  "Data: Schránka dema 3. 11. 2026 17:38, Emil Erben, kód FFCQH-7B57N."],
+ "chybi_komponenta":[]
+} -->
+<main id="obsah" class="narrow stack-4" style="max-width:680px">
+ <p class="t-stitek">Náhled e-mailu · Schránka dema</p>
+ <article class="email" aria-labelledby="em-h">
+  <div class="email__head stack-2">
+   <dl class="meta" style="flex-direction:column;gap:var(--s-1)">
+    <div><dt>Od</dt><dd>Ukázková organizace (demo) přes exam-test</dd></div>
+    <div><dt>Komu</dt><dd>emil.erben@demo.example</dd></div>
+    <div><dt>Předmět</dt><dd><b>Přístupový kód k&nbsp;testu „Kybernetická bezpečnost — roční ověření“</b></dd></div>
+   </dl>
+  </div>
+  <div class="email__body stack-4">
+   <p><b>Ukázková organizace (demo)</b></p>
+   <h1 id="em-h" class="t-nadpis">Přístupový kód k&nbsp;testu</h1>
+   <p>Dobrý den,</p>
+   <p>Ukázková organizace (demo) vám zadala test <b>Kybernetická bezpečnost — roční ověření</b>.</p>
+   <div class="stack-2">
+    <p class="t-stitek">Osobní přístupový kód pro: Emil Erben</p>
+    <p><span class="kod">FFCQH-7B57N</span></p>
+   </div>
+   <div class="stack-2">
+    <p><a class="btn btn--hlavni" href="kod.html">Otevřít vstup do testu</a></p>
+    <p class="t-maly">Tlačítko nefunguje? Otevřete adresu demo.exam-test.cz/kod a&nbsp;kód opište.</p>
+   </div>
+   <dl class="dl">
+    <dt>Časový limit</dt><dd>15&nbsp;minut</dd>
+   </dl>
+   <ul class="list-check">
+    <li>Kód je osobní. Nepředávejte ho dalším lidem – výsledek se zapíše k&nbsp;vašemu jménu.</li>
+    <li>Po odevzdání kód zadejte znovu a&nbsp;uvidíte výsledek, pokud ho pořadatel zpřístupní.</li>
+   </ul>
+   <hr class="rule-tenka">
+   <p class="t-maly">Tento e-mail jste dostali, protože Ukázková organizace (demo) zadala vaši adresu k&nbsp;přístupovému kódu. Správcem vašich údajů je tato organizace. <a href="informace-o-zpracovani.html">Informace o&nbsp;zpracování údajů</a>. Aplikaci provozuje ABUCO ICT s.r.o. Test nečekáte? E-mail ignorujte. Na e-mail neodpovídejte.</p>
+  </div>
+ </article>
+
+ <section class="no-print stack-2" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+  <h3 class="t-stitek">Textová verze (multipart/alternative)</h3>
+  <pre class="card card--tenka t-maly" style="white-space:pre-wrap;font-family:var(--f-mono);margin:0">Dobrý den,
+
+Ukázková organizace (demo) vám zadala test „Kybernetická bezpečnost — roční ověření“.
+
+Osobní přístupový kód pro: Emil Erben
+Kód: FFCQH-7B57N
+
+Test otevřete na adrese https://demo.exam-test.cz/kod a zadejte kód.
+Časový limit: 15 minut.
+
+– Kód je osobní. Nepředávejte ho dalším lidem – výsledek se zapíše k vašemu jménu.
+– Po odevzdání kód zadejte znovu a uvidíte výsledek, pokud ho pořadatel zpřístupní.
+
+Tento e-mail jste dostali, protože Ukázková organizace (demo) zadala vaši adresu k přístupovému kódu. Správcem vašich údajů je tato organizace. Informace o zpracování: https://demo.exam-test.cz/informace-o-zpracovani. Aplikaci provozuje ABUCO ICT s.r.o. Test nečekáte? E-mail ignorujte. Na e-mail neodpovídejte.</pre>
+ </section>
+</main>

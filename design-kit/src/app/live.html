@@ -1,0 +1,90 @@
+<!--meta {"titulek":"Připojit se k prezenční zkoušce","popis":"Opište kód z promítací plochy a zadejte své jméno.","sablona":"cisty","role":"zkouseny"} -->
+<!--spec {
+ "route":"/live","nazev":"Připojit se k prezenční zkoušce","role":"zkoušený (bez účtu, v učebně)","sablona":"cisty",
+ "ucel":"Připojit zkoušeného v učebně do čekárny co nejrychleji: kód z promítací plochy (nebo QR) a jméno, které se objeví v protokolu.",
+ "hlavni_akce":"Připojit se do čekárny",
+ "komponenty":["exam-head","card--papir","field","input--kod","input","hint","btn--hlavni","alert","error-summary","error","feature"],
+ "stavy":[
+  "výchozí (nakresleno); po naskenování QR je kód předvyplněný a fokus je v poli Jméno a příjmení",
+  "neplatný kód (nakresleno)",
+  "vstup uzavřen (nakresleno): lektor už uzamkl vstup",
+  "stejné jméno v čekárně (nakresleno): rada připsat rozlišující údaj",
+  "demo: upozornění na smyšlené jméno (nakresleno v hlavním stavu)",
+  "načítání: tlačítko aria-busy, text „Připojujeme…“",
+  "bez oprávnění: stránka je veřejná"],
+ "zmeny_ux":[
+  "Nápověda u jména vysvětluje proč: jméno se objeví v protokolu, ať je stejné jako v prezenční listině.",
+  "Hláška při shodném jménu dává konkrétní radu z nápovědy lektora („Jan Novák (1985)“) – dnes zkoušený jen vidí, že se nepřipojil.",
+  "Odkaz na převzetí vede na samostatnou stránku Kód pro převzetí.",
+  "Popisek pole „Kód zkoušky (z promítací plochy)“ zkrácen na „Kód zkoušky“; kde ho najdu je v nápovědě pod popiskem."],
+ "texty":[
+  {"dnes":"Připojit se ke zkoušce","nove":"Připojit se k prezenční zkoušce","proc":"Slovník: Prezenční zkouška."},
+  {"dnes":"Kód zkoušky (z promítací plochy)","nove":"Kód zkoušky + hint „Opište ho z promítací plochy. Nebo naskenujte QR kód telefonem.“","proc":"Popisek krátce, kde a jak v nápovědě."},
+  {"dnes":"Kód zkoušky není platný. Zkontrolujte ho na promítací ploše.","nove":"beze změny","proc":"Odpovídá pravidlům."},
+  {"dnes":"Vstup do této zkoušky je už uzavřen","nove":"Vstup do této zkoušky je už uzavřený. Obraťte se na lektora.","proc":"Přidán další krok."},
+  {"dnes":"Test už běží a potřebujete pokračovat na jiném zařízení? Zadejte kód pro převzetí od lektora.","nove":"Test už běží a pokračujete na jiném zařízení? Zadat kód pro převzetí","proc":"Odkaz s účelem."}],
+ "pristupnost":[
+  "Dvě pole s viditelnými labely; Jméno a příjmení má autocomplete=name, kód autocomplete=off a autocapitalize=characters.",
+  "Chyby přes .error-summary (role=alert, fokus) a aria-invalid + .error u pole.",
+  "QR odkaz obsahuje kód v URL – stránka pole předvyplní a přesune fokus na jméno (oznámeno přes hint, ne překvapivě).",
+  "Demo upozornění .alert--info s ikonou a slovem."],
+ "poznamky_pro_kodera":[
+  "Po úspěšném připojení přesměrovat na /live/:kod (cekarna-zkouseny.html).",
+  "Duplicitní jméno kontroluje server; vrací stejnou stránku s chybou u pole Jméno a příjmení.",
+  "Demo upozornění jen v demu."],
+ "chybi_komponenta":[]
+} -->
+<header class="exam-head"><div class="exam-head__in">
+ <a class="logo" href="../web/index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – úvodní stránka" width="146" height="24" style="height:24px;width:auto"></a>
+</div></header>
+
+<main id="obsah" class="narrow stack-5" style="max-width:600px">
+ <form class="card card--papir stack-4" action="cekarna-zkouseny.html" method="post" aria-labelledby="h1">
+  <div class="stack-2">
+   <p class="t-stitek">Prezenční zkouška · v&nbsp;učebně</p>
+   <h1 id="h1" class="t-titulek">Připojit se k&nbsp;prezenční zkoušce</h1>
+  </div>
+  <div class="field">
+   <label class="label" for="kod">Kód zkoušky</label>
+   <span class="hint" id="kod-h">Opište ho z&nbsp;promítací plochy. Nebo naskenujte QR kód telefonem.</span>
+   <input class="input input--kod" id="kod" name="kod" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="kod-h">
+  </div>
+  <div class="field">
+   <label class="label" for="jmeno">Jméno a příjmení</label>
+   <span class="hint" id="jmeno-h">Jméno se objeví v&nbsp;protokolu. Napište ho stejně jako do prezenční listiny.</span>
+   <input class="input" id="jmeno" name="jmeno" autocomplete="name" aria-describedby="jmeno-h">
+  </div>
+  <div class="alert alert--info">{{I:info}}<p><b>Toto je veřejné demo.</b> Uveďte smyšlené jméno. Nezadávejte skutečné osobní údaje ani hesla.</p></div>
+  <button class="btn btn--hlavni" type="submit">Připojit se {{I:sipka-vpravo}}</button>
+ </form>
+
+ <div class="feature"><p><a href="test-prevzeti.html"><b>Zadat kód pro převzetí</b></a></p><p class="t-maly">Test už běží a&nbsp;pokračujete na jiném zařízení? Kód vám dá lektor.</p></div>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Neplatný kód</h3>
+   <div class="card stack">
+    <div class="field">
+     <label class="label" for="kod2">Kód zkoušky</label>
+     <input class="input input--kod" id="kod2" value="ABC123" autocomplete="off" aria-invalid="true" aria-describedby="kod2-e">
+     <span class="error" id="kod2-e">{{I:pozor}}Kód zkoušky není platný. Zkontrolujte ho na promítací ploše.</span>
+    </div>
+   </div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Stejné jméno už je v&nbsp;čekárně</h3>
+   <div class="card stack">
+    <div class="field">
+     <label class="label" for="jmeno2">Jméno a příjmení</label>
+     <input class="input" id="jmeno2" value="Jan Novák" autocomplete="name" aria-invalid="true" aria-describedby="jmeno2-e">
+     <span class="error" id="jmeno2-e">{{I:pozor}}V&nbsp;čekárně už je někdo se stejným jménem. Připište údaj, který zná lektor, třeba rok narození: Jan Novák (1985).</span>
+    </div>
+   </div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Vstup uzavřen</h3>
+   <div class="alert alert--chyba" role="alert">{{I:zamek}}<p><b>Vstup do této zkoušky je už uzavřený.</b> Lektor nové účastníky nepřijímá. Obraťte se na něj.</p></div>
+  </div>
+ </section>
+</main>

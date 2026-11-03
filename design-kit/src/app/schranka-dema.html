@@ -1,0 +1,42 @@
+<!--meta {"titulek":"Schránka dema","sablona":"app","role":"lektor","aktivni":"","demo":true} -->
+<!--spec {
+ "route":"/schranka-dema","nazev":"Schránka dema","role":"lektor (v demu stejně pro všechny role; mimo demo stránka neexistuje)","sablona":"app",
+ "ucel":"V demu z aplikace neodchází žádný e-mail – tady návštěvník uvidí pozvánky, kódy a oznámení, které by aplikace poslala.",
+ "hlavni_akce":"Otevřít e-mail (např. s přístupovým kódem) a vyzkoušet odkaz v něm.",
+ "komponenty":["page-head","alert--info","table-wrap","table--stack","empty"],
+ "stavy":[
+  "prázdná schránka: .empty „Zatím tu nic není“ + tip, co e-mail vyvolá (rozeslat osobní kódy, pozvat uživatele).",
+  "po nočním smazání (3:00): schránka je prázdná a odkazy v starých e-mailech vedou na demo-nedostupne.",
+  "mimo demo: stránka vrací 404."],
+ "zmeny_ux":[
+  "Vysvětlení jako .alert--info nahoře, 2 krátké věty.",
+  "Předmět zkrácený (bez opakování názvu organizace), celý je v detailu; Příjemce se láme.",
+  "Odkaz v demo liště „Schránka dema“ vede sem."],
+ "texty":[
+  {"dnes":"Z dema neodchází žádný e-mail. Pozvánky, přístupové kódy, oznámení a výsledky, které by aplikace poslala uživatelům a zkoušeným vaší ukázkové pobočky, najdete tady. Odkazy ve zprávách fungují do nočního smazání dema.","nove":"Z dema neodchází žádný e-mail. Pozvánky, kódy, oznámení a výsledky, které by aplikace poslala, najdete tady. Odkazy fungují do nočního smazání dema ve 3:00.","proc":"Kratší věty, doplněn čas."},
+  {"dnes":"Zprávy ve Schránce dema, nejnovější nahoře","nove":"(caption, sr-only)","proc":"Opakoval H1."}],
+ "pristupnost":["Caption tabulky.","Předmět je odkaz; jedinečný díky příjemci v sr-only."],
+ "poznamky_pro_kodera":["Data: e-maily ukázkové pobočky návštěvníka, nejnovější nahoře."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head"><h1 class="t-titulek">Schránka dema</h1></div>
+<div class="alert alert--info" style="margin-bottom:var(--s-4);max-width:var(--max-text)">{{I:email}}<p>Z&nbsp;dema neodchází žádný e-mail. Pozvánky, kódy, oznámení a výsledky, které by aplikace poslala, najdete tady. Odkazy fungují do nočního smazání dema ve 3:00.</p></div>
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Zprávy ve Schránce dema, 5 zpráv, nejnovější nahoře</caption>
+  <thead><tr><th scope="col">Předmět</th><th scope="col">Příjemce</th><th scope="col">Čas</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Předmět"><a href="schranka-email.html">Přístupový kód k testu „Kybernetická bezpečnost – roční ověření“<span class="sr-only"> pro Emil Erben</span></a></td><td data-label="Příjemce" style="overflow-wrap:anywhere">emil.erben@demo.example</td><td data-label="Čas" class="num">3.&nbsp;11. 18:27</td></tr>
+   <tr><td data-label="Předmět"><a href="schranka-email.html">Přístupový kód k testu „Kybernetická bezpečnost – roční ověření“<span class="sr-only"> pro Dana Dlouhá</span></a></td><td data-label="Příjemce" style="overflow-wrap:anywhere">dana.dlouha@demo.example</td><td data-label="Čas" class="num">3.&nbsp;11. 18:27</td></tr>
+   <tr><td data-label="Předmět"><a href="schranka-email.html">Přístupový kód k testu „Kybernetická bezpečnost – roční ověření“<span class="sr-only"> pro Cyril Cibulka</span></a></td><td data-label="Příjemce" style="overflow-wrap:anywhere">cyril.cibulka@demo.example</td><td data-label="Čas" class="num">3.&nbsp;11. 18:27</td></tr>
+   <tr><td data-label="Předmět"><a href="schranka-email.html">Přístupový kód k testu „Kybernetická bezpečnost – roční ověření“<span class="sr-only"> pro Barbora Bílá</span></a></td><td data-label="Příjemce" style="overflow-wrap:anywhere">barbora.bila@demo.example</td><td data-label="Čas" class="num">3.&nbsp;11. 18:27</td></tr>
+   <tr><td data-label="Předmět"><a href="schranka-email.html">Přístupový kód k testu „Kybernetická bezpečnost – roční ověření“<span class="sr-only"> pro Adam Adámek</span></a></td><td data-label="Příjemce" style="overflow-wrap:anywhere">adam.adamek@demo.example</td><td data-label="Čas" class="num">3.&nbsp;11. 18:27</td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Prázdná schránka</p>
+  <div class="empty stack-2">{{I:email}}<p class="t-nadpis">Zatím tu nic není</p><p class="t-maly">E-mail se objeví, když třeba rozešlete osobní kódy nebo pozvete uživatele.</p><p><a href="pouziti-kody.html">Rozeslat osobní kódy</a></p></div></div>
+</section>

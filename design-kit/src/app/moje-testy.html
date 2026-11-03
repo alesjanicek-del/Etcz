@@ -1,0 +1,95 @@
+<!--meta {"titulek":"Moje testy","sablona":"app","role":"zkouseny","aktivni":"moje-testy.html","demo":false} -->
+<!--spec {
+ "route":"/moje-testy","nazev":"Moje testy","role":"zkoušený (studující s účtem)","sablona":"app",
+ "ucel":"Studující s účtem vidí testy, které mu lektor přidělil, a u každého hned ví, co ho čeká a zda ho může začít.",
+ "hlavni_akce":"Zahájit nebo pokračovat v přiděleném testu",
+ "komponenty":["page-head","card--tenka","stav","meta","btn","btn--hlavni","empty","alert"],
+ "stavy":[
+  "seznam (nakresleno): rozpracovaný a k vyplnění","test ještě nezačal (nakresleno): stav „Od 15. 1. 2027“ (krátký, .stav se nezalamuje) + věta s přesným časem, bez tlačítka","test skončil (nakresleno): stav Není dostupné + datum konce",
+  "prázdný (nakresleno): žádný přidělený test + odkaz na zadání kódu",
+  "chyba načtení (nakresleno): .alert--chyba s tlačítkem Zkusit znovu",
+  "načítání: kostra 3 karet bez textu (aria-busy na seznamu)",
+  "bez oprávnění: nepřihlášený → přihlášení; zkoušený nevidí jiné stránky aplikace"],
+ "zmeny_ux":[
+  "Každý test je karta se stavem (ikona + slovo), metadaty (limit, pokus, dohled, termín) a jednou akcí. Dnes je jen název a tlačítko Zahájit, u BOZP chybí i časový limit.",
+  "Rozpracovaný test je nahoře, má hlavní tlačítko Pokračovat v testu a zbývající čas – nejdůležitější akce na stránce.",
+  "Nedostupné testy zůstávají v seznamu se stavem a datem (Dostupné od 15. 1. 2027 9:00 / Není dostupné), aby studující věděl, že o nich systém ví.",
+  "Pod seznamem odkaz Máte přístupový kód? – pro testy, které nejsou přidělené účtem."],
+ "texty":[
+  {"dnes":"Zahájit","nove":"Zahájit test + skryté „: název testu“","proc":"Sloveso + co; účel odkazu pro čtečku (WCAG 2.4.4)."},
+  {"dnes":"Pokračovat","nove":"Pokračovat v testu","proc":"Sloveso + co."},
+  {"dnes":"Časový limit 15 minut","nove":"Limit 15 min","proc":"Krátká metadata, číslice."},
+  {"dnes":"BOZP — cvičný test (bez dalších údajů)","nove":"BOZP — cvičný test · Bez časového limitu · Cvičný","proc":"Nepřítomnost limitu je informace."}],
+ "pristupnost":[
+  "Seznam testů je ul; každá karta má H2 s názvem testu, takže se dá procházet po nadpisech.",
+  "Stav ikonou + slovem (.stav).",
+  "Tlačítka mají skrytý název testu (sr-only), stejný viditelný text tedy nevede na různá místa bez rozlišení.",
+  "Nedostupný test: místo tlačítka text s datem (žádné neaktivní tlačítko, na které nejde kliknout).",
+  "Metadata jako dl.meta (popisek – hodnota)."],
+ "poznamky_pro_kodera":[
+  "Řazení: rozpracované → dostupné → brzy dostupné → nedostupné → splněné (splněné jen 30 dní, pak jsou v Moje výsledky).",
+  "Časový limit včetně trvalého prodloužení zkoušeného.",
+  "Data: demo zkoušený Zdeněk Zkoušený; testy z dema (BOZP — cvičný test, Kybernetická bezpečnost — roční ověření, Radiační ochrana — ověření znalostí (úřední, typ ZOZ)); stavy rozpracovaný/dostupné od jsou ukázka."],
+ "chybi_komponenta":["karta položky seznamu (název, stav, metadata, akce vpravo) – složena z .card--tenka + .row-between + .meta"]
+} -->
+<div class="page-head">
+ <div class="stack-2">
+  <h1 class="t-titulek">Moje testy</h1>
+  <p class="t-maly">Testy, které vám přidělil lektor.</p>
+ </div>
+</div>
+
+<ul class="stack" style="max-width:960px">
+ <li class="card card--tenka row-between" style="gap:var(--s-4)">
+  <div class="stack-2" style="flex:1 1 320px">
+   <p><span class="stav stav--pise">{{I:hodiny}}Rozpracovaný</span></p>
+   <h2 class="t-nadpis">Kybernetická bezpečnost — roční ověření</h2>
+   <dl class="meta"><div><dt>Zbývá</dt><dd class="t-cislo">9&nbsp;min</dd></div><div><dt>Pokus</dt><dd>1 z 3</dd></div><div><dt>Dohled</dt><dd>zapnutý</dd></div></dl>
+  </div>
+  <a class="btn btn--hlavni" href="test-otazka.html">Pokračovat v&nbsp;testu<span class="sr-only">: Kybernetická bezpečnost — roční ověření</span></a>
+ </li>
+ <li class="card card--tenka row-between" style="gap:var(--s-4)">
+  <div class="stack-2" style="flex:1 1 320px">
+   <p><span class="stav stav--info">{{I:prehrat}}K vyplnění</span></p>
+   <h2 class="t-nadpis">Radiační ochrana — ověření znalostí (úřední, typ ZOZ)</h2>
+   <dl class="meta"><div><dt>Limit</dt><dd class="t-cislo">30&nbsp;min</dd></div><div><dt>Pokus</dt><dd>1 z 1</dd></div><div><dt>Typ</dt><dd>úřední zkouška</dd></div></dl>
+  </div>
+  <a class="btn" href="test-start.html">Zahájit test<span class="sr-only">: Radiační ochrana — ověření znalostí</span></a>
+ </li>
+ <li class="card card--tenka row-between" style="gap:var(--s-4)">
+  <div class="stack-2" style="flex:1 1 320px">
+   <p><span class="stav stav--info">{{I:prehrat}}K vyplnění</span></p>
+   <h2 class="t-nadpis">BOZP — cvičný test</h2>
+   <dl class="meta"><div><dt>Limit</dt><dd>bez časového limitu</dd></div><div><dt>Typ</dt><dd>cvičný</dd></div></dl>
+  </div>
+  <a class="btn" href="test-start.html">Zahájit test<span class="sr-only">: BOZP — cvičný test</span></a>
+ </li>
+</ul>
+
+<p style="margin-top:var(--s-4)"><a href="kod.html">Máte přístupový kód? Zadat kód</a></p>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6);max-width:960px">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2">
+  <h3 class="t-stitek">Prázdný seznam</h3>
+  <div class="empty stack-2">{{I:soubor}}<p><b>Zatím nemáte přidělený žádný test.</b></p><p class="t-maly">Až vám lektor test přidělí, najdete ho tady. Máte přístupový kód? <a href="kod.html">Zadat přístupový kód</a></p></div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Chyba načtení</h3>
+  <div class="alert alert--chyba" role="alert">{{I:pozor}}<div class="stack-2"><p><b>Testy se nepodařilo načíst.</b> Zkuste to za chvíli znovu.</p><p><button class="btn btn--male" type="button">Zkusit znovu</button></p></div></div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Test ještě nezačal</h3>
+  <div class="card card--tenka row-between">
+   <div class="stack-2"><p><span class="stav stav--neutral">{{I:kalendar}}Od 15.&nbsp;1.&nbsp;2027</span></p><h4 class="t-nadpis">Radiační ochrana — ověření znalostí (úřední, typ ZOZ)</h4></div>
+   <p class="t-maly">Test půjde zahájit od 15.&nbsp;1.&nbsp;2027 9:00.</p>
+  </div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Test už není dostupný</h3>
+  <div class="card card--tenka row-between">
+   <div class="stack-2"><p><span class="stav stav--neutral">{{I:minus-kruh}}Není dostupné</span></p><h4 class="t-nadpis">BOZP — cvičný test</h4></div>
+   <p class="t-maly">Termín skončil 30.&nbsp;10.&nbsp;2026. Obraťte se na lektora.</p>
+  </div>
+ </div>
+</section>

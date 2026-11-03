@@ -1,0 +1,79 @@
+<!--meta {"titulek":"Živý panel – nápověda","sablona":"app","role":"lektor","aktivni":"","demo":false} -->
+<!--spec {
+ "route":"/napoveda/…","nazev":"Nápověda – článek (šablona pro 60 článků)","role":"lektor (šablona je stejná pro všechny role; blok „Pro role“ říká, pro koho článek je)","sablona":"app",
+ "ucel":"Šablona jednoho článku nápovědy; ukázka na článku Živý panel.",
+ "hlavni_akce":"Přečíst postup; přejít na související stránku aplikace nebo další článek.",
+ "komponenty":["crumbs","page-head","layout-aside","toc","prose","stav","alert","card","row-between"],
+ "stavy":[
+  "článek pro jinou roli: nahoře .alert--info „Tento postup je pro administrátory organizace. Vaše role ho provést nemůže.“",
+  "článek nenalezen: chyba-404 s polem Hledat v nápovědě.",
+  "tisk: toc, menu a navigace pod článkem se skryjí (.no-print); tip na Ctrl+P zůstává jen na obrazovce."],
+ "zmeny_ux":[
+  "Obsah „Na této stránce“ jako .toc v pravém sloupci (na mobilu nad textem).",
+  "Úvodní věta jako perex pod H1 – ta samá, kterou ukazuje rozcestník.",
+  "Upozornění v panelu se popisují stejnými štítky jako v aplikaci (ikona + slovo) místo znaků ⚠ a ↔.",
+  "Věta „Opuštění okna samo o sobě neznamená podvod“ je zvýrazněná jako upozornění – je důležitá a nesmí zapadnout.",
+  "Tlačítko „Otevřít Použití testů“ vede rovnou do aplikace (návrh).",
+  "Předchozí / další článek jako dvě karty-odkazy; Pro role nad nimi."],
+ "texty":[
+  {"dnes":"„⚠ opustil(a) okno N×“ (zkoušený přepnul do jiného okna nebo aplikace), „↔ jiné zařízení“ (test převzat na jiném zařízení), „odpojení N×“","nove":"štítky Opustil(a) okno 2× · Jiné zařízení · Odpojení 1× s vysvětlením vedle","proc":"Stav ikonou ze sady + slovem; žádné znaky."},
+  {"dnes":"U rozpracovaného pokusu klikněte na Akce.","nove":"U rozpracovaného pokusu zvolte Akce.","proc":"Ovládání nejen myší."},
+  {"dnes":"Tip: kapitolu vytisknete klávesami Ctrl+P. Celou příručku pro svou roli stáhnete jako PDF na úvodní stránce nápovědy.","nove":"Kapitolu vytisknete klávesami Ctrl+P. Celou příručku pro lektora stáhnete jako PDF.","proc":"Odkaz přímo na PDF."}],
+ "pristupnost":["Jediné H1; sekce článku H2 s id pro toc.","toc je nav aria-label „Na této stránce“.","Klávesové zkratky v .kbd.","Předchozí/další: text odkazu obsahuje název článku."],
+ "poznamky_pro_kodera":["Šablona: crumbs (Nápověda › sekce), H1, perex, toc z H2, tělo .prose, Pro role, předchozí/další.","Obsah článků je v Markdownu – .prose stylizuje h2, h3, ul, ol, p."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="napoveda.html">Nápověda</a></li><li><a href="#">Pro lektory</a></li><li><span aria-current="page">Živý panel</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Živý panel</h1><p class="t-perex measure">Sledování zkoušky v&nbsp;reálném čase. Stav každého zkoušeného, zbývající čas a upozornění na opuštění okna.</p></div></div>
+
+<div class="layout-aside">
+ <article class="prose">
+  <p>Detail každého použití obsahuje Živý panel. Obnovuje se sám každých 5 sekund. Na stránce Přehled je odkaz Živý panel u&nbsp;každého probíhajícího zkoušení.</p>
+  <p><a class="btn" href="pouziti.html">Otevřít Použití testů</a></p>
+
+  <h2 id="ukazuje">Co panel ukazuje</h2>
+  <p>Nad tabulkou je souhrn: kolik zkoušených píše, kolik odevzdalo a kolik splnilo. U každého zkoušeného:</p>
+  <ul>
+   <li><b>Stav:</b> spuštěno, zatím neotevřeno, píše, odevzdáno, nebo vypršelo,</li>
+   <li><b>Zodpovězeno:</b> kolik otázek z&nbsp;celkového počtu,</li>
+   <li><b>Zbývá:</b> zbývající čas (u odevzdaných „—“),</li>
+   <li><b>Výsledek:</b> u odevzdaných procenta a splněno, nebo nesplněno,</li>
+   <li><b>Poslední aktivita,</b></li>
+   <li><b>Upozornění</b> – viz tabulka níže.</li>
+  </ul>
+  <div class="table-wrap" style="contain:inline-size"><table class="table table--stack"><caption>Upozornění v živém panelu</caption>
+   <thead><tr><th scope="col">Štítek</th><th scope="col">Co znamená</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Štítek"><span class="stav stav--pozor">{{I:pozor}}Opustil(a) okno 2×</span></td><td data-label="Význam">Zkoušený přepnul do jiného okna nebo aplikace.</td></tr>
+    <tr><td data-label="Štítek"><span class="stav stav--info">{{I:obrazovka}}Jiné zařízení</span></td><td data-label="Význam">Test převzat na jiném zařízení.</td></tr>
+    <tr><td data-label="Štítek"><span class="stav stav--neutral">{{I:vlna}}Odpojení 1×</span></td><td data-label="Význam">Zkoušený ztratil spojení; odpovědi se odešlou po obnovení.</td></tr>
+    <tr><td data-label="Štítek"><span class="stav stav--pozor">{{I:stit}}Dohled: 3 události</span></td><td data-label="Význam"><span>U testu se zapnutým dohledem počet a druh událostí. Viz <a href="#">Dohled nad zkouškou</a>.</span></td></tr>
+   </tbody></table></div>
+
+  <h2 id="aktualizace">Automatická aktualizace</h2>
+  <p>Panel se sám aktualizuje každých 5 sekund. Tlačítkem <b>Pozastavit automatickou aktualizaci</b> ji zastavíte, například když si chcete údaje v&nbsp;klidu přečíst nebo pracujete se čtečkou obrazovky.</p>
+  <p>Tlačítko se změní na <b>Obnovit automatickou aktualizaci</b>. Aktuální stav načtete i při pozastavení tlačítkem <b>Aktualizovat teď</b>. Volba se v&nbsp;prohlížeči pamatuje i po obnovení stránky.</p>
+
+  <h2 id="upozorneni">Jak číst upozornění</h2>
+  <div class="alert">{{I:pozor}}<p><b>Opuštění okna samo o sobě neznamená podvod.</b> Může jít o oznámení v&nbsp;telefonu nebo omylem stisknutou klávesu.</p></div>
+  <p>Pokud vás upozornění znepokojí, zeptejte se zkoušeného a postupujte podle pravidel zkoušky. Podrobný záznam průběhu najdete v&nbsp;<a href="vysledek-detail.html">detailu výsledku</a>.</p>
+
+  <h2 id="akce">Akce u zkoušeného</h2>
+  <p>U rozpracovaného pokusu zvolte <b>Akce</b>. Můžete prodloužit čas, povolit převzetí na jiném zařízení, nebo pokus ukončit. Postupy jsou v&nbsp;kapitole <a href="#">Prodloužení času, převzetí a ukončení pokusu</a>.</p>
+
+  <p class="t-maly no-print">Kapitolu vytisknete klávesami <span class="kbd">Ctrl</span>+<span class="kbd">P</span>. <a href="#">Celou příručku pro lektora stáhnete jako PDF</a>.</p>
+ </article>
+
+ <aside class="stack-4" aria-label="Obsah a role článku">
+  <nav class="toc no-print" aria-label="Na této stránce">
+   <p class="t-stitek" style="margin-bottom:var(--s-2)">Na této stránce</p>
+   <ol><li><a href="#ukazuje">Co panel ukazuje</a></li><li><a href="#aktualizace">Automatická aktualizace</a></li><li><a href="#upozorneni">Jak číst upozornění</a></li><li><a href="#akce">Akce u zkoušeného</a></li></ol>
+  </nav>
+  <dl class="meta" style="flex-direction:column"><div><dt>Pro role</dt><dd>Lektor, Administrátor pobočky, Administrátor organizace</dd></div></dl>
+ </aside>
+</div>
+
+<nav class="grid-2 no-print" aria-label="Další články" style="margin-top:var(--s-5)">
+ <a class="card card--tenka stack-2" href="#" style="text-decoration:none;color:inherit"><span class="t-stitek row" style="gap:var(--s-1)">{{I:sipka-vlevo}}Předchozí</span><span class="t-nadpis">Prezenční zkouška s čekárnou</span></a>
+ <a class="card card--tenka stack-2" href="#" style="text-decoration:none;color:inherit;text-align:right"><span class="t-stitek row" style="gap:var(--s-1);justify-content:flex-end">Další{{I:sipka-vpravo}}</span><span class="t-nadpis">Prodloužení času, převzetí a ukončení pokusu</span></a>
+</nav>

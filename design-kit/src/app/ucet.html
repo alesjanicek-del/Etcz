@@ -1,0 +1,68 @@
+<!--meta {"titulek":"Můj účet","sablona":"app","role":"lektor","aktivni":"","demo":false} -->
+<!--spec {
+ "route":"/ucet","nazev":"Můj účet","role":"lektor (stejně všechny role; u administrátora a autora otázek je ověření ve dvou krocích vždy povinné, u studujícího nepovinné)","sablona":"app",
+ "ucel":"Vlastní údaje a zabezpečení účtu: heslo, ověření ve dvou krocích, záložní kódy a odhlášení.",
+ "hlavni_akce":"Zapnout / spravovat ověření ve dvou krocích; Odhlásit.",
+ "komponenty":["page-head","grid-2","card","dl","stav","btn","alert","dialog","field"],
+ "stavy":[
+  "2FA vypnuté a povinné: .alert „Pro vaši roli je ověření ve dvou krocích povinné.“ + hlavní tlačítko Zapnout ověření ve dvou krocích.",
+  "2FA zapnuté (nakresleno): štítek Zapnuto, akce Záložní kódy a Znovu nastavit ověření.",
+  "demo: karta Zabezpečení nahrazena .alert--info „V demu se nepřihlašuje heslem a ověření se nenastavuje.“ (dnešní text, nakresleno níže).",
+  "nové záložní kódy: dialog se Současným heslem; po vygenerování .alert „Dosavadní kódy přestaly platit.“",
+  "po Odhlásit na všech zařízeních: přesměrování na přihlášení s potvrzením."],
+ "zmeny_ux":[
+  "Stránka má tři jasné bloky: Údaje, Zabezpečení, Odhlášení – dnes jen Údaje a věta o demu.",
+  "Role jako seznam role + pobočka; e-mail a jméno mění administrátor (hint).",
+  "Odhlášení je vidět i na stránce účtu (pravidlo navigace), včetně Odhlásit na všech zařízeních.",
+  "Záložní kódy: počet zbývajících kódů u akce (návrh)."],
+ "texty":[
+  {"dnes":"V demu se do účtů nepřihlašuje heslem a ověření ve dvou krocích se nenastavuje. V plné verzi je pro administrátory a autory otázek povinné.","nove":"(beze změny – jen v demu, jako .alert--info)","proc":"Odpovídá pravidlům."},
+  {"dnes":"Lektor – Návštěvník 8982","nove":"Lektor · Pobočka Praha","proc":"Role a pobočka oddělené."},
+  {"dnes":"(chybí)","nove":"Odhlásit na všech zařízeních – Hodí se, když jste zapomněli odhlásit cizí počítač.","proc":"Funkce z nápovědy, dnes na stránce nenalezena."}],
+ "pristupnost":["Každá karta má H2.","Odhlásit jsou tlačítka ve formulářích (POST), ne odkazy.","Stav 2FA ikonou + slovem."],
+ "poznamky_pro_kodera":["Změna hesla: na tomto zařízení zůstane přihlášen, jinde odhlášen.","Generování záložních kódů vyžaduje současné heslo."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head"><h1 class="t-titulek">Můj účet</h1></div>
+<div class="grid-2" style="align-items:start">
+ <section class="card stack" aria-labelledby="udaje">
+  <h2 id="udaje" class="t-nadpis">Údaje</h2>
+  <dl class="dl">
+   <dt>Jméno</dt><dd>Lucie Lektorová</dd>
+   <dt>E-mail</dt><dd style="overflow-wrap:anywhere">lektor.lucie@demo.example</dd>
+   <dt>Role</dt><dd>Lektor · Pobočka Praha</dd>
+  </dl>
+  <p class="t-maly">Jméno a e-mail vám změní administrátor pobočky.</p>
+ </section>
+
+ <div class="stack-4">
+  <section class="card stack" aria-labelledby="zab">
+   <h2 id="zab" class="t-nadpis">Zabezpečení</h2>
+   <div class="stack-2">
+    <div class="row-between"><h3 class="t-text" style="font-weight:var(--w-tucne)">Ověření ve dvou krocích</h3><span class="stav stav--ok">{{I:check}}Zapnuto</span></div>
+    <p class="t-maly">Kromě hesla zadáváte kód z&nbsp;aplikace v&nbsp;telefonu. Zbývá 8 záložních kódů.</p>
+    <div class="row"><button class="btn btn--male" type="button">{{I:klic}}Záložní kódy</button><button class="btn btn--male btn--tiche" type="button">Znovu nastavit ověření</button></div>
+   </div>
+   <hr class="rule-tenka">
+   <div class="stack-2">
+    <h3 class="t-text" style="font-weight:var(--w-tucne)">Heslo</h3>
+    <p class="t-maly">Na tomto zařízení zůstanete přihlášeni, na ostatních vás aplikace odhlásí.</p>
+    <p><button class="btn btn--male" type="button">{{I:zamek}}Změnit heslo</button></p>
+   </div>
+  </section>
+
+  <section class="card stack" aria-labelledby="odh">
+   <h2 id="odh" class="t-nadpis">Odhlášení</h2>
+   <form class="row" action="#" method="post"><button class="btn" type="submit">{{I:odhlasit}}Odhlásit</button><button class="btn btn--tiche" type="submit" name="vse" value="1">Odhlásit na všech zařízeních</button></form>
+   <p class="t-maly">Na všech zařízeních se odhlaste, když jste zapomněli odhlásit cizí počítač.</p>
+  </section>
+ </div>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Ověření vypnuté, pro roli povinné</p>
+  <div class="alert">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Pro vaši roli je ověření ve dvou krocích povinné.</p><p>Nastavení trvá asi 2 minuty. Budete potřebovat telefon s&nbsp;ověřovací aplikací.</p><p><button class="btn btn--hlavni btn--male" type="button">Zapnout ověření ve dvou krocích</button></p></div></div></div>
+ <div class="stack-2"><p class="t-stitek">V demu</p>
+  <div class="alert alert--info">{{I:info}}<p>V demu se do účtů nepřihlašuje heslem a ověření ve dvou krocích se nenastavuje. V&nbsp;plné verzi je pro administrátory a autory otázek povinné.</p></div></div>
+</section>

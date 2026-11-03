@@ -1,0 +1,123 @@
+<!--meta {"titulek":"Testy","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false} -->
+<!--spec {
+ "route":"/testy","nazev":"Testy","role":"lektor","sablona":"app",
+ "ucel":"Seznam testů, které lektor smí použít nebo upravit. Odtud se test zakládá, upravuje a hlavně používá (zkouška, kódy, tisk…).",
+ "hlavni_akce":"Použít test (spustit zkoušení); vedlejší: Nový test, Upravit",
+ "komponenty":["page-head","tabs","filters","field","check","table-wrap","table--stack","stav","btn--male","btn--tiche","empty","alert"],
+ "stavy":[
+  "prázdný stav: žádný aktivní test – .empty s vysvětlením a tlačítkem Nový test (nakresleno).",
+  "prázdný výsledek filtru: věta „Žádný test neodpovídá filtru“ + odkaz Zrušit filtr (nakresleno).",
+  "chyba: test s chybami v sekcích má ve sloupci Kontrola stav „2 chyby“ (stav--ne) a místo Použít odkaz Opravit sekce – použít ho nelze.",
+  "načítání: server renderuje; filtr je obyčejný GET formulář, bez spinneru.",
+  "bez oprávnění: když organizace lektorům zakázala zakládání testů, tlačítko Nový test chybí a pod nadpisem je alert--info (nakresleno). S právem Čtení je místo Upravit odkaz Náhled."],
+ "zmeny_ux":[
+  "Hlavní akce řádku je jediné tlačítko Použít; Upravit je odkaz, ostatní akce (Náhled, Zkusit nanečisto, Vytvořit kopii, Práva, Archivovat, Do koše) jsou ve skryté nabídce Další akce.",
+  "Sloupec Kontrola ukazuje stav ikonou a slovem (V pořádku / N chyb) a u chyby místo Použít nabízí Opravit sekce – lektor neskončí na chybě až v průvodci použitím.",
+  "Sloupce Pobočka a Otázek (odhad) sloučeny: počet otázek je u názvu jako metadata, pobočka jen ve filtru (lektor má obvykle jednu).",
+  "Záložky mají počty (Aktivní 3, Archivované 0, Koš 0), aby lektor nemusel záložky proklikávat.",
+  "Štítek „úřední“ u názvu je stav--info (dnes holé slovo za názvem)."],
+ "texty":[
+  {"dnes":"Další ▾ / akce s testem …","nove":"Další akce","proc":"Popisný text tlačítka; název testu doplní sr-only."},
+  {"dnes":"Otázek (odhad): 10–12","nove":"10–12 otázek","proc":"Bez slova odhad – rozsah je přesný (min–max náhodného výběru)."},
+  {"dnes":"BOZP — cvičný test","nove":"BOZP – cvičný test","proc":"Česká typografie: pomlčka s mezerami je –, ne —. Platí pro zobrazení; v datech se název nemění."},
+  {"dnes":"Smazat (v nabídce)","nove":"Do koše","proc":"Odpovídá nápovědě a záložce Koš; test se z koše dá obnovit."}],
+ "pristupnost":[
+  "Tabulka má caption „Aktivní testy (3)“ (sr-only) a data-label u každé buňky pro mobilní zobrazení.",
+  "Odkazy v řádku mají skrytý název testu: „Upravit<span class=sr-only>: BOZP – cvičný test</span>“ – v seznamu odkazů čtečky jsou jednoznačné.",
+  "Nabídka Další akce je nativní details/summary, ovladatelná klávesnicí bez JS; summary má sr-only název testu.",
+  "Záložky jsou nav s aria-label „Stav testů“ a aria-current=page na aktivní.",
+  "Filtr: každé pole má viditelný label; checkbox Jen moje testy je v .check."],
+ "poznamky_pro_kodera":[
+  "Data z dema: 3 testy, vlastník Lucie Lektorová, upraveno 4. 9. 2026.",
+  "Filtr je GET (q, moje, pobocka). Řazení: naposledy upravené nahoře.",
+  "Archivovaný test: místo Použít odkaz Obnovit z archivu. Koš: Obnovit. Použitý test nelze dát do koše – položka v nabídce chybí.",
+  "Nabídka Další akce se rozbaluje v toku řádku (details); po implementaci dropdownu ji lze nahradit komponentou menu akcí."],
+ "chybi_komponenta":["menu akcí v řádku tabulky (dropdown, popover) – použit details/summary v toku"]
+} -->
+<div class="page-head">
+ <div class="stack-2">
+  <p class="t-stitek">Zkoušení</p>
+  <h1 class="t-titulek">Testy</h1>
+ </div>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="test-novy.html">{{I:plus}}Nový test</a></div>
+</div>
+
+<nav class="tabs" aria-label="Stav testů" style="margin-bottom:var(--s-4);contain:inline-size">
+ <a href="testy.html" aria-current="page">Aktivní (3)</a>
+ <a href="#">Archivované (0)</a>
+ <a href="#">Koš (0)</a>
+</nav>
+
+<form class="filters" action="testy.html" method="get" role="search" aria-label="Filtr testů">
+ <div class="field"><label class="label" for="q">Hledat podle názvu</label><input class="input" id="q" name="q" type="search"></div>
+ <div class="field"><label class="label" for="pob">Pobočka</label><select class="select" id="pob" name="pobocka"><option>Všechny</option><option>Praha</option></select></div>
+ <label class="check" style="flex:0 0 auto"><input type="checkbox" name="moje" value="1">Jen moje testy</label>
+ <button class="btn" type="submit">{{I:filtr}}Filtrovat</button>
+</form>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Aktivní testy (3)</caption>
+  <thead><tr><th scope="col">Test</th><th scope="col" class="num">Sekcí</th><th scope="col">Kontrola</th><th scope="col">Vaše právo</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+  <tbody>
+   <tr>
+    <td data-label="Test"><div><b>BOZP – cvičný test</b><span class="t-maly">10–12 otázek · upraveno 4. 9. 2026</span></div></td>
+    <td data-label="Sekcí" class="num">1</td>
+    <td data-label="Kontrola"><span class="stav stav--ok">{{I:check}}V pořádku</span></td>
+    <td data-label="Vaše právo">Vlastník</td>
+    <td data-label="Akce"><div class="row" style="gap:var(--s-2);justify-content:flex-end">
+     <a class="btn btn--male" href="pouziti-nove.html">Použít<span class="sr-only">: BOZP – cvičný test</span></a>
+     <a class="btn btn--tiche btn--male" href="test-editor-sekce.html">Upravit<span class="sr-only">: BOZP – cvičný test</span></a>
+     <details><summary class="btn btn--tiche btn--male">Další akce<span class="sr-only">: BOZP – cvičný test</span></summary>
+      <ul class="stack-2" style="padding:var(--s-2) 0 0">
+       <li><a href="test-nahled.html">Náhled variace</a></li><li><a href="#">Zkusit nanečisto</a></li><li><a href="#">Vytvořit kopii</a></li><li><a href="test-prava.html">Práva</a></li><li><a href="#">Archivovat</a></li><li><a href="#">Do koše</a></li>
+      </ul></details>
+    </div></td>
+   </tr>
+   <tr>
+    <td data-label="Test"><div><b>Kybernetická bezpečnost – roční ověření</b><span class="t-maly">12 otázek · upraveno 4. 9. 2026</span></div></td>
+    <td data-label="Sekcí" class="num">1</td>
+    <td data-label="Kontrola"><span class="stav stav--ok">{{I:check}}V pořádku</span></td>
+    <td data-label="Vaše právo">Vlastník</td>
+    <td data-label="Akce"><div class="row" style="gap:var(--s-2);justify-content:flex-end">
+     <a class="btn btn--male" href="pouziti-nove.html">Použít<span class="sr-only">: Kybernetická bezpečnost – roční ověření</span></a>
+     <a class="btn btn--tiche btn--male" href="test-editor-sekce.html">Upravit<span class="sr-only">: Kybernetická bezpečnost – roční ověření</span></a>
+     <details><summary class="btn btn--tiche btn--male">Další akce<span class="sr-only">: Kybernetická bezpečnost – roční ověření</span></summary>
+      <ul class="stack-2" style="padding:var(--s-2) 0 0">
+       <li><a href="test-nahled.html">Náhled variace</a></li><li><a href="#">Zkusit nanečisto</a></li><li><a href="#">Vytvořit kopii</a></li><li><a href="test-prava.html">Práva</a></li><li><a href="#">Archivovat</a></li>
+      </ul></details>
+    </div></td>
+   </tr>
+   <tr>
+    <td data-label="Test"><div><b>Radiační ochrana – ověření znalostí (typ ZOZ)</b> <span class="stav stav--info">Úřední</span><span class="t-maly">20 otázek · upraveno 4. 9. 2026</span></div></td>
+    <td data-label="Sekcí" class="num">1</td>
+    <td data-label="Kontrola"><span class="stav stav--ne">{{I:minus-kruh}}2 chyby</span></td>
+    <td data-label="Vaše právo">Vlastník</td>
+    <td data-label="Akce"><div class="row" style="gap:var(--s-2);justify-content:flex-end">
+     <a class="btn btn--male" href="test-editor-sekce.html">Opravit sekce<span class="sr-only">: Radiační ochrana – ověření znalostí</span></a>
+     <details><summary class="btn btn--tiche btn--male">Další akce<span class="sr-only">: Radiační ochrana – ověření znalostí</span></summary>
+      <ul class="stack-2" style="padding:var(--s-2) 0 0">
+       <li><a href="#">Vytvořit kopii</a></li><li><a href="test-prava.html">Práva</a></li><li><a href="#">Archivovat</a></li>
+      </ul></details>
+    </div></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p class="t-maly" style="margin-top:var(--s-3)">Test s chybou nelze použít. Chyby opravíte v kroku Sekce.</p>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2">
+  <p class="t-stitek">Žádný aktivní test</p>
+  <div class="empty stack-2">{{I:soubor}}<p><b>Zatím nemáte žádný test.</b></p><p class="t-maly">Test sestavíte ze souborů otázek. Každý zkoušený pak dostane vlastní variaci.</p><p><a class="btn" href="test-novy.html">Založit první test</a></p></div>
+ </div>
+ <div class="stack-2">
+  <p class="t-stitek">Filtr bez výsledku</p>
+  <div class="empty stack-2">{{I:hledat}}<p><b>Žádný test neodpovídá filtru „požár“.</b></p><p><a href="testy.html">Zrušit filtr</a></p></div>
+ </div>
+ <div class="stack-2">
+  <p class="t-stitek">Zakládání testů zakázané</p>
+  <div class="alert alert--info">{{I:info}}<p>Testy můžete používat, ale nové zakládat ne. Zakládání povoluje administrátor organizace.</p></div>
+ </div>
+</section>

@@ -1,0 +1,92 @@
+<!--meta {"titulek":"Přihlášení do organizace","popis":"Každá organizace má v exam-test vlastní adresu. Zadejte ji, nebo si pošlete odkazy na přihlášení e-mailem.","sablona":"web","aktivni":""} -->
+<!--spec {
+ "route":"/platforma/najit-organizaci","nazev":"Najít organizaci / přihlášení","role":"veřejnost – uživatelé organizací (lektor, autor, administrátor, studující)","sablona":"web",
+ "ucel":"Dovést uživatele na přihlášení jeho organizace (vlastní adresa) a zkoušeného odvést od přihlášení k jeho odkazu a kódu.",
+ "hlavni_akce":"Pokračovat na přihlášení (zná adresu); vedlejší: Poslat odkazy e-mailem",
+ "komponenty":["grid-2","card","field","input","hint","btn--hlavni","btn","alert--info","alert--chyba","alert--ok"],
+ "stavy":[
+  "hlavní: dvě cesty vedle sebe (znám adresu / neznám adresu) + upozornění pro zkoušené",
+  "chyba – adresa neexistuje: hláška u pole, hodnota zůstává, nabídnuta cesta e-mailem",
+  "chyba – neplatný e-mail: hláška u pole",
+  "odesláno: potvrzení, které neprozradí, zda účet existuje (návrh – ochrana proti zjišťování účtů)",
+  "oprávnění: veřejná stránka; přihlášený uživatel je přesměrován do své organizace"],
+ "zmeny_ux":[
+  "Pole adresy má viditelnou příponu .exam-test.cz za polem – uživatel vidí, co doplnit, a nepíše celou adresu.",
+  "Upozornění pro zkoušené je první (nad formuláři) – zkoušení sem chodí omylem a kód tady nefunguje.",
+  "Jedno hlavní tlačítko na obrazovce (Pokračovat na přihlášení), druhé je běžné.",
+  "Odkaz pro provozovatele je drobný v patičce obsahu."],
+ "texty":[
+  {"dnes":"Jdete na test nebo zkoušku?","nove":"beze změny","proc":"Odpovídá pravidlům."},
+  {"dnes":"Přihlášení nepotřebujete. Otevřete odkaz nebo adresu, kterou vám dal lektor či pořadatel zkoušky, a zadejte svůj přístupový kód. Kód vložený sem by nefungoval – patří k adrese vaší organizace.","nove":"Přihlášení nepotřebujete. Otevřete odkaz nebo adresu od lektora či pořadatele zkoušky a zadejte svůj přístupový kód. Tady by kód nefungoval – patří k adrese vaší organizace.","proc":"Kratší věty."},
+  {"dnes":"Jen první část adresy, například krajska-agentura.","nove":"Jen první část adresy, například krajska-agentura.","proc":"Beze změny."},
+  {"dnes":"Pracujete u provozovatele? Přihlášení pro provozovatele","nove":"beze změny","proc":"Odpovídá pravidlům."},
+  {"dnes":"(nové)","nove":"Organizaci s adresou … jsme nenašli. Zkontrolujte překlep, nebo si pošlete odkazy e-mailem.","proc":"Návrh chybové hlášky."}],
+ "pristupnost":[
+  "Přípona adresy je součástí hintu (čtečka ji přečte) i viditelně za polem.",
+  "Pole: autocomplete=off u adresy, autocomplete=email u e-mailu, inputmode=email.",
+  "Každý formulář má vlastní nadpis H2 a aria-labelledby.",
+  "Potvrzení odeslání role=status."],
+ "poznamky_pro_kodera":["Adresa: normalizovat na malá písmena, odstranit „https://“ a „.exam-test.cz“, pokud je uživatel vloží celé.","E-mail s odkazy: stejná odpověď bez ohledu na existenci účtu."],
+ "chybi_komponenta":["Pole s pevnou příponou (input-group) – složeno z .row a .t-kod"]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5">
+  <div class="stack-4">
+   <h1 class="t-display measure">Přihlášení do vaší organizace</h1>
+   <p class="t-perex measure">Každá organizace má v&nbsp;aplikaci exam-test vlastní adresu, například <span class="t-kod">nazev-organizace.exam-test.cz</span>. Přihlásíte se na ní.</p>
+  </div>
+
+  <div class="alert alert--info" role="note" style="max-width:var(--max-text)">{{I:info}}<div class="stack-2"><p class="alert__nadpis">Jdete na test nebo zkoušku?</p><p>Přihlášení nepotřebujete. Otevřete odkaz nebo adresu od lektora či pořadatele zkoušky a zadejte svůj přístupový kód. Tady by kód nefungoval – patří k&nbsp;adrese vaší organizace.</p></div></div>
+
+  <div class="grid-2" style="align-items:start">
+   <form class="card card--papir stack" action="../app/prihlaseni.html" method="get" aria-labelledby="znam">
+    <h2 id="znam" class="t-nadpis">Znám adresu organizace</h2>
+    <div class="field">
+     <label class="label" for="adresa">Adresa organizace</label>
+     <span class="hint" id="adresa-h">Jen první část adresy před <span class="t-kod">.exam-test.cz</span>, například krajska-agentura.</span>
+     <div class="row" style="flex-wrap:nowrap;gap:var(--s-2)"><input style="min-width:0;flex:1" class="input" id="adresa" name="adresa" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="adresa-h"><span class="t-kod" aria-hidden="true">.exam-test.cz</span></div>
+    </div>
+    <div class="row"><button class="btn btn--hlavni" type="submit" style="white-space:normal">Pokračovat na přihlášení</button></div>
+   </form>
+
+   <form class="card stack" action="#" method="post" aria-labelledby="neznam">
+    <h2 id="neznam" class="t-nadpis">Adresu neznám</h2>
+    <div class="field">
+     <label class="label" for="email">Váš e-mail</label>
+     <span class="hint" id="email-h">Pošleme odkazy na přihlášení do všech organizací, kde máte účet.</span>
+     <input class="input" type="email" id="email" name="email" autocomplete="email" inputmode="email" aria-describedby="email-h">
+    </div>
+    <div class="row"><button class="btn" type="submit">Poslat odkazy e-mailem</button></div>
+   </form>
+  </div>
+
+  <p class="t-maly">Pracujete u&nbsp;provozovatele? <a href="#">Přihlášení pro provozovatele</a></p>
+ </div>
+</section>
+
+<section class="section section--bila no-print" aria-labelledby="dalsi">
+ <div class="container stack-4">
+  <h2 id="dalsi" class="t-sekce">Další stavy stránky</h2>
+  <div class="grid-2" style="align-items:start">
+   <div class="stack">
+    <h3 class="t-nadpis">Organizace nenalezena</h3>
+    <form class="card stack" action="#" method="get" aria-label="Znám adresu organizace – chyba">
+     <div class="field">
+      <label class="label" for="adresa-e">Adresa organizace</label>
+      <span class="hint" id="adresa-e-h">Jen první část adresy před <span class="t-kod">.exam-test.cz</span>, například krajska-agentura.</span>
+      <p class="error" id="adresa-e-e">{{I:minus-kruh}}Organizaci s&nbsp;adresou „krajska-agentra“ jsme nenašli. Zkontrolujte překlep, nebo si pošlete odkazy e-mailem.</p>
+      <div class="row" style="flex-wrap:nowrap;gap:var(--s-2)"><input style="min-width:0;flex:1" class="input" id="adresa-e" name="adresa" value="krajska-agentra" autocomplete="off" aria-invalid="true" aria-describedby="adresa-e-h adresa-e-e"><span class="t-kod" aria-hidden="true">.exam-test.cz</span></div>
+     </div>
+     <div class="row"><button class="btn btn--hlavni" type="submit" style="white-space:normal">Pokračovat na přihlášení</button></div>
+    </form>
+   </div>
+   <div class="stack">
+    <h3 class="t-nadpis">Odkazy odeslány</h3>
+    <div class="card stack">
+     <div class="alert alert--ok" role="status">{{I:check}}<div><p class="alert__nadpis">Zkontrolujte e-mail</p><p>Pokud má adresa <span style="overflow-wrap:anywhere">jana.novakova@krajska-agentura.cz</span> účet v&nbsp;některé organizaci, poslali jsme na ni odkazy na přihlášení.</p></div></div>
+     <p class="t-maly">E-mail nepřišel? Podívejte se do nevyžádané pošty, nebo se obraťte na administrátora své organizace.</p>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>

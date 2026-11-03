@@ -1,0 +1,80 @@
+<!--meta {"titulek":"Kontakt","popis":"Obchod, podpora a fakturační údaje provozovatele exam-test (ABUCO ICT s.r.o.). Na poptávky odpovídáme do 2 pracovních dnů.","sablona":"web","aktivni":""} -->
+<!--spec {
+ "route":"/kontakt","nazev":"Kontakt","role":"veřejnost – zájemci, zákazníci, zkoušení","sablona":"web",
+ "ucel":"Nasměrovat každého na správný kontakt (obchod, podpora, zkoušený → lektor) a dát fakturační údaje provozovatele.",
+ "hlavni_akce":"Napsat e-mail správnému týmu; vedlejší: odeslat poptávku formulářem",
+ "komponenty":["grid-3","card","alert--info","dl","fieldset/legend","check (radio)","field","textarea","form-actions"],
+ "stavy":["hlavní: kontakty + prázdný formulář","chyba validace a chyba odeslání: stejné jako na ukazka.html (sdílená komponenta formuláře – viz Další stavy tam)","odesláno: ukazka-odeslano.html","oprávnění: veřejná stránka"],
+ "zmeny_ux":[
+  "Nahoře tři karty podle toho, kdo píše (obchod, zákazník, zkoušený) – zkoušený je odkázán na lektora hned, ne až v drobném textu.",
+  "Provozovatel jako dl (fakturační údaje se dají přečíst a zkopírovat po řádcích).",
+  "Formulář je stejná komponenta jako na stránce Ukázka s průvodcem (jedno místo pro změny); tady bez předvybrané volby.",
+  "Telefon a e-mail jsou odkazy tel:/mailto:."],
+ "texty":[
+  {"dnes":"Kontakt","nove":"Kontakt (H1) + perex „Napište tomu, kdo vám pomůže nejrychleji.“","proc":"Orientace."},
+  {"dnes":"Jste zkoušený a máte potíž s testem? Obraťte se nejdřív na lektora nebo pořadatele zkoušky.","nove":"Jdete na test? Obraťte se nejdřív na lektora nebo pořadatele zkoušky – vidí váš pokus a mohou pomoci hned.","proc":"Důvod, proč na lektora – méně zbytečných e-mailů podpoře. (Druhá část je návrh.)"},
+  {"dnes":"Napište nám","nove":"Napište nám","proc":"Beze změny."},
+  {"dnes":"(povinné)","nove":"(bez označení)","proc":"Označují se jen nepovinná pole."}],
+ "pristupnost":["Karty kontaktů mají H2; e-maily a telefon jako odkazy.","Formulář: fieldset/legend, labely, autocomplete, hint svázaný aria-describedby.","dl pro údaje provozovatele."],
+ "poznamky_pro_kodera":["Formulář sdílet s ukazka.html (stejná šablona, jiný nadpis, bez předvýběru).","Honeypot pole – nevykresleno, viz ukazka.html."],
+ "chybi_komponenta":[]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5">
+  <div class="stack-2"><h1 class="t-display">Kontakt</h1><p class="t-perex measure">Napište tomu, kdo vám pomůže nejrychleji.</p></div>
+  <div class="grid-3">
+   <div class="card card--papir stack-2">
+    <p class="t-stitek">Obchod a ukázky</p>
+    <h2 class="t-nadpis">Chcete aplikaci nebo nabídku</h2>
+    <p class="row" style="gap:var(--s-2)">{{I:email}}<a href="mailto:obchod@exam-test.cz">obchod@exam-test.cz</a></p>
+    <p class="t-maly">Na poptávky odpovídáme do 2&nbsp;pracovních dnů.</p>
+   </div>
+   <div class="card stack-2">
+    <p class="t-stitek">Podpora pro zákazníky</p>
+    <h2 class="t-nadpis">Používáte exam-test</h2>
+    <p class="row" style="gap:var(--s-2)">{{I:email}}<a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a></p>
+    <p class="row" style="gap:var(--s-2)">{{I:telefon}}<a href="tel:+420725311531">+420 725 311 531</a></p>
+    <p class="t-maly">Hodiny podpory: pracovní dny <span class="t-cislo">8:00–18:00</span></p>
+   </div>
+   <div class="card card--tenka stack-2">
+    <p class="t-stitek">Zkoušení</p>
+    <h2 class="t-nadpis">Jdete na test</h2>
+    <p>Máte potíž s&nbsp;testem? Obraťte se nejdřív na lektora nebo pořadatele zkoušky. Vidí váš pokus a mohou pomoci hned.</p>
+    <p><a href="napoveda.html#zkouseni">Nápověda pro zkoušené</a></p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="napiste">
+ <div class="container grid-2" style="align-items:start;gap:var(--s-5)">
+  <div class="stack-4">
+   <h2 id="napiste" class="t-sekce">Napište nám</h2>
+   <p>Formulář dorazí obchodu. S&nbsp;technickou potíží v&nbsp;aplikaci pište raději přímo podpoře.</p>
+   <div class="stack-2">
+    <h3 class="t-nadpis">Provozovatel</h3>
+    <dl class="dl">
+     <dt>Firma</dt><dd>ABUCO ICT s.r.o.</dd>
+     <dt>Sídlo</dt><dd>Třebohostická 987/5, 100&nbsp;00 Praha 10</dd>
+     <dt>IČO</dt><dd class="t-cislo">29153905</dd>
+     <dt>DIČ</dt><dd class="t-cislo">CZ29153905</dd>
+     <dt>Zápis</dt><dd>Obchodní rejstřík vedený Městským soudem v&nbsp;Praze, oddíl C, vložka 204821</dd>
+     <dt>Ochrana osobních údajů</dt><dd><a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a></dd>
+    </dl>
+   </div>
+  </div>
+  <form class="card stack-4" action="ukazka-odeslano.html" method="get" novalidate aria-labelledby="k-h">
+<h2 id="k-h" class="t-nadpis">Formulář pro obchod</h2>
+<fieldset class="stack-2"><legend class="label">S čím vám můžeme pomoci?</legend><div class="stack-2" style="gap:0"><label class="check"><input type="radio" name="duvod" value="ukazka" id="k-duvod-1"><span>Ukázka s průvodcem</span></label><label class="check"><input type="radio" name="duvod" value="organizace" id="k-duvod-2"><span>Chci aplikaci pro svou organizaci (po vyzkoušení dema)</span></label><label class="check"><input type="radio" name="duvod" value="urad" id="k-duvod-3"><span>Cenová nabídka pro úřad nebo veřejnou zakázku</span></label><label class="check"><input type="radio" name="duvod" value="dotaz" id="k-duvod-4"><span>Dotaz k funkcím nebo k ceníku</span></label><label class="check"><input type="radio" name="duvod" value="sablona" id="k-duvod-5"><span>Šablona z připravovaného katalogu (zatím zdarma)</span></label><label class="check"><input type="radio" name="duvod" value="zavedeni" id="k-duvod-6"><span>Poptat službu: pomoc se zavedením do organizace</span></label><label class="check"><input type="radio" name="duvod" value="import" id="k-duvod-7"><span>Poptat službu: import / převod otázek</span></label><label class="check"><input type="radio" name="duvod" value="jina" id="k-duvod-8"><span>Jiná služba: otázky na míru, školení lektorů</span></label></div></fieldset>
+<div class="grid-2">
+<div class="field"><label class="label" for="k-org">Organizace</label><input class="input" id="k-org" name="organizace" autocomplete="organization"></div>
+<div class="field"><label class="label" for="k-jmeno">Jméno a příjmení</label><input class="input" id="k-jmeno" name="jmeno" autocomplete="name"></div>
+<div class="field"><label class="label" for="k-email">E-mail</label><input class="input" type="email" id="k-email" name="email" autocomplete="email"></div>
+<div class="field"><label class="label" for="k-tel">Telefon <span class="volitelne">(nepovinné)</span></label><input class="input" type="tel" id="k-tel" name="telefon" autocomplete="tel"></div>
+</div>
+<div class="field"><label class="label" for="k-zprava">Zpráva <span class="volitelne">(nepovinné)</span></label><span class="hint" id="k-zprava-h">Například co chcete ověřovat, kolik osob ročně zkoušíte a zda zkoušíte i&nbsp;na papíře.</span><textarea class="textarea" id="k-zprava" name="zprava" aria-describedby="k-zprava-h"></textarea></div>
+<div class="alert alert--info" role="note">{{I:info}}<p>Do formuláře nepište osobní údaje zkoušených. Údaje použijeme jen k&nbsp;vyřízení poptávky a uchováme je 12&nbsp;měsíců od konce měsíce, kdy poptávka přišla. <a href="ochrana-osobnich-udaju.html">Zásady ochrany osobních údajů</a></p></div>
+<div class="form-actions"><button class="btn btn--hlavni" type="submit">Odeslat poptávku</button><p class="t-maly">Odpovíme do 2&nbsp;pracovních dnů.</p></div>
+</form>
+ </div>
+</section>

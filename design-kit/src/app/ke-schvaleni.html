@@ -1,0 +1,41 @@
+<!--meta {"titulek":"Otázky ke schválení","sablona":"app","role":"admin","aktivni":"ke-schvaleni.html","demo":false} -->
+<!--spec {
+ "route":"/ke-schvaleni","nazev":"Otázky ke schválení","role":"admin (schvalovat smí administrátor organizace; administrátor pobočky jen když to organizace povolí)","sablona":"app",
+ "ucel":"Seznam otázek, které autoři odeslali ke schválení – do testů jde jen schválená verze.",
+ "hlavni_akce":"Otevřít otázku a schválit ji nebo vrátit.",
+ "komponenty":["page-head","alert","table-wrap","table--stack","empty"],
+ "stavy":[
+  "prázdný: .empty „Nic nečeká na schválení“ – nejčastější stav.",
+  "otázka je povinná v testu: štítek „Blokuje test“ (stav--pozor) – test nejde spustit, dokud ji někdo neschválí.",
+  "bez oprávnění: administrátor pobočky bez povolení vidí .alert--info „Otázky schvaluje administrátor organizace.“ a seznam jen pro čtení.",
+  "načítání / chyba: jako ostatní tabulky."],
+ "zmeny_ux":[
+  "Zadání otázky je odkaz na schválení (dnes se klikalo jinam); text odkazu = zadání.",
+  "Přidán sloupec Dopad: v kolika testech je otázka a zda blokuje test – pomáhá pořadí schvalování (návrh).",
+  "Úvodní věta vysvětluje, proč na schválení záleží."],
+ "texty":[
+  {"dnes":"Otázky čekající na schválení","nove":"(caption, sr-only)","proc":"Opakoval H1."},
+  {"dnes":"Zadání / Soubor / Verze / Upravil / Odesláno","nove":"Otázka / Soubor otázek / Verze / Autor / Odesláno","proc":"Slovník (Soubor otázek)."},
+  {"dnes":"Ukázková sada: Kybernetická bezpečnost — školení uživatelů","nove":"Ukázková sada: Kybernetická bezpečnost – školení uživatelů","proc":"Pomlčka."}],
+ "pristupnost":["Caption tabulky.","Počet v menu (.pocet) má aria-label „3 čekají“ – kodér: počet z dat."],
+ "poznamky_pro_kodera":["Řazení: nejstarší nahoře (čeká nejdéle).","Počet v menu = počet řádků."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Otázky ke schválení</h1><p class="t-maly measure">Do nových variací testů se dostane jen schválená verze otázky.</p></div></div>
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Otázky čekající na schválení, 1 otázka</caption>
+  <thead><tr><th scope="col">Otázka</th><th scope="col">Soubor otázek</th><th scope="col">Verze</th><th scope="col">Autor</th><th scope="col">Odesláno</th><th scope="col">Dopad</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Otázka"><a href="otazka-schvalit.html"><b>Které z hesel je nejbezpečnější?</b></a></td><td data-label="Soubor">Ukázková sada: Kybernetická bezpečnost – školení uživatelů</td><td data-label="Verze" class="num">v1</td><td data-label="Autor">Adam Autor</td><td data-label="Odesláno" class="num">3.&nbsp;11.&nbsp;2026 03:00</td><td data-label="Dopad"><span class="t-maly">V&nbsp;žádném testu</span></td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Nic nečeká</p>
+  <div class="empty stack-2">{{I:check-kruh}}<p class="t-nadpis">Nic nečeká na schválení</p><p class="t-maly">Až autor odešle otázku ke schválení, objeví se tady a v&nbsp;menu uvidíte počet.</p></div></div>
+ <div class="stack-2"><p class="t-stitek">Bez práva schvalovat</p>
+  <div class="alert alert--info">{{I:info}}<p>Otázky ve vaší organizaci schvaluje administrátor organizace. Seznam vidíte jen pro informaci.</p></div></div>
+</section>

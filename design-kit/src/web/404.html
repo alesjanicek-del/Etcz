@@ -1,0 +1,38 @@
+<!--meta {"titulek":"Stránka nenalezena","popis":"Adresa neexistuje nebo stránka byla přesunuta.","sablona":"web","aktivni":""} -->
+<!--spec {
+ "route":"(chyba)","nazev":"Stránka nenalezena","role":"veřejnost – kdokoli s chybným odkazem","sablona":"web",
+ "ucel":"Vysvětlit, že adresa neexistuje, a nabídnout nejčastější cíle (ověření protokolu, přihlášení do organizace, hlavní stránky).",
+ "hlavni_akce":"Přejít na úvodní stránku; podle situace: Ověřit protokol, Najít organizaci",
+ "komponenty":["grid-bg","t-display","card","grid-3","t-kod"],
+ "stavy":["Jediný stav (HTTP 404). Chyby aplikace (403, 404 v aplikaci) řeší skupina A3: app/chyba-404.html, app/chyba-403.html."],
+ "zmeny_ux":[
+  "Tři karty podle toho, proč sem lidé nejčastěji přijdou: mají protokol, chtějí se přihlásit, jdou na test.",
+  "Kód chyby pro podporu je mono štítek u patičky obsahu, ne hlavní sdělení.",
+  "Jedno hlavní tlačítko (úvodní stránka)."],
+ "texty":[
+  {"dnes":"Stránka nebyla nalezena","nove":"Tuhle stránku jsme nenašli","proc":"Činně, mluví za nás."},
+  {"dnes":"Zkontrolujte adresu (odkaz mohl být zkrácený nebo neúplný).","nove":"Zkontrolujte adresu – odkaz mohl být zkrácený nebo neúplný.","proc":"Bez závorky."},
+  {"dnes":"Funkce, Ceník nebo Kontakt","nove":"Funkce · Ceník · Kontakt (odkazy)","proc":"Beze změny obsahu."},
+  {"dnes":"Kód chyby pro podporu: 404","nove":"beze změny","proc":"Odpovídá pravidlům."},
+  {"dnes":"(nové)","nove":"Jdete na test? Otevřete znovu odkaz od lektora nebo pořadatele zkoušky.","proc":"Text převzat z 404 aplikace – zkoušení přicházejí se zkráceným odkazem."}],
+ "pristupnost":["Titulek stránky „Stránka nenalezena“ – čtečka ohlásí chybu hned.","Karty jsou celé odkazy s popisným textem.","Jediné H1."],
+ "poznamky_pro_kodera":["Vracet HTTP 404, ne 200.","Kód chyby v .t-kod (dynamicky 404/410)."],
+ "chybi_komponenta":[]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5">
+  <div class="stack-4">
+   <p class="t-stitek">Chyba <span class="t-kod">404</span></p>
+   <h1 class="t-display measure">Tuhle stránku jsme nenašli</h1>
+   <p class="t-perex measure">Adresa neexistuje nebo stránka byla přesunuta. Zkontrolujte adresu – odkaz mohl být zkrácený nebo neúplný.</p>
+   <div class="row"><a class="btn btn--hlavni" href="index.html">Přejít na úvodní stránku</a></div>
+  </div>
+  <div class="grid-3">
+   <a class="card stack-2" href="overeni.html" style="text-decoration:none;color:inherit"><span class="t-nadpis">Máte protokol nebo osvědčení?</span><span class="t-maly">Ověřte jeho pravost – bez přihlášení.</span><span class="row" style="gap:var(--s-2);color:var(--c-propiska);text-decoration:underline">Ověřit protokol {{I:sipka-vpravo}}</span></a>
+   <a class="card stack-2" href="najit-organizaci.html" style="text-decoration:none;color:inherit"><span class="t-nadpis">Chcete se přihlásit?</span><span class="t-maly">Do aplikace se přihlásíte na adrese své organizace.</span><span class="row" style="gap:var(--s-2);color:var(--c-propiska);text-decoration:underline">Najít organizaci {{I:sipka-vpravo}}</span></a>
+   <div class="card card--tenka stack-2"><p class="t-nadpis">Jdete na test?</p><p class="t-maly">Otevřete znovu odkaz od lektora nebo pořadatele zkoušky, případně se obraťte na něj.</p></div>
+  </div>
+  <nav aria-label="Hlavní stránky webu" class="row"><a href="funkce.html">Funkce</a><a href="cenik.html">Ceník</a><a href="kontakt.html">Kontakt</a></nav>
+  <p class="t-maly">Kód chyby pro podporu: <span class="t-kod">404</span></p>
+ </div>
+</section>

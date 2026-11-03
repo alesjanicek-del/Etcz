@@ -1,0 +1,35 @@
+<!--meta {"titulek":"Co je nového","sablona":"app","role":"lektor","aktivni":"","demo":false} -->
+<!--spec {
+ "route":"/co-je-noveho","nazev":"Co je nového","role":"lektor (stejné pro všechny role; zkoušený bez účtu stránku nevidí)","sablona":"app",
+ "ucel":"Přehled změn v aplikaci po verzích – kde najdete nové funkce.",
+ "hlavni_akce":"Přečíst novinky poslední verze a přejít na novou funkci.",
+ "komponenty":["page-head","timeline","stav","prose"],
+ "stavy":["Statická stránka; nejnovější verze má štítek Aktuální verze.","Odkaz z patičky aplikace (verze) vede sem."],
+ "zmeny_ux":[
+  "Verze na časové ose .timeline, nejnovější zvýrazněná (.akt) se štítkem.",
+  "Každá novinka začíná tučně tím, co je nové; cesta v aplikaci (Výsledky → Export dat) jako odkaz – návrh.",
+  "Data verzí v <time>."],
+ "texty":[
+  {"dnes":"Nově můžete stáhnout všechna data organizace (výsledky, protokoly a otázky) nebo údaje jedné osoby: Výsledky → Export dat organizace a osob.","nove":"Export dat. Stáhnete všechna data organizace (výsledky, protokoly a otázky) nebo údaje jedné osoby. Najdete ho ve Výsledcích → Export dat organizace a osob.","proc":"Nejdřív co, pak kde; kratší věty."},
+  {"dnes":"Nově můžete úřední záznam ochránit před anonymizací (ochrana záznamu s uvedením důvodu). Anonymizace nyní odstraní i e-mail kódu, vazbu na účet a IP adresy.","nove":"Ochrana záznamu. Úřední záznam ochráníte před anonymizací s uvedením důvodu. Anonymizace nově odstraní i e-mail kódu, vazbu na účet a IP adresy.","proc":"Struktura „co – detail“."}],
+ "pristupnost":["Verze jsou H2, novinky jsou odstavce (ne vnořený seznam – .timeline li stylizuje i vnořené li).","Časová osa je jen vizuální; obsah se čte jako běžné nadpisy a seznamy."],
+ "poznamky_pro_kodera":["Obsah z changelogu, nejnovější nahoře."],
+ "chybi_komponenta":[".timeline stylizuje selektorem .timeline li i vnořené seznamy – potřebuje .timeline>li"]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Co je nového</h1><p class="t-maly">Změny v&nbsp;aplikaci exam-test po verzích, nejnovější nahoře.</p></div></div>
+<ol class="timeline" style="max-width:var(--max-text)">
+ <li class="akt stack"><div class="row"><h2 class="t-nadpis">Verze 0.2.0</h2><span class="t-maly"><time datetime="2026-10-28">28.&nbsp;10.&nbsp;2026</time></span><span class="stav stav--info">{{I:info}}Aktuální verze</span></div>
+  <div class="stack-2">
+   <p><b>Export dat.</b> Stáhnete všechna data organizace (výsledky, protokoly a otázky) nebo údaje jedné osoby. Najdete ho ve <a href="vysledky.html">Výsledcích</a> → Export dat organizace a osob.</p>
+   <p><b>Ochrana záznamu.</b> Úřední záznam ochráníte před anonymizací s&nbsp;uvedením důvodu. Anonymizace nově odstraní i e-mail kódu, vazbu na účet a IP adresy.</p>
+   <p><b>Statistika testu</b> nově rozlišuje počet osob a počet pokusů. Srovnání poboček a srovnání odkazů si stáhnete do XLSX.</p>
+   <p><b>Historie otázky</b> nově ukazuje původní i nový text poznámky a názvy štítků v&nbsp;okamžiku změny. Úvodní text testu se zobrazuje s&nbsp;formátováním.</p>
+   <p><b>Nápověda v aplikaci</b> s&nbsp;vyhledáváním, příručka pro vaši roli v&nbsp;PDF a jednostránkové Pokyny pro zkoušené k&nbsp;tisku. <a href="napoveda.html">Otevřít nápovědu</a></p>
+  </div></li>
+ <li class="stack"><div class="row"><h2 class="t-nadpis">Verze 0.1.0</h2><span class="t-maly"><time datetime="2026-10-27">27.&nbsp;10.&nbsp;2026</time></span></div>
+  <div class="stack-2">
+   <p><b>První verze:</b> banka otázek s&nbsp;verzemi a schvalováním a sestavení testů ze souborů otázek.</p>
+   <p>Zadání testu osobními kódy, veřejným odkazem, přidělením skupině, prezenční zkouškou i tiskem papírových variací.</p>
+   <p>Výsledky s&nbsp;protokolem PDF, který může kdokoli ověřit podle ověřovacího kódu, a statistiky testů a otázek.</p>
+  </div></li>
+</ol>

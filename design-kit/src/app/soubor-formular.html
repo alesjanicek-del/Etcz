@@ -1,0 +1,73 @@
+<!--meta {"titulek":"Nový soubor otázek","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false} -->
+<!--spec {
+ "route":"/soubory/novy, /soubory/:id/upravit","nazev":"Nový / upravit soubor otázek","role":"lektor, autor otázek, administrátor (zakládat smí každý, komu to organizace nezakázala; upravovat vlastník a Editace)","sablona":"app",
+ "ucel":"Založit nový soubor otázek (název a popis) nebo upravit název a popis existujícího.",
+ "hlavni_akce":"Založit soubor (u úpravy: Uložit změny)",
+ "komponenty":["crumbs","page-head","card","field","input","textarea","alert--info","error-summary","form-actions","btn--hlavni"],
+ "stavy":[
+  "nový: prázdný formulář, fokus v poli Název souboru otázek",
+  "úprava: předvyplněno, nadpis Upravit soubor otázek, tlačítko Uložit změny, drobečky s názvem souboru",
+  "chyba: nevyplněný název – error-summary nahoře a chyba u pole",
+  "po uložení: přesměrování na detail souboru s alert--ok",
+  "načítání: tlačítko aria-disabled, text „Zakládám…“",
+  "bez oprávnění: organizace zakázala lektorům zakládat soubory → stránka 403 s textem „Zakládat soubory otázek vám organizace nepovolila. Požádejte administrátora.“; úpravu bez práva Editace/Vlastník → 403"],
+ "zmeny_ux":[
+  "Informace o pobočce a vlastnictví je v rámečku nad tlačítky, ne v drobném textu.",
+  "Popis má nápovědu s příkladem a údajem, kde se zobrazí.",
+  "Jeden formulář pro novou i upravovanou verzi – liší se jen nadpis a text tlačítka."],
+ "texty":[
+  {"dnes":"Název souboru otázek (povinné)","nove":"Název souboru otázek","proc":"Povinné bez označení; nepovinné pole má „(nepovinné)“."},
+  {"dnes":"Popis – Nepovinné. Zobrazí se v přehledu souborů.","nove":"Popis (nepovinné) – Zobrazí se v přehledu souborů a v detailu. Například předpis, verze nebo cílová skupina.","proc":"Nepovinnost u labelu, nápověda s příkladem."},
+  {"dnes":"Soubor se založí pod aktivní pobočkou Návštěvník 8982. Budete jeho vlastníkem a můžete přidělovat práva dalším.","nove":"Soubor se založí v pobočce Praha. Budete jeho vlastníkem a můžete přidělovat práva dalším.","proc":"Ponecháno, zkráceno."},
+  {"dnes":"Uložit (úprava)","nove":"Uložit změny","proc":"Tlačítko říká, co udělá."}],
+ "pristupnost":[
+  "Labely nad poli, nápověda přes aria-describedby.",
+  "Chyba: aria-invalid + .error; error-summary s odkazem na pole dostane fokus.",
+  "Zrušit je odkaz zpět (na seznam nebo detail), ne reset formuláře."],
+ "poznamky_pro_kodera":["Název max. 200 znaků (beze změny proti dnešku – ověřit na backendu).","Po založení přesměrovat na detail nového souboru se zprávou a odkazem Přidat první otázku."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="soubory.html">Soubory otázek</a></li><li><span aria-current="page">Nový soubor otázek</span></li></ol></nav>
+<div class="page-head"><h1 class="t-titulek">Nový soubor otázek</h1></div>
+
+<form class="card stack-4 measure" action="soubor-detail.html" method="post" novalidate>
+ <div class="field">
+  <label class="label" for="nazev">Název souboru otázek</label>
+  <input class="input" id="nazev" name="nazev" aria-describedby="nazev-h">
+  <p class="hint" id="nazev-h">Například „Požární ochrana – periodické školení“.</p>
+ </div>
+ <div class="field">
+  <label class="label" for="popis">Popis <span class="volitelne">(nepovinné)</span></label>
+  <textarea class="textarea" id="popis" name="popis" aria-describedby="popis-h"></textarea>
+  <p class="hint" id="popis-h">Zobrazí se v přehledu souborů a v detailu. Například předpis, verze nebo cílová skupina.</p>
+ </div>
+ <div class="alert alert--info">{{I:info}}<p>Soubor se založí v pobočce <b>Praha</b>. Budete jeho vlastníkem a můžete přidělovat práva dalším.</p></div>
+ <div class="form-actions"><button class="btn btn--hlavni" type="submit">Založit soubor</button><a class="btn btn--tiche" href="soubory.html">Zrušit</a></div>
+</form>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Chyba – chybí název</h3>
+  <div class="card stack-4 measure">
+   <div class="error-summary stack-2" role="alert" tabindex="-1"><p class="alert__nadpis">Opravte prosím 1 údaj</p><ul style="padding-left:var(--s-4)"><li><a href="#nazev-e">Vyplňte název souboru otázek.</a></li></ul></div>
+   <div class="field">
+    <label class="label" for="nazev-e">Název souboru otázek</label>
+    <input class="input" id="nazev-e" aria-invalid="true" aria-describedby="nazev-e-err">
+    <p class="error" id="nazev-e-err">{{I:pozor}}Vyplňte název souboru otázek.</p>
+   </div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Úprava existujícího souboru (/soubory/:id/upravit)</h3>
+  <div class="card stack-4 measure">
+   <nav class="crumbs" aria-label="Drobečková navigace – úprava"><ol><li><a href="soubory.html">Soubory otázek</a></li><li><a href="soubor-detail.html">BOZP – školení zaměstnanců</a></li><li><span aria-current="page">Upravit</span></li></ol></nav>
+   <p class="t-titulek">Upravit soubor otázek</p>
+   <div class="field"><label class="label" for="nazev-u">Název souboru otázek</label><input class="input" id="nazev-u" value="Ukázková sada: BOZP – školení zaměstnanců"></div>
+   <div class="field"><label class="label" for="popis-u">Popis <span class="volitelne">(nepovinné)</span></label><textarea class="textarea" id="popis-u">Základní povinnosti zaměstnavatele, vedoucích zaměstnanců a zaměstnanců v BOZP, osobní ochranné pracovní prostředky, pracovní úrazy…</textarea></div>
+   <div class="form-actions"><button class="btn btn--hlavni" type="button">Uložit změny</button><a class="btn btn--tiche" href="soubor-detail.html">Zrušit úpravy</a></div>
+  </div>
+ </div>
+</section>

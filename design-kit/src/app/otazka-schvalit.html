@@ -1,0 +1,69 @@
+<!--meta {"titulek":"Schválení otázky","sablona":"app","role":"admin","aktivni":"ke-schvaleni.html","demo":false} -->
+<!--spec {
+ "route":"/otazky/:id/schvalit","nazev":"Schválení otázky","role":"admin (administrátor organizace; administrátor pobočky jen s povolením organizace)","sablona":"app",
+ "ucel":"Prohlédnout otázku tak, jak ji uvidí zkoušený, a rozhodnout: schválit, nebo vrátit autorovi s komentářem.",
+ "hlavni_akce":"Schválit otázku.",
+ "komponenty":["crumbs","page-head","meta","layout-aside","card","card--papir","option__bub","stav","alert","field","textarea","error-summary","form-actions"],
+ "stavy":[
+  "vrácení bez komentáře: .error-summary nahoře + pole s aria-invalid a .error „Napište autorovi, co má opravit.“ (nakresleno níže).",
+  "po schválení: návrat na Ke schválení s .alert--ok „Otázka schválena. Do testů se dostane od teď.“",
+  "po vrácení: .alert--ok „Otázka vrácena do konceptu. Autor dostal e-mail s komentářem.“",
+  "otázka mezitím schválena jiným: .alert--info „Otázku už schválila Barbora Veselá 3. 11. 18:40.“ a formulář zmizí.",
+  "bez oprávnění: 403."],
+ "zmeny_ux":[
+  "Dvě rozhodnutí jsou dvě oddělené akce: Schválit otázku (hlavní) a pod ní Vrátit do konceptu s povinným komentářem – dnes je komentář mezi tlačítky a nejasné, ke kterému patří.",
+  "Náhled otázky v kartě „na papíře“ jako u zkoušeného; správná odpověď štítkem Správná.",
+  "Interní poznámka jako .alert--info, ne drobný text.",
+  "Odkaz Historie a rozdíly přesunut k verzi v metadatech."],
+ "texty":[
+  {"dnes":"Schválit","nove":"Schválit otázku","proc":"Sloveso + co."},
+  {"dnes":"Povinné při vrácení. Uloží se do auditu otázky.","nove":"Autor komentář uvidí u otázky a dostane ho e-mailem. Uloží se do historie otázky.","proc":"Říká, kdo to uvidí."},
+  {"dnes":"JEDNA SPRÁVNÁ · 1 B.","nove":"Jedna správná · 1 bod","proc":"Bez zkratky."},
+  {"dnes":"✓ Správná","nove":"štítek se svg ikonou check","proc":"Ikony ze sady, ne znak."}],
+ "pristupnost":["Komentář má label, hint a při chybě aria-invalid + aria-describedby na .error.","Error summary přebírá fokus a odkazuje na pole.","Dvě akce v samostatných formulářích – Enter v textarea nic neodesílá."],
+ "poznamky_pro_kodera":["Komentář min. 1 znak jen při vrácení.","Obě akce zapisují do auditu (Otázka schválena / Otázka vrácena do konceptu)."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="ke-schvaleni.html">Ke schválení</a></li><li><span aria-current="page">Které z hesel je nejbezpečnější?</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Schválení otázky</h1>
+ <dl class="meta"><div><dt>Soubor</dt><dd>Ukázková sada: Kybernetická bezpečnost – školení uživatelů</dd></div><div><dt>Verze</dt><dd>1 · Adam Autor · 3.&nbsp;11.&nbsp;2026 03:00 · <a href="otazka-historie.html">Historie a rozdíly</a></dd></div></dl></div>
+ <span class="stav stav--pozor">{{I:hodiny}}Ke schválení</span>
+</div>
+
+<div class="layout-aside">
+ <div class="stack-4">
+  <section class="card card--papir stack" aria-labelledby="nahled">
+   <h2 id="nahled" class="t-stitek">Náhled pro zkoušeného · Jedna správná · 1 bod</h2>
+   <p class="t-nadpis">Které z&nbsp;hesel je nejbezpečnější?</p>
+   <ol class="stack-2" style="list-style:none;padding:0">
+    <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">1</span><span style="flex:1 1 160px">Heslo123</span></li>
+    <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">2</span><span style="flex:1 1 160px">Jméno psa a rok narození</span></li>
+    <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">3</span><span style="flex:1 1 160px">Dlouhá věta z&nbsp;několika nesouvisejících slov</span><span class="stav stav--ok">{{I:check}}Správná</span></li>
+   </ol>
+  </section>
+  <div class="alert alert--info">{{I:info}}<p><b>Interní poznámka:</b> Ukázka schvalování: otázka čeká na schválení.</p></div>
+ </div>
+
+ <aside class="stack-4" aria-label="Rozhodnutí">
+  <form class="card stack" action="ke-schvaleni.html" method="post" aria-labelledby="schv">
+   <h2 id="schv" class="t-nadpis">Schválit</h2>
+   <p class="t-maly">Otázka se od teď může dostat do nových variací testů.</p>
+   <button class="btn btn--hlavni" type="submit">{{I:check}}Schválit otázku</button>
+  </form>
+  <form class="card stack" action="ke-schvaleni.html" method="post" aria-labelledby="vrat">
+   <h2 id="vrat" class="t-nadpis">Vrátit autorovi</h2>
+   <div class="field"><label class="label" for="kom">Komentář pro autora</label><span class="hint" id="kom-h">Autor ho uvidí u otázky a dostane ho e-mailem. Uloží se do historie otázky.</span><textarea class="textarea" id="kom" name="komentar" aria-describedby="kom-h"></textarea></div>
+   <button class="btn" type="submit">Vrátit do konceptu</button>
+  </form>
+ </aside>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Vrácení bez komentáře</p>
+  <div class="card stack" style="max-width:420px">
+   <div class="error-summary" role="alert" aria-labelledby="es-h"><p id="es-h" class="alert__nadpis">Otázku nejde vrátit</p><ul style="padding-left:var(--s-4)"><li><a href="#kom2">Napište autorovi, co má opravit.</a></li></ul></div>
+   <div class="field"><label class="label" for="kom2">Komentář pro autora</label><span class="hint" id="kom2-h">Autor ho uvidí u otázky a dostane ho e-mailem.</span><textarea class="textarea" id="kom2" aria-invalid="true" aria-describedby="kom2-e kom2-h"></textarea><span class="error" id="kom2-e">{{I:pozor}}Napište autorovi, co má opravit.</span></div>
+   <button class="btn" type="button">Vrátit do konceptu</button>
+  </div></div>
+</section>

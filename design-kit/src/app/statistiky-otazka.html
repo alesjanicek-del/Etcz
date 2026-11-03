@@ -1,0 +1,73 @@
+<!--meta {"titulek":"Statistiky otázky","sablona":"app","role":"lektor","aktivni":"statistiky.html","demo":false} -->
+<!--spec {
+ "route":"/statistiky/otazka/:id","nazev":"Statistiky otázky","role":"lektor (autor otázek stejně a navíc odkaz Upravit otázku)","sablona":"app",
+ "ucel":"Ukázat, jak zkoušení odpovídají na jednu otázku – podle toho poznáte matoucí nebo příliš snadné odpovědi.",
+ "hlavni_akce":"Přečíst rozložení voleb; přejít na úpravu otázky.",
+ "komponenty":["crumbs","page-head","kpi","bar","table-wrap","table--stack","stav","tabs (verze)"],
+ "stavy":[
+  "bez dat: pruhy 0, věta „Otázka zatím nebyla v žádném odevzdaném pokusu.“",
+  "více verzí: přepínač verze (tabs) nad volbami; každá verze má jiné volby.",
+  "skryto: „< 5“ u poboček mimo přístup.",
+  "oprávnění: jen otázky ze souborů, ke kterým má uživatel právo."],
+ "zmeny_ux":[
+  "Volby odpovědí jako vodorovný graf .bar s počtem a podílem; pod ním tabulka se stejnými čísly.",
+  "Správná odpověď označena štítkem Správná (ikona + slovo) – dnes „ano/ne“ ve sloupci.",
+  "Metriky jako .kpi (zobrazena, správně, úspěšnost); tabulka Po verzích pod grafem.",
+  "Plný text zadání otázky (dnes zkrácený s „…“)."],
+ "texty":[
+  {"dnes":"Kolikrát zkoušení zvolili jednotlivé odpovědi (odevzdané pokusy, online i papírové).","nove":"Kolikrát zkoušení zvolili jednotlivé odpovědi. Počítají se odevzdané pokusy online i na papíře.","proc":"Bez závorky."},
+  {"dnes":"Správná: ano / ne","nove":"štítek „Správná“ jen u správné odpovědi","proc":"Méně šumu, ikona + slovo."},
+  {"dnes":"Otázka č. 1","nove":"Otázka 5 · Ukázková sada: Kybernetická bezpečnost","proc":"Kontext souboru v hlavičce."}],
+ "pristupnost":["Graf: popisek odpovědi je text, pruh aria-hidden, číslo „3 (50 %)“ textem; tabulka pod grafem se stejnými daty.","Písmeno odpovědi aria-hidden, aby čtečka nečetla „A A)“."],
+ "poznamky_pro_kodera":["Podíl = zvoleno / počet pokusů s otázkou; u více správných může součet přesáhnout 100 %.","Délka pruhu = podíl.","Ukázková čísla: 6 pokusů."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="statistiky.html">Statistiky</a></li><li><a href="statistiky-soubor.html">Kybernetická bezpečnost – školení uživatelů</a></li><li><span aria-current="page">Otázka 5</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Otázka 5 · Jedna správná · Povinná</p><h1 class="t-titulek">Do pracovní schránky vám přišel podezřelý e-mail</h1></div>
+ <div class="page-head__actions"><a class="btn" href="otazka-detail.html">Otevřít otázku</a></div>
+</div>
+<p class="measure" style="margin-bottom:var(--s-4)">Do pracovní schránky vám přišel e-mail, který vám připadá podezřelý: nečekaná příloha a výzva ke kliknutí na odkaz. Jak správně postupujete?</p>
+
+<div class="kpi" style="margin-bottom:var(--s-5)">
+ <div><span class="t-cislo">6</span><span class="t-maly">zobrazena (pokusů)</span></div>
+ <div><span class="t-cislo">2 / 6</span><span class="t-maly">správně / vyhodnoceno</span></div>
+ <div><span class="t-cislo">33,3&nbsp;%</span><span class="t-maly">úspěšnost</span></div>
+</div>
+
+<section class="stack" aria-labelledby="volby" style="margin-bottom:var(--s-5)">
+ <div class="stack-2"><h2 id="volby" class="t-nadpis">Volby odpovědí</h2><p class="t-maly">Kolikrát zkoušení zvolili jednotlivé odpovědi. Počítají se odevzdané pokusy online i na papíře.</p></div>
+ <nav class="tabs" aria-label="Verze otázky" style="contain:inline-size"><a href="#">Verze 1</a><a href="#" aria-current="page">Verze 2 (aktuální)</a></nav>
+ <div class="stack">
+  <div class="bar" style="grid-template-columns:minmax(0,1fr)"><span>A) E-mail trvale smažu a nikomu nic neříkám.</span><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:33%"></span></span><span class="t-cislo">2 (33&nbsp;%)</span></span></div>
+  <div class="bar" style="grid-template-columns:minmax(0,1fr)"><span>B) Odpovím odesílateli a zeptám se, zda zprávu poslal opravdu on.</span><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:17%"></span></span><span class="t-cislo">1 (17&nbsp;%)</span></span></div>
+  <div class="bar" style="grid-template-columns:minmax(0,1fr)"><span>C) Přepošlu e-mail všem kolegům z&nbsp;oddělení, aby byli varováni.</span><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:17%"></span></span><span class="t-cislo">1 (17&nbsp;%)</span></span></div>
+  <div class="bar" style="grid-template-columns:minmax(0,1fr)"><span class="row" style="gap:var(--s-2)"><span>D) Neotevírám přílohu ani odkaz a e-mail nahlásím podle interního postupu organizace.</span><span class="stav stav--ok">{{I:check}}Správná</span></span><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1" aria-hidden="true"><span class="bar__fill" style="display:block;width:33%"></span></span><span class="t-cislo">2 (33&nbsp;%)</span></span></div>
+  <div class="bar" style="grid-template-columns:minmax(0,1fr)"><span>E) Přílohu otevřu jen na pracovním počítači, protože ji zachytí firemní antivir.</span><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:0"></span></span><span class="t-cislo">0 (0&nbsp;%)</span></span></div>
+ </div>
+ <p class="t-maly">Plný pruh = správná odpověď, šrafovaný = nesprávná. Častá volba A ukazuje, že lidé nevědí, že podezřelý e-mail mají nahlásit.</p>
+ <div class="table-wrap"><table class="table table--stack">
+  <caption>Volby odpovědí, verze 2</caption>
+  <thead><tr><th scope="col">Odpověď</th><th scope="col">Správná</th><th scope="col" class="num">Zvoleno</th><th scope="col" class="num">Podíl</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Odpověď">A) E-mail trvale smažu…</td><td data-label="Správná">ne</td><td data-label="Zvoleno" class="num">2</td><td data-label="Podíl" class="num">33&nbsp;%</td></tr>
+   <tr><td data-label="Odpověď">B) Odpovím odesílateli…</td><td data-label="Správná">ne</td><td data-label="Zvoleno" class="num">1</td><td data-label="Podíl" class="num">17&nbsp;%</td></tr>
+   <tr><td data-label="Odpověď">C) Přepošlu e-mail kolegům…</td><td data-label="Správná">ne</td><td data-label="Zvoleno" class="num">1</td><td data-label="Podíl" class="num">17&nbsp;%</td></tr>
+   <tr><td data-label="Odpověď">D) Neotevírám přílohu a nahlásím…</td><td data-label="Správná"><b>ano</b></td><td data-label="Zvoleno" class="num">2</td><td data-label="Podíl" class="num">33&nbsp;%</td></tr>
+   <tr><td data-label="Odpověď">E) Přílohu otevřu na pracovním počítači…</td><td data-label="Správná">ne</td><td data-label="Zvoleno" class="num">0</td><td data-label="Podíl" class="num">0&nbsp;%</td></tr>
+  </tbody>
+ </table></div>
+</section>
+
+<section class="stack" aria-labelledby="verze">
+ <h2 id="verze" class="t-nadpis">Metriky po verzích</h2>
+ <div class="table-wrap"><table class="table table--stack">
+  <caption class="sr-only">Metriky otázky po verzích</caption>
+  <thead><tr><th scope="col">Verze</th><th scope="col" class="num">Zařazena do variací</th><th scope="col" class="num">Zobrazena (pokusů)</th><th scope="col" class="num">Zobrazení celkem</th><th scope="col" class="num">Správně / vyhodnoceno</th><th scope="col" class="num">Úspěšnost</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Verze"><b>Všechny verze</b></td><td data-label="Zařazena" class="num">6</td><td data-label="Zobrazena" class="num">6</td><td data-label="Zobrazení" class="num">7</td><td data-label="Správně" class="num">2 / 6</td><td data-label="Úspěšnost" class="num">33,3&nbsp;%</td></tr>
+   <tr><td data-label="Verze">v1 (4.&nbsp;9.&nbsp;2026)</td><td data-label="Zařazena" class="num">4</td><td data-label="Zobrazena" class="num">4</td><td data-label="Zobrazení" class="num">5</td><td data-label="Správně" class="num">1 / 4</td><td data-label="Úspěšnost" class="num">25,0&nbsp;%</td></tr>
+   <tr><td data-label="Verze">v2 (2.&nbsp;11.&nbsp;2026) aktuální</td><td data-label="Zařazena" class="num">2</td><td data-label="Zobrazena" class="num">2</td><td data-label="Zobrazení" class="num">2</td><td data-label="Správně" class="num">1 / 2</td><td data-label="Úspěšnost" class="num">50,0&nbsp;%</td></tr>
+  </tbody>
+ </table></div>
+</section>

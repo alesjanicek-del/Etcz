@@ -1,0 +1,33 @@
+<!--meta {"titulek":"Přístup odepřen","sablona":"app","role":"lektor","aktivni":"","demo":false} -->
+<!--spec {
+ "route":"(chyba)","nazev":"Přístup odepřen","role":"lektor (ukázka: lektor otevřel Správa → Uživatelé; obsah se mění podle role a stránky)","sablona":"app",
+ "ucel":"Vysvětlit, proč stránku nevidíte, a kdo vám může přístup dát.",
+ "hlavni_akce":"Přejít na Přehled; napsat administrátorovi.",
+ "komponenty":["card--papir","dl","btn"],
+ "stavy":[
+  "chybí role pro stránku (nakresleno): uvede potřebnou roli a kontakt na administrátora pobočky.",
+  "záznam patří jinému lektorovi (výsledek, test): „Tento test vytvořila Lucie Lektorová. Požádejte ji o sdílení.“",
+  "jiná pobočka: „Záznam patří pobočce Brno. Přepněte aktivní pobočku, pokud v ní máte roli.“",
+  "povinné ověření ve dvou krocích nenastaveno: přesměrování na nastavení 2FA, ne 403."],
+ "zmeny_ux":[
+  "Stránka říká konkrétní důvod (jaká role chybí) a jméno administrátora s e-mailem – dnes obecná chyba.",
+  "Žádné obviňování uživatele; jedna hlavní akce."],
+ "texty":[
+  {"dnes":"(obecná chybová stránka 403)","nove":"Na tuto stránku nemáte přístup","proc":"Lidsky, činně."},
+  {"dnes":"(chybí)","nove":"Uživatele spravuje administrátor pobočky. Pokud přístup potřebujete, napište mu.","proc":"Říká, co dělat."}],
+ "pristupnost":["H1 popisuje situaci.","E-mail administrátora je odkaz mailto s jménem v textu."],
+ "poznamky_pro_kodera":["HTTP 403; důvod a kontakt dodá server.","Nezobrazovat název chráněného záznamu, jen typ."],
+ "chybi_komponenta":[]
+} -->
+<div class="card card--papir stack-4" style="max-width:var(--max-text);margin-top:var(--s-4)">
+ <p class="t-stitek">Chyba 403</p>
+ <h1 class="t-titulek">Na tuto stránku nemáte přístup</h1>
+ <p>Stránka <b>Uživatelé</b> je jen pro administrátory. Vaše role v&nbsp;pobočce Praha je Lektor.</p>
+ <dl class="dl">
+  <dt>Potřebná role</dt><dd>Administrátor pobočky nebo organizace</dd>
+  <dt>Vaše role</dt><dd>Lektor · Pobočka Praha</dd>
+  <dt>Kdo pomůže</dt><dd>Barbora Veselá, administrátorka pobočky – <a href="mailto:admin.barbora@demo.example">napsat Barboře Veselé</a></dd>
+ </dl>
+ <p class="t-maly">Uživatele spravuje administrátor pobočky. Pokud přístup potřebujete, napište mu.</p>
+ <div class="row"><a class="btn btn--hlavni" href="lektor-prehled.html">{{I:domu}}Přejít na Přehled</a><a class="btn btn--tiche" href="napoveda.html">Role a oprávnění v nápovědě</a></div>
+</div>

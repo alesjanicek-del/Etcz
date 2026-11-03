@@ -1,0 +1,138 @@
+<!--meta {"titulek": "Prohlášení o přístupnosti", "sablona": "app", "role": "lektor", "aktivni": "", "demo": false} -->
+<!--spec {
+ "route": "/prohlaseni-o-pristupnosti",
+ "nazev": "Prohlášení o přístupnosti (v aplikaci)",
+ "role": "lektor (stejný obsah pro všechny role; zkoušený bez účtu ho otevře z patičky testu bez menu)",
+ "sablona": "app",
+ "ucel": "Zákonné prohlášení podle zákona č. 99/2019 Sb.: stav souladu, známé nedostatky, kontakt a vynucovací postup.",
+ "hlavni_akce": "Přečíst shrnutí; nahlásit nedostatek na podpora@exam-test.cz.",
+ "komponenty": [
+  "page-head",
+  "card--papir",
+  "list-check",
+  "layout-aside",
+  "prose",
+  "prose-pravni",
+  "toc"
+ ],
+ "stavy": [
+  "Statická stránka; text spravuje organizace (povinný subjekt) a provozovatel dodává podklady.",
+  "Tisk: menu, toc a tlačítko se skryjí (.no-print).",
+  "Bez oprávnění: stránka je veřejná, i bez přihlášení."
+ ],
+ "zmeny_ux": [
+  "Nahoře „V kostce“ – 5 vět, co z prohlášení plyne pro uživatele (nové, není součástí právního textu).",
+  "Plné znění beze změny obsahu, strukturované do nadpisů H2/H3 a seznamů; obsah (toc) vpravo.",
+  "Seznamy oprav po verzích jako odrážky místo souvislého textu.",
+  "Tlačítko Vytisknout."
+ ],
+ "texty": [
+  {
+   "dnes": "(celé znění prohlášení)",
+   "nove": "beze změny – jen nadpisy a odrážky",
+   "proc": "Právní text obsahově nepřepisujeme."
+  },
+  {
+   "dnes": "(chybí)",
+   "nove": "V kostce – 5 vět",
+   "proc": "Rychlá orientace; výslovně nezávazné."
+  }
+ ],
+ "pristupnost": [
+  "Jediné H1, oddíly H2, písmena a)–c) jako H3 – odpovídá osnově vzoru prohlášení.",
+  "toc je nav s aria-label Obsah.",
+  "Shrnutí je oddělené a označené jako nezávazné."
+ ],
+ "poznamky_pro_kodera": [
+  "Text generovat z jednoho zdroje (Markdown) i pro web/prohlaseni-o-pristupnosti.",
+  "Název organizace (povinný subjekt) se dosazuje.",
+  "Kotvy nadpisů ze slugů."
+ ],
+ "chybi_komponenta": [
+  ".prose-pravni není v brand.css (check.js ho jen vynechává z kontroly délky vět) – doporučeno doplnit styl, např. odsazení h3 a čísla odstavců"
+ ]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Prohlášení o přístupnosti</h1><p class="t-maly measure">Ukázková organizace (demo) · naposledy přezkoumáno 1.&nbsp;11.&nbsp;2026</p></div><div class="page-head__actions no-print"><button class="btn" type="button" onclick="window.print()">{{I:tisk}}Vytisknout</button></div></div>
+<section class="card card--papir stack" aria-labelledby="kostka" style="max-width:var(--max-text);margin-bottom:var(--s-5)">
+ <h2 id="kostka" class="t-nadpis">V kostce</h2>
+ <ul class="list-check"><li><span>Aplikace je <b>částečně v souladu</b> se zákonem č. 99/2019 Sb. (WCAG 2.1 na úrovni AA).</span></li><li><span>Známé nedostatky: obrázky a zápisy od autorů bez popisu, velké tiskové dávky PDF bez značek a zatím chybí ruční test se čtečkou.</span></li><li><span>Potřebujete na test víc času? Požádejte předem lektora nebo pořadatele zkoušky.</span></li><li><span>Před odhlášením pro nečinnost přijde upozornění. Přihlášení prodloužíte tlačítkem nebo klávesou Esc.</span></li><li><span>Nedostatek nahlaste na <a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a>. Odpovíme do 30 dní.</span></li></ul>
+ <p class="t-maly">Shrnutí je jen pro orientaci. Závazné je plné znění níže.</p>
+</section>
+<div class="layout-aside">
+<article class="prose prose-pravni" aria-label="Plné znění">
+<p>Ukázková organizace (demo) jako povinný subjekt podle § 2 zákona č. 99/2019 Sb. se zavazuje zpřístupnit webovou aplikaci exam-test (testy a zkoušky organizace Ukázková organizace (demo)) v souladu se zákonem č. 99/2019 Sb., o přístupnosti internetových stránek a mobilních aplikací a o změně zákona č. 365/2000 Sb., o informačních systémech veřejné správy a o změně některých dalších zákonů, ve znění pozdějších předpisů. Požadavky na přístupnost stanoví harmonizovaná norma ČSN EN 301 549 V3.2.1 (odpovídá WCAG 2.1 na úrovni AA).</p>
+<p>Toto prohlášení o přístupnosti se vztahuje na aplikaci exam-test na adrese, na které ji provozuje Ukázková organizace (demo): rozhraní pro zkoušené (vstup kódem, prezenční zkouška, vyplňování testu, odevzdání, výsledek), veřejné ověření protokolu a administraci (lektoři, autoři otázek, administrátoři).</p>
+<h2 id="stav-souladu">Stav souladu</h2>
+<p>Tato webová aplikace je částečně v souladu se zákonem č. 99/2019 Sb. kvůli níže uvedeným nesouladům.</p>
+<h2 id="nepristupny-obsah">Nepřístupný obsah</h2>
+<h3>a) Nesoulad se zákonem č. 99/2019 Sb.</h3>
+<p>Na základě vlastního posouzení (1. 11. 2026: automatická kontrola nástrojem axe, ruční kontrola klávesnicí a stromem přístupnosti, zobrazení na šířkách 320 až 1440 px a rozbor struktury souborů PDF) jsou známy tyto nedostatky; postupně je odstraňujeme:</p>
+<ul>
+<li>Obsah vložený autory: obrázky v otázkách bez dostatečně výstižného alternativního textu a matematické či chemické zápisy (indexy) bez „textu pro čtečku“ (kritéria 1.1.1 a 1.3.1). Za tento obsah odpovídá organizace, která test připravila.</li>
+<li>Tisková dávka s více než 50 variacemi testu: aplikace ji skládá z částí a sloučený soubor PDF (zadání, případně klíče) nemá značky struktury, čtečka obrazovky v něm nemusí rozpoznat nadpisy, seznamy a tabulky (kritéria 1.3.1 a 1.3.2). Menší dávky jsou značkované jako ostatní soubory PDF (viz níže). Na požádání poskytneme obsah dokumentu v přístupné podobě.</li>
+<li>Rozhraní dosud nebylo ručně ověřeno se čtečkou obrazovky ani v režimu vysokého kontrastu systému Windows (mimo jiné ohlášení nové stránky po přechodu v administraci a upozornění před odhlášením). Ověření je naplánováno; nalezené nedostatky doplníme do tohoto seznamu.</li>
+</ul>
+<p>Odstraněno ve verzi z 27. 10. 2026: editor otázek zadává popis obrázku, úpravu popisu a text pro čtečku v přístupném dialogovém okně (ovládání klávesnicí, Esc zruší, fokus se vrací na tlačítko, chyba se zobrazí u pole); obrázek, který je jen ozdobou, lze označit jako dekorativní – čtečka ho přeskočí a v tisku i PDF má prázdný alternativní text. Čtečka obrazovky spolehlivě oznámí změny souhrnu sekce testu a stavu tiskové dávky.</p>
+<p>Odstraněno ve verzi z 28. 10. 2026:</p>
+<ul>
+<li>odkazy v textu jsou podtržené (nelišily se jen barvou, kritérium 1.4.1),</li>
+<li>promítací plocha prezenční zkoušky se obnovuje bez automatického načítání celé stránky (kritérium 2.2.1),</li>
+<li>chybové hlášky přihlášení, ověření ve dvou krocích a formulářů byly částečně anglicky, nyní jsou česky a říkají, co dělat (kritéria 3.1.2 a 3.3.1),</li>
+<li>pole s chybou je pro čtečku označené jako chybné a chybová hláška je s ním svázaná, odeslaný formulář s chybami má nahoře souhrn s odkazy na pole a přebírá fokus (kritéria 1.3.1 a 3.3.1),</li>
+<li>skupiny přepínačů jsou seskupené s popiskem a „povinné“ se čte jen jednou (kritéria 1.3.1 a 3.3.2),</li>
+<li>prodloužení času lektorem se zkoušenému zobrazí a oznámí čtečce; zkoušený se dozví, že mu test ukončil lektor (kritérium 4.1.3),</li>
+<li>pole pro záložní kód ověření ve dvou krocích otevírá na telefonu klávesnici s písmeny (kritérium 3.3.2),</li>
+<li>tabulky, které se na úzké obrazovce nevejdou, lze posouvat klávesnicí (kritérium 2.1.1),</li>
+<li>odhlášení funguje na všech stránkách a po odhlášení se zobrazí potvrzení.</li>
+</ul>
+<p>Odstraněno ve verzi z 29. 10. 2026:</p>
+<ul>
+<li>stránky se na šířce 320 px (zvětšení 400 %) přeskládají bez vodorovného posouvání, a to i nastavení organizace, import otázek, průvodce testem a hlavička testu (kritérium 1.4.10),</li>
+<li>podtržené jsou všechny odkazy v obsahu stránky, i mimo odstavce a seznamy, např. v kartách a hláškách (kritérium 1.4.1),</li>
+<li>po zavření upozornění dohledu se fokus vrátí na místo, kde byl, a ne na začátek stránky; upozornění zavře i klávesa Esc (kritérium 2.4.3),</li>
+<li>pole odpovědí v editoru otázek a pole přihlášení mají chybovou hlášku svázanou s polem nebo skupinou polí (kritéria 1.3.1 a 3.3.1),</li>
+<li>mobilní menu aplikace zavře klávesa Esc a fokus se vrátí na tlačítko menu.</li>
+</ul>
+<p>Odstraněno ve verzi z 31. 10. 2026:</p>
+<ul>
+<li>2 minuty před odhlášením pro nečinnost (administrace po 30 minutách, studující po 60 minutách, konzole provozovatele po 15 minutách) se zobrazí upozornění s tlačítkem „Prodloužit přihlášení“, které přihlášení prodlouží; rozepsaná otázka v editoru se průběžně ukládá v této kartě prohlížeče a po novém přihlášení, které vrátí na původní stránku, ji lze obnovit (kritérium 2.2.1),</li>
+<li>automatickou aktualizaci živého panelu lektora lze pozastavit a znovu zapnout, změnu stavu čtečka ohlásí; promítací plocha prezenční zkoušky se dál aktualizuje sama, to je její účel (kritérium 2.2.2),</li>
+<li>po přechodu na jinou stránku administrace se fokus přesune na nadpis stránky a čtečka ohlásí její název (kritéria 2.4.3 a 4.1.3),</li>
+<li>soubory PDF vytvořené aplikací (protokoly o zkoušce, osvědčení, záznamy o školení, pokyny pro zkoušené, příručky, tiskové variace, odpovědní listy a klíče, doklady) jsou značkované PDF s jazykem dokumentu; tabulky mají buňky záhlaví řádků i sloupců a tabulka, která jen opakuje záhlaví na stranách zadání, se čtečce nehlásí jako tabulka. Ověřeno automatickým rozborem struktury; kontrola nástrojem PAC je naplánována (kritérium 1.3.1),</li>
+<li>na šířce 320 px se bez vodorovného posouvání přeskládají i úprava štítků, statistika otázky, práva k testu, detail uživatele a přehled veřejného dema v konzoli provozovatele (kritérium 1.4.10),</li>
+<li>široké tabulky v nápovědě lze na úzké obrazovce posouvat klávesnicí (kritérium 2.1.1),</li>
+<li>chyba zadání otázky je v editoru u pole a svázaná s ním; panel nástrojů editoru odkazuje na existující pole i během načítání (kritéria 1.3.1, 3.3.1 a 4.1.2),</li>
+<li>odkaz na informace o dohledu během testu otevře dialog se stejným názvem; e-maily o vrácení otázky a o zrušení ověření ve dvou krocích mají výstižný text odkazu místo holé adresy (kritéria 2.4.4, 2.4.6 a 3.2.4).</li>
+</ul>
+<p>Odstraněno ve verzi z 1. 11. 2026:</p>
+<ul>
+<li>promítací plocha prezenční zkoušky se na šířce 320 px přeskládá bez vodorovného posouvání; adresa se zalomí a kód pro připojení se zmenší podle šířky okna (kritérium 1.4.10),</li>
+<li>po prodloužení času nebo ukončení pokusu v živém panelu se fokus skutečně vrátí na nadpis živého panelu (dříve skončil na nadpisu stránky), totéž po úpravě výjimek z dohledu; po vydání kódu pro převzetí pokusu zůstává fokus na nadpisu stránky, protože kód se zobrazí v hlášení na jejím začátku (kritérium 2.4.3).</li>
+</ul>
+<p>Automatická kontrola nástrojem axe (WCAG 2.1 A/AA) 31. 10. 2026 nalezla dva drobné nedostatky (posouvání tabulek nápovědy klávesnicí na telefonu a odkaz panelu nástrojů editoru otázek na pole, které se teprve načítalo); oba jsou opravené. Opakovaná kontrola 1. 11. 2026 prošla 642 stránek administrace všech rolí, nápovědu a veřejné stránky, každou na šířce 1440 i 320 px, tok zkoušeného a upozornění před odhlášením. Nástroj axe při ní porušení kritérií WCAG 2.1 nenašel. Kontrola zobrazení na 320 px a ruční kontrola našly dva nedostatky (přesah promítací plochy prezenční zkoušky na 320 px a návrat fokusu v živém panelu); oba jsou opravené ve verzi z 1. 11. 2026. Veřejné demo se při kontrole obnovovalo a zkontrolováno nebylo. Automatická kontrola ale neodhalí všechno, proto seznam nedostatků vedeme podle ruční validace.</p>
+<h3>b) Nepřiměřená zátěž</h3>
+<p>Neuplatňuje se.</p>
+<h3>c) Obsah mimo rozsah právních předpisů</h3>
+<p>Neuplatňuje se.</p>
+<h2 id="casovy-limit-testu">Časový limit testu</h2>
+<p>Potřebujete-li kvůli zdravotnímu znevýhodnění delší čas na vyplnění testu, požádejte před zkouškou lektora nebo pořadatele zkoušky; prodloužení lze nastavit předem pro konkrétní osobu i během testu.</p>
+<h2 id="odhlaseni-po-necinnosti">Odhlášení po nečinnosti</h2>
+<p>Z bezpečnostních důvodů aplikace odhlásí přihlášené uživatele administrace po 30 minutách nečinnosti, studující po 60 minutách a konzoli provozovatele po 15 minutách. 2 minuty předem se zobrazí upozornění; tlačítkem „Prodloužit přihlášení“ nebo klávesou Esc přihlášení prodloužíte. Přihlášení platí nejvýše 12 hodin (konzole provozovatele 4 hodiny) – tento limit prodloužit nejde, upozornění na něj ale přijde také předem. Běžící test se pro nečinnost neukončuje.</p>
+<h2 id="dohled-nad-zkouskou">Dohled nad zkouškou</h2>
+<p>U některých testů může organizace zapnout dohled nad zkouškou, který zaznamenává opuštění okna testu. Upozornění po návratu do okna se zobrazí bez přesunu fokusu a čtečka ho přečte; zavřete ho tlačítkem „Rozumím“ nebo klávesou Esc a fokus se vrátí tam, kde byl; celá obrazovka se jen nabízí a blokace kopírování neomezuje výběr textu, zvětšení ani čtečku. Některé pomůcky (diktování, samostatná lupa, ovládání hlasem) a upozornění systému však mohou opuštění okna vyvolat, i když test nepřerušíte, a v režimu s automatickým odevzdáním test odevzdat. Používáte-li takovou pomůcku, řekněte to před zahájením lektorovi; může zvolit jen záznam bez odevzdání nebo test bez dohledu. Proti automatickému odevzdání můžete požádat o přezkoumání člověkem u pořadatele zkoušky.</p>
+<h2 id="vypracovani-tohoto-prohlaseni-o-pristupn">Vypracování tohoto prohlášení o přístupnosti</h2>
+<p>Prohlášení bylo vypracováno dne 27. 10. 2026 na základě vlastního posouzení provedeného provozovatelem aplikace (ABUCO ICT s.r.o.) naposledy dne 1. 11. 2026 – automatická kontrola nástrojem axe, ruční kontrola klávesnicí a stromem přístupnosti v prohlížeči. Ruční test se čtečkou obrazovky je naplánován. Ukázková organizace (demo) jako povinný subjekt podle § 2 zákona č. 99/2019 Sb. vydává toto prohlášení jako své a odpovídá za jeho zveřejnění a aktualizaci; provozovatel aplikace připravil jeho návrh a dodává technické podklady (seznam nedostatků a jejich odstranění). Prohlášení bylo naposledy přezkoumáno dne 1. 11. 2026; přezkoumává se nejméně jednou ročně a po každé větší změně aplikace.</p>
+<h2 id="zpetna-vazba-a-kontaktni-udaje">Zpětná vazba a kontaktní údaje</h2>
+<p>Nedostatky v přístupnosti, žádosti o informace v přístupné podobě a další dotazy zasílejte na podpora@exam-test.cz (povinný subjekt Ukázková organizace (demo)). Technickou podporu aplikace poskytuje provozovatel na podpora@exam-test.cz nebo telefonicky na +420 725 311 531. Na podnět odpovíme bez zbytečného odkladu, nejpozději do 30 dnů.</p>
+<h2 id="vynucovaci-postup">Vynucovací postup</h2>
+<p>Pokud na svůj podnět nedostanete od Ukázková organizace (demo) uspokojivou odpověď, můžete se obrátit na Ministerstvo vnitra ČR, které vykonává dohled nad dodržováním zákona č. 99/2019 Sb.: Ministerstvo vnitra, Nad Štolou 936/3, 170 34 Praha 7, e-mail posta@mvcr.cz, datová schránka 6bnaawp, www.mvcr.cz.</p>
+</article>
+<aside aria-label="Obsah dokumentu"><nav class="toc no-print" aria-label="Obsah" style="position:sticky;top:var(--s-3)"><p class="t-stitek" style="margin-bottom:var(--s-2)">Obsah</p><ol><li><a href="#stav-souladu">Stav souladu</a></li>
+<li><a href="#nepristupny-obsah">Nepřístupný obsah</a></li>
+<li><a href="#casovy-limit-testu">Časový limit testu</a></li>
+<li><a href="#odhlaseni-po-necinnosti">Odhlášení po nečinnosti</a></li>
+<li><a href="#dohled-nad-zkouskou">Dohled nad zkouškou</a></li>
+<li><a href="#vypracovani-tohoto-prohlaseni-o-pristupn">Vypracování tohoto prohlášení o přístupnosti</a></li>
+<li><a href="#zpetna-vazba-a-kontaktni-udaje">Zpětná vazba a kontaktní údaje</a></li>
+<li><a href="#vynucovaci-postup">Vynucovací postup</a></li></ol></nav></aside>
+</div>

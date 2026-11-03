@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Import otázek z XLSX · exam-test</title>
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body>
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+<div class="app">
+ <aside class="app-side">
+  <a class="logo" href="lektor-prehled.html"><img src="../assets/logo/exam-test-logo-male.svg" alt="exam-test – přehled" width="146" height="24"></a>
+  <nav class="app-nav" aria-label="Hlavní"><a href="lektor-prehled.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>Přehled</a><p class="t-stitek">Otázky</p><a href="soubory.html" aria-current="page"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h7l2 2h9v11H3z"/></svg>Soubory otázek</a><a href="otazky-hledat.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></svg>Hledat otázky</a><a href="stitky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg>Štítky</a><p class="t-stitek">Zkoušení</p><a href="testy.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>Testy</a><a href="pouziti.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4l13 8-13 8z"/></svg>Použití testů</a><a href="tisk.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V4h10v5M7 17H4v-8h16v8h-3"/><rect x="7" y="14" width="10" height="6"/></svg>Tisk</a><a href="kalendar.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="15"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>Kalendář</a><p class="t-stitek">Vyhodnocení</p><a href="vysledky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Výsledky</a><a href="platnost-skoleni.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Platnost školení</a><a href="statistiky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V4M4 20h16M8 16v-4M12 16V8M16 16v-6"/></svg>Statistiky</a></nav>
+ </aside>
+ <div>
+  <header class="app-top">
+   <a class="logo" href="lektor-prehled.html"><img src="../assets/logo/exam-test-logo-male.svg" alt="exam-test – přehled" width="122" height="20"></a>
+   <span class="stav stav--neutral">Pobočka Praha</span><span class="sp"></span>
+   <a href="napoveda.html">Nápověda k této stránce</a>
+   <a href="ucet.html" aria-label="Můj účet: Lucie Lektorová">Lucie Lektorová</a>
+   <details class="menu"><summary class="btn btn--male"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu</summary><nav class="menu__panel app-nav" aria-label="Hlavní (mobil)"><a href="lektor-prehled.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>Přehled</a><p class="t-stitek">Otázky</p><a href="soubory.html" aria-current="page"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h7l2 2h9v11H3z"/></svg>Soubory otázek</a><a href="otazky-hledat.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></svg>Hledat otázky</a><a href="stitky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg>Štítky</a><p class="t-stitek">Zkoušení</p><a href="testy.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>Testy</a><a href="pouziti.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4l13 8-13 8z"/></svg>Použití testů</a><a href="tisk.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V4h10v5M7 17H4v-8h16v8h-3"/><rect x="7" y="14" width="10" height="6"/></svg>Tisk</a><a href="kalendar.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="15"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>Kalendář</a><p class="t-stitek">Vyhodnocení</p><a href="vysledky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Výsledky</a><a href="platnost-skoleni.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Platnost školení</a><a href="statistiky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V4M4 20h16M8 16v-4M12 16V8M16 16v-6"/></svg>Statistiky</a><a href="ucet.html">Můj účet</a><a href="#">Odhlásit</a></nav></details>
+  </header>
+  <main id="obsah" class="app-main">
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="soubory.html">Soubory otázek</a></li><li><a href="soubor-detail.html">BOZP – školení zaměstnanců</a></li><li><span aria-current="page">Import XLSX</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Ukázková sada: BOZP – školení zaměstnanců</p><h1 class="t-titulek">Import otázek z XLSX</h1></div></div>
+
+<div class="stack-4">
+ <ol class="steps" aria-label="Postup importu" tabindex="0" style="width:0;min-width:100%">
+  <li style="min-width:0"><span aria-current="step">Nahrát</span></li><li style="min-width:0"><span>Náhled</span></li><li style="min-width:0"><span>Hotovo</span></li>
+ </ol>
+
+ <div class="alert"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><p>Soubor používá 1 test. Importované nové verze dostanou jen nově vzniklé variace. Rozpracované pokusy a vytištěné variace zůstanou na původní verzi.</p></div>
+
+ <form class="card stack-4" action="#nahled" method="post" enctype="multipart/form-data" novalidate>
+  <div class="stack-2">
+   <h2 class="t-nadpis">1. Připravte tabulku</h2>
+   <p>Vyplňte šablonu, nebo použijte <a href="#">export tohoto souboru</a> – má stejný formát.</p>
+   <p><a class="btn" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11M7 10l5 5 5-5M4 20h16"/></svg>Stáhnout prázdnou šablonu (XLSX)</a></p>
+  </div>
+  <div class="faq">
+   <details>
+    <summary>Co vyplnit ve sloupcích</summary>
+    <dl class="dl"><dt class="t-kod">externi_id</dt><dd>Váš identifikátor. Stejné ID otázku aktualizuje a vznikne nová verze.</dd><dt class="t-kod">typ</dt><dd>SINGLE (jedna správná) nebo MULTI (více správných).</dd><dt class="t-kod">text,<br>odpoved_1–10</dt><dd>Zadání a odpovědi, alespoň 4.</dd><dt class="t-kod">spravne</dt><dd>Čísla správných odpovědí, například 1;3.</dd><dt class="t-kod">body</dt><dd>1 až 100, výchozí 1.</dd><dt class="t-kod">stitky</dt><dd>Seznam:Štítek;Seznam:Štítek – jen ze seznamů, které smíte v souboru použít.</dd><dt class="t-kod">zpetna_vazba_ok,<br>zpetna_vazba_chyba,<br>poznamka</dt><dd>Nepovinné.</dd><dt class="t-kod">obrazek,<br>obrazek_popis</dt><dd>Název souboru v archivu ZIP (více oddělte ;) a jeho popis, nebo „dekorativní“.</dd></dl>
+   </details>
+  </div>
+
+  <h2 class="t-nadpis">2. Nahrajte soubory</h2>
+  <div class="field">
+   <label class="label" for="xlsx">Tabulka s otázkami (XLSX)</label>
+   <input class="input" id="xlsx" name="xlsx" type="file" accept=".xlsx" aria-describedby="xlsx-h">
+   <p class="hint" id="xlsx-h">Nejvýše 10&nbsp;MB. Vzorce v buňkách se neprovádějí, načtou se jen hodnoty.</p>
+  </div>
+  <div class="field">
+   <label class="label" for="zip">Obrázky v archivu ZIP <span class="volitelne">(nepovinné)</span></label>
+   <input class="input" id="zip" name="zip" type="file" accept=".zip" aria-describedby="zip-h">
+   <p class="hint" id="zip-h">PNG, JPEG nebo WebP, každý nejvýše 5&nbsp;MB, celý archiv nejvýše 60&nbsp;MB.</p>
+  </div>
+  <label class="check"><input type="checkbox" name="zalozit" aria-describedby="zal-h"><span class="stack-2"><span>Založit chybějící štítky</span><span class="hint" id="zal-h">Neexistující štítek se založí v uvedeném seznamu, pokud ho smíte spravovat. Jinak bude řádek přeskočen.</span></span></label>
+  <div class="form-actions"><button class="btn btn--hlavni" type="submit">Zobrazit náhled</button><span class="t-maly">Zatím se nic neuloží.</span><a class="btn btn--tiche" href="soubor-detail.html">Zrušit import</a></div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Chyba souboru</h3>
+  <div class="card stack">
+   <div class="field">
+    <label class="label" for="xlsx-e">Tabulka s otázkami (XLSX)</label>
+    <input class="input" id="xlsx-e" type="file" accept=".xlsx" aria-invalid="true" aria-describedby="xlsx-e-err">
+    <p class="error" id="xlsx-e-err"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg>Soubor otazky.csv není XLSX. Uložte tabulku v Excelu jako „Sešit Excelu (.xlsx)“.</p>
+   </div>
+  </div>
+ </div>
+
+ <div class="stack" id="nahled">
+  <h3 class="t-stitek">Krok 2 – náhled importu</h3>
+  <div class="card stack-4">
+   <ol class="steps" aria-label="Postup importu – náhled" tabindex="0" style="width:0;min-width:100%"><li class="hotovo" style="min-width:0"><span>Nahrát</span></li><li style="min-width:0"><span aria-current="step">Náhled</span></li><li style="min-width:0"><span>Hotovo</span></li></ol>
+   <div class="stack-2"><p class="t-nadpis" tabindex="-1">Náhled importu: otazky-bozp.xlsx</p><p>Zkontrolujte, co se stane s každým řádkem. Uloží se až po potvrzení.</p></div>
+   <div class="kpi" role="list" aria-label="Souhrn náhledu" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+    <div role="listitem"><span class="t-cislo">12</span><span class="t-maly">nových otázek</span></div>
+    <div role="listitem"><span class="t-cislo">3</span><span class="t-maly">nové verze</span></div>
+    <div role="listitem"><span class="t-cislo">31</span><span class="t-maly">beze změny</span></div>
+    <div role="listitem"><span class="t-cislo">2</span><span class="t-maly">přeskočeno</span></div>
+   </div>
+   <div class="table-wrap">
+    <table class="table table--stack">
+     <caption>Řádky s nějakou změnou nebo chybou (17 ze 48)</caption>
+     <thead><tr><th scope="col" class="num">Řádek</th><th scope="col">externi_id</th><th scope="col">Zadání</th><th scope="col">Akce</th><th scope="col">Poznámka k řádku</th></tr></thead>
+     <tbody>
+      <tr><td data-label="Řádek" class="num">2</td><td data-label="externi_id" class="t-kod">BOZP-001</td><td data-label="Zadání">Zaměstnanec má důvodně za to, že přidělená práce…</td><td data-label="Akce"><span class="stav stav--info"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 5v6h-6"/></svg>Nová verze</span></td><td data-label="Poznámka">Změněna odpověď 3.</td></tr>
+      <tr><td data-label="Řádek" class="num">36</td><td data-label="externi_id" class="t-kod">BOZP-035</td><td data-label="Zadání">Kdo vede knihu úrazů?</td><td data-label="Akce"><span class="stav stav--neutral"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>Nová otázka</span></td><td data-label="Poznámka">—</td></tr>
+      <tr><td data-label="Řádek" class="num">41</td><td data-label="externi_id" class="t-kod">BOZP-040</td><td data-label="Zadání">Které značky označují únikový východ?</td><td data-label="Akce"><span class="stav stav--ne"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12h9"/></svg>Přeskočeno</span></td><td data-label="Poznámka">Obrázek „vychod.png“ nemá popis. Doplňte obrazek_popis, nebo napište „dekorativní“.</td></tr>
+      <tr><td data-label="Řádek" class="num">47</td><td data-label="externi_id" class="t-kod">BOZP-046</td><td data-label="Zadání">Jak dlouho se uchovává záznam o úrazu?</td><td data-label="Akce"><span class="stav stav--ne"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12h9"/></svg>Přeskočeno</span></td><td data-label="Poznámka">Má jen 3 odpovědi. Otázka musí mít alespoň 4.</td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p class="t-maly"><a href="#">Stáhnout přeskočené řádky k opravě (XLSX)</a> · <a href="#">Zobrazit i řádky beze změny (31)</a></p>
+   <div class="form-actions"><button class="btn btn--hlavni" type="button">Potvrdit import 15 otázek</button><a class="btn" href="#xlsx"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 16V5M7 10l5-5 5 5M4 20h16"/></svg>Nahrát jiný soubor</a></div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Zpracování</h3>
+  <div class="alert alert--info" role="status"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><p>Načítám řádek 120 z 340… Stránku nezavírejte.</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Krok 3 – hotovo</h3>
+  <div class="alert alert--ok" role="status"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12.5l5 5L20 6.5"/></svg><div class="stack-2"><p class="alert__nadpis">Import je hotový: 12 nových otázek a 3 nové verze.</p><p>2 řádky byly přeskočeny.</p><p><a href="soubor-detail.html">Zpět na soubor otázek</a></p></div></div>
+ </div>
+</section>
+  </main>
+  <footer class="app-foot"><span>exam-test 0.2.0</span><a href="prohlaseni-o-pristupnosti.html">Prohlášení o přístupnosti</a><a href="co-je-noveho.html">Co je nového</a></footer>
+ </div>
+</div>
+<script type="application/json" id="spec">{"route": "/soubory/:id/import", "nazev": "Import otázek z XLSX", "role": "lektor, autor otázek, administrátor organizace – s právem Editace nebo Vlastník k souboru", "sablona": "app", "ucel": "Hromadně vložit nebo aktualizovat otázky v souboru z tabulky XLSX, s náhledem před uložením. V demu stránka není (návrh podle nápovědy Import a export otázek).", "hlavni_akce": "Zobrazit náhled → Potvrdit import", "komponenty": ["crumbs", "page-head", "steps", "card", "field", "input[type=file]", "check", "faq (details)", "table table--stack", "kpi", "stav", "alert", "error-summary", "form-actions", "btn--hlavni"], "stavy": ["krok 1 – nahrání: šablona ke stažení, popis sloupců, pole XLSX a ZIP, volba Založit chybějící štítky", "chyba souboru: jiný formát než XLSX, víc než 10&nbsp;MB, ZIP nad 60&nbsp;MB nebo obrázek nad 5&nbsp;MB – chyba u pole, nic se nenahraje", "krok 2 – náhled: souhrn (nové, nové verze, beze změny, přeskočené) a tabulka řádků s akcí a chybou; Potvrdit import / Nahrát jiný soubor", "náhled jen s chybami: Potvrdit import je neaktivní s vysvětlením", "krok 3 – hotovo: alert--ok s počty a odkazem na soubor; nové verze dostanou nově vzniklé variace", "zpracování: progress text „Načítám řádek 120 z 340…“ v role=status; tlačítka aria-disabled", "bez oprávnění: bez Editace → 403; v demu stránka „V demu není k dispozici“"], "zmeny_ux": ["Import je nový průvodce ve 3 krocích (Nahrát – Náhled – Hotovo) – dnes ho demo nenabízí a popis je jen v nápovědě.", "Popis sloupců šablony je přímo na stránce v rozbalovacím bloku (externi_id, typ, text, odpoved_1–10, spravne, body, stitky…).", "Náhled ukazuje akci u každého řádku slovem a ikonou (Nová otázka, Nová verze, Beze změny, Přeskočeno) a u přeskočených konkrétní chybu s číslem řádku.", "Přeskočené řádky lze stáhnout jako XLSX k opravě (návrh).", "Varování u souboru použitého v testech: nové verze dostanou nově vzniklé variace, rozpracované pokusy ne."], "texty": [{"dnes": "(nápověda) Stáhnout prázdnou šablonu (XLSX)", "nove": "Stáhnout prázdnou šablonu (XLSX)", "proc": "Ponecháno."}, {"dnes": "(nápověda) Zobrazit náhled. Zatím se nic neuloží.", "nove": "Zobrazit náhled · Zatím se nic neuloží.", "proc": "Ponecháno; věta hned pod tlačítkem."}, {"dnes": "(nápověda) Potvrdit import, nebo nahrajte jiný soubor", "nove": "Potvrdit import · Nahrát jiný soubor", "proc": "Dvě tlačítka se slovesem."}, {"dnes": "(nápověda) Obrázky (ZIP, nepovinné)", "nove": "Obrázky v archivu ZIP (nepovinné)", "proc": "Nepovinnost v labelu dle pravidel."}, {"dnes": "(nápověda) nová otázka, nová verze, beze změny nebo přeskočení", "nove": "Nová otázka · Nová verze · Beze změny · Přeskočeno", "proc": "Stavy jako štítky – jedno slovo pro jednu věc."}], "pristupnost": ["Pole souboru: nativní input type=file s labelem a nápovědou (formát, velikost) v aria-describedby; accept=.xlsx a .zip.", "Průběh zpracování v role=status; výsledek náhledu dostane fokus na nadpis Náhled importu.", "Tabulka náhledu má caption s počty; chyba řádku je text v buňce, ne jen barva.", "Stav ikonou + slovem: Nová otázka (plus), Nová verze (obnovit), Beze změny (check), Přeskočeno (minus-kruh)."], "poznamky_pro_kodera": ["Sloupce: externi_id, typ (SINGLE / MULTI), text, odpoved_1 až odpoved_10 (aspoň 4), spravne (např. 1;3), body (1–100, výchozí 1), stitky (Seznam:Štítek;…), zpetna_vazba_ok, zpetna_vazba_chyba, poznamka, obrazek, obrazek_popis.", "Stejné externi_id = aktualizace (nová verze). Vzorce v buňkách se neprovádějí, čtou se jen hodnoty.", "obrazek_popis „dekorativní“ = dekorativní obrázek; prázdný popis informativního obrázku = řádek přeskočen.", "Náhled drží server do potvrzení (max. 30&nbsp;min), pak je potřeba nahrát znovu.", "K rozhodnutí: v jakém stavu jsou importované otázky při zapnutém schvalování (koncept / ke schválení) – nápověda to neuvádí."], "chybi_komponenta": ["pole pro nahrání souboru (drop zóna) – použit nativní input type=file s .input", "stav řádku importu (Nová otázka / Nová verze) – použito .stav--info / .stav--neutral"]}</script>
+</body>
+</html>

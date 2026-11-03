@@ -1,0 +1,84 @@
+<!--meta {"titulek":"Práva k testu – BOZP – cvičný test","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false} -->
+<!--spec {
+ "route":"/testy/:id/prava","nazev":"Práva k testu","role":"lektor","sablona":"app",
+ "ucel":"Vlastník testu tu sdílí test s kolegy, pobočkou nebo celou organizací a případně předá vlastnictví.",
+ "hlavni_akce":"Přidat právo (Uložit právo); vedlejší: Převést vlastnictví",
+ "komponenty":["crumbs","page-head","meta","alert--info","table-wrap","table--stack","card","fieldset","check","select","form-actions","dialog","btn--nebezpecne","empty"],
+ "stavy":[
+  "výchozí: jedno sdílení (Adam Autor – Čtení) a formulář (nakresleno).",
+  "prázdný: „Test zatím s nikým nesdílíte.“ (nakresleno).",
+  "chyba formuláře: nevybraný lektor – .error u selectu.",
+  "potvrzení převodu: .dialog s důsledky a tlačítkem Převést vlastnictví (nakresleno).",
+  "bez oprávnění: práva spravuje jen vlastník; ostatním se stránka zobrazí jen pro čtení s alertem „Práva mění vlastník testu Lucie Lektorová.“"],
+ "zmeny_ux":[
+  "Tabulka přidělených práv má u každého řádku Změnit a Odebrat; dnes se právo mění jen opětovným přidáním.",
+  "Výběr Komu je radio skupina a podle volby se ukáže jediný další select (lektor nebo pobočka) – dnes jsou vidět oba.",
+  "Popis úrovní je u každé volby (Čtení / Editace / Vlastník), ne v jednom souhrnném odstavci.",
+  "Převod vlastnictví je oddělený rámečkem a potvrzuje se dialogem – je to nevratná změna práv."],
+ "texty":[
+  {"dnes":"Test zatím s nikým dalším nesdílíte. Administrátor organizace a administrátor pobočky testu k němu mají přístup vždy.","nove":"Administrátor organizace a pobočky má k testu přístup vždy.","proc":"Platí stále, proto trvale v alertu nad tabulkou; prázdný stav zvlášť."},
+  {"dnes":"Čtení = náhled a použití testu; Editace = úpravy sekcí a parametrů; Vlastník = navíc práva, archivace a mazání.","nove":"hint u každé úrovně","proc":"Jednou a na jednom místě – u volby."},
+  {"dnes":"– vyberte lektora –","nove":"Vyberte lektora","proc":"Bez pomlček."},
+  {"dnes":"Nový vlastník získá plná práva. Dosavadní vlastník si ponechá právo Editace.","nove":"Nový vlastník získá plná práva. Vy si ponecháte právo Editace.","proc":"Oslovení uživatele."}],
+ "pristupnost":[
+  "Tabulka práv má caption; Odebrat má sr-only jméno („Odebrat právo: Adam Autor“).",
+  "Komu a Úroveň jsou fieldsety s legend; skrytý select (pobočka) má atribut hidden, není v tab pořadí.",
+  "Dialog převodu: nativní dialog s aria-labelledby, fokus na Zrušit, Esc zavře."],
+ "poznamky_pro_kodera":[
+  "Lektoři v selectu: jméno + e-mail (demo: Adam Autor, Barbora Veselá).",
+  "Pobočky: jen pobočky organizace (demo: Praha).",
+  "Po převodu se stránka přepne do režimu jen pro čtení."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="testy.html">Testy</a></li><li><a href="test-editor-sekce.html">BOZP – cvičný test</a></li><li><span aria-current="page">Práva</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Práva k testu</p><h1 class="t-titulek">BOZP – cvičný test</h1>
+  <dl class="meta"><div><dt>Vlastník</dt><dd>Lucie Lektorová</dd></div><div><dt>Pobočka</dt><dd>Praha</dd></div></dl></div>
+</div>
+
+<div class="stack-5" style="max-width:var(--max-text)">
+ <section class="stack" aria-labelledby="prid-h">
+  <h2 id="prid-h" class="t-nadpis">Komu jste test zpřístupnili</h2>
+  <div class="alert alert--info">{{I:info}}<p>Administrátor organizace a pobočky má k testu přístup vždy.</p></div>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Přidělená práva</caption>
+    <thead><tr><th scope="col">Komu</th><th scope="col">Úroveň</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+    <tbody><tr><td data-label="Komu"><div><b>Adam Autor</b><span class="t-maly">lektor · autor.adam@demo.example</span></div></td><td data-label="Úroveň">Čtení</td>
+     <td data-label="Akce"><div class="row" style="gap:var(--s-2);justify-content:flex-end"><a class="btn btn--tiche btn--male" href="#pravo">Změnit<span class="sr-only"> právo: Adam Autor</span></a><button class="btn btn--male btn--nebezpecne" type="button">Odebrat<span class="sr-only"> právo: Adam Autor</span></button></div></td></tr></tbody>
+   </table>
+  </div>
+ </section>
+
+ <form class="card stack" id="pravo" action="test-prava.html" method="post" aria-labelledby="pravo-h">
+  <h2 id="pravo-h" class="t-nadpis">Přidat nebo změnit právo</h2>
+  <fieldset><legend>Komu</legend>
+   <div class="row"><label class="check"><input type="radio" name="komu" checked>Lektorovi</label><label class="check"><input type="radio" name="komu">Pobočce</label><label class="check"><input type="radio" name="komu">Celé organizaci</label></div>
+  </fieldset>
+  <div class="field"><label class="label" for="lektor">Lektor</label><select class="select" id="lektor" name="lektor"><option value="">Vyberte lektora</option><option>Adam Autor (autor.adam@demo.example)</option><option>Barbora Veselá (admin.barbora@demo.example)</option></select></div>
+  <fieldset><legend>Úroveň</legend>
+   <label class="check"><input type="radio" name="uroven" checked><span>Čtení<span class="hint" style="display:block">Náhled a použití testu.</span></span></label>
+   <label class="check"><input type="radio" name="uroven"><span>Editace<span class="hint" style="display:block">Navíc úpravy sekcí a parametrů.</span></span></label>
+   <label class="check"><input type="radio" name="uroven"><span>Vlastník<span class="hint" style="display:block">Navíc práva, archivace a přesun do koše.</span></span></label>
+  </fieldset>
+  <div><button class="btn btn--hlavni" type="submit">Uložit právo</button></div>
+ </form>
+
+ <form class="card card--tenka stack" action="test-prava.html" method="post" aria-labelledby="prevod-h">
+  <h2 id="prevod-h" class="t-nadpis">Převést vlastnictví</h2>
+  <p>Nový vlastník získá plná práva. Vy si ponecháte právo Editace.</p>
+  <div class="field"><label class="label" for="novy">Nový vlastník</label><select class="select" id="novy" name="novy"><option value="">Vyberte lektora</option><option>Adam Autor (autor.adam@demo.example)</option><option>Barbora Veselá (admin.barbora@demo.example)</option></select></div>
+  <div><button class="btn btn--nebezpecne" type="button">Převést vlastnictví</button></div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Test nikomu nezpřístupněný</p>
+ <div class="empty stack-2">{{I:uzivatele}}<p><b>Test zatím s nikým nesdílíte.</b></p><p class="t-maly">Právo přidáte ve formuláři níže.</p></div>
+ <p class="t-stitek">Potvrzení převodu (dialog)</p>
+ <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="dlg-h" style="position:static;display:block;margin:0">
+  <div class="dialog__body stack"><h3 id="dlg-h" class="t-nadpis">Převést test na Adama Autora?</h3><p>Adam Autor se stane vlastníkem testu BOZP – cvičný test. Vy si ponecháte právo Editace. Vrátit to může jen nový vlastník.</p></div>
+  <div class="dialog__foot"><button class="btn" type="button">Zrušit</button><button class="btn btn--nebezpecne" type="button">Převést vlastnictví</button></div>
+ </div>
+</section>

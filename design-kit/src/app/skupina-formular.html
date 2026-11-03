@@ -1,0 +1,36 @@
+<!--meta {"titulek":"Nová skupina studujících","sablona":"app","role":"admin","aktivni":"skupiny.html","demo":false} -->
+<!--spec {
+ "route":"/sprava/skupiny/nova","nazev":"Nová skupina studujících","role":"admin","sablona":"app",
+ "ucel":"Založit skupinu v pobočce; členy přidáte v jejím detailu.",
+ "hlavni_akce":"Založit skupinu.",
+ "komponenty":["crumbs","page-head","field","input","select","hint","error","error-summary","form-actions"],
+ "stavy":[
+  "chyba: prázdný název – .error-summary + .error u pole (nakresleno níže).",
+  "duplicitní název v pobočce: .error „Skupina s tímto názvem už v pobočce je.“",
+  "pobočka jen jedna: select se zobrazí jako text „Praha“ (read-only), aby nebylo co vybírat – návrh.",
+  "oprávnění: 403."],
+ "zmeny_ux":["Pole bez „(povinné)“; hint u pobočky vysvětluje dopad.","Po založení přímý přechod do detailu skupiny na výběr členů (dnes zpět na seznam)."],
+ "texty":[
+  {"dnes":"Název skupiny (povinné)","nove":"Název skupiny","proc":"Povinné pole bez označení."},
+  {"dnes":"Do skupiny lze zařadit jen studující této pobočky.","nove":"Do skupiny přidáte jen studující této pobočky.","proc":"Činně."},
+  {"dnes":"Zrušit","nove":"Zrušit (tichý odkaz)","proc":"Méně výrazné než hlavní akce."}],
+ "pristupnost":["Label, hint v aria-describedby, chyba aria-invalid.","Error summary přebírá fokus."],
+ "poznamky_pro_kodera":["Po úspěchu přesměrovat na detail skupiny s alertem."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="skupiny.html">Skupiny studujících</a></li><li><span aria-current="page">Nová skupina</span></li></ol></nav>
+<div class="page-head"><h1 class="t-titulek">Nová skupina studujících</h1></div>
+<form class="stack-4" action="skupiny.html" method="post" style="max-width:var(--max-text)">
+ <div class="field"><label class="label" for="nz">Název skupiny</label><span class="hint" id="nz-h">Např. „Noví zaměstnanci – listopad“.</span><input class="input" id="nz" name="nazev" aria-describedby="nz-h"></div>
+ <div class="field"><label class="label" for="pb">Pobočka</label><span class="hint" id="pb-h">Do skupiny přidáte jen studující této pobočky.</span><select class="select" id="pb" name="pobocka" aria-describedby="pb-h" style="max-width:320px"><option>Praha</option></select></div>
+ <p class="t-maly">Členy přidáte hned po založení.</p>
+ <div class="form-actions"><button class="btn btn--hlavni" type="submit">Založit skupinu</button><a class="btn btn--tiche" href="skupiny.html">Zrušit</a></div>
+</form>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6);max-width:var(--max-text)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Chybí název</p>
+  <div class="error-summary" role="alert" aria-labelledby="es"><p id="es" class="alert__nadpis">Skupinu nejde založit</p><ul style="padding-left:var(--s-4)"><li><a href="#nz2">Napište název skupiny.</a></li></ul></div>
+  <div class="field"><label class="label" for="nz2">Název skupiny</label><input class="input" id="nz2" aria-invalid="true" aria-describedby="nz2-e"><span class="error" id="nz2-e">{{I:pozor}}Napište název skupiny.</span></div>
+ </div>
+</section>

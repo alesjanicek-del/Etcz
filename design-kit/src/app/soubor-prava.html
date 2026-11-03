@@ -1,0 +1,122 @@
+<!--meta {"titulek":"Práva k souboru otázek","sablona":"app","role":"autor","aktivni":"soubory.html","demo":false} -->
+<!--spec {
+ "route":"/soubory/:id/prava","nazev":"Práva k souboru otázek","role":"vlastník souboru (autor otázek nebo lektor); administrátor organizace má vždy plný přístup","sablona":"app",
+ "ucel":"Vlastník souboru tu určí, kdo smí soubor číst, upravovat nebo spravovat, a případně předá vlastnictví.",
+ "hlavni_akce":"Přidat právo",
+ "komponenty":["crumbs","page-head","table table--stack","dl","choice","field","select","fieldset","form-actions","alert--ok","alert--info","dialog","btn--nebezpecne"],
+ "stavy":[
+  "výchozí: tabulka přidělených práv, formulář Přidat právo, blok Převést vlastnictví",
+  "jen vlastník: tabulka bez práv navíc – věta „Soubor zatím nikomu dalšímu nesdílíte.“",
+  "chyba: nevybraný uživatel / pobočka – chyba u pole; duplicitní právo – „Uživatel už právo má. Změňte ho v tabulce.“",
+  "po přidání / odebrání: alert--ok (role=status), fokus na tabulku",
+  "převod vlastnictví: potvrzovací dialog s důsledkem (dosavadní vlastník si ponechá Editaci)",
+  "bez oprávnění: lektor nebo autor bez vlastnictví vidí jen tabulku Přidělená práva (bez formulářů) a větu „Práva přiděluje vlastník souboru: Adam Autor.“",
+  "načítání: tlačítka aria-disabled během odeslání"],
+ "zmeny_ux":[
+  "Vysvětlení úrovní práv je přehledná tabulka Čtení / Editace / Vlastník místo dlouhého odstavce.",
+  "Volba Komu jako 3 dlaždice (.choice) – podle volby se ukáže jen jedno pole (uživatel / pobočka); dnes jsou vidět všechna.",
+  "Úroveň práva má výchozí hodnotu Čtení (nejbezpečnější), Vlastník se z formuláře přesouvá do Převést vlastnictví.",
+  "Odebrat v řádku má sr-only název, komu se právo odebírá; po odebrání lze akci vrátit z hlášení (Vrátit zpět) po dobu 10&nbsp;s (návrh).",
+  "Převést vlastnictví je oddělená sekce s nebezpečným tlačítkem a potvrzením."],
+ "texty":[
+  {"dnes":"Vlastník má plný přístup a přiděluje práva. Editace = upravovat otázky, používat soubor v testech a vidět statistiky. Čtení = …","nove":"(tabulka 3 úrovní: co smí)","proc":"Jednou a na jednom místě, čitelně."},
+  {"dnes":"Komu: Uživateli · Pobočce (všem jejím členům) · Celé organizaci","nove":"Ponecháno","proc":"Odpovídá pravidlům."},
+  {"dnes":"– vyberte –","nove":"Vyberte uživatele","proc":"Celá věta místo pomlček."},
+  {"dnes":"Převést","nove":"Převést vlastnictví","proc":"Tlačítko říká, co se stane."},
+  {"dnes":"Adam Autor (vlastník souboru) · Vlastník","nove":"Adam Autor (vy) · Vlastník","proc":"Uživatel hned vidí sebe."}],
+ "pristupnost":[
+  "Tabulka s caption; tlačítko Odebrat má text „Odebrat právo: Pobočka Brno“.",
+  "Komu je fieldset/legend s radio v .choice; změna volby přesune viditelné pole, fokus zůstane na radiu.",
+  "Potvrzovací dialog: nativní dialog, fokus na bezpečnější tlačítko Ponechat vlastnictví, Esc zavře.",
+  "Hlášení po změně v role=status."],
+ "poznamky_pro_kodera":[
+  "Seznam uživatelů: jen uživatelé organizace s rolí autor/lektor/administrátor; ve výběru jméno + e-mail.",
+  "Právo přes pobočku platí pro všechny členy pobočky; aktivní pobočka uživatele na tom nic nemění.",
+  "Role: autor i lektor jako vlastník vidí stejnou stránku; administrátor organizace vidí formuláře u každého souboru."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="soubory.html">Soubory otázek</a></li><li><a href="soubor-detail.html">BOZP – školení zaměstnanců</a></li><li><span aria-current="page">Práva</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Ukázková sada: BOZP – školení zaměstnanců</p><h1 class="t-titulek">Práva k souboru otázek</h1></div></div>
+
+<div class="stack-5">
+ <div class="stack-2">
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption>Co smí která úroveň práva</caption>
+   <thead><tr><th scope="col">Úroveň</th><th scope="col">Použít v testech a vidět statistiky</th><th scope="col">Upravovat otázky</th><th scope="col">Přidělovat práva</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Úroveň"><b>Čtení</b></td><td data-label="Použít a statistiky"><span class="stav stav--ok">{{I:check}}Ano</span></td><td data-label="Upravovat"><span class="stav stav--neutral">{{I:minus-kruh}}Ne</span></td><td data-label="Práva"><span class="stav stav--neutral">{{I:minus-kruh}}Ne</span></td></tr>
+    <tr><td data-label="Úroveň"><b>Editace</b></td><td data-label="Použít a statistiky"><span class="stav stav--ok">{{I:check}}Ano</span></td><td data-label="Upravovat"><span class="stav stav--ok">{{I:check}}Ano</span></td><td data-label="Práva"><span class="stav stav--neutral">{{I:minus-kruh}}Ne</span></td></tr>
+    <tr><td data-label="Úroveň"><b>Vlastník</b></td><td data-label="Použít a statistiky"><span class="stav stav--ok">{{I:check}}Ano</span></td><td data-label="Upravovat"><span class="stav stav--ok">{{I:check}}Ano</span></td><td data-label="Práva"><span class="stav stav--ok">{{I:check}}Ano</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="t-maly">Administrátor organizace má k souboru vždy plný přístup.</p>
+ </div>
+
+ <section class="stack" aria-labelledby="pridelena">
+  <h2 id="pridelena" class="t-nadpis">Přidělená práva</h2>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Přidělená práva k souboru (2)</caption>
+    <thead><tr><th scope="col">Komu</th><th scope="col">Právo</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+    <tbody>
+     <tr><td data-label="Komu"><div><b>Adam Autor</b> (vy)<span class="t-maly">Vlastník souboru</span></div></td><td data-label="Právo">Vlastník</td><td data-label="Akce"><span class="t-maly">Změníte převodem vlastnictví</span></td></tr>
+     <tr><td data-label="Komu"><div><b>Pobočka Praha</b><span class="t-maly">Všichni členové pobočky</span></div></td><td data-label="Právo">Čtení</td><td data-label="Akce"><button class="btn btn--male btn--nebezpecne" type="button">{{I:minus-kruh}}Odebrat<span class="sr-only"> právo: Pobočka Praha</span></button></td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+
+ <form class="card stack-4" aria-labelledby="pridat" novalidate>
+  <h2 id="pridat" class="t-nadpis">Přidat právo</h2>
+  <fieldset class="stack-2">
+   <legend>Komu</legend>
+   <div class="grid-3" style="gap:var(--s-2)">
+    <label class="choice"><input type="radio" name="komu" value="uzivatel" checked><span class="stack-2"><b>Uživateli</b><span class="t-maly">Jednomu kolegovi</span></span></label>
+    <label class="choice"><input type="radio" name="komu" value="pobocka"><span class="stack-2"><b>Pobočce</b><span class="t-maly">Všem jejím členům</span></span></label>
+    <label class="choice"><input type="radio" name="komu" value="organizace"><span class="stack-2"><b>Celé organizaci</b><span class="t-maly">Všem lektorům a autorům</span></span></label>
+   </div>
+  </fieldset>
+  <div class="grid-2">
+   <div class="field"><label class="label" for="uz">Uživatel</label><select class="select" id="uz" name="uzivatel"><option>Vyberte uživatele</option><option>Barbora Veselá (admin.barbora@demo.example)</option><option>Lucie Lektorová (lektor.lucie@demo.example)</option></select></div>
+   <div class="field"><label class="label" for="ur">Úroveň práva</label><select class="select" id="ur" name="uroven"><option selected>Čtení</option><option>Editace</option></select></div>
+  </div>
+  <div class="form-actions"><button class="btn btn--hlavni" type="submit">{{I:plus}}Přidat právo</button></div>
+ </form>
+
+ <form class="card stack-4" aria-labelledby="prevod" novalidate>
+  <div class="stack-2"><h2 id="prevod" class="t-nadpis">Převést vlastnictví</h2><p>Nový vlastník bude přidělovat práva. Vy si ponecháte právo Editace.</p></div>
+  <div class="field" style="max-width:var(--max-text)"><label class="label" for="nv">Nový vlastník</label><select class="select" id="nv" name="novy"><option>Vyberte uživatele</option><option>Barbora Veselá</option><option>Lucie Lektorová</option></select></div>
+  <div><button class="btn btn--nebezpecne" type="button">Převést vlastnictví</button></div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Po přidání práva</h3>
+  <div class="alert alert--ok" role="status">{{I:check}}<p>Lucie Lektorová má k souboru právo <b>Editace</b>.</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Chyba – nevybraný uživatel</h3>
+  <div class="card stack">
+   <div class="field"><label class="label" for="uz-e">Uživatel</label><select class="select" id="uz-e" aria-invalid="true" aria-describedby="uz-e-err"><option>Vyberte uživatele</option></select><p class="error" id="uz-e-err">{{I:pozor}}Vyberte uživatele, kterému právo dáváte.</p></div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Potvrzení převodu</h3>
+  <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="pv-h" style="position:static;margin:0">
+   <div class="dialog__body stack"><p id="pv-h" class="t-nadpis">Převést vlastnictví na Lucii Lektorovou?</p><p>Lucie Lektorová bude přidělovat práva. Vy si ponecháte právo Editace. Vrátit to může jen nová vlastnice.</p></div>
+   <div class="dialog__foot"><button class="btn" type="button">Ponechat vlastnictví</button><button class="btn btn--nebezpecne" type="button">Převést vlastnictví</button></div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Bez oprávnění (nejste vlastník)</h3>
+  <div class="alert alert--info">{{I:zamek}}<p>Práva přiděluje vlastník souboru: <b>Adam Autor</b>. Tabulku Přidělená práva vidíte jen pro informaci.</p></div>
+ </div>
+</section>

@@ -1,0 +1,82 @@
+<!--meta {"titulek":"Vyzkoušet demo","popis":"Vyberte roli a spusťte demo exam-test. Bez registrace, hesla a e-mailu – za pár sekund jste ve vlastní ukázkové pobočce.","sablona":"web","aktivni":""} -->
+<!--spec {
+ "route":"/vyzkouset","nazev":"Vyzkoušet demo – výběr role","role":"veřejnost – kdokoli bez účtu","sablona":"web",
+ "ucel":"Pustit návštěvníka do dema v roli, která ho zajímá, a předem ho upozornit na fiktivní data a noční mazání.",
+ "hlavni_akce":"Spustit demo (ve zvolené roli)",
+ "komponenty":["choice (dlaždice-radio)","fieldset/legend","grid-2","alert","faq (details)","btn--hlavni","stav"],
+ "stavy":[
+  "hlavní: předvybraná role Lektor",
+  "spouštění (načítání): tlačítko aria-disabled „Připravujeme demo…“, role=status s textem; obvykle pár sekund",
+  "chyba: demo se nepodařilo připravit – alert--chyba s tlačítkem Zkusit znovu a odkazem na Ukázku s průvodcem",
+  "oprávnění: veřejná stránka; návrat do vlastní pobočky pozná cookie demo_visit (viz Ochrana osobních údajů)"],
+ "zmeny_ux":[
+  "Role jako dlaždice .choice ve fieldsetu; vybraná dlaždice má žlutý podklad a tvrdý stín (stav nezávislý na barvě – i přepínač).",
+  "Volba „Lektor a zkoušený vedle sebe“ je plnohodnotná volba přes celou šířku (dnes čárkovaná dlaždice, která vypadá neaktivní).",
+  "„Než demo spustíte“ je .alert (pozor) v běžné velikosti hned nad tlačítkem.",
+  "Odkaz na ukázku s průvodcem jako vedlejší tlačítko vedle hlavní akce (dnes otázka v odkazu).",
+  "V pořadí fokusu: role → Další informace → Spustit demo."],
+ "texty":[
+  {"dnes":"Vyzkoušejte si aplikaci","nove":"Vyzkoušet demo","proc":"Název = pojem ze slovníku (Vyzkoušet demo = samoobsluha)."},
+  {"dnes":"Vytvoříte přístupové kódy a spustíte prezenční zkoušku.","nove":"Vytvoříte osobní kódy a spustíte prezenční zkoušku.","proc":"Slovník: Osobní kódy (Přístupový kód = vstup do testu)."},
+  {"dnes":"Vyzkoušíte si dohled nad zkouškou a odevzdání.","nove":"Vyzkoušíte si dohled a odevzdání testu.","proc":"Kratší; Dohled je pojem."},
+  {"dnes":"Chcete raději ukázku s naším průvodcem?","nove":"Ukázka s průvodcem","proc":"Slovník; tlačítko místo otázky."},
+  {"dnes":"Nejlépe na počítači, na telefonu otevřete zkoušeného na druhém zařízení přes QR kód.","nove":"Nejlépe na počítači. Na telefonu otevřete zkoušeného na druhém zařízení přes QR kód.","proc":"Dvě věty."}],
+ "pristupnost":[
+  "Role ve fieldset/legend „Vyberte roli“; každá dlaždice je label s input radio, popis rolí je součástí labelu.",
+  "Výběr role šipkami (nativní radio skupina).",
+  "Stav spouštění oznámen přes role=status; chyba role=alert.",
+  "Tlačítko Spustit demo je submit formuláře – funguje i bez JS."],
+ "poznamky_pro_kodera":["Formulář: POST na spuštění dema (dnes https://exam-test.cz/vyzkouset, id voleb #demo-role-lektor|autor|admin|zkouseny|vedle-sebe). V kitu action=#.","Po spuštění přesměrovat na demo.exam-test.cz do zvolené role."],
+ "chybi_komponenta":[".choice nemá vlastní styl přepínače (zůstává nativní malý radio) – použito class=\"choice check\"; navrhuji to do .choice zahrnout"]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5">
+  <div class="stack-4">
+   <p class="t-stitek">Bez registrace, hesla a e-mailu</p>
+   <h1 class="t-display">Vyzkoušet demo</h1>
+   <p class="t-perex measure">Vyberte roli a spusťte demo. Za pár sekund budete přihlášeni ve vlastní ukázkové pobočce s&nbsp;otázkami, testy a výsledky. Roli můžete v&nbsp;demu kdykoli přepnout.</p>
+  </div>
+
+  <form class="stack-4" action="#" method="post">
+   <fieldset class="stack">
+    <legend class="t-nadpis" style="margin-bottom:var(--s-3)">Vyberte roli</legend>
+    <div class="grid-2" style="gap:var(--s-3)">
+     <label class="choice check" for="demo-role-lektor"><input type="radio" name="role" value="lektor" id="demo-role-lektor" checked><span class="stack-2"><b>Lektor</b><ul class="list-check t-maly"><li><span>Sestavíte test ze souborů otázek.</span></li><li><span>Vytvoříte osobní kódy a spustíte prezenční zkoušku.</span></li><li><span>Sledujete živý panel a otevřete výsledek a protokol.</span></li></ul></span></label>
+     <label class="choice check" for="demo-role-autor"><input type="radio" name="role" value="autor" id="demo-role-autor"><span class="stack-2"><b>Autor otázek</b><ul class="list-check t-maly"><li><span>Upravíte otázky v&nbsp;souboru otázek, i s&nbsp;obrázkem.</span></li><li><span>Uvidíte verze otázky a jejich historii.</span></li><li><span>Odešlete otázku ke schválení.</span></li></ul></span></label>
+     <label class="choice check" for="demo-role-admin"><input type="radio" name="role" value="admin" id="demo-role-admin"><span class="stack-2"><b>Administrátor pobočky</b><ul class="list-check t-maly"><li><span>Spravujete uživatele a skupiny pobočky.</span></li><li><span>Schválíte otázky, nebo je vrátíte do konceptu.</span></li><li><span>Prohlédnete si statistiky, výsledky a exporty.</span></li></ul></span></label>
+     <label class="choice check" for="demo-role-zkouseny"><input type="radio" name="role" value="zkouseny" id="demo-role-zkouseny"><span class="stack-2"><b>Zkoušený</b><ul class="list-check t-maly"><li><span>Projdete ukázkový test s&nbsp;časomírou.</span></li><li><span>Vyzkoušíte si dohled a odevzdání testu.</span></li><li><span>Uvidíte výsledek, protokol a osvědčení.</span></li></ul></span></label>
+    </div>
+    <label class="choice check" for="demo-role-vedle-sebe"><input type="radio" name="role" value="vedle-sebe" id="demo-role-vedle-sebe"><span class="stack-2"><b>Lektor a zkoušený vedle sebe</b><span class="t-maly">Přihlásíte se jako lektor a ve druhém okně otevřete prezenční zkoušku jako zkoušený. Uvidíte, jak se odpovědi zkoušeného hned propisují do živého panelu lektora. Nejlépe na počítači. Na telefonu otevřete zkoušeného na druhém zařízení přes QR kód.</span></span></label>
+   </fieldset>
+
+   <div class="alert" role="note">{{I:pozor}}<div class="stack-2">
+    <p class="alert__nadpis">Než demo spustíte</p>
+    <ul class="list-check">
+     <li><span>Data v&nbsp;demu jsou fiktivní a každou noc ve 3:00 se smažou i&nbsp;s&nbsp;vašimi změnami.</span></li>
+     <li><span>Nevkládejte prosím osobní ani skutečná data, například jména, e-maily nebo otázky z&nbsp;vašich zkoušek.</span></li>
+    </ul>
+    <details class="faq"><summary>Další informace</summary><div><p>Demo se po smazání připraví znovu, další den začnete s&nbsp;novou ukázkovou pobočkou. Žádný e-mail z&nbsp;dema neodejde. Pozvánky, kódy a výsledky najdete v&nbsp;aplikaci ve Schránce dema.</p></div></details>
+   </div></div>
+
+   <div class="row"><button class="btn btn--hlavni" type="submit">Spustit demo {{I:sipka-vpravo}}</button><a class="btn" href="ukazka.html">Ukázka s průvodcem</a></div>
+  </form>
+ </div>
+</section>
+
+<section class="section section--bila no-print" aria-labelledby="dalsi">
+ <div class="container stack-4">
+  <h2 id="dalsi" class="t-sekce">Další stavy stránky</h2>
+  <div class="grid-2">
+   <div class="card stack">
+    <h3 class="t-nadpis">Spouštění</h3>
+    <div class="row"><button class="btn btn--hlavni" type="button" aria-disabled="true">Připravujeme demo…</button></div>
+    <p class="t-maly" role="status">Připravujeme vaši ukázkovou pobočku. Obvykle to trvá pár sekund.</p>
+   </div>
+   <div class="card stack">
+    <h3 class="t-nadpis">Chyba</h3>
+    <div class="alert alert--chyba" role="alert">{{I:pozor}}<div><p class="alert__nadpis">Demo se nepodařilo připravit</p><p>Zkuste to prosím znovu za chvíli. Pokud to nepůjde, ukážeme vám aplikaci s&nbsp;průvodcem.</p></div></div>
+    <div class="row"><button class="btn btn--hlavni" type="button">Spustit demo znovu</button><a class="btn btn--tiche" href="ukazka.html">Ukázka s průvodcem</a></div>
+   </div>
+  </div>
+ </div>
+</section>
