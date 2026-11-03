@@ -41,10 +41,11 @@
  ],
  "zmeny_ux": [
   "Formulář je rozdělen do 4 očíslovaných sekcí (Zadání, Odpovědi, Hodnocení, Štítky a poznámka) a vedle je boční panel Kontrola otázky s živým stavem pravidel – chyby vidí autor před uložením, ne až po něm.",
-  "Tlačítka uložení jsou jen v bočním panelu a na konci formuláře (dnes Uložit jako koncept nahoře i dole, bez Odeslat ke schválení nahoře). Na mobilu panel spadne pod formulář.",
+  "Tlačítka uložení jsou jen v bočním panelu Kontrola otázky, který na desktopu zůstává vidět (sticky); na mobilu panel spadne pod formulář, takže tlačítka jsou na konci. Dnes je Uložit jako koncept nahoře i dole a Odeslat ke schválení jen dole.",
   "Typ otázky jako 2 dlaždice s vysvětlením hodnocení (Více správných = správně jen při označení všech správných a žádné chybné).",
   "Jedna správná odpověď: volba Správná je přepínač (radio) – nejde omylem označit 2. Více správných: zaškrtávací políčka. Dnes vždy checkbox.",
   "Správná odpověď je vidět i bez zaškrtávátka: karta se stínem + štítek „✓ Správná“.",
+  "Panel nástrojů u odpovědí a zpětné vazby se ukáže jen u pole, ve kterém je fokus (nakresleno u odpovědi 1) – dnes 6 stejných panelů pod sebou. Panel u zadání je vidět vždy.",
   "Panel nástrojů má textové popisky (Obrázek, Popis obrázku, Text pro čtečku) místo symbolů 🖼, Alt, 👁; skupiny oddělené linkou; ovládání šipkami (roving tabindex).",
   "Obrázek v zadání ukazuje pod sebou svůj popis a typ (Informativní / Dekorativní) s tlačítkem Upravit popis – autor vidí, co přečte čtečka.",
   "Text pro čtečku je v editoru viditelně označený (tečkované podtržení + štítek Čtečka) a dá se upravit kliknutím.",
@@ -137,6 +138,7 @@
   "stav tlačítka v .editor-bar (aria-pressed=true) – chybí styl",
   "obrázek v editoru s popisem a akcí (figure + figcaption) – poskládáno z .card--tenka, .stav, .btn--male",
   "označený text pro čtečku v editoru (tečkované podtržení) – zatím t-zvyraznit + .stav--info",
+  "img{height:auto} chybí v základu brand.css – obrázky s atributy width/height se na mobilu deformují (použito inline height:auto)",
   "sticky boční panel (position:sticky v layout-aside) – použito inline position:sticky;top:var(--s-3)",
   "číselné pole s krokovačem (Body) – použit .input type=number s inline max-width"
  ]
@@ -173,10 +175,10 @@
      <div class="textarea stack" id="zadani" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="zad-l" aria-describedby="zad-h" style="min-height:200px">
       <p>Obrázek schematicky znázorňuje pronikavost tří druhů ionizujícího záření. Která šipka odpovídá záření <b>alfa</b>?</p>
       <figure class="card card--tenka stack-2" contenteditable="false" style="padding:var(--s-2);max-width:480px">
-       <img src="../assets/img/otazka-pronikavost-zareni.png" width="600" height="345" alt="Schéma: zdroj záření vlevo, vpravo za sebou list papíru, hliníkový plech tloušťky několika milimetrů a silný blok olova. Ze zdroje vycházejí tři šipky označené 1, 2 a 3, každá končí nebo je zeslabena u jiné překážky.">
+       <img src="../assets/img/otazka-pronikavost-zareni.png" width="600" height="345" style="height:auto" alt="Schéma: zdroj záření vlevo, vpravo za sebou list papíru, hliníkový plech tloušťky několika milimetrů a silný blok olova. Ze zdroje vycházejí tři šipky označené 1, 2 a 3, každá končí nebo je zeslabena u jiné překážky.">
        <figcaption class="stack-2">
         <span class="row" style="gap:var(--s-2)"><span class="stav stav--ok" style="white-space:normal">{{I:check}}Informativní · popis vyplněn</span><button class="btn btn--male" type="button">{{I:upravit}}Upravit popis<span class="sr-only"> obrázku v zadání</span></button></span>
-        <span class="t-maly">Popis: Schéma: zdroj záření vlevo, vpravo za sebou list papíru, hliníkový plech… (186 znaků)</span>
+        <span class="t-maly">Popis: Schéma: zdroj záření vlevo, vpravo za sebou list papíru, hliníkový plech… (186 znaků, doporučeno do 150)</span>
        </figcaption>
       </figure>
      </div>
@@ -193,8 +195,8 @@
     <div class="row-between"><p id="odp1-l" class="t-stitek">Odpověď 1</p><span class="stav stav--ok">{{I:check}}Správná</span></div>
     <div class="field">
      <span class="sr-only" id="odp1-lab">Text odpovědi 1</span>
-     <div class="editor-bar" role="toolbar" aria-label="Formátování: Odpověď 1" aria-controls="odp1"><button type="button" aria-label="Tučné" title="Tučné (Ctrl+B)" tabindex="0">B</button><button type="button" aria-label="Kurzíva" title="Kurzíva (Ctrl+I)" tabindex="-1" style="font-style:italic">I</button><button type="button" aria-label="Podtržení" title="Podtržení (Ctrl+U)" tabindex="-1" style="text-decoration:underline">U</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Horní index" title="Horní index (Ctrl+.)" tabindex="-1">x²</button><button type="button" aria-label="Dolní index" title="Dolní index (Ctrl+,)" tabindex="-1">x₂</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Odrážkový seznam" title="Odrážkový seznam" tabindex="-1">• –</button><button type="button" aria-label="Číslovaný seznam" title="Číslovaný seznam" tabindex="-1">1. –</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Vložit obrázek" title="Vložit obrázek" tabindex="-1">Obrázek</button><button type="button" aria-label="Upravit popis obrázku" title="Upravit popis obrázku" tabindex="-1">Popis obrázku</button><button type="button" title="Text pro čtečku" tabindex="-1">Text pro čtečku</button></div>
-     <div class="textarea" id="odp1" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp1-lab" style="min-height:var(--cil-min)">šipka 1</div>
+     <div><div class="editor-bar" role="toolbar" aria-label="Formátování: Odpověď 1" aria-controls="odp1"><button type="button" aria-label="Tučné" title="Tučné (Ctrl+B)" tabindex="0">B</button><button type="button" aria-label="Kurzíva" title="Kurzíva (Ctrl+I)" tabindex="-1" style="font-style:italic">I</button><button type="button" aria-label="Podtržení" title="Podtržení (Ctrl+U)" tabindex="-1" style="text-decoration:underline">U</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Horní index" title="Horní index (Ctrl+.)" tabindex="-1">x²</button><button type="button" aria-label="Dolní index" title="Dolní index (Ctrl+,)" tabindex="-1">x₂</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Odrážkový seznam" title="Odrážkový seznam" tabindex="-1">• –</button><button type="button" aria-label="Číslovaný seznam" title="Číslovaný seznam" tabindex="-1">1. –</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Vložit obrázek" title="Vložit obrázek" tabindex="-1">Obrázek</button><button type="button" aria-label="Upravit popis obrázku" title="Upravit popis obrázku" tabindex="-1">Popis obrázku</button><button type="button" title="Text pro čtečku" tabindex="-1">Text pro čtečku</button></div>
+     <div class="textarea" id="odp1" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp1-lab" style="min-height:var(--cil-min)">šipka 1</div></div>
      
     </div>
     <div class="row">
@@ -208,8 +210,8 @@
     <div class="row-between"><p id="odp2-l" class="t-stitek">Odpověď 2</p></div>
     <div class="field">
      <span class="sr-only" id="odp2-lab">Text odpovědi 2</span>
-     <div class="editor-bar" role="toolbar" aria-label="Formátování: Odpověď 2" aria-controls="odp2"><button type="button" aria-label="Tučné" title="Tučné (Ctrl+B)" tabindex="0">B</button><button type="button" aria-label="Kurzíva" title="Kurzíva (Ctrl+I)" tabindex="-1" style="font-style:italic">I</button><button type="button" aria-label="Podtržení" title="Podtržení (Ctrl+U)" tabindex="-1" style="text-decoration:underline">U</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Horní index" title="Horní index (Ctrl+.)" tabindex="-1">x²</button><button type="button" aria-label="Dolní index" title="Dolní index (Ctrl+,)" tabindex="-1">x₂</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Odrážkový seznam" title="Odrážkový seznam" tabindex="-1">• –</button><button type="button" aria-label="Číslovaný seznam" title="Číslovaný seznam" tabindex="-1">1. –</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Vložit obrázek" title="Vložit obrázek" tabindex="-1">Obrázek</button><button type="button" aria-label="Upravit popis obrázku" title="Upravit popis obrázku" tabindex="-1">Popis obrázku</button><button type="button" title="Text pro čtečku" tabindex="-1">Text pro čtečku</button></div>
-     <div class="textarea" id="odp2" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp2-lab" style="min-height:var(--cil-min)">šipka 2</div>
+     <div>
+     <div class="textarea" id="odp2" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp2-lab" style="min-height:var(--cil-min)">šipka 2</div></div>
      
     </div>
     <div class="row">
@@ -223,8 +225,8 @@
     <div class="row-between"><p id="odp3-l" class="t-stitek">Odpověď 3</p></div>
     <div class="field">
      <span class="sr-only" id="odp3-lab">Text odpovědi 3</span>
-     <div class="editor-bar" role="toolbar" aria-label="Formátování: Odpověď 3" aria-controls="odp3"><button type="button" aria-label="Tučné" title="Tučné (Ctrl+B)" tabindex="0">B</button><button type="button" aria-label="Kurzíva" title="Kurzíva (Ctrl+I)" tabindex="-1" style="font-style:italic">I</button><button type="button" aria-label="Podtržení" title="Podtržení (Ctrl+U)" tabindex="-1" style="text-decoration:underline">U</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Horní index" title="Horní index (Ctrl+.)" tabindex="-1">x²</button><button type="button" aria-label="Dolní index" title="Dolní index (Ctrl+,)" tabindex="-1">x₂</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Odrážkový seznam" title="Odrážkový seznam" tabindex="-1">• –</button><button type="button" aria-label="Číslovaný seznam" title="Číslovaný seznam" tabindex="-1">1. –</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Vložit obrázek" title="Vložit obrázek" tabindex="-1">Obrázek</button><button type="button" aria-label="Upravit popis obrázku" title="Upravit popis obrázku" tabindex="-1">Popis obrázku</button><button type="button" title="Text pro čtečku" tabindex="-1">Text pro čtečku</button></div>
-     <div class="textarea" id="odp3" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp3-lab" style="min-height:var(--cil-min)">šipka 3</div>
+     <div>
+     <div class="textarea" id="odp3" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp3-lab" style="min-height:var(--cil-min)">šipka 3</div></div>
      
     </div>
     <div class="row">
@@ -238,13 +240,13 @@
     <div class="row-between"><p id="odp4-l" class="t-stitek">Odpověď 4</p></div>
     <div class="field">
      <span class="sr-only" id="odp4-lab">Text odpovědi 4</span>
-     <div class="editor-bar" role="toolbar" aria-label="Formátování: Odpověď 4" aria-controls="odp4"><button type="button" aria-label="Tučné" title="Tučné (Ctrl+B)" tabindex="0">B</button><button type="button" aria-label="Kurzíva" title="Kurzíva (Ctrl+I)" tabindex="-1" style="font-style:italic">I</button><button type="button" aria-label="Podtržení" title="Podtržení (Ctrl+U)" tabindex="-1" style="text-decoration:underline">U</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Horní index" title="Horní index (Ctrl+.)" tabindex="-1">x²</button><button type="button" aria-label="Dolní index" title="Dolní index (Ctrl+,)" tabindex="-1">x₂</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Odrážkový seznam" title="Odrážkový seznam" tabindex="-1">• –</button><button type="button" aria-label="Číslovaný seznam" title="Číslovaný seznam" tabindex="-1">1. –</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Vložit obrázek" title="Vložit obrázek" tabindex="-1">Obrázek</button><button type="button" aria-label="Upravit popis obrázku" title="Upravit popis obrázku" tabindex="-1">Popis obrázku</button><button type="button" title="Text pro čtečku" tabindex="-1">Text pro čtečku</button></div>
-     <div class="textarea" id="odp4" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp4-lab" style="min-height:var(--cil-min)">ze schématu to nelze určit</div>
+     <div>
+     <div class="textarea" id="odp4" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp4-lab" style="min-height:var(--cil-min)">ze schématu to nelze určit</div></div>
      
     </div>
     <div class="row">
      <label class="check" style="padding-top:0;align-items:center"><input type="radio" name="spravna" value="4">Správná</label>
-     <label class="check" style="padding-top:0;align-items:center"><input type="checkbox" name="pin4" checked>Připnout na místo</label>
+     <label class="check" style="padding-top:0;align-items:center"><input type="checkbox" name="pin4">Připnout na místo</label>
      <span class="sp" style="flex:1"></span>
      <button class="btn btn--tiche btn--male" type="button">{{I:smazat}}Odebrat<span class="sr-only"> odpověď 4</span></button>
     </div>
@@ -263,11 +265,11 @@
    <p class="hint" id="zv-h">Zpětnou vazbu zkoušený uvidí podle nastavení testu: po vyhodnocení, nebo hned po odpovědi. U úředního testu nikdy.</p>
    <div class="field">
     <span class="label" id="zvok-l">Zpětná vazba při správné odpovědi <span class="volitelne">(nepovinné)</span></span>
-    <div><div class="editor-bar" role="toolbar" aria-label="Formátování: Zpětná vazba při správné odpovědi" aria-controls="zvok"><button type="button" aria-label="Tučné" title="Tučné (Ctrl+B)" tabindex="0">B</button><button type="button" aria-label="Kurzíva" title="Kurzíva (Ctrl+I)" tabindex="-1" style="font-style:italic">I</button><button type="button" aria-label="Podtržení" title="Podtržení (Ctrl+U)" tabindex="-1" style="text-decoration:underline">U</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Horní index" title="Horní index (Ctrl+.)" tabindex="-1">x²</button><button type="button" aria-label="Dolní index" title="Dolní index (Ctrl+,)" tabindex="-1">x₂</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Odrážkový seznam" title="Odrážkový seznam" tabindex="-1">• –</button><button type="button" aria-label="Číslovaný seznam" title="Číslovaný seznam" tabindex="-1">1. –</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Vložit obrázek" title="Vložit obrázek" tabindex="-1">Obrázek</button><button type="button" aria-label="Upravit popis obrázku" title="Upravit popis obrázku" tabindex="-1">Popis obrázku</button><button type="button" title="Text pro čtečku" tabindex="-1">Text pro čtečku</button></div><div class="textarea" id="zvok" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="zvok-l" aria-describedby="zv-h"><p>Správně.</p><p>Částice alfa zastaví už list papíru (nebo povrchová vrstva kůže). Záření beta zastaví několik milimetrů hliníku, záření gama se v olovu jen zeslabuje.</p></div></div>
+    <div><div class="textarea" id="zvok" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="zvok-l" aria-describedby="zv-h"><p>Správně.</p><p>Částice alfa zastaví už list papíru (nebo povrchová vrstva kůže). Záření beta zastaví několik milimetrů hliníku, záření gama se v olovu jen zeslabuje.</p></div></div>
    </div>
    <div class="field">
     <span class="label" id="zvch-l">Zpětná vazba při chybné odpovědi <span class="volitelne">(nepovinné)</span></span>
-    <div><div class="editor-bar" role="toolbar" aria-label="Formátování: Zpětná vazba při chybné odpovědi" aria-controls="zvch"><button type="button" aria-label="Tučné" title="Tučné (Ctrl+B)" tabindex="0">B</button><button type="button" aria-label="Kurzíva" title="Kurzíva (Ctrl+I)" tabindex="-1" style="font-style:italic">I</button><button type="button" aria-label="Podtržení" title="Podtržení (Ctrl+U)" tabindex="-1" style="text-decoration:underline">U</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Horní index" title="Horní index (Ctrl+.)" tabindex="-1">x²</button><button type="button" aria-label="Dolní index" title="Dolní index (Ctrl+,)" tabindex="-1">x₂</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Odrážkový seznam" title="Odrážkový seznam" tabindex="-1">• –</button><button type="button" aria-label="Číslovaný seznam" title="Číslovaný seznam" tabindex="-1">1. –</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Vložit obrázek" title="Vložit obrázek" tabindex="-1">Obrázek</button><button type="button" aria-label="Upravit popis obrázku" title="Upravit popis obrázku" tabindex="-1">Popis obrázku</button><button type="button" title="Text pro čtečku" tabindex="-1">Text pro čtečku</button></div><div class="textarea" id="zvch" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="zvch-l" aria-describedby="zv-h"><p>Částice alfa zastaví už list papíru (nebo povrchová vrstva kůže). Záření beta zastaví několik milimetrů hliníku, záření gama se v olovu jen zeslabuje.</p></div></div>
+    <div><div class="textarea" id="zvch" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="zvch-l" aria-describedby="zv-h"><p>Částice alfa zastaví už list papíru (nebo povrchová vrstva kůže). Záření beta zastaví několik milimetrů hliníku, záření gama se v olovu jen zeslabuje.</p></div></div>
    </div>
   </section>
 
@@ -291,11 +293,6 @@
    <div class="field"><label class="label" for="shrnuti">Shrnutí změny <span class="volitelne">(nepovinné)</span></label><input class="input" id="shrnuti" name="shrnuti" aria-describedby="shr-h"><span class="hint" id="shr-h">Zobrazí se v historii verzí. Například „Upřesněna odpověď 3“.</span></div>
   </section>
 
-  <div class="form-actions">
-   <button class="btn btn--hlavni" type="submit" name="akce" value="schvalit">Odeslat ke schválení</button>
-   <button class="btn" type="submit" name="akce" value="koncept">Uložit jako koncept</button>
-   <a class="btn btn--tiche" href="otazka-detail.html">Zrušit úpravy</a>
-  </div>
  </div>
 
  <aside class="stack-4" aria-label="Kontrola a uložení otázky" style="align-self:start;position:sticky;top:var(--s-3)">
@@ -309,6 +306,11 @@
     <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ok">{{I:check}}<span class="sr-only">Splněno:</span></span><span>Body 1 až 100</span></li>
    </ul>
    <hr class="rule-tenka">
+   <div class="stack-2">
+    <button class="btn btn--hlavni btn--blok" type="submit" name="akce" value="schvalit">Odeslat ke schválení</button>
+    <button class="btn btn--blok" type="submit" name="akce" value="koncept">Uložit jako koncept</button>
+    <a class="btn btn--tiche" href="otazka-detail.html">Zrušit úpravy</a>
+   </div>
    <p class="t-maly">Schvalování je zapnuté: do testů půjde verze 2 až po schválení.</p>
    <p class="t-maly">Rozepsaný obsah průběžně ukládáme v této kartě prohlížeče. Naposledy v <span class="t-cislo">14:32</span>.</p>
    <p><a href="otazka-nahled.html">Náhled pro zkoušeného</a></p>
@@ -353,7 +355,7 @@
      <div class="field"><span class="sr-only" id="odp-e3-l">Text odpovědi 4</span><div class="textarea" id="odp-e3" contenteditable="true" role="textbox" aria-labelledby="odp-e3-l" aria-invalid="true" aria-describedby="odp-e3-err" style="min-height:var(--cil-min)"></div><p class="error" id="odp-e3-err">{{I:pozor}}Vyplňte 4. odpověď. Otázka musí mít alespoň 4.</p></div>
     </fieldset>
    </div>
-   <section class="card card--papir stack" aria-labelledby="kontrola-e">
+   <section class="card card--papir stack" aria-labelledby="kontrola-e" style="align-self:start">
     <p id="kontrola-e" class="t-nadpis">Kontrola otázky</p>
     <ul class="stack-2">
      <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ok">{{I:check}}<span class="sr-only">Splněno:</span></span><span>Zadání je vyplněné</span></li>

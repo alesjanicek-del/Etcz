@@ -89,7 +89,7 @@ def appnav(role, a, mobile=False):
         for it in items:
             h, t, ic = it
             cur = ' aria-current="page"' if h == a else ''
-            extra = '<span class="pocet" aria-label="3 čekají">3</span>' if h == 'ke-schvaleni.html' else ''
+            extra = '<span class="pocet" aria-label="3 čekají">3</span><!-- počet z dat -->' if h == 'ke-schvaleni.html' else ''
             out.append(f'<a href="{h}"{cur}>{I(ic)}{t}{extra}</a>')
     return ''.join(out)
 

@@ -1,0 +1,103 @@
+<!--meta {"titulek": "Osvědčení – Zdeněk Zkoušený", "sablona": "a4"} -->
+<!--spec {
+ "route": "(PDF) Výsledek → Stáhnout osvědčení (PDF)",
+ "nazev": "Osvědčení / záznam o školení (A4)",
+ "role": "zkoušený (držitel), organizace (vydává)",
+ "sablona": "a4",
+ "ucel": "Doklad pro zkoušeného, že splnil test ke školení, s datem platnosti. Pravost a platnost ověří kdokoli kódem nebo QR.",
+ "hlavni_akce": "Doložit absolvování školení (zaměstnavateli, kontrole)",
+ "komponenty": [
+  "a4",
+  "t-display",
+  "t-perex",
+  "t-zvyraznit",
+  "t-cislo",
+  "t-kod",
+  "dl",
+  "img (QR)"
+ ],
+ "stavy": [
+  "platné (nakresleno)",
+  "bez omezení platnosti: dlaždice Platí do = „bez omezení“",
+  "prošlé: nad jménem pruh „Platnost skončila 2. 11. 2027“ (.alert, ikona pozor + slovo) – osvědčení jde stáhnout dál",
+  "po anonymizaci nebo opravě papírové zkoušky se osvědčení nevydá (detail výsledku uvede důvod)",
+  "úřední test: osvědčení se nevydává (dokladem je protokol)",
+  "bez oprávnění: jen splněný pokus se jménem; anonymní pokus z odkazu osvědčení nedostane"
+ ],
+ "zmeny_ux": [
+  "Jméno je největší text (t-display), pod ním název školení zvýrazňovačem – osvědčení se čte na dálku jako diplom, ale bez pečeti a ozdob (směr B).",
+  "Tři klíčová data (splnění, platí do, výsledek) v jedné rámované řadě jako na úvodu testu.",
+  "Ověření pravosti a platnosti v bloku s QR a velkým kódem; stejný kód jako protokol.",
+  "Právní vymezení (nejde o doklad úřadu…) běžnou velikostí písma, ne drobně (pravidlo 3).",
+  "Osnova školení je přímo na osvědčení – z dokladu je zřejmé, s čím byl zaměstnanec seznámen (nápověda lektora doporučuje osnovu vyplnit)."
+ ],
+ "texty": [
+  {
+   "dnes": "Osvědčení vydává vaše organizace. Nejde o doklad vydaný úřadem. (nápověda zkoušeného) / Aplikace na něm uvádí, že nejde o doklad úřadu ani akreditované osoby a že samo nezakládá odbornou způsobilost, kterou předpis podmiňuje zkouškou před úřadem. (nápověda lektora)",
+   "nove": "Osvědčení vydává uvedená organizace. Nejde o doklad úřadu ani akreditované osoby. Samo nezakládá odbornou způsobilost, kterou předpis podmiňuje zkouškou před úřadem.",
+   "proc": "Doslovně podle nápovědy, rozděleno do kratších vět."
+  },
+  {
+   "dnes": "(nové)",
+   "nove": "úspěšně složil(a) ověřovací test ke školení",
+   "proc": "Přesně: osvědčení dokládá test, ne samotné školení."
+  },
+  {
+   "dnes": "(nové)",
+   "nove": "Na exam-test.cz/overeni nebo QR kódem zjistí kdokoli, zda je osvědčení pravé a zda ještě platí. Kód je stejný jako na protokolu.",
+   "proc": "Co kód umí, jednou větou; z nápovědy."
+  }
+ ],
+ "pristupnost": [
+  "PDF tagované (H1 jméno, dl s daty, alt u QR), jazyk cs.",
+  "Data platnosti jako text, ne jen v QR.",
+  "Žlutý zvýrazňovač jen pod grafitovým textem (nikdy žlutý text); při ČB tisku zůstane čitelné.",
+  "HTML náhled v posuvné oblasti (role=region, tabindex=0): A4 má pevnou šířku 210 mm, na mobilu 375 px se posouvá vodorovně – přijatelné u náhledu tisku.",
+  "t-display (56 px) je jinak role webu; v tisku je to jediný největší prvek (jméno) – kontrola velikostí .a4 nekontroluje, ale používám jen velikosti ze škály."
+ ],
+ "poznamky_pro_kodera": [
+  "Data: demo pokus ET-7Q4K-92MX, splněno 3. 11. 2026, platnost 12 měsíců → platí do 2. 11. 2027 (datum splnění + platnost − 1 den, jako v nápovědě).",
+  "Logo organizace vlevo nahoře místo názvu, pokud je nastavené (alt = název organizace).",
+  "Datum „platí do“ se ukládá při odevzdání; pozdější změna testu ho neovlivní.",
+  "QR vede na /overeni?kod=…; v návrhu ukázkový obrázek assets/img/qr-ukazka.png."
+ ],
+ "chybi_komponenta": [
+  "dlaždice tří dat (jako .kpi, ale v dl) – inline grid",
+  "blok ověření s QR (.overeni-blok) – inline, sdílený s protokolem"
+ ]
+} -->
+<main id="obsah"><div role="region" aria-label="Náhled tisku A4: Osvědčení" tabindex="0" style="overflow-x:auto">
+<div class="a4" style="display:flex;flex-direction:column;gap:var(--s-3);margin-bottom:var(--s-5);font-size:var(--t-maly);line-height:1.4">
+<header class="row-between" style="padding-bottom:var(--s-3);border-bottom:var(--b-akcent) solid var(--c-grafit)">
+ <p><b>Ukázková organizace (demo)</b></p>
+ <p class="row" style="gap:var(--s-2)"><img src="../assets/logo/exam-test-znacka.svg" alt="" width="20" height="20"><span class="t-stitek">Vydáno v&nbsp;aplikaci exam-test</span></p>
+</header>
+<div class="stack-4" style="padding:var(--s-6) 0 var(--s-5)">
+ <p class="t-stitek">Osvědčení o&nbsp;absolvování školení</p>
+ <h1 class="t-display">Zdeněk Zkoušený</h1>
+ <p class="t-perex">úspěšně složil(a) ověřovací test ke školení</p>
+ <p class="t-titulek"><span class="t-zvyraznit">Roční školení kybernetické bezpečnosti</span></p>
+</div>
+<dl style="display:grid;grid-template-columns:repeat(3,1fr);border:var(--b-silna) solid var(--c-grafit);margin:0">
+ <div style="padding:var(--s-3);border-right:var(--b-silna) solid var(--c-grafit)"><dt class="t-stitek">Datum splnění</dt><dd class="t-cislo t-nadpis">3.&nbsp;11.&nbsp;2026</dd></div>
+ <div style="padding:var(--s-3);border-right:var(--b-silna) solid var(--c-grafit)"><dt class="t-stitek">Platí do</dt><dd class="t-cislo t-nadpis">2.&nbsp;11.&nbsp;2027</dd></div>
+ <div style="padding:var(--s-3)"><dt class="t-stitek">Výsledek</dt><dd class="t-cislo t-nadpis">83,3&nbsp;%</dd></div>
+</dl>
+<dl class="dl" style="grid-template-columns:160px 1fr">
+ <dt>Test</dt><dd>Kybernetická bezpečnost — roční ověření</dd>
+ <dt>Školitel</dt><dd>Ing. Pavla Školitelová</dd>
+ <dt>Osnova</dt><dd>Phishing a&nbsp;podvodné zprávy · Hesla, správce hesel a&nbsp;ověření ve dvou krocích · Bezpečná práce s&nbsp;e-mailem a&nbsp;přílohami · Hlášení bezpečnostních incidentů</dd>
+ <dt>Vydala</dt><dd>Ukázková organizace (demo), pobočka Návštěvník 6013</dd>
+</dl>
+<section aria-labelledby="ov-h" class="row" style="gap:var(--s-4);align-items:center;background:var(--c-papir);padding:var(--s-3);border-left:var(--b-akcent) solid var(--c-grafit);margin-top:auto">
+ <img src="../assets/img/qr-ukazka.png" alt="QR kód pro ověření pravosti a platnosti osvědčení, kód ET-7Q4K-92MX" width="120" height="124" style="width:120px;height:auto;image-rendering:pixelated">
+ <div class="stack-2" style="flex:1">
+  <h2 id="ov-h" class="t-text" style="font-weight:var(--w-tucne)">Ověření pravosti a&nbsp;platnosti</h2>
+  <p class="t-kod t-nadpis">ET-7Q4K-92MX</p>
+  <p>Na <b>exam-test.cz/overeni</b> nebo QR kódem zjistí kdokoli, zda je osvědčení pravé a&nbsp;zda ještě platí. Kód je stejný jako na protokolu.</p>
+ </div>
+</section>
+<p>Osvědčení vydává uvedená organizace. Nejde o&nbsp;doklad úřadu ani akreditované osoby. Samo nezakládá odbornou způsobilost, kterou předpis podmiňuje zkouškou před úřadem.</p>
+<footer class="row-between" style=";padding-top:var(--s-2);border-top:var(--b-tenka) solid var(--c-grafit)"><p class="t-stitek" style="text-transform:none;letter-spacing:0">Osvědčení · ET-7Q4K-92MX · vytvořeno 3. 11. 2026 17:42</p><p class="t-stitek" style="text-transform:none;letter-spacing:0">strana 1 / 1</p></footer>
+</div>
+</div></main>

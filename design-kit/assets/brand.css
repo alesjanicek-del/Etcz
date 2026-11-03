@@ -116,7 +116,7 @@ a:hover{color:var(--c-propiska-tmava);text-decoration-thickness:2px}
 .dl dt{color:var(--c-seda);font-size:var(--t-maly)}
 @media (max-width:639px){.dl{grid-template-columns:1fr}.dl dt{border-bottom:0;padding-bottom:0}}
 .empty{text-align:center;padding:var(--s-6) var(--s-4);border:var(--b-silna) dashed var(--c-mrizka);background:var(--c-bila)}
-.empty .i{width:40px;height:40px;margin:0 auto var(--s-3);color:var(--c-seda)}
+.empty>.i{width:40px;height:40px;margin:0 auto var(--s-3);color:var(--c-seda)}
 
 /* ---------- Formuláře ---------- */
 .field{display:flex;flex-direction:column;gap:6px}
@@ -353,9 +353,9 @@ legend{padding:0;font-weight:var(--w-tucne)}
 .email__body{padding:var(--s-4)}
 /* časová osa (audit, historie) */
 .timeline{list-style:none;padding:0;border-left:var(--b-silna) solid var(--c-grafit);margin-left:6px}
-.timeline li{position:relative;padding:0 0 var(--s-4) var(--s-4)}
-.timeline li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:var(--c-papir);border:var(--b-silna) solid var(--c-grafit)}
-.timeline li.akt::before{background:var(--c-zvyraznovac)}
+.timeline>li{position:relative;padding:0 0 var(--s-4) var(--s-4)}
+.timeline>li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:var(--c-papir);border:var(--b-silna) solid var(--c-grafit)}
+.timeline>li.akt::before{background:var(--c-zvyraznovac)}
 /* výběr způsobu (dlaždice-radio) */
 .choice{display:flex;gap:var(--s-3);align-items:flex-start;background:var(--c-bila);border:var(--b-silna) solid var(--c-grafit);padding:var(--s-3) var(--s-4);cursor:pointer}
 .choice input{margin-top:4px}
@@ -380,3 +380,18 @@ legend{padding:0;font-weight:var(--w-tucne)}
 .choice input[type=radio]:checked::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--c-zvyraznovac)}
 .prose-layout{display:grid;gap:var(--s-5);grid-template-columns:1fr}
 @media (min-width:1024px){.prose-layout{grid-template-columns:260px 1fr}.prose-layout>.toc{position:sticky;top:96px;align-self:start}}
+
+/* ---------- Doplňky v1.2 (z návrhů aplikace) ---------- */
+.app-top a,.app-foot a,.demo-bar a{display:inline-flex;align-items:center;min-height:var(--cil-min)}
+.app>*,.app-main,.layout-aside>*,.grid-2>*,.grid-3>*,.grid-4>*{min-width:0}
+.tabs,.table-wrap,.steps{contain:inline-size}
+.prose-pravni{max-width:var(--max-text)}
+.prose-pravni>*+*{margin-top:var(--s-3)}
+.prose-pravni h2{font-size:var(--t-nadpis);font-weight:var(--w-tucne);margin-top:var(--s-5)}
+.prose-pravni h3{font-size:var(--t-text);font-weight:var(--w-tucne);margin-top:var(--s-4)}
+.prose-pravni ul,.prose-pravni ol{padding-left:24px}
+.mini-bar{display:inline-block;width:80px;height:8px;background:var(--c-mrizka);vertical-align:middle;margin-right:var(--s-2)}
+.mini-bar>i{display:block;height:100%;background:var(--c-grafit)}
+.skeleton{display:block;height:14px;background:linear-gradient(90deg,var(--c-linka),var(--c-papir),var(--c-linka));background-size:200% 100%;animation:sk 1.4s linear infinite}
+@keyframes sk{to{background-position:-200% 0}}
+@media (max-width:1023px){.layout-aside>.toc{order:-1}}

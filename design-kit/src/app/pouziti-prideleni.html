@@ -1,0 +1,72 @@
+<!--meta {"titulek":"Přidělení skupině – nové použití","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false} -->
+<!--spec {
+ "route":"/pouziti/nove?typ=ASSIGNMENT","nazev":"Nové použití – přidělení","role":"lektor","sablona":"app",
+ "ucel":"Přidělit test studujícím s účtem nebo celým skupinám; test se jim objeví v Moje testy.",
+ "hlavni_akce":"Přidělit test",
+ "komponenty":["crumbs","page-head","card","field","select","fieldset","check","empty","alert--info","form-actions","error-summary"],
+ "stavy":[
+  "výchozí: bez skupin, 1 studující z dema (nakresleno).",
+  "prázdné skupiny: věta s odkazem na správce, nic se nedá vybrat (nakresleno v hlavním stavu).",
+  "chyba: nikdo nevybrán – error-summary (nakresleno).",
+  "mnoho studujících: nad seznamem pole Hledat studujícího a počet vybraných v aria-live.",
+  "bez oprávnění: 403."],
+ "zmeny_ux":[
+  "Skupiny a jednotliví studující jsou dva fieldsety se zaškrtávátky; počet vybraných („Vybráno: 1 studující“) se průběžně ukazuje u tlačítka.",
+  "Prázdný seznam skupin říká, kdo skupiny zakládá, a je to jedna věta.",
+  "Dlouhý hint o prodloužení (49 slov) je zkrácen; trvalé prodloužení studujícího odkazuje na profil uživatele.",
+  "Tlačítko říká co: Přidělit test (dnes Vytvořit)."],
+ "texty":[
+  {"dnes":"Přidělení studujícím / skupině: BOZP — cvičný test","nove":"Nové použití · Přidělení skupině","proc":"Slovník."},
+  {"dnes":"Trvalé prodloužení studujícího (přístupnost) nastavuje administrátor v profilu uživatele. Potřebuje-li prodloužení jen jeden studující, zadejte mu test samostatným použitím. Běžícímu pokusu prodloužíte čas v živém panelu. …","nove":"Trvalé prodloužení studujícího nastavuje administrátor v jeho profilu. Běžícímu pokusu prodloužíte čas v živém panelu.","proc":"Krátce; věty pod 20 slov."},
+  {"dnes":"Žádné skupiny. Skupiny zakládá administrátor pobočky v části Správa → Skupiny studujících.","nove":"Pobočka zatím nemá skupiny. Zakládá je administrátor pobočky.","proc":"Kratší; cesta v menu do nápovědy."},
+  {"dnes":"Vytvořit","nove":"Přidělit test","proc":"Sloveso + co."}],
+ "pristupnost":[
+  "Fieldsety Skupiny a Jednotliví studující mají legend; e-mail studujícího je součást labelu (rozliší jmenovce).",
+  "Počet vybraných je v aria-live=polite.",
+  "Dostupnost od/do – dvě pole s labely ve fieldsetu."],
+ "poznamky_pro_kodera":[
+  "Data z dema: žádné skupiny, studující Zdeněk Zkoušený (zkouseny.zdenek@demo.example).",
+  "Studující uvidí test v Moje testy od data Od; po Do zmizí.",
+  "Výsledky se pak sledují ve Výsledky → Přidělené (kdo splnil)."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="testy.html">Testy</a></li><li><a href="pouziti-nove.html">Použít test</a></li><li><span aria-current="page">Přidělení skupině</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Nové použití · Přidělení skupině</p><h1 class="t-titulek">BOZP – cvičný test</h1></div>
+ <div class="page-head__actions"><a class="btn btn--tiche" href="pouziti-nove.html">Změnit způsob</a></div>
+</div>
+
+<div class="stack-4" style="max-width:var(--max-text)">
+ <form class="card stack-4" action="zivy-panel.html" method="post">
+  <div class="field"><label class="label" for="oznaceni">Označení</label><span class="hint" id="oznaceni-h">Například „BOZP – listopad 2026“.</span><input class="input" id="oznaceni" name="oznaceni" aria-describedby="oznaceni-h"></div>
+  <fieldset class="stack-2"><legend>Dostupnost <span class="volitelne t-maly">(nepovinné)</span></legend>
+   <div class="grid-2" style="gap:var(--s-3)">
+    <div class="field"><label class="label" for="od">Od</label><input class="input" id="od" type="datetime-local"></div>
+    <div class="field"><label class="label" for="do">Do</label><input class="input" id="do" type="datetime-local"></div>
+   </div>
+  </fieldset>
+  <div class="field"><label class="label" for="prodl">Prodloužit časový limit všem</label><span class="hint" id="prodl-h">Trvalé prodloužení studujícího nastavuje administrátor v jeho profilu. Běžícímu pokusu prodloužíte čas v živém panelu.</span>
+   <select class="select" id="prodl" aria-describedby="prodl-h" style="max-width:240px"><option>Bez prodloužení</option><option>+25&nbsp;%</option><option>+50&nbsp;%</option><option>+100&nbsp;%</option></select></div>
+  <fieldset class="stack-2"><legend>Skupiny studujících</legend>
+   <p class="t-maly">Pobočka zatím nemá skupiny. Zakládá je administrátor pobočky.</p>
+  </fieldset>
+  <fieldset class="stack-2"><legend>Jednotliví studující</legend>
+   <label class="check"><input type="checkbox" name="studujici[]" checked><span>Zdeněk Zkoušený<span class="hint" style="display:block">zkouseny.zdenek@demo.example</span></span></label>
+  </fieldset>
+  <div class="form-actions">
+   <button class="btn btn--hlavni" type="submit">{{I:uzivatele}}Přidělit test</button>
+   <span class="t-maly" aria-live="polite">Vybráno: 1 studující</span>
+   <a class="btn btn--tiche" href="testy.html">Zrušit</a>
+  </div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Chyba: nikdo nevybrán</p>
+ <div class="error-summary stack-2" role="alert" tabindex="-1"><p class="alert__nadpis">Test se nepodařilo přidělit</p><ul style="padding-left:var(--s-4)"><li><a href="#stud-x">Vyberte aspoň jednu skupinu nebo studujícího</a></li></ul></div>
+ <fieldset class="stack-2" aria-describedby="stud-x-e"><legend>Jednotliví studující</legend>
+  <span class="error" id="stud-x-e">{{I:pozor}}Vyberte aspoň jednu skupinu nebo studujícího.</span>
+  <label class="check"><input type="checkbox" id="stud-x"><span>Zdeněk Zkoušený<span class="hint" style="display:block">zkouseny.zdenek@demo.example</span></span></label>
+ </fieldset>
+</section>

@@ -1,0 +1,93 @@
+<!--meta {"titulek":"Osobní kódy – nové použití","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false} -->
+<!--spec {
+ "route":"/pouziti/nove?typ=CODE","nazev":"Nové použití – osobní kódy","role":"lektor","sablona":"app",
+ "ucel":"Vytvořit každému zkoušenému vlastní přístupový kód (bez účtu) a kódy vytisknout nebo rozeslat e-mailem.",
+ "hlavni_akce":"Vytvořit kódy",
+ "komponenty":["crumbs","page-head","card","field","input","textarea","select","check","alert","table-wrap","table--stack","kod","form-actions","error-summary"],
+ "stavy":[
+  "výchozí: prázdný seznam osob (nakresleno).",
+  "chyba: chybný řádek v seznamu osob – error-summary + .error s číslem řádku (nakresleno).",
+  "výsledek: tabulka kódů, zobrazí se jen jednou – tlačítka Tisknout kódy a Stáhnout PDF, alert s varováním (nakresleno).",
+  "načítání: rozesílání e-mailů běží na pozadí; ve výsledku stav „Odesláno 4 z 5“ v aria-live.",
+  "bez oprávnění: 403."],
+ "zmeny_ux":[
+  "Formát řádku osoby je ukázaný příkladem pod polem a pole má monospace (lépe se kontroluje středník).",
+  "Dostupnost od–do je jedna skupina se dvěma poli vedle sebe; obě nepovinné.",
+  "Rozeslání e-mailem: vlastní text se ukáže jen po zaškrtnutí.",
+  "Varování „kódy uvidíte jen jednou“ je u tlačítka (před rozhodnutím) i ve výsledku.",
+  "Výsledek má tabulku kódů v .t-kod a tlačítko Tisknout kódy jako hlavní akci."],
+ "texty":[
+  {"dnes":"Přístupové kódy pro osoby: BOZP — cvičný test","nove":"Nové použití · Osobní kódy / BOZP – cvičný test","proc":"Slovník: Osobní kódy."},
+  {"dnes":"Osoby – každá na samostatném řádku: Jméno; e-mail (nepovinný); prodloužení času v % (nepovinné)","nove":"Zkoušení – jeden na řádek. Formát: Jméno; e-mail; prodloužení v %. E-mail a prodloužení jsou nepovinné.","proc":"Label krátký, formát v hintu."},
+  {"dnes":"Kódy se zobrazí jen jednou po vytvoření (v aplikaci se ukládají jen v zabezpečené podobě) – vytiskněte je nebo rozešlete.","nove":"Kódy uvidíte jen jednou, hned po vytvoření. Vytiskněte je nebo rozešlete e-mailem.","proc":"Důležité běžným textem; technický detail do nápovědy."},
+  {"dnes":"Po vytvoření poslat každé osobě s e-mailem její kód","nove":"Poslat kód e-mailem každému, kdo má e-mail","proc":"Činně a krátce."},
+  {"dnes":"Vytvořit","nove":"Vytvořit kódy","proc":"Sloveso + co."}],
+ "pristupnost":[
+  "Textarea má hint s formátem a příkladem v aria-describedby; chyba odkazuje na konkrétní řádek.",
+  "Vlastní text e-mailu je při nezaškrtnutí hidden (mimo tab pořadí); zaškrtávátko má aria-controls.",
+  "Tabulka kódů má caption „Osobní kódy (5) – zobrazí se jen jednou“; kódy čte čtečka po znacích (aria-label s mezerami není potřeba, .t-kod má letter-spacing)."],
+ "poznamky_pro_kodera":[
+  "Placeholder dema: „Jan Novák; jan.novak@example.cz / Petra Svobodová;;25“ – převzato jako příklad do hintu.",
+  "Kód se zadává na /kod. Adresa se tiskne s kódy. Kódy v návrhu jsou ilustrační – formát převzít z backendu.",
+  "E-mail obsahuje název organizace a testu, kód, adresu vstupní stránky, dostupnost a časový limit."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="testy.html">Testy</a></li><li><a href="pouziti-nove.html">Použít test</a></li><li><span aria-current="page">Osobní kódy</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Nové použití · Osobní kódy</p><h1 class="t-titulek">BOZP – cvičný test</h1></div>
+ <div class="page-head__actions"><a class="btn btn--tiche" href="pouziti-nove.html">Změnit způsob</a></div>
+</div>
+
+<div class="stack-4" style="max-width:var(--max-text)">
+ <form class="card stack-4" action="zivy-panel.html" method="post">
+  <div class="field"><label class="label" for="oznaceni">Označení</label><span class="hint" id="oznaceni-h">Například „Roční školení – 1. termín“.</span><input class="input" id="oznaceni" name="oznaceni" aria-describedby="oznaceni-h"></div>
+  <fieldset class="stack-2"><legend>Dostupnost <span class="volitelne t-maly">(nepovinné)</span></legend>
+   <div class="grid-2" style="gap:var(--s-3)">
+    <div class="field"><label class="label" for="od">Od</label><input class="input" id="od" name="od" type="datetime-local"></div>
+    <div class="field"><label class="label" for="do">Do</label><input class="input" id="do" name="do" type="datetime-local"></div>
+   </div>
+  </fieldset>
+  <div class="field"><label class="label" for="prodl">Prodloužit časový limit všem</label><span class="hint" id="prodl-h">Jednotlivcům nastavíte prodloužení v seznamu níže.</span>
+   <select class="select" id="prodl" aria-describedby="prodl-h" style="max-width:240px"><option>Bez prodloužení</option><option>+25&nbsp;%</option><option>+50&nbsp;%</option><option>+100&nbsp;%</option></select></div>
+  <div class="field"><label class="label" for="osoby">Zkoušení</label>
+   <span class="hint" id="osoby-h">Jeden na řádek. Formát: Jméno; e-mail; prodloužení v&nbsp;%. E-mail a prodloužení jsou nepovinné.<br>Příklad: <span class="t-kod">Petra Svobodová;;25</span></span>
+   <textarea class="textarea input--kod" id="osoby" name="osoby" aria-describedby="osoby-h" style="text-transform:none;letter-spacing:0;min-height:160px">Adam Adámek; adam.adamek@example.cz
+Barbora Bílá
+Cyril Cibulka;;25</textarea></div>
+  <fieldset class="stack-2"><legend>Rozeslání e-mailem</legend>
+   <label class="check"><input type="checkbox" name="email" checked aria-controls="email-text">Poslat kód e-mailem každému, kdo má e-mail</label>
+   <div class="field" id="email-text"><label class="label" for="text">Vlastní text e-mailu <span class="volitelne">(nepovinné)</span></label><span class="hint" id="text-h">Vloží se nad kód. Například místo konání.</span><textarea class="textarea" id="text" aria-describedby="text-h" style="min-height:96px"></textarea></div>
+   <p class="t-maly">Kdo e-mail nemá, dostane kód vytištěný.</p>
+  </fieldset>
+  <div class="alert">{{I:pozor}}<p><b>Kódy uvidíte jen jednou</b>, hned po vytvoření. Vytiskněte je nebo rozešlete e-mailem.</p></div>
+  <div class="form-actions">
+   <button class="btn btn--hlavni" type="submit">{{I:klic}}Vytvořit kódy</button>
+   <a class="btn btn--tiche" href="testy.html">Zrušit</a>
+  </div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Výsledek: kódy vytvořené</p>
+ <div class="alert alert--ok">{{I:check-kruh}}<p><b>Vytvořeno 3 kódů.</b> E-mailem odešel 1. Ostatní vytiskněte a rozdejte.</p></div>
+ <div class="alert">{{I:pozor}}<p>Kódy uvidíte jen teď. Po odchodu ze stránky je už nezobrazíte, jen vydáte nové.</p></div>
+ <div class="row"><button class="btn btn--hlavni" type="button">{{I:tisk}}Tisknout kódy</button><a class="btn" href="#">{{I:stahnout}}Stáhnout PDF</a><a class="btn btn--tiche" href="zivy-panel.html">Přejít na živý panel</a></div>
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption>Osobní kódy (3) – zobrazí se jen jednou</caption>
+   <thead><tr><th scope="col">Zkoušený</th><th scope="col">Kód</th><th scope="col">E-mail</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Zkoušený">Adam Adámek</td><td data-label="Kód"><span class="t-kod">K7QM-2XPA</span></td><td data-label="E-mail"><span class="stav stav--ok">{{I:check}}Odesláno</span></td></tr>
+    <tr><td data-label="Zkoušený">Barbora Bílá</td><td data-label="Kód"><span class="t-kod">R4TN-8WEC</span></td><td data-label="E-mail"><span class="stav stav--neutral">Bez e-mailu</span></td></tr>
+    <tr><td data-label="Zkoušený"><div>Cyril Cibulka<span class="t-maly">+25&nbsp;% času</span></div></td><td data-label="Kód"><span class="t-kod">M9HD-3VYU</span></td><td data-label="E-mail"><span class="stav stav--neutral">Bez e-mailu</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="t-maly">Zkoušení zadají kód na adrese <span class="t-kod">demo.exam-test.cz/kod</span>.</p>
+ <p class="t-stitek">Chyba v seznamu</p>
+ <div class="error-summary stack-2" role="alert" tabindex="-1"><p class="alert__nadpis">Kódy se nepodařilo vytvořit</p><ul style="padding-left:var(--s-4)"><li><a href="#osoby-x">Řádek 3: prodloužení musí být číslo, například 25</a></li></ul></div>
+ <div class="field"><label class="label" for="osoby-x">Zkoušení</label><span class="error" id="osoby-x-e">{{I:pozor}}Řádek 3: prodloužení musí být číslo, například 25.</span><textarea class="textarea" id="osoby-x" aria-invalid="true" aria-describedby="osoby-x-e" style="min-height:96px">Adam Adámek; adam.adamek@example.cz
+Barbora Bílá
+Cyril Cibulka;;dvacet</textarea></div>
+</section>

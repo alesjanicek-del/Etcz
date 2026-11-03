@@ -1,0 +1,85 @@
+<!--meta {"titulek":"Veřejný odkaz – nové použití","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false} -->
+<!--spec {
+ "route":"/pouziti/nove?typ=LINK","nazev":"Nové použití – veřejný odkaz","role":"lektor","sablona":"app",
+ "ucel":"Vytvořit odkaz, přes který test vyplní kdokoli – typicky cvičný test na webu nebo v e-mailu.",
+ "hlavni_akce":"Vytvořit odkaz",
+ "komponenty":["crumbs","page-head","card","field","input","select","fieldset","check","alert","kod","form-actions"],
+ "stavy":[
+  "výchozí: limity 100 pokusů a 30 souběžně předvyplněné (nakresleno).",
+  "výsledek: odkaz s tlačítkem Kopírovat odkaz a QR kódem (nakresleno).",
+  "chyba: limit mimo rozsah (1–10 000 / 1–1 000) – .error u pole.",
+  "úřední test: na tuto stránku se nedostane; volba v Použít test je zakázaná s důvodem.",
+  "bez oprávnění: organizace zakázala odkazy – stránka 403 s vysvětlením."],
+ "zmeny_ux":[
+  "Label označení říká účel („Kde odkaz zveřejníte“) – pak porovnáte výsledky odkazů z webu a e-mailu.",
+  "Limity jsou ve skupině Ochrana otázek s jednou větou proč.",
+  "„Jméno je povinné“ se nabízí jen po zaškrtnutí „Ptát se na jméno“ (vnořená volba).",
+  "Výsledek ukáže odkaz v poli jen pro čtení s tlačítkem Kopírovat odkaz a QR kód ke stažení."],
+ "texty":[
+  {"dnes":"Odkaz (anonymní): BOZP — cvičný test","nove":"Nové použití · Veřejný odkaz","proc":"Slovník."},
+  {"dnes":"Označení (účel odkazu, např. „E-mail březen“, „Web“)","nove":"Kde odkaz zveřejníte – hint: Například „Web“ nebo „E-mail březen“. Podle toho porovnáte výsledky.","proc":"Label krátký, příklad v hintu."},
+  {"dnes":"Max. pokusů přes odkaz celkem – Chrání soubory otázek před vytěžením.","nove":"Nejvýše pokusů celkem","proc":"Bez zkratky; důvod jednou u skupiny."},
+  {"dnes":"Max. souběžně rozpracovaných","nove":"Nejvýše rozpracovaných najednou","proc":"Bez zkratky, srozumitelněji."},
+  {"dnes":"Vytvořit","nove":"Vytvořit odkaz","proc":"Sloveso + co."}],
+ "pristupnost":[
+  "Vnořená volba Jméno je povinné je při nezaškrtnutém „Ptát se na jméno“ disabled a odsazená (vizuální i logická závislost).",
+  "Odkaz ve výsledku je input readonly s labelem; Kopírovat odkaz oznámí „Odkaz zkopírován“ přes aria-live.",
+  "QR kód má alt „QR kód odkazu na test BOZP – cvičný test“."],
+ "poznamky_pro_kodera":[
+  "Výchozí: max_attempts_total 100 (1–10 000), max_open_attempts 30 (1–1 000).",
+  "Odkaz přestane platit uzavřením použití.",
+  "Ke stejnému testu lze mít víc odkazů s různým označením."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="testy.html">Testy</a></li><li><a href="pouziti-nove.html">Použít test</a></li><li><span aria-current="page">Veřejný odkaz</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Nové použití · Veřejný odkaz</p><h1 class="t-titulek">BOZP – cvičný test</h1></div>
+ <div class="page-head__actions"><a class="btn btn--tiche" href="pouziti-nove.html">Změnit způsob</a></div>
+</div>
+
+<div class="stack-4" style="max-width:var(--max-text)">
+ <form class="card stack-4" action="zivy-panel.html" method="post">
+  <div class="field"><label class="label" for="oznaceni">Kde odkaz zveřejníte</label><span class="hint" id="oznaceni-h">Například „Web“ nebo „E-mail březen“. Podle toho porovnáte výsledky.</span><input class="input" id="oznaceni" name="oznaceni" aria-describedby="oznaceni-h"></div>
+  <fieldset class="stack-2"><legend>Dostupnost <span class="volitelne t-maly">(nepovinné)</span></legend>
+   <div class="grid-2" style="gap:var(--s-3)">
+    <div class="field"><label class="label" for="od">Od</label><input class="input" id="od" type="datetime-local"></div>
+    <div class="field"><label class="label" for="do">Do</label><input class="input" id="do" type="datetime-local"></div>
+   </div>
+  </fieldset>
+  <div class="field"><label class="label" for="prodl">Prodloužit časový limit všem</label><span class="hint" id="prodl-h">Limit se zaokrouhlí nahoru na celé minuty.</span>
+   <select class="select" id="prodl" aria-describedby="prodl-h" style="max-width:240px"><option>Bez prodloužení</option><option>+25&nbsp;%</option><option>+50&nbsp;%</option><option>+100&nbsp;%</option></select></div>
+  <fieldset class="stack-2" aria-describedby="ochrana-h"><legend>Ochrana otázek</legend>
+   <span class="hint" id="ochrana-h">Limity brání tomu, aby někdo přes odkaz vytěžil celý soubor otázek.</span>
+   <div class="grid-2" style="gap:var(--s-3)">
+    <div class="field"><label class="label" for="max">Nejvýše pokusů celkem</label><input class="input" id="max" type="number" min="1" max="10000" value="100" inputmode="numeric" style="max-width:160px"></div>
+    <div class="field"><label class="label" for="soub">Nejvýše rozpracovaných najednou</label><input class="input" id="soub" type="number" min="1" max="1000" value="30" inputmode="numeric" style="max-width:160px"></div>
+   </div>
+  </fieldset>
+  <fieldset class="stack-2"><legend>Jméno zkoušeného</legend>
+   <label class="check"><input type="checkbox" name="jmeno" checked>Ptát se na jméno</label>
+   <label class="check" style="padding-left:var(--s-5)"><input type="checkbox" name="jmeno-povinne">Jméno je povinné</label>
+  </fieldset>
+  <div class="form-actions">
+   <button class="btn btn--hlavni" type="submit">{{I:odkaz}}Vytvořit odkaz</button>
+   <a class="btn btn--tiche" href="testy.html">Zrušit</a>
+  </div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Výsledek: odkaz vytvořený</p>
+ <div class="card stack">
+  <div class="alert alert--ok">{{I:check-kruh}}<p><b>Odkaz je připravený.</b> Platí, dokud použití neuzavřete.</p></div>
+  <div class="row" style="align-items:flex-start">
+   <img class="qr" src="../assets/img/qr-ukazka.png" alt="QR kód odkazu na test BOZP – cvičný test" width="120" height="120">
+   <div class="stack-2" style="flex:1 1 240px;min-width:0">
+    <div class="field"><label class="label" for="url">Odkaz pro zkoušené</label><input class="input" id="url" readonly value="https://demo.exam-test.cz/o/7QK4M2"></div>
+    <div class="row"><button class="btn" type="button">{{I:kopirovat}}Kopírovat odkaz</button><a class="btn btn--tiche" href="#">{{I:stahnout}}Stáhnout QR kód</a></div>
+    <p class="t-maly" aria-live="polite"></p>
+   </div>
+  </div>
+  <p class="t-maly">Nejvýše 100 pokusů celkem, 30 najednou.</p>
+  <div><a class="btn btn--hlavni" href="zivy-panel.html">Otevřít živý panel</a></div>
+ </div>
+</section>
