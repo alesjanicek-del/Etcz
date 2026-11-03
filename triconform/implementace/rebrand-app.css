@@ -1,0 +1,144 @@
+/* =====================================================================
+   Triconform · směr B „Týden“ · aplikace (Symfony + Tailwind 4 + AssetMapper)
+   ---------------------------------------------------------------------
+   Zapojení v app/assets/styles/app.css: ZA stávající @theme a tmavou
+   paletu přidat   @import "./fonts.css";  @import "./rebrand-b.css";
+   Soubor přepíše tokeny (@theme + tmavá paleta) a doladí komponenty.
+   Šablony Twig se nemění; logo se vymění přes CSS (viz níže).
+   Soubory: assets/fonts/*.woff2, assets/styles/fonts.css (cesty ../fonts/),
+            assets/images/brand/*.svg
+   Typová škála aplikace (5 rolí): 13 · 15 · 16 · 22 · 30 px
+   ===================================================================== */
+
+@theme {
+  --font-sans: 'Public Sans', Arial, Helvetica, sans-serif;
+  --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  --color-canvas: #F7F5EF;      /* papír */
+  --color-surface: #FFFFFF;
+  --color-ink: #163D33;         /* jedle 12,0:1 na bílé */
+  --color-line: #CFDCD5;
+  --color-focus: #E2622B;       /* signál – obrys fokusu 3,2:1 */
+  --color-on-brand: #F7F5EF;
+  --color-danger-solid: #B3261E;
+  --color-danger-solid-hover: #8A2318;
+  --color-signal: #E2622B;      /* jen výplně: pruh „Hned“ */
+  --color-signal-text: #A2441A; /* text 6,2:1 */
+  --color-mata: #DCEBE3;
+  --color-listi: #8DB8A6;
+
+  /* roviny se liší tvarem a slovem, barva je jednotná */
+  --color-plane-org: #163D33;
+  --color-plane-product: #163D33;
+  --color-plane-ai: #163D33;
+
+  --color-brand-50: #E8F1EC;
+  --color-brand-100: #DCEBE3;
+  --color-brand-200: #B9D3C6;
+  --color-brand-600: #1F5C4C;
+  --color-brand-700: #163D33;
+  --color-brand-800: #0E2A23;
+  --color-brand-900: #0B211B;
+
+  --color-slate-50: #F3F1EA;
+  --color-slate-100: #ECE8DD;
+  --color-slate-200: #DCE3DE;
+  --color-slate-300: #B9C9C1;
+  --color-slate-400: #7E968C;   /* jen dekorace */
+  --color-slate-500: #56716A;   /* 5,3:1 */
+  --color-slate-600: #3F5E54;   /* 7,1:1 */
+  --color-slate-700: #2F4F45;
+  --color-slate-800: #213F36;
+  --color-slate-900: #163D33;
+  --color-slate-950: #0E2A23;
+
+  --color-amber-50: #FCEBDD;    /* demo pruh, upozornění */
+  --color-amber-100: #F9DCC6;
+  --color-amber-300: #E2622B;
+  --color-amber-400: #E98A5C;
+  --color-amber-600: #C2551F;
+  --color-amber-900: #7A3212;   /* 7,9:1 na amber-50 */
+  --color-amber-950: #4A1F0B;
+
+  --color-green-50: #E3F0E8;
+  --color-green-600: #1F6B4A;
+  --color-green-800: #17583C;
+  --color-green-900: #11432E;
+
+  --color-red-50: #FBE9E4;
+  --color-red-100: #F7D6CE;
+  --color-red-600: #B3261E;
+  --color-red-700: #9B2C1F;
+  --color-red-800: #8A2318;
+  --color-red-900: #6E1C13;
+
+  --text-xs: 13px;   --text-xs--line-height: 1.4;
+  --text-sm: 15px;   --text-sm--line-height: 1.5;
+  --text-base: 16px; --text-base--line-height: 1.55;
+  --text-lg: 22px;   --text-lg--line-height: 1.25;
+  --text-xl: 22px;   --text-xl--line-height: 1.25;
+  --text-2xl: 30px;  --text-2xl--line-height: 1.15;
+  --text-3xl: 30px;  --text-3xl--line-height: 1.15;
+
+  --radius-sm: 3px; --radius-md: 4px; --radius-lg: 6px; --radius-xl: 6px; --radius-2xl: 6px;
+}
+
+/* tmavý motiv: stejné názvy tokenů, jedlová noc */
+@layer theme {
+  :root[data-theme=dark] {
+    --color-canvas: #0F1F1A; --color-surface: #16302A; --color-ink: #EEF3EF; --color-line: #2C4A40;
+    --color-focus: #F08A5D; --color-on-brand: #0F1F1A; --color-danger-solid: #F4A39B; --color-danger-solid-hover: #F8C2BB;
+    --color-signal: #F08A5D; --color-signal-text: #F08A5D; --color-mata: #1D3A32; --color-listi: #5E8F7C;
+    --color-plane-org: #DCEBE3; --color-plane-product: #DCEBE3; --color-plane-ai: #DCEBE3;
+    --color-brand-50: #1D3A32; --color-brand-100: #24463C; --color-brand-200: #2F5A4D; --color-brand-600: #DCEBE3; --color-brand-700: #DCEBE3; --color-brand-800: #FFFFFF;
+    --color-slate-50: #132621; --color-slate-100: #1A322B; --color-slate-200: #2C4A40; --color-slate-300: #3E6255; --color-slate-400: #5E8F7C;
+    --color-slate-500: #93B2A5; --color-slate-600: #B5CBC1; --color-slate-700: #CADBD2; --color-slate-800: #DFEAE4; --color-slate-900: #EEF3EF; --color-slate-950: #F7F5EF;
+    --color-amber-50: #2E1E14; --color-amber-100: #3B2617; --color-amber-300: #A2441A; --color-amber-400: #C2551F; --color-amber-600: #F08A5D; --color-amber-900: #F6B796; --color-amber-950: #FBD6C2;
+    --color-green-50: #10291F; --color-green-600: #8FD1B3; --color-green-800: #A9DEC6; --color-green-900: #C9EBDB;
+    --color-red-50: #2C1715; --color-red-100: #3D1D1A; --color-red-600: #F4A39B; --color-red-700: #F4A39B; --color-red-800: #F8C2BB; --color-red-900: #FBD9D4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --color-canvas: #0F1F1A; --color-surface: #16302A; --color-ink: #EEF3EF; --color-line: #2C4A40;
+      --color-focus: #F08A5D; --color-on-brand: #0F1F1A; --color-danger-solid: #F4A39B; --color-danger-solid-hover: #F8C2BB;
+      --color-signal: #F08A5D; --color-signal-text: #F08A5D; --color-mata: #1D3A32; --color-listi: #5E8F7C;
+      --color-plane-org: #DCEBE3; --color-plane-product: #DCEBE3; --color-plane-ai: #DCEBE3;
+      --color-brand-50: #1D3A32; --color-brand-100: #24463C; --color-brand-200: #2F5A4D; --color-brand-600: #DCEBE3; --color-brand-700: #DCEBE3; --color-brand-800: #FFFFFF;
+      --color-slate-50: #132621; --color-slate-100: #1A322B; --color-slate-200: #2C4A40; --color-slate-300: #3E6255; --color-slate-400: #5E8F7C;
+      --color-slate-500: #93B2A5; --color-slate-600: #B5CBC1; --color-slate-700: #CADBD2; --color-slate-800: #DFEAE4; --color-slate-900: #EEF3EF; --color-slate-950: #F7F5EF;
+      --color-amber-50: #2E1E14; --color-amber-100: #3B2617; --color-amber-300: #A2441A; --color-amber-400: #C2551F; --color-amber-600: #F08A5D; --color-amber-900: #F6B796; --color-amber-950: #FBD6C2;
+      --color-green-50: #10291F; --color-green-600: #8FD1B3; --color-green-800: #A9DEC6; --color-green-900: #C9EBDB;
+      --color-red-50: #2C1715; --color-red-100: #3D1D1A; --color-red-600: #F4A39B; --color-red-700: #F4A39B; --color-red-800: #F8C2BB; --color-red-900: #FBD9D4;
+    }
+  }
+}
+
+@layer base {
+  body { font-family: var(--font-sans); }
+  h1, h2 { font-family: var(--font-display); font-weight: 700; letter-spacing: -.01em; }
+  h1 { font-size: var(--text-2xl); line-height: 1.15; }
+}
+
+@layer components {
+  /* logo: staré tři kruhy skrýt, značka B jako pozadí; text „Triconform“ zůstává pro čtečky */
+  .app-brand { font-family: var(--font-display); font-size: 22px; font-weight: 700; text-transform: lowercase; gap: 10px; }
+  .app-brand svg { display: none; }
+  .app-brand::before { content: ""; width: 30px; height: 30px; flex: none; background: url("../images/brand/triconform-znacka.svg") center / contain no-repeat; }
+  [data-theme=dark] .app-brand::before { background-image: url("../images/brand/triconform-znacka-svetla.svg"); }
+
+  .app-header { border-bottom: 2px solid var(--color-ink); background-color: var(--color-canvas); }
+  .app-nav-link[aria-current], .app-nav-link[aria-current="page"] { color: var(--color-ink); font-weight: 700; box-shadow: inset 0 -4px 0 var(--color-signal); border-radius: 0; background: transparent; }
+  .app-nav-link:hover, .app-sub-link:hover { background-color: var(--color-mata); }
+
+  .btn { font-weight: 700; border-radius: var(--radius-md); }
+  .btn-primary { background-color: var(--color-brand-700); color: var(--color-on-brand); }
+  .btn-primary:hover { background-color: var(--color-brand-800); box-shadow: inset 0 -3px 0 var(--color-signal); }
+  .btn-secondary { --tw-ring-color: var(--color-ink); color: var(--color-ink); }
+  .btn-secondary:hover { background-color: var(--color-mata); }
+
+  .card { box-shadow: none; border: 1px solid var(--color-line); border-radius: var(--radius-lg); }
+
+  /* štítky: hranaté, stav vždy i slovem */
+  .badge { border-radius: var(--radius-sm); font-weight: 700; letter-spacing: .02em; }
+  .badge-solid-red { background-color: var(--color-signal-text); }
+}
