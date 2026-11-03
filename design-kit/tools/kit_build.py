@@ -80,6 +80,11 @@ def audit():
 <div class="card card--tenka stack-2"><p class="t-stitek">Automatická kontrola · {r["stats"]["stylu_textu"]} stylů textu · {r["stats"]["slov"]} slov</p>{lst(nal) if nal else "<p>Bez nálezů: WCAG 2.2 AA (axe, desktop i mobil), reflow 320 px, cíle ≥ 24 px, typografie a barvy z tokenů, věty ≤ 25 slov, slovník pojmů.</p>"}</div>
 </div></details>'''
     avg = round(sum(T['styly']) / len(T['styly']), 1) if T['styly'] else 0
+    en = json.load(open('reports/en-delka.json')) if os.path.exists('reports/en-delka.json') else {}
+    en_bad = {k2: v['nalezy'] for k2, v in en.items() if v['nalezy']}
+    en_html = f'<p>Test délky textu pro angličtinu (pseudo-lokalizace +35&nbsp;%, 320 a 1280&nbsp;px): <b>{len(en) - len(en_bad)} z {len(en)}</b> stránek bez nálezu.</p>' + (lst([f"{k2}: {'; '.join(v)}" for k2, v in en_bad.items()]) if en_bad else '')
+    dec = [(p, x.replace('Rozhodnout: ', '')) for p, xs in REVIZE.items() for x in xs if x.startswith('Rozhodnout')] + [(p, x) for p, xs in REVIZE.items() for x in xs if x.startswith('Známá chyba')]
+    dec_html = '<div class="table-wrap"><table class="table table--stack"><caption class="sr-only">Body k rozhodnutí</caption><thead><tr><th scope="col">Stránka</th><th scope="col">Co rozhodnout</th></tr></thead><tbody>' + ''.join(f'<tr><td data-label="Stránka"><a href="{p}">{E(p)}</a></td><td data-label="Rozhodnout">{E(x)}</td></tr>' for p, x in dec) + '</tbody></table></div>'
     page = HEAD('Audit', 'audit.html') + f'''<main id="obsah"><div class="container">
 <section class="hero" style="padding-bottom:var(--s-5)"><div class="stack-4"><p class="t-stitek">Audit návrhů · WCAG 2.2 AA · UX · UI · srozumitelnost</p><h1 class="t-display">Audit stránek</h1>
 <p class="t-perex measure">Každá stránka prošla automatickou kontrolou na desktopu (1280 px) a mobilu (375 px) a revizí podle čtyř hledisek. Klikněte na stránku pro specifikaci, přepisy textů a nálezy.</p>
@@ -90,6 +95,8 @@ def audit():
 <div class="feature"><h3 class="t-nadpis">UX</h3><p>Účel a hlavní akce stránky, všechny stavy (prázdný, chyba, načítání, oprávnění), jedna hlavní akce na obrazovku, mobil – obsah v první polovině obrazovky.</p></div>
 <div class="feature"><h3 class="t-nadpis">Srozumitelnost</h3><p>Věty nad 25 slov, odstavce nad 90 slov, zakázané a zastaralé formulace ze slovníku, každá změna textu zdůvodněná (dnes → nově → proč).</p></div></div>
 <p class="t-maly">Automatické nástroje odhalí asi třetinu problémů přístupnosti. Před spuštěním je nutný ruční test s čtečkou obrazovky (NVDA, VoiceOver) a klávesnicí – viz poznámky u jednotlivých stránek.</p></section>
+<section class="stack-4" aria-labelledby="roz-h" style="padding-top:var(--s-5)"><h2 id="roz-h" class="t-sekce">K rozhodnutí</h2>{dec_html}</section>
+<section class="stack-3" aria-labelledby="en-h" style="padding-top:var(--s-5)"><h2 id="en-h" class="t-sekce">Angličtina – délka textu</h2>{en_html}</section>
 <section class="section" aria-labelledby="sum-h" style="padding-top:var(--s-5)"><h2 id="sum-h" class="t-sekce">Souhrn</h2>
 <div class="table-wrap" style="margin-top:var(--s-4)"><table class="table table--stack"><caption class="sr-only">Výsledky kontrol podle stránek</caption><thead><tr><th scope="col">Stránka</th><th scope="col" class="num">WCAG chyby</th><th scope="col" class="num">WCAG drobné</th><th scope="col" class="num">Značka a text</th><th scope="col" class="num">Varování</th><th scope="col" class="num">Stylů</th><th scope="col">Stav</th></tr></thead><tbody>{rows}</tbody></table></div></section>
 <section aria-labelledby="det-h" style="padding-bottom:var(--s-6)"><h2 id="det-h" class="t-sekce">Stránky podrobně</h2><div style="margin-top:var(--s-4)">{det}</div></section>

@@ -33,6 +33,15 @@ Kontrola hlásí:
 - věty delší než 25 slov;
 - zastaralé formulace ze slovníku pojmů.
 
+## Angličtina a zavedení
+- `node tools/check_en.js` je test délky textu: všechny texty prodlouží o 35 % a zkontroluje šířky 320 a 1280 px.
+- Vzorové anglické stránky jsou `web/en-index.html` a `app/en-test-otazka.html`. Kostra webu umí `"lang":"en"` (přepínač CS/EN, `hreflang`).
+- Glosář EN v brand manuálu (kapitola 08b) je jen návrh. Při rozporu platí `docs/STYL_A_TERMINOLOGIE.md` v repozitáři aplikace.
+- Postup zavedení popisuje brand manuál v kapitole 08c:
+  1. Až po go-live SÚJB a zapnutí EN.
+  2. Nejdřív vizuál, goldeny obnovit v samostatném commitu.
+  3. Potom texty přes katalogy `*.cs.yaml` a zároveň `*.en.yaml`.
+
 ## Co ještě zbývá před spuštěním
 - Ruční test se čtečkou obrazovky (NVDA + Firefox, VoiceOver + Safari) a jen s klávesnicí na průchodu testem, editoru otázky a živém panelu.
 - Ověřit barvy loga v tisku nátiskem. CMYK a Pantone v manuálu jsou orientační.

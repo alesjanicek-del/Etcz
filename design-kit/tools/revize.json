@@ -1,0 +1,82 @@
+{
+ "web/index.html": [
+  "UI: hero má jednu hlavní akci, karta ověření je jediná karta „na papíře“ – správná hierarchie.",
+  "UX: v hlavičce zůstala jediná hlavní akce (Vyzkoušet demo); Ukázka s průvodcem je v hero a v CTA pásu – kvůli délce EN textů v hlavičce.",
+  "Text: perex 2 věty, obě pod 20 slov.",
+  "EN: test délky (+35 %) prošel na 320 i 1280 px."
+ ],
+ "web/cenik.html": [
+  "UX: karty tarifů nad tabulkou srovnání, čísla přesně z dnešního ceníku.",
+  "Rozhodnout: zda zvýraznit doporučený tarif (dnes žádný není) – návrh ponechává bez doporučení."
+ ],
+ "web/ukazka.html": [
+  "UX: nepovinná pole označena, povinná bez hvězdiček; souhrn chyb nahoře.",
+  "Text: hlášky chyb říkají, jak chybu opravit (formát e-mailu, telefon nepovinný)."
+ ],
+ "web/ochrana-osobnich-udaju.html": [
+  "Známá chyba: právní text cituje název formuláře „Domluvit ukázku“. Text je převzatý doslova; změnu na „Ukázka s průvodcem“ musí schválit právník."
+ ],
+ "web/overeni-vysledek.html": [
+  "UX: výsledek přímo v H1, údaje k porovnání s papírem jako seznam pojem–hodnota; 5 dalších stavů (nenalezen, změněn, nahrazen, čeká na razítko, prošlé osvědčení).",
+  "Kód: 20 znaků ve skupinách po pěti, láme se jen za pomlčkou."
+ ],
+ "app/lektor-prehled.html": [
+  "UI: tři souhrnná čísla, tabulka probíhajícího zkoušení, odkazy „Živý panel: název testu“ (WCAG 2.4.4).",
+  "Data: čísla v souhrnu ilustrační – počítat z dat pobočky."
+ ],
+ "app/otazka-editor.html": [
+  "UX: 4 číslované sekce + boční panel Kontrola otázky se stavem pravidel (ikona + slovo).",
+  "Přístupnost: povinný popis obrázku, text pro čtečku u vzorců, lišta nástrojů se slovy místo symbolů.",
+  "Rozhodnout: přepínač (radio) u otázky s jednou správnou odpovědí – dnes zaškrtávátko, které dovolí označit dvě správné."
+ ],
+ "app/test-editor-sekce.html": [
+  "UX: editor testu ve 3 krocích (Sekce → Parametry → Kontrola); chyba sekce říká příčinu i opravu.",
+  "Mobil: kroky pod sebou (v1.4), aby se na 375 px neořízl 3. krok."
+ ],
+ "app/zivy-panel.html": [
+  "Přístupnost: aria-live jen na souhrnu (3 čísla), ne na tabulce – čtečka nehlásí každých 5 s celou učebnu.",
+  "UX: akce Prodloužit čas / Kód pro převzetí / Ukončit pokus u konkrétního člověka, nevratné s dialogem."
+ ],
+ "app/tisk-zapis.html": [
+  "UX: mřížka odpovídá odpovědnímu listu (sloupce A–G pod sebou). Rychlé psaní z klávesnice je návrh – ověřit s vývojem."
+ ],
+ "app/vysledky.html": [
+  "UI: řádek se nezalamuje, test + způsob v jedné buňce, čísla vpravo strojopisem.",
+  "Text: „Zkoušený vidí“ a „Zpřístupnit vybrané výsledky“ místo „Uvolněno“ – změna i v EN katalogu (Release results)."
+ ],
+ "app/vysledek-detail.html": [
+  "UX: vyhodnocení nahoře s větou proč, zpřístupnění a ověřovací kód v bočním panelu, průběh a dohled na časové ose."
+ ],
+ "app/test-start.html": [
+  "UX: čísla jednou (dlaždice), 3 pravidla, dohled v jednom bloku – dnes zazněl 3×.",
+  "Text: všechny věty do 20 slov."
+ ],
+ "app/test-otazka.html": [
+  "Přístupnost: radio ve fieldsetu, legend = otázka (H1), časomíra role=timer, hlášení jen v 5. a poslední minutě (návrh – dnes každých 10 min).",
+  "Mobil: otázka hned pod hlavičkou, ovládání dole.",
+  "Rozhodnout: změna hlášení časomíry je změna chování pro uživatele čteček – odsouhlasit."
+ ],
+ "app/test-odevzdani.html": [
+  "Text: potvrzení o školení běžným textem ve 3 bodech (dnes 12 px šedě).",
+  "Rozhodnout: nevratnost u tlačítka místo potvrzovacího dialogu (návrh); zkrácené znění potvrzení schválit právníkem."
+ ],
+ "app/test-vysledek.html": [
+  "UI: výsledek slovy v H1, protokol s ověřovacím kódem a odkaz na ověření; kód se láme jen mezi skupinami."
+ ],
+ "tisk/odpovedni-list.html": [
+  "Podle skutečného PDF dávky z dema: kód variace + QR, přesný počet políček (A–G), štítek Více odpovědí, pokyn k opravě (návrh), pole Vyplní lektor.",
+  "Rozhodnout: pravidlo pro opravu (začernit políčko)."
+ ],
+ "tisk/protokol.html": [
+  "Směr B bez pečeti ze směru A: ověřovací kód, QR, časové razítko, výběr událostí průběhu, vejde se na 1 stranu A4.",
+  "Úřední test: protokol vždy česky (rozhodnutí vlastníka)."
+ ],
+ "app/en-test-otazka.html": [
+  "EN vzor: stejné komponenty, texty podle návrhu EN glosáře v brand manuálu (Next question, Flag for review, Review and submit, Monitoring).",
+  "K revizi rodilým mluvčím spolu se seznamem z předávky."
+ ],
+ "web/en-index.html": [
+  "EN vzor /en/: odkazy na stránky jen v češtině označené „(in Czech)“ a hreflang=\"cs\"; právní texty česky s poznámkou (rozhodnutí vlastníka).",
+  "Přepínač jazyka: v hlavičce od 1440 px, vždy v mobilním menu a v patičce."
+ ]
+}

@@ -447,3 +447,7 @@ h1,h2,h3,.t-display,.t-sekce,.t-titulek,.t-nadpis{overflow-wrap:break-word;hyphe
 .sheet-box--x{background:var(--c-grafit);color:var(--c-zvyraznovac)}
 @media (max-width:1023px){.layout-aside--aside-first>:last-child{order:-1}}
 .table-wrap{max-width:100%;overflow-x:auto}
+/* Ověřovací kód (20 znaků) – nelámat, na úzkých displejích menší */
+.kod,.t-kod{white-space:normal;overflow-wrap:normal;word-break:normal}
+@media (max-width:479px){.kod{font-size:var(--t-text);letter-spacing:.06em;padding:8px 10px}}
+.layout-aside .kod,.card .kod{font-size:var(--t-text);letter-spacing:.06em}
