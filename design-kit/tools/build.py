@@ -96,11 +96,11 @@ def web_en(meta, body):
   <a class="logo" href="en-index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – home" width="170" height="28"></a>
   <nav class="site-nav" aria-label="Main"><ul>{nav}</ul></nav>
   <div class="site-header__cta">
-   <a class="btn btn--tiche btn--male" href="../app/prihlaseni.html">Sign in</a>
+   <a class="btn btn--tiche btn--male" href="../app/en-prihlaseni.html">Sign in</a>
    <a class="btn btn--hlavni btn--male" href="en-vyzkouset.html">Try the demo</a>
    <nav class="lang" aria-label="Language / Jazyk"><a href="{meta.get('cs_verze', 'index.html')}" lang="cs" hreflang="cs">CS</a><a href="#" lang="en" aria-current="true">EN</a></nav>
   </div>
-  <details class="menu"><summary class="btn btn--male">{I('menu')}Menu</summary><nav class="menu__panel" aria-label="Main (mobile)">{''.join(f'<a href="{h}">{t}</a>' for h, t in WEB_NAV_EN)}<a href="../app/prihlaseni.html">Sign in</a><a href="index.html" lang="cs" hreflang="cs">Česky</a></nav></details>
+  <details class="menu"><summary class="btn btn--male">{I('menu')}Menu</summary><nav class="menu__panel" aria-label="Main (mobile)">{''.join(f'<a href="{h}">{t}</a>' for h, t in WEB_NAV_EN)}<a href="../app/en-prihlaseni.html">Sign in</a><a href="index.html" lang="cs" hreflang="cs">Česky</a></nav></details>
  </div>
 </header>
 <main id="obsah">
