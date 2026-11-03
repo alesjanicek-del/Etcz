@@ -1,0 +1,76 @@
+<!--meta {"titulek":"Assign to a group – new test assignment","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false,"lang":"en","cs_verze":"pouziti-prideleni.html"} -->
+<!--spec {
+ "route":"/pouziti/nove?typ=ASSIGNMENT (lang=en)","nazev":"New test assignment – assigned to a group – English","role":"instructor","sablona":"app",
+ "ucel":"Assign the test to learners with an account or to whole groups; it appears in their My tests.",
+ "hlavni_akce":"Assign test",
+ "komponenty":["crumbs","page-head","card","field","select","fieldset","check","empty","alert--info","form-actions","error-summary"],
+ "stavy":[
+  "Default: no groups, 1 learner from the demo (drawn).",
+  "No groups: one sentence saying who creates groups (drawn in the main state).",
+  "Error: nobody selected – error-summary (drawn).",
+  "Many learners: Search learners field above the list and the selected count in aria-live.",
+  "No permission: 403."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (pouziti-prideleni.html).",
+  "New field “Language for test takers” after Label – test_usage.ui_locale. Options: “Each person’s own language” (default – the learner’s account language), Czech, English. Learners with an account already have a language, so the extra first option avoids overriding it. Suggested for the Czech page too.",
+  "The selected count “1 learner selected” sits next to the button and wraps below it at 320 px."],
+ "texty":[
+  {"dnes":"(nové pole)","nove":"Language for test takers – Each person’s own language / Czech / English","proc":"Exposes test_usage.ui_locale; respects the account language by default."},
+  {"dnes":"Přidělení skupině","nove":"Assign to a group","proc":"Glossary (assigned to a group)."},
+  {"dnes":"Skupiny studujících / Jednotliví studující","nove":"Learner groups / Individual learners","proc":"Glossary gap – see notes."},
+  {"dnes":"Pobočka zatím nemá skupiny. Zakládá je administrátor pobočky.","nove":"This branch has no groups yet. A branch administrator creates them.","proc":"Glossary: branch administrator."},
+  {"dnes":"Přidělit test","nove":"Assign test","proc":"Verb + object."},
+  {"dnes":"Vybráno: 1 studující","nove":"1 learner selected","proc":"Plural via ICU."}],
+ "pristupnost":["Same as the Czech page: fieldsets with legend; learner email is part of the label; selected count in aria-live=polite. Czech personal names carry lang=\"cs\" for correct pronunciation."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml.",
+  "Language field → test_usage.ui_locale (null = account language | cs | en).",
+  "Glossary gap: studující → learner; skupina studujících → learner group."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-testy.html">Tests</a></li><li><a href="en-pouziti-nove.html">Use test</a></li><li><span aria-current="page">Assign to a group</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">New test assignment · Assign to a group</p><h1 class="t-titulek">OHS – practice test</h1></div>
+ <div class="page-head__actions"><a class="btn btn--tiche" href="en-pouziti-nove.html">Change method</a></div>
+</div>
+
+<div class="stack-4" style="max-width:var(--max-text)">
+ <form class="card stack-4" action="en-zivy-panel.html" method="post" style="contain:inline-size">
+  <div class="field"><label class="label" for="oznaceni">Label</label><span class="hint" id="oznaceni-h">For example, “OHS – November 2026”.</span><input class="input" id="oznaceni" name="oznaceni" aria-describedby="oznaceni-h"></div>
+  <fieldset class="stack-2" aria-describedby="jazyk-h">
+   <legend class="label">Language for test takers</legend>
+   <span class="hint" id="jazyk-h">Used for the test screens and emails. Questions stay in the language they were written in.</span>
+   <label class="check"><input type="radio" name="ui_locale" value="" checked>Each person’s own language (from their account)</label>
+   <div class="row"><label class="check"><input type="radio" name="ui_locale" value="cs">Czech</label><label class="check"><input type="radio" name="ui_locale" value="en">English</label></div>
+  </fieldset>
+  <fieldset class="stack-2"><legend>Availability <span class="volitelne t-maly">(optional)</span></legend>
+   <div class="grid-2" style="gap:var(--s-3)">
+    <div class="field"><label class="label" for="od">From</label><input class="input" id="od" type="datetime-local"></div>
+    <div class="field"><label class="label" for="do">To</label><input class="input" id="do" type="datetime-local"></div>
+   </div>
+  </fieldset>
+  <div class="field"><label class="label" for="prodl">Extend the time limit for everyone</label><span class="hint" id="prodl-h">An administrator sets a permanent extension in the learner’s profile. Extend a running attempt in the live monitor.</span>
+   <select class="select" id="prodl" aria-describedby="prodl-h" style="max-width:240px"><option>No extension</option><option>+25%</option><option>+50%</option><option>+100%</option></select></div>
+  <fieldset class="stack-2"><legend>Learner groups</legend>
+   <p class="t-maly">This branch has no groups yet. A branch administrator creates them.</p>
+  </fieldset>
+  <fieldset class="stack-2"><legend>Individual learners</legend>
+   <label class="check"><input type="checkbox" name="studujici[]" checked><span><span lang="cs">Zdeněk Zkoušený</span><span class="hint" style="display:block;overflow-wrap:anywhere">zkouseny.zdenek@demo.example</span></span></label>
+  </fieldset>
+  <div class="form-actions">
+   <button class="btn btn--hlavni" type="submit">{{I:uzivatele}}Assign test</button>
+   <span class="t-maly" aria-live="polite">1 learner selected</span>
+   <a class="btn btn--tiche" href="en-testy.html">Cancel</a>
+  </div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text);contain:inline-size" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">Error: nobody selected</p>
+ <div class="error-summary stack-2" role="alert" tabindex="-1"><p class="alert__nadpis">The test could not be assigned</p><ul style="padding-left:var(--s-4)"><li><a href="#stud-x">Select at least one group or learner</a></li></ul></div>
+ <fieldset class="stack-2" aria-describedby="stud-x-e"><legend>Individual learners</legend>
+  <span class="error" id="stud-x-e">{{I:pozor}}Select at least one group or learner.</span>
+  <label class="check"><input type="checkbox" id="stud-x"><span><span lang="cs">Zdeněk Zkoušený</span><span class="hint" style="display:block;overflow-wrap:anywhere">zkouseny.zdenek@demo.example</span></span></label>
+ </fieldset>
+</section>

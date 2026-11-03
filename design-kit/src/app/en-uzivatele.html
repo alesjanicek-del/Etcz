@@ -1,0 +1,55 @@
+<!--meta {"titulek":"Users","sablona":"app","role":"admin","aktivni":"en-uzivatele.html","demo":false,"lang":"en","cs_verze":"uzivatele.html"} -->
+<!--spec {
+ "route":"/sprava/uzivatele (lang=en)","nazev":"Users","role":"admin (branch administrators see users of their branches; organisation administrators see everyone plus the Organisation administrator and Question author roles)","sablona":"app",
+ "ucel":"Find branch users, check their roles and status, and invite new ones.",
+ "hlavni_akce":"Invite user; open user detail.",
+ "komponenty":["page-head","filters","input","select","table-wrap","table--stack","stav","toolbar","alert","empty"],
+ "stavy":["Same states as uzivatele.html: empty filter, after invitation, plan limit (“You have 10 of 10 staff users on your plan. Students are not counted.”), loading/error, permissions."],
+ "zmeny_ux":["Layout identical to the Czech page. Search label is longer in English; the field has flex-basis 240px and wraps."],
+ "texty":[
+  {"dnes":"Pozvat uživatele","nove":"Invite user","proc":"Verb first."},
+  {"dnes":"Hledat jméno, e-mail nebo osobní číslo","nove":"Search name, email or staff number","proc":"Label says what is searched."},
+  {"dnes":"Pracovníci podle tarifu: 2 z 10. Studující se nepočítají.","nove":"Staff users on your plan: 2 of 10. Students are not counted.","proc":"EN glossary: plan."},
+  {"dnes":"Aktivní / Pozvánka čeká / Neaktivní / Ověření zapnuto","nove":"Active / Invitation pending / Inactive / Two-step on","proc":"Short badges; EN glossary: two-step verification."},
+  {"dnes":"Administrátor pobočky / Lektor / Autor otázek / Studující","nove":"Branch administrator / Instructor / Question author / Student","proc":"EN glossary."},
+  {"dnes":"Pozvánka odešla na … Odkaz pro nastavení hesla platí 7 dní.","nove":"Invitation sent to … The link to set a password is valid for 7 days.","proc":"Short sentences."}],
+ "pristupnost":["Same as the Czech page. Czech names wrapped in lang=\"cs\"."],
+ "poznamky_pro_kodera":["Data as in uzivatele.html.","Glossary gap: studující (role) → student.","Glossary gap: pracovník (counted against the plan) → staff user.","Glossary gap: osobní číslo → staff number.","Glossary gap: pozvánka → invitation."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <h1 class="t-titulek">Users</h1>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="en-uzivatel-formular.html">{{I:plus}}Invite user</a></div>
+</div>
+
+<form class="filters" action="en-uzivatele.html" method="get" aria-label="Filter users">
+ <div class="field" style="flex:2 1 240px"><label class="label" for="u-q">Search name, email or staff number</label><input class="input" id="u-q" type="search"></div>
+ <div class="field"><label class="label" for="u-role">Role</label><select class="select" id="u-role"><option>All</option><option>Branch administrator</option><option>Instructor</option><option>Question author</option><option>Student</option></select></div>
+ <div class="field"><label class="label" for="u-pob">Branch</label><select class="select" id="u-pob"><option>All</option><option>Prague</option></select></div>
+ <button class="btn" type="submit">{{I:filtr}}Filter</button>
+</form>
+
+<p class="t-maly" style="margin-bottom:var(--s-3)">Staff users on your plan: <span class="t-cislo">2 of 10</span>. Students are not counted.</p>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Users, 3 people</caption>
+  <thead><tr><th scope="col">Name</th><th scope="col">Email</th><th scope="col">Role</th><th scope="col">Status</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Name"><a href="en-uzivatel-detail.html"><b>Barbora Veselá</b></a></td><td data-label="Email" style="overflow-wrap:anywhere">admin.barbora@demo.example</td><td data-label="Role"><span><b>Branch administrator</b><span class="t-maly">Prague</span></span></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Active</span></td></tr>
+   <tr><td data-label="Name"><a href="en-uzivatel-detail.html"><b>Lucie Lektorová</b></a></td><td data-label="Email" style="overflow-wrap:anywhere">lektor.lucie@demo.example</td><td data-label="Role"><span><b>Instructor</b><span class="t-maly">Prague</span></span></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Active</span></td></tr>
+   <tr><td data-label="Name"><a href="en-uzivatel-detail.html" lang="cs"><b>Zdeněk Zkoušený</b></a></td><td data-label="Email" style="overflow-wrap:anywhere">zkouseny.zdenek@demo.example</td><td data-label="Role"><span><b>Student</b><span class="t-maly">Prague</span></span></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Active</span></td></tr>
+  </tbody>
+ </table>
+</div>
+<p class="t-maly" style="margin-top:var(--s-2)">Total 3</p>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">After invitation</p>
+  <div class="alert alert--ok" role="status">{{I:check}}<p>Invitation sent to jan.novak@demo.example. The link to set a password is valid for 7 days.</p></div></div>
+ <div class="stack-2"><p class="t-stitek">Other user statuses in the table</p>
+  <div class="row"><span class="stav stav--pozor">{{I:email}}Invitation pending</span><span class="stav stav--neutral">{{I:minus-kruh}}Inactive</span><span class="stav stav--info">{{I:zamek}}Two-step on</span></div></div>
+ <div class="stack-2"><p class="t-stitek">No match for the filter</p>
+  <div class="empty stack-2">{{I:hledat}}<p class="t-nadpis">No users match the filter</p><p><a class="btn" href="en-uzivatele.html">Clear filter</a></p></div></div>
+</section>

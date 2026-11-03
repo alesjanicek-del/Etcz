@@ -1,0 +1,81 @@
+<!--meta {"titulek":"Lucie Lektorová – user","sablona":"app","role":"admin","aktivni":"en-uzivatele.html","demo":false,"lang":"en","cs_verze":"uzivatel-detail.html"} -->
+<!--spec {
+ "route":"/sprava/uzivatele/:id (lang=en)","nazev":"User – detail","role":"admin (a branch administrator may change only a user whose roles are all in branches they manage; otherwise read-only)","sablona":"app",
+ "ucel":"Manage one user: details, roles in branches, invitation, deactivation and resetting two-step verification.",
+ "hlavni_akce":"Edit details; add or remove a role.",
+ "komponenty":["crumbs","page-head","stav","layout-aside","dl","table-wrap","table--stack","field","select","card","alert","dialog"],
+ "stavy":["Same states as uzivatel-detail.html: invitation pending (Resend invitation / Cancel invitation), inactive (Activate), out of scope (.alert--info), remove role dialog (“Remove the Instructor role in the Prague branch?” – Remove role / Keep), reset two-step verification dialog with mandatory reason, permissions."],
+ "zmeny_ux":["Layout identical to the Czech page. “Reset two-step verification” is long; it wraps inside the small danger button in the narrow aside."],
+ "texty":[
+  {"dnes":"Upravit údaje","nove":"Edit details","proc":"Verb first."},
+  {"dnes":"Vypnuto. Pro tuto roli je povinné – uživatel si ho nastaví při příštím přihlášení.","nove":"Off. It is required for this role – the user will set it up at their next sign-in.","proc":"Two short sentences."},
+  {"dnes":"Ověření ve dvou krocích","nove":"Two-step verification","proc":"EN glossary."},
+  {"dnes":"Zrušit ověření ve dvou krocích","nove":"Reset two-step verification","proc":"“Reset” says the user sets it up again; “cancel” would suggest it stays off."},
+  {"dnes":"Lektor, studující a administrátor pobočky musí mít pobočku.","nove":"Instructors, students and branch administrators must have a branch.","proc":"Active voice."},
+  {"dnes":"Deaktivovat uživatele","nove":"Deactivate user","proc":"Verb first."},
+  {"dnes":"Prodloužení času · Bez prodloužení","nove":"Extra time · None","proc":"Usual term for exam access arrangements."}],
+ "pristupnost":["Same as the Czech page."],
+ "poznamky_pro_kodera":["Behaviour as in uzivatel-detail.html.","Glossary gap: Zrušit ověření ve dvou krocích → Reset two-step verification.","Glossary gap: Prodloužení času → Extra time.","Glossary gap: osobní číslo → staff number."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-uzivatele.html">Users</a></li><li><span aria-current="page">Lucie Lektorová</span></li></ol></nav>
+<div class="page-head">
+ <div class="row"><h1 class="t-titulek">Lucie Lektorová</h1><span class="stav stav--ok">{{I:check}}Active</span></div>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="en-uzivatel-formular.html">{{I:upravit}}Edit details</a></div>
+</div>
+
+<div class="layout-aside">
+ <div class="stack-5">
+  <section class="stack" aria-labelledby="udaje">
+   <h2 id="udaje" class="t-nadpis">Details</h2>
+   <dl class="dl">
+    <dt>Email</dt><dd style="overflow-wrap:anywhere">lektor.lucie@demo.example</dd>
+    <dt>Staff number</dt><dd>—</dd>
+    <dt>Extra time</dt><dd>None</dd>
+    <dt>Last sign-in</dt><dd class="t-cislo">3&nbsp;Nov 2026 18:33</dd>
+   </dl>
+  </section>
+
+  <section class="stack" aria-labelledby="role">
+   <h2 id="role" class="t-nadpis">Roles</h2>
+   <div class="table-wrap"><table class="table table--stack">
+    <caption class="sr-only">User roles by branch</caption>
+    <thead><tr><th scope="col">Role</th><th scope="col">Branch</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+    <tbody><tr><td data-label="Role"><b>Instructor</b></td><td data-label="Branch">Prague</td><td data-label="Actions"><button class="btn btn--tiche btn--male" type="button">Remove role<span class="sr-only">: Instructor, Prague</span></button></td></tr></tbody>
+   </table></div>
+   <form class="filters" action="#" method="post" aria-labelledby="pridat">
+    <p id="pridat" class="sr-only">Add role</p>
+    <div class="field"><label class="label" for="r-role">Role</label><select class="select" id="r-role"><option>Branch administrator</option><option>Instructor</option><option>Student</option></select></div>
+    <div class="field"><label class="label" for="r-pob">Branch</label><select class="select" id="r-pob" aria-describedby="r-pob-h"><option>Prague</option></select></div>
+    <button class="btn" type="submit">{{I:plus}}Add role</button>
+   </form>
+   <p class="t-maly" id="r-pob-h">Instructors, students and branch administrators must have a branch. One user can have several roles in different branches.</p>
+  </section>
+ </div>
+
+ <aside class="stack-4" aria-label="Security and access">
+  <section class="card stack" aria-labelledby="dvak">
+   <h2 id="dvak" class="t-stitek">Two-step verification</h2>
+   <p><span class="stav stav--neutral">{{I:zamek}}Off</span></p>
+   <p class="t-maly">It is required for this role – the user will set it up at their next sign-in.</p>
+   <details class="faq"><summary>The user has lost their phone</summary><div class="stack-2"><p class="t-maly">First verify the user’s identity, for example by calling a known number. Never reset verification based on an email alone.</p><button class="btn btn--male btn--nebezpecne" type="button">Reset two-step verification</button></div></details>
+  </section>
+  <section class="card stack" aria-labelledby="pristup">
+   <h2 id="pristup" class="t-stitek">Access</h2>
+   <p class="t-maly">A deactivated user cannot sign in and is signed out on all devices. Their results and questions stay.</p>
+   <button class="btn btn--nebezpecne" type="button">Deactivate user</button>
+  </section>
+ </aside>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">Reset verification – dialog (shown statically)</p>
+  <div class="dialog" style="position:static;margin:0">
+   <div class="dialog__body stack"><h3 class="t-nadpis">Reset two-step verification?</h3><p>Lucie Lektorová will be signed out and will get an email. She will set up verification again at her next sign-in.</p>
+    <div class="field"><label class="label" for="duvod">Reason</label><span class="hint" id="duvod-h">At least 5 characters. It is recorded in the change log.</span><input class="input" id="duvod" aria-invalid="true" aria-describedby="duvod-e duvod-h" value="tel"><span class="error" id="duvod-e">{{I:pozor}}The reason must be at least 5 characters.</span></div></div>
+   <div class="dialog__foot"><button class="btn" type="button">Keep verification</button><button class="btn btn--nebezpecne" type="button">Reset verification</button></div>
+  </div></div>
+ <div class="stack-2"><p class="t-stitek">Outside your scope</p>
+  <div class="alert alert--info">{{I:info}}<p>This user also has a role in another branch. Their details, deactivation and verification are managed by the organisation administrator.</p></div></div>
+</section>

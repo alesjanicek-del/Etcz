@@ -1,0 +1,89 @@
+<!--meta {"titulek":"Public link – new test assignment","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false,"lang":"en","cs_verze":"pouziti-odkaz.html"} -->
+<!--spec {
+ "route":"/pouziti/nove?typ=LINK (lang=en)","nazev":"New test assignment – public link – English","role":"instructor","sablona":"app",
+ "ucel":"Create a link anyone can use to take the test – typically a practice test on a website or in an email.",
+ "hlavni_akce":"Create link",
+ "komponenty":["crumbs","page-head","card","field","input","select","fieldset","check","alert","kod","form-actions"],
+ "stavy":[
+  "Default: limits of 100 attempts and 30 at a time prefilled (drawn).",
+  "Result: link with a Copy link button and a QR code (drawn).",
+  "Error: limit out of range (1–10,000 / 1–1,000) – .error under the field.",
+  "Official test: this page cannot be reached; the option in Use test is disabled with a reason.",
+  "No permission: links disabled by the organisation – 403 with an explanation."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (pouziti-odkaz.html).",
+  "New field “Language for test takers” (Czech / English) after “Where will you share the link?” – test_usage.ui_locale. For a public link there is no account language, so the choice matters most here. Suggested for the Czech page too.",
+  "Tip in the hint: create one link per language (e.g. “Website – EN”) to compare results."],
+ "texty":[
+  {"dnes":"(nové pole)","nove":"Language for test takers – Czech / English","proc":"Exposes test_usage.ui_locale."},
+  {"dnes":"(nové pole) hint","nove":"Used for the test screens. Questions stay in the language they were written in. Need both? Create a second link.","proc":"Short sentences; suggests the solution."},
+  {"dnes":"Kde odkaz zveřejníte","nove":"Where will you share the link?","proc":"Label states the purpose."},
+  {"dnes":"Ochrana otázek","nove":"Question protection","proc":"Group name; reason in the hint."},
+  {"dnes":"Nejvýše pokusů celkem / Nejvýše rozpracovaných najednou","nove":"Maximum attempts in total / Maximum attempts in progress at once","proc":"Glossary: pokus → attempt."},
+  {"dnes":"Ptát se na jméno / Jméno je povinné","nove":"Ask for a name / Name is required","proc":"Plain wording."},
+  {"dnes":"Vytvořit odkaz","nove":"Create link","proc":"Verb + object."},
+  {"dnes":"Kopírovat odkaz","nove":"Copy link","proc":"Verb + object."}],
+ "pristupnost":["Same as the Czech page: nested “Name is required” disabled and indented when “Ask for a name” is off; Copy link announces “Link copied” via aria-live; QR alt “QR code for the link to OHS – practice test”."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml.",
+  "Language field → test_usage.ui_locale (cs|en); default from the organisation.",
+  "Defaults: max_attempts_total 100 (1–10,000), max_open_attempts 30 (1–1,000)."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-testy.html">Tests</a></li><li><a href="en-pouziti-nove.html">Use test</a></li><li><span aria-current="page">Public link</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">New test assignment · Public link</p><h1 class="t-titulek">OHS – practice test</h1></div>
+ <div class="page-head__actions"><a class="btn btn--tiche" href="en-pouziti-nove.html">Change method</a></div>
+</div>
+
+<div class="stack-4" style="max-width:var(--max-text)">
+ <form class="card stack-4" action="en-zivy-panel.html" method="post" style="contain:inline-size">
+  <div class="field"><label class="label" for="oznaceni">Where will you share the link?</label><span class="hint" id="oznaceni-h">For example, “Website” or “Email March”. Use it to compare results.</span><input class="input" id="oznaceni" name="oznaceni" aria-describedby="oznaceni-h"></div>
+  <fieldset class="stack-2" aria-describedby="jazyk-h">
+   <legend class="label">Language for test takers</legend>
+   <span class="hint" id="jazyk-h">Used for the test screens. Questions stay in the language they were written in. Need both? Create a second link.</span>
+   <div class="row"><label class="check"><input type="radio" name="ui_locale" value="cs" checked>Czech</label><label class="check"><input type="radio" name="ui_locale" value="en">English</label></div>
+  </fieldset>
+  <fieldset class="stack-2"><legend>Availability <span class="volitelne t-maly">(optional)</span></legend>
+   <div class="grid-2" style="gap:var(--s-3)">
+    <div class="field"><label class="label" for="od">From</label><input class="input" id="od" type="datetime-local"></div>
+    <div class="field"><label class="label" for="do">To</label><input class="input" id="do" type="datetime-local"></div>
+   </div>
+  </fieldset>
+  <div class="field"><label class="label" for="prodl">Extend the time limit for everyone</label><span class="hint" id="prodl-h">The limit is rounded up to whole minutes.</span>
+   <select class="select" id="prodl" aria-describedby="prodl-h" style="max-width:240px"><option>No extension</option><option>+25%</option><option>+50%</option><option>+100%</option></select></div>
+  <fieldset class="stack-2" aria-describedby="ochrana-h"><legend>Question protection</legend>
+   <span class="hint" id="ochrana-h">Limits stop anyone from harvesting the whole question bank through the link.</span>
+   <div class="grid-2" style="gap:var(--s-3)">
+    <div class="field"><label class="label" for="max">Maximum attempts in total</label><input class="input" id="max" type="number" min="1" max="10000" value="100" inputmode="numeric" style="max-width:160px"></div>
+    <div class="field"><label class="label" for="soub">Maximum attempts in progress at once</label><input class="input" id="soub" type="number" min="1" max="1000" value="30" inputmode="numeric" style="max-width:160px"></div>
+   </div>
+  </fieldset>
+  <fieldset class="stack-2"><legend>Test taker’s name</legend>
+   <label class="check"><input type="checkbox" name="jmeno" checked>Ask for a name</label>
+   <label class="check" style="padding-left:var(--s-5)"><input type="checkbox" name="jmeno-povinne">Name is required</label>
+  </fieldset>
+  <div class="form-actions">
+   <button class="btn btn--hlavni" type="submit">{{I:odkaz}}Create link</button>
+   <a class="btn btn--tiche" href="en-testy.html">Cancel</a>
+  </div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text);contain:inline-size" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">Result: link created</p>
+ <div class="card stack">
+  <div class="alert alert--ok">{{I:check-kruh}}<p><b>The link is ready.</b> It works until you close the test assignment.</p></div>
+  <div class="row" style="align-items:flex-start">
+   <img class="qr" src="../assets/img/qr-ukazka.png" alt="QR code for the link to OHS – practice test" width="120" height="120">
+   <div class="stack-2" style="flex:1 1 240px;min-width:0">
+    <div class="field"><label class="label" for="url">Link for test takers</label><input class="input" id="url" readonly value="https://demo.exam-test.cz/o/7QK4M2"></div>
+    <div class="row"><button class="btn" type="button">{{I:kopirovat}}Copy link</button><a class="btn btn--tiche" href="#">{{I:stahnout}}Download QR code</a></div>
+    <p class="t-maly" aria-live="polite"></p>
+   </div>
+  </div>
+  <p class="t-maly">At most 100 attempts in total, 30 at a time.</p>
+  <div><a class="btn btn--hlavni" href="en-zivy-panel.html">Open live monitor</a></div>
+ </div>
+</section>
