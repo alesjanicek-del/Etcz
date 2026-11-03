@@ -1,0 +1,81 @@
+<!--meta {"titulek":"Pro školy, kurzy a střediska","popis":"Společné soubory otázek pro celý tým lektorů, cvičné testy se zpětnou vazbou, závěrečné zkoušky a protokol pro absolventa.","sablona":"web","aktivni":"pro-vzdelavani.html"} -->
+<!--spec {
+ "route":"/pro-vzdelavani","nazev":"Pro školy, kurzy a střediska","role":"veřejnost – školy, lektoři, školicí střediska","sablona":"web",
+ "ucel":"Ukázat školám a střediskům sdílení otázek, cvičné i závěrečné testy a protokol pro absolventa.",
+ "hlavni_akce":"Ukázka s průvodcem; vedlejší: Vyzkoušet demo",
+ "komponenty":["hero","feature","grid-3","list-check","card","faq","cta-band"],
+ "stavy":["Statická stránka – bez stavů."],
+ "zmeny_ux":[
+  "Sekce Pro školicí střediska má kotvu #strediska (odkazuje na ni patička a úvodní stránka); dnes kotva chybí.",
+  "Hero: jedna hlavní a jedna vedlejší akce místo tří tlačítek.",
+  "Upozornění, že každý cvičný pokus se počítá do limitu tarifu, je samostatná věta (dnes v závorce)."],
+ "texty":[
+  {"dnes":"Okamžitá zpětná vazba u každé otázky, libovolný počet opakování (každý pokus se počítá do limitu tarifu), odkaz pro celý kurz.","nove":"Okamžitá zpětná vazba u každé otázky, libovolný počet opakování a veřejný odkaz pro celý kurz. Každý pokus se počítá do limitu tarifu.","proc":"Důležité nikdy v závorce; slovník Veřejný odkaz."},
+  {"dnes":"Domluvit ukázku / Prohlédnout demo – bez registrace","nove":"Ukázka s průvodcem / Vyzkoušet demo","proc":"Slovník."},
+  {"dnes":"Přidělte test celé skupině; studující ho najdou po přihlášení v sekci „Moje testy“.","nove":"Přidělte test celé skupině. Studující ho najdou po přihlášení v sekci „Moje testy“.","proc":"Kratší věty."}],
+ "pristupnost":["Jediné H1, sekce H2, bloky H3.","FAQ přes details/summary.","Kotva #strediska na sekci s aria-labelledby."],
+ "poznamky_pro_kodera":["Odpovědi FAQ převzaty z dnešního webu."],
+ "chybi_komponenta":[]
+} -->
+<section class="hero grid-bg">
+ <div class="container stack-4">
+  <p class="t-stitek">Školy, kurzy a školicí střediska</p>
+  <h1 class="t-display measure">Společné soubory otázek pro <span class="t-zvyraznit">celý tým lektorů</span></h1>
+  <p class="t-perex measure">Lektoři sdílejí otázky, každý studující dostane jinou variaci testu a statistiky ukážou, které otázky jsou nejasné. Zkoušejte online, v&nbsp;učebně i na papíře.</p>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="vyzkouset.html">Vyzkoušet demo</a></div>
+  <p class="t-maly">Demo je bez registrace.</p>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="vyuka">
+ <div class="container stack-5">
+  <div class="stack-2"><p class="t-stitek">Pro výuku i závěrečné zkoušky</p><h2 id="vyuka" class="t-sekce">Od cvičení po závěrečnou zkoušku</h2></div>
+  <div class="grid-3">
+   <div class="feature"><h3 class="t-nadpis">Cvičné testy</h3><p>Okamžitá zpětná vazba u každé otázky, libovolný počet opakování a veřejný odkaz pro celý kurz. Každý pokus se počítá do limitu tarifu.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Závěrečné zkoušky</h3><p>Povinné otázky, náhodný výběr ze souborů otázek, časový limit, pásma známek a protokol pro absolventa.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Skupiny studujících</h3><p>Přidělte test celé skupině. Studující ho najdou po přihlášení v&nbsp;sekci „Moje testy“.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="otazky">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack"><p class="t-stitek">Statistiky a verze</p><h2 id="otazky" class="t-sekce">Otázky, které se zlepšují</h2></div>
+  <ul class="list-check">
+   <li><span>Statistiky ke každé otázce a její verzi: úspěšnost a počet zařazení do testů.</span></li>
+   <li><span>Oprava otázky vytvoří novou verzi; staré výsledky se nepřepočítají.</span></li>
+   <li><span>Schvalování otázek garantem předmětu (volitelné).</span></li>
+   <li><span>Dolní a horní index, tabulky a obrázky pro chemii, fyziku i matematiku.</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section section--bila" id="strediska" aria-labelledby="strediska-h">
+ <div class="container stack-5">
+  <div class="stack-2"><p class="t-stitek">Pro školicí střediska</p><h2 id="strediska-h" class="t-sekce">Absolventi pro různé firmy, jedna aplikace</h2><p class="t-perex measure">Zkoušíte absolventy kurzů pro různé firmy a na různých místech? Vystačíte si s&nbsp;jednou aplikací.</p></div>
+  <div class="grid-3">
+   <div class="feature"><h3 class="t-nadpis">Zkouška na konci kurzu</h3><p>Účastníci se v&nbsp;učebně připojí kódem nebo QR kódem, vy je vpouštíte do testu a sledujete živý panel. Účet nepotřebují.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Protokol pro absolventa</h3><p>Ke každému pokusu protokol PDF s&nbsp;ověřovacím kódem. Zaměstnavatel absolventa si pravost <a href="overeni.html">ověří online</a> sám.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Pobočky a lektoři</h3><p>Každé místo nebo tým jako pobočka se svými lektory. Sdílené soubory otázek s&nbsp;právy ke čtení nebo úpravám.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="faq">
+ <div class="container grid-2" style="align-items:start">
+  <h2 id="faq" class="t-sekce">Časté otázky škol a lektorů</h2>
+  <div class="faq">
+   <details><summary>Jak zajistíte, že studující neopisují?</summary><div><p>Každý studující dostane vlastní variaci: jiný výběr otázek ze souboru, jiné pořadí otázek i odpovědí. Při prezenční zkoušce pouštíte studující do testu sami a v&nbsp;živém panelu vidíte jejich stav. Aplikace nezamyká počítač, dohled v&nbsp;učebně tedy nenahrazuje.</p></div></details>
+   <details><summary>Můžeme test vytisknout?</summary><div><p>Ano. Tisková dávka vytvoří libovolný počet různých variací, odpovědní listy a samostatné klíče pro opravu. Výsledky z&nbsp;papíru zapíšete do aplikace a máte je pohromadě s&nbsp;online výsledky.</p></div></details>
+   <details><summary>Zvládne aplikace chemické a matematické zápisy?</summary><div><p>Editor otázek podporuje dolní a horní index, tabulky a obrázky. Ke vzorcům lze doplnit text pro čtečku, aby test zvládli i studující se zrakovým postižením.</p></div></details>
+   <details><summary>Jak rychle uvidíme, které otázky jsou špatně položené?</summary><div><p>Statistiky ukazují ke každé otázce a její verzi, kolikrát byla zařazena do testu a jak často na ni studující odpověděli správně. Když otázku opravíte, vznikne nová verze. Staré pokusy zůstanou vyhodnocené podle původního znění.</p></div></details>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">Ukážeme vám aplikaci na vašem typu zkoušky</h2><p>Projdeme s&nbsp;vámi aplikaci online (asi 30&nbsp;minut) a připravíme zkušební přístup pro vaši organizaci.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="cenik.html">Ceník</a></div>
+ </div>
+</section>

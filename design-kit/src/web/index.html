@@ -1,0 +1,123 @@
+<!--meta {"titulek":"Testy a zkoušky online i na papíře","popis":"exam-test pro úřady, firmy a vzdělávání: každý zkoušený jinou variaci testu, zkoušky v učebně i na papíře a protokol, jehož pravost ověří kdokoli.","sablona":"web","aktivni":""} -->
+<!--spec {
+ "route":"/","nazev":"Úvodní stránka","role":"veřejnost – kupující (úřad, firma, škola)","sablona":"web",
+ "ucel":"Za 10 sekund vysvětlit, co exam-test dělá a čím se liší (online i papír, ověřitelný výsledek), a dovést k demu nebo ukázce.",
+ "hlavni_akce":"Vyzkoušet demo (bez registrace); vedlejší: Ukázka s průvodcem",
+ "komponenty":["site-header","hero","facts","browser","feature","num-step","card","faq","cta-band","site-footer"],
+ "stavy":["Statická stránka – bez stavů. Ověření protokolu v hero odkazuje na /overeni (formulář tam)."],
+ "zmeny_ux":[
+  "Hero má jednu hlavní akci (Vyzkoušet demo) a jednu vedlejší (Ukázka s průvodcem); dnes jsou dvě tlačítka se synonymy demo/ukázka.",
+  "Ověření protokolu se stěhuje z poloviny stránky do hero jako malý formulář – nejsilnější argument je vidět hned.",
+  "Šest stejných karet „Co získáte“ nahrazují 3 hlavní rozdíly s čísly + odkaz na všechny funkce.",
+  "Sekce Pro koho: 4 odkazové řádky místo 4 karet; každý řádek je jeden odkaz (celá plocha klikací).",
+  "FAQ zkráceno na 6 nejčastějších otázek; zbytek na stránkách oborů a v nápovědě.",
+  "Bezpečnost zkrácena na 4 body s odkazem na stránku Bezpečnost."],
+ "texty":[
+  {"dnes":"Testy a zkoušky online i na papíře – průkazně a přístupně","nove":"Jeden test. Pro každého jiná variace. Online i na papíře.","proc":"Konkrétní slib místo dvou příslovcí; zvýrazněná je jedinečná vlastnost."},
+  {"dnes":"Domluvit ukázku / Prohlédnout demo – bez registrace","nove":"Vyzkoušet demo (bez registrace) / Ukázka s průvodcem","proc":"Dvě různé věci, dvě různá slova (pravidlo „jedna věc = jedno slovo“)."},
+  {"dnes":"Ověřujte znalosti a odbornou způsobilost zaměstnanců, uchazečů i studujících. Každý zkoušený dostane vlastní variaci testu a každý výsledek doložíte protokolem, jehož pravost kdokoli ověří online.","nove":"Ověřujte znalosti zaměstnanců, uchazečů i studujících. Každý výsledek doložíte protokolem, jehož pravost ověří kdokoli – bez přihlášení.","proc":"Kratší; variace už je v nadpisu."},
+  {"dnes":"Co získáte (6 karet)","nove":"Tři věci, které jinde nenajdete","proc":"Méně a konkrétněji; zbytek na stránce Funkce."},
+  {"dnes":"Zkouška nespadne kvůli výpadku Wi-Fi","nove":"Výpadek Wi-Fi zkoušku nezastaví","proc":"Pozitivní formulace, stejný obsah."}],
+ "pristupnost":[
+  "Jediné H1 v hero; sekce H2, karty H3.",
+  "Formulář ověření má viditelný label „Kód z protokolu“ a hint s formátem.",
+  "Řádky „Pro koho“ jsou celé odkazy s popisným textem (žádné „Více →“).",
+  "FAQ přes nativní details/summary – ovladatelné klávesnicí bez JS.",
+  "Obrázek produktu má alt popisující obsah živého panelu."],
+ "poznamky_pro_kodera":["Snímek produktu nahradit skutečným screenshotem v novém designu (webp 1600/800, srcset).","Sekce střídají papír a bílou; mřížka jen v hero."]
+} -->
+<section class="hero grid-bg">
+ <div class="container hero__grid">
+  <div class="stack-4">
+   <p class="t-stitek">Pro úřady, firmy a vzdělávání</p>
+   <h1 class="t-display">Jeden test. Pro každého <span class="t-zvyraznit">jiná variace.</span> Online i&nbsp;na papíře.</h1>
+   <p class="t-perex measure">Ověřujte znalosti zaměstnanců, uchazečů i studujících. Každý výsledek doložíte protokolem, jehož pravost ověří kdokoli – bez přihlášení.</p>
+   <div class="row"><a class="btn btn--hlavni" href="vyzkouset.html">Vyzkoušet demo {{I:sipka-vpravo}}</a><a class="btn" href="ukazka.html">Ukázka s průvodcem</a></div>
+   <p class="t-maly">Demo je bez registrace. Ukázku s průvodcem domluvíme do 2 pracovních dnů.</p>
+   <div class="facts"><div><b>0 instalací</b><span class="t-maly">běží v prohlížeči</span></div><div><b>WCAG 2.1 AA</b><span class="t-maly">rozhraní zkoušeného</span></div><div><b>EU</b><span class="t-maly">data v Německu</span></div></div>
+  </div>
+  <form class="card card--papir stack" action="overeni.html" method="get" aria-labelledby="ov-h">
+   <p class="t-stitek">Ověření pravosti</p>
+   <h2 id="ov-h" class="t-nadpis">Máte protokol? Ověřte ho.</h2>
+   <div class="field"><label class="label" for="kod">Kód z protokolu</label><input class="input input--kod" id="kod" name="kod" placeholder="ET-7Q4K-92MX" autocomplete="off" aria-describedby="kod-h"><span class="hint" id="kod-h">Najdete ho u QR kódu na protokolu. Přihlášení není potřeba.</span></div>
+   <button class="btn btn--hlavni" type="submit">Ověřit protokol</button>
+  </form>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="rozdil">
+ <div class="container stack-5">
+  <div class="stack-2"><p class="t-stitek">Čím se lišíme</p><h2 id="rozdil" class="t-sekce">Tři věci, které jinde nenajdete</h2></div>
+  <div class="grid-3">
+   <div class="feature"><p class="t-cislo t-titulek">1 test → N variací</p><h3 class="t-nadpis">Sousedé v lavici mají jiný test</h3><p>Povinné a náhodné otázky, míchání otázek i odpovědí. Každý zkoušený dostane vlastní variaci.</p></div>
+   <div class="feature"><p class="t-cislo t-titulek">online = papír</p><h3 class="t-nadpis">Stejný test na obrazovce i vytištěný</h3><p>V učebně přes QR kód, osobními kódy, odkazem – nebo vytištěné variace s odpovědními listy a klíči.</p></div>
+   <div class="feature"><p class="t-cislo t-titulek">ET-7Q4K-92MX</p><h3 class="t-nadpis">Výsledek, který obstojí</h3><p>Ke každému pokusu vznikne protokol s ověřovacím kódem. Dodatečná změna by se při ověření prozradila.</p></div>
+  </div>
+  <p><a href="funkce.html">Všechny funkce podle rolí</a></p>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="produkt">
+ <div class="container stack-4">
+  <h2 id="produkt" class="t-sekce">Lektor vidí celou učebnu</h2>
+  <p class="t-perex measure">Živý panel ukazuje, kdo píše, kolik má hotovo a jak dopadl. Lektor může prodloužit čas nebo vydat kód pro převzetí na jiném počítači.</p>
+  <figure class="browser"><div class="browser__bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="../assets/img/zivy-panel.png" alt="Živý panel zkoušky BOZP: 3 píší, 4 ze 7 odevzdali, 1 splnil. U každého zkoušeného postup, zbývající čas, výsledek a upozornění." width="1280" height="800" loading="lazy"></figure>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="koho">
+ <div class="container stack-4">
+  <h2 id="koho" class="t-sekce">Pro koho je exam-test</h2>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li class="card"><a class="row-between" href="pro-firmy.html" style="text-decoration:none;color:inherit"><span class="stack-2"><span class="t-nadpis">Firmy a BOZP</span><span class="t-maly">Školení BOZP a požární ochrany, periodická přezkoušení, přehled napříč provozovnami.</span></span><span class="btn btn--male" aria-hidden="true">{{I:sipka-vpravo}}</span></a></li>
+   <li class="card"><a class="row-between" href="pro-urady.html" style="text-decoration:none;color:inherit"><span class="stack-2"><span class="t-nadpis">Úřady a veřejná správa</span><span class="t-maly">Zkoušky odborné způsobilosti, protokoly do spisu, přístupnost podle zákona.</span></span><span class="btn btn--male" aria-hidden="true">{{I:sipka-vpravo}}</span></a></li>
+   <li class="card"><a class="row-between" href="pro-vzdelavani.html" style="text-decoration:none;color:inherit"><span class="stack-2"><span class="t-nadpis">Školy a kurzy</span><span class="t-maly">Společné otázky pro celý tým, cvičné testy se zpětnou vazbou, závěrečné zkoušky.</span></span><span class="btn btn--male" aria-hidden="true">{{I:sipka-vpravo}}</span></a></li>
+   <li class="card"><a class="row-between" href="pro-vzdelavani.html#strediska" style="text-decoration:none;color:inherit"><span class="stack-2"><span class="t-nadpis">Školicí střediska</span><span class="t-maly">Zkoušky na konci kurzů pro různé zákazníky a místa, protokol pro každého absolventa.</span></span><span class="btn btn--male" aria-hidden="true">{{I:sipka-vpravo}}</span></a></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="jak">
+ <div class="container stack-5">
+  <h2 id="jak" class="t-sekce">Jak to funguje</h2>
+  <ol class="grid-4">
+   <li class="num-step"><span class="t-cislo">01</span><div class="stack-2"><h3 class="t-nadpis">Připravte otázky</h3><p>V editoru nebo importem z XLSX. Stávající testy vám převedeme.</p></div></li>
+   <li class="num-step"><span class="t-cislo">02</span><div class="stack-2"><h3 class="t-nadpis">Sestavte test</h3><p>Povinné otázky, náhodný výběr ze souborů, čas a hodnocení.</p></div></li>
+   <li class="num-step"><span class="t-cislo">03</span><div class="stack-2"><h3 class="t-nadpis">Zadejte ho</h3><p>V učebně, osobními kódy, odkazem, přidělením – nebo vytiskněte.</p></div></li>
+   <li class="num-step"><span class="t-cislo">04</span><div class="stack-2"><h3 class="t-nadpis">Vyhodnoťte a doložte</h3><p>Výsledky hned, protokol s ověřovacím kódem, export do tabulky.</p></div></li>
+  </ol>
+ </div>
+</section>
+
+<section class="section section--grafit" aria-labelledby="odolnost">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack-3"><h2 id="odolnost" class="t-sekce">Výpadek Wi-Fi zkoušku nezastaví</h2><p class="t-perex">Odpovědi se ukládají po každé změně. Když vypadne připojení, počkají v prohlížeči a odešlou se samy.</p></div>
+  <ul class="list-check">
+   <li><span><b>Převzetí na jiném počítači.</b> Lektor vydá kód a zkoušený pokračuje tam, kde skončil.</span></li>
+   <li><span><b>Bez hesla pro zkoušené.</b> Stačí přístupový kód, účet nepotřebují.</span></li>
+   <li><span><b>Data odděleně.</b> Každá pobočka vidí jen svá data, správci mají ověření ve dvou krocích.</span></li>
+   <li><span><b>Data v EU.</b> Servery v Německu, export kdykoli a bez poplatku. <a href="bezpecnost.html">Bezpečnost podrobně</a></span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="faq">
+ <div class="container grid-2" style="align-items:start">
+  <h2 id="faq" class="t-sekce">Časté otázky</h2>
+  <div class="faq">
+   <details><summary>Zabrání aplikace podvádění?</summary><div><p>Ne úplně a netvrdíme to. Aplikace nezamyká počítač. Každý ale dostane jinou variaci testu a lektor vidí, kdo opustil okno, kopíroval nebo ztratil připojení. Pro zkoušky s vyšším rizikem doporučujeme zkoušku v učebně s dohledem.</p></div></details>
+   <details><summary>Mohou test vyplnit lidé se zdravotním znevýhodněním?</summary><div><p>Ano. Rozhraní zkoušeného je navržené podle WCAG 2.1 AA a ovládá se klávesnicí. Lektor může konkrétní osobě prodloužit čas. Známé nedostatky uvádíme v <a href="prohlaseni-o-pristupnosti.html">prohlášení o přístupnosti</a>.</p></div></details>
+   <details><summary>Kolik to stojí?</summary><div><p>Firmy a školy platí roční tarif od 9 900 Kč bez DPH podle počtu pokusů, poboček a uživatelů. Úřady dostanou individuální nabídku. <a href="cenik.html">Ceník</a></p></div></details>
+   <details><summary>Máme testy ve Wordu nebo na papíře. Jak je převedeme?</summary><div><p>Otázky naimportujete z tabulky XLSX. Z Wordu, PDF, Moodlu nebo z papíru je převedeme my – nabídku pošleme zdarma do 2 pracovních dnů.</p></div></details>
+   <details><summary>Dá se zkoušet i na papíře?</summary><div><p>Ano. Vytisknete libovolný počet variací s odpovědními listy a klíči. Odpovědi z papíru lektor zapíše do aplikace a výsledek se vyhodnotí stejně jako online.</p></div></details>
+   <details><summary>Můžeme od vás kdykoli odejít?</summary><div><p>Ano. Otázky i výsledky exportujete kdykoli. Po skončení smlouvy data smažeme nejpozději do 60 dnů.</p></div></details>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">Vyzkoušejte to na vlastní zkoušce</h2><p>Ukážeme vám aplikaci online, asi za 30 minut, na vašem typu zkoušky.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="vyzkouset.html">Vyzkoušet demo</a></div>
+ </div>
+</section>

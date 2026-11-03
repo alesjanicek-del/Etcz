@@ -1,0 +1,60 @@
+{
+ "version": "1.0 (po loopu 3)",
+ "mark": {
+  "box": [
+   11,
+   11,
+   74,
+   74
+  ],
+  "rx": 2,
+  "sw": 7,
+  "xw": 8,
+  "x": [
+   "M27 29 Q47 47 70 71",
+   "M69 26 Q50 50 28 72"
+  ],
+  "hi": "M14 57 L84 42 L87 63 L17 78 Z"
+ },
+ "small": {
+  "box": [
+   11,
+   11,
+   74,
+   74
+  ],
+  "rx": 2,
+  "sw": 10,
+  "xw": 11,
+  "x": [
+   "M29 29 L67 67",
+   "M67 29 L29 67"
+  ],
+  "hi": "M14 57 L84 42 L87 63 L17 78 Z"
+ },
+ "word": {
+  "text": "exam-test",
+  "tracking": 0,
+  "hyphen_tighten": 110
+ },
+ "lockup": {
+  "mark_to_cap": 1.6,
+  "gap_cap": 0.45,
+  "clear_cap": 1.0
+ },
+ "stack": {
+  "mark_to_cap": 2.6,
+  "gap_cap": 0.6
+ },
+ "icon": {
+  "inner": 0.74
+ },
+ "px16": {
+  "bg_rx": 3,
+  "svg": "<rect x=\"3\" y=\"9\" width=\"10\" height=\"3\" fill=\"#F2CB2E\"/><rect x=\"2\" y=\"2\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"#22262A\" stroke-width=\"2\"/><path d=\"M5 5L11 11M11 5L5 11\" stroke=\"#22262A\" stroke-width=\"2\"/>"
+ },
+ "px32": {
+  "bg_rx": 6,
+  "svg": "<path d=\"M6 20 L26 16 L26 23 L6 27 Z\" fill=\"#F2CB2E\"/><rect x=\"4\" y=\"4\" width=\"24\" height=\"24\" rx=\"1\" fill=\"none\" stroke=\"#22262A\" stroke-width=\"4\"/><path d=\"M10.5 10.5L21.5 21.5M21.5 10.5L10.5 21.5\" stroke=\"#22262A\" stroke-width=\"4\" stroke-linecap=\"round\"/>"
+ }
+}

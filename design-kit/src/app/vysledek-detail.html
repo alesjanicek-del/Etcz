@@ -1,0 +1,161 @@
+<!--meta {"titulek":"Ondřej Malý – detail pokusu","sablona":"app","role":"lektor","aktivni":"vysledky.html","demo":false} -->
+<!--spec {
+ "route":"/vysledky/:id","nazev":"Detail pokusu","role":"lektor (administrátor pobočky a organizace stejně; administrátor organizace navíc Ochrana záznamu a Anonymizace)","sablona":"app",
+ "ucel":"Doložit jeden pokus: jak dopadl a proč, co zkoušený odpověděl, jak probíhal (záznam, dohled) a pravost protokolu ověřovacím kódem.",
+ "hlavni_akce":"Stáhnout protokol PDF; zpřístupnit výsledek zkoušenému.",
+ "komponenty":["crumbs","page-head","meta","layout-aside","card","card--papir","stav","dl","qgrid","kod","alert","timeline","details","option__bub","btn"],
+ "stavy":[
+  "nesplněno: štítek stav--ne, v otázkách s chybou blok „Zvoleno – nesprávná“ a vedle správná odpověď (viz Další stavy).",
+  "ověření dokončeno: místo „ověření se dokončuje“ stav--ok „Záznam ověřen časovým razítkem“.",
+  "výsledek už zpřístupněn: karta Zkoušený vidí výsledek ukáže „Ano, od 3. 11. 2026 18:40“ a tlačítko zmizí.",
+  "odevzdáno dohledem: alert (žlutý) nahoře „Test odevzdán automaticky po 3 opuštěních okna – posuďte pokus“ s akcemi Uznat výsledek / Zneplatnit pokus.",
+  "pokus rozpracovaný: stránka se neotevře, odkaz vede do živého panelu.",
+  "anonymizovaný pokus: místo jména „Anonymizováno 3. 11. 2027“, protokol se jménem nelze stáhnout, ověřovací kód platí dál.",
+  "chyba stažení PDF: .alert--chyba u tlačítka, „Protokol se nepodařilo vytvořit, zkuste to za minutu.“",
+  "oprávnění: lektor jen pokusy svých použití; autor 403."],
+ "zmeny_ux":[
+  "Výsledek (procenta, body, Splněno) je první karta na stránce a věta „Proč“ vysvětluje pravidlo – dnes dva oddělené odstavce.",
+  "Pravý sloupec soustřeďuje to, co lektor dělá s pokusem: zpřístupnění, dokumenty (Protokol, Osvědčení) a ověřovací kód.",
+  "Ověřovací kód jako komponenta .kod s odkazem Ověřit protokol – dnes se kód opakuje třikrát.",
+  "Otázky: sbalovací bloky; správně zodpovězené jsou sbalené, chybné rozbalené – lektor hned vidí chyby. Mřížka .qgrid nahoře skáče na otázky.",
+  "Volby odpovědí s písmenem v kroužku; zvolená a správná označena ikonou + slovem (žádné „← zvoleno“).",
+  "Dohled a záznam průběhu v jedné sekci: souhrn událostí nahoře, .timeline pod ním, prvních 5 událostí + rozbalit všech 14.",
+  "Osvědčení a Osobní údaje přesunuty pod otázky do .dl – nejsou to nejčastější informace."],
+ "texty":[
+  {"dnes":"← Výsledky použití","nove":"Drobečky: Výsledky / Kybernetická bezpečnost / Ondřej Malý","proc":"Jednotná navigace."},
+  {"dnes":"Jak vznikl výsledek: Získáno 15 z 15 bodů, tj. úspěšnost 100,0 % (podíl získaných bodů z maxima). Výsledek: splněno.","nove":"Splněno, protože získal 15 z 15 bodů. Hranice je 80 %, tedy 12 bodů.","proc":"Jedna věta místo dvou, bez zdvojení."},
+  {"dnes":"Záznam je zaevidován, ověření se dokončuje","nove":"Kód je zaevidovaný. Časové razítko se doplní do několika minut.","proc":"Říká, co se děje a že nic dělat nemusí."},
+  {"dnes":"Uvolněno / Uvolnit vybrané výsledky zkoušeným","nove":"Zkoušený vidí výsledek: Ne · Zpřístupnit výsledek","proc":"Slovník."},
+  {"dnes":"← zvoleno (správná)","nove":"štítek „Zvoleno · správná“ s ikonou check","proc":"Stav ikonou + slovem."},
+  {"dnes":"Otázka 3 povinná (verze 1) – správně · 1/1 b.","nove":"Otázka 3 · Povinná · verze 1 · Správně · 1 z 1 b.","proc":"Konzistentní pořadí metadat."},
+  {"dnes":"Přístupové kódy pro osoby","nove":"Osobní kódy","proc":"Slovník."},
+  {"dnes":"Bez ochrany Osobní údaje se anonymizují automaticky…","nove":"Ochrana záznamu: Bez ochrany. Osobní údaje se anonymizují automaticky po době uložení…","proc":"Popisek a hodnota oddělené v .dl."}],
+ "pristupnost":[
+  "Jediné H1 = jméno zkoušeného; sekce H2 (Vyhodnocení, Otázky a odpovědi, Průběh testu, Osvědčení), otázky jsou summary s H3.",
+  ".qgrid odkazy mají aria-label „Otázka 3, správně“; nesprávná se čte „Otázka 3, nesprávně“.",
+  "Volby: písmeno v kroužku je aria-hidden, čte se celý text odpovědi + stav „zvoleno, správná“.",
+  "Časová osa je seřazený seznam ol; čas v <time datetime>.",
+  "Upozornění dohledu nehodnotí: věta o tom, že rozhoduje člověk, je běžným textem, ne drobně.",
+  "Tlačítka PDF mají v textu formát (PDF)."],
+ "poznamky_pro_kodera":[
+  "Kód variace TQ8K56K2 je mono .t-kod.",
+  "Body a procenta s jedním desetinným místem, čárka.",
+  "Zpřístupnění: POST, po úspěchu toast/alert role=status a karta se přepne na Ano + datum.",
+  "Každé stažení protokolu se zapisuje do auditu – hint u tlačítka.",
+  "Technické údaje (kontrolní součty) zůstávají sbalené v details."],
+ "chybi_komponenta":["statická volba odpovědi (read-only .option bez inputu se stavem zvoleno/správná) – použit .card--tenka + .option__bub"]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="vysledky.html">Výsledky</a></li><li><a href="vysledky-pridelene-detail.html">Kybernetická bezpečnost · Roční školení</a></li><li><span aria-current="page">Ondřej Malý</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2">
+  <h1 class="t-titulek">Ondřej Malý</h1>
+  <dl class="meta"><div><dt>Test</dt><dd>Kybernetická bezpečnost – roční ověření</dd></div><div><dt>Způsob</dt><dd>Osobní kódy · Roční školení</dd></div><div><dt>Variace</dt><dd class="t-kod">TQ8K56K2</dd></div></dl>
+ </div>
+</div>
+
+<div class="layout-aside">
+ <div class="stack-5">
+  <section class="card card--papir stack" aria-labelledby="vyh">
+   <div class="row-between"><h2 id="vyh" class="t-nadpis">Vyhodnocení</h2><span class="stav stav--ok">{{I:check}}Splněno</span></div>
+   <p><span class="t-cislo t-titulek">100,0&nbsp;%</span> <span class="t-maly">15 z&nbsp;15 bodů</span></p>
+   <p>Splněno, protože získal 15 z&nbsp;15 bodů. Hranice je 80&nbsp;%, tedy 12 bodů.</p>
+   <dl class="dl">
+    <dt>Zahájeno</dt><dd class="t-cislo"><time datetime="2026-11-03T18:27:23">3.&nbsp;11.&nbsp;2026 18:27:23</time></dd>
+    <dt>Odevzdáno</dt><dd><span class="t-cislo">3.&nbsp;11.&nbsp;2026 18:27:24</span> · zkoušeným</dd>
+    <dt>Časový limit do</dt><dd class="t-cislo">3.&nbsp;11.&nbsp;2026 18:42:23</dd>
+    <dt>Zodpovězeno</dt><dd><span class="t-cislo">12 z&nbsp;12</span> otázek</dd>
+   </dl>
+  </section>
+
+  <section class="stack" aria-labelledby="ota">
+   <h2 id="ota" class="t-nadpis">Otázky a odpovědi</h2>
+   <nav aria-label="Přejít na otázku"><div class="qgrid">
+    <a class="z" href="#q1" aria-label="Otázka 1, správně">1</a><a class="z" href="#q2" aria-label="Otázka 2, správně">2</a><a class="z" href="#q3" aria-label="Otázka 3, správně">3</a><a class="z" href="#q4" aria-label="Otázka 4, správně">4</a><a class="z" href="#q5" aria-label="Otázka 5, správně">5</a><a class="z" href="#q6" aria-label="Otázka 6, správně">6</a><a class="z" href="#q7" aria-label="Otázka 7, správně">7</a><a class="z" href="#q8" aria-label="Otázka 8, správně">8</a><a class="z" href="#q9" aria-label="Otázka 9, správně">9</a><a class="z" href="#q10" aria-label="Otázka 10, správně">10</a><a class="z" href="#q11" aria-label="Otázka 11, správně">11</a><a class="z" href="#q12" aria-label="Otázka 12, správně">12</a>
+   </div></nav>
+   <p class="t-maly">Tmavé pole = správně. Správně zodpovězené otázky jsou sbalené, chybné rozbalené.</p>
+   <div class="faq">
+    <details id="q1" open><summary><span class="stack-2"><span class="t-stitek">Otázka 1 · verze 1 · 1 z 1 b.</span><span>Co označuje pojem pretexting?</span></span></summary>
+     <div><ol class="stack-2" style="list-style:none;padding:0">
+      <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">A</span><span style="flex:1 1 180px">Vylákání informací nebo přístupu pod smyšlenou záminkou a v předstírané roli.</span><span class="stav stav--ok">{{I:check}}Zvoleno · správná</span></li>
+      <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">B</span><span style="flex:1 1 180px">Automatické zkoušení hesel ze slovníku.</span></li>
+      <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">C</span><span style="flex:1 1 180px">Rozesílání nevyžádané reklamy.</span></li>
+      <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">D</span><span style="flex:1 1 180px">Šifrování souborů za účelem vydírání.</span></li>
+     </ol></div></details>
+    <details id="q2"><summary><span class="stack-2"><span class="t-stitek">Otázka 2 · verze 1 · 1 z 1 b.</span><span>Na služební telefon vám přijde SMS o doplatku 39&nbsp;Kč za zásilku, kterou nečekáte. Co je správné?</span></span></summary><div><p class="t-maly">Zvoleno A – správná.</p></div></details>
+    <details id="q3"><summary><span class="stack-2"><span class="t-stitek">Otázka 3 · Povinná · verze 1 · 1 z 1 b.</span><span>Na parkovišti před budovou najdete USB flash disk s nálepkou „Mzdy 2026“. Co s ním uděláte?</span></span></summary><div><p class="t-maly">Zvoleno A – správná.</p></div></details>
+    <details id="q7"><summary><span class="stack-2"><span class="t-stitek">Otázka 7 · verze 1 · 2 z 2 b. · více správných</span><span>Volá vám „technická podpora“ a žádá instalaci programu pro vzdálený přístup. Co je správné?</span></span></summary><div><p class="t-maly">Zvoleno B, C, E – všechny správné.</p></div></details>
+   </div>
+   <p class="t-maly">Otázky 4–6 a 8–12 jsou v&nbsp;návrhu vynechané, vypadají stejně.</p>
+  </section>
+
+  <section class="stack" aria-labelledby="pru">
+   <h2 id="pru" class="t-nadpis">Průběh testu a dohled</h2>
+   <dl class="dl">
+    <dt>Dohled</dt><dd>Zapnutý: zaznamenat a upozornit zkoušeného · celá obrazovka</dd>
+    <dt>Události dohledu</dt><dd><span class="stav stav--ok">{{I:check}}Bez událostí</span></dd>
+   </dl>
+   <div class="alert alert--info">{{I:info}}<p>Události jsou jen informace z&nbsp;prohlížeče zkoušeného. Okno testu se může opustit i bez úmyslu, například kvůli upozornění systému nebo pomůcce. O dalším postupu rozhoduje člověk.</p></div>
+   <h3 class="t-text" style="font-weight:var(--w-tucne)">Záznam průběhu – 14 událostí</h3>
+   <ol class="timeline">
+    <li><p class="t-cislo">18:27:23</p><p>Zahájeno · variace <span class="t-kod">TQ8K56K2</span></p></li>
+    <li><p class="t-cislo">18:27:23</p><p>Zobrazena otázka 1</p></li>
+    <li><p class="t-cislo">18:27:23</p><p>Otázka 1: zvolena odpověď A</p></li>
+    <li><p class="t-cislo">18:27:24</p><p>Zobrazena kontrola před odevzdáním</p></li>
+    <li class="akt"><p class="t-cislo">18:27:24</p><p><b>Odevzdáno zkoušeným</b> · 12 z&nbsp;12 zodpovězeno</p></li>
+   </ol>
+   <details class="faq"><summary>Zobrazit všech 14 událostí</summary><div><p class="t-maly">Plný seznam ve stejné podobě, včetně času na zařízení u událostí doručených po výpadku spojení.</p></div></details>
+  </section>
+
+  <section class="stack" aria-labelledby="osv">
+   <h2 id="osv" class="t-nadpis">Osvědčení a záznam o školení</h2>
+   <dl class="dl">
+    <dt>Osvědčení</dt><dd>Roční školení kybernetické bezpečnosti · splněno 3.&nbsp;11.&nbsp;2026 · platí do 2.&nbsp;11.&nbsp;2027 <span class="stav stav--ok">{{I:check}}Platné</span></dd>
+    <dt>Potvrzení proškoleného</dt><dd>Nepotvrzeno (odevzdáno bez potvrzení)</dd>
+    <dt>Potvrzovaný text</dt><dd>Potvrzuji, že jsem se seznámil(a) s&nbsp;obsahem školení „Roční školení kybernetické bezpečnosti“ v&nbsp;rozsahu uvedené osnovy a že mu rozumím.</dd>
+    <dt>Školitel</dt><dd>Ing. Pavla Školitelová</dd>
+    <dt>Osnova</dt><dd><ul style="padding-left:var(--s-4)"><li>Phishing a podvodné zprávy</li><li>Hesla, správce hesel a ověření ve dvou krocích</li><li>Bezpečná práce s e-mailem a přílohami</li><li>Hlášení bezpečnostních incidentů</li></ul></dd>
+    <dt>Ochrana záznamu</dt><dd>Bez ochrany. Osobní údaje se anonymizují automaticky po době uložení nastavené organizací, u pokusu s platným osvědčením nejdříve 30 dní po konci jeho platnosti.</dd>
+   </dl>
+   <details class="faq"><summary>Technické údaje</summary><div><p class="t-maly">Kontrolní součty záznamu a časové razítko (pro odborníky).</p></div></details>
+  </section>
+ </div>
+
+ <aside class="stack-4" aria-label="Akce s pokusem">
+  <section class="card stack" aria-labelledby="zpr">
+   <h2 id="zpr" class="t-stitek">Zkoušený vidí výsledek</h2>
+   <p class="t-nadpis">Ne</p>
+   <p class="t-maly">Test zobrazuje výsledek až po zpřístupnění lektorem. Zkoušený ho pak najde v&nbsp;Moje výsledky.</p>
+   <button class="btn btn--hlavni" type="button">Zpřístupnit výsledek</button>
+  </section>
+  <section class="card stack" aria-labelledby="dok">
+   <h2 id="dok" class="t-stitek">Dokumenty</h2>
+   <a class="btn" href="../tisk/protokol.html">{{I:stahnout}}Protokol (PDF)</a>
+   <a class="btn" href="../tisk/osvedceni.html">{{I:stahnout}}Osvědčení (PDF)</a>
+   <p class="t-maly">Do spisu ukládejte protokol stažený zde. Každé stažení se zapíše do záznamu změn.</p>
+  </section>
+  <section class="card stack" aria-labelledby="ove">
+   <h2 id="ove" class="t-stitek">Ověřovací kód</h2>
+   <p class="kod" style="font-size:var(--t-text);overflow-wrap:anywhere">H5SAY-GVTNY-EDXAP-67SXD</p>
+   <p><span class="stav stav--info">{{I:hodiny}}Ověření se dokončuje</span></p>
+   <p class="t-maly">Kód je zaevidovaný. Časové razítko se doplní do několika minut.</p>
+   <a href="../web/overeni.html">Ověřit protokol s&nbsp;tímto kódem</a>
+  </section>
+ </aside>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Odevzdáno dohledem – čeká na posouzení</p>
+  <div class="alert" role="status">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Test odevzdal dohled po 3. opuštění okna</p><p>Posuďte, zda výsledek uznat. Zkoušený mohl okno opustit kvůli pomůcce nebo technickému problému.</p><div class="row"><button class="btn btn--male" type="button">Uznat výsledek</button><button class="btn btn--male btn--nebezpecne" type="button">Zneplatnit pokus</button></div></div></div></div>
+ <div class="stack-2"><p class="t-stitek">Chybně zodpovězená otázka (rozbalená)</p>
+  <div class="stack-2">
+   <p class="t-stitek">Otázka 5 · Povinná · verze 1 · 0 z 1 b.</p>
+   <p>Do pracovní schránky vám přišel podezřelý e-mail s&nbsp;nečekanou přílohou. Jak správně postupujete?</p>
+   <ol class="stack-2" style="list-style:none;padding:0">
+    <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">B</span><span style="flex:1 1 180px">Odpovím odesílateli a zeptám se, zda zprávu poslal opravdu on.</span><span class="stav stav--ne">{{I:minus-kruh}}Zvoleno · nesprávná</span></li>
+    <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">D</span><span style="flex:1 1 180px">Neotevírám přílohu ani odkaz a e-mail nahlásím podle interního postupu.</span><span class="stav stav--neutral">{{I:check}}Správná</span></li>
+   </ol>
+  </div></div>
+ <div class="stack-2"><p class="t-stitek">Po zpřístupnění</p>
+  <div class="alert alert--ok" role="status">{{I:check}}<p>Výsledek je zpřístupněný. Zkoušený ho vidí od 3.&nbsp;11.&nbsp;2026 18:40.</p></div></div>
+</section>

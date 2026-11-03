@@ -1,0 +1,105 @@
+<!--meta {"titulek":"Otázka 1 z 12 – Kybernetická bezpečnost — roční ověření","sablona":"exam","role":"zkouseny","skip":"Přeskočit na otázku"} -->
+<!--spec {
+ "route":"/t/:id (více odpovědí)","nazev":"Otázka (více správných, s obrázkem)","role":"zkoušený","sablona":"exam",
+ "ucel":"Otázka s více správnými odpověďmi a obrázkem. Zkoušený musí na první pohled poznat, že má označit všechny správné odpovědi, a obrázek musí být srozumitelný i bez zraku.",
+ "hlavni_akce":"Zaškrtnout všechny správné odpovědi a pokračovat tlačítkem Další otázka",
+ "komponenty":["exam-head","rail","timer","stav","fieldset/legend","vice","option--vice","figure/img","check","exam-foot","qgrid","alert"],
+ "stavy":[
+  "výchozí: nic nezaškrtnuto",
+  "částečně: 2 zaškrtnuté volby (nakresleno) – aplikace nijak nenaznačuje, kolik odpovědí je správných",
+  "obrázek se nenačte: místo obrázku rámeček s alt textem a tlačítkem Načíst obrázek znovu (nakresleno)",
+  "obrázek bez popisu od autora: zobrazí se poznámka „Obrázek nemá textový popis. Požádejte lektora o pomoc.“ (nakresleno)",
+  "první otázka: tlačítko Předchozí je neaktivní (aria-disabled)",
+  "chyba uložení, offline, dojde čas: stejné jako test-otazka.html a test-vypadek.html",
+  "bez oprávnění: test otevřený na jiném zařízení → test-prevzeti.html"],
+ "zmeny_ux":[
+  "Více správných odpovědí poznáte třemi způsoby: štítek .vice „Více odpovědí“ u otázky, věta pod otázkou a čtverečky místo koleček u voleb. Dnes je jen text „(více správných odpovědí)“ v nadpisu, který se opakuje i v textu otázky.",
+  "Duplicitní pokyn „(Vyberte všechny správné odpovědi.)“ z textu otázky se zobrazí jen jednou – jako věta pod nadpisem (návrh: autor ho do textu otázky nepíše, doplňuje ho aplikace).",
+  "Obrázek je mezi otázkou a volbami v plné šířce sloupce, s rámečkem; na mobilu se zvětší klepnutím (odkaz Zvětšit obrázek otevře samotný soubor).",
+  "Štítek .vice je stejný jako na odpovědním listu a v zadání – online a papír vypadají stejně."],
+ "texty":[
+  {"dnes":"Otázka 1 z 12 (více správných odpovědí)","nove":"Otázka 01 / 12 + štítek „Více odpovědí“","proc":"Krátký štítek místo závorky v nadpisu; jedno slovo pro jednu věc jako na papíře."},
+  {"dnes":"(Vyberte všechny správné odpovědi.)","nove":"Označte všechny správné odpovědi. Žádnou chybnou.","proc":"Jednou a na jednom místě; pokyn z nápovědy („označte všechny správné a žádnou chybnou“) je přímo u otázky."},
+  {"dnes":"Uložit a další →","nove":"Další otázka","proc":"Slovník."}],
+ "pristupnost":[
+  "Volby jsou input type=checkbox ve fieldset; legend obsahuje H1 s textem otázky a štítek „Více odpovědí“, pokyn je navázaný přes aria-describedby na fieldset.",
+  "Obrázek má alt převzatý od autora otázky (doslovně z dema): popisuje odesílatele, předmět, text i skutečnou adresu odkazu – tedy vše, co je k odpovědi potřeba. Dlouhý popis je v alt, protože je jediným zdrojem informací; nad 250 znaků navrhuji figcaption nebo aria-describedby na skrytý popis.",
+  "Obrázek je img uvnitř figure s figcaption „Obrázek k otázce 1“; čtečka čte obrázek před volbami.",
+  "Odkaz Zvětšit obrázek otevírá soubor ve stejném okně testu (target se nepoužívá), aby se nezapsalo opuštění okna.",
+  "Čtverečky .option--vice + checkbox role: čtečka řekne „zaškrtávací pole“, ne „přepínač“ – tvar i role sedí.",
+  "Stav uložení role=status, časomíra role=timer s hlášením jen v 5. a 1. minutě (viz test-otazka)."],
+ "poznamky_pro_kodera":[
+  "Data: otázka 1 variace UG98N3X6, 7 voleb A–G; obrázek assets/img/otazka-phishing-email.svg je ukázka (v aplikaci obrázek z otázky, max. šířka sloupce, výška auto).",
+  "Alt text bere aplikace z pole Popis obrázku pro čtečku v editoru otázky.",
+  "Předchozí: na 1. otázce aria-disabled=true a bez href."],
+ "chybi_komponenta":["figure/obrázek v otázce (rámeček, zvětšení) – použit figure.stack-2, rámeček nese obrázek","stejný problém .option input 1×1 px jako u test-otazka"]
+} -->
+<header class="exam-head"><div class="exam-head__in">
+ <p class="t-stitek">Kybernetická bezpečnost — roční ověření</p>
+ <div class="rail" role="img" aria-label="Postup: 0 z 12 zodpovězeno, teď otázka 1"><i class="t"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+ <div class="row" style="gap:var(--s-2);margin-left:auto">
+  <p class="t-maly row" style="gap:var(--s-1)" role="status" id="ulozeno">{{I:check}}Uloženo 13:47</p>
+  <span class="stav stav--info">{{I:oko}}Dohled<span class="sr-only"> je zapnutý</span></span>
+  <div class="timer" role="timer"><span class="sr-only">Zbývající čas: </span>14:31</div>
+ </div>
+ <p class="sr-only" aria-live="polite" id="cas-hlaseni"></p>
+</div></header>
+
+<main id="obsah" class="exam-body">
+ <form class="stack-4" action="test-otazka.html" method="post" aria-label="Otázka 1 z 12">
+  <fieldset class="stack" aria-describedby="pokyn">
+   <legend class="stack-2" style="margin-bottom:var(--s-3)">
+    <span class="t-stitek" aria-hidden="true">Otázka 01 / 12</span>
+    <h1 class="t-nadpis" tabindex="-1"><span class="sr-only">Otázka 1 z 12: </span>Prohlédněte si zobrazený e-mail. Které skutečnosti na něm ukazují, že jde pravděpodobně o&nbsp;phishing? <span class="vice">Více odpovědí</span></h1>
+   </legend>
+   <p id="pokyn">Označte všechny správné odpovědi. Žádnou chybnou.</p>
+   <figure class="stack-2">
+    <img src="../assets/img/otazka-phishing-email.svg" width="720" height="300" alt="Náhled e-mailu. Od: IT podpora, adresa helpdesk@it-podpora-overeni.example. Předmět: URGENTNÍ: Váš účet bude do 2 hodin zablokován. Text: Dobrý den, zjistili jsme neobvyklou aktivitu. Pro zachování přístupu ihned ověřte své heslo na odkazu níže. Odkaz: http://login.firma-portal.example.ru-overeni.example/prihlaseni. Podpis: IT oddělení." style="width:100%;height:auto">
+    <figcaption class="row-between t-maly"><span>Obrázek k&nbsp;otázce 1</span><span><a href="../assets/img/otazka-phishing-email.svg">Zvětšit obrázek</a></span></figcaption>
+   </figure>
+   <div>
+    <label class="option option--vice" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="checkbox" name="o1" value="A" checked><span class="option__bub">A</span><span>Adresa odesílatele je z&nbsp;domény, kterou organizace nepoužívá.</span></label>
+    <label class="option option--vice" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="checkbox" name="o1" value="B"><span class="option__bub">B</span><span>E-mail je napsán česky.</span></label>
+    <label class="option option--vice" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="checkbox" name="o1" value="C" checked><span class="option__bub">C</span><span>Zpráva žádá o&nbsp;zadání hesla přes odkaz v&nbsp;e-mailu.</span></label>
+    <label class="option option--vice" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="checkbox" name="o1" value="D"><span class="option__bub">D</span><span>Zpráva nikoho neoslovuje jménem.</span></label>
+    <label class="option option--vice" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="checkbox" name="o1" value="E"><span class="option__bub">E</span><span>Zpráva vyvíjí nátlak a&nbsp;stanoví krátký časový limit.</span></label>
+    <label class="option option--vice" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="checkbox" name="o1" value="F"><span class="option__bub">F</span><span>E-mail má vyplněný předmět.</span></label>
+    <label class="option option--vice" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="checkbox" name="o1" value="G"><span class="option__bub">G</span><span>Odkaz ve skutečnosti vede na jinou doménu, než jakou používá firemní portál.</span></label>
+   </div>
+  </fieldset>
+  <label class="check"><input type="checkbox" name="pozdeji"><span>Vrátit se později k&nbsp;této otázce</span></label>
+  <div class="exam-foot">
+   <a class="btn" role="link" aria-disabled="true" aria-label="Předchozí otázka (toto je první otázka)" style="flex:0 0 auto">{{I:sipka-vlevo}}</a>
+   <button class="btn btn--hlavni" type="submit">Další otázka {{I:sipka-vpravo}}</button>
+  </div>
+ </form>
+
+ <aside class="stack" aria-labelledby="prehled-h">
+  <h2 class="t-stitek" id="prehled-h">Přehled otázek</h2>
+  <nav class="qgrid" aria-label="Přehled otázek" style="grid-template-columns:repeat(auto-fill,44px)">
+   <a href="test-otazka-vice.html" aria-current="step" aria-label="Otázka 1, teď zobrazená">1</a><a href="#" aria-label="Otázka 2, nezodpovězeno">2</a><a href="test-otazka.html" aria-label="Otázka 3, nezodpovězeno">3</a><a href="#" aria-label="Otázka 4, nezodpovězeno">4</a><a href="#" aria-label="Otázka 5, nezodpovězeno">5</a><a href="#" aria-label="Otázka 6, nezodpovězeno">6</a><a href="#" aria-label="Otázka 7, nezodpovězeno">7</a><a href="#" aria-label="Otázka 8, nezodpovězeno">8</a><a href="#" aria-label="Otázka 9, nezodpovězeno">9</a><a href="#" aria-label="Otázka 10, nezodpovězeno">10</a><a href="#" aria-label="Otázka 11, nezodpovězeno">11</a><a href="#" aria-label="Otázka 12, nezodpovězeno">12</a>
+  </nav>
+  <p class="t-maly"><b class="t-ink">0 z 12</b> zodpovězeno</p>
+  <a class="btn btn--male" href="test-odevzdani.html">Zkontrolovat a odevzdat</a>
+  <details class="faq">
+   <summary>Jak test funguje</summary>
+   <div class="stack-2 t-maly">
+    <p>Odpovědi se ukládají samy při každé změně.</p>
+    <p>U otázky se štítkem „Více odpovědí“ označte všechny správné odpovědi. Bez štítku je správná jedna.</p>
+    <p>Dohled je zapnutý: zaznamená se opuštění okna, odchod z&nbsp;celé obrazovky, kopírování a vkládání.</p>
+   </div>
+  </details>
+ </aside>
+</main>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="max-width:1080px;margin:0 auto;padding:var(--s-5) var(--s-3) var(--s-7)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2" style="max-width:var(--max-text)">
+  <h3 class="t-stitek">Obrázek se nenačetl</h3>
+  <div class="empty stack-2">{{I:pozor}}<p><b>Obrázek se nepodařilo načíst.</b> Jeho popis: e-mail od „IT podpora“ z&nbsp;adresy helpdesk@it-podpora-overeni.example s&nbsp;předmětem „URGENTNÍ: Váš účet bude do 2 hodin zablokován“.</p><p><button class="btn btn--male" type="button">Načíst obrázek znovu</button></p></div>
+ </div>
+ <div class="stack-2" style="max-width:var(--max-text)">
+  <h3 class="t-stitek">Obrázek bez popisu pro čtečku</h3>
+  <div class="alert alert--info">{{I:info}}<p>Obrázek nemá textový popis. Pokud ho nevidíte, požádejte lektora o&nbsp;pomoc. Čas vám může prodloužit.</p></div>
+ </div>
+</section>

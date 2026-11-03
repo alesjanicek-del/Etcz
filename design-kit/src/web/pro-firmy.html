@@ -1,0 +1,86 @@
+<!--meta {"titulek":"Pro firmy a BOZP","popis":"Přezkoušení zaměstnanců bez papírování: školení BOZP a PO, vstupní školení, interní certifikace, více provozoven a protokol ke každému výsledku.","sablona":"web","aktivni":"pro-firmy.html"} -->
+<!--spec {
+ "route":"/pro-firmy","nazev":"Pro firmy a BOZP","role":"veřejnost – firmy, BOZP technici, personalisté","sablona":"web",
+ "ucel":"Ukázat firmám, že přezkoušení zaměstnanců (BOZP, PO, interní certifikace) zvládnou bez papírování napříč provozovnami.",
+ "hlavni_akce":"Ukázka s průvodcem; vedlejší: Vyzkoušet demo, Ceník",
+ "komponenty":["hero","facts","feature","grid-3","list-check","alert","faq","cta-band"],
+ "stavy":["Statická stránka – bez stavů."],
+ "zmeny_ux":[
+  "Hero má jednu hlavní akci a jednu vedlejší (dnes tři rovnocenná tlačítka). Ceník je odkaz v CTA pásu.",
+  "Pod hero fakta s čísly z ceníku (od 9 900 Kč za rok, 30 dní zkušební provoz) – firma hned vidí cenovou hladinu.",
+  "Upozornění k šablonám (neprošly odbornou kontrolou, test nenahrazuje školení) je .alert v běžné velikosti, ne drobný text (pravidlo 3).",
+  "Popisek screenshotu „Průvodce testem spočítá…“ zařazen jako bod seznamu."],
+ "texty":[
+  {"dnes":"Domluvit ukázku / Prohlédnout demo – bez registrace","nove":"Ukázka s průvodcem / Vyzkoušet demo","proc":"Slovník."},
+  {"dnes":"Odkaz nebo osobní kód pošlete e-mailem; účet zaměstnanec nepotřebuje.","nove":"Veřejný odkaz nebo osobní kód pošlete e-mailem. Účet zaměstnanec nepotřebuje.","proc":"Slovník (Veřejný odkaz); dvě krátké věty."},
+  {"dnes":"Šablony BOZP, PO a dalších témat připravujeme","nove":"Šablony testů BOZP a PO připravujeme","proc":"Kratší nadpis; témata vyjmenována v textu."},
+  {"dnes":"Šablony testů a služby →","nove":"Šablony testů a služby","proc":"Popisný odkaz bez šipky."}],
+ "pristupnost":["Jediné H1, sekce H2, bloky H3.","Upozornění s ikonou a nadpisem, role=note.","FAQ přes details/summary."],
+ "poznamky_pro_kodera":["Odpovědi FAQ převzaty z dnešního webu (obsah details).","Fakta v hero: čísla z ceníku – při změně ceníku aktualizovat."],
+ "chybi_komponenta":[]
+} -->
+<section class="hero grid-bg">
+ <div class="container stack-4">
+  <p class="t-stitek">Firmy, BOZP a interní certifikace</p>
+  <h1 class="t-display measure">Přezkoušení zaměstnanců <span class="t-zvyraznit">bez papírování</span></h1>
+  <p class="t-perex measure">Školení BOZP a požární ochrany (PO), obsluha strojů, interní certifikace. Test připravíte jednou a zadáte ho zaměstnancům všech provozoven. Ke každému výsledku máte protokol pro evidenci.</p>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="vyzkouset.html">Vyzkoušet demo</a></div>
+  <div class="facts"><div><b>od 9&nbsp;900&nbsp;Kč</b><span class="t-maly">za rok bez DPH</span></div><div><b>30 dní</b><span class="t-maly">zkušební provoz zdarma</span></div><div><b>0 účtů</b><span class="t-maly">zaměstnanci je nepotřebují</span></div></div>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="cas">
+ <div class="container stack-5">
+  <div class="stack-2"><p class="t-stitek">Kde vám ušetří čas</p><h2 id="cas" class="t-sekce">Od nováčka po certifikaci</h2></div>
+  <div class="grid-3">
+   <div class="feature"><h3 class="t-nadpis">Periodické školení BOZP</h3><p>Přidělte test skupině zaměstnanců. Výsledky každého z&nbsp;nich uvidíte na jednom místě a vyexportujete do tabulky.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Vstupní školení nováčků</h3><p>Veřejný odkaz nebo osobní kód pošlete e-mailem. Účet zaměstnanec nepotřebuje. Výsledek máte hned.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Interní certifikace</h3><p>Odborné testy s&nbsp;povinnými otázkami a náhodným výběrem ze souborů otázek. Každý zaměstnanec dostane jinou variaci.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="provozovny">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack"><p class="t-stitek">Více provozoven</p><h2 id="provozovny" class="t-sekce">Jeden přehled pro celou firmu</h2></div>
+  <ul class="list-check">
+   <li><span>Pobočky s&nbsp;vlastními lektory a administrátory; každá vidí jen svá data.</span></li>
+   <li><span>Sdílené soubory otázek pro celou firmu s&nbsp;právy ke čtení nebo úpravám.</span></li>
+   <li><span>Zkoušení v&nbsp;učebně přes QR kód, na směně z&nbsp;mobilu nebo na papíře.</span></li>
+   <li><span>Protokol PDF ke každému pokusu a export výsledků do tabulky.</span></li>
+   <li><span>Import stávajících otázek z&nbsp;XLSX.</span></li>
+   <li><span>Průvodce testem spočítá, kolik unikátních variací test umožňuje.</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="sablony">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack">
+   <p><span class="stav stav--pise">{{I:hodiny}}Připravujeme</span></p>
+   <h2 id="sablony" class="t-sekce">Šablony testů BOZP a PO připravujeme</h2>
+   <p>Připravujeme šablony testů k&nbsp;BOZP, požární ochraně, první pomoci, kybernetické bezpečnosti, GDPR a dalším tématům. Šablonu si upravíte podle rizik svého pracoviště.</p>
+   <p><a href="sablony-testu.html">Šablony testů a služby</a></p>
+  </div>
+  <div class="alert" role="note">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Šablony jsou zatím zdarma a neprošly odbornou kontrolou</p><p>Jsou to výchozí vzory, za jejichž obsah a použití odpovídá vaše organizace.</p><p>Test ověřuje znalosti. Nenahrazuje školení, které musí zaměstnavatel zajistit, ani zkoušky, které předpis svěřuje oprávněné osobě.</p></div></div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="faq">
+ <div class="container grid-2" style="align-items:start">
+  <h2 id="faq" class="t-sekce">Časté otázky firem</h2>
+  <div class="faq">
+   <details><summary>Hodí se aplikace pro školení BOZP a periodické přezkoušení?</summary><div><p>Ano. Připravíte si soubor otázek, test sestavíte jednou a zaměstnancům ho přidělíte nebo pošlete odkaz. Výsledky všech zaměstnanců uvidíte na jednom místě a vyexportujete do tabulky. Ke každému pokusu vznikne protokol pro vaši evidenci.</p></div></details>
+   <details><summary>Musí mít zaměstnanci účet?</summary><div><p>Nemusí. Test lze zadat osobními kódy, veřejným odkazem nebo prezenčně v&nbsp;učebně přes QR kód. Účet se hodí tam, kde chcete mít historii výsledků jednoho člověka pohromadě.</p></div></details>
+   <details><summary>Máme víc provozoven. Uvidí každá jen svá data?</summary><div><p>Ano. Organizace se dělí na pobočky. Lektoři a administrátoři pobočky vidí jen data své pobočky, administrátor organizace vidí vše. Soubory otázek lze sdílet napříč pobočkami s&nbsp;právy ke čtení nebo úpravám.</p></div></details>
+   <details><summary>Dá se převést náš současný soubor otázek?</summary><div><p>Ano. Otázky naimportujete z&nbsp;tabulky XLSX podle šablony, kterou si stáhnete v&nbsp;aplikaci. U větších souborů nebo jiných formátů pomůžeme s&nbsp;převodem – viz <a href="sablony-testu.html#sluzby">služby na objednávku</a>.</p></div></details>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">Ukážeme vám aplikaci na vašem typu zkoušky</h2><p>Projdeme s&nbsp;vámi aplikaci online (asi 30&nbsp;minut) a připravíme zkušební přístup pro vaši organizaci.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="cenik.html">Ceník</a></div>
+ </div>
+</section>

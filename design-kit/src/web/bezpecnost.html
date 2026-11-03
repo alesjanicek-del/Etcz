@@ -1,0 +1,89 @@
+<!--meta {"titulek":"Bezpečnost a data","popis":"Opatření, která můžeme doložit: oddělení organizací, ověření ve dvou krocích, neměnný záznam změn, průkaznost výsledků, data v EU a export kdykoli.","sablona":"web","aktivni":"bezpecnost.html"} -->
+<!--spec {
+ "route":"/bezpecnost","nazev":"Bezpečnost a data","role":"veřejnost – IT, pověřenci GDPR, zadavatelé","sablona":"web",
+ "ucel":"Doložit bezpečnostní opatření a vztah zpracovatele tak, aby je IT nebo pověřenec mohl posoudit a vyžádat podklady.",
+ "hlavni_akce":"Stáhnout Bezpečnostní a technický přehled (PDF); vedlejší: Zpracovatelská smlouva, Ukázka s průvodcem",
+ "komponenty":["hero","facts","feature","grid-2","dl","alert","card","cta-band"],
+ "stavy":["Statická stránka – bez stavů.","PDF ještě neexistuje – odkaz # (kodér doplní URL)."],
+ "zmeny_ux":[
+  "Hero: souhrn 4 fakt (data v Německu, 2FA, 60 měsíců záznam změn, 30 dní předem o změně zpracovatelů) – posuzovatel vidí to podstatné hned.",
+  "Sekce Provoz a hosting dnes jen opakuje body z Opatření v aplikaci; nahrazena faktickou tabulkou .dl (umístění dat, zpracovatelé, razítka).",
+  "Opatření v 2 sloupcích s H3 – lze číst po nadpisech; dlouhé odstavce rozděleny.",
+  "Hlášení zranitelností je samostatná karta s e-mailem jako odkazem.",
+  "Upozornění na katalog cloud computingu je .alert (pozor)."],
+ "texty":[
+  {"dnes":"Co děláme pro bezpečnost vašich dat","nove":"beze změny","proc":"Odpovídá pravidlům."},
+  {"dnes":"Uvádíme jen opatření, která můžeme doložit. Podrobnosti pro výběrové řízení nebo pro spis najdete v přehledu ke stažení.","nove":"beze změny","proc":"Odpovídá pravidlům."},
+  {"dnes":"Každý dotaz do databáze je automaticky omezený na vaši organizaci; bez určení organizace aplikace data nevydá.","nove":"Každý dotaz do databáze je automaticky omezený na vaši organizaci. Bez určení organizace aplikace data nevydá.","proc":"Kratší věty."},
+  {"dnes":"Domluvit ukázku","nove":"Ukázka s průvodcem","proc":"Slovník."},
+  {"dnes":"Potřebujete podklady do výběrového řízení?","nove":"beze změny (CTA pás)","proc":"Odpovídá pravidlům."}],
+ "pristupnost":["Jediné H1, sekce H2, opatření H3.","Fakta jako dl (dt/dd) – čtečka čte dvojice pojem–hodnota.","E-mail pro hlášení zranitelností je odkaz mailto s viditelnou adresou."],
+ "poznamky_pro_kodera":["Odkaz na security.txt: /.well-known/security.txt.","PDF přehled: doplnit URL."],
+ "chybi_komponenta":[]
+} -->
+<section class="hero grid-bg">
+ <div class="container hero__grid" style="align-items:start">
+  <div class="stack-4">
+   <p class="t-stitek">Bezpečnost a ochrana dat</p>
+   <h1 class="t-display">Co děláme pro bezpečnost vašich dat</h1>
+   <p class="t-perex measure">Uvádíme jen opatření, která můžeme doložit. Podrobnosti pro výběrové řízení nebo pro spis najdete v&nbsp;přehledu ke stažení.</p>
+   <div class="row"><a class="btn btn--hlavni" href="#">{{I:stahnout}}Bezpečnostní a technický přehled (PDF)</a><a class="btn" href="zpracovatelska-smlouva.html">Zpracovatelská smlouva</a></div>
+  </div>
+  <dl class="card card--papir dl" style="border-top:var(--b-silna) solid var(--c-grafit)">
+   <dt>Data</dt><dd>Servery v&nbsp;Evropské unii (Německo)</dd>
+   <dt>Přihlášení</dt><dd>Ověření ve dvou krocích, povinné pro správce</dd>
+   <dt>Záznam změn</dt><dd>Nelze zpětně upravit, uchovává se <span class="t-cislo">60</span>&nbsp;měsíců</dd>
+   <dt>Zpracovatelé</dt><dd>O změně informujeme <span class="t-cislo">30</span>&nbsp;dní předem</dd>
+  </dl>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="opatreni">
+ <div class="container stack-5">
+  <h2 id="opatreni" class="t-sekce">Opatření v&nbsp;aplikaci</h2>
+  <div class="grid-2" style="gap:var(--s-5) var(--s-5)">
+   <div class="feature"><h3 class="t-nadpis">Oddělení organizací a poboček</h3><p>Každý dotaz do databáze je automaticky omezený na vaši organizaci. Bez určení organizace aplikace data nevydá.</p><p>Pobočky vidí jen svá data a cizí záznam se chová, jako by neexistoval. Oddělení ověřují automatické testy při každé změně.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Ověření ve dvou krocích</h3><p>Přihlášení heslem a kódem z&nbsp;aplikace v&nbsp;telefonu. Je povinné pro administrátory organizace a poboček, autory otázek a pro každého, kdo smí upravovat soubory otázek nebo testy. Od ostatních lektorů ho můžete vyžadovat.</p><p>Záložní kódy pro případ ztráty telefonu. Přihlášení odkazem z&nbsp;e-mailu je ve výchozím stavu vypnuté. Když ho zapnete, nahrazuje jen heslo, ne druhý krok.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Záznam změn</h3><p>Změny otázek, testů, uživatelů, rolí a nastavení se zapisují do záznamu, který nelze zpětně upravit. Administrátor organizace ho vidí v&nbsp;aplikaci. Záznamy se uchovávají 60&nbsp;měsíců, pak se smažou.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Průkaznost výsledků</h3><p>Odevzdané pokusy se zapisují do provázaného záznamu; dodatečná změna se při ověření projeví. Protokol nese ověřovací kód a jeho pravost <a href="overeni.html">ověří kdokoli online</a>.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Podpora jen s&nbsp;vaším souhlasem</h3><p>Technik podpory vstoupí do vaší organizace jen tehdy, když to administrátor povolí (trvale, nebo na časové okno). Každý vstup má uvedený důvod, zapíše se do záznamu změn a administrátoři o něm dostanou e-mail.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Vaše data, váš odchod</h3><p>Soubory otázek exportujete do XLSX, výsledky do tabulek. Export všech dat organizace stáhnete kdykoli, i před ukončením smlouvy. Na žádost podanou do skončení smlouvy ho předáme i po jejím skončení.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Ochrana osobních údajů zkoušených</h3><p>Dobu uchování výsledků nastavuje organizace. Po ní se osobní údaje zkoušených nevratně anonymizují, včetně uloženého protokolu PDF se jménem. Protokol zůstane ověřitelný i bez jména.</p><p>Záznam, který musíte uchovat déle, ochráníte před anonymizací. Po obnově ze zálohy se dřívější anonymizace zopakují. Informace o zpracování najdou zkoušení přímo v&nbsp;aplikaci. Přístupové kódy ukládáme jen v&nbsp;nevratné podobě a údaje pro ověření ve dvou krocích šifrovaně.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Správa platformy</h3><p>Administrace provozovatele je dostupná jen z&nbsp;povolených IP adres a s&nbsp;ověřením ve dvou krocích. Smazání organizace a obnovu dat ze zálohy musí jeden pracovník provozovatele navrhnout a druhý schválit.</p><p>Aplikace pracuje s&nbsp;databází pod účtem, který nemůže měnit záznam změn ani odevzdané výsledky.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Ochrana webu</h3><p>Šifrované spojení, přísná pravidla obsahu stránky (Content Security Policy), ochrana formulářů proti podvržení a omezení počtu pokusů o přihlášení i zadání kódu.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="zpracovatel">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack">
+   <p class="t-stitek">Provoz a hosting</p>
+   <h2 id="zpracovatel" class="t-sekce">Zpracovatel a další zpracovatelé</h2>
+   <p>Pro organizace, které exam-test používají, je provozovatel ABUCO ICT s.r.o. zpracovatelem osobních údajů zkoušených a uživatelů podle čl.&nbsp;28 GDPR. Podmínky stanoví <a href="zpracovatelska-smlouva.html">zpracovatelská smlouva</a>.</p>
+   <p>Seznam dalších zpracovatelů (hosting, odesílání e-mailů) je přílohou zpracovatelské smlouvy. O jeho změně informujeme organizace nejméně 30&nbsp;dnů předem. Služba časových razítek dostává jen kryptografický otisk, ne osobní údaje.</p>
+  </div>
+  <div class="stack">
+   <p class="t-stitek">Veřejná správa</p>
+   <h2 class="t-sekce">Kybernetická bezpečnost</h2>
+   <div class="alert" role="note">{{I:pozor}}<div><p class="alert__nadpis">Služba zatím není v&nbsp;katalogu cloud computingu</p><p>Zápis upravuje zákon č.&nbsp;365/2000&nbsp;Sb. Orgán veřejné správy si proto před nákupem posoudí, zda ji pro svůj účel smí využít.</p></div></div>
+   <p>Organizacím, které jsou povinnými osobami podle zákona č.&nbsp;264/2025&nbsp;Sb., o kybernetické bezpečnosti, předáme přehled bezpečnostních opatření a návrh bezpečnostních požadavků na dodavatele do smlouvy.</p>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="zranitelnosti">
+ <div class="container">
+  <div class="card stack measure">
+   <h2 id="zranitelnosti" class="t-nadpis">Našli jste bezpečnostní chybu?</h2>
+   <p>Napište na <a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a>. Kontakt je i v&nbsp;souboru <a href="#">security.txt</a>. Prosíme, nezveřejňujte chybu, dokud ji neopravíme.</p>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">Potřebujete podklady do výběrového řízení?</h2><p>Pošleme technickou specifikaci, přehled bezpečnostních opatření a vzor zpracovatelské smlouvy.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="kontakt.html">Vyžádat podklady</a><a class="btn" href="ukazka.html">Ukázka s průvodcem</a></div>
+ </div>
+</section>

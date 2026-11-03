@@ -1,0 +1,55 @@
+/* =========================================================
+   exam-test · design tokeny · verze 1.0
+   Jediný zdroj hodnot. Nic mimo tyto proměnné se v CSS nepoužívá.
+   ========================================================= */
+:root{
+  /* --- Barvy: základ --- */
+  --c-grafit:#22262A;        /* text, linky, tmavé plochy */
+  --c-seda:#5A6068;          /* sekundární text (5,8:1 na papíře) */
+  --c-seda-na-tmave:#C7CBCF; /* sekundární text na grafitu (9,3:1) */
+  --c-propiska:#2747A0;      /* odkazy a fokus (7,6:1) */
+  --c-propiska-tmava:#1B3478;/* odkaz při najetí */
+  --c-papir:#F6F4EC;         /* pozadí stránky */
+  --c-bila:#FFFFFF;          /* karty, pole, tabulky */
+  --c-zvyraznovac:#F2CB2E;   /* akcent – NIKDY jako barva textu */
+  --c-zvyraznovac-svetly:#FFF7D1;
+  --c-mrizka:#C9D3DD;        /* rastr, neaktivní prvky (dekorace) */
+  --c-linka:#D9DCD3;         /* jemné oddělovače */
+  --c-linka-silna:#22262A;   /* rámečky komponent = grafit */
+  --c-pole-okraj:#5A6068;    /* okraj formulářových polí (3:1 – WCAG 1.4.11) */
+  /* --- Barvy: stavy (vždy s ikonou a slovem) --- */
+  --c-splneno:#1E6B45;  --c-splneno-bg:#E3F0E6;
+  --c-nesplneno:#B3261E; --c-nesplneno-bg:#FBE7E4;
+  --c-pozor:#6B5A00;    --c-pozor-bg:#FFF7D1;   /* text varování na světle žluté */
+  --c-info:#2747A0;     --c-info-bg:#E7ECF8;
+
+  /* --- Písmo --- */
+  --f-text:'Schibsted Grotesk',Arial,Helvetica,sans-serif;
+  --f-mono:'IBM Plex Mono','Courier New',monospace;
+  /* Typová škála – role. Žádné jiné velikosti. */
+  --t-stitek:13px;   /* mono, verzálky – štítky, záhlaví tabulek */
+  --t-maly:15px;     /* metadata, nápovědy pod poli */
+  --t-text:17px;     /* běžný text, tlačítka, pole */
+  --t-nadpis:22px;   /* nadpis sekce / otázka v testu / perex webu */
+  --t-titulek:30px;  /* nadpis stránky v aplikaci, H2 webu na mobilu */
+  --t-sekce:40px;    /* jen web: nadpis sekce (desktop) */
+  --t-display:56px;  /* jen web: H1 hero (desktop); mobil 36px */
+  --t-display-m:36px;
+  --w-normal:400; --w-tucne:700; --w-mono:500; --w-mono-tucne:600;
+  --lh-text:1.5; --lh-nadpis:1.2; --lh-display:1.05;
+
+  /* --- Prostor (násobky 8, plus 4) --- */
+  --s-1:4px; --s-2:8px; --s-3:16px; --s-4:24px; --s-5:40px; --s-6:64px; --s-7:96px;
+  /* --- Linky, rohy, stíny --- */
+  --b-tenka:1px; --b-silna:2px; --b-akcent:6px;
+  --r-0:0; --r-1:3px; --r-pill:999px;       /* rohy: skoro vždy 0 */
+  --stin-tvrdy:4px 4px 0 var(--c-grafit);   /* vybraná volba, karta „na papíře“ */
+  --stin-zluty:4px 4px 0 var(--c-zvyraznovac); /* hlavní tlačítko */
+  --fokus:0 0 0 3px var(--c-bila),0 0 0 6px var(--c-propiska);
+  /* --- Rozvržení --- */
+  --max-web:1200px; --max-text:720px; --max-app:1440px;
+  --side-w:232px; --cil-min:44px;
+  /* --- Mřížka pozadí --- */
+  --mrizka-krok:24px;
+}
+/* Body zlomu (min-width): sm 640px · md 768px · lg 1024px · xl 1280px */

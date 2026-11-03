@@ -1,0 +1,146 @@
+<!--meta {"titulek":"Šablony testů a služby","popis":"Připravujeme katalog šablon testů (BOZP, PO, první pomoc, GDPR a další) – zatím zdarma a neověřené. Služby na objednávku: zavedení do organizace a převod otázek.","sablona":"web","aktivni":""} -->
+<!--spec {
+ "route":"/sablony-testu","nazev":"Šablony testů a služby","role":"veřejnost – zákazníci a zájemci","sablona":"web",
+ "ucel":"Představit připravovaný katalog šablon (zdarma, neověřené) a placené služby; vyvolat poptávku šablony nebo služby.",
+ "hlavni_akce":"Mám zájem o šablonu (formulář poptávky s předvyplněným důvodem)",
+ "komponenty":["hero","stav","alert","card","grid-4","grid-2","num-step","price","list-check","faq","cta-band"],
+ "stavy":["Statická stránka – bez stavů. Katalog v aplikaci zatím neexistuje: celá stránka je ve stavu „Připravujeme“ (štítek v hero)."],
+ "zmeny_ux":[
+  "Tři upozornění (neověřené, nenahrazuje školení, zdarma zatím) jsou nahoře jako tři karty s ikonou pozor – v běžné velikosti, ne v drobném textu (pravidlo 3).",
+  "Texty upozornění se dnes opakují 4× (hero, blok, ceník, FAQ). Nově: hero jedna věta + blok tří karet; FAQ odkazuje na stejné znění.",
+  "Šablony v přípravě: mřížka 4 sloupců karet; zvažovaná témata jako kompaktní seznam ve 2–3 sloupcích.",
+  "Jak to bude fungovat: 4 číslované kroky (num-step) jako na úvodní stránce.",
+  "Služby mají kotvu #sluzby; tlačítka poptávky vedou na ukazka.html s parametrem duvod (předvyplní volbu ve formuláři) – návrh."],
+ "texty":[
+  {"dnes":"ŠABLONY TESTŮ · ZATÍM ZDARMA · PŘIPRAVUJEME","nove":"Štítek „Šablony testů“ + stav „Připravujeme“ + fakt „Zatím zdarma“","proc":"Stav ikonou a slovem; ne tři informace ve štítku."},
+  {"dnes":"Nemusíte začínat od prázdné stránky. Připravujeme katalog šablon testů k tématům, která organizace ověřují nejčastěji. O šablonu požádáte formulářem, zdarma vám ji pošleme jako soubor k importu a vy ji pak upravujete a používáte jako vlastní soubor otázek. Šablony jsou neověřené: neprošly odbornou kontrolou a za správnost obsahu neodpovídáme.","nove":"Nemusíte začínat od prázdné stránky. O šablonu požádáte formulářem a zdarma vám ji pošleme jako soubor k importu. Pak ji upravujete a používáte jako vlastní soubor otázek.","proc":"Kratší; upozornění je hned pod hero v samostatném bloku."},
+  {"dnes":"Nezávazně poptat","nove":"Poptat zavedení / Poptat import otázek","proc":"Tlačítko říká co; dvě stejná tlačítka na různá místa by porušila WCAG 2.4.4."},
+  {"dnes":"Zdarma zatím, pro všechny šablony z katalogu","nove":"Zatím zdarma – pro všechny šablony z katalogu","proc":"Přirozený slovosled."}],
+ "pristupnost":["Jediné H1; sekce H2, karty H3.","Upozornění jako karty s ikonou pozor a nadpisem (ne jen barvou).","Kroky jako <ol>.","FAQ details/summary."],
+ "poznamky_pro_kodera":["Odkazy poptávek: ukazka.html?duvod=sablona|zavedeni|import – formulář předvybere volbu (návrh).","Odpovědi FAQ převzaty z dnešního webu."],
+ "chybi_komponenta":[]
+} -->
+<section class="hero grid-bg">
+ <div class="container stack-4">
+  <div class="row" style="gap:var(--s-2)"><p class="t-stitek">Šablony testů</p><span class="stav stav--pise">{{I:hodiny}}Připravujeme</span></div>
+  <h1 class="t-display measure">Hotové šablony testů, které si <span class="t-zvyraznit">upravíte podle sebe</span></h1>
+  <p class="t-perex measure">Nemusíte začínat od prázdné stránky. O šablonu požádáte formulářem a zdarma vám ji pošleme jako soubor k&nbsp;importu. Pak ji upravujete a používáte jako vlastní soubor otázek.</p>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html?duvod=sablona">Mám zájem o šablonu</a><a class="btn" href="#sluzby">Služby na objednávku</a></div>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="neoverene">
+ <div class="container stack-4">
+  <h2 id="neoverene" class="t-sekce">Šablony jsou zatím zdarma a neověřené</h2>
+  <div class="grid-3">
+   <div class="alert" role="note">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Neprošly odbornou kontrolou</p><p>Jsou to výchozí vzory, které si organizace musí před použitím zkontrolovat a upravit. Provozovatel neodpovídá za jejich věcnou správnost, úplnost ani soulad s&nbsp;předpisy. Za obsah a použití testu odpovídá vaše organizace.</p><p>Šablony připravujeme podle veřejně dostupných předpisů k&nbsp;datu, které v&nbsp;nich uvádíme. Před použitím je musí zkontrolovat a upravit odborně způsobilá osoba podle vašich předpisů, směrnic a rizik pracoviště.</p></div></div>
+   <div class="alert" role="note">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Test nenahrazuje zákonné školení ani zkoušku</p><p>Test ověřuje znalosti. Tam, kde předpis vyžaduje školení, výcvik, praktickou zkoušku nebo ověření oprávněnou osobou, komisí či úřadem, je test jen doplněk.</p><p>Úspěšný test sám nezakládá oprávnění ani odbornou způsobilost.</p></div></div>
+   <div class="alert alert--info" role="note">{{I:info}}<div class="stack-2"><p class="alert__nadpis">Zdarma zatím, ne navždy</p><p>V&nbsp;budoucnu můžeme nové šablony a aktualizace zpoplatnit; změnu ohlásíme předem.</p><p>Šablony, které do té doby převezmete, vám zůstanou zdarma.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="pripravujeme">
+ <div class="container stack-5">
+  <div class="stack-2"><h2 id="pripravujeme" class="t-sekce">Šablony, které připravujeme</h2><p class="measure">Na těchto tématech už pracujeme. Kdy bude která šablona k&nbsp;dispozici, vám sdělíme na vyžádání.</p></div>
+  <ul class="grid-4">
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">BOZP</h3><p class="t-maly">Školení zaměstnanců a vedoucích zaměstnanců všech profesí.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Požární ochrana</h3><p class="t-maly">Vstupní a opakované školení zaměstnanců o požární ochraně.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">První pomoc</h3><p class="t-maly">Základy pro zaměstnance bez zdravotnického vzdělání.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Kybernetická bezpečnost</h3><p class="t-maly">Školení uživatelů, kteří pracují s&nbsp;počítačem, e-mailem a mobilem.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">GDPR</h3><p class="t-maly">Ochrana osobních údajů pro zaměstnance a vedoucí.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Právo pro praxi</h3><p class="t-maly">Smlouvy, veřejné zakázky a správní řízení pro úředníky, referenty a nákupčí.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Radiační ochrana</h3><p class="t-maly">Základní principy radiační ochrany pro radiační pracovníky.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Kvalita a compliance</h3><p class="t-maly">ISO 9001, interní audit, etika a ochrana oznamovatelů.</p></li>
+  </ul>
+  <div class="stack">
+   <h3 class="t-nadpis">Další témata, která zvažujeme</h3>
+   <p class="measure">Pořadí dalších šablon řídíme zájmem zákazníků. <a href="ukazka.html?duvod=sablona">Napište nám, které téma potřebujete.</a></p>
+   <ul class="grid-3" style="gap:var(--s-2) var(--s-4);padding-left:var(--s-4)">
+    <li>AI gramotnost</li><li>Řidič referent</li><li>Hygiena potravin a HACCP</li><li>Elektro: osoba seznámená a poučená (teorie)</li><li>Nebezpečné chemické látky</li><li>Práce ve výškách</li><li>Obsluha vysokozdvižného vozíku (teorie)</li><li>Ruční manipulace s&nbsp;břemeny</li><li>Spisová služba</li><li>Svobodný přístup k&nbsp;informacím</li><li>Správní a kontrolní řád</li><li>Zadávání veřejných zakázek</li><li>Praní špinavých peněz (AML)</li><li>Bezpečnost žáků a dozor</li><li>Hygiena rukou a prevence infekcí</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="jak">
+ <div class="container stack-5">
+  <h2 id="jak" class="t-sekce">Jak to bude fungovat</h2>
+  <ol class="grid-4">
+   <li class="num-step"><span class="t-cislo">01</span><div class="stack-2"><h3 class="t-nadpis">Vyberete šablonu</h3><p>Podle tématu a cílové skupiny. Ke každé šabloně uvedeme, k&nbsp;jakému datu odpovídá předpisům.</p></div></li>
+   <li class="num-step"><span class="t-cislo">02</span><div class="stack-2"><h3 class="t-nadpis">Převezmete ji do účtu</h3><p>Převzetí potvrdí administrátor organizace – i s&nbsp;podmínkami a upozorněním, že šablona neprošla odbornou kontrolou. Šablona se stane vaším souborem otázek.</p><p class="t-maly">Než bude katalog v&nbsp;aplikaci, dodáme ji na vyžádání jako soubor k&nbsp;importu.</p></div></li>
+   <li class="num-step"><span class="t-cislo">03</span><div class="stack-2"><h3 class="t-nadpis">Upravíte a schválíte</h3><p>Otázky doplníte o vlastní směrnice a rizika, nepotřebné smažete. Úpravy schválí váš odborný garant.</p></div></li>
+   <li class="num-step"><span class="t-cislo">04</span><div class="stack-2"><h3 class="t-nadpis">Zkoušíte</h3><p>Online, v&nbsp;učebně i na papíře. Každý zkoušený dostane jinou variaci a k&nbsp;výsledku protokol.</p></div></li>
+  </ol>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="cena">
+ <div class="container grid-2" style="align-items:start">
+  <div class="price price--doporuceny">
+   <p class="t-stitek">Cena šablony</p>
+   <h2 id="cena" class="t-nadpis">Zatím zdarma – pro všechny šablony z&nbsp;katalogu</h2>
+   <p class="t-cislo">0&nbsp;Kč</p>
+   <ul class="list-check">
+    <li><span>Platí pro celou organizaci včetně všech poboček.</span></li>
+    <li><span>Počet zkoušených ani testů z&nbsp;jedné šablony neomezujeme. Pokusy se počítají podle vašeho tarifu jako u&nbsp;jiných testů.</span></li>
+    <li><span>Šablonu můžete libovolně upravovat. Úpravy zůstanou ve vašem účtu.</span></li>
+   </ul>
+   <p class="t-maly">Pokud v&nbsp;budoucnu katalog zpoplatníme, ohlásíme to předem. Šablony, které do té doby převezmete, vám zůstanou bez úplaty.</p>
+  </div>
+  <div class="stack">
+   <h2 class="t-nadpis">Katalog připravujeme</h2>
+   <p>Šablony zatím nelze objednat přímo v&nbsp;aplikaci. Pokud o některou máte zájem, napište nám. Ozveme se do 2&nbsp;pracovních dnů a domluvíme, kdy a jak vám ji dodáme.</p>
+   <div class="row"><a class="btn" href="ukazka.html?duvod=sablona">Poptat šablonu</a></div>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila" id="sluzby" aria-labelledby="sluzby-h">
+ <div class="container stack-5">
+  <div class="stack-2"><h2 id="sluzby-h" class="t-sekce">Služby na objednávku</h2><p class="t-perex measure">Pomůžeme vám rychle začít. Cenu určíme podle objemu práce a nabídku pošleme zdarma do 2&nbsp;pracovních dnů.</p><p class="measure">Cena se řídí počtem otázek, počtem uživatelů a poboček a formátem podkladů. Pevnou cenu neuvádíme. Do práce se pustíme až po vašem souhlasu s&nbsp;nabídkou.</p></div>
+  <div class="grid-2">
+   <div class="card stack">
+    <h3 class="t-nadpis">Pomoc se zavedením do organizace</h3>
+    <ul class="list-check">
+     <li><span>Úvodní nastavení organizace, poboček, rolí a uživatelů.</span></li>
+     <li><span>První test a jeho použití: online, v&nbsp;učebně nebo na papíře.</span></li>
+     <li><span>Školení administrátorů a lektorů online nebo u&nbsp;vás na místě.</span></li>
+    </ul>
+    <div class="row"><a class="btn" href="ukazka.html?duvod=zavedeni">Poptat zavedení</a></div>
+   </div>
+   <div class="card stack">
+    <h3 class="t-nadpis">Import a převod otázek</h3>
+    <ul class="list-check">
+     <li><span>Z Wordu, Excelu, PDF, Moodle (XML nebo GIFT), DoTestu i z&nbsp;papíru do vašich souborů otázek.</span></li>
+     <li><span>Převod uděláme my, včetně štítků a správných odpovědí.</span></li>
+     <li><span>Výsledek si zkontrolujete v&nbsp;náhledu a teprve potom otázky schválíte.</span></li>
+    </ul>
+    <p class="t-maly">Z&nbsp;tabulky XLSX otázky naimportujete i sami.</p>
+    <div class="row"><a class="btn" href="ukazka.html?duvod=import">Poptat import otázek</a></div>
+   </div>
+  </div>
+  <div class="alert alert--info" role="note">{{I:info}}<p>Soubory s&nbsp;otázkami nám zatím neposílejte, podklady si vyžádáme až po nacenění. Za práva k&nbsp;podkladům a za kontrolu převedeného obsahu odpovídá vaše organizace. Potřebujete otázky na míru k&nbsp;vaší směrnici? <a href="ukazka.html?duvod=jina">Poptejte jinou službu.</a></p></div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="faq">
+ <div class="container grid-2" style="align-items:start">
+  <h2 id="faq" class="t-sekce">Časté otázky k&nbsp;šablonám</h2>
+  <div class="faq">
+   <details><summary>Co přesně je šablona z katalogu?</summary><div><p>Hotový soubor otázek k&nbsp;jednomu tématu, například BOZP nebo GDPR, s&nbsp;návrhem testu. Šablonu převezmete do svého účtu a otázky upravíte, doplníte nebo smažete podle svých předpisů a rizik. Potom ji používáte jako vlastní soubor otázek.</p></div></details>
+   <details><summary>Kdo odpovídá za správnost otázek?</summary><div><p>Organizace, která šablonu používá. Šablony neprošly odbornou kontrolou: jsou to výchozí vzory, které připravujeme podle veřejně dostupných předpisů k&nbsp;datu uvedenému v&nbsp;šabloně. Provozovatel neodpovídá za jejich věcnou správnost, úplnost ani soulad s&nbsp;předpisy. Před použitím šablonu musí zkontrolovat a upravit odborně způsobilá osoba vaší organizace.</p></div></details>
+   <details><summary>Nahradí test zákonné školení nebo zkoušku?</summary><div><p>Ne. Test ověřuje znalosti. Nenahrazuje školení, které musí zaměstnavatel zajistit, ani zkoušku nebo ověření, které předpis svěřuje oprávněné osobě, komisi nebo úřadu. Úspěšný test sám nezakládá žádné oprávnění ani odbornou způsobilost.</p></div></details>
+   <details><summary>Kolik šablona stojí a jak ji dostaneme?</summary><div><p>Šablony jsou zatím zdarma. Pokud je v&nbsp;budoucnu zpoplatníme, ohlásíme to předem a šablony, které do té doby převezmete, vám zůstanou bez úplaty. Katalog v&nbsp;aplikaci připravujeme. Do té doby šablonu dodáme na vyžádání jako soubor otázek, který naimportujete do svého účtu.</p></div></details>
+   <details><summary>Smíme šablonu upravit a používat bez omezení?</summary><div><p>Ano, v&nbsp;rámci vaší organizace. Počet zkoušených ani počet testů z&nbsp;jedné šablony neomezujeme. Pokusy se počítají podle vašeho tarifu jako u&nbsp;jakéhokoli jiného testu.</p></div></details>
+   <details><summary>Jaké služby si můžeme objednat a kolik stojí?</summary><div><p>Pomoc se zavedením do organizace a import nebo převod otázek – viz <a href="#sluzby">Služby na objednávku</a>. Cenu určíme podle objemu práce (počet otázek, uživatelů a poboček, formát podkladů). Nabídku pošleme zdarma do 2&nbsp;pracovních dnů. Službu objednáte formulářem; soubory pošlete až po nacenění.</p></div></details>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">Ukážeme vám aplikaci na vašem typu zkoušky</h2><p>Projdeme s&nbsp;vámi aplikaci online (asi 30&nbsp;minut) a připravíme zkušební přístup pro vaši organizaci.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="vyzkouset.html">Vyzkoušet demo</a></div>
+ </div>
+</section>

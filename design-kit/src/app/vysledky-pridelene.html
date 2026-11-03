@@ -1,0 +1,52 @@
+<!--meta {"titulek":"Výsledky – přidělené testy","sablona":"app","role":"lektor","aktivni":"vysledky.html","demo":false} -->
+<!--spec {
+ "route":"/vysledky/pridelene","nazev":"Výsledky – přidělené testy","role":"lektor (administrátor pobočky vidí přidělení všech lektorů svých poboček)","sablona":"app",
+ "ucel":"U testů zadaných konkrétním lidem (přidělení skupině, osobní kódy) ukázat, kolik lidí splnilo, nesplnilo, píše nebo ještě nezačalo.",
+ "hlavni_akce":"Otevřít přidělení a zjistit, kdo test ještě nezahájil.",
+ "komponenty":["page-head","tabs","table-wrap","table--stack","bar","empty"],
+ "stavy":[
+  "prázdný: .empty „Zatím nemáte žádný přidělený test“ + odkaz Přidělit test.",
+  "přidělení bez osob: řádek ukazuje 0 osob a v buňce Hotovo „nikdo přidělen“.",
+  "načítání: skeleton řádků, aria-busy.",
+  "chyba: .alert--chyba nad tabulkou + Zkusit znovu.",
+  "oprávnění: lektor vidí svá přidělení; administrátor pobočky všechna ve spravovaných pobočkách; autor 403."],
+ "zmeny_ux":[
+  "Pět číselných sloupců doplňuje vodorovný pruh .bar „hotovo“ (splněno z počtu osob) – hned vidět, kde se čeká; hodnota je vždy i číslem.",
+  "Název přidělení je odkaz na detail „kdo splnil“ – dnes se na detail z tabulky nedá kliknout.",
+  "Způsob podle slovníku: Přiděleno / Osobní kódy.",
+  "Pobočka a lektor přesunuty do šedého řádku pod název."],
+ "texty":[
+  {"dnes":"Testy přidělené studujícím, skupinám nebo osobním kódem. U každého přidělení vidíte, kolik osob test splnilo, nesplnilo, má ho rozpracovaný nebo ho ještě nezahájilo.","nove":"Testy zadané konkrétním lidem – přidělením nebo osobními kódy. Otevřete přidělení a uvidíte, kdo ještě nezačal.","proc":"Kratší, akce na konci."},
+  {"dnes":"Přidělení studujícím / skupině","nove":"Přiděleno","proc":"Slovník."},
+  {"dnes":"Přístupové kódy pro osoby","nove":"Osobní kódy","proc":"Slovník."},
+  {"dnes":"Rozpracováno","nove":"Píše","proc":"Stejné slovo jako v živém panelu (jedna věc = jedno slovo)."}],
+ "pristupnost":["Pruh .bar je dekorace (aria-hidden), hodnota je čitelná textem „2 z 5“.","Odkaz na detail = název testu + sr-only název přidělení.","Caption tabulky (sr-only)."],
+ "poznamky_pro_kodera":["Hotovo = splněno / počet osob.","Řazení podle data přidělení sestupně.","Počty nezahájených jsou odkaz s filtrem do detailu (návrh)."],
+ "chybi_komponenta":["mini-pruh v buňce tabulky (.bar má pevný 3sloupcový grid se štítkem; v buňce použit jen .bar__track)"]
+} -->
+<div class="page-head"><h1 class="t-titulek">Výsledky</h1></div>
+<nav class="tabs" aria-label="Pohledy na výsledky" style="margin-bottom:var(--s-4);contain:inline-size">
+ <a href="vysledky.html">Všechny</a>
+ <a href="vysledky-prezencni.html">Prezenční zkoušky</a>
+ <a href="vysledky-pridelene.html" aria-current="page">Přidělené testy</a>
+</nav>
+<p class="measure" style="margin-bottom:var(--s-4)">Testy zadané konkrétním lidem – přidělením nebo osobními kódy. Otevřete přidělení a&nbsp;uvidíte, kdo ještě nezačal.</p>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Přidělené testy a stav osob, 4 přidělení</caption>
+  <thead><tr><th scope="col">Přidělení</th><th scope="col">Způsob</th><th scope="col" class="num">Osob</th><th scope="col" class="num">Splněno</th><th scope="col" class="num">Nesplněno</th><th scope="col" class="num">Píše</th><th scope="col" class="num">Nezahájeno</th><th scope="col" style="min-width:140px">Hotovo</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Přidělení"><span><a href="vysledky-pridelene-detail.html"><b>Kybernetická bezpečnost</b><span class="sr-only">: Roční školení</span></a><span class="t-maly">Roční školení · 3.&nbsp;11.&nbsp;2026 · Lucie Lektorová</span></span></td><td data-label="Způsob">Osobní kódy</td><td data-label="Osob" class="num">5</td><td data-label="Splněno" class="num">2</td><td data-label="Nesplněno" class="num">1</td><td data-label="Píše" class="num">1</td><td data-label="Nezahájeno" class="num">1</td><td data-label="Hotovo"><span class="stack-2" style="min-width:120px"><span class="bar__track" aria-hidden="true"><span class="bar__fill" style="display:block;width:40%"></span></span><span class="t-maly">2 z 5</span></span></td></tr>
+   <tr><td data-label="Přidělení"><span><a href="vysledky-pridelene-detail.html"><b>Radiační ochrana – ověření znalostí</b><span class="sr-only">: 1. termín</span></a><span class="t-maly">1. termín · 3.&nbsp;11.&nbsp;2026 · Lucie Lektorová</span></span></td><td data-label="Způsob">Osobní kódy</td><td data-label="Osob" class="num">0</td><td data-label="Splněno" class="num">0</td><td data-label="Nesplněno" class="num">0</td><td data-label="Píše" class="num">0</td><td data-label="Nezahájeno" class="num">0</td><td data-label="Hotovo"><span class="t-maly">nikdo přidělen</span></td></tr>
+   <tr><td data-label="Přidělení"><span><a href="vysledky-pridelene-detail.html"><b>BOZP – cvičný test</b><span class="sr-only">: Přiděleno zkoušenému</span></a><span class="t-maly">Přiděleno zkoušenému · 3.&nbsp;11.&nbsp;2026 · Lucie Lektorová</span></span></td><td data-label="Způsob">Přiděleno</td><td data-label="Osob" class="num">1</td><td data-label="Splněno" class="num">0</td><td data-label="Nesplněno" class="num">0</td><td data-label="Píše" class="num">0</td><td data-label="Nezahájeno" class="num">1</td><td data-label="Hotovo"><span class="stack-2" style="min-width:120px"><span class="bar__track" aria-hidden="true"><span class="bar__fill" style="display:block;width:0%"></span></span><span class="t-maly">0 z 1</span></span></td></tr>
+   <tr><td data-label="Přidělení"><span><a href="vysledky-pridelene-detail.html"><b>Kybernetická bezpečnost</b><span class="sr-only">: Přiděleno zkoušenému</span></a><span class="t-maly">Přiděleno zkoušenému · 3.&nbsp;11.&nbsp;2026 · Lucie Lektorová</span></span></td><td data-label="Způsob">Přiděleno</td><td data-label="Osob" class="num">1</td><td data-label="Splněno" class="num">0</td><td data-label="Nesplněno" class="num">0</td><td data-label="Píše" class="num">0</td><td data-label="Nezahájeno" class="num">1</td><td data-label="Hotovo"><span class="stack-2" style="min-width:120px"><span class="bar__track" aria-hidden="true"><span class="bar__fill" style="display:block;width:0%"></span></span><span class="t-maly">0 z 1</span></span></td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Žádné přidělení</p>
+  <div class="empty stack-2">{{I:uzivatele}}<p class="t-nadpis">Zatím nemáte žádný přidělený test</p><p class="t-maly">Přidělte test skupině studujících nebo rozešlete osobní kódy.</p><p><a class="btn" href="pouziti-nove.html">Použít test</a></p></div></div>
+</section>

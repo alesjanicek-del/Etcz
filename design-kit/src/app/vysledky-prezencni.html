@@ -1,0 +1,49 @@
+<!--meta {"titulek":"Výsledky – prezenční zkoušky","sablona":"app","role":"lektor","aktivni":"vysledky.html","demo":false} -->
+<!--spec {
+ "route":"/vysledky/prezencni","nazev":"Výsledky – prezenční zkoušky","role":"lektor (administrátor pobočky vidí zkoušky všech lektorů svých poboček)","sablona":"app",
+ "ucel":"Ukázat výsledky po jednotlivých zkouškách v učebně: kolik lidí se připojilo, odevzdalo a splnilo.",
+ "hlavni_akce":"Otevřít výsledky jedné prezenční zkoušky.",
+ "komponenty":["page-head","tabs","table-wrap","table--stack","stav","empty","alert"],
+ "stavy":[
+  "prázdný: .empty „Zatím neproběhla žádná prezenční zkouška“ + odkaz Nová prezenční zkouška.",
+  "probíhající zkouška: řádek má štítek „Probíhá“ (stav--pise) a odkaz Živý panel místo Výsledky.",
+  "načítání: tbody aria-busy=true, skeleton řádků.",
+  "chyba: .alert--chyba „Přehled se nepodařilo načíst“ + Zkusit znovu.",
+  "oprávnění: lektor vidí jen své zkoušky, administrátor pobočky všechny ve svých pobočkách; autor nemá přístup (403)."],
+ "zmeny_ux":[
+  "Vysvětlující odstavec zkrácen na 1 větu; odkaz v řádku má jasný účel (Výsledky: název zkoušky).",
+  "Termín a lektor v jedné buňce s názvem zkoušky – méně sloupců, mobil bez posouvání.",
+  "Počty Připojeno / Odevzdáno / Splnilo jsou čísla vpravo; Průměr v procentech.",
+  "Stav zkoušky (Probíhá / Ukončeno) ikonou a slovem – dnes chybí."],
+ "texty":[
+  {"dnes":"Výsledky zkoušek, které proběhly prezenčně (test zobrazený skupině přítomných osob). Každý řádek je jedna prezenční zkouška. Podrobnosti o zkoušených otevřete odkazem Výsledky.","nove":"Každý řádek je jedna zkouška v učebně. Výsledky jednotlivých zkoušených otevřete odkazem v řádku.","proc":"Kratší; pojem Prezenční zkouška je ve slovníku."},
+  {"dnes":"Přehled prezenčních zkoušek","nove":"Prezenční zkoušky (caption)","proc":"Bez opakování."},
+  {"dnes":"Odkazy","nove":"(sloupec bez nadpisu, sr-only „Akce“)","proc":"Záhlaví „Odkazy“ nic neříká."}],
+ "pristupnost":["Caption tabulky (sr-only).","Odkaz v řádku: „Výsledky“ + sr-only název zkoušky.","Štítek stavu ikonou + slovem."],
+ "poznamky_pro_kodera":["Řazení podle termínu sestupně.","Průměr jen z odevzdaných pokusů; bez pokusu „—“.","Ukázková čísla v návrhu odpovídají snímku živého panelu (7 připojeno, 4 odevzdali)."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head"><h1 class="t-titulek">Výsledky</h1></div>
+<nav class="tabs" aria-label="Pohledy na výsledky" style="margin-bottom:var(--s-4);contain:inline-size">
+ <a href="vysledky.html">Všechny</a>
+ <a href="vysledky-prezencni.html" aria-current="page">Prezenční zkoušky</a>
+ <a href="vysledky-pridelene.html">Přidělené testy</a>
+</nav>
+<p class="measure" style="margin-bottom:var(--s-4)">Každý řádek je jedna zkouška v&nbsp;učebně. Výsledky jednotlivých zkoušených otevřete odkazem v&nbsp;řádku.</p>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Prezenční zkoušky, 2 záznamy</caption>
+  <thead><tr><th scope="col">Zkouška</th><th scope="col">Stav</th><th scope="col" class="num">Připojeno</th><th scope="col" class="num">Odevzdáno</th><th scope="col" class="num">Splnilo</th><th scope="col" class="num">Průměr</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+  <tbody>
+   <tr><td data-label="Zkouška"><span><b>Radiační ochrana – ověření znalostí</b><span class="t-maly">Učebna 2 · 3.&nbsp;11.&nbsp;2026 18:27 · Lucie Lektorová</span></span></td><td data-label="Stav"><span class="stav stav--pise">{{I:prehrat}}Probíhá</span></td><td data-label="Připojeno" class="num">7</td><td data-label="Odevzdáno" class="num">4</td><td data-label="Splnilo" class="num">1</td><td data-label="Průměr" class="num">—</td><td data-label="Akce"><a href="zivy-panel.html">Živý panel<span class="sr-only">: Radiační ochrana, učebna 2</span></a></td></tr>
+   <tr><td data-label="Zkouška"><span><b>BOZP – cvičný test</b><span class="t-maly">Učebna 1 · 28.&nbsp;10.&nbsp;2026 09:00 · Lucie Lektorová</span></span></td><td data-label="Stav"><span class="stav stav--neutral">{{I:check}}Ukončeno</span></td><td data-label="Připojeno" class="num">12</td><td data-label="Odevzdáno" class="num">12</td><td data-label="Splnilo" class="num">10</td><td data-label="Průměr" class="num">84,6&nbsp;%</td><td data-label="Akce"><a href="vysledky.html">Výsledky<span class="sr-only">: BOZP, učebna 1, 28. 10.</span></a></td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2"><p class="t-stitek">Žádná zkouška</p>
+  <div class="empty stack-2">{{I:uzivatele}}<p class="t-nadpis">Zatím neproběhla žádná prezenční zkouška</p><p class="t-maly">Zkoušení v&nbsp;učebně spustíte v&nbsp;Použití testů. Zkoušení se připojí kódem nebo QR kódem.</p><p><a class="btn" href="pouziti-prezencni.html">Nová prezenční zkouška</a></p></div></div>
+</section>

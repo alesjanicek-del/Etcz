@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funkce podle rolí · exam-test</title>
+<meta name="description" content="Co v exam-test dělá autor otázek, lektor, zkoušený a administrátor: soubory otázek s verzemi, variace testů, prezenční zkouška, tisk a ověřitelné protokoly.">
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body>
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+<header class="site-header">
+ <div class="container site-header__in">
+  <a class="logo" href="index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – úvodní stránka" width="170" height="28"></a>
+  <nav class="site-nav" aria-label="Hlavní"><ul><li><a href="funkce.html" aria-current="page">Funkce</a></li><li><a href="pro-urady.html">Pro úřady</a></li><li><a href="pro-firmy.html">Pro firmy</a></li><li><a href="pro-vzdelavani.html">Pro vzdělávání</a></li><li><a href="bezpecnost.html">Bezpečnost</a></li><li><a href="cenik.html">Ceník</a></li></ul></nav>
+  <div class="site-header__cta">
+   <a class="btn btn--tiche btn--male" href="../app/prihlaseni.html">Přihlásit</a>
+   <a class="btn btn--male" href="vyzkouset.html">Vyzkoušet demo</a>
+   <a class="btn btn--hlavni btn--male" href="ukazka.html">Ukázka s průvodcem</a>
+  </div>
+  <details class="menu">
+   <summary class="btn btn--male"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu</summary>
+   <nav class="menu__panel" aria-label="Hlavní (mobil)"><a href="funkce.html" aria-current="page">Funkce</a><a href="pro-urady.html">Pro úřady</a><a href="pro-firmy.html">Pro firmy</a><a href="pro-vzdelavani.html">Pro vzdělávání</a><a href="bezpecnost.html">Bezpečnost</a><a href="cenik.html">Ceník</a><a href="../app/prihlaseni.html">Přihlásit</a>
+    <div class="row" style="margin-top:var(--s-3)"><a class="btn" href="vyzkouset.html">Vyzkoušet demo</a><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a></div>
+   </nav>
+  </details>
+ </div>
+</header>
+<main id="obsah">
+<section class="hero grid-bg">
+ <div class="container stack-4">
+  <p class="t-stitek">Funkce</p>
+  <h1 class="t-display measure">Od otázky po protokol v&nbsp;jedné aplikaci</h1>
+  <p class="t-perex measure">Podívejte se, co v&nbsp;exam-test dělá autor otázek, lektor, zkoušený a administrátor. Snímky pocházejí z&nbsp;ukázkové organizace se smyšlenými daty.</p>
+  <div class="row"><a class="btn btn--hlavni" href="vyzkouset.html">Vyzkoušet demo <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a><a class="btn" href="ukazka.html">Ukázka s průvodcem</a></div>
+  <nav aria-label="Na této stránce" class="stack-2">
+   <p class="t-stitek">Na této stránce</p>
+   <ul class="row" style="gap:var(--s-2)">
+    <li><a class="btn btn--male" href="#autor">Autor otázek</a></li>
+    <li><a class="btn btn--male" href="#lektor">Lektor</a></li>
+    <li><a class="btn btn--male" href="#zkouseny">Zkoušený</a></li>
+    <li><a class="btn btn--male" href="#tisk">Tisk</a></li>
+    <li><a class="btn btn--male" href="#vysledky">Výsledky a protokoly</a></li>
+    <li><a class="btn btn--male" href="#admin">Administrátor</a></li>
+    <li><a class="btn btn--male" href="#zabezpeceni">Zabezpečení</a></li>
+    <li><a class="btn btn--male" href="#pristupnost">Přístupnost</a></li>
+   </ul>
+  </nav>
+ </div>
+</section>
+
+<section class="section section--bila" id="autor" aria-labelledby="autor-h">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack"><p class="t-stitek">Autor otázek</p><h2 id="autor-h" class="t-sekce">Soubory otázek s&nbsp;verzemi</h2><p class="t-perex">Každá úprava vytvoří novou verzi otázky. Staré pokusy zůstávají na původním znění.</p></div>
+  <ul class="list-check">
+   <li><span><b>Práva k&nbsp;souborům otázek</b> pro čtení, použití a úpravy – pro osoby i celé pobočky.</span></li>
+   <li><span>Otázky s&nbsp;jednou i více správnými odpověďmi, obrázky, tabulky, dolní a horní index.</span></li>
+   <li><span>Štítky (téma, obtížnost) na úrovni organizace, pobočky i souboru otázek.</span></li>
+   <li><span>Schvalování otázek před zařazením do testů (volitelné).</span></li>
+   <li><span>Import a export z&nbsp;tabulky XLSX podle šablony.</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section" id="lektor" aria-labelledby="lektor-h">
+ <div class="container stack-5">
+  <div class="grid-2" style="align-items:start">
+   <div class="stack"><p class="t-stitek">Lektor</p><h2 id="lektor-h" class="t-sekce">Test sestavíte jednou, zadáte ho mnoha způsoby</h2><p class="t-perex">Aplikace spočítá, kolik unikátních variací test umožňuje.</p></div>
+   <ul class="list-check">
+    <li><span><b>Sekce testu</b> s&nbsp;povinnými otázkami a náhodným výběrem (minimum–maximum) ze souborů otázek. Zakázané štítky vyřadí neaktuální otázky.</span></li>
+    <li><span><b>Způsoby hodnocení:</b> procento, body, „všechny povinné správně“, vlastní pásma známek.</span></li>
+    <li><span><b>Pět způsobů použití testu:</b> prezenční zkouška, osobní kódy, veřejný odkaz s&nbsp;kapacitou, přidělení skupině a tisk.</span></li>
+    <li><span><b>Prezenční zkouška:</b> účastníci se připojí kódem nebo QR kódem, lektor je vpouští do testu a sleduje živý panel. Pro učebnu je promítací plocha.</span></li>
+    <li><span><b>Zkouška nanečisto:</b> projdete test očima zkoušeného a nic se nezapočítá.</span></li>
+   </ul>
+  </div>
+  <figure class="stack-2">
+   <div class="browser"><div class="browser__bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="../assets/img/zivy-panel.png" alt="Živý panel zkoušky BOZP: 3 píší, 4 ze 7 odevzdali, 1 splnil. U každého zkoušeného postup, zbývající čas, výsledek a upozornění." width="1280" height="800" loading="lazy"></div>
+   <figcaption class="t-maly">Živý panel: lektor vidí, kdo čeká, kdo píše, kolik má zodpovězeno a kolik mu zbývá času. Může prodloužit čas konkrétní osobě nebo vydat kód pro převzetí na jiném počítači.</figcaption>
+  </figure>
+ </div>
+</section>
+
+<section class="section section--bila" id="zkouseny" aria-labelledby="zkouseny-h">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack"><p class="t-stitek">Zkoušený</p><h2 id="zkouseny-h" class="t-sekce">Jednoduše a&nbsp;bez účtu</h2><p class="t-perex">Vstup přístupovým kódem, odkazem nebo QR kódem v&nbsp;učebně. Účet není potřeba.</p>
+   <div class="alert alert--info" role="note"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.3"/></svg><div><p class="alert__nadpis">Aplikace nezamyká počítač</p><p>Zaznamenává ale, kdy zkoušený opustil okno testu, a lektor to vidí.</p></div></div>
+  </div>
+  <ul class="list-check">
+   <li><span><b>Odpovědi se ukládají po každé změně.</b> Při výpadku připojení počkají v&nbsp;prohlížeči a odešlou se po jeho obnovení. Zkoušený vidí, zda je vše uloženo.</span></li>
+   <li><span><b>Převzetí na jiném počítači:</b> když se počítač zasekne, lektor vydá kód pro převzetí a zkoušený pokračuje tam, kde skončil.</span></li>
+   <li><span>Přehled otázek, tlačítko „Vrátit se později“ a časomíra s&nbsp;upozorněním před koncem.</span></li>
+   <li><span>Ovládání klávesnicí, označení pro čtečky obrazovky, prodloužení času pro konkrétní osobu.</span></li>
+   <li><span>Výsledek a protokol hned po odevzdání, pokud to lektor povolí.</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section" id="tisk" aria-labelledby="tisk-h">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack"><p class="t-stitek">Tisk</p><h2 id="tisk-h" class="t-sekce">Libovolný počet variací na papíře</h2></div>
+  <ul class="list-check">
+   <li><span>Tisková dávka vytvoří zadání, odpovědní listy a samostatné klíče označené jako důvěrné.</span></li>
+   <li><span>Každý arch nese kód variace. Odpovědi z&nbsp;papíru lektor zapíše a aplikace je vyhodnotí.</span></li>
+   <li><span>Výsledky z&nbsp;papíru jsou pohromadě s&nbsp;online výsledky a statistikami.</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section section--bila" id="vysledky" aria-labelledby="vysledky-h">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack"><p class="t-stitek">Výsledky, protokoly a statistiky</p><h2 id="vysledky-h" class="t-sekce">Výsledek, který obstojí</h2><p class="t-perex">Odevzdané pokusy jsou navzájem provázané a pravidelně je potvrzuje časové razítko nezávislé autority. Dodatečná změna výsledku se při ověření projeví.</p></div>
+  <ul class="list-check">
+   <li><span>Detail pokusu s&nbsp;odpověďmi a časovou osou průběhu.</span></li>
+   <li><span><b>Protokol PDF</b> s&nbsp;ověřovacím kódem a QR kódem. Pravost ověří kdokoli online na stránce <a href="overeni.html">Ověření protokolu</a>, bez přihlášení.</span></li>
+   <li><span>Výsledky zpřístupníte ručně, nebo je zkoušený vidí hned po odevzdání.</span></li>
+   <li><span>Statistiky otázek po verzích: kolikrát byla otázka v&nbsp;testu a jak často byla zodpovězena správně.</span></li>
+   <li><span>Export výsledků do tabulky.</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section" id="admin" aria-labelledby="admin-h">
+ <div class="container stack-5">
+  <div class="stack"><p class="t-stitek">Administrátor</p><h2 id="admin-h" class="t-sekce">Organizace, pobočky a&nbsp;pravidla</h2></div>
+  <div class="grid-3">
+   <div class="feature"><h3 class="t-nadpis">Pobočky a role</h3><p>Administrátor organizace vidí vše, administrátor pobočky jen svou pobočku. Uživatele zvete e-mailem.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Kalendář zkoušek</h3><p>Plánované zkoušky na jednom místě, s&nbsp;vazbou na použití testu.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Ochrana osobních údajů</h3><p>Doba uchování výsledků podle vašeho nastavení, poté anonymizace. Úřední záznamy lze z&nbsp;anonymizace vyjmout.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Vlastní vzhled</h3><p>Logo organizace, vlastní text úvodu testu a patičky protokolu. Vlastní doména ve vyšších tarifech.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Záznam změn</h3><p>Kdo, co a kdy změnil: otázky, testy, uživatele i nastavení.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Tarif a využití</h3><p>Přehled využitých pokusů, objednávka tarifu a zálohové faktury přímo v&nbsp;aplikaci.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section section--grafit" id="zabezpeceni" aria-labelledby="zab-h">
+ <div class="container stack-5">
+  <div class="stack"><p class="t-stitek">Přihlášení a zabezpečení</p><h2 id="zab-h" class="t-sekce">Kdo smí co, je vidět a dohledatelné</h2></div>
+  <div class="grid-3">
+   <div class="stack-2"><h3 class="t-nadpis">Ověření ve dvou krocích</h3><p>Kód z&nbsp;aplikace v&nbsp;telefonu. Povinné pro všechny, kdo spravují otázky, testy nebo uživatele. Organizace ho může vyžadovat od všech lektorů.</p></div>
+   <div class="stack-2"><h3 class="t-nadpis">Přihlášení odkazem z&nbsp;e-mailu</h3><p>Organizace může povolit přihlášení jednorázovým odkazem místo hesla. Ve výchozím stavu je vypnuté.</p></div>
+   <div class="stack-2"><h3 class="t-nadpis">Oddělená data</h3><p>Data každé organizace jsou oddělená a pobočky vidí jen svá data. Role určují, kdo smí otázky číst, používat nebo upravovat.</p></div>
+   <div class="stack-2"><h3 class="t-nadpis">Záznam změn</h3><p>Kdo, co a kdy změnil. Záznamy nejde dodatečně upravit ani smazat z&nbsp;aplikace.</p></div>
+   <div class="stack-2"><h3 class="t-nadpis">Podpora jen se souhlasem</h3><p>Podpora vstoupí do vaší organizace jen s&nbsp;vaším souhlasem a administrátoři o tom dostanou e-mail.</p></div>
+   <div class="stack-2"><h3 class="t-nadpis">Export a odchod</h3><p>Otázky, výsledky, protokoly i ověřovací data vyexportujete kdykoli, bez poplatku za odchod.</p></div>
+  </div>
+  <p><a href="bezpecnost.html">Bezpečnost a ochrana dat podrobně</a></p>
+ </div>
+</section>
+
+<section class="section section--bila" id="pristupnost" aria-labelledby="pr-h">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack"><p class="t-stitek">Přístupnost pro zkoušené</p><h2 id="pr-h" class="t-sekce">Test zvládne každý zkoušený</h2><p>Rozhraní je navržené podle WCAG 2.1 na úrovni AA (ČSN EN 301 549). <a href="prohlaseni-o-pristupnosti.html">Prohlášení o přístupnosti</a> uvádí i známé nedostatky.</p></div>
+  <ul class="list-check">
+   <li><span>Ovládání klávesnicí včetně průchodu testem a odevzdání.</span></li>
+   <li><span>Prvky jsou označené pro čtečky obrazovky. Ruční test se čtečkou připravujeme.</span></li>
+   <li><span>Prodloužení času pro konkrétní osobu předem i během testu.</span></li>
+   <li><span>Text pro čtečku u vzorců a zápisů s&nbsp;indexy.</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="prip-h">
+ <div class="container stack-4">
+  <div class="stack-2"><p><span class="stav stav--pise"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Připravujeme</span></p><h2 id="prip-h" class="t-sekce">Na čem pracujeme</h2><p class="measure">Termíny neslibujeme. Pokud tyto věci potřebujete, napište nám a probereme vaše použití.</p></div>
+  <div class="grid-2">
+   <div class="card card--tenka stack-2"><h3 class="t-nadpis">Šablony testů</h3><p>Katalog hotových šablon testů, které si upravíte.</p><p><a href="sablony-testu.html">Šablony testů a služby</a></p></div>
+   <div class="card card--tenka stack-2"><h3 class="t-nadpis">API a integrace</h3><p>Stahování výsledků a zadávání testů z&nbsp;vašich systémů: personalistika, systém pro řízení výuky (LMS), spisová služba.</p><p><a href="kontakt.html">Napsat nám</a></p></div>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">Ukážeme vám aplikaci na vašem typu zkoušky</h2><p>Projdeme s&nbsp;vámi aplikaci online (asi 30&nbsp;minut) a připravíme zkušební přístup pro vaši organizaci.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="vyzkouset.html">Vyzkoušet demo</a></div>
+ </div>
+</section>
+</main>
+<footer class="site-footer">
+ <div class="container">
+  <div class="site-footer__grid">
+   <div class="stack-2"><img src="../assets/logo/exam-test-logo-negativ-pruhledne.svg" alt="exam-test" width="150" height="25"><p>Testy a zkoušky online i na papíře. Pro úřady, firmy a vzdělávání.</p><p><a href="overeni.html">Ověřit pravost protokolu</a></p></div>
+   <nav class="stack-2" aria-label="Produkt"><p class="t-stitek">Produkt</p><ul><li><a href="funkce.html">Funkce</a></li><li><a href="cenik.html">Ceník</a></li><li><a href="sablony-testu.html">Šablony testů a služby</a></li><li><a href="bezpecnost.html">Bezpečnost a data</a></li><li><a href="napoveda.html">Nápověda</a></li></ul></nav>
+   <nav class="stack-2" aria-label="Pro koho"><p class="t-stitek">Pro koho</p><ul><li><a href="pro-urady.html">Úřady a veřejná správa</a></li><li><a href="pro-firmy.html">Firmy a BOZP</a></li><li><a href="pro-vzdelavani.html">Školy a kurzy</a></li><li><a href="pro-vzdelavani.html#strediska">Školicí střediska</a></li></ul></nav>
+   <div class="stack-2"><p class="t-stitek">Kontakt</p><ul><li><a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a></li><li><a href="tel:+420725311531">+420 725 311 531</a></li><li><a href="kontakt.html">Kontakt a fakturační údaje</a></li><li><a href="najit-organizaci.html">Přihlášení do organizace</a></li></ul></div>
+  </div>
+  <div class="site-footer__legal row-between"><p>ABUCO ICT s.r.o. · IČO 29153905 · Třebohostická 987/5, 100 00 Praha 10</p>
+   <ul class="row"><li><a href="podminky.html">Obchodní podmínky</a></li><li><a href="ochrana-osobnich-udaju.html">Ochrana osobních údajů</a></li><li><a href="zpracovatelska-smlouva.html">Zpracovatelská smlouva</a></li><li><a href="prohlaseni-o-pristupnosti.html">Prohlášení o přístupnosti</a></li></ul></div>
+  <p class="t-maly" style="margin-top:var(--s-2)">Web nepoužívá analytické ani reklamní cookies, jen <a href="ochrana-osobnich-udaju.html#cookies">technicky nezbytné</a>.</p>
+ </div>
+</footer>
+<script type="application/json" id="spec">{"route": "/funkce", "nazev": "Funkce podle rolí", "role": "veřejnost – kupující a budoucí uživatelé", "sablona": "web", "ucel": "Ukázat celý rozsah aplikace po rolích, aby si kupující ověřil, že pokryje jeho zkoušky, a zamířil do dema nebo na ukázku.", "hlavni_akce": "Vyzkoušet demo; vedlejší: Ukázka s průvodcem", "komponenty": ["hero", "grid-bg", "row (kotvy na stránce)", "feature", "list-check", "browser", "alert", "card", "grid-3", "cta-band"], "stavy": ["Statická stránka – bez stavů (žádná data, žádné oprávnění).", "Obrázek se nenačte: zůstane rámeček .browser s alt textem; text vedle obrázku nese stejnou informaci."], "zmeny_ux": ["Kotvy nahoře jsou skutečné odkazy na sekce (dnes vypadají jako záložky, ale nefungují jako záložky).", "Každá role má stejnou stavbu: štítek, nadpis s přínosem, krátký perex a seznam funkcí – stránka se dá číst jen po nadpisech.", "Popisky screenshotů se dnes opakují (2× „spočítá variace“). Nechán jeden obrázek (živý panel); u ostatních rolí návrh doplnit snímky v novém designu.", "Upozornění „Aplikace nezamyká počítač“ je v běžném textu jako .alert (pravidlo 3: důležité nikdy drobně).", "Sekce Připravujeme je oddělená vizuálně (stav Připravujeme), aby nevznikl dojem, že funkce už existují.", "Odkaz „Bezpečnost a ochrana dat podrobně →“ má popisný text bez šipky."], "texty": [{"dnes": "Domluvit ukázku", "nove": "Ukázka s průvodcem", "proc": "Slovník – jedna věc = jedno slovo."}, {"dnes": "nebo si prohlédněte demo – bez registrace", "nove": "Vyzkoušet demo (tlačítko) + „Demo je bez registrace.“", "proc": "Slovník; tlačítko říká, co se stane."}, {"dnes": "Lektor: test sestavíte jednou, zadáte mnoha způsoby", "nove": "Test sestavíte jednou, zadáte ho mnoha způsoby", "proc": "Role je ve štítku nad nadpisem, neopakuje se."}, {"dnes": "Použití testu: osobní přístupové kódy, odkaz s kapacitou, přidělení studujícím a skupinám, prezenční zkouška v učebně, tisk.", "nove": "Pět způsobů použití testu: prezenční zkouška, osobní kódy, veřejný odkaz s kapacitou, přidělení skupině a tisk.", "proc": "Slovník (Osobní kódy, Veřejný odkaz, Přidělení skupině)."}, {"dnes": "Zkusit nanečisto – projdete test očima zkoušeného, nic se nezapočítá.", "nove": "Zkouška nanečisto: projdete test očima zkoušeného a nic se nezapočítá.", "proc": "Činně, bez pomlčkové konstrukce."}, {"dnes": "Přehled otázek, označení otázky „vrátit se později“, časomíra s upozorněním před koncem.", "nove": "Přehled otázek, tlačítko „Vrátit se později“ a časomíra s upozorněním před koncem.", "proc": "Slovník – Vrátit se později je název tlačítka."}, {"dnes": "Uvolnění výsledků zkoušeným ručně nebo hned po odevzdání.", "nove": "Výsledky zpřístupníte ručně, nebo je zkoušený vidí hned po odevzdání.", "proc": "Slovník: Zpřístupnit výsledky / Zkoušený vidí výsledek (ne Uvolnit)."}, {"dnes": "Bezpečnost a ochrana dat podrobně →", "nove": "Bezpečnost a ochrana dat podrobně", "proc": "Šipka nenese význam; odkaz je popisný."}, {"dnes": "Odevzdané pokusy jsou navzájem provázané a pravidelně je potvrzuje časové razítko nezávislé autority. Dodatečná změna výsledku se při ověření projeví.", "nove": "beze změny", "proc": "Odpovídá pravidlům."}], "pristupnost": ["Jediné H1; každá role je H2 se štítkem nad ním (štítek je <p>, není nadpis).", "Navigace „Na této stránce“ je <nav aria-label> se seznamem odkazů na id sekcí; sekce mají aria-labelledby.", "Obrázek živého panelu má alt s obsahem; popisek ve figcaption.", "Seznamy funkcí jsou skutečné <ul>, ne odstavce."], "poznamky_pro_kodera": ["Kotvy používají scroll-margin-top kvůli sticky hlavičce (doplnit do CSS při kódování; v kitu není).", "Snímky pro roli autor, zkoušený a výsledky doplnit v novém designu (webp 1600/800)."], "chybi_komponenta": ["Navigace „Na této stránce“ (vodorovná řada kotev) – použita .row s .btn--male", "scroll-margin-top pro kotvy pod sticky hlavičkou"]}</script>
+</body>
+</html>

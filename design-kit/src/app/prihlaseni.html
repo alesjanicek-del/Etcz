@@ -1,0 +1,122 @@
+<!--meta {"titulek":"Přihlášení","popis":"Přihlášení do aplikace exam-test vaší organizace.","sablona":"cisty"} -->
+<!--spec {
+ "route":"/prihlaseni","nazev":"Přihlášení","role":"všichni s účtem (autor otázek, lektor, administrátor); zkoušený bez účtu se nepřihlašuje","sablona":"cisty",
+ "ucel":"Přihlásit uživatele s účtem do aplikace jeho organizace. Zkoušeného bez účtu poslat rovnou ke vstupu kódem.",
+ "hlavni_akce":"Přihlásit se (e-mail + heslo); vedlejší: Poslat přihlašovací odkaz e-mailem, Zapomenuté heslo",
+ "komponenty":["card card--papir","field","input","btn--hlavni","btn","btn--tiche","alert","alert--chyba","alert--info","error-summary","rule-tenka"],
+ "stavy":[
+  "výchozí: prázdný formulář, fokus na poli E-mail",
+  "chyba – nevyplněná pole: error-summary nahoře + chyba u pole",
+  "chyba – špatné údaje: alert--chyba bez prozrazení, zda účet existuje; e-mail zůstane vyplněný, heslo se vymaže",
+  "odhlášení pro nečinnost / po 12 h: alert--info nad formulářem s důvodem",
+  "odhlášení dobrovolné: alert--ok „Odhlásili jste se.“",
+  "načítání: tlačítko Přihlásit se dostane aria-disabled a text „Přihlašuji…“, formulář se neodešle dvakrát",
+  "přihlášení odkazem vypnuté organizací: blok „Poslat přihlašovací odkaz e-mailem“ se nezobrazí",
+  "bez oprávnění: nelze – stránka je veřejná; přihlášený uživatel je přesměrován na svůj Přehled"],
+ "zmeny_ux":[
+  "Nahoře je název organizace – uživatel ví, že je ve správné aplikaci (adresa se liší podle organizace).",
+  "Zkoušený bez účtu má vlastní blok „Jdete na test?“ s odkazy na vstup kódem a na prezenční zkoušku – dnes to vysvětluje jen nápověda.",
+  "Přihlášení odkazem je viditelná vedlejší cesta pod formulářem (tlačítko druhé úrovně), ne jen textový odkaz.",
+  "Pole Heslo má tlačítko Zobrazit heslo (méně překlepů, WCAG 3.3.8 – bez kognitivních testů).",
+  "Důvod odhlášení (nečinnost, 12 h, změna hesla) se ukáže přímo nad formulářem – dnes uživatel neví, proč ho aplikace odhlásila."],
+ "texty":[
+  {"dnes":"(nápověda) Zadejte E-mail a Heslo. Klikněte na Přihlásit se.","nove":"E-mail · Heslo · Přihlásit se","proc":"Ponecháno – odpovídá pravidlům."},
+  {"dnes":"Poslat přihlašovací odkaz e-mailem","nove":"Poslat přihlašovací odkaz e-mailem","proc":"Ponecháno; doplněna nápověda „Heslo nebudete potřebovat.“"},
+  {"dnes":"(nápověda) Zkoušený bez účtu se nepřihlašuje. Test otevře kódem, odkazem nebo na prezenční zkoušce.","nove":"Jdete na test? Nepřihlašujte se. Test otevřete přístupovým kódem nebo na prezenční zkoušce.","proc":"Informace přesunuta z nápovědy na místo, kde ji zkoušený potřebuje."},
+  {"dnes":"(nápověda) administrátory, autory a lektory po 30 minutách nečinnosti","nove":"Odhlásili jsme vás po 30&nbsp;minutách nečinnosti. Přihlaste se znovu.","proc":"Důvod odhlášení na místě; čísla číslicemi."}],
+ "pristupnost":[
+  "Pole mají viditelné label, autocomplete=\"username\" a autocomplete=\"current-password\" (správci hesel, WCAG 1.3.5).",
+  "Tlačítko Zobrazit heslo je button s aria-pressed a aria-controls; nemění fokus.",
+  "Chyby: error-summary s role=\"alert\" a odkazy na pole; u pole aria-invalid + aria-describedby na .error.",
+  "Hláška o špatných údajích je obecná (bezpečnost) a dostane fokus (tabindex=-1).",
+  "Jediné H1 „Přihlášení“; blok pro zkoušené je H2."],
+ "poznamky_pro_kodera":[
+  "Název organizace bere aplikace podle domény organizace.",
+  "Blok „Poslat přihlašovací odkaz e-mailem“ zobrazit jen, když má organizace zapnuté přihlášení odkazem.",
+  "Po 2FA kroku pokračuje /prihlaseni/overeni (viz prihlaseni-2fa.html).",
+  "Odkazy Přístupový kód → /kod, Prezenční zkouška → /live."],
+ "chybi_komponenta":["auth-layout (vycentrovaná úzká karta pro přihlášení) – použito .narrow + inline max-width:var(--max-text)"]
+} -->
+<main id="obsah" class="narrow" style="max-width:520px">
+ <div class="stack-4">
+  <a class="logo" href="../web/index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – web" width="170" height="28"></a>
+  <form class="card card--papir stack-4" action="prihlaseni-2fa.html" method="post" novalidate aria-labelledby="h1">
+   <div class="stack-2">
+    <p class="t-stitek">Ukázková organizace</p>
+    <h1 id="h1" class="t-titulek">Přihlášení</h1>
+   </div>
+   <div class="field">
+    <label class="label" for="email">E-mail</label>
+    <input class="input" id="email" name="email" type="email" autocomplete="username" inputmode="email" spellcheck="false">
+   </div>
+   <div class="field">
+    <label class="label" for="heslo">Heslo</label>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:var(--s-2)">
+     <input class="input" id="heslo" name="heslo" type="password" autocomplete="current-password">
+     <button class="btn" type="button" aria-controls="heslo" aria-pressed="false">{{I:oko}}Zobrazit<span class="sr-only"> heslo</span></button>
+    </div>
+   </div>
+   <div class="stack">
+    <button class="btn btn--hlavni btn--blok" type="submit">Přihlásit se</button>
+    <p><a href="#">Zapomenuté heslo</a></p>
+   </div>
+   <hr class="rule-tenka">
+   <div class="stack-2">
+    <a class="btn btn--blok" href="prihlaseni-odkaz.html">{{I:email}}Poslat přihlašovací odkaz e-mailem</a>
+    <p class="t-maly">Heslo nebudete potřebovat. Odkaz platí 15&nbsp;minut.</p>
+   </div>
+  </form>
+
+  <section class="card card--tenka stack-2" aria-labelledby="zk">
+   <h2 id="zk" class="t-text"><b>Jdete na test?</b></h2>
+   <p>Nepřihlašujte se. Test otevřete přístupovým kódem nebo na prezenční zkoušce.</p>
+   <div class="row"><a class="btn btn--male" href="kod.html">{{I:klic}}Zadat přístupový kód</a><a class="btn btn--male" href="live.html">{{I:qr}}Připojit se k prezenční zkoušce</a></div>
+  </section>
+
+  <p class="t-maly"><a href="napoveda-clanek.html">Nápověda k přihlášení</a> · <a href="prohlaseni-o-pristupnosti.html">Prohlášení o přístupnosti</a></p>
+ </div>
+
+ <section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+  <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+
+  <div class="stack">
+   <h3 class="t-stitek">Nevyplněná pole</h3>
+   <div class="card stack">
+    <div class="error-summary stack-2" role="alert" aria-labelledby="es-h" tabindex="-1">
+     <p id="es-h" class="alert__nadpis">Opravte prosím 2 údaje</p>
+     <ul class="stack-2" style="padding-left:var(--s-4)"><li><a href="#email-e">Vyplňte e-mail.</a></li><li><a href="#heslo-e">Vyplňte heslo.</a></li></ul>
+    </div>
+    <div class="field">
+     <label class="label" for="email-e">E-mail</label>
+     <input class="input" id="email-e" type="email" autocomplete="off" aria-invalid="true" aria-describedby="email-e-err">
+     <p class="error" id="email-e-err">{{I:pozor}}Vyplňte e-mail.</p>
+    </div>
+    <div class="field">
+     <label class="label" for="heslo-e">Heslo</label>
+     <input class="input" id="heslo-e" type="password" autocomplete="off" aria-invalid="true" aria-describedby="heslo-e-err">
+     <p class="error" id="heslo-e-err">{{I:pozor}}Vyplňte heslo.</p>
+    </div>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-stitek">Špatný e-mail nebo heslo</h3>
+   <div class="alert alert--chyba" role="alert">{{I:minus-kruh}}<div><p class="alert__nadpis">E-mail nebo heslo nesouhlasí.</p><p>Zkontrolujte překlepy a velká písmena. Heslo můžete obnovit odkazem Zapomenuté heslo.</p></div></div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-stitek">Odhlášení pro nečinnost</h3>
+   <div class="alert alert--info" role="status">{{I:info}}<div><p class="alert__nadpis">Odhlásili jsme vás po 30&nbsp;minutách nečinnosti.</p><p>Přihlaste se znovu. Rozepsanou otázku vám editor nabídne obnovit.</p></div></div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-stitek">Odhlášení po 12 hodinách</h3>
+   <div class="alert alert--info" role="status">{{I:hodiny}}<div><p class="alert__nadpis">Od přihlášení uplynulo 12&nbsp;hodin.</p><p>Z bezpečnostních důvodů se přihlaste znovu.</p></div></div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-stitek">Po odhlášení</h3>
+   <div class="alert alert--ok" role="status">{{I:check}}<div><p class="alert__nadpis">Odhlásili jste se.</p></div></div>
+  </div>
+ </section>
+</main>

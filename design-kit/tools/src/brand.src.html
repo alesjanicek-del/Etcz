@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="kit-stranka" content="1">
+<title>Brand manuál · exam-test</title>
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+.kit-nav{display:flex;flex-wrap:wrap;gap:var(--s-1);margin-left:auto}
+.kit-nav a{display:inline-flex;align-items:center;min-height:var(--cil-min);padding:0 12px;color:var(--c-grafit);text-decoration:none;font-weight:var(--w-tucne);font-size:var(--t-maly)}
+.kit-nav a[aria-current]{background:var(--c-grafit);color:var(--c-papir)}
+.site-header__in{flex-wrap:wrap;padding-block:var(--s-2)}
+@media (max-width:767px){.kit-nav{margin-left:0}}
+.tile{background:var(--c-bila);border:var(--b-silna) solid var(--c-grafit);display:flex;flex-direction:column}
+.tile__txt{padding:var(--s-3);display:flex;flex-direction:column;gap:4px}
+.swatch{height:88px;border-bottom:var(--b-silna) solid var(--c-grafit)}
+.toc-side{position:sticky;top:90px}
+.spec-row{display:grid;grid-template-columns:150px 1fr;gap:var(--s-4);align-items:baseline;padding:var(--s-4) 0;border-top:var(--b-tenka) solid var(--c-linka)}
+@media (max-width:767px){.spec-row{grid-template-columns:1fr;gap:var(--s-2)}}
+.mm{max-width:100%;background:var(--c-bila);border:var(--b-tenka) solid var(--c-linka);box-shadow:var(--stin-tvrdy);color:var(--c-grafit);position:relative}
+.icons{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:var(--s-2);list-style:none;padding:0}
+code{font-family:var(--f-mono);font-size:var(--t-maly)}
+</style>
+</head>
+<body>
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+<header class="site-header"><div class="container site-header__in">
+ <a class="logo" href="index.html"><img src="assets/logo/exam-test-logo.svg" alt="exam-test – rozcestník design kitu" width="170" height="28"></a>
+ <nav class="kit-nav" aria-label="Design kit"><a href="logo.html">Logo manuál</a><a href="brand.html" aria-current="page">Brand manuál</a><a href="komponenty.html">Komponenty</a><a href="index.html#stranky">Stránky</a><a href="audit.html">Audit</a></nav>
+</div></header>
+<main id="obsah">
+
+<section class="hero grid-bg"><div class="container stack-4">
+ <p class="t-stitek">Brand manuál · verze 1.0 · rozšíření logo manuálu</p>
+ <h1 class="t-display">Odpovědní list,<br>ze kterého je <span class="t-zvyraznit">systém.</span></h1>
+ <p class="t-perex measure">Všechno, co exam-test ukazuje – web, aplikace, protokol, odpovědní list, e-mail i vizitka – mluví jedním jazykem: papír, grafit, mřížka a žlutý zvýrazňovač. Tady jsou pravidla.</p>
+ <nav aria-label="Obsah manuálu" class="toc"><ol>
+  <li><a href="#esence">Esence značky</a></li><li><a href="#barvy">Barvy a kontrast</a></li><li><a href="#pismo">Písmo a typová škála</a></li><li><a href="#prostor">Prostor, mřížka, rozvržení</a></li><li><a href="#ikony">Ikony</a></li><li><a href="#motivy">Grafické motivy</a></li><li><a href="#obraz">Fotografie a obrazový materiál</a></li><li><a href="#hlas">Tón komunikace</a></li><li><a href="#pristupnost">Přístupnost</a></li><li><a href="#tiskoviny">Tiskoviny a další nosiče</a></li><li><a href="#vyvoj">Pro vývojáře</a></li></ol></nav>
+</div></section>
+
+<section class="section section--bila" id="esence" aria-labelledby="es-h"><div class="container stack-5">
+ <div class="stack-2"><p class="t-stitek">01 · Esence</p><h2 id="es-h" class="t-sekce">Co značka slibuje</h2></div>
+ <div class="grid-3">
+  <div class="feature"><h3 class="t-nadpis">Průkaznost</h3><p>Výsledek, který obstojí: protokol s ověřovacím kódem, časové razítko, záznam průběhu. Nic neslibujeme navíc.</p></div>
+  <div class="feature"><h3 class="t-nadpis">Praktičnost</h3><p>Online i na papíře, v učebně i na dálku. Jeden test, stejná pravidla, stejné vyhodnocení.</p></div>
+  <div class="feature"><h3 class="t-nadpis">Klid pro zkoušené</h3><p>Velké písmo, jasné kroky, odpovědi se ukládají samy. Zkoušený řeší otázku, ne aplikaci.</p></div>
+ </div>
+ <div class="card card--papir grid-2" style="align-items:center">
+  <div class="stack-2"><p class="t-stitek">Hlavní věta</p><p class="t-titulek">Jeden test. Pro každého jiná variace. Online i na papíře.</p></div>
+  <div class="stack-2"><p class="t-stitek">Krátký podpis</p><p class="t-titulek">Zaškrtnuto.</p><p class="t-maly">Pro kampaně, merch, závěr prezentace. Nikdy jako jediná informace.</p></div>
+ </div>
+</div></section>
+
+<section class="section" id="barvy" aria-labelledby="bar-h"><div class="container stack-5">
+ <div class="stack-2"><p class="t-stitek">02 · Barvy</p><h2 id="bar-h" class="t-sekce">Paleta a kontrast</h2><p class="measure">Dvě barvy textu (grafit a šedá), jedna barva odkazu (propiska), jeden akcent (zvýrazňovač) a dvě stavové barvy. Stav se nikdy nesděluje jen barvou – vždy ikonou a slovem.</p></div>
+ <div class="grid-4">{{SWATCHES}}</div>
+ <div class="stack-2"><h3 class="t-nadpis">Poměr ploch</h3>
+  <div style="display:flex;height:56px;border:var(--b-silna) solid var(--c-grafit)" role="img" aria-label="Poměr ploch: papír a bílá 70 %, grafit 22 %, zvýrazňovač 5 %, stavové barvy 3 %"><div style="flex:70;background:var(--c-papir)"></div><div style="flex:22;background:var(--c-grafit)"></div><div style="flex:5;background:var(--c-zvyraznovac)"></div><div style="flex:3;background:var(--c-splneno)"></div></div>
+  <p class="t-maly">Papír a bílá 70 % · grafit 22 % · zvýrazňovač nejvýš 5 % (jedna žlutá plocha na obrazovku) · stavy 3 %.</p></div>
+ <div class="stack-2"><h3 class="t-nadpis">Ověřené kombinace (WCAG 2.2)</h3>
+ <div class="table-wrap"><table class="table table--stack"><caption class="sr-only">Kontrastní poměry barevných kombinací</caption><thead><tr><th scope="col">Popředí</th><th scope="col">Pozadí</th><th scope="col">Ukázka</th><th scope="col" class="num">Kontrast</th><th scope="col">Požadavek</th><th scope="col">Výsledek</th></tr></thead><tbody>{{CONTRAST}}</tbody></table></div>
+ <p class="t-maly">Šedá na žluté nemá 4,5 : 1 – na žlutou proto patří jen grafit. Zvýrazňovač a mřížka nesmí nést informaci samy.</p></div>
+</div></section>
+
+<section class="section section--bila" id="pismo" aria-labelledby="pis-h"><div class="container stack-5">
+ <div class="stack-2"><p class="t-stitek">03 · Písmo</p><h2 id="pis-h" class="t-sekce">Dvě písma, sedm velikostí</h2></div>
+ <div class="grid-2">
+  <div class="card stack-2"><p class="t-stitek">Text a nadpisy</p><p class="t-display">Schibsted Grotesk</p><p>Řezy 400 a 700. Čitelný grotesk s českou diakritikou, licence SIL OFL. Náhradní písmo: Arial.</p></div>
+  <div class="card stack-2"><p class="t-stitek">Čísla, kódy, štítky</p><p class="t-display t-cislo" style="font-weight:600">IBM Plex Mono</p><p>Řezy 500 a 600. Strojopis jen pro čísla, kódy, časomíru, čísla otázek a štítky – nikdy pro věty. Náhradní písmo: Courier New.</p></div>
+ </div>
+ <div class="stack-2"><h3 class="t-nadpis">Typová škála – role</h3>
+  <div class="spec-row"><p class="t-stitek">Display · 56 / 36</p><p class="t-display">Výsledek, který obstojí</p></div>
+  <div class="spec-row"><p class="t-stitek">Sekce · 40 / 30</p><p class="t-sekce">Jak to funguje</p></div>
+  <div class="spec-row"><p class="t-stitek">Titulek · 30</p><p class="t-titulek">Výsledky zkoušky</p></div>
+  <div class="spec-row"><p class="t-stitek">Nadpis · 22</p><p class="t-nadpis">Dohled je zapnutý</p></div>
+  <div class="spec-row"><p class="t-stitek">Perex · 22</p><p class="t-perex">Každý výsledek doložíte protokolem.</p></div>
+  <div class="spec-row"><p class="t-stitek">Text · 17</p><p>Čas běží od zahájení – i když okno zavřete.</p></div>
+  <div class="spec-row"><p class="t-stitek">Malý · 15</p><p class="t-maly">Na konci potvrdíte seznámení se školením.</p></div>
+  <div class="spec-row"><p class="t-stitek">Štítek · 13 mono</p><p class="t-stitek">Otázka 03 / 12</p></div>
+  <div class="spec-row"><p class="t-stitek">Číslo / kód</p><p><span class="t-cislo t-titulek">83,3&nbsp;%</span> · <span class="kod">ET-7Q4K-92MX</span></p></div>
+ </div>
+ <div class="grid-3">
+  <div class="feature"><h3 class="t-nadpis">Web</h3><p>Display, sekce, perex + 5 rolí aplikace. Řádek textu 60–75 znaků (<code>.measure</code>).</p></div>
+  <div class="feature"><h3 class="t-nadpis">Aplikace</h3><p>Jen 5 rolí: titulek 30, nadpis 22, text 17, malý 15, štítek 13. Hierarchie řezem, ne velikostí.</p></div>
+  <div class="feature"><h3 class="t-nadpis">Tisk</h3><p>Text 10&nbsp;pt, malý 8,5&nbsp;pt, nadpis 13&nbsp;pt, titulek 18&nbsp;pt, štítek 7,5&nbsp;pt mono. Okraje A4: 14 / 16&nbsp;mm.</p></div>
+ </div>
+ <div class="alert"><span>{{I:pozor}}</span><div><p class="alert__nadpis">Proč tak přísně</p><p>Dnešní aplikace má na 14 obrazovkách 47 různých stylů textu a 14 barev textu. Chaos nevzniká počtem velikostí, ale drobnými rozdíly mezi nimi. Tokeny Tailwindu jsou proto zúžené – jiné velikosti v kódu prostě nejdou napsat.</p></div></div>
+</div></section>
+
+<section class="section" id="prostor" aria-labelledby="pro-h"><div class="container stack-5">
+ <div class="stack-2"><p class="t-stitek">04 · Prostor</p><h2 id="pro-h" class="t-sekce">Mezery, mřížka a rozvržení</h2></div>
+ <div class="grid-2" style="align-items:start">
+  <div class="stack-2"><h3 class="t-nadpis">Škála mezer (násobky 8)</h3>
+   <div class="stack-2">
+    <div class="bar"><span class="t-kod">--s-1 · 4</span><span class="bar__track"><span class="bar__fill" style="display:block;width:4%"></span></span><span class="t-maly">uvnitř štítků</span></div>
+    <div class="bar"><span class="t-kod">--s-2 · 8</span><span class="bar__track"><span class="bar__fill" style="display:block;width:8%"></span></span><span class="t-maly">ikona – text</span></div>
+    <div class="bar"><span class="t-kod">--s-3 · 16</span><span class="bar__track"><span class="bar__fill" style="display:block;width:17%"></span></span><span class="t-maly">prvky ve skupině</span></div>
+    <div class="bar"><span class="t-kod">--s-4 · 24</span><span class="bar__track"><span class="bar__fill" style="display:block;width:25%"></span></span><span class="t-maly">karty, vnitřek</span></div>
+    <div class="bar"><span class="t-kod">--s-5 · 40</span><span class="bar__track"><span class="bar__fill" style="display:block;width:42%"></span></span><span class="t-maly">mezi bloky</span></div>
+    <div class="bar"><span class="t-kod">--s-6 · 64</span><span class="bar__track"><span class="bar__fill" style="display:block;width:67%"></span></span><span class="t-maly">sekce (mobil)</span></div>
+    <div class="bar"><span class="t-kod">--s-7 · 96</span><span class="bar__track"><span class="bar__fill" style="display:block;width:100%"></span></span><span class="t-maly">sekce (desktop)</span></div>
+   </div></div>
+  <div class="stack-4"><h3 class="t-nadpis">Rozvržení</h3>
+   <dl class="dl"><dt>Šířka webu</dt><dd>max. 1200 px, okraj 16 / 40 px</dd><dt>Šířka textu</dt><dd>max. 720 px</dd><dt>Aplikace</dt><dd>boční menu 232 px od 1024 px, obsah max. 1440 px</dd><dt>Test (zkoušený)</dt><dd>sloupec max. 1080 px, přehled otázek vpravo od 1024 px</dd><dt>Body zlomu</dt><dd>640 · 768 · 1024 · 1200 (menu webu) · 1280</dd><dt>Ovládací prvky</dt><dd>min. 44 × 44 px</dd></dl>
+   <h3 class="t-nadpis">Linky, rohy, stíny</h3>
+   <dl class="dl"><dt>Rámeček</dt><dd>2 px grafit – karty, pole, tabulky, tlačítka</dd><dt>Oddělovač</dt><dd>1 px linka #D9DCD3</dd><dt>Rohy</dt><dd>0. Výjimka: bubliny voleb (kruh), štítky „pill“ se nepoužívají.</dd><dt>Stín</dt><dd>jen tvrdý 4 px: žlutý pod hlavním tlačítkem, grafitový pod vybranou odpovědí a kartou „na papíře“. Žádné rozmazané stíny.</dd></dl></div>
+ </div>
+ <div class="grid-bg card" style="min-height:160px;display:grid;place-items:center;text-align:center"><div class="stack-2"><p class="t-nadpis">Mřížka 24 px</p><p class="t-maly">Jen jako pozadí: hero webu, obrazovky testu, OG obrázek. Nikdy pod dlouhým textem nebo tabulkou.</p></div></div>
+</div></section>
+
+<section class="section section--bila" id="ikony" aria-labelledby="ik-h"><div class="container stack-4">
+ <div class="stack-2"><p class="t-stitek">05 · Ikony</p><h2 id="ik-h" class="t-sekce">47 ikon, jedna kresba</h2><p class="measure">Mřížka 24 px, tah 2 px, hranaté konce a rohy – stejně jako políčko ve značce. Ikona je vždy vedle textu. Samostatná ikona v tlačítku musí mít <code>aria-label</code>. Soubor: <code>assets/icons.svg</code> (sprite) nebo vložit inline.</p></div>
+ <ul class="icons">{{ICONS}}</ul>
+ <div class="alert alert--info"><span>{{I:info}}</span><div><p class="alert__nadpis">Křížek jen ve značce</p><p>Ikona „zavřít“ je tenký křížek bez rámečku a vždy s textem „Zavřít“. Stav „Nesplněno“ má ikonu <b>minus-kruh</b>, nikdy ✕. Zaškrtávací pole má fajfku.</p></div></div>
+</div></section>
+
+<section class="section" id="motivy" aria-labelledby="mo-h"><div class="container stack-5">
+ <div class="stack-2"><p class="t-stitek">06 · Motivy</p><h2 id="mo-h" class="t-sekce">Prvky z odpovědního listu</h2></div>
+ <div class="grid-3">
+  <div class="card stack"><div class="row"><span class="option__bub">A</span><span class="option__bub">B</span><span class="option__bub" style="background:var(--c-grafit);color:var(--c-zvyraznovac)">C</span><span class="option__bub" style="border-radius:var(--r-1)">D</span></div><h3 class="t-nadpis">Bublina A–D</h3><p class="t-maly">Volba odpovědi na obrazovce i papíře. Kruh = jedna odpověď, čtverec = více odpovědí.</p></div>
+  <div class="card stack"><p><span class="t-zvyraznit t-nadpis">jiná variace</span></p><h3 class="t-nadpis">Zvýrazňovač</h3><p class="t-maly">Pruh za 2–4 slovy v nadpisu. Jednou na obrazovku. Nikdy za odkazem ani v běžném textu.</p></div>
+  <div class="card stack"><div class="rail"><i class="z"></i><i class="z"></i><i class="t"></i><i></i><i class="p"></i><i></i><i></i><i></i></div><h3 class="t-nadpis">Lišta postupu</h3><p class="t-maly">Plné = hotovo, žluté = teď, šrafované = k návratu. Vždy doplněno textem „2 z 12 zodpovězeno“.</p></div>
+  <div class="card stack"><p class="kod">UG98N3X6</p><h3 class="t-nadpis">Kód v rámečku</h3><p class="t-maly">Ověřovací kód, kód variace, přístupový kód – vždy strojopisem v rámečku, aby šel opsat.</p></div>
+  <div class="card card--papir stack"><p class="t-nadpis">Karta „na papíře“</p><h3 class="t-nadpis">Tvrdý stín</h3><p class="t-maly">Jen pro jednu kartu na obrazovce, která je hlavní (ověření protokolu, vybraná odpověď).</p></div>
+  <div class="card stack" style="position:relative"><span aria-hidden="true" style="position:absolute;right:10px;top:10px;width:22px;height:22px;border-top:3px solid var(--c-grafit);border-right:3px solid var(--c-grafit)"></span><h3 class="t-nadpis">Ořezové značky</h3><p class="t-maly">Rohy A4 dokumentů, plakátů a OG obrázků. Dekorace – na obrazovce aplikace ne.</p></div>
+ </div>
+</div></section>
+
+<section class="section section--bila" id="obraz" aria-labelledby="ob-h"><div class="container grid-2" style="align-items:start">
+ <div class="stack-3"><p class="t-stitek">07 · Obraz</p><h2 id="ob-h" class="t-sekce">Ukazujeme skutečný produkt</h2>
+  <ul class="list-check"><li><span><b>Screenshoty aplikace</b> v rámu prohlížeče (<code>.browser</code>), s fiktivními, ale realistickými daty z dema.</span></li><li><span><b>Fotografie skutečných míst:</b> učebna, školicí místnost, úřad, dílna při školení BOZP. Denní světlo, žádné inscenované úsměvy.</span></li><li><span><b>Papír na fotce:</b> odpovědní list, protokol, tužka – detail, ne koláž.</span></li></ul></div>
+ <div class="stack-3"><h3 class="t-nadpis">Nepoužíváme</h3>
+  <ul class="list-check"><li><span>Stockové fotky „tým u notebooku“, podávání rukou, maturitní čepice.</span></li><li><span>Ilustrace generované umělou inteligencí, 3D ikony, gradienty, „glassmorphism“.</span></li><li><span>Fotky s obličejem zkoušeného bez souhlasu – ani v ukázkách.</span></li></ul>
+  <div class="alert"><span>{{I:info}}</span><div><p>Každý obrázek má alternativní text, který popisuje <b>obsah</b> (ne „obrázek“). Dekorativní obrázky mají <code>alt=""</code>.</p></div></div></div>
+</div></section>
+
+<section class="section" id="hlas" aria-labelledby="hl-h"><div class="container stack-5">
+ <div class="stack-2"><p class="t-stitek">08 · Hlas</p><h2 id="hl-h" class="t-sekce">Přímo, prakticky, jednou</h2><p class="measure">Upřímnost dnešního webu („Ne úplně a netvrdíme to“) je hodnota. Píšeme jako zkušený lektor: věcně, vlídně, bez reklamních přívlastků.</p></div>
+ <div class="grid-3">
+  <div class="feature"><h3 class="t-nadpis">1 · Jednou a na jednom místě</h3><p>Každá informace zazní jednou. Podrobnosti za odkazem, ne opakovaně.</p></div>
+  <div class="feature"><h3 class="t-nadpis">2 · Tlačítko říká, co se stane</h3><p>„Další otázka“, „Odevzdat test“, „Uložit test“. Nikdy „OK“, „Pokračovat“ bez předmětu.</p></div>
+  <div class="feature"><h3 class="t-nadpis">3 · Důležité nikdy drobně</h3><p>Nevratné a právní věci v běžném textu, ne šedým 12 px písmem.</p></div>
+  <div class="feature"><h3 class="t-nadpis">4 · Jedna věc = jedno slovo</h3><p>Demo × ukázka, zpřístupnit × uvolnit. Slovník pojmů je závazný v celé aplikaci i na webu.</p></div>
+  <div class="feature"><h3 class="t-nadpis">5 · Krátce, vykáním, činně</h3><p>Věta do 20 slov. „Odpovědi se ukládají samy.“ místo „Ukládání odpovědí je prováděno automaticky.“</p></div>
+  <div class="feature"><h3 class="t-nadpis">6 · Čísla číslicemi</h3><p>12 otázek, 15&nbsp;min, 80&nbsp;%. Nedělitelná mezera mezi číslem a jednotkou.</p></div>
+ </div>
+ <div class="table-wrap"><table class="table table--stack"><caption>Slovník pojmů (závazný)</caption><thead><tr><th scope="col">Používáme</th><th scope="col">Nepoužíváme</th></tr></thead><tbody>
+  <tr><td data-label="Používáme">Vyzkoušet demo · Ukázka s průvodcem</td><td class="no-check" data-label="Nepoužíváme">Prohlédnout demo, Domluvit ukázku</td></tr>
+  <tr><td data-label="Používáme">Prezenční zkouška · Osobní kódy · Přidělení skupině · Veřejný odkaz · Tisk</td><td class="no-check" data-label="Nepoužíváme">Odkaz (anonymní), Přístupové kódy pro osoby</td></tr>
+  <tr><td data-label="Používáme">Zkoušený vidí výsledek · Zpřístupnit</td><td class="no-check" data-label="Nepoužíváme">Uvolnit, Uvolněno</td></tr>
+  <tr><td data-label="Používáme">Další otázka · Vrátit se později · Zkontrolovat a odevzdat</td><td class="no-check" data-label="Nepoužíváme">Uložit a další, Označit k pozdějšímu návratu</td></tr>
+  <tr><td data-label="Používáme">Ověřovací kód (protokol) · Kód variace (tisk) · Přístupový kód (vstup)</td><td class="no-check" data-label="Nepoužíváme">„kód“ bez upřesnění</td></tr>
+  <tr><td data-label="Používáme">Dohled · Živý panel · Čekárna · Promítací plocha</td><td class="no-check" data-label="Nepoužíváme">proctoring, dashboard, 👁</td></tr>
+ </tbody></table></div>
+</div></section>
+
+<section class="section section--bila" id="pristupnost" aria-labelledby="pr-h"><div class="container stack-4">
+ <div class="stack-2"><p class="t-stitek">09 · Přístupnost</p><h2 id="pr-h" class="t-sekce">Součást značky, ne doplněk</h2></div>
+ <div class="grid-4">
+  <div class="feature"><h3 class="t-nadpis">Kontrast</h3><p>Text min. 4,5 : 1, okraje prvků 3 : 1. Ověřeno tabulkou v kapitole Barvy.</p></div>
+  <div class="feature"><h3 class="t-nadpis">Fokus</h3><p>Dvojitý obrys bílá + propiska, 3 px. Viditelný na všech pozadích.</p></div>
+  <div class="feature"><h3 class="t-nadpis">Velikost cílů</h3><p>44 × 44 px pro ovládací prvky (WCAG 2.5.8 vyžaduje 24).</p></div>
+  <div class="feature"><h3 class="t-nadpis">Pohyb a čas</h3><p>Bez animací při „omezit pohyb“. Časomíra hlásí čtečce jen poslední minuty.</p></div>
+ </div>
+ <p>Každá stránka v kitu je zkontrolovaná nástrojem <code>tools/check.js</code> (axe-core, WCAG 2.2 AA) a vlastními pravidly značky. Výsledky: <a href="audit.html">audit</a>.</p>
+</div></section>
+
+<section class="section" id="tiskoviny" aria-labelledby="ti-h"><div class="container stack-5">
+ <div class="stack-2"><p class="t-stitek">10 · Tiskoviny</p><h2 id="ti-h" class="t-sekce">Mimo obrazovku</h2></div>
+ <div class="grid-2" style="align-items:start">
+  <figure class="stack-2" style="min-width:0"><div class="mm" style="width:85mm;min-height:55mm;padding:6mm;display:flex;flex-direction:column;justify-content:space-between;max-width:100%">
+   <img src="assets/logo/exam-test-logo-male.svg" alt="" width="120" height="20">
+   <div><p style="font-weight:700">Lucie Lektorová</p><p class="t-maly">obchod a zavádění</p></div>
+   <p class="t-maly" style="font-family:var(--f-mono)">+420 725 311 531 · obchod@exam-test.cz</p>
+   <span aria-hidden="true" style="position:absolute;right:6mm;bottom:6mm;width:9mm;height:4mm;background:var(--c-zvyraznovac)"></span></div>
+   <figcaption class="t-maly">Vizitka 85 × 55 mm. Rub: grafit, značka negativ uprostřed, web pod ní. Papír přírodní bílý 350 g.</figcaption></figure>
+  <figure class="stack-2" style="min-width:0"><div class="mm" style="aspect-ratio:210/297;max-width:320px;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+   <div class="row-between"><img src="assets/logo/exam-test-logo-male.svg" alt="" width="110" height="18"><span class="t-stitek">Praha 3. 11. 2026</span></div>
+   <hr class="rule"><p class="t-maly">Vážená paní, …</p><div style="flex:1;background:repeating-linear-gradient(transparent 0 14px,var(--c-linka) 14px 15px)"></div>
+   <p class="t-stitek" style="border-top:1px solid var(--c-linka);padding-top:6px">ABUCO ICT s.r.o. · IČO 29153905 · exam-test.cz</p></div>
+   <figcaption class="t-maly">Hlavičkový papír A4: logo vlevo nahoře 35 mm, okraje 16 mm, patička 7,5 pt mono. Šablony dokumentů: <a href="tisk/protokol.html">protokol</a>, <a href="tisk/odpovedni-list.html">odpovědní list</a>, <a href="tisk/zadani.html">zadání</a>, <a href="tisk/klice.html">klíče</a>, <a href="tisk/osvedceni.html">osvědčení</a>.</figcaption></figure>
+  <figure class="stack-2" style="min-width:0"><div class="mm" style="padding:16px;max-width:420px"><p style="font-weight:700">Lucie Lektorová</p><p class="t-maly">Krajská vzdělávací agentura · lektorka BOZP</p><p class="t-maly">+420 725 311 531</p><img src="assets/logo/png/exam-test-logo-male-480.png" alt="exam-test" width="120" height="20" style="margin-top:10px"></div><figcaption class="t-maly">E-mailový podpis: text jako text (ne obrázek), logo PNG v šířce 120 px, žádné bannery.</figcaption></figure>
+  <figure class="stack-2"><div class="mm grid-bg" style="aspect-ratio:16/9;max-width:520px;padding:22px;display:flex;flex-direction:column;justify-content:space-between"><img src="assets/logo/exam-test-logo-male.svg" alt="" width="110" height="18"><p class="t-titulek">Jeden test. <span class="t-zvyraznit">Online i na papíře.</span></p><p class="t-stitek">exam-test.cz</p></div><figcaption class="t-maly">Prezentace 16 : 9: titulní snímek na mřížce, obsahové snímky na papíře, jedna myšlenka na snímek.</figcaption></figure>
+ </div>
+ <p class="t-maly">Náhled odkazu pro sociální sítě: <a href="assets/logo/png/og-image-1200x630.png">og-image-1200x630.png</a>.</p>
+</div></section>
+
+<section class="section section--bila" id="vyvoj" aria-labelledby="vy-h"><div class="container stack-4">
+ <div class="stack-2"><p class="t-stitek">11 · Pro vývojáře</p><h2 id="vy-h" class="t-sekce">Soubory a pravidla v kódu</h2></div>
+ <div class="table-wrap"><table class="table table--stack"><caption class="sr-only">Soubory pro implementaci</caption><thead><tr><th scope="col">Soubor</th><th scope="col">Co obsahuje</th></tr></thead><tbody>
+  <tr><td data-label="Soubor"><a href="assets/tokens.css">assets/tokens.css</a></td><td data-label="Obsah">Všechny hodnoty jako CSS proměnné – jediný zdroj pravdy.</td></tr>
+  <tr><td data-label="Soubor"><a href="assets/tailwind-theme.css">assets/tailwind-theme.css</a></td><td data-label="Obsah">Tytéž tokeny pro Tailwind v4 (<code>@theme</code>), výchozí paleta a velikosti vypnuté.</td></tr>
+  <tr><td data-label="Soubor"><a href="assets/brand.css">assets/brand.css</a></td><td data-label="Obsah">Komponenty (tlačítka, formuláře, tabulky, test, kostra webu a aplikace). Přehled v <a href="komponenty.html">knihovně komponent</a>.</td></tr>
+  <tr><td data-label="Soubor"><a href="assets/fonts.css">assets/fonts.css</a> + assets/fonts/</td><td data-label="Obsah">Self-hosting písem (latin + latin-ext), <code>font-display: swap</code>.</td></tr>
+  <tr><td data-label="Soubor"><a href="assets/icons.svg">assets/icons.svg</a></td><td data-label="Obsah">47 ikon jako SVG sprite.</td></tr>
+  <tr><td data-label="Soubor">tools/check.js</td><td data-label="Obsah">Kontrola stránky: axe-core (WCAG 2.2 AA), velikosti a barvy mimo tokeny, cíle &lt; 24 px, dlouhé věty, zakázané formulace. <code>npm run check -- cesta.html</code></td></tr>
+  <tr><td data-label="Soubor">src/ + tools/build.py</td><td data-label="Obsah">Zdroje všech navržených stránek (fragment + specifikace) a skript, který je skládá do kostry.</td></tr>
+ </tbody></table></div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="container"><p>exam-test · Brand manuál 1.0 · <a href="komponenty.html">Pokračovat na knihovnu komponent</a></p></div></footer>
+</body>
+</html>

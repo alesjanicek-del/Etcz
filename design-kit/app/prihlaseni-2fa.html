@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ověření ve dvou krocích · exam-test</title>
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body class="grid-bg">
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+<main id="obsah" class="narrow" style="max-width:520px">
+ <div class="stack-4">
+  <a class="logo" href="../web/index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – web" width="170" height="28"></a>
+  <form class="card card--papir stack-4" action="lektor-prehled.html" method="post" novalidate aria-labelledby="h1">
+   <div class="stack-2">
+    <p class="t-stitek">Krok 2 ze 2 · Ukázková organizace</p>
+    <h1 id="h1" class="t-titulek">Ověření ve dvou krocích</h1>
+    <p>Otevřete ověřovací aplikaci v telefonu a opište šestimístný kód pro exam-test.</p>
+   </div>
+   <div class="field">
+    <label class="label" for="kod">Kód z ověřovací aplikace</label>
+    <input class="input input--kod" id="kod" name="kod" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" aria-describedby="kod-h" style="max-width:220px">
+    <p class="hint" id="kod-h">6 číslic. Kód se mění každých 30&nbsp;sekund.</p>
+   </div>
+   <button class="btn btn--hlavni btn--blok" type="submit">Ověřit</button>
+   <div class="faq">
+    <details>
+     <summary>Nemáte telefon u sebe?</summary>
+     <div class="stack">
+      <p>Použijte jeden ze záložních kódů, které jste si uložili při zapnutí ověření. Každý platí jen jednou.</p>
+      <a class="btn" href="#zalozni">Zadat záložní kód</a>
+      <p><b>Ztratili jste telefon a nemáte ani záložní kódy?</b> Požádejte administrátora organizace nebo pobočky o zrušení ověření. Nejdřív si ověří vaši totožnost.</p>
+     </div>
+    </details>
+   </div>
+   <p class="t-maly"><a href="prihlaseni.html">Přihlásit se jiným účtem</a></p>
+  </form>
+ </div>
+
+ <section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+  <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+
+  <div class="stack">
+   <h3 class="t-stitek">Špatný nebo prošlý kód</h3>
+   <div class="card stack">
+    <div class="field">
+     <label class="label" for="kod-e">Kód z ověřovací aplikace</label>
+     <input class="input input--kod" id="kod-e" type="text" inputmode="numeric" autocomplete="off" value="482193" aria-invalid="true" aria-describedby="kod-e-err" style="max-width:220px">
+     <p class="error" id="kod-e-err"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg>Kód nesouhlasí. Opište aktuální kód z aplikace.</p>
+    </div>
+    <p class="t-maly">Pokud kódy stále nesouhlasí, zkontrolujte čas v telefonu – musí se nastavovat automaticky.</p>
+   </div>
+  </div>
+
+  <div class="stack" id="zalozni">
+   <h3 class="t-stitek">Záložní kód</h3>
+   <div class="card stack">
+    <div class="field">
+     <label class="label" for="zk">Záložní kód</label>
+     <input class="input input--kod" id="zk" type="text" autocomplete="one-time-code" aria-describedby="zk-h" style="max-width:280px">
+     <p class="hint" id="zk-h">Každý záložní kód platí jen jednou. Po přihlášení si v Můj účet nastavte ověření znovu.</p>
+    </div>
+    <div class="row"><button class="btn" type="button">Ověřit záložním kódem</button><a href="#kod">Zpět na kód z aplikace</a></div>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-stitek">Povinné nastavení (první přihlášení)</h3>
+   <div class="card card--papir stack-4">
+    <div class="alert alert--info"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l8 3v6c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><div><p class="alert__nadpis">Pro vaši roli je ověření ve dvou krocích povinné.</p><p>Nastavení trvá asi 2&nbsp;minuty. Budete potřebovat telefon.</p></div></div>
+    <div class="num-step"><span class="t-cislo">01</span><p>Do telefonu si nainstalujte ověřovací aplikaci, například Microsoft Authenticator, Google Authenticator, FreeOTP nebo Aegis.</p></div>
+    <div class="num-step"><span class="t-cislo">02</span>
+     <div class="stack-2"><p>V aplikaci naskenujte QR kód.</p>
+      <div class="row" style="align-items:flex-start"><img class="qr" src="../assets/img/qr-ukazka.png" alt="QR kód pro ověřovací aplikaci" width="120" height="120">
+       <div class="stack-2"><p class="t-maly">Nejde to? Opište klíč ručně (typ „časový“, 6 číslic, 30&nbsp;s):</p><p class="t-kod">JBSW Y3DP EHPK 3PXP</p></div></div>
+     </div></div>
+    <div class="num-step"><span class="t-cislo">03</span>
+     <div class="field"><label class="label" for="kod-n">Kód z aplikace</label><input class="input input--kod" id="kod-n" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" style="max-width:220px"></div></div>
+    <button class="btn btn--hlavni" type="button">Ověřit a zapnout</button>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-stitek">Záložní kódy (zobrazí se jen jednou)</h3>
+   <div class="card stack">
+    <p class="alert__nadpis">Uložte si záložní kódy</p>
+    <p>Vytiskněte je nebo uložte do správce hesel. Každý kód nahradí jednou kód z telefonu.</p>
+    <ul class="grid-2 t-kod" style="gap:var(--s-2)"><li>4F7K-92MX</li><li>Q8TR-3LHD</li><li>7WCP-K5NE</li><li>M2ZB-6VYA</li><li>H9JD-4RQS</li><li>X3PL-8GTW</li></ul>
+    <div class="row"><button class="btn" type="button"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V4h10v5M7 17H4v-8h16v8h-3"/><rect x="7" y="14" width="10" height="6"/></svg>Vytisknout kódy</button><button class="btn btn--hlavni" type="button">Mám kódy uložené, pokračovat</button></div>
+   </div>
+  </div>
+ </section>
+</main>
+<script type="application/json" id="spec">{"route": "/prihlaseni/overeni", "nazev": "Ověření ve dvou krocích", "role": "všichni s účtem; povinné pro administrátory, autory otázek a lektory, kteří vlastní nebo smí upravovat soubor otázek či test", "sablona": "cisty", "ucel": "Druhý krok přihlášení: ověřit šestimístný kód z aplikace v telefonu, nebo záložní kód. U povinné role bez nastaveného ověření provést první nastavení.", "hlavni_akce": "Ověřit (kód z ověřovací aplikace)", "komponenty": ["card card--papir", "field", "input input--kod", "btn--hlavni", "btn--tiche", "faq (details)", "alert--chyba", "alert--info", "qr", "kod", "num-step", "list-check"], "stavy": ["výchozí: pole Kód z ověřovací aplikace s fokusem", "záložní kód: rozbalený blok „Nemáte telefon u sebe?“ přepne pole na záložní kód (jiný formát, jiný popis)", "chyba – špatný nebo prošlý kód: chyba u pole + nápověda, že se kód mění každých 30&nbsp;s", "povinné nastavení: uživatel povinné role bez ověření vidí průvodce nastavením (QR, ruční klíč, kód) a nemůže otevřít jiné stránky kromě nápovědy", "záložní kódy po zapnutí: zobrazí se jen jednou, tlačítka Vytisknout kódy a Mám uloženo, pokračovat", "načítání: tlačítko Ověřit aria-disabled, text „Ověřuji…“", "bez oprávnění: stránka bez předchozího kroku (e-mail + heslo / odkaz) přesměruje na /prihlaseni"], "zmeny_ux": ["Pole kódu je široké, neproporcionální písmo (input--kod), s inputmode=numeric a autocomplete=one-time-code – telefon nabídne kód sám.", "Záložní kód je schovaný v rozbalovacím bloku – hlavní cesta je jedna, ale náhradní je na stejné stránce.", "Rada pro ztracený telefon je přímo zde (záložní kód → administrátor), dnes jen v nápovědě.", "Průvodce povinným nastavením má 3 číslované kroky a odhad času (asi 2&nbsp;minuty)."], "texty": [{"dnes": "Kód z ověřovací aplikace (nebo záložní kód)", "nove": "Kód z ověřovací aplikace", "proc": "Jedno pole = jedna věc; záložní kód má vlastní volbu."}, {"dnes": "Ověřit", "nove": "Ověřit", "proc": "Ponecháno."}, {"dnes": "Pro vaši roli je ověření ve dvou krocích povinné.", "nove": "Pro vaši roli je ověření ve dvou krocích povinné. Nastavení trvá asi 2&nbsp;minuty.", "proc": "Doplněn čas – uživatel ví, do čeho jde."}, {"dnes": "Ztratil(a) jsem telefon", "nove": "Ztratili jste telefon?", "proc": "Vykání, bez lomení rodu."}, {"dnes": "Mám uloženo, pokračovat", "nove": "Mám kódy uložené, pokračovat", "proc": "Tlačítko říká, co uživatel potvrzuje."}], "pristupnost": ["Kód: input type=text, inputmode=numeric, autocomplete=one-time-code, maxlength 6; žádné rozdělení do 6 políček (lépe pro čtečky a vkládání).", "Chyba u pole přes aria-invalid + aria-describedby; nezmizí sama.", "QR kód má vedle sebe textový klíč k ručnímu opsání (alternativa k obrázku).", "Rozbalovací blok je nativní details/summary.", "Časový limit 30&nbsp;s se týká jen platnosti kódu v aplikaci, stránka sama nevyprší dřív než přihlášení."], "poznamky_pro_kodera": ["Ruční klíč zobrazit po 4 znacích (lepší opisování), kopírovatelný jako souvislý řetězec.", "Záložní kódy: tisk přes window.print() jen bloku s kódy (.no-print na ostatním).", "Po 5 neúspěšných pokusech platí stejné omezení jako dnes (beze změny chování)."], "chybi_komponenta": ["pole pro jednorázový kód s maskou – použito .input.input--kod s inline max-width"]}</script>
+</body>
+</html>

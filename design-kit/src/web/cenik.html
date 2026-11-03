@@ -1,0 +1,146 @@
+<!--meta {"titulek":"Ceník","popis":"Roční tarify exam-test podle počtu pokusů: Start 9 900 Kč, Profi 24 900 Kč, Síť 59 900 Kč, veřejná správa individuálně. Ceny bez DPH, 30 dní zkušební provoz zdarma.","sablona":"web","aktivni":"cenik.html"} -->
+<!--spec {
+ "route":"/cenik","nazev":"Ceník","role":"veřejnost – kupující","sablona":"web",
+ "ucel":"Ukázat ceny a limity tarifů tak, aby si kupující sám vybral tarif a pochopil, co je pokus a co se stane po vyčerpání limitu.",
+ "hlavni_akce":"Ukázka s průvodcem (s předvybraným tarifem); vedlejší: Vyzkoušet demo",
+ "komponenty":["page hero","price","grid-4","table-wrap","table table--stack","alert","card","list-check","faq","cta-band"],
+ "stavy":["Statická stránka – bez stavů.","Tarif Veřejná správa nemá cenu – „individuálně“ (slovo, ne pomlčka)."],
+ "zmeny_ux":[
+  "Nad tabulkou 4 cenové karty (.price) se třemi hlavními limity – na mobilu se čtou lépe než tabulka; tabulka zůstává jako úplné srovnání.",
+  "Tlačítka v tabulce „Domluvit ukázku – tarif X“ přesunuta do karet; mají skrytou část textu s tarifem (účel odkazu), viditelně „Ukázka s průvodcem“.",
+  "Pravidla limitu (80 %, 100 %, 110 %) jsou samostatný blok se 4 body místo jednoho dlouhého odstavce v drobném písmu (pravidlo 3: důležité nikdy drobně).",
+  "Zkušební provoz je zvýrazněná karta; věta „Zkušební přístup zatím zakládáme po krátké ukázce“ je u tlačítka.",
+  "Žádný tarif není označený jako doporučený – dnešní web to neuvádí (nevymýšlíme)."],
+ "texty":[
+  {"dnes":"Prohlédnout demo – bez registrace","nove":"Vyzkoušet demo","proc":"Slovník."},
+  {"dnes":"Domluvit ukázku – tarif Start","nove":"Ukázka s průvodcem (sr-only: – tarif Start)","proc":"Slovník + účel odkazu."},
+  {"dnes":"Ceny jsou uvedeny bez DPH 21 %. Limit pokusů můžete mírně překročit: při 80 % a 100 % vás upozorníme a nové pokusy lze zahajovat až do 110 % limitu. Běžící zkoušku nikdy nepřerušíme. …","nove":"Blok „Když pokusy dojdou“ se 4 body + věta o DPH pod tabulkou","proc":"Kratší věty, důležité v běžném textu."},
+  {"dnes":"Nezávazně poptat zavedení / Nezávazně poptat import","nove":"Poptat zavedení / Poptat import otázek","proc":"Kratší; „nezávazně“ je v textu nad tlačítky (nabídka zdarma)."},
+  {"dnes":"Šablona z katalogu připravujeme","nove":"Šablona z katalogu + stav Připravujeme","proc":"Stav ikonou a slovem."}],
+ "pristupnost":[
+  "Tabulka srovnání: <caption> „Srovnání tarifů (ceny za rok bez DPH)“, sloupce th scope=col, řádky th scope=row.",
+  "Na mobilu table--stack: každá buňka má data-label s názvem tarifu.",
+  "Hodnoty ano/ne jsou slovem i ikonou (check / minus-kruh), ne jen symbolem.",
+  "Čísla jsou .num (zarovnaná, tabulková číslice).",
+  "Tlačítka karet mají unikátní přístupný název díky sr-only části."],
+ "poznamky_pro_kodera":["Ceny a limity z dnešního ceníku (11/2026). ukazka.html?tarif=start|profi|sit|verejna-sprava – předvyplní důvod poptávky (návrh).","Odpovědi FAQ převzaty z dnešního webu."],
+ "chybi_komponenta":["th v řádku tabulky .table--stack na mobilu nemá styl (nowrap by přetekl) – inline white-space:normal; navrhuji .table--stack th[scope=row]{display:block;white-space:normal}"]
+} -->
+<section class="hero grid-bg">
+ <div class="container stack-4">
+  <p class="t-stitek">Ceník</p>
+  <h1 class="t-display measure">Platíte podle počtu <span class="t-zvyraznit">pokusů za rok</span></h1>
+  <p class="t-perex measure">Ceny jsou roční a bez DPH. Pokus je jedno vyplnění testu jednou osobou, online i na papíře. Náhled testu ani vyzkoušení nanečisto se nepočítají.</p>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="vyzkouset.html">Vyzkoušet demo</a></div>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="tarify">
+ <div class="container stack-5">
+  <h2 id="tarify" class="t-sekce">Tarify</h2>
+  <div class="grid-4">
+   <div class="price"><h3 class="t-nadpis">Start</h3><p class="stack-2" style="gap:0"><span class="t-cislo">9&nbsp;900&nbsp;Kč</span><span class="t-maly">za rok bez DPH</span></p><ul class="list-check"><li><span><b>1&nbsp;000</b> pokusů za rok</span></li><li><span><b>1</b> pobočka</span></li><li><span><b>3</b> uživatelé</span></li></ul><a class="btn btn--male" href="ukazka.html?tarif=start" style="margin-top:auto">Ukázka s průvodcem<span class="sr-only"> – tarif Start</span></a></div>
+   <div class="price"><h3 class="t-nadpis">Profi</h3><p class="stack-2" style="gap:0"><span class="t-cislo">24&nbsp;900&nbsp;Kč</span><span class="t-maly">za rok bez DPH</span></p><ul class="list-check"><li><span><b>5&nbsp;000</b> pokusů za rok</span></li><li><span><b>5</b> poboček</span></li><li><span><b>20</b> uživatelů</span></li></ul><a class="btn btn--male" href="ukazka.html?tarif=profi" style="margin-top:auto">Ukázka s průvodcem<span class="sr-only"> – tarif Profi</span></a></div>
+   <div class="price"><h3 class="t-nadpis">Síť</h3><p class="stack-2" style="gap:0"><span class="t-cislo">59&nbsp;900&nbsp;Kč</span><span class="t-maly">za rok bez DPH</span></p><ul class="list-check"><li><span><b>20&nbsp;000</b> pokusů za rok</span></li><li><span>neomezeně poboček a uživatelů</span></li><li><span>vlastní doména</span></li></ul><a class="btn btn--male" href="ukazka.html?tarif=sit" style="margin-top:auto">Ukázka s průvodcem<span class="sr-only"> – tarif Síť</span></a></div>
+   <div class="price"><h3 class="t-nadpis">Veřejná správa</h3><p><span class="t-cislo">individuálně</span></p><ul class="list-check"><li><span>pokusy, pobočky a uživatelé podle smlouvy</span></li><li><span>vlastní doména</span></li><li><span>fakturace podle smlouvy, bez zálohy</span></li></ul><a class="btn btn--male" href="ukazka.html?tarif=verejna-sprava" style="margin-top:auto">Ukázka s průvodcem<span class="sr-only"> – tarif Veřejná správa</span></a></div>
+  </div>
+
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption>Srovnání tarifů (ceny za rok bez DPH)</caption>
+    <thead><tr><th scope="col"><span class="sr-only">Parametr</span></th><th scope="col">Start</th><th scope="col">Profi</th><th scope="col">Síť</th><th scope="col">Veřejná správa</th></tr></thead>
+    <tbody>
+     <tr><th scope="row" style="white-space:normal">Cena za rok</th><td class="num" data-label="Start">9&nbsp;900&nbsp;Kč</td><td class="num" data-label="Profi">24&nbsp;900&nbsp;Kč</td><td class="num" data-label="Síť">59&nbsp;900&nbsp;Kč</td><td data-label="Veřejná správa">individuálně</td></tr>
+     <tr><th scope="row" style="white-space:normal">Pokusy za rok</th><td class="num" data-label="Start">1&nbsp;000</td><td class="num" data-label="Profi">5&nbsp;000</td><td class="num" data-label="Síť">20&nbsp;000</td><td data-label="Veřejná správa">podle smlouvy</td></tr>
+     <tr><th scope="row" style="white-space:normal">Pobočky</th><td class="num" data-label="Start">1</td><td class="num" data-label="Profi">5</td><td data-label="Síť">neomezeně</td><td data-label="Veřejná správa">podle smlouvy</td></tr>
+     <tr><th scope="row" style="white-space:normal">Uživatelé (administrátoři, lektoři, autoři)</th><td class="num" data-label="Start">3</td><td class="num" data-label="Profi">20</td><td data-label="Síť">neomezeně</td><td data-label="Veřejná správa">podle smlouvy</td></tr>
+     <tr><th scope="row" style="white-space:normal">Tisk variací, odpovědní listy a klíče</th><td data-label="Start"><span class="stav stav--ok">{{I:check}}ano</span></td><td data-label="Profi"><span class="stav stav--ok">{{I:check}}ano</span></td><td data-label="Síť"><span class="stav stav--ok">{{I:check}}ano</span></td><td data-label="Veřejná správa"><span class="stav stav--ok">{{I:check}}ano</span></td></tr>
+     <tr><th scope="row" style="white-space:normal">Protokoly s ověřovacím kódem</th><td data-label="Start"><span class="stav stav--ok">{{I:check}}ano</span></td><td data-label="Profi"><span class="stav stav--ok">{{I:check}}ano</span></td><td data-label="Síť"><span class="stav stav--ok">{{I:check}}ano</span></td><td data-label="Veřejná správa"><span class="stav stav--ok">{{I:check}}ano</span></td></tr>
+     <tr><th scope="row" style="white-space:normal">Vlastní doména</th><td data-label="Start"><span class="stav stav--neutral">{{I:minus-kruh}}ne</span></td><td data-label="Profi"><span class="stav stav--neutral">{{I:minus-kruh}}ne</span></td><td data-label="Síť"><span class="stav stav--ok">{{I:check}}ano</span></td><td data-label="Veřejná správa"><span class="stav stav--ok">{{I:check}}ano</span></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p>Ceny jsou uvedeny bez DPH 21&nbsp;%. Pokusy se počítají za předplacené období 12&nbsp;měsíců, předplatné se automaticky neprodlužuje. Veřejná správa: cenu a podmínky stanoví smlouva. Podrobnosti uvádějí <a href="podminky.html">obchodní podmínky</a>.</p>
+  <div class="card card--tenka stack-2"><h3 class="t-nadpis">Ve všech tarifech</h3><p>Tisk variací, prezenční zkouška s&nbsp;živým panelem, protokoly s&nbsp;ověřovacím kódem, ověření ve dvou krocích, export dat a podpora e-mailem.</p></div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="zkusebni">
+ <div class="container grid-2" style="align-items:start">
+  <div class="card card--papir stack">
+   <p class="t-stitek">Zkušební provoz</p>
+   <h2 id="zkusebni" class="t-sekce">30 dní zdarma</h2>
+   <ul class="list-check">
+    <li><span><b class="t-cislo">100</b> pokusů, <b class="t-cislo">1</b> pobočka, <b class="t-cislo">3</b> uživatelé (včetně administrátora).</span></li>
+    <li><span>Všechny funkce tarifu Profi včetně tisku.</span></li>
+    <li><span>Bez platební karty.</span></li>
+    <li><span>Ukázková data vložíte jedním klikem a pokusy nad nimi se nepočítají.</span></li>
+   </ul>
+   <p>Zkušební přístup zatím zakládáme po krátké ukázce – napište nám.</p>
+   <div class="row"><a class="btn btn--hlavni" href="ukazka.html?duvod=zkusebni">Požádat o zkušební přístup</a></div>
+  </div>
+  <div class="stack">
+   <h2 class="t-sekce">Když pokusy dojdou</h2>
+   <p>Limit pokusů můžete mírně překročit.</p>
+   <ul class="list-check">
+    <li><span>Při <b>80&nbsp;%</b> a <b>100&nbsp;%</b> limitu vás upozorníme.</span></li>
+    <li><span>Nové pokusy lze zahajovat až do <b>110&nbsp;%</b> limitu.</span></li>
+    <li><span>Běžící zkoušku nikdy nepřerušíme.</span></li>
+   </ul>
+   <div class="alert" role="note">{{I:pozor}}<p>Ve zkušebním provozu limit překročit nelze.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="sluzby">
+ <div class="container stack-5">
+  <h2 id="sluzby" class="t-sekce">Šablony testů a služby</h2>
+  <div class="grid-3">
+   <div class="card stack">
+    <div class="row-between"><h3 class="t-nadpis">Šablona z&nbsp;katalogu</h3><span class="stav stav--pise">{{I:hodiny}}Připravujeme</span></div>
+    <p><span class="t-cislo">Zdarma</span> <span class="t-maly">(zatím)</span></p>
+    <p>Hotový soubor otázek s&nbsp;návrhem testu, který si upravíte. Katalog připravujeme, šablony zatím dodáváme na vyžádání.</p>
+    <div class="alert" role="note">{{I:pozor}}<div class="stack-2"><p>Šablony neprošly odbornou kontrolou. Jsou to výchozí vzory, které si organizace musí před použitím zkontrolovat a upravit.</p><p>Provozovatel neodpovídá za jejich věcnou správnost, úplnost ani soulad s&nbsp;předpisy; za obsah a použití testu odpovídá vaše organizace.</p></div></div>
+    <p class="t-maly">Případné budoucí zpoplatnění ohlásíme předem, převzaté šablony zůstanou zdarma.</p>
+    <p><a href="sablony-testu.html">Šablony testů</a></p>
+   </div>
+   <div class="card stack">
+    <h3 class="t-nadpis">Služby na objednávku</h3>
+    <p>Cenu určíme podle objemu práce. Nabídku pošleme zdarma do 2&nbsp;pracovních dnů.</p>
+    <ul class="list-check">
+     <li><span><b>Pomoc se zavedením do organizace:</b> nastavení organizace, poboček, rolí a uživatelů, první test a školení administrátorů a lektorů online nebo na místě.</span></li>
+     <li><span><b>Import a převod otázek:</b> z&nbsp;Wordu, Excelu, PDF, Moodle (XML nebo GIFT), DoTestu nebo z&nbsp;papíru. Výsledek zkontrolujete v&nbsp;náhledu.</span></li>
+    </ul>
+    <div class="row"><a class="btn btn--male" href="ukazka.html?duvod=zavedeni">Poptat zavedení</a><a class="btn btn--male" href="ukazka.html?duvod=import">Poptat import otázek</a></div>
+    <p><a href="sablony-testu.html#sluzby">Podrobnosti o službách</a></p>
+   </div>
+   <div class="card card--tenka stack">
+    <div class="row-between"><h3 class="t-nadpis">API a integrace</h3><span class="stav stav--neutral">Plánujeme</span></div>
+    <p>Napojení na vaše systémy plánujeme. Pokud ho potřebujete, napište nám a probereme vaše použití.</p>
+    <p><a href="kontakt.html">Napsat nám</a></p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="faq">
+ <div class="container grid-2" style="align-items:start">
+  <h2 id="faq" class="t-sekce">Otázky k&nbsp;ceníku</h2>
+  <div class="faq">
+   <details><summary>Co je pokus?</summary><div><p>Pokus je jedno vyplnění testu jednou osobou. Počítá se v&nbsp;okamžiku, kdy vznikne variace testu: při zahájení testu online, při vpuštění do prezenční zkoušky a za každý vytištěný arch tiskové dávky. Nepočítá se náhled testu ani vyzkoušení nanečisto.</p></div></details>
+   <details><summary>Co se stane, když pokusy dojdou?</summary><div><p>Při 80&nbsp;% a 100&nbsp;% limitu pošleme upozornění administrátorům organizace. Nové pokusy lze zahajovat až do 110&nbsp;% limitu, potom je zablokujeme, dokud nepřejdete na vyšší tarif. Ve zkušebním provozu limit překročit nelze. Běžící zkoušku nikdy nepřerušíme.</p></div></details>
+   <details><summary>Jak probíhá fakturace?</summary><div><p>Tarif objednáte v&nbsp;aplikaci. Pošleme zálohovou fakturu se splatností 14&nbsp;dní a po úhradě daňový doklad. Tarif aktivujeme po připsání platby na 12&nbsp;měsíců; prodloužení zaplacené předem naváže na běžící období. Předplatné se automaticky neprodlužuje ani nefakturuje, na jeho konec upozorníme 30 a 7&nbsp;dní předem. Ceny jsou uvedeny bez DPH.</p></div></details>
+   <details><summary>Můžeme službu nakoupit jako veřejnou zakázku malého rozsahu?</summary><div><p>Ano. Pro úřady a příspěvkové organizace připravíme cenovou nabídku a podklady k&nbsp;výzvě: technickou specifikaci, přehled bezpečnostních opatření a vzor zpracovatelské smlouvy. Fakturujeme podle smlouvy, bez zálohy.</p></div></details>
+   <details><summary>Co když budeme chtít odejít?</summary><div><p>Data nejsou uzamčená. Soubory otázek exportujete do XLSX a výsledky do tabulek kdykoli. Export všech dat organizace si stáhnete v&nbsp;aplikaci do skončení smlouvy. Na žádost podanou do skončení smlouvy vám ho předáme i po něm. Data pak smažeme nejpozději do 60&nbsp;dnů od skončení smlouvy.</p></div></details>
+   <details><summary>Kolik stojí šablony testů a služby?</summary><div><p>Šablony jsou zatím zdarma. Pokud je v&nbsp;budoucnu zpoplatníme, ohlásíme to předem a šablony, které do té doby převezmete, vám zůstanou bez úplaty. Cenu služeb určíme podle objemu práce (počet otázek, uživatelů a poboček, formát podkladů). Nabídku pošleme zdarma do 2&nbsp;pracovních dnů.</p></div></details>
+   <details><summary>Jak funguje zkušební provoz?</summary><div><p>Zkušební provoz trvá 30&nbsp;dní a zahrnuje 100 pokusů, 1 pobočku a 3 uživatele s&nbsp;rolí administrátora, lektora nebo autora (včetně vás; studující se nepočítají). Nepotřebujete platební kartu. Po skončení zůstanou data zachovaná a účet je jen pro čtení, dokud si neobjednáte tarif.</p></div></details>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">Ukážeme vám aplikaci na vašem typu zkoušky</h2><p>Projdeme s&nbsp;vámi aplikaci online (asi 30&nbsp;minut) a připravíme zkušební přístup pro vaši organizaci.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="vyzkouset.html">Vyzkoušet demo</a></div>
+ </div>
+</section>

@@ -1,0 +1,103 @@
+<!--meta {"titulek":"Výsledky","sablona":"app","role":"lektor","aktivni":"vysledky.html","demo":false} -->
+<!--spec {
+ "route":"/vysledky","nazev":"Výsledky – všechny","role":"lektor (stejně administrátor pobočky a organizace – liší se rozsah dat)","sablona":"app",
+ "ucel":"Najít odevzdané pokusy, poznat, kdo splnil a kdo ne, a zpřístupnit výsledky zkoušeným.",
+ "hlavni_akce":"Otevřít detail pokusu (jméno zkoušeného); hromadně Zpřístupnit vybrané výsledky; Export výsledků (XLSX).",
+ "komponenty":["page-head","tabs","filters","select","input","table-wrap","table--stack","check","stav","toolbar","pager","empty","alert"],
+ "stavy":[
+  "prázdný stav (žádný pokus): .empty „Zatím tu nejsou odevzdané pokusy“ + odkaz Použití testů.",
+  "prázdný filtr: .empty „Filtru neodpovídá žádný pokus“ + tlačítko Zrušit filtr.",
+  "načítání: tabulka zůstane, tbody má aria-busy=true a 5 řádků-skeletonů (šedé pruhy --c-mrizka); filtr se neuzamyká.",
+  "chyba načtení: .alert--chyba nad tabulkou „Výsledky se nepodařilo načíst“ + Zkusit znovu.",
+  "po zpřístupnění: .alert--ok s počtem „Zpřístupněno 3 výsledky. Zkoušení je uvidí v Moje výsledky.“ (role=status).",
+  "bez oprávnění: role autor otázek položku Výsledky nemá – přímá adresa vede na chyba-403.",
+  "rozdíl rolí: lektor vidí jen použití, která sám vytvořil; administrátor pobočky všechny pobočky, které spravuje (sloupec Pobočka je pro něj důležitý); administrátor organizace navíc tlačítko Srovnání poboček."],
+ "zmeny_ux":[
+  "Sloupce Test a Způsob sloučeny do jedné buňky (test + šedě způsob · název použití) – tabulka se vejde bez posouvání.",
+  "Výsledek rozdělen na číslo (zarovnané vpravo, mono) a stavový štítek s ikonou – rychlé čtení sloupce.",
+  "Sloupec Uvolněno přejmenován na Zkoušený vidí s hodnotami Ne / datum – říká, co to znamená pro zkoušeného.",
+  "Filtr Od/Do nahrazen výběrem Období (Dnes, 7 dní, 30 dní, Vlastní…) – návrh; Vlastní rozbalí dvě data.",
+  "Tlačítko Filtrovat zůstává (bez JS); s JS se filtr použije hned a tlačítko se skryje – návrh.",
+  "Hromadná akce je pod tabulkou vedle počtu vybraných; dokud nic nevybráno, je aria-disabled a hint říká proč.",
+  "Pátá záložka Platnost školení vypadla z pruhu záložek – je samostatnou položkou menu (jedna věc na jednom místě)."],
+ "texty":[
+  {"dnes":"Uvolnit vybrané výsledky zkoušeným","nove":"Zpřístupnit vybrané výsledky","proc":"Slovník: Zpřístupnit výsledky."},
+  {"dnes":"Uvolněno","nove":"Zkoušený vidí","proc":"Slovník; popisuje důsledek."},
+  {"dnes":"Přístupové kódy pro osoby","nove":"Osobní kódy","proc":"Slovník."},
+  {"dnes":"Všechny výsledky","nove":"Všechny","proc":"Kontext dává H1 Výsledky."},
+  {"dnes":"Odevzdané pokusy","nove":"Odevzdané pokusy (caption, sr-only) + Celkem 8","proc":"Nadpis tabulky zbytečně opakoval H1."},
+  {"dnes":"37,5 % nesplněno","nove":"37,5 % + štítek Nesplněno","proc":"Stav ikonou a slovem, číslo zvlášť."}],
+ "pristupnost":[
+  "Tabulka má caption (sr-only) „Odevzdané pokusy, 8 záznamů, řazeno od nejnovějšího“.",
+  "Zaškrtávací pole v řádku má skrytý label „Vybrat: jméno“; v záhlaví „Vybrat vše na stránce“.",
+  "Stav pokusu = ikona + slovo, nikdy jen barva.",
+  "Záložky jsou navigace (nav aria-label, aria-current=page) – každá je samostatná stránka.",
+  "Hlášení po zpřístupnění je role=status a fokus zůstává na tlačítku.",
+  "Na mobilu se řádky skládají (table--stack) s popisky data-label."],
+ "poznamky_pro_kodera":["Data: pokusy v rozsahu role; řazení podle Odevzdáno sestupně; stránkování po 50.","Export XLSX stahuje podle aktuálního filtru.","Zaškrtnutí aktivuje tlačítko a mění text počítadla „Vybráno: N“ (aria-live=polite).","Pobočka: aktivní pobočka v horní liště výsledky nefiltruje – proto filtr Pobočka."],
+ "chybi_komponenta":["skeleton řádku tabulky (načítání)"]
+} -->
+<div class="page-head">
+ <h1 class="t-titulek">Výsledky</h1>
+ <div class="page-head__actions"><a class="btn" href="#">{{I:stahnout}}Export výsledků (XLSX)</a></div>
+</div>
+
+<nav class="tabs" aria-label="Pohledy na výsledky" style="margin-bottom:var(--s-4);contain:inline-size">
+ <a href="vysledky.html" aria-current="page">Všechny</a>
+ <a href="vysledky-prezencni.html">Prezenční zkoušky</a>
+ <a href="vysledky-pridelene.html">Přidělené testy</a>
+</nav>
+
+<form class="filters" action="vysledky.html" method="get" aria-label="Filtr výsledků">
+ <div class="field"><label class="label" for="f-test">Test</label><select class="select" id="f-test" name="test"><option>Všechny</option><option>BOZP – cvičný test</option><option>Kybernetická bezpečnost</option><option>Radiační ochrana (ZOZ)</option></select></div>
+ <div class="field"><label class="label" for="f-obdobi">Období</label><select class="select" id="f-obdobi" name="obdobi"><option>Dnes</option><option>Posledních 7 dní</option><option selected>Posledních 30 dní</option><option>Vlastní…</option></select></div>
+ <div class="field"><label class="label" for="f-vysl">Výsledek</label><select class="select" id="f-vysl" name="vysledek"><option>Vše</option><option>Splněno</option><option>Nesplněno</option></select></div>
+ <div class="field"><label class="label" for="f-jmeno">Jméno</label><input class="input" id="f-jmeno" name="jmeno" type="search" placeholder="např. Zeman"></div>
+ <button class="btn" type="submit">{{I:filtr}}Filtrovat</button>
+</form>
+
+<form action="#" method="post">
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Odevzdané pokusy, 8 záznamů, řazeno od nejnovějšího</caption>
+  <thead><tr><th scope="col"><label class="check" style="padding-top:0;min-height:0"><input type="checkbox"><span class="sr-only">Vybrat vše na stránce</span></label></th><th scope="col">Zkoušený</th><th scope="col">Test · způsob</th><th scope="col">Odevzdáno</th><th scope="col" class="num">Výsledek</th><th scope="col">Stav</th><th scope="col">Zkoušený vidí</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Vybrat"><label class="check" style="padding-top:0;min-height:0"><input type="checkbox" name="p" value="1"><span class="sr-only">Vybrat: Filip Zeman</span></label></td><td data-label="Zkoušený"><a href="vysledek-detail.html"><b>Filip Zeman</b></a></td><td data-label="Test"><span>Kybernetická bezpečnost<span class="t-maly">Osobní kódy · Roční školení</span></span></td><td data-label="Odevzdáno" class="num">3.&nbsp;11. 18:27</td><td data-label="Výsledek" class="num">37,5&nbsp;%</td><td data-label="Stav"><span class="stav stav--ne">{{I:minus-kruh}}Nesplněno</span></td><td data-label="Zkoušený vidí">Ne</td></tr>
+   <tr><td data-label="Vybrat"><label class="check" style="padding-top:0;min-height:0"><input type="checkbox" name="p" value="2"><span class="sr-only">Vybrat: Tereza Doležalová</span></label></td><td data-label="Zkoušený"><a href="vysledek-detail.html"><b>Tereza Doležalová</b></a></td><td data-label="Test"><span>Kybernetická bezpečnost<span class="t-maly">Osobní kódy · Roční školení</span></span></td><td data-label="Odevzdáno" class="num">3.&nbsp;11. 18:27</td><td data-label="Výsledek" class="num">47,1&nbsp;%</td><td data-label="Stav"><span class="stav stav--ne">{{I:minus-kruh}}Nesplněno</span></td><td data-label="Zkoušený vidí">Ne</td></tr>
+   <tr><td data-label="Vybrat"><label class="check" style="padding-top:0;min-height:0"><input type="checkbox" name="p" value="3"><span class="sr-only">Vybrat: Vojtěch Sedláček</span></label></td><td data-label="Zkoušený"><a href="vysledek-detail.html"><b>Vojtěch Sedláček</b></a></td><td data-label="Test"><span>Kybernetická bezpečnost<span class="t-maly">Osobní kódy · Roční školení</span></span></td><td data-label="Odevzdáno" class="num">3.&nbsp;11. 18:27</td><td data-label="Výsledek" class="num">76,5&nbsp;%</td><td data-label="Stav"><span class="stav stav--ne">{{I:minus-kruh}}Nesplněno</span></td><td data-label="Zkoušený vidí">Ne</td></tr>
+   <tr><td data-label="Vybrat"><label class="check" style="padding-top:0;min-height:0"><input type="checkbox" name="p" value="4"><span class="sr-only">Vybrat: Radek Beneš</span></label></td><td data-label="Zkoušený"><a href="vysledek-detail.html"><b>Radek Beneš</b></a></td><td data-label="Test"><span>Kybernetická bezpečnost<span class="t-maly">Osobní kódy · Roční školení</span></span></td><td data-label="Odevzdáno" class="num">3.&nbsp;11. 18:27</td><td data-label="Výsledek" class="num">88,2&nbsp;%</td><td data-label="Stav"><span class="stav stav--ok">{{I:check}}Splněno</span></td><td data-label="Zkoušený vidí">Ne</td></tr>
+   <tr><td data-label="Vybrat"><label class="check" style="padding-top:0;min-height:0"><input type="checkbox" name="p" value="5"><span class="sr-only">Vybrat: Ondřej Malý</span></label></td><td data-label="Zkoušený"><a href="vysledek-detail.html"><b>Ondřej Malý</b></a></td><td data-label="Test"><span>Kybernetická bezpečnost<span class="t-maly">Osobní kódy · Roční školení</span></span></td><td data-label="Odevzdáno" class="num">3.&nbsp;11. 18:27</td><td data-label="Výsledek" class="num">100,0&nbsp;%</td><td data-label="Stav"><span class="stav stav--ok">{{I:check}}Splněno</span></td><td data-label="Zkoušený vidí">Od 3.&nbsp;11.</td></tr>
+   <tr><td data-label="Vybrat"><label class="check" style="padding-top:0;min-height:0"><input type="checkbox" name="p" value="6"><span class="sr-only">Vybrat: Simona Králová</span></label></td><td data-label="Zkoušený"><a href="vysledek-detail.html"><b>Simona Králová</b></a></td><td data-label="Test"><span>Kybernetická bezpečnost<span class="t-maly">Osobní kódy · Roční školení</span></span></td><td data-label="Odevzdáno" class="num">3.&nbsp;11. 18:27</td><td data-label="Výsledek" class="num">86,7&nbsp;%</td><td data-label="Stav"><span class="stav stav--ok">{{I:check}}Splněno</span></td><td data-label="Zkoušený vidí">Ne</td></tr>
+   <tr><td data-label="Vybrat"><label class="check" style="padding-top:0;min-height:0"><input type="checkbox" name="p" value="7"><span class="sr-only">Vybrat: Michaela Fialová</span></label></td><td data-label="Zkoušený"><a href="vysledek-detail.html"><b>Michaela Fialová</b></a></td><td data-label="Test"><span>Radiační ochrana – ověření znalostí<span class="t-maly">Osobní kódy · 1. termín</span></span></td><td data-label="Odevzdáno" class="num">3.&nbsp;11. 18:27</td><td data-label="Výsledek" class="num">100,0&nbsp;%</td><td data-label="Stav"><span class="stav stav--ok">{{I:check}}Splněno</span></td><td data-label="Zkoušený vidí">Ne</td></tr>
+   <tr><td data-label="Vybrat"><label class="check" style="padding-top:0;min-height:0"><input type="checkbox" name="p" value="8"><span class="sr-only">Vybrat: Klára Kolářová</span></label></td><td data-label="Zkoušený"><a href="vysledek-detail.html"><b>Klára Kolářová</b></a></td><td data-label="Test"><span>Radiační ochrana – ověření znalostí<span class="t-maly">Osobní kódy · 1. termín</span></span></td><td data-label="Odevzdáno" class="num">3.&nbsp;11. 18:27</td><td data-label="Výsledek" class="num">89,7&nbsp;%</td><td data-label="Stav"><span class="stav stav--ne">{{I:minus-kruh}}Nesplněno</span></td><td data-label="Zkoušený vidí">Ne</td></tr>
+  </tbody>
+ </table>
+</div>
+<div class="toolbar" style="margin-top:var(--s-3)">
+ <div class="row">
+  <button class="btn btn--hlavni" type="submit" aria-disabled="true" aria-describedby="vyb-h">Zpřístupnit vybrané výsledky</button>
+  <span class="t-maly" id="vyb-h" aria-live="polite">Vybráno: 0. Zaškrtněte pokusy v tabulce.</span>
+ </div>
+ <span class="t-maly">Celkem 8</span>
+</div>
+</form>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack-2">
+  <p class="t-stitek">Po zpřístupnění</p>
+  <div class="alert alert--ok" role="status">{{I:check}}<div><p class="alert__nadpis">Zpřístupněno: 3 výsledky</p><p>Zkoušení je uvidí v části Moje výsledky, ti s e-mailem dostanou oznámení.</p></div></div>
+ </div>
+ <div class="stack-2">
+  <p class="t-stitek">Filtru nic neodpovídá</p>
+  <div class="empty stack-2">{{I:hledat}}<p class="t-nadpis">Filtru neodpovídá žádný pokus</p><p class="t-maly">Zkuste delší období nebo jiný test.</p><p><a class="btn" href="vysledky.html">Zrušit filtr</a></p></div>
+ </div>
+ <div class="stack-2">
+  <p class="t-stitek">Zatím žádné výsledky</p>
+  <div class="empty stack-2">{{I:check-kruh}}<p class="t-nadpis">Zatím tu nejsou odevzdané pokusy</p><p class="t-maly">Výsledky se objeví hned, jak zkoušený odevzdá test.</p><p><a href="pouziti.html">Přejít na Použití testů</a></p></div>
+ </div>
+ <div class="stack-2">
+  <p class="t-stitek">Chyba načtení</p>
+  <div class="alert alert--chyba" role="alert">{{I:pozor}}<div><p class="alert__nadpis">Výsledky se nepodařilo načíst</p><p>Zkontrolujte připojení a zkuste to znovu. Data se neztratila.</p><p style="margin-top:var(--s-2)"><button class="btn btn--male" type="button">Zkusit znovu</button></p></div></div>
+ </div>
+</section>

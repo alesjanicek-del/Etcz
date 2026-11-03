@@ -1,0 +1,51 @@
+<!--meta {"titulek":"Statistiky","sablona":"app","role":"lektor","aktivni":"statistiky.html","demo":false} -->
+<!--spec {
+ "route":"/statistiky","nazev":"Statistiky","role":"lektor (autor otázek vidí jen část Soubory otázek; administrátoři data všech svých poboček)","sablona":"app",
+ "ucel":"Rozcestník statistik: jak dopadají testy a jak fungují otázky v souborech.",
+ "hlavni_akce":"Otevřít statistiku testu nebo souboru otázek.",
+ "komponenty":["page-head","alert","grid-2","card","table-wrap","table--stack","bar"],
+ "stavy":[
+  "bez pokusů: u testu místo čísel „Zatím bez odevzdaných pokusů“ (šedě), odkaz zůstává.",
+  "role autor: zobrazí se jen sekce Soubory otázek.",
+  "načítání / chyba: skeleton řádků, .alert--chyba + Zkusit znovu.",
+  "oprávnění: jen použití a soubory, jejichž výsledky smí uživatel vidět."],
+ "zmeny_ux":[
+  "Seznam názvů doplněn o hlavní čísla (osob, průměr, úspěšnost) – lektor vidí, kam kliknout.",
+  "Úspěšnost testu i číslem i pruhem .bar__track.",
+  "Pravidlo „nanečisto se nepočítá“ jako info upozornění nahoře."],
+ "texty":[
+  {"dnes":"Počet zkoušených, rozložení a pořadí úspěšnosti – jen z použití, jejichž výsledky smíte vidět.","nove":"Počet osob, průměr a úspěšnost. Jen z použití, jejichž výsledky smíte vidět.","proc":"Kratší, pojem osoba."},
+  {"dnes":"Zařazení, zobrazení a úspěšnost otázek souhrnně i po verzích.","nove":"Jak často se otázky objevují a kolik lidí odpoví správně – souhrnně i po verzích.","proc":"Srozumitelné bez žargonu."},
+  {"dnes":"Ukázková sada: BOZP — školení zaměstnanců","nove":"Ukázková sada: BOZP – školení zaměstnanců","proc":"Typografie: pomlčka –, ne —."}],
+ "pristupnost":["Dvě tabulky s caption.","Pruh je aria-hidden, procenta jsou v textu.","Název testu je odkaz s jedinečným textem."],
+ "poznamky_pro_kodera":["Čísla odpovídají výsledkům v návrhu Výsledky (Kybernetická bezpečnost 6 pokusů, Radiační ochrana 2).","Úspěšnost = podíl splněných pokusů."],
+ "chybi_komponenta":["mini-pruh v buňce tabulky"]
+} -->
+<div class="page-head"><h1 class="t-titulek">Statistiky</h1></div>
+<div class="alert alert--info" style="margin-bottom:var(--s-5)">{{I:info}}<p>Pokusy nanečisto se do statistik nezapočítávají.</p></div>
+
+<section class="stack" aria-labelledby="s-testy" style="margin-bottom:var(--s-5)">
+ <div class="stack-2"><h2 id="s-testy" class="t-nadpis">Testy</h2><p class="t-maly">Počet osob, průměr a úspěšnost. Jen z&nbsp;použití, jejichž výsledky smíte vidět.</p></div>
+ <div class="table-wrap"><table class="table table--stack">
+  <caption class="sr-only">Statistiky testů</caption>
+  <thead><tr><th scope="col">Test</th><th scope="col" class="num">Osob</th><th scope="col" class="num">Průměr</th><th scope="col" style="min-width:180px">Úspěšnost</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Test"><a href="statistiky-test.html"><b>Kybernetická bezpečnost – roční ověření</b></a></td><td data-label="Osob" class="num">6</td><td data-label="Průměr" class="num">72,7&nbsp;%</td><td data-label="Úspěšnost"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:50%"></span></span><span class="t-cislo">50&nbsp;%</span></span></td></tr>
+   <tr><td data-label="Test"><a href="statistiky-test.html"><b>Radiační ochrana – ověření znalostí (úřední, typ ZOZ)</b></a></td><td data-label="Osob" class="num">2</td><td data-label="Průměr" class="num">94,9&nbsp;%</td><td data-label="Úspěšnost"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:50%"></span></span><span class="t-cislo">50&nbsp;%</span></span></td></tr>
+   <tr><td data-label="Test"><a href="statistiky-test.html"><b>BOZP – cvičný test</b></a></td><td data-label="Osob" class="num">0</td><td data-label="Průměr" class="num">—</td><td data-label="Úspěšnost"><span class="t-maly">Zatím bez odevzdaných pokusů</span></td></tr>
+  </tbody>
+ </table></div>
+</section>
+
+<section class="stack" aria-labelledby="s-soubory">
+ <div class="stack-2"><h2 id="s-soubory" class="t-nadpis">Soubory otázek</h2><p class="t-maly">Jak často se otázky objevují a kolik lidí odpoví správně – souhrnně i po verzích.</p></div>
+ <div class="table-wrap"><table class="table table--stack">
+  <caption class="sr-only">Statistiky souborů otázek</caption>
+  <thead><tr><th scope="col">Soubor otázek</th><th scope="col" class="num">Otázek</th><th scope="col" class="num">Odpovědí</th><th scope="col" class="num">Správně</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Soubor"><a href="statistiky-soubor.html"><b>Ukázková sada: Kybernetická bezpečnost – školení uživatelů</b></a></td><td data-label="Otázek" class="num">24</td><td data-label="Odpovědí" class="num">72</td><td data-label="Správně" class="num">74,6&nbsp;%</td></tr>
+   <tr><td data-label="Soubor"><a href="statistiky-soubor.html"><b>Ukázková sada: Radiační ochrana – základní principy</b></a></td><td data-label="Otázek" class="num">33</td><td data-label="Odpovědí" class="num">66</td><td data-label="Správně" class="num">93,9&nbsp;%</td></tr>
+   <tr><td data-label="Soubor"><a href="statistiky-soubor.html"><b>Ukázková sada: BOZP – školení zaměstnanců</b></a></td><td data-label="Otázek" class="num">20</td><td data-label="Odpovědí" class="num">0</td><td data-label="Správně" class="num">—</td></tr>
+  </tbody>
+ </table></div>
+</section>

@@ -1,0 +1,3 @@
+{"name":"exam-test-design-kit","version":"1.0.0","private":true,
+ "scripts":{"check":"node tools/check.js","logo":"python3 tools/logo_build.py && node tools/logo_png.js"},
+ "devDependencies":{"axe-core":"4.10.2"}}

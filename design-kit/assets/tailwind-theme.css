@@ -1,0 +1,35 @@
+/* exam-test · tokeny pro Tailwind CSS v4 (@theme)
+   Vložte do hlavního CSS místo výchozí palety. Výchozí barvy a velikosti
+   Tailwindu vypínáme, aby se nemohly vrátit (text-sm, slate-500 apod.). */
+@import "tailwindcss";
+@theme {
+  --color-*: initial;
+  --color-grafit:#22262A; --color-seda:#5A6068; --color-propiska:#2747A0; --color-propiska-tmava:#1B3478;
+  --color-papir:#F6F4EC; --color-bila:#FFFFFF; --color-zvyraznovac:#F2CB2E; --color-zvyraznovac-svetly:#FFF7D1;
+  --color-mrizka:#C9D3DD; --color-linka:#D9DCD3; --color-pole-okraj:#5A6068;
+  --color-splneno:#1E6B45; --color-splneno-bg:#E3F0E6; --color-nesplneno:#B3261E; --color-nesplneno-bg:#FBE7E4;
+  --color-pozor:#6B5A00; --color-pozor-bg:#FFF7D1; --color-info:#2747A0; --color-info-bg:#E7ECF8;
+  --color-transparent:transparent;
+
+  --font-*: initial;
+  --font-text:'Schibsted Grotesk',Arial,Helvetica,sans-serif;
+  --font-mono:'IBM Plex Mono','Courier New',monospace;
+
+  --text-*: initial;
+  --text-stitek:13px; --text-stitek--line-height:1.3;
+  --text-maly:15px;   --text-maly--line-height:1.45;
+  --text-text:17px;   --text-text--line-height:1.5;
+  --text-nadpis:22px; --text-nadpis--line-height:1.25;
+  --text-titulek:30px; --text-titulek--line-height:1.15;
+  --text-sekce:40px;  --text-sekce--line-height:1.1;
+  --text-display:56px; --text-display--line-height:1.05;
+  --text-display-m:36px; --text-display-m--line-height:1.05;
+
+  --font-weight-*: initial;
+  --font-weight-normal:400; --font-weight-tucne:700; --font-weight-mono:500; --font-weight-mono-tucne:600;
+
+  --radius-*: initial; --radius-0:0; --radius-1:3px; --radius-pill:999px;
+  --shadow-*: initial; --shadow-tvrdy:4px 4px 0 #22262A; --shadow-zluty:4px 4px 0 #F2CB2E;
+  --spacing:4px; /* p-2 = 8px, p-4 = 16px, p-6 = 24px, p-10 = 40px, p-16 = 64px */
+  --breakpoint-sm:640px; --breakpoint-md:768px; --breakpoint-lg:1024px; --breakpoint-xl:1280px;
+}

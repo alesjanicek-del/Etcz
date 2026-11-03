@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITULEK}} · exam-test</title>
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body>
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+<div class="app">
+ <aside class="app-side" aria-label="Aplikace">
+  <a class="logo" href="lektor-prehled.html"><img src="../assets/logo/exam-test-logo-male.svg" alt="exam-test – přehled" width="146" height="24"></a>
+  <nav class="app-nav" aria-label="Hlavní">
+   <!-- ROLE: lektor (u ostatních rolí viz _sablony/navigace.md) -->
+   <a href="lektor-prehled.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-domu"/></svg>Přehled</a>
+   <p class="t-stitek">Otázky</p>
+   <a href="soubory.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-slozka"/></svg>Soubory otázek</a>
+   <a href="otazky-hledat.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-hledat"/></svg>Hledat otázky</a>
+   <a href="stitky.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-stitek"/></svg>Štítky</a>
+   <p class="t-stitek">Zkoušení</p>
+   <a href="testy.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-soubor"/></svg>Testy</a>
+   <a href="pouziti.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-prehrat"/></svg>Použití testů</a>
+   <a href="tisk.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-tisk"/></svg>Tisk</a>
+   <a href="kalendar.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-kalendar"/></svg>Kalendář</a>
+   <p class="t-stitek">Vyhodnocení</p>
+   <a href="vysledky.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-check-kruh"/></svg>Výsledky</a>
+   <a href="platnost-skoleni.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-hodiny"/></svg>Platnost školení</a>
+   <a href="statistiky.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-graf"/></svg>Statistiky</a>
+  </nav>
+ </aside>
+ <div>
+  <header class="app-top">
+   <a class="logo" href="lektor-prehled.html"><img src="../assets/logo/exam-test-logo-male.svg" alt="exam-test – přehled" width="122" height="20"></a>
+   <span class="stav stav--neutral">Pobočka Praha</span>
+   <span class="sp"></span>
+   <a href="napoveda.html">Nápověda k této stránce</a>
+   <a href="ucet.html">Lucie Lektorová</a>
+   <details class="menu"><summary class="btn btn--male"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-menu"/></svg>Menu</summary><div class="menu__panel">…stejné položky jako boční navigace…</div></details>
+  </header>
+  <main id="obsah" class="app-main">
+{{OBSAH}}
+  </main>
+  <footer class="app-foot"><span>exam-test 0.2.0</span><a href="prohlaseni-o-pristupnosti.html">Prohlášení o přístupnosti</a><a href="co-je-noveho.html">Co je nového</a></footer>
+ </div>
+</div>
+<script type="application/json" id="spec">{{SPEC}}</script>
+</body>
+</html>

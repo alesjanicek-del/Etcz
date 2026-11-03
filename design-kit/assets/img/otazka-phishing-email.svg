@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" font-family="Arial, Helvetica, sans-serif">
+ <rect x="1" y="1" width="718" height="298" fill="#FFFFFF" stroke="#22262A" stroke-width="2"/>
+ <rect x="2" y="2" width="716" height="86" fill="#F6F4EC"/>
+ <line x1="2" y1="88" x2="718" y2="88" stroke="#D9DCD3" stroke-width="1"/>
+ <text x="24" y="36" font-size="17" fill="#22262A">Od: IT podpora &lt;helpdesk@it-podpora-overeni.example&gt;</text>
+ <text x="24" y="68" font-size="17" font-weight="700" fill="#22262A">Předmět: URGENTNÍ: Váš účet bude do 2 hodin zablokován</text>
+ <text x="24" y="130" font-size="17" fill="#22262A">Dobrý den,</text>
+ <text x="24" y="160" font-size="17" fill="#22262A">zjistili jsme neobvyklou aktivitu. Pro zachování přístupu ihned</text>
+ <text x="24" y="186" font-size="17" fill="#22262A">ověřte své heslo na odkazu níže.</text>
+ <text x="24" y="224" font-size="17" fill="#2747A0" text-decoration="underline">http://login.firma-portal.example.ru-overeni.example/prihlaseni</text>
+ <text x="24" y="268" font-size="17" fill="#22262A">IT oddělení</text>
+</svg>

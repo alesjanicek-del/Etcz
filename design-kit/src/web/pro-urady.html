@@ -1,0 +1,123 @@
+<!--meta {"titulek":"Pro úřady a veřejnou správu","popis":"Zkoušky odborné způsobilosti s doložitelným výsledkem: prezenční zkouška, tisk, protokol s ověřovacím kódem, přístupnost podle zákona č. 99/2019 Sb. a podklady k nákupu.","sablona":"web","aktivni":"pro-urady.html"} -->
+<!--spec {
+ "route":"/pro-urady","nazev":"Pro úřady","role":"veřejnost – úřady, zadavatelé, správci zkoušek","sablona":"web",
+ "ucel":"Přesvědčit úřad, že aplikace splní zákonné a nákupní požadavky (přístupnost, GDPR, průkaznost, VZMR), a dát mu podklady k nákupu.",
+ "hlavni_akce":"Ukázka s průvodcem; vedlejší: stáhnout podklady (PDF), Vyzkoušet demo",
+ "komponenty":["hero","hero__grid","card card--papir","feature","grid-3","grid-2","list-check","alert","faq","cta-band"],
+ "stavy":["Statická stránka – bez stavů.","PDF ještě neexistuje: odkaz vede na kontakt (dnes stejné chování); kodér nahradí URL souboru."],
+ "zmeny_ux":[
+  "Podklady ke stažení jsou v hero vpravo jako karta – úředník je hledá jako první; dnes jsou až dole a podruhé nahoře jako osamělý odkaz.",
+  "Sekce Co úřad potřebuje: 7 bloků v mřížce 2 sloupců, každý s jedním odkazem na podklad; dlouhé texty rozděleny na kratší věty.",
+  "Upozornění na katalog cloud computingu je .alert (pozor) – důležitá informace před nákupem nesmí zapadnout (pravidlo 3).",
+  "Seznam „Co zadání obvykle požadují“ je na grafitové ploše jako kontrolní seznam; vedle je jasné, co nepřipravujeme (zadávací dokumentaci).",
+  "FAQ má odpovědi přímo v details (dnes převzaté z živého webu, zkrácené věty)."],
+ "texty":[
+  {"dnes":"Domluvit ukázku","nove":"Ukázka s průvodcem","proc":"Slovník."},
+  {"dnes":"Prohlédnout demo – bez registrace","nove":"Vyzkoušet demo","proc":"Slovník; „bez registrace“ je v textu pod tlačítky."},
+  {"dnes":"Úřední režim testu zakáže veřejné odkazy a výsledky uvolníte zkoušeným až ručně.","nove":"Úřední režim testu zakáže veřejné odkazy a výsledky zpřístupníte zkoušeným až ručně.","proc":"Slovník: Zpřístupnit výsledky (ne uvolnit)."},
+  {"dnes":"Rozhraní je navržené podle WCAG 2.1 AA (ČSN EN 301 549). Aplikace je zatím částečně v souladu; známé nedostatky uvádíme otevřeně v prohlášení o přístupnosti ve struktuře podle vyhlášky č. 523/2020 Sb.","nove":"Rozhraní je navržené podle WCAG 2.1 AA (ČSN EN 301 549). Aplikace je zatím částečně v souladu. Známé nedostatky uvádíme v prohlášení o přístupnosti podle vyhlášky č. 523/2020 Sb.","proc":"Věty do 20 slov."},
+  {"dnes":"Nákup jako veřejná zakázka malého rozsahu (VZMR) nebo přes Národní elektronický nástroj (NEN)","nove":"Nákup jako VZMR nebo přes NEN","proc":"Nadpis kratší; zkratky vysvětleny v prvním odstavci."},
+  {"dnes":"Vyžádat popis funkcí a bezpečnosti","nove":"beze změny","proc":"Sloveso + co."}],
+ "pristupnost":[
+  "Jediné H1; sekce H2, bloky H3; FAQ jako nativní details/summary.",
+  "Odkazy na PDF uvádějí formát v textu odkazu („(PDF)“).",
+  "Upozornění na katalog cloud computingu má ikonu + nadpis, ne jen barvu.",
+  "Karta podkladů je <aside> s nadpisem H2."],
+ "poznamky_pro_kodera":["PDF Bezpečnostní a technický přehled: doplnit skutečnou URL (dnes #).","Odpovědi FAQ převzaty z dnešního webu (obsah details)."],
+ "chybi_komponenta":["list-check na .section--grafit: odrážka (grafitový čtverec) není na tmavé ploše vidět – použit seznam s ikonou check; navrhuji .section--grafit .list-check li::before{background:var(--c-zvyraznovac)}"]
+} -->
+<section class="hero grid-bg">
+ <div class="container hero__grid" style="align-items:start">
+  <div class="stack-4">
+   <p class="t-stitek">Úřady a veřejná správa</p>
+   <h1 class="t-display">Zkoušky odborné způsobilosti s&nbsp;<span class="t-zvyraznit">doložitelným výsledkem</span></h1>
+   <p class="t-perex measure">Připravte soubory otázek a zkoušejte prezenčně v&nbsp;učebně nebo na papíře. Ke každému výsledku máte protokol, jehož pravost kdokoli ověří.</p>
+   <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="vyzkouset.html">Vyzkoušet demo</a></div>
+   <p class="t-maly">Demo je bez registrace. Rozhraní je navržené podle WCAG 2.1 AA.</p>
+  </div>
+  <aside class="card card--papir stack" aria-labelledby="podklady">
+   <p class="t-stitek">Podklady k&nbsp;nákupu</p>
+   <h2 id="podklady" class="t-nadpis">Ke stažení</h2>
+   <ul class="stack-2" style="list-style:none;padding:0">
+    <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:stahnout}}<a href="#">Bezpečnostní a technický přehled (PDF)</a></li>
+    <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:soubor}}<a href="zpracovatelska-smlouva.html">Zpracovatelská smlouva – vzor</a></li>
+    <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:soubor}}<a href="prohlaseni-o-pristupnosti.html">Prohlášení o přístupnosti</a></li>
+    <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:stit}}<a href="bezpecnost.html">Bezpečnost a ochrana dat</a></li>
+   </ul>
+  </aside>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="pouziti">
+ <div class="container stack-5">
+  <div class="stack-2"><p class="t-stitek">Typické použití</p><h2 id="pouziti" class="t-sekce">Jedna aplikace pro celou zkoušku</h2></div>
+  <div class="grid-3">
+   <div class="feature"><h3 class="t-nadpis">Zkoušky odborné způsobilosti</h3><p>Úřední test s&nbsp;povinnými otázkami a náhodným výběrem ze souborů otázek. Neaktuální otázky vyřadíte štítkem, aniž byste je mazali.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Prezenční zkouška v&nbsp;učebně</h3><p>Účastníci se připojí kódem nebo QR kódem, vy je vpouštíte do testu a sledujete živý panel. Každý dostane jinou variaci.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Tisk na papír</h3><p>Kde není počítač, vytisknete variace s&nbsp;odpovědními listy. Výsledky z&nbsp;papíru zapíšete a máte je ve stejné evidenci.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="potreby">
+ <div class="container stack-5">
+  <div class="stack-2"><p class="t-stitek">Co úřad potřebuje</p><h2 id="potreby" class="t-sekce">Zákon, GDPR, spis a nákup</h2></div>
+  <div class="grid-2">
+   <div class="feature"><h3 class="t-nadpis">Přístupnost podle zákona č.&nbsp;99/2019&nbsp;Sb.</h3><p>Rozhraní je navržené podle WCAG 2.1 AA (ČSN EN 301 549). Aplikace je zatím částečně v&nbsp;souladu. Známé nedostatky uvádíme v&nbsp;prohlášení o přístupnosti podle vyhlášky č.&nbsp;523/2020&nbsp;Sb.</p><p>Povinným subjektem jste vy: návrh prohlášení s&nbsp;technickými podklady převezmete, doplníte své kontakty a zveřejníte.</p><p><a href="prohlaseni-o-pristupnosti.html">Prohlášení o přístupnosti</a></p></div>
+   <div class="feature"><h3 class="t-nadpis">GDPR a zpracovatelská smlouva</h3><p>Úřad je správce, provozovatel zpracovatel podle čl.&nbsp;28 GDPR. Informace o zpracování najdou zkoušení přímo v&nbsp;aplikaci. Dobu uchování výsledků nastavíte sami, potom se údaje anonymizují.</p><p><a href="zpracovatelska-smlouva.html">Zpracovatelská smlouva (vzor)</a></p></div>
+   <div class="feature"><h3 class="t-nadpis">Průkaznost výsledku</h3><p>Protokol s&nbsp;ověřovacím kódem, provázaný záznam všech odevzdaných pokusů a časová osa průběhu každého pokusu. Dodatečná změna výsledku je zjistitelná.</p><p>Zda protokol postačí jako podklad ve správním řízení, posuzuje úřad podle předpisů, které na zkoušku dopadají.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Úřední záznamy a jejich ochrana</h3><p>Vybrané pokusy vyjmete z&nbsp;automatické anonymizace, pokud je musíte uchovat déle, například po dobu řízení. Úřední režim testu zakáže veřejné odkazy a výsledky zpřístupníte zkoušeným až ručně.</p><p>Aplikace nenahrazuje spisovou službu. Protokoly a výsledky exportujete a založíte do spisu podle svého spisového a skartačního plánu.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Nákup jako VZMR nebo přes NEN</h3><p>Službu nakoupíte jako veřejnou zakázku malého rozsahu (VZMR) nebo přes Národní elektronický nástroj (NEN). Pošleme cenovou nabídku a podklady do výzvy: technickou specifikaci, přehled bezpečnostních opatření, vzor zpracovatelské smlouvy a prohlášení o přístupnosti.</p><p>Fakturujeme podle smlouvy, bez zálohy. Smlouvu nad 50&nbsp;000&nbsp;Kč bez DPH uveřejňujete v&nbsp;registru smluv; s&nbsp;uveřejněním souhlasíme.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Cloud computing a kybernetická bezpečnost</h3>
+    <div class="alert" role="note">{{I:pozor}}<div><p class="alert__nadpis">Služba zatím není v&nbsp;katalogu cloud computingu</p><p>Katalog vede zákon č.&nbsp;365/2000&nbsp;Sb. Před nákupem proto posuďte, zda ji váš úřad pro daný účel smí využít.</p></div></div>
+    <p>Jste-li povinnou osobou podle zákona č.&nbsp;264/2025&nbsp;Sb., o kybernetické bezpečnosti, předáme přehled bezpečnostních opatření a návrh bezpečnostních požadavků na dodavatele do smlouvy.</p></div>
+   <div class="feature"><h3 class="t-nadpis">Vlastní doména a vzhled</h3><p>Aplikace může běžet na adrese úřadu (například <span class="t-kod">zkousky.vas-urad.cz</span>) s&nbsp;vaším logem. Zkoušené osoby neuvidí reklamu ani ceník.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section section--grafit" aria-labelledby="zadani">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack">
+   <p class="t-stitek">Co zadání obvykle požadují</p>
+   <h2 id="zadani" class="t-sekce">Pokryto bez vývoje na zakázku</h2>
+   <p>Zadání na systém pro zkoušky odborné způsobilosti obvykle obsahují podobné požadavky. Aplikace je dnes pokrývá bez vývoje na zakázku.</p>
+   <p>Připravujete nákup? Pošleme vám veřejný popis funkcí a bezpečnosti aplikace. Použijete ho například v&nbsp;předběžné tržní konzultaci. Zadávací dokumentaci ani specifikaci pro konkrétní zakázku za zadavatele nepřipravujeme.</p>
+   <div class="row"><a class="btn btn--hlavni" href="kontakt.html">Vyžádat popis funkcí a bezpečnosti</a></div>
+  </div>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:check}}<span>soubory otázek se štítky, verzemi a schvalováním;</span></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:check}}<span>povinné otázky a náhodný výběr ze souborů otázek, unikátní variace pro každého zkoušeného;</span></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:check}}<span>prezenční zkouška s&nbsp;čekárnou a živým panelem, prodloužení času, převzetí na jiném počítači;</span></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:check}}<span>tisk variací s&nbsp;odpovědními listy a klíči, zápis výsledků z&nbsp;papíru;</span></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:check}}<span>protokol PDF s&nbsp;ověřovacím kódem, veřejné ověření pravosti a časové razítko;</span></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:check}}<span>záznam průběhu pokusu a záznam změn v&nbsp;organizaci;</span></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:check}}<span>role a pobočky, ověření ve dvou krocích, přihlášení odkazem z&nbsp;e-mailu;</span></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:check}}<span>rozhraní navržené podle WCAG 2.1 AA a prohlášení o přístupnosti se známými nedostatky;</span></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:check}}<span>doba uchování a anonymizace, vyjmutí úředních záznamů, export všech dat;</span></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:check}}<span>vlastní doména a logo úřadu.</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="faq">
+ <div class="container grid-2" style="align-items:start">
+  <h2 id="faq" class="t-sekce">Časté otázky úřadů</h2>
+  <div class="faq">
+   <details><summary>Splňuje aplikace zákon o přístupnosti?</summary><div><p>Zatím částečně. Rozhraní je navržené podle WCAG 2.1 na úrovni AA (ČSN EN 301 549). Známé nedostatky uvádíme v&nbsp;<a href="prohlaseni-o-pristupnosti.html">prohlášení o přístupnosti</a> podle vyhlášky č.&nbsp;523/2020&nbsp;Sb. a průběžně je odstraňujeme. Povinným subjektem podle zákona č.&nbsp;99/2019&nbsp;Sb. je váš úřad: prohlášení převezmete jako návrh, doplníte své kontakty a zveřejníte.</p></div></details>
+   <details><summary>Jak je řešena ochrana osobních údajů?</summary><div><p>Úřad je správce, provozovatel je zpracovatel podle čl.&nbsp;28 GDPR. Uzavíráme zpracovatelskou smlouvu. Dobu uchování výsledků nastavíte sami, poté se údaje zkoušených anonymizují. Úřední záznamy lze z&nbsp;anonymizace vyjmout (ochrana záznamu).</p></div></details>
+   <details><summary>Dá se výsledek zkoušky použít jako podklad ve správním řízení?</summary><div><p>Aplikace vytvoří ke každému odevzdanému pokusu protokol s&nbsp;ověřovacím kódem. Každý záznam je provázaný s&nbsp;předchozími, takže dodatečná změna je zjistitelná. Pravost protokolu kdokoli ověří online. Zda protokol jako podklad postačí, posuzuje váš úřad podle předpisů, které na zkoušku dopadají.</p></div></details>
+   <details><summary>Je služba v katalogu cloud computingu?</summary><div><p>Zatím ne. Orgán veřejné správy smí podle zákona č.&nbsp;365/2000&nbsp;Sb. využívat cloud computing zapsaný v&nbsp;katalogu, který vede Digitální a informační agentura, s&nbsp;výjimkami podle zákona. Před nákupem proto posuďte, zda se tato povinnost na váš účel vztahuje. Rádi vám předáme podklady k&nbsp;bezpečnostním opatřením.</p></div></details>
+   <details><summary>Nahradí aplikace spisovou službu?</summary><div><p>Ne. Aplikace je nástroj pro přípravu a provedení zkoušky. Protokoly a výsledky exportujete (PDF a XLSX) a založíte do spisu podle svého spisového a skartačního plánu. Dobu uchování výsledků v&nbsp;aplikaci nastavíte podle něj. Zda zkouška splňuje náležitosti podle předpisu, který na ni dopadá, posuzuje váš úřad.</p></div></details>
+   <details><summary>Jak službu nakoupíme?</summary><div><p>Nejčastěji jako veřejnou zakázku malého rozsahu. Pošleme cenovou nabídku a podklady k&nbsp;výzvě. Smlouvu uzavíráme individuálně, včetně úrovně podpory a lhůt pro opravu vad. Fakturujeme podle smlouvy.</p></div></details>
+   <details><summary>Můžeme mít aplikaci na vlastní doméně a s vlastním logem?</summary><div><p>Ano. Organizace může mít vlastní adresu (třeba <span class="t-kod">zkousky.vas-urad.cz</span>) a své logo. Zkoušené osoby pak nevidí žádnou reklamu ani odkazy na provozovatele kromě povinných údajů.</p></div></details>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">Ukážeme vám aplikaci na vašem typu zkoušky</h2><p>Projdeme s&nbsp;vámi aplikaci online (asi 30&nbsp;minut) a připravíme zkušební přístup pro vaši organizaci.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a><a class="btn" href="cenik.html">Ceník</a></div>
+ </div>
+</section>
