@@ -23,7 +23,7 @@ const cred = process.env.TC_USER ? { username: process.env.TC_USER, password: pr
     for (const pth of paths) {
       const r = await p.goto(base + pth, { waitUntil: 'networkidle' }); await p.waitForTimeout(600);
       const i = await p.evaluate(async () => {
-        await document.fonts.ready; const cs = s => getComputedStyle(s);
+        await document.fonts.ready; const cs = (s, pe) => getComputedStyle(s, pe);
         const h = document.querySelector('h1'); const br = document.querySelector('.app-brand, .brand'); const bt = document.querySelector('.btn-primary');
         return { fonts: [...new Set([...document.fonts].filter(f => f.status === 'loaded').map(f => f.family))].join('+'),
           bg: cs(document.body).backgroundColor, h1: h ? cs(h).fontFamily.split(',')[0] + ' ' + cs(h).fontSize : '-',
