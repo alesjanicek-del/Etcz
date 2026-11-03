@@ -1,0 +1,190 @@
+/* =====================================================================
+   exam-test · REBRAND B · přepis vzhledu aplikace a webu
+   ---------------------------------------------------------------------
+   Princip: šablony (Twig) se NEMĚNÍ. Aplikace je Tailwind v4 a utility
+   (text-slate-600, bg-brand-700, rounded-md, text-sm …) čtou barvy,
+   velikosti a rohy z proměnných --color-*, --text-*, --radius-*.
+   Tento soubor je předefinuje na tokeny značky B a přestyluje vlastní
+   komponentní třídy (btn, badge, card, form-*, web-*).
+
+   Zapojení (AssetMapper + symfonycasts/tailwind-bundle):
+   1) písma: zkopírovat design-kit/assets/fonts/ → assets/fonts/ a
+      design-kit/assets/fonts.css → assets/styles/fonts.css
+   2) v assets/styles/app.css hned za @import "tailwindcss":
+        @import "./fonts.css";
+        @import "./rebrand-b.css";
+      (soubor obsahuje @theme – Tailwind z něj vygeneruje utility)
+   3) web.css: na konec @import "./rebrand-b-web.css" (sekce WEB níže
+      lze vyjmout do samostatného souboru) – nebo načíst tento soubor
+      i na webu po web.css.
+   4) logo: nahradit značku v hlavičce/menu za
+      <img src="{{ asset('images/brand/exam-test-logo.svg') }}" …>
+      (soubory z design-kit/assets/logo/), favicony podle logo manuálu.
+   Náhled: vloženo do živého webu a dema (implementace/nahled/*.png).
+   ===================================================================== */
+
+/* ---------- 1. TOKENY → Tailwind @theme ---------- */
+@theme {
+  /* písmo */
+  --font-sans: 'Schibsted Grotesk', Arial, Helvetica, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* neutrální škála (slate) → papír · linka · šedá · grafit */
+  --color-slate-50:  #F6F4EC;  /* pozadí stránky = papír */
+  --color-slate-100: #ECE9DF;
+  --color-slate-200: #D9DCD3;  /* linka */
+  --color-slate-300: #8A9098;  /* rámečky polí: 3,3:1 (WCAG 1.4.11) */
+  --color-slate-400: #8A9098;  /* jen dekorace / neaktivní */
+  --color-slate-500: #5A6068;  /* sekundární text (5,8:1) */
+  --color-slate-600: #5A6068;
+  --color-slate-700: #3A3F45;
+  --color-slate-800: #2C3035;
+  --color-slate-900: #22262A;  /* grafit */
+  --color-slate-950: #22262A;
+
+  /* značka: odkazy a fokus = propiska; hlavní tlačítko řeší .btn-primary */
+  --color-brand-50:  #FFF7D1;  /* aktivní/zvýrazněné pozadí = světlý zvýrazňovač */
+  --color-brand-100: #E7ECF8;
+  --color-brand-600: #1B3478;
+  --color-brand-700: #2747A0;  /* propiska – odkazy (7,6:1) */
+  --color-brand-800: #1B3478;
+
+  /* zvýrazňovač (amber) – pozadí; text vždy tmavý */
+  --color-amber-50:  #FFF7D1;
+  --color-amber-100: #FFF1B8;
+  --color-amber-200: #F8E08A;
+  --color-amber-300: #F2CB2E;
+  --color-amber-400: #F2CB2E;
+  --color-amber-500: #F2CB2E;
+  --color-amber-600: #8A7400;
+  --color-amber-800: #6B5A00;
+  --color-amber-900: #6B5A00;
+  --color-amber-950: #22262A;
+
+  /* stavy */
+  --color-green-50:  #E3F0E6;
+  --color-green-200: #BFDCC8;
+  --color-green-300: #BFDCC8;
+  --color-green-600: #1E6B45;
+  --color-green-700: #1E6B45;
+  --color-green-800: #1E6B45;
+  --color-green-900: #174F34;
+  --color-red-50:  #FBE7E4;
+  --color-red-100: #F7D4CF;
+  --color-red-200: #EDB1A8;
+  --color-red-300: #EDB1A8;
+  --color-red-500: #B3261E;
+  --color-red-600: #B3261E;
+  --color-red-700: #B3261E;
+  --color-red-800: #8F1E18;
+  --color-red-900: #8F1E18;
+  --color-sky-300: #C9D3DD;
+
+  /* typová škála: 7 velikostí aplikace → 5 rolí (13 · 15 · 17 · 22 · 30) */
+  --text-xs: 13px;   --text-xs--line-height: 1.35;
+  --text-sm: 15px;   --text-sm--line-height: 1.45;
+  --text-base: 17px; --text-base--line-height: 1.5;
+  --text-lg: 22px;   --text-lg--line-height: 1.25;
+  --text-xl: 22px;   --text-xl--line-height: 1.25;
+  --text-2xl: 30px;  --text-2xl--line-height: 1.15;
+  --text-3xl: 30px;  --text-3xl--line-height: 1.15;
+
+  /* rohy: 0 (kruh rounded-full zůstává) */
+  --radius-xs: 0; --radius-sm: 0; --radius-md: 0; --radius-lg: 0; --radius-xl: 0; --radius-2xl: 0;
+
+  /* stíny: jen tvrdé */
+  --shadow-xs: none; --shadow-sm: none;
+  --shadow-md: 4px 4px 0 #22262A; --shadow-lg: 4px 4px 0 #22262A;
+}
+
+/* ---------- 2. ZÁKLAD ---------- */
+@layer base {
+  body { font-family: var(--font-sans); color: #22262A; }
+  :focus-visible { outline: none; box-shadow: 0 0 0 3px #fff, 0 0 0 6px #2747A0; }
+  ::selection { background: #F2CB2E; color: #22262A; }
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]), select, textarea {
+    border: 2px solid #5A6068; border-radius: 0; background: #fff; color: #22262A; font-size: 17px; min-height: 44px;
+  }
+  input:hover, select:hover, textarea:hover { border-color: #22262A; }
+  input[aria-invalid=true], select[aria-invalid=true], textarea[aria-invalid=true] { border-color: #B3261E; background: #FBE7E4; }
+  input[type=checkbox], input[type=radio] { accent-color: #22262A; width: 20px; height: 20px; }
+  table th { font-family: var(--font-mono); font-weight: 500; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #5A6068; }
+  code, kbd, samp, .font-mono { font-family: var(--font-mono); }
+  b, strong, .font-semibold, .font-bold { font-weight: 700; }
+  .font-medium { font-weight: 500; }
+}
+
+/* ---------- 3. KOMPONENTY APLIKACE (existující třídy) ---------- */
+@layer components {
+  .btn { border-radius: 0 !important; border: 2px solid #22262A; background: #fff; color: #22262A; font-weight: 700; min-height: 44px; padding: 10px 18px; font-size: 17px; line-height: 1.2; box-shadow: none; }
+  .btn:hover { background: #FFF7D1; color: #22262A; }
+  .btn-primary { background: #22262A; color: #F6F4EC; border-color: #22262A; box-shadow: 4px 4px 0 #F2CB2E; }
+  .btn-primary:hover { background: #22262A; color: #fff; box-shadow: 6px 6px 0 #F2CB2E; }
+  .btn-secondary { background: #fff; color: #22262A; border-color: #22262A; }
+  .btn-ghost { background: transparent; border-color: transparent; text-decoration: underline; text-underline-offset: 3px; }
+  .btn-ghost:hover { background: #FFF7D1; }
+  .btn-danger { background: #fff; color: #B3261E; border-color: #B3261E; }
+  .btn-danger:hover { background: #FBE7E4; }
+  .btn-sm { min-height: 36px; padding: 6px 12px; font-size: 15px; }
+  .btn:disabled, .btn[aria-disabled=true] { background: #F6F4EC; color: #5A6068; border-color: #C9D3DD; box-shadow: none; }
+
+  /* stavové štítky: mono verzálky s rámečkem; význam nese i text */
+  .badge { border-radius: 0 !important; font-family: var(--font-mono); font-weight: 600; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; padding: 4px 8px; border: 1.5px solid currentColor; line-height: 1; }
+  .badge-green { color: #1E6B45; background: #E3F0E6; }
+  .badge-red   { color: #B3261E; background: #FBE7E4; }
+  .badge-amber { color: #22262A; background: #FFF7D1; border-color: #22262A; }
+  .badge-blue  { color: #2747A0; background: #E7ECF8; }
+  .badge-gray  { color: #5A6068; background: #fff; border-color: #C9D3DD; }
+
+  .card { border-radius: 0 !important; border: 2px solid #22262A; background: #fff; box-shadow: none; }
+  .card-body { padding: 24px; }
+  .form-row { gap: 6px; }
+  .form-help { font-size: 15px; color: #5A6068; }
+  .form-error { font-size: 15px; color: #B3261E; font-weight: 700; }
+  .table { font-size: 15px; }
+  .sr-only-focusable:focus { background: #22262A; color: #F6F4EC; padding: 8px 16px; font-weight: 700; }
+  .prose-q, .prose-help { color: #22262A; }
+  .prose-help h2 { font-size: 22px; font-weight: 700; }
+}
+
+/* ---------- 4. KOSTRA APLIKACE (utility ze šablony layoutu) ---------- */
+@layer utilities {
+  /* boční menu: aktivní položka plná grafitová (dnes bg-brand-50 text-brand-700) */
+  aside nav a[aria-current="page"], aside nav a[aria-current="true"] { background: #22262A !important; color: #F6F4EC !important; font-weight: 700; }
+  aside { background: #F6F4EC; border-right: 2px solid #22262A !important; }
+  header.flex.min-h-16 { background: #F6F4EC; }
+  /* demo lišta (dnes amber-50/300) → žlutý pruh */
+  .border-amber-300.bg-amber-50 { background: #F2CB2E !important; border-color: #22262A !important; color: #22262A; }
+  /* nadpisy sekcí menu (text-xs font-semibold tracking-wide) → štítek mono */
+  aside nav p.text-xs.font-semibold { font-family: var(--font-mono); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+}
+
+/* ---------- 5. WEB (web.css – třídy web-*) ---------- */
+:root { --web-brand: #22262A; --web-brand-dark: #22262A; --web-brand-soft: #FFF7D1; --web-ink: #22262A; --web-muted: #5A6068; --web-line: #D9DCD3; --web-bg-alt: #FFFFFF; }
+.web-header { background: #F6F4EC; border-bottom: 2px solid #22262A; }
+.web-logo { font-family: var(--font-mono); font-weight: 600; letter-spacing: -.02em; }
+.web-logo-mark { border-radius: 0 !important; background: #22262A !important; color: #F2CB2E !important; }
+.web-nav a { font-weight: 400; font-size: 15px; white-space: nowrap; }
+.web-header .btn, .web-nav-actions .btn { font-size: 15px; min-height: 40px; padding: 8px 14px; white-space: nowrap; }
+.web-header .btn-primary { box-shadow: 3px 3px 0 #F2CB2E; }
+.web-hero { background-color: #F6F4EC; background-image: linear-gradient(#C9D3DD66 1px, transparent 1px), linear-gradient(90deg, #C9D3DD66 1px, transparent 1px); background-size: 24px 24px; }
+.web-hero h1 { font-weight: 700; letter-spacing: -.03em; line-height: 1.05; }
+.web-eyebrow { font-family: var(--font-mono); font-weight: 500; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #5A6068; }
+.web-lead { font-size: 22px; line-height: 1.4; }
+.web-section-title { font-weight: 700; letter-spacing: -.02em; }
+.web-section { background: #F6F4EC; }
+.web-section-alt { background: #FFFFFF; }
+.web-card, .web-plan-card { border-radius: 0 !important; border: 2px solid #22262A; background: #fff; box-shadow: none; }
+.web-card-link:hover { background: #FFF7D1; }
+.web-check li::before { border-radius: 0; background: #22262A; }
+.web-btn-lg { min-height: 48px; }
+.web-cta { background: #F2CB2E; }
+.web-footer { background: #22262A; color: #F6F4EC; }
+.web-footer a { color: #F6F4EC; }
+.web-footer .web-muted, .web-footer small { color: #C7CBCF; }
+.web-shot { border: 2px solid #22262A; box-shadow: 4px 4px 0 #22262A; border-radius: 0; }
+.web-faq details { border-top: 2px solid #22262A; }
+.web-price { font-family: var(--font-mono); font-weight: 600; }
+.web-badge-soon { border-radius: 0; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .06em; }
+.web-menu-open, .web-menu-close { border-radius: 0 !important; border: 2px solid #22262A !important; background: #fff; font-weight: 700; }
+.web-menu-panel { border-radius: 0 !important; border: 2px solid #22262A; box-shadow: 4px 4px 0 #22262A; }
