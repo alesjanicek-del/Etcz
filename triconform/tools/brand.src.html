@@ -1,0 +1,369 @@
+<title>Triconform Týden</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+/* Layout: týdenní mřížka – stránka je rozdělená jako diář, kapitoly jsou „dny“ s pruhem vlevo */
+:root{
+  --papir:#F7F5EF; --papir-2:#EFECE3; --bila:#FFFFFF; --jedle:#163D33; --jedle-2:#0E2A23; --tlumena:#3F5E54;
+  --linka:#CFDCD5; --linka-silna:#5E7A70; --signal:#E2622B; --signal-text:#A2441A; --mata:#DCEBE3; --listi:#8DB8A6;
+  --chyba:#B3261E; --ok:#1F6B4A; --varovani-bg:#FCEBDD;
+  --f-text:'Public Sans', Arial, Helvetica, sans-serif; --f-display:'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --mrizka:color-mix(in srgb, var(--jedle) 8%, transparent);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --papir:#0F1F1A; --papir-2:#132621; --bila:#16302A; --jedle:#EEF3EF; --jedle-2:#FFFFFF; --tlumena:#B5CBC1;
+  --linka:#2C4A40; --linka-silna:#7FA394; --signal:#F08A5D; --signal-text:#F08A5D; --mata:#1D3A32; --listi:#5E8F7C;
+  --chyba:#F4A39B; --ok:#8FD1B3; --varovani-bg:#2E1E14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --papir:#0F1F1A; --papir-2:#132621; --bila:#16302A; --jedle:#EEF3EF; --jedle-2:#FFFFFF; --tlumena:#B5CBC1;
+  --linka:#2C4A40; --linka-silna:#7FA394; --signal:#F08A5D; --signal-text:#F08A5D; --mata:#1D3A32; --listi:#5E8F7C;
+  --chyba:#F4A39B; --ok:#8FD1B3; --varovani-bg:#2E1E14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--papir);color:var(--jedle);font-family:var(--f-text);font-size:17px;line-height:1.6;margin:0}
+.obal{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h1{font-size:clamp(36px,5vw,56px);line-height:1.05}
+h2{font-size:clamp(26px,3vw,32px);line-height:1.15}
+h3{font-size:20px;line-height:1.25;font-family:var(--f-text)}
+p{margin:0;max-width:68ch}
+a{color:var(--jedle);text-underline-offset:.2em}
+:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+.stitek{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--signal-text)}
+.tlum{color:var(--tlumena)}
+.mono{font-variant-numeric:tabular-nums}
+/* hlavička */
+.hlava{border-bottom:2px solid var(--jedle);background-color:var(--papir);background-image:linear-gradient(90deg,var(--mrizka) 1px,transparent 1px);background-size:calc(100%/7) 100%}
+.hlava .obal{padding-block:40px 48px;display:grid;gap:28px}
+.hlava-logo{width:min(320px,70vw);color:var(--jedle)}
+.teze{display:grid;gap:16px}
+.dny{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.dny span{padding:4px 10px;border:1.5px solid var(--jedle);border-radius:3px;background:var(--bila)}
+.dny .hned{border-left:6px solid var(--signal)}
+nav.obsah{border-bottom:1px solid var(--linka);background:var(--papir-2)}
+nav.obsah ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 18px}
+nav.obsah .obal{padding-block:12px}
+nav.obsah a{font-size:15px;text-decoration:none;display:inline-flex;min-height:32px;align-items:center}
+nav.obsah a:hover{text-decoration:underline}
+/* kapitoly */
+section.kap{padding-block:56px;border-bottom:1px solid var(--linka)}
+.kap-hlava{display:grid;gap:10px;margin-bottom:28px;padding-left:16px;border-left:6px solid var(--jedle)}
+.kap-hlava.hned{border-left-color:var(--signal)}
+.kap-hlava.pozdeji{border-left-color:var(--listi)}
+.mriz{display:grid;gap:16px}
+@media(min-width:720px){.m2{grid-template-columns:repeat(2,minmax(0,1fr))}.m3{grid-template-columns:repeat(3,minmax(0,1fr))}.m4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.plocha{background:var(--bila);border:1px solid var(--linka);border-radius:6px;padding:20px;display:grid;gap:10px;align-content:start;min-width:0}
+.plocha.tmava{background:#163D33;border-color:#163D33;color:#F7F5EF}
+.plocha.papir{background:#F7F5EF;border-color:#CFDCD5}
+.plocha .popis{font-size:13px;color:var(--tlumena)}
+.plocha.tmava .popis{color:#B5CBC1}
+.logo-box{min-height:140px;display:flex;align-items:center;justify-content:center;padding:24px}
+.logo-box svg{width:100%;max-width:280px;height:auto}
+/* barvy */
+.vzorek{border-radius:6px;overflow:hidden;border:1px solid var(--linka);background:var(--bila);min-width:0}
+.vzorek .pole{height:92px;display:flex;align-items:flex-end;padding:10px;font-size:13px;font-weight:700}
+.vzorek .info{padding:12px;display:grid;gap:2px;font-size:15px}
+.vzorek code{font-size:13px}
+/* tabulky */
+.tab{overflow-x:auto;border:1px solid var(--linka);border-radius:6px;background:var(--bila)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:10px 14px;border-top:1px solid var(--linka);vertical-align:top}
+thead th{border-top:0;font-size:13px;letter-spacing:.06em;text-transform:uppercase;background:var(--papir-2)}
+td.c{font-variant-numeric:tabular-nums;white-space:nowrap}
+/* komponenty */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border-radius:4px;font:inherit;font-weight:700;font-size:16px;text-decoration:none;border:2px solid var(--jedle);cursor:pointer;line-height:1.2}
+.btn-p{background:var(--jedle);color:var(--papir)}
+.btn-p:hover{box-shadow:inset 0 -4px 0 var(--signal)}
+.btn-s{background:var(--bila);color:var(--jedle)}
+.btn-s:hover{background:var(--mata)}
+.btn-sm{min-height:36px;padding:6px 12px;font-size:15px}
+.rada{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.st{justify-self:start;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:3px;border:1.5px solid currentColor;white-space:nowrap}
+.st-hned{color:var(--signal-text);background:var(--varovani-bg)}
+.st-tyden{color:var(--jedle);background:var(--bila)}
+.st-poz{color:var(--tlumena);background:var(--bila);border-color:var(--linka-silna)}
+.st-ok{color:var(--ok)}
+.st-ne{color:var(--chyba)}
+/* týden */
+.tyden{display:grid;gap:16px}
+@media(min-width:860px){.tyden{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.sloupec{background:var(--bila);border:1px solid var(--linka);border-top:8px solid var(--listi);border-radius:6px;padding:18px;display:grid;gap:12px;align-content:start;min-width:0}
+.sloupec.hned{border-top-color:var(--signal)}
+.sloupec.tyd{border-top-color:var(--jedle)}
+.sloupec h3{font-size:18px;display:flex;justify-content:space-between;gap:8px}
+.polozka{display:grid;gap:6px;padding-bottom:12px;border-bottom:1px solid var(--linka)}
+.polozka:last-child{border-bottom:0;padding-bottom:0}
+.polozka .kdy{font-size:13px;font-weight:700;color:var(--tlumena);font-variant-numeric:tabular-nums}
+.polozka .akce{justify-self:start}
+/* roviny */
+.tvar{width:40px;height:40px;flex:none}
+.rovina{display:flex;gap:14px;align-items:flex-start}
+/* pruh stavů */
+.pruh{display:flex;height:18px;border-radius:3px;overflow:hidden;border:1px solid var(--linka-silna)}
+.pruh span{display:block}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:15px}
+.leg i{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px;border:1px solid var(--linka-silna)}
+/* razítko */
+.razitko{display:inline-grid;gap:2px;border:2px solid var(--jedle);padding:10px 16px;transform:rotate(-2deg);font-variant-numeric:tabular-nums;justify-self:start}
+.razitko b{letter-spacing:.12em;font-size:15px}
+.razitko span{font-size:13px}
+/* formulář / kalkulačka */
+fieldset{border:0;margin:0;padding:0;display:grid;gap:8px;min-width:0}
+legend{font-weight:700;margin-bottom:6px;padding:0}
+.volby{display:flex;flex-wrap:wrap;gap:8px}
+.volby label{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:6px 14px;border:1.5px solid var(--linka-silna);border-radius:4px;background:var(--bila);cursor:pointer;font-size:15px}
+.volby input{accent-color:var(--jedle);width:18px;height:18px;margin:0}
+.volby label:has(input:checked){border-color:var(--jedle);box-shadow:inset 0 -4px 0 var(--signal);font-weight:700}
+.vysledek{display:grid;gap:4px;padding:18px;border-left:6px solid var(--signal);background:var(--bila);border-radius:4px}
+.vysledek output{font-family:var(--f-display);font-size:40px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+/* mock obrazovky */
+.okno{border:2px solid var(--jedle);border-radius:6px;overflow:hidden;background:var(--papir)}
+.okno-lista{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;padding:10px 16px;border-bottom:2px solid var(--jedle);background:var(--papir);font-size:15px}
+.okno-lista .akt{font-weight:700;box-shadow:inset 0 -4px 0 var(--signal);padding-bottom:4px}
+.okno-telo{padding:20px;display:grid;gap:16px;min-width:0}
+.web-hero{padding:28px 20px;display:grid;gap:14px;background-image:linear-gradient(90deg,var(--mrizka) 1px,transparent 1px);background-size:calc(100%/7) 100%}
+.web-hero h3{font-family:var(--f-display);font-size:clamp(24px,3vw,34px);line-height:1.1}
+.mini-logo{width:130px;color:var(--jedle);flex:none}
+.zakaz{display:grid;gap:8px;padding:16px;border-radius:6px;border:1.5px dashed var(--linka-silna);background:var(--bila)}
+.zakaz b{color:var(--chyba)}
+.soubory li{margin-bottom:6px}
+.pata{padding-block:40px 64px;font-size:15px;color:var(--tlumena)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<path id="slovo" d="{{WORD}}"/>
+<symbol id="logo" viewBox="0 0 6299 1289"><g transform="scale(8.05804)"><rect x="8" y="24" width="144" height="28" fill="var(--l1,#E2622B)"/><rect x="8" y="66" width="104" height="28" fill="var(--l2,#163D33)"/><rect x="8" y="108" width="62" height="28" fill="var(--l3,#8DB8A6)"/><path d="M86 118 L102 134 L140 92" fill="none" stroke="var(--l4,#163D33)" stroke-width="13" stroke-linecap="square"/></g><use href="#slovo" transform="translate(1537.6,1095.9)" fill="currentColor"/></symbol>
+<symbol id="znacka" viewBox="0 0 160 160"><rect x="8" y="24" width="144" height="28" fill="var(--l1,#E2622B)"/><rect x="8" y="66" width="104" height="28" fill="var(--l2,#163D33)"/><rect x="8" y="108" width="62" height="28" fill="var(--l3,#8DB8A6)"/><path d="M86 118 L102 134 L140 92" fill="none" stroke="var(--l4,#163D33)" stroke-width="13" stroke-linecap="square"/></symbol>
+</defs></svg>
+
+<header class="hlava">
+  <div class="obal">
+    <svg class="hlava-logo" style="--l2:var(--jedle);--l4:var(--jedle)" viewBox="0 0 6299 1289" role="img" aria-label="Triconform"><use href="#logo"/></svg>
+    <div class="teze">
+      <span class="stitek">Brand manuál · směr B „Týden“ · verze 1.0 · 3. 11. 2026</span>
+      <h1>Každý týden víte, co udělat</h1>
+      <p class="tlum">Triconform hlídá povinnosti podle NIS2, CRA a AI Act za firmy, které na kybernetickou bezpečnost mají jednoho nebo dva lidi. Značka proto nevypadá jako „platforma“. Vypadá jako dobrý diář: tři úrovně naléhavosti, klidná barva, jasné další kroky.</p>
+    </div>
+    <div class="dny" aria-label="Tři úrovně naléhavosti"><span class="hned">Hned</span><span>Tento týden</span><span>Později</span></div>
+  </div>
+</header>
+<nav class="obsah" aria-label="Obsah manuálu"><div class="obal"><ul>
+  <li><a href="#logo-kap">Logo</a></li><li><a href="#barvy">Barvy</a></li><li><a href="#pismo">Písmo</a></li><li><a href="#nalehavost">Naléhavost</a></li><li><a href="#roviny">Roviny</a></li><li><a href="#komponenty">Komponenty</a></li><li><a href="#texty">Texty</a></li><li><a href="#obrazovky">Obrazovky</a></li><li><a href="#zavedeni">Zavedení</a></li>
+</ul></div></nav>
+
+<main>
+<section class="kap" id="logo-kap"><div class="obal">
+  <div class="kap-hlava"><span class="stitek">Logo</span><h2>Tři pruhy a odškrtnutí</h2>
+  <p class="tlum">Pruhy jsou úrovně naléhavosti: Hned (signální oranžová), Tento týden (jedle), Později (listí). Zároveň jsou to tři roviny produktu. Odškrtnutí říká, že hotové věci odcházejí ze seznamu. Nápis je Source Serif 4 Bold převedený na křivky, malými písmeny.</p></div>
+  <div class="mriz m2">
+    <div class="plocha papir"><div class="logo-box"><svg viewBox="0 0 6299 1289" role="img" aria-label="Logo pozitiv" style="color:#163D33"><use href="#logo"/></svg></div><span class="popis">Pozitiv · na papíru a bílé · triconform-logo.svg</span></div>
+    <div class="plocha tmava"><div class="logo-box"><svg viewBox="0 0 6299 1289" role="img" aria-label="Logo negativ" style="color:#F7F5EF;--l2:#F7F5EF;--l4:#F7F5EF"><use href="#logo"/></svg></div><span class="popis">Negativ · na jedli · triconform-logo-negativ.svg</span></div>
+    <div class="plocha papir"><div class="logo-box"><svg viewBox="0 0 6299 1289" role="img" aria-label="Logo jednobarevné" style="color:#163D33;--l1:#163D33;--l2:#163D33;--l3:#163D33;--l4:#163D33"><use href="#logo"/></svg></div><span class="popis">Jednobarevné · razítko, fax, gravura · triconform-logo-mono-tmave.svg</span></div>
+    <div class="plocha papir"><div class="logo-box" style="gap:28px;flex-wrap:wrap">
+      <svg viewBox="0 0 160 160" style="width:96px" role="img" aria-label="Značka"><use href="#znacka"/></svg>
+      <svg viewBox="0 0 32 32" style="width:32px" role="img" aria-label="Favicona 32 px"><rect width="32" height="32" fill="#F7F5EF"/><rect x="3" y="5" width="26" height="6" fill="#E2622B"/><rect x="3" y="13" width="19" height="6" fill="#163D33"/><rect x="3" y="21" width="11" height="6" fill="#8DB8A6"/></svg>
+      <svg viewBox="0 0 32 32" style="width:16px" role="img" aria-label="Favicona 16 px"><rect width="32" height="32" fill="#F7F5EF"/><rect x="3" y="5" width="26" height="6" fill="#E2622B"/><rect x="3" y="13" width="19" height="6" fill="#163D33"/><rect x="3" y="21" width="11" height="6" fill="#8DB8A6"/></svg>
+    </div><span class="popis">Značka samostatně · favicona bez odškrtnutí, pruhy zesílené pro 16–32 px</span></div>
+  </div>
+  <div class="mriz m3" style="margin-top:16px">
+    <div class="plocha"><h3>Konstrukce</h3><p>Mřížka 160 × 160. Pruhy 144 / 104 / 62 na výšku 28, mezera 14. Odškrtnutí tah 13. Nápis sedí na spodní hraně dolního pruhu.</p></div>
+    <div class="plocha"><h3>Ochranná zóna</h3><p>Kolem loga volné místo alespoň o výšce jednoho pruhu. V hlavičce webu a aplikace to je 8 px.</p></div>
+    <div class="plocha"><h3>Nejmenší velikost</h3><p>Logo s nápisem 20 px na výšku (web 34 px, aplikace 30 px). Pod 20 px jen značka nebo favicona.</p></div>
+  </div>
+  <div class="mriz m4" style="margin-top:16px">
+    <div class="zakaz"><b>Neměnit</b><span>pořadí ani barvy pruhů. Oranžová je vždy nahoře.</span></div>
+    <div class="zakaz"><b>Nepoužívat</b><span>přechody, stíny a obrysy kolem loga.</span></div>
+    <div class="zakaz"><b>Nedávat</b><span>pozitiv na tmavou nebo rušnou fotku. Tam patří negativ.</span></div>
+    <div class="zakaz"><b>Nepsat</b><span>nápis jiným písmem ani velkým T. Text „Triconform“ ve větě píšeme normálně.</span></div>
+  </div>
+</div></section>
+
+<section class="kap" id="barvy"><div class="obal">
+  <div class="kap-hlava"><span class="stitek">Barvy</span><h2>Jedle na papíru, oranžová jen pro „Hned“</h2>
+  <p class="tlum">Oranžová nikdy nenese text na světlém pozadí. Pro text v oranžovém tónu je tmavší „signální text“. Barva nikdy neříká nic sama: stav vždy nese i slovo.</p></div>
+  <div class="mriz m4">
+    <div class="vzorek"><div class="pole" style="background:#163D33;color:#F7F5EF">Aa 11,0:1</div><div class="info"><b>Jedle</b><code>#163D33</code><span class="tlum">text, tlačítka, linky</span></div></div>
+    <div class="vzorek"><div class="pole" style="background:#F7F5EF;color:#163D33;border-bottom:1px solid #CFDCD5">Pozadí</div><div class="info"><b>Papír</b><code>#F7F5EF</code><span class="tlum">plocha stránky</span></div></div>
+    <div class="vzorek"><div class="pole" style="background:#E2622B;color:#163D33">Jen výplň</div><div class="info"><b>Signál</b><code>#E2622B</code><span class="tlum">pruh „Hned“, fokus</span></div></div>
+    <div class="vzorek"><div class="pole" style="background:#FFFFFF;color:#A2441A;border-bottom:1px solid #CFDCD5">Aa 6,2:1</div><div class="info"><b>Signální text</b><code>#A2441A</code><span class="tlum">štítek „Hned“, nadtitulky</span></div></div>
+    <div class="vzorek"><div class="pole" style="background:#DCEBE3;color:#163D33">Aa 10,4:1</div><div class="info"><b>Máta</b><code>#DCEBE3</code><span class="tlum">najetí myší, výběr</span></div></div>
+    <div class="vzorek"><div class="pole" style="background:#8DB8A6;color:#163D33">Dekorace</div><div class="info"><b>Listí</b><code>#8DB8A6</code><span class="tlum">pruh „Později“</span></div></div>
+    <div class="vzorek"><div class="pole" style="background:#FFFFFF;color:#3F5E54;border-bottom:1px solid #CFDCD5">Aa 7,1:1</div><div class="info"><b>Tlumená</b><code>#3F5E54</code><span class="tlum">vedlejší text</span></div></div>
+    <div class="vzorek"><div class="pole" style="background:#CFDCD5;color:#163D33">Linka</div><div class="info"><b>Linka</b><code>#CFDCD5</code><span class="tlum">okraje karet; pole formuláře #5E7A70</span></div></div>
+  </div>
+  <div class="tab" style="margin-top:20px"><table>
+    <thead><tr><th>Token</th><th>Světlý motiv</th><th>Tmavý motiv</th><th>Kontrast textu</th></tr></thead>
+    <tbody>
+      <tr><td>Pozadí / plocha</td><td class="c">#F7F5EF / #FFFFFF</td><td class="c">#0F1F1A / #16302A</td><td>–</td></tr>
+      <tr><td>Text</td><td class="c">#163D33</td><td class="c">#EEF3EF</td><td class="c">11,0 : 1 · 15,2 : 1</td></tr>
+      <tr><td>Vedlejší text</td><td class="c">#3F5E54</td><td class="c">#B5CBC1</td><td class="c">6,6 : 1 · 8,2 : 1</td></tr>
+      <tr><td>Signál (výplň) / text</td><td class="c">#E2622B / #A2441A</td><td class="c">#F08A5D</td><td class="c">5,7 : 1 · 6,9 : 1</td></tr>
+      <tr><td>Hlavní tlačítko</td><td class="c">#163D33 + text #F7F5EF</td><td class="c">#DCEBE3 + text #0F1F1A</td><td class="c">11,0 : 1 · 13,8 : 1</td></tr>
+      <tr><td>Splněno / chyba</td><td class="c">#1F6B4A / #B3261E</td><td class="c">#8FD1B3 / #F4A39B</td><td class="c">≥ 6 : 1</td></tr>
+    </tbody></table></div>
+</div></section>
+
+<section class="kap" id="pismo"><div class="obal">
+  <div class="kap-hlava"><span class="stitek">Písmo</span><h2>Patkový titulek, bezpatkové rozhraní</h2>
+  <p class="tlum">Source Serif 4 dává nadpisům hlas diáře a dokladu. Public Sans je čitelné rozhraní s českou diakritikou. Obě písma mají licenci OFL a jsou hostovaná na vlastním serveru (CSP bez cizích zdrojů).</p></div>
+  <div class="mriz m2">
+    <div class="plocha"><span class="popis">Source Serif 4 · 600–700 · nadpisy H1 a H2, ceny, logo</span><p style="font-family:var(--f-display);font-size:40px;font-weight:700;line-height:1.1">Co řešit tento týden</p></div>
+    <div class="plocha"><span class="popis">Public Sans · 400 a 700 · text, tlačítka, štítky, tabulky</span><p style="font-size:17px">Smlouva s dodavatelem cloudu nemá bezpečnostní ujednání. Doplňte ho do 30. 4. 2027.</p><p style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Štítek · 13 px</p></div>
+  </div>
+  <div class="tab" style="margin-top:20px"><table>
+    <thead><tr><th>Role</th><th>Web</th><th>Aplikace</th><th>Písmo</th><th>Použití</th></tr></thead>
+    <tbody>
+      <tr><td><b>Titulek</b></td><td class="c">48 px</td><td class="c">30 px</td><td>Source Serif 4 Bold</td><td>H1, jeden na stránku</td></tr>
+      <tr><td><b>Nadpis</b></td><td class="c">28 px</td><td class="c">22 px</td><td>Source Serif 4 Bold</td><td>H2, nadpis karty</td></tr>
+      <tr><td><b>Text</b></td><td class="c">18 px</td><td class="c">16 px</td><td>Public Sans</td><td>odstavce, položky, H3 tučně</td></tr>
+      <tr><td><b>Malý text</b></td><td class="c">15 px</td><td class="c">15 px</td><td>Public Sans</td><td>menu, nápověda, poznámky</td></tr>
+      <tr><td><b>Štítek</b></td><td class="c">13 px</td><td class="c">13 px</td><td>Public Sans Bold, verzálky</td><td>stavy, nadtitulky, záhlaví tabulek</td></tr>
+    </tbody></table></div>
+  <p class="tlum" style="margin-top:12px">Dnes má úvodní stránka webu 15 velikostí písma. Nově jich bude pět, stejných pro web i aplikaci.</p>
+</div></section>
+
+<section class="kap" id="nalehavost"><div class="obal">
+  <div class="kap-hlava hned"><span class="stitek">Naléhavost</span><h2>Hned · Tento týden · Později</h2>
+  <p class="tlum">Jádro značky i produktu. Každá úroveň má pruh, slovo a pořadí. Barva pruhu je jen třetí nositel významu, takže to funguje i pro barvoslepé a v černobílém tisku.</p></div>
+  <div class="mriz m3">
+    <div class="plocha" style="border-left:8px solid var(--signal)"><span class="st st-hned">Hned</span><p>Aktivně zneužívaná zranitelnost, běžící lhůta hlášení (24 h / 72 h), úkol po termínu. Okamžité upozornění.</p></div>
+    <div class="plocha" style="border-left:8px solid var(--jedle)"><span class="st st-tyden">Tento týden</span><p>Termíny do neděle: potvrzení hlášení, test záloh, seznámení se směrnicí. Týdenní souhrn.</p></div>
+    <div class="plocha" style="border-left:8px solid var(--listi)"><span class="st st-poz">Později</span><p>Lhůty za 2 až 60 dní a roční povinnosti. V kalendáři, bez upozorňování.</p></div>
+  </div>
+</div></section>
+
+<section class="kap" id="roviny"><div class="obal">
+  <div class="kap-hlava"><span class="stitek">Roviny</span><h2>Tvar místo barvy</h2>
+  <p class="tlum">Dnes má každá rovina vlastní barvu, která soupeří s barvami stavů. Nově se roviny liší tvarem a názvem. Ikona tvaru stojí v menu, na kartách webu a v hlavičce dokladu.</p></div>
+  <div class="mriz m3">
+    <div class="plocha rovina"><svg class="tvar" viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="4" width="32" height="32" fill="var(--jedle)"/></svg><div><h3>Organizace</h3><p class="tlum">NIS2, DORA · opatření, incidenty, dodavatelé</p></div></div>
+    <div class="plocha rovina"><svg class="tvar" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 L37 36 L3 36 Z" fill="var(--jedle)"/></svg><div><h3>Výrobek</h3><p class="tlum">CRA · výrobky a verze, SBOM, hlášení</p></div></div>
+    <div class="plocha rovina"><svg class="tvar" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="var(--jedle)"/></svg><div><h3>AI</h3><p class="tlum">AI Act · registr nástrojů, AI gramotnost</p></div></div>
+  </div>
+</div></section>
+
+<section class="kap" id="komponenty"><div class="obal">
+  <div class="kap-hlava"><span class="stitek">Komponenty</span><h2>Méně stínů, víc pořádku</h2>
+  <p class="tlum">Rohy 4 px (ovládací prvky) a 6 px (karty). Žádné stíny. Okraje 1 px, hlavní linky 2 px jedle. Aktivní položka menu má oranžovou linku zespodu.</p></div>
+  <div class="mriz m2">
+    <div class="plocha"><h3>Tlačítka</h3><div class="rada"><a class="btn btn-p" href="#komponenty">Vyzkoušet ukázku hned</a><a class="btn btn-s" href="#komponenty">Požádat o 30 dní zdarma</a></div><div class="rada"><button class="btn btn-s btn-sm" type="button">Rozhodnout</button><button class="btn btn-s btn-sm" type="button">Otevřít</button></div><span class="popis">Jedno hlavní tlačítko na obrazovku. Sloveso první. Výška 44 px, malé 36 px s plochou 44 px.</span></div>
+    <div class="plocha"><h3>Štítky stavů</h3><div class="rada"><span class="st st-hned">Zneužívá se</span><span class="st st-hned">Po termínu 40 dní</span><span class="st st-tyden">Tento týden</span><span class="st st-poz">Do 60 dní</span></div><div class="rada"><span class="st st-ok">Zavedeno</span><span class="st st-tyden">V procesu</span><span class="st st-ne">Nezavedeno</span><span class="st st-poz">Neposouzeno</span></div><span class="popis">Hranaté, verzálky 13 px, rámeček v barvě textu. Místo emoji ⚠ ⛔ ikony SVG nebo jen slovo.</span></div>
+    <div class="plocha"><h3>Stav po oblastech</h3><p>Zavedeno <b class="mono">4 z 21</b> opatření</p>
+      <div class="pruh" role="img" aria-label="Zavedeno 4, v procesu 2, nezavedeno 1, neposouzeno 14 z 21"><span style="width:19%;background:var(--jedle)"></span><span style="width:9.5%;background:var(--listi)"></span><span style="width:4.8%;background:var(--signal)"></span><span style="flex:1;background:var(--papir-2)"></span></div>
+      <div class="leg"><span><i style="background:var(--jedle)"></i>Zavedeno 4</span><span><i style="background:var(--listi)"></i>V procesu 2</span><span><i style="background:var(--signal)"></i>Nezavedeno 1</span><span><i style="background:var(--papir-2)"></i>Neposouzeno 14</span></div>
+      <span class="popis">Dnes pruh ukazuje jen „zavedeno“. Nově všechny čtyři stavy, se slovy a čísly.</span></div>
+    <div class="plocha"><h3>Razítko dokladu</h3><div class="razitko"><b>OVĚŘENO</b><span>kód 7F3K-29QD · 3. 11. 2026 14:02</span><span>triconform.com/overeni</span></div><span class="popis">Jen na dokladu pro odběratele (PDF). Jedle, bez červené. Kdokoli ověří kód online i v offline balíčku.</span></div>
+  </div>
+</div></section>
+
+<section class="kap" id="texty"><div class="obal">
+  <div class="kap-hlava"><span class="stitek">Texty</span><h2>Říkáme, co uděláte, ne co systém umí</h2>
+  <p class="tlum">Česky, krátce, bez žargonu. Nikdy neslibujeme „shodu“, „soulad“ ani „certifikaci“, jen doklady o plnění povinností. Rozhoduje firma.</p></div>
+  <div class="tab"><table>
+    <thead><tr><th>Místo</th><th>Dnes</th><th>Nově</th></tr></thead>
+    <tbody>
+      <tr><td>Nadpis webu</td><td>NIS2, CRA a AI Act v jedné přehledné evidenci</td><td><b>Každý týden víte, co udělat pro NIS2, CRA a AI Act</b></td></tr>
+      <tr><td>Hlavní tlačítko webu</td><td>Vyzkoušet zdarma (otevře e-mail)</td><td><b>Vyzkoušet ukázku hned</b></td></tr>
+      <tr><td>Druhé tlačítko</td><td>Vyzkoušet aplikaci</td><td><b>Požádat o 30 dní zdarma</b> (formulář)</td></tr>
+      <tr><td>Třetí volba</td><td>Domluvit ukázku (e-mail)</td><td>odkaz <b>Domluvit ukázku s průvodcem</b></td></tr>
+      <tr><td>Ceník, 9 tlačítek</td><td>Objednat nebo se zeptat</td><td><b>Chci pásmo S</b> · Chci pásmo M · …</td></tr>
+      <tr><td>Ceník, vysvětlení</td><td>Dvě roviny = cena za 1 rovinu a jedna další rovina</td><td><b>Každá další rovina má pevnou cenu.</b> Všechny tři vycházejí levněji.</td></tr>
+      <tr><td>Menu aplikace</td><td>Co musíme mít / Opatření</td><td><b>Opatření</b></td></tr>
+      <tr><td>Menu aplikace</td><td>Dodavatelé a software</td><td><b>Dodavatelé</b> · <b>Software</b></td></tr>
+      <tr><td>Menu aplikace</td><td>Pro odběratele a kontrolu</td><td><b>Doklady</b></td></tr>
+      <tr><td>Tento týden, akce</td><td>Vyřešit</td><td><b>Rozhodnout</b> (zranitelnost) · <b>Otevřít</b> (úkol) · <b>Potvrdit</b> (hlášení)</td></tr>
+      <tr><td>Data</td><td>2027-04 · Q2/2027</td><td>duben 2027 · 2. čtvrtletí 2027</td></tr>
+    </tbody></table></div>
+</div></section>
+
+<section class="kap" id="obrazovky"><div class="obal">
+  <div class="kap-hlava"><span class="stitek">Obrazovky</span><h2>Web, ceník a „Tento týden“ ve směru B</h2>
+  <p class="tlum">Návrhy s ukázkovými daty z veřejné ukázky aplikace. Ceny jsou skutečné a neměnné.</p></div>
+
+  <div class="okno" aria-label="Návrh úvodu webu">
+    <div class="okno-lista"><svg class="mini-logo" viewBox="0 0 6299 1289" role="img" aria-label="Triconform"><use href="#logo" style="--l2:var(--jedle);--l4:var(--jedle)"/></svg><span>Výrobek</span><span>Organizace</span><span>AI</span><span>Ceník</span><span>Bezpečnost</span></div>
+    <div class="web-hero"><span class="stitek">Online služba pro malé a střední firmy</span><h3>Každý týden víte, co udělat pro NIS2, CRA a AI Act</h3><p>Triconform vám každý týden ukáže, co je potřeba udělat. Pohlídá lhůty a z toho, co uděláte, připraví doklady pro vedení, odběratele i kontrolu.</p><div class="rada"><a class="btn btn-p" href="#obrazovky">Vyzkoušet ukázku hned</a><a class="btn btn-s" href="#obrazovky">Požádat o 30 dní zdarma</a></div><p style="font-size:15px" class="tlum">Ukázka běží hned, bez registrace. <a href="#obrazovky">Domluvit ukázku s průvodcem</a></p></div>
+  </div>
+
+  <div class="mriz m2" style="margin-top:20px">
+    <form class="plocha" id="kalk" aria-labelledby="kalk-h">
+      <h3 id="kalk-h">Kolik zaplatíte · návrh ceníku</h3>
+      <fieldset><legend>Počet zaměstnanců</legend><div class="volby">
+        <label><input type="radio" name="pasmo" id="p-xs" value="XS">10–24</label>
+        <label><input type="radio" name="pasmo" id="p-s" value="S" checked>do 49</label>
+        <label><input type="radio" name="pasmo" id="p-m" value="M">50–249</label>
+        <label><input type="radio" name="pasmo" id="p-l" value="L">250–499</label></div></fieldset>
+      <fieldset id="roviny-fs"><legend>Roviny</legend><div class="volby">
+        <label><input type="radio" name="roviny" id="r-1" value="1">1 rovina</label>
+        <label><input type="radio" name="roviny" id="r-2" value="2">2 roviny</label>
+        <label><input type="radio" name="roviny" id="r-3" value="3" checked>všechny 3</label></div></fieldset>
+      <div class="vysledek"><span class="stitek" id="v-pasmo">Pásmo S · všechny 3 roviny</span><output id="v-cena" for="p-s r-3" aria-live="polite">26 900 Kč</output><span class="tlum" id="v-pozn">za rok, bez DPH · 5 výrobků v ceně</span></div>
+      <a class="btn btn-p" id="v-btn" href="#kalk">Chci pásmo S</a>
+    </form>
+    <div class="plocha" style="align-content:start">
+      <h3>Proč kalkulačka</h3>
+      <p>Dnes si návštěvník cenu sčítá ze čtyř karet a věty o rovinách. Nově zvolí dvě věci a vidí jednu částku. Pod kalkulačkou zůstává srovnávací tabulka všech pásem.</p>
+      <p>Bez JavaScriptu funguje jako tabulka. S ním jen vypíše částku do pole, které čtečka oznámí.</p>
+      <p class="tlum" style="font-size:15px">Pásmo XS „Dodavatel“ má jednu cenu 9 900 Kč a nezahrnuje katalog opatření NIS2 ani výrobky, proto se u něj volba rovin skryje.</p>
+    </div>
+  </div>
+
+  <div class="okno" style="margin-top:20px" aria-label="Návrh obrazovky Tento týden">
+    <div class="okno-lista"><svg class="mini-logo" viewBox="0 0 6299 1289" role="img" aria-label="Triconform"><use href="#logo" style="--l2:var(--jedle);--l4:var(--jedle)"/></svg><span class="akt">Tento týden</span><span>Úkoly</span><span>Opatření</span><span>Incidenty</span><span>Dodavatelé</span><span>Software</span><span>Výrobky</span><span>Doklady</span></div>
+    <div class="okno-telo">
+      <div class="rada" style="justify-content:space-between"><h3 style="font-family:var(--f-display);font-size:28px">Úterý 3. listopadu · týden 45</h3><span>Hotovo tento týden: <b class="mono">3 z 8</b></span></div>
+      <div class="tyden">
+        <div class="sloupec hned"><h3>Hned <span class="mono">3</span></h3>
+          <div class="polozka"><span class="st st-hned">Zneužívá se</span><p><b>FortiGate (FortiOS)</b> – útočníci zneužívají známou chybu.</p><button class="btn btn-s btn-sm akce" type="button">Rozhodnout</button></div>
+          <div class="polozka"><span class="st st-hned">Zneužívá se</span><p><b>Windows Server 2012 R2</b> – bez oprav od výrobce.</p><button class="btn btn-s btn-sm akce" type="button">Rozhodnout</button></div>
+          <div class="polozka"><span class="st st-hned">Po termínu 40 dní</span><p>Konec podpory: server účetnictví a skladu</p><button class="btn btn-s btn-sm akce" type="button">Otevřít</button></div>
+        </div>
+        <div class="sloupec tyd"><h3>Tento týden <span class="mono">3</span></h3>
+          <div class="polozka"><span class="kdy">čt 5. 11. · 23:27</span><p>Potvrdit přijetí hlášení zranitelnosti CVD-0001</p><button class="btn btn-s btn-sm akce" type="button">Potvrdit</button></div>
+          <div class="polozka"><span class="kdy">so 7. 11.</span><p>Otestovat obnovu záloh serveru účetnictví</p><button class="btn btn-s btn-sm akce" type="button">Otevřít</button></div>
+          <div class="polozka"><span class="kdy">út 10. 11.</span><p>Seznámení se směrnicí: Pravidla bezpečného chování</p><button class="btn btn-s btn-sm akce" type="button">Otevřít</button></div>
+        </div>
+        <div class="sloupec"><h3>Později <span class="mono">5</span></h3>
+          <div class="polozka"><span class="kdy">14. 11. 2026</span><p>NIS2: nahlásit NÚKIB kontaktní a doplňující údaje</p></div>
+          <div class="polozka"><span class="kdy">28. 2. 2027</span><p>Vedení se seznámí se stavem plnění opatření</p></div>
+          <div class="polozka"><span class="kdy">a 3 další</span><p><a href="#obrazovky">Kalendář povinností a lhůt</a></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="tlum" style="margin-top:12px;font-size:15px">Na mobilu jsou sloupce pod sebou a „Hned“ je vždy první. Každá položka má stejnou kostru: štítek nebo datum, co, jedna akce.</p>
+</div></section>
+
+<section class="kap" id="zavedeni"><div class="obal">
+  <div class="kap-hlava pozdeji"><span class="stitek">Zavedení</span><h2>Dvě vrstvy, první bez zásahu do HTML</h2></div>
+  <div class="mriz m2">
+    <div class="plocha"><h3>Vrstva 1 · vzhled</h3><p>Jeden soubor CSS pro web a jeden pro aplikaci přepíše barvy, písmo, rohy a komponenty a vymění logo. Šablony se nemění. Ověřeno vložením do živého webu a ukázky: 0 chyb přístupnosti (axe, WCAG 2.2 AA) na šesti stránkách ve světlém i tmavém motivu, na 1280 i 375 px.</p></div>
+    <div class="plocha"><h3>Vrstva 2 · šablony a texty</h3><p>Tlačítka a formulář místo e-mailu, nadpis, kalkulačka ceníku, názvy v menu, kostra položek „Tento týden“, pruh stavů, logo v šablonách, razítko na dokladu. Každý bod je samostatná změna s testy.</p></div>
+  </div>
+  <ul class="soubory" style="margin-top:20px">
+    <li>Zdroj: <a href="https://github.com/alesjanicek-del/Etcz/tree/claude/design-kit/triconform">github.com/alesjanicek-del/Etcz → triconform/</a></li>
+    <li><code>implementace/rebrand-web.css</code>, <code>implementace/rebrand-app.css</code>, <code>implementace/UX-ZMENY.md</code></li>
+    <li><code>logo/</code> (SVG, favicony, ikony aplikace, obrázek pro sdílení), <code>fonts/</code> + <code>fonts.css</code></li>
+  </ul>
+</div></section>
+</main>
+<footer class="pata"><div class="obal">Triconform · brand manuál směru B „Týden“ · ABUCO ICT s.r.o. · návrh 3. 11. 2026</div></footer>
+
+<script>
+(function(){
+  var C={XS:{1:9900},S:{1:14900,2:21800,3:26900,v:5},M:{1:19900,2:28800,3:34900,v:10},L:{1:29900,2:42800,3:49900,v:20}};
+  var f=document.getElementById('kalk');
+  function kc(n){return n.toLocaleString('cs-CZ').replace(/\s/g,' ')+' Kč'}
+  function up(){
+    var p=f.querySelector('input[name=pasmo]:checked').value, r=f.querySelector('input[name=roviny]:checked').value;
+    var xs=p==='XS'; document.getElementById('roviny-fs').hidden=xs;
+    var cena=xs?C.XS[1]:C[p][r];
+    document.getElementById('v-cena').textContent=kc(cena);
+    document.getElementById('v-pasmo').textContent=xs?'Pásmo XS · Dodavatel':'Pásmo '+p+' · '+(r==='3'?'všechny 3 roviny':r==='2'?'2 roviny':'1 rovina');
+    document.getElementById('v-pozn').textContent=xs?'za rok, bez DPH · používaný software a dodavatelé':'za rok, bez DPH · '+C[p].v+' výrobků v ceně';
+    document.getElementById('v-btn').textContent='Chci pásmo '+p;
+  }
+  f.addEventListener('change',up); f.addEventListener('submit',function(e){e.preventDefault()}); up();
+})();
+</script>
