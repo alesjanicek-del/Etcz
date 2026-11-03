@@ -1,0 +1,87 @@
+<!--meta {"titulek":"Sign in with an email link","sablona":"cisty","lang":"en","cs_verze":"prihlaseni-odkaz.html"} -->
+<!--spec {
+ "route":"/prihlaseni/odkaz (lang=en)","nazev":"Sign in with an email link – English","role":"everyone with an account, if the organisation allows sign-in links","sablona":"cisty",
+ "ucel":"Sign in without a password: the user enters their email, receives a single-use link valid for 15 minutes and confirms the sign-in after opening it.",
+ "hlavni_akce":"Send sign-in link; on the page from the email: Sign in",
+ "komponenty":["card card--papir","field","input","btn--hlavni","alert--info","alert--chyba","alert--ok","list-check","steps"],
+ "stavy":["Same states as the Czech page (prihlaseni-odkaz.html): link sent, link opened, link no longer valid, invalid email, turned off by the organisation, loading (“Sending…”)."],
+ "zmeny_ux":["Layout as in the Czech version. Step labels (Link – Email – Sign in) are about as long as in Czech."],
+ "texty":[
+  {"dnes":"Přihlášení odkazem z e-mailu","nove":"Sign in with an email link","proc":"Glossary: sign in; verb first."},
+  {"dnes":"Poslat přihlašovací odkaz","nove":"Send sign-in link","proc":"Verb first."},
+  {"dnes":"Pokud u nás máte účet, poslali jsme na lucie@example.cz odkaz pro přihlášení.","nove":"If you have an account with us, we’ve sent a sign-in link to lucie@example.cz.","proc":"Same safe wording; does not reveal whether the account exists."},
+  {"dnes":"Odkaz už neplatí · Požádat o nový odkaz","nove":"This link is no longer valid · Request a new link","proc":"Verb first."},
+  {"dnes":"Nežádali jste o přihlášení? Stránku zavřete.","nove":"Didn’t ask to sign in? Close this page.","proc":"Reassuring, active, short."},
+  {"dnes":"Zadejte e-mail ve tvaru jmeno@domena.cz.","nove":"Enter an email address like name@example.com.","proc":"Neutral example domain in English."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\"; step list aria-label in English."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Countdown “You can resend in 0:48.” – format m:ss, from data.","Glossary gap: přihlašovací odkaz → sign-in link"],
+ "chybi_komponenta":[]
+} -->
+<main id="obsah" class="narrow" style="max-width:560px">
+ <div class="stack-4">
+  <a class="logo" href="../web/en-index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – website" width="170" height="28"></a>
+  <ol class="steps" aria-label="Signing in with a link">
+   <li style="min-width:0"><span aria-current="step">Link</span></li><li style="min-width:0"><span>Email</span></li><li style="min-width:0"><span>Sign in</span></li>
+  </ol>
+  <form class="card card--papir stack-4" action="#odeslano" method="post" novalidate aria-labelledby="h1">
+   <div class="stack-2">
+    <p class="t-stitek">Sample organisation</p>
+    <h1 id="h1" class="t-titulek">Sign in with an email link</h1>
+    <p>We’ll send you a link so you can sign in without a password.</p>
+   </div>
+   <div class="field">
+    <label class="label" for="email">Email</label>
+    <input class="input" id="email" name="email" type="email" autocomplete="username" inputmode="email" spellcheck="false">
+   </div>
+   <button class="btn btn--hlavni btn--blok" type="submit">{{I:email}}Send sign-in link</button>
+   <ul class="list-check t-maly">
+    <li>The link is valid for 15&nbsp;minutes and works only once.</li>
+    <li>If you use two-step verification, you will also enter a code from your phone.</li>
+   </ul>
+   <p class="t-maly"><a href="en-prihlaseni.html">Sign in with a password</a></p>
+  </form>
+ </div>
+
+ <section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+  <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+  <div class="stack" id="odeslano">
+   <h3 class="t-stitek">Step 2 – link sent</h3>
+   <div class="card card--papir stack" role="status">
+    <p class="t-nadpis">Check your email</p>
+    <p>If you have an account with us, we’ve sent a sign-in link to <b>lucie@example.cz</b>. It is valid for 15&nbsp;minutes.</p>
+    <p class="t-maly">No email? Check your spam folder and the address you entered.</p>
+    <div class="row"><button class="btn" type="button" aria-disabled="true" aria-describedby="znovu-h">Resend link</button><span class="t-maly" id="znovu-h">You can resend in 0:48.</span></div>
+    <p class="t-maly"><a href="#email">Use a different email</a></p>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-stitek">Step 3 – page opened from the email link</h3>
+   <form class="card card--papir stack" action="en-prihlaseni-2fa.html" method="post">
+    <p class="t-nadpis">Sign in as lucie@example.cz?</p>
+    <button class="btn btn--hlavni" type="submit">Sign in</button>
+    <p class="t-maly">Didn’t ask to sign in? Close this page. Nobody can access your account without the link.</p>
+   </form>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-stitek">Link no longer valid</h3>
+   <div class="card stack">
+    <div class="alert alert--chyba" role="alert">{{I:minus-kruh}}<div><p class="alert__nadpis">This link is no longer valid</p><p>The 15&nbsp;minutes have passed, you have already used the link, or you have signed in another way since.</p></div></div>
+    <div class="row"><a class="btn btn--hlavni" href="#email">Request a new link</a><a href="en-prihlaseni.html">Sign in with a password</a></div>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-stitek">Invalid email</h3>
+   <div class="card stack">
+    <div class="field">
+     <label class="label" for="email-e">Email</label>
+     <input class="input" id="email-e" type="email" autocomplete="off" value="lucie@example" aria-invalid="true" aria-describedby="email-e-err">
+     <p class="error" id="email-e-err">{{I:pozor}}Enter an email address like name@example.com.</p>
+    </div>
+   </div>
+  </div>
+ </section>
+</main>

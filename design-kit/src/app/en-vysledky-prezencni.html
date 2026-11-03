@@ -1,0 +1,42 @@
+<!--meta {"titulek":"Results – supervised in-room exams","sablona":"app","role":"lektor","aktivni":"en-vysledky.html","demo":false,"lang":"en","cs_verze":"vysledky-prezencni.html"} -->
+<!--spec {
+ "route":"/vysledky/prezencni (lang=en)","nazev":"Results – supervised in-room exams","role":"instructor (branch administrators see exams of all instructors in their branches)","sablona":"app",
+ "ucel":"Show results per in-room exam: how many people joined, submitted and passed.",
+ "hlavni_akce":"Open the results of one supervised in-room exam.",
+ "komponenty":["page-head","tabs","table-wrap","table--stack","stav","empty","alert"],
+ "stavy":["Same states as vysledky-prezencni.html: empty, exam in progress (In progress + Live monitor link), loading, error, permissions."],
+ "zmeny_ux":["Layout identical to the Czech page. Tab “Supervised in-room exams” is much longer than “Prezenční zkoušky”; the tab bar wraps/scrolls inside its container (contain:inline-size) on mobile.","Dates in English format: 3 Nov 2026 18:27."],
+ "texty":[
+  {"dnes":"Každý řádek je jedna zkouška v učebně. Výsledky jednotlivých zkoušených otevřete odkazem v řádku.","nove":"Each row is one exam in a room. Open a row’s link to see each test taker’s results.","proc":"Short, second person."},
+  {"dnes":"Živý panel","nove":"Live monitor","proc":"EN glossary."},
+  {"dnes":"Probíhá · Ukončeno","nove":"In progress · Finished","proc":"Common status words."},
+  {"dnes":"Připojeno · Odevzdáno · Splnilo · Průměr","nove":"Joined · Submitted · Passed · Average","proc":"Short column headers."},
+  {"dnes":"Nová prezenční zkouška","nove":"New supervised in-room exam","proc":"EN glossary."}],
+ "pristupnost":["Same as the Czech page. Row link “Results” + sr-only exam name."],
+ "poznamky_pro_kodera":["Sorting and averages as in vysledky-prezencni.html.","Glossary gap: učebna → room (e.g. Room 2).","Glossary gap: Probíhá / Ukončeno → In progress / Finished."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head"><h1 class="t-titulek">Results</h1></div>
+<nav class="tabs" aria-label="Result views" style="margin-bottom:var(--s-4);contain:inline-size">
+ <a href="en-vysledky.html">All</a>
+ <a href="en-vysledky-prezencni.html" aria-current="page">Supervised in-room exams</a>
+ <a href="en-vysledky-pridelene.html">Assigned tests</a>
+</nav>
+<p class="measure" style="margin-bottom:var(--s-4)">Each row is one exam in a room. Open a row’s link to see each test taker’s results.</p>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Supervised in-room exams, 2 records</caption>
+  <thead><tr><th scope="col">Exam</th><th scope="col">Status</th><th scope="col" class="num">Joined</th><th scope="col" class="num">Submitted</th><th scope="col" class="num">Passed</th><th scope="col" class="num">Average</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+  <tbody>
+   <tr><td data-label="Exam"><span><b>Radiation protection – knowledge check</b><span class="t-maly">Room 2 · 3&nbsp;Nov 2026 18:27 · Lucie Lektorová</span></span></td><td data-label="Status"><span class="stav stav--pise">{{I:prehrat}}In progress</span></td><td data-label="Joined" class="num">7</td><td data-label="Submitted" class="num">4</td><td data-label="Passed" class="num">1</td><td data-label="Average" class="num">—</td><td data-label="Actions"><a href="en-zivy-panel.html">Live monitor<span class="sr-only">: Radiation protection, room 2</span></a></td></tr>
+   <tr><td data-label="Exam"><span><b>Health and safety – practice test</b><span class="t-maly">Room 1 · 28&nbsp;Oct 2026 09:00 · Lucie Lektorová</span></span></td><td data-label="Status"><span class="stav stav--neutral">{{I:check}}Finished</span></td><td data-label="Joined" class="num">12</td><td data-label="Submitted" class="num">12</td><td data-label="Passed" class="num">10</td><td data-label="Average" class="num">84.6%</td><td data-label="Actions"><a href="en-vysledky.html">Results<span class="sr-only">: Health and safety, room 1, 28 Oct</span></a></td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">No exams</p>
+  <div class="empty stack-2">{{I:uzivatele}}<p class="t-nadpis">No supervised in-room exams yet</p><p class="t-maly">Start an exam in a room from Test assignments. Test takers join with a code or QR code.</p><p><a class="btn" href="en-pouziti-prezencni.html">New supervised in-room exam</a></p></div></div>
+</section>

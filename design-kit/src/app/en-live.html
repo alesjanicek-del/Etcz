@@ -1,0 +1,84 @@
+<!--meta {"titulek":"Join a supervised in-room exam","popis":"Type in the code from the projector screen and enter your name.","sablona":"cisty","role":"zkouseny","lang":"en","cs_verze":"live.html"} -->
+<!--spec {
+ "route":"/live (lang=en)","nazev":"Join a supervised in-room exam","role":"test taker (no account, in the room)","sablona":"cisty",
+ "ucel":"Get a test taker in the room into the waiting room as fast as possible: the code from the projector screen (or QR code) and the name that will appear in the result report.",
+ "hlavni_akce":"Join the waiting room",
+ "komponenty":["exam-head","card--papir","field","input--kod","input","hint","btn--hlavni","alert","error-summary","error","feature"],
+ "stavy":["Same states as the Czech page (live.html): default (code pre-filled after QR scan, focus in Full name), invalid code, entry closed, same name already in the waiting room, demo notice, loading (“Joining…”), public page."],
+ "zmeny_ux":[
+  "Layout as in the Czech version (live.html).",
+  "The heading “Join a supervised in-room exam” wraps to 2 lines at 320 px (Czech too).",
+  "The duplicate-name example keeps the Czech sample name (Jan Novák), marked lang=\"cs\"."],
+ "texty":[
+  {"dnes":"Připojit se k prezenční zkoušce","nove":"Join a supervised in-room exam","proc":"EN glossary."},
+  {"dnes":"Prezenční zkouška · v učebně","nove":"In-room exam","proc":"Short label; “supervised” is already in the H1."},
+  {"dnes":"Kód zkoušky + Opište ho z promítací plochy. Nebo naskenujte QR kód telefonem.","nove":"Exam code + Copy it from the projector screen, or scan the QR code with your phone.","proc":"EN glossary: projector screen."},
+  {"dnes":"Jméno a příjmení","nove":"Full name","proc":"Standard UK form label; matches autocomplete=name."},
+  {"dnes":"Jméno se objeví v protokolu. Napište ho stejně jako do prezenční listiny.","nove":"Your name will appear in the result report. Write it the same way as on the attendance sheet.","proc":"EN glossary: result report."},
+  {"dnes":"Připojit se","nove":"Join","proc":"Verb; short."},
+  {"dnes":"Vstup do této zkoušky je už uzavřený. Lektor nové účastníky nepřijímá. Obraťte se na něj.","nove":"Entry to this exam is closed. The instructor is not admitting anyone else. Speak to them.","proc":"EN glossary: instructor; they are in the same room."},
+  {"dnes":"V čekárně už je někdo se stejným jménem…","nove":"Someone with the same name is already in the waiting room…","proc":"EN glossary: waiting room."}],
+ "pristupnost":[
+  "Same as the Czech page: two fields with visible labels, autocomplete=name / off, errors via .error-summary and aria-invalid + .error.",
+  "Sample name “Jan Novák” in the error is wrapped in lang=\"cs\" so it is pronounced correctly."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml; do not hard-code.",
+  "After joining, redirect to /live/:kod (en-cekarna-zkouseny.html).",
+  "Glossary gap: prezenční listina → attendance sheet",
+  "Glossary gap: Jméno a příjmení → Full name"],
+ "chybi_komponenta":[]
+} -->
+<header class="exam-head"><div class="exam-head__in">
+ <a class="logo" href="../web/en-index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – home" width="146" height="24" style="height:24px;width:auto"></a>
+</div></header>
+
+<main id="obsah" class="narrow stack-5" style="max-width:600px">
+ <form class="card card--papir stack-4" action="en-cekarna-zkouseny.html" method="post" aria-labelledby="h1">
+  <div class="stack-2">
+   <p class="t-stitek">In-room exam</p>
+   <h1 id="h1" class="t-titulek">Join a supervised in-room exam</h1>
+  </div>
+  <div class="field">
+   <label class="label" for="kod">Exam code</label>
+   <span class="hint" id="kod-h">Copy it from the projector screen, or scan the QR code with your phone.</span>
+   <input class="input input--kod" id="kod" name="kod" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="kod-h">
+  </div>
+  <div class="field">
+   <label class="label" for="jmeno">Full name</label>
+   <span class="hint" id="jmeno-h">Your name will appear in the result report. Write it the same way as on the attendance sheet.</span>
+   <input class="input" id="jmeno" name="jmeno" autocomplete="name" aria-describedby="jmeno-h">
+  </div>
+  <div class="alert alert--info">{{I:info}}<p><b>This is a public demo.</b> Use a made-up name. Do not enter real personal data or passwords.</p></div>
+  <button class="btn btn--hlavni" type="submit">Join {{I:sipka-vpravo}}</button>
+ </form>
+
+ <div class="feature"><p><a href="en-test-prevzeti.html"><b>Enter a handover code</b></a></p><p class="t-maly">Is your test already running and you are continuing on another device? Your instructor will give you the code.</p></div>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Invalid code</h3>
+   <div class="card stack">
+    <div class="field">
+     <label class="label" for="kod2">Exam code</label>
+     <input class="input input--kod" id="kod2" value="ABC123" autocomplete="off" aria-invalid="true" aria-describedby="kod2-e">
+     <span class="error" id="kod2-e">{{I:pozor}}This exam code is not valid. Check it on the projector screen.</span>
+    </div>
+   </div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Same name already in the waiting room</h3>
+   <div class="card stack">
+    <div class="field">
+     <label class="label" for="jmeno2">Full name</label>
+     <input class="input" id="jmeno2" value="Jan Novák" autocomplete="name" aria-invalid="true" aria-describedby="jmeno2-e">
+     <span class="error" id="jmeno2-e">{{I:pozor}}<span>Someone with the same name is already in the waiting room. Add something your instructor knows, such as your year of birth: <span lang="cs">Jan Novák</span> (1985).</span></span>
+    </div>
+   </div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Entry closed</h3>
+   <div class="alert alert--chyba" role="alert">{{I:zamek}}<p><b>Entry to this exam is closed.</b> The instructor is not admitting anyone else. Speak to them.</p></div>
+  </div>
+ </section>
+</main>

@@ -1,0 +1,39 @@
+<!--meta {"titulek":"What’s new","sablona":"app","role":"lektor","aktivni":"","demo":false,"lang":"en","cs_verze":"co-je-noveho.html"} -->
+<!--spec {
+ "route":"/co-je-noveho (lang=en)","nazev":"What’s new – English","role":"instructor (same for all roles; test takers without an account do not see this page)","sablona":"app",
+ "ucel":"English version of the changelog: what changed in the app, by version, and where to find new features.",
+ "hlavni_akce":"Read the latest release notes and go to the new feature.",
+ "komponenty":["page-head","timeline","stav","prose"],
+ "stavy":["Same as the Czech page (co-je-noveho.html): static page, latest version labelled Current version; the version link in the app footer leads here."],
+ "zmeny_ux":[
+  "Same layout as the Czech version. Dates use the British short format (28 Oct 2026).",
+  "The changelog is maintained in both languages; if an English entry is missing, show the Czech one marked lang=\"cs\" rather than nothing."],
+ "texty":[
+  {"dnes":"Co je nového","nove":"What’s new","proc":"Standard product term; same as the app footer link."},
+  {"dnes":"Aktuální verze","nove":"Current version","proc":"Plain label."},
+  {"dnes":"Najdete ho ve Výsledcích → Export dat organizace a osob.","nove":"Go to Results → Export organisation and personal data.","proc":"Imperative; menu path in English names."},
+  {"dnes":"Ochrana záznamu … anonymizací","nove":"Record protection … anonymisation","proc":"British spelling (-isation)."},
+  {"dnes":"Pokyny pro zkoušené k tisku","nove":"printable Instructions for test takers","proc":"EN glossary: test taker."},
+  {"dnes":"banka otázek s verzemi a schvalováním … souborů otázek","nove":"question bank with versions and approval … question banks","proc":"EN glossary: question bank."},
+  {"dnes":"osobními kódy, veřejným odkazem, přidělením skupině, prezenční zkouškou i tiskem papírových variací","nove":"personal access codes, a public link, assignment to a group, a supervised in-room exam or printed paper versions","proc":"EN glossary."}],
+ "pristupnost":["<html lang=\"en\">; versions are H2, items are paragraphs; dates in <time datetime>."],
+ "poznamky_pro_kodera":["Content comes from the changelog (translations of each entry); latest first.","Glossary gap: ochrana záznamu → record protection.","Glossary gap: anonymizace → anonymisation."],
+ "chybi_komponenta":[".timeline styles nested li through .timeline li – needs .timeline>li (same as the Czech page)"]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">What’s new</h1><p class="t-maly">Changes in the exam-test app by version, latest first.</p></div></div>
+<ol class="timeline" style="max-width:var(--max-text)">
+ <li class="akt stack"><div class="row"><h2 class="t-nadpis">Version 0.2.0</h2><span class="t-maly"><time datetime="2026-10-28">28&nbsp;Oct 2026</time></span><span class="stav stav--info">{{I:info}}Current version</span></div>
+  <div class="stack-2">
+   <p><b>Data export.</b> Download all of your organisation’s data (results, result reports and questions) or one person’s data. Go to <a href="en-vysledky.html">Results</a> → Export organisation and personal data.</p>
+   <p><b>Record protection.</b> Protect an official record from anonymisation and give a reason. Anonymisation now also removes the email address linked to a code, the link to the account and IP addresses.</p>
+   <p><b>Test statistics</b> now show the number of people and the number of attempts separately. Download branch and link comparisons as XLSX.</p>
+   <p><b>Question history</b> now shows the old and new text of a note, and tag names as they were at the time of the change. The test introduction is shown with its formatting.</p>
+   <p><b>In-app help</b> with search, a PDF guide for your role and printable one-page Instructions for test takers. <a href="en-napoveda.html">Open help</a></p>
+  </div></li>
+ <li class="stack"><div class="row"><h2 class="t-nadpis">Version 0.1.0</h2><span class="t-maly"><time datetime="2026-10-27">27&nbsp;Oct 2026</time></span></div>
+  <div class="stack-2">
+   <p><b>First version:</b> a question bank with versions and approval, and tests built from question banks.</p>
+   <p>Give a test with personal access codes, a public link, assignment to a group, a supervised in-room exam or printed paper versions.</p>
+   <p>Results with a PDF result report that anyone can check with its verification code, plus test and question statistics.</p>
+  </div></li>
+</ol>

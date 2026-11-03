@@ -1,0 +1,122 @@
+<!--meta {"titulek":"Sections – OHS – practice test","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false,"lang":"en","cs_verze":"test-editor-sekce.html"} -->
+<!--spec {
+ "route":"/testy/:id/upravit/sekce (lang=en)","nazev":"Test editor – 1 Sections – English","role":"instructor","sablona":"app",
+ "ucel":"Choose the question banks the test is built from and how many questions are drawn from each. The summary shows whether there are enough questions.",
+ "hlavni_akce":"Continue to settings; secondary: Add section, Edit section",
+ "komponenty":["crumbs","page-head","meta","steps","card","kpi","stav","alert","field","select","form-actions","btn--male","btn--tiche"],
+ "stavy":[
+  "Default: 1 section, OK (drawn).",
+  "Empty: test without a section – .empty “This test has no sections yet” with the Add section form below.",
+  "Error: section with too few questions – card with stav--ne and alert--chyba naming the cause and an Edit section link (drawn). The Check step is locked.",
+  "Form error: no question bank selected – .error under the select.",
+  "No permission: with Read access the editor does not open; direct access returns 403."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (test-editor-sekce.html).",
+  "KPI labels in EN are short nouns (required, candidates, drawn at random, possible combinations); “possible combinations” wraps to two lines in the KPI cell – allowed.",
+  "The step called “Parametry” in Czech is “Settings” in EN – “Parameters” sounds technical."],
+ "texty":[
+  {"dnes":"Sekce","nove":"Sections","proc":"Glossary: sekce testu → test section; in the step label just “Sections”."},
+  {"dnes":"Parametry","nove":"Settings","proc":"Plain English for test-level options."},
+  {"dnes":"Kontrola","nove":"Check","proc":"Short step name; the page itself is “Check and finish”."},
+  {"dnes":"Každá sekce vybírá otázky z jednoho souboru otázek…","nove":"Each section takes questions from one question bank…","proc":"Glossary: soubor otázek → question bank."},
+  {"dnes":"kandidátů / losuje se náhodně / možných výběrů","nove":"candidates / drawn at random / possible combinations","proc":"Short labels under numbers."},
+  {"dnes":"Váha v hodnocení","nove":"Scoring weight","proc":"Common assessment term."},
+  {"dnes":"Chcete losovat 12 otázek, ale kandidátů je jen 8.","nove":"You want to draw 12 questions, but there are only 8 candidates.","proc":"States the cause and the numbers."},
+  {"dnes":"Pokračovat na parametry","nove":"Continue to settings","proc":"Says what happens."}],
+ "pristupnost":["Same as the Czech page: ol.steps labelled “Test editor steps”, aria-current=step; locked step is a span with visible text “Check locked”; move buttons have aria-label with the section name; aria-live announces “OHS section is now 1 of 2”."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml; section titles and question bank names are user data.",
+  "Number format in EN: ≥ 10,000 (comma as thousands separator).",
+  "Glossary gap: povinné otázky → required questions; kandidáti → candidates."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-testy.html">Tests</a></li><li><span aria-current="page">OHS – practice test</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2">
+  <p class="t-stitek">Edit test</p>
+  <h1 class="t-titulek">OHS – practice test</h1>
+  <dl class="meta"><div><dt>Branch</dt><dd>Prague</dd></div><div><dt>Owner</dt><dd>Lucie Lektorová</dd></div><div><dt>Edited</dt><dd>4 Sep 2026</dd></div></dl>
+ </div>
+ <div class="page-head__actions"><a class="btn" href="en-test-nahled.html">{{I:oko}}Preview a test version</a></div>
+</div>
+
+<ol class="steps" aria-label="Test editor steps" style="margin-bottom:var(--s-5);contain:inline-size">
+ <li><a href="en-test-editor-sekce.html" aria-current="step">Sections</a></li>
+ <li><a href="en-test-editor-parametry.html">Settings</a></li>
+ <li><a href="en-test-editor-kontrola.html">Check</a></li>
+</ol>
+
+<div class="stack-5">
+ <div class="stack-2 measure">
+  <h2 class="t-nadpis">Sections</h2>
+  <p>Each section takes questions from one question bank. Every test taker gets the required questions. The rest are drawn at random from the candidates.</p>
+ </div>
+
+ <section class="card stack" id="sekce-1" aria-labelledby="s1-h">
+  <div class="row-between" style="align-items:flex-start">
+   <div class="stack-2">
+    <h3 id="s1-h" class="t-nadpis"><span class="t-cislo">01</span> OHS</h3>
+    <dl class="meta"><div><dt>Question bank</dt><dd>Sample bank: OHS – employee training</dd></div><div><dt>Scoring weight</dt><dd>1</dd></div></dl>
+   </div>
+   <span class="stav stav--ok">{{I:check}}OK</span>
+  </div>
+  <div class="kpi">
+   <div><span class="t-cislo">0</span><span class="t-maly">required</span></div>
+   <div><span class="t-cislo">34</span><span class="t-maly">candidates</span></div>
+   <div><span class="t-cislo">10–12</span><span class="t-maly">drawn at random</span></div>
+   <div><span class="t-cislo">≥&nbsp;10,000</span><span class="t-maly">possible combinations</span></div>
+  </div>
+  <div class="row-between">
+   <a class="btn btn--male" href="en-test-sekce-detail.html">{{I:upravit}}Edit section<span class="sr-only"> OHS</span></a>
+   <div class="row" style="gap:var(--s-2)">
+    <button class="btn btn--male" type="button" aria-label="Move OHS section up" disabled>{{I:nahoru}}</button>
+    <button class="btn btn--male" type="button" aria-label="Move OHS section down" disabled>{{I:dolu}}</button>
+    <button class="btn btn--male btn--nebezpecne" type="button">{{I:smazat}}Remove section<span class="sr-only"> OHS</span></button>
+   </div>
+  </div>
+ </section>
+
+ <form class="card card--tenka stack" action="en-test-editor-sekce.html#sekce-2" method="post" aria-labelledby="pridat-h">
+  <h3 id="pridat-h" class="t-nadpis">Add a section</h3>
+  <div class="grid-2">
+   <div class="field">
+    <label class="label" for="soubor">Question bank</label>
+    <span class="hint" id="soubor-h">Only banks you may use in tests are listed.</span>
+    <select class="select" id="soubor" name="soubor" aria-describedby="soubor-h"><option value="">Choose a question bank</option><option>Sample bank: OHS – employee training</option><option>Sample bank: Cyber security – user training</option><option>Sample bank: Radiation protection – basic principles</option></select>
+   </div>
+   <div class="field">
+    <label class="label" for="nadpis">Section title <span class="volitelne">(optional)</span></label>
+    <span class="hint" id="nadpis-h">If you leave it empty, the question bank name is used.</span>
+    <input class="input" id="nadpis" name="nadpis" aria-describedby="nadpis-h">
+   </div>
+  </div>
+  <div><button class="btn" type="submit">{{I:plus}}Add section</button></div>
+ </form>
+
+ <div class="form-actions">
+  <a class="btn btn--hlavni" href="en-test-editor-parametry.html">Continue to settings {{I:sipka-vpravo}}</a>
+  <a class="btn btn--tiche" href="en-testy.html">Back to tests</a>
+ </div>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">Error: not enough questions in a section</p>
+ <ol class="steps" aria-label="Test editor steps (sample with Check locked)" style="contain:inline-size">
+  <li><a href="en-test-editor-sekce.html" aria-current="step">Sections</a></li>
+  <li><a href="en-test-editor-parametry.html">Settings</a></li>
+  <li><span>{{I:zamek}}Check locked</span></li>
+ </ol>
+ <section class="card stack" aria-labelledby="s2-h">
+  <div class="row-between" style="align-items:flex-start">
+   <div class="stack-2">
+    <h3 id="s2-h" class="t-nadpis"><span class="t-cislo">02</span> Fire safety</h3>
+    <dl class="meta"><div><dt>Question bank</dt><dd>Fire safety – employees</dd></div><div><dt>Scoring weight</dt><dd>1</dd></div></dl>
+   </div>
+   <span class="stav stav--ne">{{I:minus-kruh}}Error</span>
+  </div>
+  <div class="alert alert--chyba">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Not enough questions</p><p>You want to draw 12 questions, but there are only 8 candidates. Lower the number or allow more tags.</p><p><a href="en-test-sekce-detail.html">Edit the Fire safety section</a></p></div></div>
+ </section>
+ <p class="t-stitek">Test without a section</p>
+ <div class="empty stack-2">{{I:slozka}}<p><b>This test has no sections yet.</b></p><p class="t-maly">Add the first section from a question bank using the form above.</p></div>
+</section>

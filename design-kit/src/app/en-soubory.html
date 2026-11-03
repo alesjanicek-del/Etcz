@@ -1,0 +1,81 @@
+<!--meta {"titulek":"Question banks","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false,"lang":"en","cs_verze":"soubory.html"} -->
+<!--spec {
+ "route":"/soubory (lang=en)","nazev":"Question banks – English","role":"instructor (same page for question authors and administrators)","sablona":"app",
+ "ucel":"List of question banks the user can access, with their permission and the number of questions. Entry point to a bank’s detail and to creating a new one.",
+ "hlavni_akce":"Open a question bank; secondary: New question bank, Search questions",
+ "komponenty":["page-head","tabs","filters","field","input","select","table table--stack","stav","empty","alert--ok","pager"],
+ "stavy":["Same states as the Czech page (soubory.html): no access, filter with no results, Deleted items, after creating / restoring, loading, error, no permission to create."],
+ "zmeny_ux":["Layout as in the Czech version. “Pending approval” as a column header is longer than “Ke schválení”; the table wraps the header onto 2 lines on desktop, cards on mobile are unaffected."],
+ "texty":[
+  {"dnes":"Soubory otázek","nove":"Question banks","proc":"Glossary."},
+  {"dnes":"Koš","nove":"Deleted items","proc":"Glossary – neutral for UK and US."},
+  {"dnes":"Aktivní soubory","nove":"Active banks","proc":"Short tab label."},
+  {"dnes":"Vaše právo: Čtení · Editace · Vlastník","nove":"Your permission: View · Edit · Owner","proc":"Common permission names (Google Drive, SharePoint)."},
+  {"dnes":"Soubory v koši se po 30 dnech trvale smažou.","nove":"Banks in Deleted items are permanently deleted after 30&nbsp;days.","proc":"Glossary: Deleted items."},
+  {"dnes":"Zrušit filtr","nove":"Clear filter","proc":"Common UI term."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\"."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Bank names and descriptions are user content; the demo shows English samples.","Branch names are data (Prague) – not translated by the app.","Glossary gap: právo Čtení · Editace · Vlastník → View · Edit · Owner","Glossary gap: Obnovit (z koše) → Restore"],
+ "chybi_komponenta":["one-line clamp – as in the Czech page"]
+} -->
+<div class="page-head">
+ <div class="stack-2">
+  <h1 class="t-titulek">Question banks</h1>
+  <p class="t-maly measure">A question bank is a named group of questions, for example “Radiation protection”. Tests draw their questions from it.</p>
+ </div>
+ <div class="page-head__actions">
+  <a class="btn" href="en-otazky-hledat.html">{{I:hledat}}Search questions</a>
+  <a class="btn btn--hlavni" href="en-soubor-formular.html">{{I:plus}}New question bank</a>
+ </div>
+</div>
+
+<nav class="tabs" aria-label="Question banks" style="margin-bottom:var(--s-4)"><a href="en-soubory.html" aria-current="page">Active banks</a><a href="#kos">Deleted items</a></nav>
+
+<form class="filters" action="en-soubory.html" method="get" role="search" aria-label="Filter question banks">
+ <div class="field"><label class="label" for="q">Search by name</label><input class="input" id="q" name="q" type="search"></div>
+ <div class="field"><label class="label" for="pravo">Your permission</label><select class="select" id="pravo" name="pravo"><option>All permissions</option><option>Owner</option><option>Edit</option><option>View</option></select></div>
+ <button class="btn" type="submit">{{I:filtr}}Filter</button>
+</form>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption>Question banks you can access (3)</caption>
+  <thead><tr><th scope="col">Name</th><th scope="col">Branch</th><th scope="col">Owner</th><th scope="col">Your permission</th><th scope="col" class="num">Questions</th><th scope="col" class="num">Pending approval</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Name"><div><a href="en-soubor-detail.html"><b>Sample set: Health and safety – employee training</b></a><span class="t-maly">Employer and employee duties, PPE, workplace injuries…</span></div></td><td data-label="Branch">Prague</td><td data-label="Owner">Adam Autor</td><td data-label="Your permission">View</td><td data-label="Questions" class="num">34</td><td data-label="Pending approval" class="num">0</td></tr>
+   <tr><td data-label="Name"><div><a href="en-soubor-detail.html"><b>Sample set: Cyber security – user training</b></a><span class="t-maly">Phishing, passwords and multi-factor authentication, social engineering…</span></div></td><td data-label="Branch">Prague</td><td data-label="Owner">Adam Autor</td><td data-label="Your permission">View</td><td data-label="Questions" class="num">36</td><td data-label="Pending approval" class="num">1</td></tr>
+   <tr><td data-label="Name"><div><a href="en-soubor-detail.html"><b>Sample set: Radiation protection – basic principles</b></a><span class="t-maly">Types of radiation, protection by time, distance and shielding, dosimetry…</span></div></td><td data-label="Branch">Prague</td><td data-label="Owner">Adam Autor</td><td data-label="Your permission">View</td><td data-label="Questions" class="num">36</td><td data-label="Pending approval" class="num">0</td></tr>
+  </tbody>
+ </table>
+</div>
+<p class="t-maly" style="margin-top:var(--s-3)">Your permission: <b>View</b> = use the bank in tests and see statistics. <b>Edit</b> = also edit questions. <b>Owner</b> = also grant permissions.</p>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">After creating a bank</h3>
+  <div class="alert alert--ok" role="status">{{I:check}}<div><p class="alert__nadpis">Question bank “Fire safety” created.</p><p>You are its owner. <a href="en-otazka-editor.html">Add the first question</a></p></div></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">No question bank</h3>
+  <div class="empty stack-2">{{I:slozka}}<p class="t-nadpis">You don’t have access to any question bank yet</p><p class="t-maly">Create your own bank, or ask a bank’s owner for permission.</p><p><a class="btn" href="en-soubor-formular.html">New question bank</a></p></div>
+ </div>
+
+ <div class="stack" id="kos">
+  <h3 class="t-stitek">Deleted items</h3>
+  <div class="alert alert--info">{{I:info}}<p>Banks in Deleted items are permanently deleted after 30&nbsp;days. Until then, you can restore them with all their questions.</p></div>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption>Deleted question banks (1)</caption>
+    <thead><tr><th scope="col">Name</th><th scope="col">Deleted by</th><th scope="col">Deleted on</th><th scope="col">Permanently deleted on</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+    <tbody><tr><td data-label="Name"><b>Driver training 2025</b></td><td data-label="Deleted by">Adam Autor</td><td data-label="Deleted on" class="t-cislo">28 Oct 2026</td><td data-label="Permanently deleted on" class="t-cislo">27 Nov 2026</td><td data-label="Actions"><button class="btn btn--male" type="button">{{I:obnovit}}Restore<span class="sr-only">: Driver training 2025</span></button></td></tr></tbody>
+   </table>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Filter with no results</h3>
+  <div class="card card--tenka row-between" role="status"><p>No question bank matches the filter.</p><a class="btn btn--male" href="en-soubory.html">Clear filter</a></div>
+ </div>
+</section>

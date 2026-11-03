@@ -1,0 +1,48 @@
+<!--meta {"titulek":"Email in the Demo mailbox","sablona":"app","role":"lektor","aktivni":"","demo":true,"lang":"en","cs_verze":"schranka-email.html"} -->
+<!--spec {
+ "route":"/schranka-dema/:id (lang=en)","nazev":"Demo mailbox – email, English","role":"instructor (in the demo for all roles)","sablona":"app",
+ "ucel":"English version: show one email as the recipient would get it and let the visitor follow the link in it.",
+ "hlavni_akce":"Open the test entry page from the email.",
+ "komponenty":["crumbs","page-head","dl","alert","email","email__head","email__body","kod","btn","details"],
+ "stavy":["Same states as the Czech page (schranka-email.html): invalid link after reset or used code, user invitation (Set password instead of the code), outside the demo (404)."],
+ "zmeny_ux":["Same layout as the Czech version. The H1 (email subject) is longer in English and wraps to 3 lines at 320 px."],
+ "texty":[
+  {"dnes":"Přístupový kód k testu „Kybernetická bezpečnost – roční ověření“","nove":"Access code for the test “Cyber security: annual check”","proc":"EN glossary: access code; test name as in en-test-otazka."},
+  {"dnes":"Komu · Čas · Od","nove":"To · Time · From","proc":"Standard email header labels."},
+  {"dnes":"Ukázka – tento e-mail nebyl odeslán.","nove":"Sample – this email was not sent.","proc":"Short."},
+  {"dnes":"Dobrý den,","nove":"Hello,","proc":"Neutral greeting; “Dear …” sounds too formal for a system email."},
+  {"dnes":"organizace … vám zadala test","nove":"… has assigned you the test","proc":"Active; organisation name first."},
+  {"dnes":"Otevřít vstup do testu","nove":"Open the test","proc":"Verb first; shorter than “Open the test entry page”."},
+  {"dnes":"Kód je osobní, nepředávejte ho dalším lidem. Výsledek testu se zapíše k vašemu jménu.","nove":"This code is personal. Do not share it with anyone. Your result is recorded under your name.","proc":"Split into short sentences."},
+  {"dnes":"Po odevzdání můžete kód zadat znovu a podívat se na výsledek, pokud to pořadatel dovoluje.","nove":"After you submit, you can enter the code again to see your result, if the organiser allows it.","proc":"Glossary gap: pořadatel → organiser."},
+  {"dnes":"Textová podoba e-mailu","nove":"Plain-text version of the email","proc":"Common email term."}],
+ "pristupnost":["Email preview is a region with aria-label “Email preview”; its H2 is the email heading.","The link in the email has clear text; the address is also given as text in case the button does not work.","The organisation name “Ukázková organizace (demo)” is a proper noun and stays in Czech, marked lang=\"cs\"."],
+ "poznamky_pro_kodera":["Email content comes from the email template (group Z, email-pozvanka); only the mailbox frame is here.","The email language follows the test assignment (test_usage.ui_locale), not the mailbox page.","Code NKKQW-Q8VNF is from the demo.","Glossary gap: pořadatel → organiser."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-schranka-dema.html">Demo mailbox</a></li><li><span aria-current="page">Access code – Emil Erben</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Access code for the test “Cyber security: annual check”</h1>
+ <dl class="meta"><div><dt>To</dt><dd style="overflow-wrap:anywhere">emil.erben@demo.example</dd></div><div><dt>Time</dt><dd>3&nbsp;Nov 2026 18:27</dd></div><div><dt>From</dt><dd><span lang="cs">Ukázková organizace</span> (demo)</dd></div></dl></div></div>
+
+<div class="alert" style="margin-bottom:var(--s-4);max-width:600px">{{I:info}}<p>Sample – this email was not sent.</p></div>
+
+<section class="email" aria-label="Email preview" style="margin:0">
+ <div class="email__head"><p><b><span lang="cs">Ukázková organizace</span> (demo)</b></p><p class="t-maly">exam-test</p></div>
+ <div class="email__body stack">
+  <h2 class="t-nadpis">Access code for your test</h2>
+  <p>Hello,</p>
+  <p><span lang="cs">Ukázková organizace</span> (demo) has assigned you the test <b>Cyber security: annual check</b>.</p>
+  <p>Access code for Emil Erben:</p>
+  <p><span class="kod">NKKQW-Q8VNF</span></p>
+  <p><a class="btn btn--hlavni" href="en-kod.html">Open the test</a></p>
+  <p class="t-maly">Enter the code above on that page. If the button does not work, copy this address into your browser: https://demo.exam-test.cz/kod.</p>
+  <ul class="list-check t-maly">
+   <li><span>Time limit: 15&nbsp;minutes.</span></li>
+   <li><span>This code is personal. Do not share it with anyone. Your result is recorded under your name.</span></li>
+   <li><span>After you submit, you can enter the code again to see your result, if the organiser allows it.</span></li>
+  </ul>
+  <hr class="rule-tenka">
+  <p class="t-maly">You received this email because <span lang="cs">Ukázková organizace</span> (demo) entered this address for an access code.</p>
+ </div>
+</section>
+<details class="faq" style="max-width:600px;margin-top:var(--s-4)"><summary>Plain-text version of the email</summary><div><p class="t-maly">The same content as plain text, for email programs without HTML.</p></div></details>

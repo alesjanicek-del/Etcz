@@ -1,0 +1,95 @@
+<!--meta {"titulek":"My results","sablona":"app","role":"zkouseny","aktivni":"en-moje-vysledky.html","demo":false,"lang":"en","cs_verze":"moje-vysledky.html"} -->
+<!--spec {
+ "route":"/moje-vysledky (lang=en)","nazev":"My results","role":"test taker (learner with an account)","sablona":"app",
+ "ucel":"An overview of all submitted attempts with the result, result report and certificate – in one place, at any time.",
+ "hlavni_akce":"Download a result report or certificate",
+ "komponenty":["page-head","table-wrap","table--stack","stav","num","empty","alert"],
+ "stavy":["Same states as the Czech page (moje-vysledky.html): list, empty, loading error, loading, no permission."],
+ "zmeny_ux":[
+  "Layout as in the Czech version (moje-vysledky.html).",
+  "Column headings are slightly longer (Submitted, Downloads); on mobile the rows stack as in Czech, so length is not a problem.",
+  "Numbers in EN format: 83.3%, dates 3 Nov 2026 17:41.",
+  "Result reports and certificates of official tests (here Radiation protection, ZOZ type) are always in Czech – the link opens the Czech document."],
+ "texty":[
+  {"dnes":"Moje výsledky","nove":"My results","proc":"Same as the menu item."},
+  {"dnes":"Odevzdané testy, protokoly a osvědčení.","nove":"Submitted tests, result reports and certificates.","proc":"EN glossary: result report, certificate."},
+  {"dnes":"Odevzdáno · Výsledek · Stav · Osvědčení · Ke stažení","nove":"Submitted · Score · Status · Certificate · Downloads","proc":"“Score” for the percentage, “Status” for Passed / Not passed – avoids two columns called “Result”."},
+  {"dnes":"Splněno · Nesplněno","nove":"Passed · Not passed","proc":"EN glossary."},
+  {"dnes":"Nezveřejněno + Až lektor výsledek zpřístupní","nove":"Not released + Available once your instructor releases the result","proc":"EN glossary: release results."},
+  {"dnes":"platí do 2. 11. 2027 · Prošlé · platilo do","nove":"valid until 2 Nov 2027 · Expired · was valid until","proc":"EN date format; plain words."},
+  {"dnes":"Protokol (PDF) · Osvědčení (PDF)","nove":"Result report (PDF) · Certificate (PDF)","proc":"EN glossary."},
+  {"dnes":"pokus 1 z 3","nove":"attempt 1 of 3","proc":"EN glossary: attempt."},
+  {"dnes":"Pravost protokolu i osvědčení ověří kdokoli podle ověřovacího kódu na stránce ověření.","nove":"Anyone can check that a result report or certificate is genuine using its verification code on the verification page.","proc":"EN glossary: verification code; active voice."}],
+ "pristupnost":[
+  "Same as the Czech page: caption (sr-only) “Submitted tests, newest first”, th scope=col, data-label on every td.",
+  "Download links carry the hidden test name and date (“: Cyber security, 3 Nov 2026”) so they can be told apart in a screen reader’s link list.",
+  "Status as icon + word; percentages in .num."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml; do not hard-code.",
+  "Number and date formatting via Intl (en-GB): 83.3%, 3 Nov 2026.",
+  "Documents of official tests are always Czech (brand manual 08b) – link to the Czech PDF and add hreflang=\"cs\" to the link.",
+  "Test names come from data; translated here only to show the layout.",
+  "Glossary gap: Nezveřejněno (výsledek) → Not released",
+  "Glossary gap: Prošlé (osvědčení) → Expired"],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <div class="stack-2">
+  <h1 class="t-titulek">My results</h1>
+  <p class="t-maly">Submitted tests, result reports and certificates.</p>
+ </div>
+</div>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Submitted tests, newest first</caption>
+  <thead><tr><th scope="col">Test</th><th scope="col">Submitted</th><th scope="col" class="num">Score</th><th scope="col">Status</th><th scope="col">Certificate</th><th scope="col">Downloads</th></tr></thead>
+  <tbody>
+   <tr>
+    <td data-label="Test"><span><b>Cyber security: annual check</b><span class="t-maly">attempt 1 of 3</span></span></td>
+    <td data-label="Submitted" class="t-cislo">3&nbsp;Nov&nbsp;2026 <span>17:41</span></td>
+    <td data-label="Score" class="num">83.3%</td>
+    <td data-label="Status"><span class="stav stav--ok">{{I:check}}Passed</span></td>
+    <td data-label="Certificate">valid until 2&nbsp;Nov&nbsp;2027</td>
+    <td data-label="Downloads"><span class="stack-2"><span><a href="../tisk/en-protokol.html">Result report (PDF)<span class="sr-only">: Cyber security, 3 Nov 2026</span></a></span><span><a href="../tisk/en-osvedceni.html">Certificate (PDF)<span class="sr-only">: Cyber security, 3 Nov 2026</span></a></span></span></td>
+   </tr>
+   <tr>
+    <td data-label="Test"><span><b>Radiation protection: knowledge check (official, ZOZ type)</b><span class="t-maly">attempt 1 of 1</span></span></td>
+    <td data-label="Submitted" class="t-cislo">28&nbsp;Oct&nbsp;2026 10:12</td>
+    <td data-label="Score" class="num">–</td>
+    <td data-label="Status"><span class="stav stav--neutral">{{I:hodiny}}Not released</span></td>
+    <td data-label="Certificate">–</td>
+    <td data-label="Downloads"><span class="t-maly">Available once your instructor releases the result</span></td>
+   </tr>
+   <tr>
+    <td data-label="Test"><span><b>Health and safety: practice test</b><span class="t-maly">attempt 2</span></span></td>
+    <td data-label="Submitted" class="t-cislo">14&nbsp;Oct&nbsp;2026 08:55</td>
+    <td data-label="Score" class="num">60.0%</td>
+    <td data-label="Status"><span class="stav stav--ne">{{I:minus-kruh}}Not passed</span></td>
+    <td data-label="Certificate">–</td>
+    <td data-label="Downloads"><a href="../tisk/en-protokol.html">Result report (PDF)<span class="sr-only">: Health and safety: practice test, 14 Oct 2026</span></a></td>
+   </tr>
+   <tr>
+    <td data-label="Test"><span><b>Cyber security: annual check</b><span class="t-maly">attempt 1 of 3</span></span></td>
+    <td data-label="Submitted" class="t-cislo">2&nbsp;Nov&nbsp;2025 09:20</td>
+    <td data-label="Score" class="num">91.7%</td>
+    <td data-label="Status"><span class="stav stav--ok">{{I:check}}Passed</span></td>
+    <td data-label="Certificate"><span class="stack-2" style="align-items:flex-end"><span class="stav stav--pozor">{{I:pozor}}Expired</span><span class="t-maly">was valid until 1&nbsp;Nov&nbsp;2026</span></span></td>
+    <td data-label="Downloads"><span class="stack-2"><span><a href="../tisk/en-protokol.html">Result report (PDF)<span class="sr-only">: Cyber security, 2 Nov 2025</span></a></span><span><a href="../tisk/en-osvedceni.html">Certificate (PDF)<span class="sr-only">: Cyber security, 2 Nov 2025</span></a></span></span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p class="t-maly" style="margin-top:var(--s-3)">Anyone can check that a result report or certificate is genuine. They enter its verification code on the <a href="../web/en-overeni.html">verification page</a>.</p>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2">
+  <h3 class="t-stitek">Empty list</h3>
+  <div class="empty stack-2">{{I:check-kruh}}<p><b>You have not submitted any tests yet.</b></p><p class="t-maly">You will find your assigned tests in <a href="en-moje-testy.html">My tests</a>.</p></div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Loading error</h3>
+  <div class="alert alert--chyba" role="alert">{{I:pozor}}<div class="stack-2"><p><b>Your results could not be loaded.</b> Try again in a moment.</p><p><button class="btn btn--male" type="button">Try again</button></p></div></div>
+ </div>
+</section>

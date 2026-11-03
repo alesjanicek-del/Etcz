@@ -1,0 +1,85 @@
+<!--meta {"titulek":"Enter a test with a code","popis":"Enter the access code you received from the exam organiser.","sablona":"cisty","role":"zkouseny","lang":"en","cs_verze":"kod.html"} -->
+<!--spec {
+ "route":"/kod (lang=en)","nazev":"Enter a test with a code","role":"test taker (no account)","sablona":"cisty",
+ "ucel":"The fastest way into a test for a test taker with an access code. One field, one button; the other ways in (supervised in-room exam, handover) are links.",
+ "hlavni_akce":"Type in the access code and continue to the test",
+ "komponenty":["exam-head","card--papir","field","input--kod","hint","btn--hlavni","error-summary","error","alert","feature"],
+ "stavy":["Same states as the Czech page (kod.html): default, invalid code, too many attempts, test not available now, attempts used up / test already passed, loading (“Checking your code…”), public page.",
+  "Attempts used up / passed: .alert--info “You have used all permitted attempts.” or “You have already passed this test. You do not need another attempt.”"],
+ "zmeny_ux":[
+  "Layout as in the Czech version (kod.html).",
+  "The hint under the field is 1 line longer at 320 px; the button “Continue to test” still fits on one line.",
+  "Headings of the link rows are 15–30% longer and wrap to 2 lines on mobile – acceptable, the whole heading is the link."],
+ "texty":[
+  {"dnes":"Vstup do testu","nove":"Enter a test","proc":"Verb first."},
+  {"dnes":"Zkoušený bez účtu","nove":"No account needed","proc":"Addresses the test taker as “you”, not as a role."},
+  {"dnes":"Přístupový kód","nove":"Access code","proc":"EN glossary."},
+  {"dnes":"Kód jste dostali od pořadatele – na papíře nebo e-mailem. Má 10 znaků. Na pomlčkách, mezerách ani velikosti písmen nezáleží.","nove":"You received the code from the organiser, on paper or by email. It has 10 characters. Dashes, spaces and capital letters do not matter.","proc":"Where to find it + what does not matter, once."},
+  {"dnes":"Pokračovat k testu","nove":"Continue to test","proc":"Button says where it leads."},
+  {"dnes":"Kód není platný. Zkontrolujte, jak jste ho opsali – pozor na 0 a O.","nove":"This code is not valid. Check how you typed it – watch out for 0 (zero) and O (letter).","proc":"Spelled out so screen readers do not read “0 and O” ambiguously."},
+  {"dnes":"Připojit se k prezenční zkoušce","nove":"Join a supervised in-room exam","proc":"EN glossary."},
+  {"dnes":"Zadat kód pro převzetí","nove":"Enter a handover code","proc":"EN glossary."},
+  {"dnes":"Přihlásit se k účtu studujícího","nove":"Sign in to your learner account","proc":"“Sign in” as in the app header."},
+  {"dnes":"Kód jste zadali příliš mnohokrát.","nove":"You have entered a code too many times.","proc":"Plain words; time in 24-hour format."}],
+ "pristupnost":[
+  "Same as the Czech page: visible label, hint via aria-describedby, autocomplete=off, autocapitalize=characters, spellcheck=false.",
+  "Error: .error-summary with role=alert and link to the field; field aria-invalid=true with .error in aria-describedby.",
+  "The error says “0 (zero) and O (letter)” so a screen reader user hears the difference."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml; do not hard-code.",
+  "Code normalisation and lockout as on the Czech page.",
+  "Glossary gap: pořadatel (zkoušky) → organiser",
+  "Glossary gap: studující → learner"],
+ "chybi_komponenta":["link row (whole area is a link, with icon) – .feature with a link, as in Czech"]
+} -->
+<header class="exam-head"><div class="exam-head__in">
+ <a class="logo" href="../web/en-index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – home" width="146" height="24" style="height:24px;width:auto"></a>
+</div></header>
+
+<main id="obsah" class="narrow stack-5" style="max-width:600px">
+ <form class="card card--papir stack-4" action="en-test-start.html" method="post" aria-labelledby="h1">
+  <div class="stack-2">
+   <p class="t-stitek">No account needed</p>
+   <h1 id="h1" class="t-titulek">Enter a test</h1>
+  </div>
+  <div class="field">
+   <label class="label" for="kod">Access code</label>
+   <span class="hint" id="kod-h">You received the code from the organiser, on paper or by email. It has 10 characters. Dashes, spaces and capital letters do not matter.</span>
+   <input class="input input--kod" id="kod" name="kod" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="kod-h">
+  </div>
+  <button class="btn btn--hlavni" type="submit">Continue to test {{I:sipka-vpravo}}</button>
+  <p class="t-maly">You can also enter the code after submitting. If the test allows another attempt, you will start it. Otherwise you will see your result once the organiser releases it.</p>
+ </form>
+
+ <section class="stack" aria-labelledby="jine-h">
+  <h2 id="jine-h" class="t-nadpis">Other ways into a test</h2>
+  <div class="feature"><p><a href="en-live.html"><b>Join a supervised in-room exam</b></a></p><p class="t-maly">Are you taking the exam in a room? You will find the code on the projector screen.</p></div>
+  <div class="feature"><p><a href="en-test-prevzeti.html"><b>Enter a handover code</b></a></p><p class="t-maly">Did you start the test on another device, for example your phone battery ran out? Your instructor will give you the code.</p></div>
+  <div class="feature"><p><a href="en-prihlaseni.html"><b>Sign in to your learner account</b></a></p><p class="t-maly">Have an account? You will find your assigned tests in My tests.</p></div>
+ </section>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Invalid code</h3>
+   <div class="card stack">
+    <div class="error-summary stack-2" role="alert" tabindex="-1"><p><b>You cannot enter the test yet.</b></p><ul style="padding-left:var(--s-4)"><li><a href="#kod2">This code is not valid</a></li></ul></div>
+    <div class="field">
+     <label class="label" for="kod2">Access code</label>
+     <span class="hint" id="kod2-h">It has 10 characters. Dashes, spaces and capital letters do not matter.</span>
+     <input class="input input--kod" id="kod2" value="XXXXX-YYYYY" autocomplete="off" aria-invalid="true" aria-describedby="kod2-h kod2-e">
+     <span class="error" id="kod2-e">{{I:pozor}}This code is not valid. Check how you typed it – watch out for 0 (zero) and O (letter).</span>
+    </div>
+    <p class="t-maly"><a href="en-napoveda-clanek.html">What to do if your code does not work</a></p>
+   </div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Too many attempts</h3>
+   <div class="alert alert--chyba" role="alert">{{I:zamek}}<p><b>You have entered a code too many times.</b> Try again after 18:45. This protects codes from being guessed.</p></div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Test not available now</h3>
+   <div class="alert alert--info">{{I:kalendar}}<p><b>The test for this code is not available now.</b> It has not started yet or has already closed. Check the date with the organiser.</p></div>
+  </div>
+ </section>
+</main>

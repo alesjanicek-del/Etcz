@@ -1,0 +1,29 @@
+<!--meta {"titulek":"Page not found","sablona":"app","role":"lektor","aktivni":"","demo":false,"lang":"en","cs_verze":"chyba-404.html"} -->
+<!--spec {
+ "route":"(error, lang=en)","nazev":"Page not found – English","role":"instructor (any signed-in role; signed-out users see the same content in the cisty template without the menu)","sablona":"app",
+ "ucel":"English version of the 404 page: say the page does not exist (or was deleted) and offer a way on – no dead end.",
+ "hlavni_akce":"Go to Overview; search help.",
+ "komponenty":["card--papir","t-kod","btn","field","input","list-check"],
+ "stavy":["Same states as the Czech page (chyba-404.html): signed out (Sign in instead of Overview), deleted record in Deleted items (proposal), invalid link from an email."],
+ "zmeny_ux":["Same layout as the Czech version; the heading is shorter in English (“We couldn’t find this page”)."],
+ "texty":[
+  {"dnes":"Tuhle stránku jsme nenašli","nove":"We couldn’t find this page","proc":"Human, no technical code in the heading; contraction keeps the tone friendly."},
+  {"dnes":"Přejít na Přehled","nove":"Go to Overview","proc":"Verb first; menu name from the EN app menu."},
+  {"dnes":"Smazané otázky a soubory otázek jsou 30 dní v koši.","nove":"Deleted questions and question banks stay in Deleted items for 30 days.","proc":"EN glossary: Deleted items, question bank."},
+  {"dnes":"aktivní pobočky v horní liště","nove":"active branch in the top bar","proc":"EN glossary: branch."}],
+ "pristupnost":["H1 describes the error; page title “Page not found · exam-test”.","Code 404 is only a supplement (t-stitek)."],
+ "poznamky_pro_kodera":["HTTP status 404.","Overview link by role (HOME).","Glossary gap: aktivní pobočka → active branch."],
+ "chybi_komponenta":[]
+} -->
+<div class="card card--papir stack-4" style="max-width:var(--max-text);margin-top:var(--s-4)">
+ <p class="t-stitek">Error 404</p>
+ <h1 class="t-titulek">We couldn’t find this page</h1>
+ <p>The address may be incomplete, the page may have been deleted, or it leads to a record from another branch.</p>
+ <ul class="list-check">
+  <li><span>Check the address if you typed it yourself.</span></li>
+  <li><span>To see a record from another branch, switch the active branch in the top bar.</span></li>
+  <li><span>Deleted questions and question banks stay in Deleted items for 30 days.</span></li>
+ </ul>
+ <div class="row"><a class="btn btn--hlavni" href="en-lektor-prehled.html">{{I:domu}}Go to Overview</a><a class="btn btn--tiche" href="en-napoveda.html">Open help</a></div>
+ <form role="search" class="field" action="en-napoveda.html" method="get"><label class="label" for="q404">Search help</label><div class="row" style="flex-wrap:nowrap;gap:var(--s-2)"><input class="input" id="q404" type="search" name="q"><button class="btn" type="submit">Search</button></div></form>
+</div>

@@ -1,0 +1,53 @@
+<!--meta {"titulek":"Your session is about to end","sablona":"app","role":"lektor","aktivni":"en-vysledky.html","demo":false,"lang":"en","cs_verze":"odhlaseni-hrozi.html"} -->
+<!--spec {
+ "route":"(dialog, lang=en)","nazev":"Session about to end – dialog, English","role":"instructor (admin area: after 30 min of inactivity; students after 60 min; same dialog)","sablona":"app",
+ "ucel":"English version: 2 minutes before signing out for inactivity, warn the user and offer to stay signed in, so they do not lose unsaved work (WCAG 2.2.1).",
+ "hlavni_akce":"Stay signed in (or Esc).",
+ "komponenty":["dialog","dialog__body","dialog__foot","timer","btn--hlavni","alert"],
+ "stavy":[
+  "Same states as the Czech page (odhlaseni-hrozi.html). English wording:",
+  "12-hour limit: “You can stay signed in for up to 12 hours. Save your work and sign in again.” + OK, got it.",
+  "expired: redirect to Sign in with “We signed you out because you were inactive. After you sign in, you’ll return to the same page.”",
+  "screen reader announcements: “1 minute left before you are signed out.”, “30 seconds left before you are signed out.”"],
+ "zmeny_ux":["Same layout as the Czech version. The heading is slightly longer and may wrap next to the timer at 320 px; the timer stays on the right."],
+ "texty":[
+  {"dnes":"Za 2 minuty vás odhlásíme","nove":"You’ll be signed out in 2 minutes","proc":"Specific, active; “sign out” per EN glossary."},
+  {"dnes":"Prodloužit přihlášení","nove":"Stay signed in","proc":"Says what happens, in the user’s terms; shorter than “Extend session”."},
+  {"dnes":"Odhlásit se teď","nove":"Sign out now","proc":"EN glossary: Sign out."},
+  {"dnes":"Přihlášení za 2 minuty skončí","nove":"Your session ends in 2 minutes","proc":"No way to extend, so not “You’ll be signed out”; neutral."},
+  {"dnes":"Rozumím","nove":"OK, got it","proc":"Same as the button on the question screen (en-test-otazka uses “OK, continue” where the user goes on with the test)."}],
+ "pristupnost":["role=alertdialog with aria-labelledby and aria-describedby; focus on Stay signed in; Esc = stay signed in (as on the Czech page).","The countdown has aria-live=off; a separate sr-only region announces 1:00 and 0:30.","Names of test takers in the background table are Czech proper nouns and are marked lang=\"cs\"."],
+ "poznamky_pro_kodera":["The page under the dialog is Results (simplified).","Timeouts as on the Czech page: admin area 30 min, students 60 min, console 15 min; warning 2 min before; maximum 12 h.","Glossary gap: Prodloužit přihlášení → Stay signed in."],
+ "chybi_komponenta":["dimmed page behind a non-modal dialog (the backdrop exists only for showModal)"]
+} -->
+<div class="page-head"><h1 class="t-titulek">Results</h1></div>
+<div class="table-wrap" aria-hidden="true">
+ <table class="table table--stack"><caption class="sr-only">Submitted attempts (page under the dialog)</caption>
+  <thead><tr><th scope="col">Test taker</th><th scope="col">Test</th><th scope="col" class="num">Result</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Test taker">Filip Zeman</td><td data-label="Test">Cyber security</td><td data-label="Result" class="num">37.5%</td></tr>
+   <tr><td data-label="Test taker"><span lang="cs">Tereza Doležalová</span></td><td data-label="Test">Cyber security</td><td data-label="Result" class="num">47.1%</td></tr>
+   <tr><td data-label="Test taker"><span lang="cs">Ondřej Malý</span></td><td data-label="Test">Cyber security</td><td data-label="Result" class="num">100.0%</td></tr>
+  </tbody>
+ </table>
+</div>
+
+<dialog open class="dialog" role="alertdialog" aria-labelledby="dlg-h" aria-describedby="dlg-p" style="position:fixed;top:var(--s-6);z-index:30">
+ <div class="dialog__body stack">
+  <div class="row-between"><h2 id="dlg-h" class="t-nadpis">You’ll be signed out in 2 minutes</h2><span class="timer" aria-hidden="true">1:58</span></div>
+  <p id="dlg-p">You haven’t done anything in the app for a while. The question you are editing stays saved in this browser tab, and you can restore it after you sign in.</p>
+  <p class="t-maly">You can also press <span class="kbd">Esc</span> to stay signed in.</p>
+ </div>
+ <div class="dialog__foot"><button class="btn btn--tiche" type="button">{{I:odhlasit}}Sign out now</button><button class="btn btn--hlavni" type="button" autofocus>Stay signed in</button></div>
+</dialog>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-7)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">12-hour limit – cannot be extended</p>
+  <div class="dialog" style="position:static;margin:0">
+   <div class="dialog__body stack"><h3 class="t-nadpis">Your session ends in 2 minutes</h3><p>You can stay signed in for up to 12 hours, and this cannot be extended. Save your work and sign in again.</p></div>
+   <div class="dialog__foot"><button class="btn btn--hlavni" type="button">OK, got it</button></div>
+  </div></div>
+ <div class="stack-2"><p class="t-stitek">After signing out (Sign in page)</p>
+  <div class="alert alert--info" style="max-width:var(--max-text)">{{I:info}}<p>We signed you out because you were inactive. After you sign in, you’ll return to the same page.</p></div></div>
+</section>

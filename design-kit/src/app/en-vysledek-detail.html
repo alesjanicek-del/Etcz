@@ -1,0 +1,142 @@
+<!--meta {"titulek":"Ondřej Malý – attempt detail","sablona":"app","role":"lektor","aktivni":"en-vysledky.html","demo":false,"lang":"en","cs_verze":"vysledek-detail.html"} -->
+<!--spec {
+ "route":"/vysledky/:id (lang=en)","nazev":"Attempt detail","role":"instructor (branch and organisation administrators the same; organisation administrators also get Record protection and Anonymisation)","sablona":"app",
+ "ucel":"Document one attempt: the outcome and why, what the test taker answered, how it went (log, monitoring) and the authenticity of the result report via its verification code.",
+ "hlavni_akce":"Download the result report (PDF); release the result to the test taker.",
+ "komponenty":["crumbs","page-head","meta","layout-aside","card","card--papir","stav","dl","qgrid","kod","alert","timeline","details","option__bub","btn"],
+ "stavy":["Same states as vysledek-detail.html: not passed, verification complete, result already released, submitted by monitoring, attempt in progress, anonymised attempt, PDF error, permissions."],
+ "zmeny_ux":[
+  "Layout identical to the Czech page.",
+  "Explanation sentence is gender-neutral in English (“15 of 15 points”, no “získal/získala”).",
+  "Status labels “Selected · correct” are longer than “Zvoleno · správná”; they wrap under the answer text on mobile (flex-basis 180px).",
+  "Points and percentages with one decimal place and a decimal point (100.0%)."],
+ "texty":[
+  {"dnes":"Splněno, protože získal 15 z 15 bodů. Hranice je 80 %, tedy 12 bodů.","nove":"Passed with 15 of 15 points. The pass mark is 80%, i.e. 12 points.","proc":"One sentence; “pass mark” is the usual British term."},
+  {"dnes":"Protokol (PDF) · Osvědčení (PDF)","nove":"Result report (PDF) · Certificate (PDF)","proc":"EN glossary."},
+  {"dnes":"Zkoušený vidí výsledek · Zpřístupnit výsledek","nove":"Visible to test taker · Release result","proc":"EN glossary."},
+  {"dnes":"Ověřovací kód · Ověření se dokončuje","nove":"Verification code · Verification pending","proc":"EN glossary."},
+  {"dnes":"Variace","nove":"Test version","proc":"EN glossary."},
+  {"dnes":"Dohled: Zapnutý: zaznamenat a upozornit zkoušeného","nove":"Monitoring: On – record and warn the test taker","proc":"EN glossary: monitoring, test taker."},
+  {"dnes":"Uznat výsledek · Zneplatnit pokus","nove":"Accept result · Invalidate attempt","proc":"Verb first."},
+  {"dnes":"Osvědčení a záznam o školení","nove":"Certificate and training record","proc":"EN glossary."}],
+ "pristupnost":["Same as the Czech page. The H1 name and Czech proper names are wrapped in lang=\"cs\".",".qgrid links: aria-label “Question 3, correct” / “Question 3, incorrect”."],
+ "poznamky_pro_kodera":[
+  "Data and behaviour as in vysledek-detail.html.",
+  "Confirmation text (Confirmed statement) is shown in the language the test taker confirmed it in; if that was Czech, wrap it in lang=\"cs\". The sample shows an English test.",
+  "Glossary gap: Ochrana záznamu → Record protection.",
+  "Glossary gap: Potvrzení proškoleného → Trainee confirmation.",
+  "Glossary gap: Školitel → Trainer (not instructor – the person named on the certificate).",
+  "Glossary gap: Osnova → Syllabus.",
+  "Glossary gap: Hranice (úspěšnosti) → pass mark."],
+ "chybi_komponenta":["static answer option (read-only .option) – see Czech page"]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-vysledky.html">Results</a></li><li><a href="en-vysledky-pridelene-detail.html">Cyber security · Annual training</a></li><li><span aria-current="page" lang="cs">Ondřej Malý</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2">
+  <h1 class="t-titulek" lang="cs">Ondřej Malý</h1>
+  <dl class="meta"><div><dt>Test</dt><dd>Cyber security – annual check</dd></div><div><dt>Method</dt><dd>Personal access codes · Annual training</dd></div><div><dt>Test version</dt><dd class="t-kod">TQ8K56K2</dd></div></dl>
+ </div>
+ <div class="page-head__actions"><a class="btn" href="../tisk/protokol.html" aria-describedby="pdf-h">{{I:stahnout}}Result report (PDF)</a><a class="btn" href="../tisk/osvedceni.html">{{I:stahnout}}Certificate (PDF)</a></div>
+</div>
+<p class="t-maly" id="pdf-h" style="margin:calc(-1 * var(--s-2)) 0 var(--s-4)">File the result report downloaded here. Every download is recorded in the change log.</p>
+
+<div class="layout-aside">
+ <div class="stack-5">
+  <section class="card card--papir stack" aria-labelledby="vyh">
+   <div class="row-between"><h2 id="vyh" class="t-nadpis">Evaluation</h2><span class="stav stav--ok">{{I:check}}Passed</span></div>
+   <p><span class="t-cislo t-titulek">100.0%</span> <span class="t-maly">15 of 15 points</span></p>
+   <p>Passed with 15 of 15 points. The pass mark is 80%, i.e. 12 points.</p>
+   <dl class="dl">
+    <dt>Started</dt><dd class="t-cislo"><time datetime="2026-11-03T18:27:23">3&nbsp;Nov 2026 18:27:23</time></dd>
+    <dt>Submitted</dt><dd><span class="t-cislo">3&nbsp;Nov 2026 18:27:24</span> · by the test taker</dd>
+    <dt>Time limit until</dt><dd class="t-cislo">3&nbsp;Nov 2026 18:42:23</dd>
+    <dt>Answered</dt><dd><span class="t-cislo">12 of 12</span> questions</dd>
+   </dl>
+  </section>
+
+  <section class="stack" aria-labelledby="ota">
+   <h2 id="ota" class="t-nadpis">Questions and answers</h2>
+   <nav aria-label="Go to question"><div class="qgrid">
+    <a class="z" href="#q1" aria-label="Question 1, correct">1</a><a class="z" href="#q2" aria-label="Question 2, correct">2</a><a class="z" href="#q3" aria-label="Question 3, correct">3</a><a class="z" href="#q4" aria-label="Question 4, correct">4</a><a class="z" href="#q5" aria-label="Question 5, correct">5</a><a class="z" href="#q6" aria-label="Question 6, correct">6</a><a class="z" href="#q7" aria-label="Question 7, correct">7</a><a class="z" href="#q8" aria-label="Question 8, correct">8</a><a class="z" href="#q9" aria-label="Question 9, correct">9</a><a class="z" href="#q10" aria-label="Question 10, correct">10</a><a class="z" href="#q11" aria-label="Question 11, correct">11</a><a class="z" href="#q12" aria-label="Question 12, correct">12</a>
+   </div></nav>
+   <p class="t-maly">Dark square = correct. Correct answers are collapsed, incorrect ones expanded.</p>
+   <div class="faq">
+    <details id="q1" open><summary><span class="stack-2"><span class="t-stitek">Question 1 · version 1 · 1 of 1 pt</span><span>What does the term pretexting mean?</span></span></summary>
+     <div><ol class="stack-2" style="list-style:none;padding:0">
+      <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">A</span><span style="flex:1 1 180px">Obtaining information or access under a made-up pretext and in a false role.</span><span class="stav stav--ok">{{I:check}}Selected · correct</span></li>
+      <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">B</span><span style="flex:1 1 180px">Automatically trying passwords from a dictionary.</span></li>
+      <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">C</span><span style="flex:1 1 180px">Sending unsolicited advertising.</span></li>
+      <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">D</span><span style="flex:1 1 180px">Encrypting files for extortion.</span></li>
+     </ol></div></details>
+    <details id="q2"><summary><span class="stack-2"><span class="t-stitek">Question 2 · version 1 · 1 of 1 pt</span><span>Your work phone gets a text asking you to pay CZK&nbsp;39 for a parcel you are not expecting. What is correct?</span></span></summary><div><p class="t-maly">Selected A – correct.</p></div></details>
+    <details id="q3"><summary><span class="stack-2"><span class="t-stitek">Question 3 · Mandatory · version 1 · 1 of 1 pt</span><span>In the car park outside the building you find a USB flash drive labelled “Payroll 2026”. What do you do with it?</span></span></summary><div><p class="t-maly">Selected A – correct.</p></div></details>
+    <details id="q7"><summary><span class="stack-2"><span class="t-stitek">Question 7 · version 1 · 2 of 2 pts · multiple correct</span><span>“Technical support” calls you and asks you to install a remote access program. What is correct?</span></span></summary><div><p class="t-maly">Selected B, C, E – all correct.</p></div></details>
+   </div>
+   <p class="t-maly">Questions 4–6 and 8–12 are left out of this design; they look the same.</p>
+  </section>
+
+  <section class="stack" aria-labelledby="pru">
+   <h2 id="pru" class="t-nadpis">Test progress and monitoring</h2>
+   <dl class="dl">
+    <dt>Monitoring</dt><dd>On: record and warn the test taker · full screen</dd>
+    <dt>Monitoring events</dt><dd><span class="stav stav--ok">{{I:check}}No events</span></dd>
+   </dl>
+   <div class="alert alert--info">{{I:info}}<p>Events are only information from the test taker’s browser. The test window can be left unintentionally, for example because of a system notification or an assistive tool. A person decides what happens next.</p></div>
+   <h3 class="t-text" style="font-weight:var(--w-tucne)">Progress log – 14 events</h3>
+   <ol class="timeline">
+    <li><p class="t-cislo">18:27:23</p><p>Started · test version <span class="t-kod">TQ8K56K2</span></p></li>
+    <li><p class="t-cislo">18:27:23</p><p>Question 1 shown</p></li>
+    <li><p class="t-cislo">18:27:23</p><p>Question 1: answer A selected</p></li>
+    <li><p class="t-cislo">18:27:24</p><p>Review before submitting shown</p></li>
+    <li class="akt"><p class="t-cislo">18:27:24</p><p><b>Submitted by the test taker</b> · 12 of 12 answered</p></li>
+   </ol>
+   <details class="faq"><summary>Show all 14 events</summary><div><p class="t-maly">Full list in the same format, including device time for events delivered after a connection outage.</p></div></details>
+  </section>
+
+  <section class="stack" aria-labelledby="osv">
+   <h2 id="osv" class="t-nadpis">Certificate and training record</h2>
+   <dl class="dl">
+    <dt>Certificate</dt><dd>Annual cyber security training · passed 3&nbsp;Nov 2026 · valid until 2&nbsp;Nov 2027 <span class="stav stav--ok">{{I:check}}Valid</span></dd>
+    <dt>Trainee confirmation</dt><dd>Not confirmed (submitted without confirmation)</dd>
+    <dt>Confirmed statement</dt><dd>I confirm that I have read and understood the content of the training “Annual cyber security training” as set out in the syllabus.</dd>
+    <dt>Trainer</dt><dd lang="cs">Ing. Pavla Školitelová</dd>
+    <dt>Syllabus</dt><dd><ul style="padding-left:var(--s-4)"><li>Phishing and fraudulent messages</li><li>Passwords, password managers and two-step verification</li><li>Working safely with email and attachments</li><li>Reporting security incidents</li></ul></dd>
+    <dt>Record protection</dt><dd>Not protected. Personal data is anonymised automatically after the retention period set by your organisation. For an attempt with a valid certificate, this happens no earlier than 30 days after the certificate expires.</dd>
+   </dl>
+   <details class="faq"><summary>Technical details</summary><div><p class="t-maly">Record checksums and timestamp (for specialists).</p></div></details>
+  </section>
+ </div>
+
+ <aside class="stack-4" aria-label="Attempt actions">
+  <section class="card stack" aria-labelledby="zpr">
+   <h2 id="zpr" class="t-stitek">Visible to test taker</h2>
+   <p class="t-nadpis">No</p>
+   <p class="t-maly">This test shows the result only after the instructor releases it. The test taker then finds it in My results.</p>
+   <button class="btn btn--hlavni" type="button">Release result</button>
+  </section>
+  <section class="card stack" aria-labelledby="ove">
+   <h2 id="ove" class="t-stitek">Verification code</h2>
+   <p class="kod" style="font-size:var(--t-text);overflow-wrap:anywhere">H5SAY-GVTNY-EDXAP-67SXD</p>
+   <p><span class="stav stav--info">{{I:hodiny}}Verification pending</span></p>
+   <p class="t-maly">The code is registered. The timestamp will be added within a few minutes.</p>
+   <a href="../web/en-overeni.html">Verify the result report with this code</a>
+  </section>
+ </aside>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">Submitted by monitoring – awaiting review</p>
+  <div class="alert" role="status">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Monitoring submitted the test after the window was left 3 times</p><p>Decide whether to accept the result. The test taker may have left the window because of an assistive tool or a technical problem.</p><div class="row"><button class="btn btn--male" type="button">Accept result</button><button class="btn btn--male btn--nebezpecne" type="button">Invalidate attempt</button></div></div></div></div>
+ <div class="stack-2"><p class="t-stitek">Incorrectly answered question (expanded)</p>
+  <div class="stack-2">
+   <p class="t-stitek">Question 5 · Mandatory · version 1 · 0 of 1 pt</p>
+   <p>A suspicious email with an unexpected attachment arrives in your work inbox. What is the right thing to do?</p>
+   <ol class="stack-2" style="list-style:none;padding:0">
+    <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">B</span><span style="flex:1 1 180px">I reply to the sender and ask whether they really sent the message.</span><span class="stav stav--ne">{{I:minus-kruh}}Selected · incorrect</span></li>
+    <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">D</span><span style="flex:1 1 180px">I do not open the attachment or link, and I report the email following the internal procedure.</span><span class="stav stav--neutral">{{I:check}}Correct</span></li>
+   </ol>
+  </div></div>
+ <div class="stack-2"><p class="t-stitek">After release</p>
+  <div class="alert alert--ok" role="status">{{I:check}}<p>The result is released. The test taker can see it from 3&nbsp;Nov 2026 18:40.</p></div></div>
+</section>

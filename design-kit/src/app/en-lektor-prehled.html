@@ -1,0 +1,99 @@
+<!--meta {"titulek":"Overview","sablona":"app","role":"lektor","aktivni":"lektor-prehled.html","demo":false,"lang":"en","cs_verze":"lektor-prehled.html"} -->
+<!--spec {
+ "route":"/ (lang=en)","nazev":"Overview – instructor – English","role":"instructor","sablona":"app",
+ "ucel":"Show at a glance what is happening right now (who is taking a test, what has been submitted, who has not passed) and give a quick way to run a test.",
+ "hlavni_akce":"Run a test; secondary: New question, New test, Live monitor for a test in progress",
+ "komponenty":["page-head","kpi","card","table table--stack","stav","empty","num-step","btn--hlavni"],
+ "stavy":["Same states as the Czech page (lektor-prehled.html): nothing in progress, new account (Getting started), loading, loading error, no permission, demo."],
+ "zmeny_ux":[
+  "Layout as in the Czech version. KPI labels are shorter than or as long as Czech; “not passed – to follow up” wraps onto 2 lines at 320 px, which is fine.",
+  "Dates in British format (3 Nov 2026 18:27), decimal point in scores (86.7%)."],
+ "texty":[
+  {"dnes":"Dobrý den, Lucie","nove":"Hello, Lucie","proc":"Friendly, short; first name only as in Czech."},
+  {"dnes":"Spustit zkoušení","nove":"Run a test","proc":"Verb first; “zkoušení” has no glossary term (see gap)."},
+  {"dnes":"Probíhající zkoušení","nove":"Tests in progress","proc":"Plain English."},
+  {"dnes":"právě píše · odevzdáno dnes · nesplnilo – k řešení","nove":"taking a test now · submitted today · not passed – to follow up","proc":"Glossary: Not passed."},
+  {"dnes":"Způsob · Píše · Odevzdáno","nove":"Method · Taking · Submitted","proc":"Short column headers."},
+  {"dnes":"Prezenční zkouška · Osobní kódy · Veřejný odkaz · Přidělení skupině","nove":"Supervised in-room exam · Personal access codes · Public link · Assigned to a group","proc":"Glossary."},
+  {"dnes":"Všechna použití (7)","nove":"All test assignments (7)","proc":"Glossary: test assignment."},
+  {"dnes":"Zkusit nanečisto","nove":"Trial run","proc":"Glossary: zkouška nanečisto → trial run."},
+  {"dnes":"Splněno · Nesplněno","nove":"Passed · Not passed","proc":"Glossary."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\". Czech personal names with Czech-only letters are marked lang=\"cs\" for correct pronunciation."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Dates via ICU (en-GB): d MMM yyyy HH:mm; percentages without a space.","Test names are user content – shown in the language they were written in; the demo shows English test names.","Glossary gap: zkoušení / Spustit zkoušení → testing / Run a test","Glossary gap: způsob (zadání testu) → method"],
+ "chybi_komponenta":["kpi as a link – as in the Czech page"]
+} -->
+<div class="page-head">
+ <h1 class="t-titulek">Hello, Lucie</h1>
+ <div class="page-head__actions">
+  <a class="btn" href="en-otazka-editor.html">{{I:plus}}New question</a>
+  <a class="btn" href="en-test-novy.html">{{I:plus}}New test</a>
+  <a class="btn btn--hlavni" href="en-pouziti-nove.html">{{I:prehrat}}Run a test</a>
+ </div>
+</div>
+
+<div class="stack-4">
+ <div class="kpi" role="list" aria-label="Today" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+  <div role="listitem"><a href="en-pouziti.html" style="display:block;color:inherit;text-decoration:none"><span class="t-cislo">3</span><span class="t-maly">taking a test now</span></a></div>
+  <div role="listitem"><a href="en-vysledky.html" style="display:block;color:inherit;text-decoration:none"><span class="t-cislo">8</span><span class="t-maly">submitted today</span></a></div>
+  <div role="listitem"><a href="en-vysledky.html" style="display:block;color:inherit;text-decoration:none"><span class="t-cislo">3</span><span class="t-maly">not passed – to follow up</span></a></div>
+ </div>
+
+ <section class="stack" aria-labelledby="prob">
+  <div class="row-between"><h2 id="prob" class="t-nadpis">Tests in progress</h2><a href="en-pouziti.html">All test assignments (7)</a></div>
+  <div class="table-wrap">
+   <table class="table table--stack" aria-labelledby="prob">
+    <caption class="sr-only">Tests in progress – 3 of 7 test assignments</caption>
+    <thead><tr><th scope="col">Test</th><th scope="col">Method</th><th scope="col" class="num">Taking</th><th scope="col" class="num">Submitted</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+    <tbody>
+     <tr><td data-label="Test"><div><b>Radiation protection: knowledge check</b><span class="t-maly">Supervised in-room exam – room 2</span></div></td><td data-label="Method">Supervised in-room exam</td><td data-label="Taking" class="num">3</td><td data-label="Submitted" class="num">4</td><td data-label="Actions"><a href="en-zivy-panel.html">Live monitor<span class="sr-only">: Radiation protection, room 2</span></a></td></tr>
+     <tr><td data-label="Test"><div><b>Cyber security: annual check</b><span class="t-maly">Annual training</span></div></td><td data-label="Method">Personal access codes</td><td data-label="Taking" class="num">0</td><td data-label="Submitted" class="num">6</td><td data-label="Actions"><a href="en-zivy-panel.html">Live monitor<span class="sr-only">: Cyber security, annual training</span></a></td></tr>
+     <tr><td data-label="Test"><div><b>Health and safety: practice test</b><span class="t-maly">Practice test on the website</span></div></td><td data-label="Method">Public link</td><td data-label="Taking" class="num">0</td><td data-label="Submitted" class="num">0</td><td data-label="Actions"><a href="en-zivy-panel.html">Live monitor<span class="sr-only">: Health and safety, practice test on the website</span></a></td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+
+ <section class="stack" aria-labelledby="vys">
+  <div class="row-between"><h2 id="vys" class="t-nadpis">Latest results</h2><a href="en-vysledky.html">All results</a></div>
+  <div class="table-wrap">
+   <table class="table table--stack" aria-labelledby="vys">
+    <caption class="sr-only">Last 4 submitted attempts</caption>
+    <thead><tr><th scope="col">Test taker</th><th scope="col">Test</th><th scope="col">Submitted</th><th scope="col">Result</th><th scope="col" class="num">Score</th></tr></thead>
+    <tbody>
+     <tr><td data-label="Test taker"><a href="en-vysledek-detail.html" lang="cs">Ondřej Malý</a></td><td data-label="Test">Cyber security: annual check</td><td data-label="Submitted" class="t-cislo">3 Nov 2026 18:27</td><td data-label="Result"><span class="stav stav--ok">{{I:check}}Passed</span></td><td data-label="Score" class="num">100.0%</td></tr>
+     <tr><td data-label="Test taker"><a href="en-vysledek-detail.html" lang="cs">Simona Králová</a></td><td data-label="Test">Cyber security: annual check</td><td data-label="Submitted" class="t-cislo">3 Nov 2026 18:27</td><td data-label="Result"><span class="stav stav--ok">{{I:check}}Passed</span></td><td data-label="Score" class="num">86.7%</td></tr>
+     <tr><td data-label="Test taker"><a href="en-vysledek-detail.html" lang="cs">Michaela Fialová</a></td><td data-label="Test">Radiation protection: knowledge check</td><td data-label="Submitted" class="t-cislo">3 Nov 2026 18:27</td><td data-label="Result"><span class="stav stav--ok">{{I:check}}Passed</span></td><td data-label="Score" class="num">100.0%</td></tr>
+     <tr><td data-label="Test taker"><a href="en-vysledek-detail.html" lang="cs">Klára Kolářová</a></td><td data-label="Test">Radiation protection: knowledge check</td><td data-label="Submitted" class="t-cislo">3 Nov 2026 18:27</td><td data-label="Result"><span class="stav stav--ne">{{I:minus-kruh}}Not passed</span></td><td data-label="Score" class="num">89.7%</td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Nothing in progress</h3>
+  <div class="empty stack-2">{{I:prehrat}}<p class="t-nadpis">No tests in progress right now</p><p class="t-maly">Choose a test and a method: supervised in-room exam, personal access codes, assigned to a group or public link.</p><p><a class="btn" href="en-pouziti-nove.html">Run a test</a></p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">New account – Getting started</h3>
+  <section class="card card--papir stack" aria-labelledby="pk">
+   <div class="row-between"><p id="pk" class="t-nadpis">Getting started</p><button class="btn btn--tiche btn--male" type="button">Hide guide</button></div>
+   <ol class="stack" style="list-style:none;padding:0">
+    <li class="num-step"><span class="t-cislo">1</span><p><a href="en-soubor-formular.html">Create a question bank</a> and add questions, or <a href="en-soubor-import.html">import them from XLSX</a>.</p></li>
+    <li class="num-step"><span class="t-cislo">2</span><p><a href="en-test-novy.html">Build a test</a> from your question banks.</p></li>
+    <li class="num-step"><span class="t-cislo">3</span><p>Try the test yourself with the Trial run button. The attempt does not count towards the limit.</p></li>
+    <li class="num-step"><span class="t-cislo">4</span><p><a href="en-pouziti-nove.html">Run a test</a>: personal access codes, public link, assigned to a group or supervised in-room exam.</p></li>
+    <li class="num-step"><span class="t-cislo">5</span><p>Watch the <a href="en-zivy-panel.html">live monitor</a>, then open the result and the result report.</p></li>
+   </ol>
+  </section>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Loading error</h3>
+  <div class="alert alert--chyba" role="alert">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">We couldn’t load the tests in progress.</p><p><button class="btn btn--male" type="button">{{I:obnovit}}Try again</button></p></div></div>
+ </div>
+</section>

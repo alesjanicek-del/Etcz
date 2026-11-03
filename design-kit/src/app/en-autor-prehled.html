@@ -1,0 +1,77 @@
+<!--meta {"titulek":"Overview","sablona":"app","role":"autor","aktivni":"autor-prehled.html","demo":false,"lang":"en","cs_verze":"autor-prehled.html"} -->
+<!--spec {
+ "route":"/ (lang=en)","nazev":"Overview – question author – English","role":"question author","sablona":"app",
+ "ucel":"Show question authors the status of their questions (drafts, pending approval, returned for changes) and give quick access to their question banks.",
+ "hlavni_akce":"New question; secondary: open a question bank, fix a returned question",
+ "komponenty":["page-head","kpi","table table--stack","stav","alert","empty","btn--hlavni"],
+ "stavy":["Same states as the Czech page (autor-prehled.html): question returned to draft, no question bank, nothing pending, approval turned off by the organisation, loading, error, no permission."],
+ "zmeny_ux":["Layout as in the Czech version. The greeting needs no vocative form in English (“Hello, Adam”)."],
+ "texty":[
+  {"dnes":"Dobrý den, Adame","nove":"Hello, Adam","proc":"No grammatical case in English – the first name is always safe to use."},
+  {"dnes":"rozpracované koncepty · čeká na schválení · vráceno k opravě","nove":"drafts in progress · pending approval · returned for changes","proc":"Glossary: draft, pending approval."},
+  {"dnes":"Moje otázky ve schvalování","nove":"My questions in approval","proc":"Short heading."},
+  {"dnes":"Ke schválení","nove":"Pending approval","proc":"Glossary."},
+  {"dnes":"Vaše právo · Vlastník","nove":"Your permission · Owner","proc":"Same terms as on Question bank permissions."},
+  {"dnes":"1 otázku vám schvalovatel vrátil do konceptu.","nove":"A reviewer returned 1 of your questions to draft.","proc":"Glossary: return to draft; active voice."},
+  {"dnes":"Nový soubor otázek","nove":"New question bank","proc":"Glossary."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\"."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Question text and bank names are user content; the demo shows English samples.","Glossary gap: schvalovatel → reviewer","Glossary gap: Ukázková sada → Sample set (prefix of demo question banks)","Glossary gap: právo (k souboru) · Vlastník · Editace → permission · Owner · Edit"],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <h1 class="t-titulek">Hello, Adam</h1>
+ <div class="page-head__actions">
+  <a class="btn" href="en-soubory.html">{{I:slozka}}Question banks</a>
+  <a class="btn btn--hlavni" href="en-otazka-editor.html">{{I:plus}}New question</a>
+ </div>
+</div>
+
+<div class="stack-5">
+ <div class="kpi" role="list" aria-label="My questions by status" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+  <div role="listitem"><a href="en-otazky-hledat.html" style="display:block;color:inherit;text-decoration:none"><span class="t-cislo">0</span><span class="t-maly">drafts in progress</span></a></div>
+  <div role="listitem"><a href="en-otazky-hledat.html" style="display:block;color:inherit;text-decoration:none"><span class="t-cislo">1</span><span class="t-maly">pending approval</span></a></div>
+  <div role="listitem"><a href="en-otazky-hledat.html" style="display:block;color:inherit;text-decoration:none"><span class="t-cislo">0</span><span class="t-maly">returned for changes</span></a></div>
+ </div>
+
+ <section class="stack" aria-labelledby="moje">
+  <div class="row-between"><h2 id="moje" class="t-nadpis">My questions in approval</h2><a href="en-otazky-hledat.html">Search questions</a></div>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">My questions in approval</caption>
+    <thead><tr><th scope="col">Question</th><th scope="col">Question bank</th><th scope="col">Status</th><th scope="col" class="num">Version</th><th scope="col">Sent</th></tr></thead>
+    <tbody>
+     <tr><td data-label="Question"><a href="en-otazka-detail.html">Which of these passwords is the most secure?</a></td><td data-label="Question bank">Cyber security: user training</td><td data-label="Status"><span class="stav stav--pise">{{I:hodiny}}Pending approval</span></td><td data-label="Version" class="num">v1</td><td data-label="Sent" class="t-cislo" style="white-space:nowrap">3 Nov 2026 03:00</td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+
+ <section class="stack" aria-labelledby="soub">
+  <div class="row-between"><h2 id="soub" class="t-nadpis">My question banks</h2><a href="en-soubory.html">All question banks</a></div>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Question banks you own or may edit</caption>
+    <thead><tr><th scope="col">Name</th><th scope="col">Your permission</th><th scope="col" class="num">Questions</th><th scope="col" class="num">Pending approval</th></tr></thead>
+    <tbody>
+     <tr><td data-label="Name"><a href="en-soubor-detail.html">Sample set: Health and safety – employee training</a></td><td data-label="Your permission">Owner</td><td data-label="Questions" class="num">34</td><td data-label="Pending approval" class="num">0</td></tr>
+     <tr><td data-label="Name"><a href="en-soubor-detail.html">Sample set: Cyber security – user training</a></td><td data-label="Your permission">Owner</td><td data-label="Questions" class="num">36</td><td data-label="Pending approval" class="num">1</td></tr>
+     <tr><td data-label="Name"><a href="en-soubor-detail.html">Sample set: Radiation protection – basic principles</a></td><td data-label="Your permission">Owner</td><td data-label="Questions" class="num">36</td><td data-label="Pending approval" class="num">0</td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Question returned for changes</h3>
+  <div class="alert" role="status">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">A reviewer returned 1 of your questions to draft.</p><p>“Which of these passwords is the most secure?” – Barbora Veselá: “Add to the feedback why a longer password is more secure.”</p><p><a class="btn btn--male" href="en-otazka-editor.html">{{I:upravit}}Fix question</a></p></div></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">No question bank</h3>
+  <div class="empty stack-2">{{I:slozka}}<p class="t-nadpis">You don’t have any question banks yet</p><p class="t-maly">A question bank is a named group of questions, for example “Radiation protection”. You can then add questions manually or import them from XLSX.</p><p><a class="btn" href="en-soubor-formular.html">New question bank</a></p></div>
+ </div>
+</section>

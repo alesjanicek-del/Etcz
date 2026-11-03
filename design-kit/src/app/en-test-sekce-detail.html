@@ -1,0 +1,153 @@
+<!--meta {"titulek":"OHS section – OHS – practice test","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false,"lang":"en","cs_verze":"test-sekce-detail.html"} -->
+<!--spec {
+ "route":"/testy/:id/sekce/:id (lang=en)","nazev":"Test section – question selection – English","role":"instructor","sablona":"app",
+ "ucel":"Set how many questions are drawn from the bank, which are required or excluded, and which tags limit the draw.",
+ "hlavni_akce":"Save section (back to the sections overview); secondary: Save and stay",
+ "komponenty":["crumbs","page-head","steps","layout-aside","card","dl","stav","field","input","fieldset","check","table-wrap","table--stack","form-actions","alert"],
+ "stavy":[
+  "Default: section OK, summary on the right (drawn).",
+  "Error: “from” greater than “to”, or too few candidates – summary switches to Error and alert--chyba states the cause; field aria-invalid + .error (drawn).",
+  "Empty question filter: “No question matches the filter “alcohol”.” in a table row.",
+  "Loading: the summary recalculates after a change (debounce 400 ms); “Recalculating…” in aria-live.",
+  "No permission: a question bank the instructor may no longer use is read-only – alert--info at the top, fields disabled."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (test-sekce-detail.html).",
+  "Row options read Draw / Required / Exclude – all short; the three radio columns keep their width at 1280 px.",
+  "Tag names are user data; in this sample they are translated to show the layout with English text."],
+ "texty":[
+  {"dnes":"Souhrn sekce","nove":"Section summary","proc":"Plain noun."},
+  {"dnes":"Losovat náhodně: od / do","nove":"Draw at random: from / to","proc":"Same structure as the Czech label."},
+  {"dnes":"Kromě povinných otázek. Stejné číslo v obou polích = pevný počet.","nove":"On top of required questions. Same number in both fields = fixed number.","proc":"Short hint."},
+  {"dnes":"Losovat / Povinná / Vyloučit","nove":"Draw / Required / Exclude","proc":"Mutually exclusive options; short column headers."},
+  {"dnes":"Losovat jen otázky se štítky (nepovinné)","nove":"Only draw questions with these tags (optional)","proc":"Glossary: štítek → tag; label states the effect."},
+  {"dnes":"Nelosovat otázky se štítky (nepovinné)","nove":"Never draw questions with these tags (optional)","proc":"Active, clear."},
+  {"dnes":"Uložit a zůstat","nove":"Save and stay","proc":"Verb first."},
+  {"dnes":"Zrušit změny","nove":"Discard changes","proc":"Common UI term."}],
+ "pristupnost":["Same as the Czech page: summary aside with aria-labelledby, status line in aria-live=polite; row radios with sr-only labels (“Required: question 1”); From/To in a fieldset with legend “Draw at random”."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml. Question text and tags come from the question bank (question_pool.language) – may stay Czech; then mark with lang=\"cs\".",
+  "Below 1024 px move the Section summary aside above the form (order:-1), as on the Czech page.",
+  "Glossary gap: povinná / vyloučená otázka → required / excluded question; losovat → draw (at random)."],
+ "chybi_komponenta":["layout-aside with the side panel on top on mobile (see Czech page)"]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-testy.html">Tests</a></li><li><a href="en-test-editor-sekce.html">OHS – practice test</a></li><li><span aria-current="page">OHS section</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Edit section</p><h1 class="t-titulek">OHS section</h1>
+  <dl class="meta"><div><dt>Test</dt><dd>OHS – practice test</dd></div><div><dt>Question bank</dt><dd>Sample bank: OHS – employee training</dd></div></dl></div>
+</div>
+<ol class="steps" aria-label="Test editor steps" style="margin-bottom:var(--s-5);contain:inline-size">
+ <li><a href="en-test-editor-sekce.html" aria-current="step">Sections</a></li><li><a href="en-test-editor-parametry.html">Settings</a></li><li><a href="en-test-editor-kontrola.html">Check</a></li>
+</ol>
+
+<form class="layout-aside" action="en-test-editor-sekce.html" method="post">
+ <div class="stack-5" style="min-width:0">
+  <fieldset class="stack">
+   <legend class="t-nadpis" style="margin-bottom:var(--s-3)">Question selection</legend>
+   <div class="grid-2">
+    <div class="field"><label class="label" for="nadpis">Section title</label><input class="input" id="nadpis" name="nadpis" value="OHS"></div>
+    <div class="field"><label class="label" for="vaha">Scoring weight</label><span class="hint" id="vaha-h">How many times more this section’s points count.</span><input class="input" id="vaha" name="vaha" type="number" min="1" value="1" inputmode="numeric" aria-describedby="vaha-h" style="max-width:120px"></div>
+   </div>
+   <fieldset class="stack-2" aria-describedby="los-h">
+    <legend>Draw at random</legend>
+    <span class="hint" id="los-h">On top of required questions. Same number in both fields = fixed number.</span>
+    <div class="row">
+     <div class="field"><label class="label" for="od">from</label><input class="input" id="od" name="od" type="number" min="0" value="10" inputmode="numeric" style="max-width:120px"></div>
+     <div class="field"><label class="label" for="do">to</label><input class="input" id="do" name="do" type="number" min="0" value="12" inputmode="numeric" style="max-width:120px"></div>
+     <span class="t-maly" style="align-self:flex-end;padding-bottom:var(--s-2)">questions</span>
+    </div>
+   </fieldset>
+  </fieldset>
+
+  <section class="stack" aria-labelledby="otazky-h">
+   <div class="stack-2">
+    <h2 id="otazky-h" class="t-nadpis">Required and excluded questions</h2>
+    <p class="t-maly">Every test taker gets a required question. An excluded question is never drawn. The rest are drawn at random.</p>
+   </div>
+   <div class="field" role="search"><label class="label" for="filtr">Filter questions</label><span class="hint" id="filtr-h">Only narrows what you see. Choices for hidden questions are kept.</span><input class="input" id="filtr" type="search" aria-describedby="filtr-h" style="max-width:420px"></div>
+   <div class="table-wrap">
+    <table class="table table--stack">
+     <caption class="sr-only">Questions in Sample bank: OHS – employee training (showing 4 of 34)</caption>
+     <thead><tr><th scope="col">Question</th><th scope="col">Tags</th><th scope="col">Draw</th><th scope="col">Required</th><th scope="col">Exclude</th></tr></thead>
+     <tbody>
+      <tr><td data-label="Question"><span><span class="t-cislo">1</span> An employee has good reason to believe that the work assigned would put their life or health in immediate danger. Which is true?</span></td><td data-label="Tags"><span>Employee duties, Basic</span></td>
+       <td data-label="Draw"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q1" value="losovat" checked><span class="sr-only">Draw: question 1</span></label></td>
+       <td data-label="Required"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q1" value="povinna"><span class="sr-only">Required: question 1</span></label></td>
+       <td data-label="Exclude"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q1" value="vyloucit"><span class="sr-only">Exclude: question 1</span></label></td></tr>
+      <tr><td data-label="Question"><span><span class="t-cislo">2</span> An employer wants to deduct part of the cost of OHS training from employees’ wages. Is this allowed?</span></td><td data-label="Tags"><span>Employer duties, Basic</span></td>
+       <td data-label="Draw"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q2" value="losovat" checked><span class="sr-only">Draw: question 2</span></label></td>
+       <td data-label="Required"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q2" value="povinna"><span class="sr-only">Required: question 2</span></label></td>
+       <td data-label="Exclude"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q2" value="vyloucit"><span class="sr-only">Exclude: question 2</span></label></td></tr>
+      <tr><td data-label="Question"><span><span class="t-cislo">3</span> Who does the Labour Code require to keep identifying hazards and assessing risks?</span></td><td data-label="Tags"><span>Employer duties, Basic</span></td>
+       <td data-label="Draw"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q3" value="losovat" checked><span class="sr-only">Draw: question 3</span></label></td>
+       <td data-label="Required"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q3" value="povinna"><span class="sr-only">Required: question 3</span></label></td>
+       <td data-label="Exclude"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q3" value="vyloucit"><span class="sr-only">Exclude: question 3</span></label></td></tr>
+      <tr><td data-label="Question"><span><span class="t-cislo">4</span> In which situations must the employer provide training on OHS regulations? <span class="vice">more</span></span></td><td data-label="Tags"><span>Employer duties, Advanced</span></td>
+       <td data-label="Draw"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q4" value="losovat" checked><span class="sr-only">Draw: question 4</span></label></td>
+       <td data-label="Required"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q4" value="povinna"><span class="sr-only">Required: question 4</span></label></td>
+       <td data-label="Exclude"><label class="check" style="padding-top:var(--s-2)"><input type="radio" name="q4" value="vyloucit"><span class="sr-only">Exclude: question 4</span></label></td></tr>
+     </tbody>
+    </table>
+   </div>
+   <div><button class="btn btn--male" type="button">Show all 34 questions</button></div>
+  </section>
+
+  <section class="stack" aria-labelledby="stitky-h">
+   <div class="stack-2"><h2 id="stitky-h" class="t-nadpis">Tags</h2><p class="t-maly">Only tags you may use are listed. Rules using other instructors’ tags are kept.</p></div>
+   <fieldset aria-describedby="pov-h">
+    <legend>Only draw questions with these tags <span class="volitelne t-maly">(optional)</span></legend>
+    <span class="hint" id="pov-h">Tick nothing = no limit.</span>
+    <div class="grid-3" style="gap:0 var(--s-4)">
+     <label class="check"><input type="checkbox" name="pov[]">Basic</label><label class="check"><input type="checkbox" name="pov[]">Advanced</label><label class="check"><input type="checkbox" name="pov[]">PPE</label><label class="check"><input type="checkbox" name="pov[]">Employee duties</label><label class="check"><input type="checkbox" name="pov[]">Employer duties</label><label class="check"><input type="checkbox" name="pov[]">Workplace injury</label><label class="check"><input type="checkbox" name="pov[]">Managers</label>
+    </div>
+   </fieldset>
+   <fieldset>
+    <legend>A question must have</legend>
+    <label class="check"><input type="radio" name="musi" checked>at least one of the ticked tags</label>
+    <label class="check"><input type="radio" name="musi">all ticked tags</label>
+   </fieldset>
+   <fieldset>
+    <legend>Never draw questions with these tags <span class="volitelne t-maly">(optional)</span></legend>
+    <div class="grid-3" style="gap:0 var(--s-4)">
+     <label class="check"><input type="checkbox" name="zak[]">Basic</label><label class="check"><input type="checkbox" name="zak[]">Advanced</label><label class="check"><input type="checkbox" name="zak[]">PPE</label><label class="check"><input type="checkbox" name="zak[]">Employee duties</label><label class="check"><input type="checkbox" name="zak[]">Employer duties</label><label class="check"><input type="checkbox" name="zak[]">Workplace injury</label><label class="check"><input type="checkbox" name="zak[]">Managers</label>
+    </div>
+   </fieldset>
+  </section>
+
+  <div class="form-actions">
+   <button class="btn btn--hlavni" type="submit">Save section</button>
+   <button class="btn" type="submit" name="zustat" value="1">Save and stay</button>
+   <a class="btn btn--tiche" href="en-test-editor-sekce.html">Discard changes</a>
+  </div>
+ </div>
+
+ <aside class="card card--papir stack" aria-labelledby="souhrn-h" style="align-self:start">
+  <h2 id="souhrn-h" class="t-stitek">Section summary</h2>
+  <dl class="dl" style="grid-template-columns:1fr auto">
+   <dt>Required</dt><dd class="t-cislo">0</dd>
+   <dt>Candidates</dt><dd class="t-cislo">34</dd>
+   <dt>Drawn at random</dt><dd class="t-cislo">10–12</dd>
+   <dt>Possible combinations</dt><dd class="t-cislo">≥&nbsp;10,000</dd>
+  </dl>
+  <p aria-live="polite"><span class="stav stav--ok">{{I:check}}OK</span></p>
+ </aside>
+</form>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">Error: range and summary</p>
+ <div class="grid-2">
+  <fieldset class="stack-2">
+   <legend>Draw at random</legend>
+   <div class="row">
+    <div class="field"><label class="label" for="od-x">from</label><input class="input" id="od-x" type="number" value="14" aria-invalid="true" aria-describedby="od-x-e" style="max-width:120px"></div>
+    <div class="field"><label class="label" for="do-x">to</label><input class="input" id="do-x" type="number" value="12" style="max-width:120px"></div>
+   </div>
+   <span class="error" id="od-x-e">{{I:pozor}}“From” must be less than or equal to “to”.</span>
+  </fieldset>
+  <div class="card card--papir stack">
+   <p class="t-stitek">Section summary</p>
+   <p><span class="stav stav--ne">{{I:minus-kruh}}Error</span></p>
+   <div class="alert alert--chyba">{{I:pozor}}<p>The draw range is not valid: “from” is greater than “to”.</p></div>
+  </div>
+ </div>
+</section>

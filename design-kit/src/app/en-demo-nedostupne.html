@@ -1,0 +1,32 @@
+<!--meta {"titulek":"Not available in the demo","sablona":"app","role":"lektor","aktivni":"","demo":true,"lang":"en","cs_verze":"demo-nedostupne.html"} -->
+<!--spec {
+ "route":"(demo, lang=en)","nazev":"Not available in the demo – English","role":"instructor (in the demo for all roles)","sablona":"app",
+ "ucel":"English version: when a demo visitor opens a feature that does not work in the demo (organisation settings, invoices, really sending an email), explain why and offer a next step.",
+ "hlavni_akce":"Book a guided demo; secondary: Back to the demo Overview.",
+ "komponenty":["demo-bar","card--papir","list-check","btn"],
+ "stavy":[
+  "Same states as the Czech page (demo-nedostupne.html). English wording:",
+  "link after the nightly reset: “Demo data was deleted at 3:00. Start the demo again.” + Try the demo again.",
+  "action would send an email: redirect to the Demo mailbox instead of this page."],
+ "zmeny_ux":["Same layout as the Czech version."],
+ "texty":[
+  {"dnes":"Nastavení organizace v demu nejde","nove":"Organisation settings aren’t available in the demo","proc":"Specific; British spelling."},
+  {"dnes":"Ukázka s průvodcem","nove":"Book a guided demo","proc":"EN glossary."},
+  {"dnes":"Zpět na Přehled dema","nove":"Back to the demo Overview","proc":"Says where it goes."},
+  {"dnes":"Ukážeme vám aplikaci online, asi za 30 minut.","nove":"We’ll show you the app online in about 30 minutes.","proc":"Short, active."}],
+ "pristupnost":["Specific H1.","Links with a clear destination."],
+ "poznamky_pro_kodera":["Feature name and description come from the map of unavailable demo features (EN strings needed).","The demo bar (.demo-bar) stays at the top."],
+ "chybi_komponenta":[]
+} -->
+<div class="card card--papir stack-4" style="max-width:var(--max-text);margin-top:var(--s-4)">
+ <p class="t-stitek">Public demo</p>
+ <h1 class="t-titulek">Organisation settings aren’t available in the demo</h1>
+ <p>Everyone in the demo shares one sample organisation, so you cannot change its settings. In the full version, the organisation administrator sets here:</p>
+ <ul class="list-check">
+  <li><span>how questions are scored and approved,</span></li>
+  <li><span>email reminders before training validity ends,</span></li>
+  <li><span>how long results are kept, and whether two-step verification is required.</span></li>
+ </ul>
+ <p>Want to see it for your own organisation? We’ll show you the app online in about 30 minutes.</p>
+ <div class="row"><a class="btn btn--hlavni" href="../web/en-ukazka.html">Book a guided demo</a><a class="btn" href="en-lektor-prehled.html">Back to the demo Overview</a></div>
+</div>

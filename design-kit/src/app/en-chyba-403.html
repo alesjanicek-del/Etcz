@@ -1,0 +1,34 @@
+<!--meta {"titulek":"Access denied","sablona":"app","role":"lektor","aktivni":"","demo":false,"lang":"en","cs_verze":"chyba-403.html"} -->
+<!--spec {
+ "route":"(error, lang=en)","nazev":"Access denied – English","role":"instructor (sample: an instructor opened Branch admin → Users; content changes with role and page)","sablona":"app",
+ "ucel":"English version of the 403 page: explain why you cannot see the page and who can give you access.",
+ "hlavni_akce":"Go to Overview; email the administrator.",
+ "komponenty":["card--papir","dl","btn"],
+ "stavy":[
+  "Same states as the Czech page (chyba-403.html). English wording of the variants:",
+  "record belongs to another instructor: “This test was created by Lucie Lektorová. Ask her to share it.”",
+  "another branch: “This record belongs to the Brno branch. Switch the active branch if you have a role there.”",
+  "required two-step verification not set up: redirect to two-step verification setup, not 403."],
+ "zmeny_ux":["Same layout as the Czech version.","English has no grammatical gender issue for the administrator: “email them” is neutral; the link names the person."],
+ "texty":[
+  {"dnes":"Na tuto stránku nemáte přístup","nove":"You don’t have access to this page","proc":"Human, active."},
+  {"dnes":"Administrátor pobočky nebo organizace","nove":"Branch or organisation administrator","proc":"EN glossary."},
+  {"dnes":"Barbora Veselá, administrátorka pobočky – napsat Barboře Veselé","nove":"Barbora Veselá, branch administrator – email Barbora Veselá","proc":"Link names the person; no declension in English."},
+  {"dnes":"Uživatele spravuje administrátor pobočky. Pokud přístup potřebujete, napište mu.","nove":"Users are managed by your branch administrator. If you need access, email them.","proc":"Says what to do; gender-neutral “them”."},
+  {"dnes":"Role a oprávnění v nápovědě","nove":"Roles and permissions in help","proc":"Link text names the article."}],
+ "pristupnost":["H1 describes the situation.","Administrator email is a mailto link with the name in the text."],
+ "poznamky_pro_kodera":["HTTP 403; reason and contact come from the server.","Do not show the name of the protected record, only its type."],
+ "chybi_komponenta":[]
+} -->
+<div class="card card--papir stack-4" style="max-width:var(--max-text);margin-top:var(--s-4)">
+ <p class="t-stitek">Error 403</p>
+ <h1 class="t-titulek">You don’t have access to this page</h1>
+ <p>The <b>Users</b> page is for administrators only. Your role in the Prague branch is Instructor.</p>
+ <dl class="dl">
+  <dt>Role needed</dt><dd>Branch or organisation administrator</dd>
+  <dt>Your role</dt><dd>Instructor · Prague branch</dd>
+  <dt>Who can help</dt><dd>Barbora Veselá, branch administrator – <a href="mailto:admin.barbora@demo.example">email Barbora Veselá</a></dd>
+ </dl>
+ <p class="t-maly">Users are managed by your branch administrator. If you need access, email them.</p>
+ <div class="row"><a class="btn btn--hlavni" href="en-lektor-prehled.html">{{I:domu}}Go to Overview</a><a class="btn btn--tiche" href="en-napoveda.html">Roles and permissions in help</a></div>
+</div>

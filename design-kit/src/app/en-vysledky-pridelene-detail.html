@@ -1,0 +1,57 @@
+<!--meta {"titulek":"Assigned test – who passed","sablona":"app","role":"lektor","aktivni":"en-vysledky.html","demo":false,"lang":"en","cs_verze":"vysledky-pridelene-detail.html"} -->
+<!--spec {
+ "route":"/vysledky/pridelene/:id (lang=en)","nazev":"Assigned test – who passed","role":"instructor (branch administrators the same, for assignments in their branches)","sablona":"app",
+ "ucel":"For one assignment, show person by person who passed, did not pass, is writing or has not started.",
+ "hlavni_akce":"Find who has not started yet; open a person’s attempt.",
+ "komponenty":["crumbs","page-head","meta","kpi","tabs (status filter)","table-wrap","table--stack","stav","empty"],
+ "stavy":["Same states as vysledky-pridelene-detail.html: nobody assigned, empty status filter (“Nobody has this status.”), loading/error, permissions."],
+ "zmeny_ux":["Layout identical to the Czech page. KPI labels use plural-neutral English (“passed”, “not started”) – no singular/plural split as in Czech (splnili / nesplnil).","Filter tabs are longer (“Not started (1)”); they wrap inside the tab bar on mobile."],
+ "texty":[
+  {"dnes":"Odevzdané pokusy ve Výsledcích","nove":"Submitted attempts in Results","proc":"Says where the link goes."},
+  {"dnes":"splnili · nesplnil · píše · nezahájil","nove":"passed · not passed · writing · not started","proc":"Same words as the table statuses."},
+  {"dnes":"Kód odeslán 3. 11. 18:27","nove":"Code sent 3 Nov 18:27","proc":"Date format en-GB."},
+  {"dnes":"Otázka 7 z 12","nove":"Question 7 of 12","proc":"As in the test taker interface."},
+  {"dnes":"Otevřít Použití testů","nove":"Open Test assignments","proc":"EN glossary."}],
+ "pristupnost":["Same as the Czech page. Czech names wrapped in lang=\"cs\" where needed."],
+ "poznamky_pro_kodera":["Data as in vysledky-pridelene-detail.html.","KPI labels: use ICU plural rules for the locale, not fixed strings.","Glossary gap: Píše → Writing; Nezahájeno → Not started."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-vysledky.html">Results</a></li><li><a href="en-vysledky-pridelene.html">Assigned tests</a></li><li><span aria-current="page">Cyber security</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2">
+  <h1 class="t-titulek">Cyber security – annual check</h1>
+  <dl class="meta"><div><dt>Method</dt><dd>Personal access codes</dd></div><div><dt>Assignment</dt><dd>Annual training</dd></div><div><dt>Branch</dt><dd>Prague</dd></div><div><dt>Instructor</dt><dd>Lucie Lektorová</dd></div></dl>
+ </div>
+ <div class="page-head__actions"><a class="btn" href="en-vysledky.html">Submitted attempts in Results</a></div>
+</div>
+
+<div class="kpi" style="margin-bottom:var(--s-4)">
+ <div><span class="t-cislo">2</span><span class="t-maly">passed</span></div>
+ <div><span class="t-cislo">1</span><span class="t-maly">not passed</span></div>
+ <div><span class="t-cislo">1</span><span class="t-maly">writing</span></div>
+ <div><span class="t-cislo">1</span><span class="t-maly">not started</span></div>
+</div>
+
+<nav class="tabs" aria-label="Filter by status" style="margin-bottom:var(--s-3);contain:inline-size">
+ <a href="#" aria-current="page">All (5)</a><a href="#">Not started (1)</a><a href="#">Writing (1)</a><a href="#">Not passed (1)</a><a href="#">Passed (2)</a>
+</nav>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">People in the assignment Annual training, 5 people</caption>
+  <thead><tr><th scope="col">Person</th><th scope="col">Status</th><th scope="col" class="num">Result</th><th scope="col">Last activity</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Person"><span><b>Adam Adámek</b><span class="t-maly" style="overflow-wrap:anywhere">adam.adamek@demo.example</span></span></td><td data-label="Status"><span class="stav stav--neutral">{{I:hodiny}}Not started</span></td><td data-label="Result" class="num">—</td><td data-label="Last activity">Code sent 3&nbsp;Nov 18:27</td></tr>
+   <tr><td data-label="Person"><span><b>Barbora Bílá</b><span class="t-maly" style="overflow-wrap:anywhere">barbora.bila@demo.example</span></span></td><td data-label="Status"><span class="stav stav--pise">{{I:upravit}}Writing</span></td><td data-label="Result" class="num">—</td><td data-label="Last activity">Question 7 of 12 · 18:41</td></tr>
+   <tr><td data-label="Person"><span><a href="en-vysledek-detail.html"><b>Cyril Cibulka</b></a><span class="t-maly" style="overflow-wrap:anywhere">cyril.cibulka@demo.example</span></span></td><td data-label="Status"><span class="stav stav--ne">{{I:minus-kruh}}Not passed</span></td><td data-label="Result" class="num">64.7%</td><td data-label="Last activity">Submitted 3&nbsp;Nov 18:39</td></tr>
+   <tr><td data-label="Person"><span><a href="en-vysledek-detail.html"><b>Dana Dlouhá</b></a><span class="t-maly" style="overflow-wrap:anywhere">dana.dlouha@demo.example</span></span></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Passed</span></td><td data-label="Result" class="num">88.2%</td><td data-label="Last activity">Submitted 3&nbsp;Nov 18:35</td></tr>
+   <tr><td data-label="Person"><span><a href="en-vysledek-detail.html"><b>Emil Erben</b></a><span class="t-maly" style="overflow-wrap:anywhere">emil.erben@demo.example</span></span></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Passed</span></td><td data-label="Result" class="num">100.0%</td><td data-label="Last activity">Submitted 3&nbsp;Nov 18:33</td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">Nobody assigned</p>
+  <div class="empty stack-2">{{I:uzivatel}}<p class="t-nadpis">This test is not assigned to anyone yet</p><p class="t-maly">Add people or a group in the test assignment detail.</p><p><a class="btn" href="en-pouziti.html">Open Test assignments</a></p></div></div>
+</section>

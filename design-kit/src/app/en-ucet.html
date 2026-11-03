@@ -1,0 +1,64 @@
+<!--meta {"titulek":"My account","sablona":"app","role":"lektor","aktivni":"","demo":false,"lang":"en","cs_verze":"ucet.html"} -->
+<!--spec {
+ "route":"/ucet (lang=en)","nazev":"My account – English","role":"instructor (same for all roles; two-step verification is always required for administrators and question authors, optional for students)","sablona":"app",
+ "ucel":"English version of the account page: your own details and account security – password, two-step verification, backup codes and signing out.",
+ "hlavni_akce":"Turn on / manage two-step verification; Sign out.",
+ "komponenty":["page-head","grid-2","card","dl","stav","btn","alert","dialog","field"],
+ "stavy":["Same states as the Czech page (ucet.html): verification off but required for the role, verification on (drawn), demo notice, new backup codes, after Sign out on all devices."],
+ "zmeny_ux":[
+  "Same layout as the Czech version. Button labels are 10–30% longer; the two security buttons and the two sign-out buttons wrap onto separate lines at 320 px, which is fine.",
+  "“Sign out on all devices” replaces the Czech “Odhlásit na všech zařízeních”; the hint below explains when to use it."],
+ "texty":[
+  {"dnes":"Ověření ve dvou krocích","nove":"Two-step verification","proc":"EN glossary."},
+  {"dnes":"Záložní kódy · Zbývá 8 záložních kódů.","nove":"Backup codes · 8 backup codes left.","proc":"Glossary gap; common term in authenticator flows."},
+  {"dnes":"Znovu nastavit ověření","nove":"Set up verification again","proc":"Verb first; says what happens."},
+  {"dnes":"Odhlásit · Odhlásit na všech zařízeních","nove":"Sign out · Sign out on all devices","proc":"EN glossary: Sign out (not Log out)."},
+  {"dnes":"Lektor · Pobočka Praha","nove":"Instructor · Prague branch","proc":"EN glossary: instructor, branch."},
+  {"dnes":"Jméno a e-mail vám změní administrátor pobočky.","nove":"Your branch administrator can change your name and email.","proc":"Active voice; “email” without hyphen (British usage in UI)."}],
+ "pristupnost":["<html lang=\"en\">; the user’s name is a proper noun and stays as it is.","Each card has an H2; Sign out buttons are POST forms, not links; verification status uses icon + word (“On”)."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Glossary gap: záložní kód → backup code.","Glossary gap: ověřovací aplikace → authenticator app.","Behaviour as on the Czech page: changing the password keeps you signed in here and signs you out elsewhere; new backup codes need the current password."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head"><h1 class="t-titulek">My account</h1></div>
+<div class="grid-2" style="align-items:start">
+ <section class="card stack" aria-labelledby="udaje">
+  <h2 id="udaje" class="t-nadpis">Details</h2>
+  <dl class="dl">
+   <dt>Name</dt><dd>Lucie Lektorová</dd>
+   <dt>Email</dt><dd style="overflow-wrap:anywhere">lektor.lucie@demo.example</dd>
+   <dt>Role</dt><dd>Instructor · Prague branch</dd>
+  </dl>
+  <p class="t-maly">Your branch administrator can change your name and email.</p>
+ </section>
+
+ <div class="stack-4">
+  <section class="card stack" aria-labelledby="zab">
+   <h2 id="zab" class="t-nadpis">Security</h2>
+   <div class="stack-2">
+    <div class="row-between"><h3 class="t-text" style="font-weight:var(--w-tucne)">Two-step verification</h3><span class="stav stav--ok">{{I:check}}On</span></div>
+    <p class="t-maly">You enter a code from an authenticator app on your phone as well as your password. 8 backup codes left.</p>
+    <div class="row"><button class="btn btn--male" type="button">{{I:klic}}Backup codes</button><button class="btn btn--male btn--tiche" type="button">Set up verification again</button></div>
+   </div>
+   <hr class="rule-tenka">
+   <div class="stack-2">
+    <h3 class="t-text" style="font-weight:var(--w-tucne)">Password</h3>
+    <p class="t-maly">You stay signed in on this device. You will be signed out on all other devices.</p>
+    <p><button class="btn btn--male" type="button">{{I:zamek}}Change password</button></p>
+   </div>
+  </section>
+
+  <section class="card stack" aria-labelledby="odh">
+   <h2 id="odh" class="t-nadpis">Signing out</h2>
+   <form class="row" action="#" method="post"><button class="btn" type="submit">{{I:odhlasit}}Sign out</button><button class="btn btn--tiche" type="submit" name="vse" value="1">Sign out on all devices</button></form>
+   <p class="t-maly">Sign out on all devices if you forgot to sign out on someone else’s computer.</p>
+  </section>
+ </div>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">Verification off, required for the role</p>
+  <div class="alert">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Two-step verification is required for your role.</p><p>Setting it up takes about 2 minutes. You need a phone with an authenticator app.</p><p><button class="btn btn--hlavni btn--male" type="button">Turn on two-step verification</button></p></div></div></div>
+ <div class="stack-2"><p class="t-stitek">In the demo</p>
+  <div class="alert alert--info">{{I:info}}<p>In the demo, you do not sign in with a password and two-step verification is not set up. In the full version, it is required for administrators and question authors.</p></div></div>
+</section>

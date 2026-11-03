@@ -1,0 +1,39 @@
+<!--meta {"titulek":"Demo mailbox","sablona":"app","role":"lektor","aktivni":"","demo":true,"lang":"en","cs_verze":"schranka-dema.html"} -->
+<!--spec {
+ "route":"/schranka-dema (lang=en)","nazev":"Demo mailbox – English","role":"instructor (in the demo the same for all roles; outside the demo the page does not exist)","sablona":"app",
+ "ucel":"English version: no email leaves the demo, so the visitor sees here the invitations, codes and notifications the app would send.",
+ "hlavni_akce":"Open an email (e.g. with an access code) and try the link in it.",
+ "komponenty":["page-head","alert--info","table-wrap","table--stack","empty"],
+ "stavy":["Same states as the Czech page (schranka-dema.html): empty mailbox (drawn), after the nightly reset at 3:00, outside the demo (404)."],
+ "zmeny_ux":["Same layout as the Czech version. Subject lines are about 10% longer; the Subject column wraps, Recipient breaks anywhere."],
+ "texty":[
+  {"dnes":"Schránka dema","nove":"Demo mailbox","proc":"Same term as the demo bar (build.py)."},
+  {"dnes":"Z dema neodchází žádný e-mail. Pozvánky, kódy, oznámení a výsledky, které by aplikace poslala, najdete tady. Odkazy fungují do nočního smazání dema ve 3:00.","nove":"No emails leave the demo. Invitations, codes, notifications and results the app would send appear here. Links work until the demo is reset at 3:00 each night.","proc":"Short sentences; “reset” is clearer than “deletion” for the visitor."},
+  {"dnes":"Přístupový kód k testu „…“","nove":"Access code for the test “…”","proc":"EN glossary: access code; English quotation marks."},
+  {"dnes":"Zatím tu nic není","nove":"Nothing here yet","proc":"Short empty state."},
+  {"dnes":"Rozeslat osobní kódy","nove":"Send personal access codes","proc":"EN glossary; verb first."}],
+ "pristupnost":["Table caption (sr-only).","Subject is a link; unique thanks to the recipient in sr-only text."],
+ "poznamky_pro_kodera":["Data: emails for the visitor’s sample branch, latest first.","Date and time in British short format: 3 Nov 18:27.","Email subjects are generated in the language of the test assignment (test_usage.ui_locale), not the language of the mailbox page."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head"><h1 class="t-titulek">Demo mailbox</h1></div>
+<div class="alert alert--info" style="margin-bottom:var(--s-4);max-width:var(--max-text)">{{I:email}}<p>No emails leave the demo. Invitations, codes, notifications and results the app would send appear here. Links work until the demo is reset at 3:00 each night.</p></div>
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Messages in the Demo mailbox, 5 messages, latest first</caption>
+  <thead><tr><th scope="col">Subject</th><th scope="col">Recipient</th><th scope="col">Time</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Subject"><a href="en-schranka-email.html">Access code for the test “Cyber security: annual check”<span class="sr-only"> for Emil Erben</span></a></td><td data-label="Recipient" style="overflow-wrap:anywhere">emil.erben@demo.example</td><td data-label="Time" class="num">3&nbsp;Nov 18:27</td></tr>
+   <tr><td data-label="Subject"><a href="en-schranka-email.html">Access code for the test “Cyber security: annual check”<span class="sr-only"> for Dana Dlouhá</span></a></td><td data-label="Recipient" style="overflow-wrap:anywhere">dana.dlouha@demo.example</td><td data-label="Time" class="num">3&nbsp;Nov 18:27</td></tr>
+   <tr><td data-label="Subject"><a href="en-schranka-email.html">Access code for the test “Cyber security: annual check”<span class="sr-only"> for Cyril Cibulka</span></a></td><td data-label="Recipient" style="overflow-wrap:anywhere">cyril.cibulka@demo.example</td><td data-label="Time" class="num">3&nbsp;Nov 18:27</td></tr>
+   <tr><td data-label="Subject"><a href="en-schranka-email.html">Access code for the test “Cyber security: annual check”<span class="sr-only"> for Barbora Bílá</span></a></td><td data-label="Recipient" style="overflow-wrap:anywhere">barbora.bila@demo.example</td><td data-label="Time" class="num">3&nbsp;Nov 18:27</td></tr>
+   <tr><td data-label="Subject"><a href="en-schranka-email.html">Access code for the test “Cyber security: annual check”<span class="sr-only"> for Adam Adámek</span></a></td><td data-label="Recipient" style="overflow-wrap:anywhere">adam.adamek@demo.example</td><td data-label="Time" class="num">3&nbsp;Nov 18:27</td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">Empty mailbox</p>
+  <div class="empty stack-2">{{I:email}}<p class="t-nadpis">Nothing here yet</p><p class="t-maly">An email appears here when, for example, you send personal access codes or invite a user.</p><p><a href="en-pouziti-kody.html">Send personal access codes</a></p></div></div>
+</section>
