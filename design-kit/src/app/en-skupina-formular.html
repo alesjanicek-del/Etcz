@@ -1,0 +1,34 @@
+<!--meta {"titulek":"New student group","sablona":"app","role":"admin","aktivni":"en-skupiny.html","demo":false,"lang":"en","cs_verze":"skupina-formular.html"} -->
+<!--spec {
+ "route":"/sprava/skupiny/nova (lang=en)","nazev":"New student group","role":"admin","sablona":"app",
+ "ucel":"Create a group in a branch; add members on its detail page.",
+ "hlavni_akce":"Create group.",
+ "komponenty":["crumbs","page-head","field","input","select","hint","error","error-summary","form-actions"],
+ "stavy":["Same states as skupina-formular.html: empty name (drawn below), duplicate name (“A group with this name already exists in this branch.”), single branch shown as read-only text, permissions."],
+ "zmeny_ux":["Layout identical to the Czech page."],
+ "texty":[
+  {"dnes":"Název skupiny","nove":"Group name","proc":"Required field, not marked."},
+  {"dnes":"Do skupiny přidáte jen studující této pobočky.","nove":"You can add only students of this branch to the group.","proc":"Active voice."},
+  {"dnes":"Členy přidáte hned po založení.","nove":"You add members right after creating the group.","proc":"Says what comes next."},
+  {"dnes":"Založit skupinu","nove":"Create group","proc":"Verb first."},
+  {"dnes":"Napište název skupiny.","nove":"Enter a group name.","proc":"Error as an instruction."}],
+ "pristupnost":["Same as the Czech page."],
+ "poznamky_pro_kodera":["Behaviour as in skupina-formular.html."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-skupiny.html">Student groups</a></li><li><span aria-current="page">New group</span></li></ol></nav>
+<div class="page-head"><h1 class="t-titulek">New student group</h1></div>
+<form class="stack-4" action="en-skupiny.html" method="post" style="max-width:var(--max-text)">
+ <div class="field"><label class="label" for="nz">Group name</label><span class="hint" id="nz-h">For example, “New employees – November”.</span><input class="input" id="nz" name="nazev" aria-describedby="nz-h"></div>
+ <div class="field"><label class="label" for="pb">Branch</label><span class="hint" id="pb-h">You can add only students of this branch to the group.</span><select class="select" id="pb" name="pobocka" aria-describedby="pb-h" style="max-width:320px"><option>Prague</option></select></div>
+ <p class="t-maly">You add members right after creating the group.</p>
+ <div class="form-actions"><button class="btn btn--hlavni" type="submit">Create group</button><a class="btn btn--tiche" href="en-skupiny.html">Cancel</a></div>
+</form>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6);max-width:var(--max-text)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">Name missing</p>
+  <div class="error-summary" role="alert" aria-labelledby="es"><p id="es" class="alert__nadpis">The group cannot be created</p><ul style="padding-left:var(--s-4)"><li><a href="#nz2">Enter a group name.</a></li></ul></div>
+  <div class="field"><label class="label" for="nz2">Group name</label><input class="input" id="nz2" aria-invalid="true" aria-describedby="nz2-e"><span class="error" id="nz2-e">{{I:pozor}}Enter a group name.</span></div>
+ </div>
+</section>

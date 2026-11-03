@@ -1,0 +1,96 @@
+<!--meta {"titulek":"Waiting room – Supervised exam – room 2","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false,"lang":"en","cs_verze":"cekarna-lektor.html"} -->
+<!--spec {
+ "route":"/pouziti/:id (waiting room, lang=en)","nazev":"Supervised in-room exam – waiting room (instructor) – English","role":"instructor","sablona":"app",
+ "ucel":"The instructor sees who has joined, removes anyone who should not be there and, once everyone is in, locks entry and starts the test for all at once.",
+ "hlavni_akce":"Lock entry and start test",
+ "komponenty":["crumbs","page-head","meta","card","card--papir","kod","qr","table-wrap","table--stack","btn--hlavni","btn--nebezpecne","alert","dialog","empty"],
+ "stavy":[
+  "Default: 4 participants in the waiting room, button enabled (drawn).",
+  "Empty waiting room: button disabled with the reason “Available once the first participant joins.” (drawn).",
+  "Same name: a second participant with the same name cannot join – alert advising to add the year of birth (drawn).",
+  "Start confirmation: dialog “Start the test for 4 participants? Latecomers cannot join.” (drawn).",
+  "Loading: the list refreshes every 5 s; a new participant is announced only by the count (aria-live).",
+  "No permission: the assignment’s creator and administrators only; others 403."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (cekarna-lektor.html).",
+  "The primary button “Lock entry and start test (4)” is longer in EN; it already uses white-space:normal and wraps inside the aside.",
+  "Meta shows “Language for test takers” when the test assignment language (test_usage.ui_locale) differs from the instructor’s UI language – here English UI, Czech test takers would show “Czech”."],
+ "texty":[
+  {"dnes":"Čekárna je otevřená","nove":"The waiting room is open","proc":"Glossary: čekárna → waiting room."},
+  {"dnes":"Účastníci otevřou demo.exam-test.cz/live a zadají kód:","nove":"Participants open demo.exam-test.cz/live and enter the code:","proc":"Code as a large separate element."},
+  {"dnes":"Čeká se na start","nove":"Waiting to start","proc":"Status word with icon."},
+  {"dnes":"Otevřít promítací plochu (nové okno)","nove":"Open projector screen (new window)","proc":"Glossary: promítací plocha → projector screen."},
+  {"dnes":"Uzamknout vstup a spustit test (4)","nove":"Lock entry and start test (4)","proc":"Verb first; count shown."},
+  {"dnes":"Jsou tu všichni?","nove":"Is everyone here?","proc":"Natural question."},
+  {"dnes":"Odebrat","nove":"Remove","proc":"Text button, never ✕."}],
+ "pristupnost":["Same as the Czech page: count in aria-live=polite (“In the waiting room: 4”), Remove with sr-only name, disabled primary button described by its reason, projector link target=_blank with “(new window)” in its text. Czech personal names carry lang=\"cs\"."],
+ "poznamky_pro_kodera":["Strings from translations/*+intl-icu.en.yaml.","Participant count uses plural rules (1 participant / 4 participants).","Glossary gap: účastník (prezenční zkoušky) → participant; uzamknout vstup → lock entry."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-pouziti.html">Test assignments</a></li><li><span aria-current="page">Supervised exam – room 2</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Supervised in-room exam · waiting room</p><h1 class="t-titulek">Radiation protection – knowledge check</h1>
+  <dl class="meta"><div><dt>Label</dt><dd>Supervised exam – room 2</dd></div><div><dt>Branch</dt><dd>Prague</dd></div><div><dt>Created</dt><dd>3 Nov 18:27</dd></div><div><dt>Language for test takers</dt><dd>Czech</dd></div></dl></div>
+ <div class="page-head__actions"><a class="btn" href="en-promitaci-plocha.html" target="_blank">{{I:obrazovka}}Open projector screen (new window)</a><button class="btn" type="button">Close test assignment</button></div>
+</div>
+
+<div class="layout-aside">
+ <div class="stack-4" style="min-width:0">
+  <section class="card card--papir stack" aria-labelledby="pripojeni-h">
+   <div class="row-between"><h2 id="pripojeni-h" class="t-nadpis">The waiting room is open</h2><span class="stav stav--pise">{{I:hodiny}}Waiting to start</span></div>
+   <div class="row" style="align-items:center;gap:var(--s-4)">
+    <img class="qr" src="../assets/img/qr-ukazka.png" alt="QR code to join the supervised exam" width="120" height="120">
+    <div class="stack-2">
+     <p>Participants open <b class="t-kod">demo.exam-test.cz/live</b> and enter the code:</p>
+     <p><span class="kod">B8HAN4</span></p>
+    </div>
+   </div>
+  </section>
+
+  <section class="stack" aria-labelledby="cekarna-h">
+   <div class="row-between"><h2 id="cekarna-h" class="t-nadpis">In the waiting room</h2><p aria-live="polite"><span class="t-cislo t-titulek">4</span> participants</p></div>
+   <div class="table-wrap">
+    <table class="table table--stack">
+     <caption class="sr-only">Participants in the waiting room (4)</caption>
+     <thead><tr><th scope="col">Participant</th><th scope="col">Joined</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+     <tbody>
+      <tr><td data-label="Participant"><b lang="cs">Klára Hnědá</b></td><td data-label="Joined"><span class="t-cislo">9:52</span></td><td data-label="Actions"><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">Remove<span class="sr-only">: <span lang="cs">Klára Hnědá</span></span></button></td></tr>
+      <tr><td data-label="Participant"><b lang="cs">Ondřej Žlutý</b></td><td data-label="Joined"><span class="t-cislo">9:53</span></td><td data-label="Actions"><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">Remove<span class="sr-only">: <span lang="cs">Ondřej Žlutý</span></span></button></td></tr>
+      <tr><td data-label="Participant"><b lang="cs">Marie Růžová</b></td><td data-label="Joined"><span class="t-cislo">9:55</span></td><td data-label="Actions"><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">Remove<span class="sr-only">: <span lang="cs">Marie Růžová</span></span></button></td></tr>
+      <tr><td data-label="Participant"><b>Jan Novák (1985)</b></td><td data-label="Joined"><span class="t-cislo">9:58</span></td><td data-label="Actions"><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">Remove<span class="sr-only">: Jan Novák (1985)</span></button></td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p class="t-maly">Has someone joined who should not be here? Remove them. Participant names appear in the result report.</p>
+  </section>
+ </div>
+
+ <aside class="card stack" aria-labelledby="start-h" style="align-self:start">
+  <h2 id="start-h" class="t-nadpis">Is everyone here?</h2>
+  <p>Once started, everyone gets their own test version. Latecomers cannot join.</p>
+  <button class="btn btn--hlavni btn--blok" type="button" style="white-space:normal">{{I:zamek}}Lock entry and start test (4)</button>
+  <p class="t-maly">You then follow progress in the live monitor on this page.</p>
+ </aside>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="grid-2" style="align-items:start">
+  <div class="stack-2">
+   <p class="t-stitek">Empty waiting room</p>
+   <div class="card stack">
+    <p id="prazdna-h">Nobody is in the waiting room. The button becomes available once the first participant joins.</p>
+    <button class="btn btn--hlavni btn--blok" type="button" disabled aria-describedby="prazdna-h" style="white-space:normal">{{I:zamek}}Lock entry and start test</button>
+   </div>
+  </div>
+  <div class="stack-2">
+   <p class="t-stitek">Start confirmation (dialog)</p>
+   <div class="dialog" role="alertdialog" aria-modal="false" aria-labelledby="d-h" aria-describedby="d-p" style="position:static;display:block;margin:0;width:100%">
+    <div class="dialog__body stack"><h3 id="d-h" class="t-nadpis">Start the test for 4 participants?</h3><p id="d-p">Entry will be locked. Latecomers cannot join.</p></div>
+    <div class="dialog__foot"><button class="btn" type="button">Cancel</button><button class="btn btn--hlavni" type="button">Start test</button></div>
+   </div>
+  </div>
+ </div>
+ <p class="t-stitek">Two participants with the same name</p>
+ <div class="alert">{{I:pozor}}<p>“Jan Novák” is already in the waiting room. Ask the second person with this name to add their year of birth, for example “Jan Novák (1985)”.</p></div>
+</section>

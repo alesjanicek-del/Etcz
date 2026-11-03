@@ -1,0 +1,106 @@
+<!--meta {"titulek": "Certificate – Zdeněk Zkoušený", "sablona": "a4", "lang": "en", "cs_verze": "osvedceni.html"} -->
+<!--spec {
+ "route": "(PDF) Result → Download certificate (PDF) (lang=en)",
+ "nazev": "Certificate / training record (A4) – English, non-official tests only",
+ "role": "test taker (holder), organisation (issuer)",
+ "sablona": "a4",
+ "ucel": "English version of the certificate for a non-official training test: proof that the test taker passed the test for a training course, with its validity date. Anyone can check authenticity and validity with the code or QR.",
+ "hlavni_akce": "Prove completed training (to an employer, an inspection)",
+ "komponenty": [
+  "a4",
+  "t-display",
+  "t-perex",
+  "t-zvyraznit",
+  "t-cislo",
+  "t-kod",
+  "dl",
+  "img (QR)"
+ ],
+ "stavy": [
+  "IMPORTANT: an official test (úřední zkouška) does not issue a certificate at all (the result report is the proof), and its documents are always in Czech (owner’s decision). This English certificate exists only for non-official tests (documents_follow_examinee).",
+  "Other states as on the Czech page (osvedceni.html). English wording: “no expiry” in Valid until; expired strip “Validity ended on 2 Nov 2027”."
+ ],
+ "zmeny_ux": [
+  "Same layout as the Czech version. “has successfully passed the assessment test for the training course” is longer than the Czech line and wraps to 2 lines under the name."
+ ],
+ "texty": [
+  {
+   "dnes": "Osvědčení o absolvování školení",
+   "nove": "Certificate of training completion",
+   "proc": "EN glossary: certificate."
+  },
+  {
+   "dnes": "úspěšně složil(a) ověřovací test ke školení",
+   "nove": "has successfully passed the assessment test for the training course",
+   "proc": "Precise: the certificate proves the test, not the training itself; no gender form needed."
+  },
+  {
+   "dnes": "Datum splnění · Platí do · Výsledek",
+   "nove": "Date passed · Valid until · Result",
+   "proc": "Short labels."
+  },
+  {
+   "dnes": "Školitel · Osnova · Vydala",
+   "nove": "Trainer · Syllabus · Issued by",
+   "proc": "Glossary gap: školitel → trainer; osnova → syllabus."
+  },
+  {
+   "dnes": "Osvědčení vydává uvedená organizace. Nejde o doklad úřadu ani akreditované osoby. Samo nezakládá odbornou způsobilost, kterou předpis podmiňuje zkouškou před úřadem.",
+   "nove": "This certificate is issued by the organisation named above. It is not a document issued by a public authority or an accredited body. On its own, it does not establish a professional competence that the law makes conditional on an exam before a public authority.",
+   "proc": "Legal scope translated faithfully, in body text size."
+  }
+ ],
+ "pristupnost": [
+  "<html lang=\"en\"> and PDF language en; the holder’s and trainer’s names are marked lang=\"cs\".",
+  "Validity dates as text, not only in the QR.",
+  "Axe/check: A4 has a fixed width of 210 mm, so the preview sits in a scrollable region (role=region, tabindex=0); at 375 px it scrolls horizontally – acceptable for a print preview."
+ ],
+ "poznamky_pro_kodera": [
+  "Language rule (owner’s decision): the result report and the certificate of an official test (úřední zkouška) are always issued in Czech, whatever the test taker’s language. This English version applies only to non-official tests, where print documents follow the test taker’s language (documents_follow_examinee).",
+  "Generator rule: official tests never produce a certificate; for non-official tests use the test taker’s document language.",
+  "Data: demo attempt H5SAY-GVTNY-EDXAP-67SXD, passed 3 Nov 2026, validity 12 months → valid until 2 Nov 2027.",
+  "Training name, syllabus and trainer are organisation data; they appear in the language they were entered in (translated here as a sample).",
+  "Glossary gap: školitel → trainer.",
+  "Glossary gap: osnova → syllabus.",
+  "Glossary gap: ověřovací test ke školení → assessment test for the training course."
+ ],
+ "chybi_komponenta": [
+  "three-date tiles (like .kpi but in a dl) – inline grid",
+  "verification block with QR (.overeni-blok) – inline, shared with the result report"
+ ]
+} -->
+<main id="obsah"><div role="region" aria-label="A4 print preview: Certificate" tabindex="0" style="overflow-x:auto">
+<div class="a4" style="display:flex;flex-direction:column;gap:var(--s-3);margin-bottom:var(--s-5);font-size:var(--t-maly);line-height:1.4">
+<header class="row-between" style="padding-bottom:var(--s-3);border-bottom:var(--b-akcent) solid var(--c-grafit)">
+ <p><b><span lang="cs">Ukázková organizace</span> (demo)</b></p>
+ <p class="row" style="gap:var(--s-2)"><img src="../assets/logo/exam-test-znacka.svg" alt="" width="20" height="20"><span class="t-stitek">Issued in the exam-test app</span></p>
+</header>
+<div class="stack-4" style="padding:var(--s-6) 0 var(--s-5)">
+ <p class="t-stitek">Certificate of training completion</p>
+ <h1 class="t-display"><span lang="cs">Zdeněk Zkoušený</span></h1>
+ <p class="t-perex">has successfully passed the assessment test for the training course</p>
+ <p class="t-titulek"><span class="t-zvyraznit">Annual cyber security training</span></p>
+</div>
+<dl style="display:grid;grid-template-columns:repeat(3,1fr);border:var(--b-silna) solid var(--c-grafit);margin:0">
+ <div style="padding:var(--s-3);border-right:var(--b-silna) solid var(--c-grafit)"><dt class="t-stitek">Date passed</dt><dd class="t-cislo t-nadpis">3&nbsp;Nov 2026</dd></div>
+ <div style="padding:var(--s-3);border-right:var(--b-silna) solid var(--c-grafit)"><dt class="t-stitek">Valid until</dt><dd class="t-cislo t-nadpis">2&nbsp;Nov 2027</dd></div>
+ <div style="padding:var(--s-3)"><dt class="t-stitek">Result</dt><dd class="t-cislo t-nadpis">83.3%</dd></div>
+</dl>
+<dl class="dl" style="grid-template-columns:160px 1fr">
+ <dt>Test</dt><dd>Cyber security: annual check</dd>
+ <dt>Trainer</dt><dd><span lang="cs">Ing. Pavla Školitelová</span></dd>
+ <dt>Syllabus</dt><dd>Phishing and fraudulent messages · Passwords, password managers and two-step verification · Safe use of email and attachments · Reporting security incidents</dd>
+ <dt>Issued by</dt><dd><span lang="cs">Ukázková organizace</span> (demo), Visitor 6013 branch</dd>
+</dl>
+<section aria-labelledby="ov-h" class="row" style="gap:var(--s-4);align-items:center;background:var(--c-papir);padding:var(--s-3);border-left:var(--b-akcent) solid var(--c-grafit);margin-top:auto">
+ <img src="../assets/img/qr-ukazka.png" alt="QR code for checking the certificate’s authenticity and validity, code H5SAY-GVTNY-EDXAP-67SXD" width="120" height="124" style="width:120px;height:auto;image-rendering:pixelated">
+ <div class="stack-2" style="flex:1">
+  <h2 id="ov-h" class="t-text" style="font-weight:var(--w-tucne)">Checking authenticity and validity</h2>
+  <p class="t-kod t-nadpis">H5SAY-GVTNY-EDXAP-67SXD</p>
+  <p>At <b>exam-test.cz/overeni</b> or with the QR code, anyone can check whether the certificate is genuine and still valid. The code is the same as on the result report.</p>
+ </div>
+</section>
+<p>This certificate is issued by the organisation named above. It is not a document issued by a public authority or an accredited body. On its own, it does not establish a professional competence that the law makes conditional on an exam before a public authority.</p>
+<footer class="row-between" style=";padding-top:var(--s-2);border-top:var(--b-tenka) solid var(--c-grafit)"><p class="t-stitek" style="text-transform:none;letter-spacing:0">Certificate · H5SAY-GVTNY-EDXAP-67SXD · created 3 Nov 2026 17:42</p><p class="t-stitek" style="text-transform:none;letter-spacing:0">page 1 / 1</p></footer>
+</div>
+</div></main>

@@ -1,0 +1,126 @@
+<!--meta {"titulek":"Question 10 · Radiation protection – basic principles","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false,"lang":"en","cs_verze":"otazka-detail.html"} -->
+<!--spec {
+ "route":"/otazky/:id (lang=en)","nazev":"Question – detail – English","role":"instructor, question author, administrator; actions depend on the bank permission and the reviewer role","sablona":"app",
+ "ucel":"Show the question as saved (with correct answers, feedback, tags and note), its status and version, and offer editing, preview, history and moving.",
+ "hlavni_akce":"Edit question; secondary: Preview as test taker, History, Copy / Move to a bank",
+ "komponenty":["crumbs","page-head","meta","stav","layout-aside","card","option (read-only)","dl","field","select","alert","dialog","btn--nebezpecne"],
+ "stavy":["Same states as the Czech page (otazka-detail.html): View permission, pending approval (reviewer view), returned to draft, after saving, in Deleted items, move confirmation, no permission (403)."],
+ "zmeny_ux":["Layout as in the Czech version. Property tags (One correct answer · 1 point · Fixed answer order) are slightly longer and wrap under the H2 at 320 px."],
+ "texty":[
+  {"dnes":"Otázka č. 10","nove":"Question 10","proc":"No “No.” needed in a heading."},
+  {"dnes":"Schválená · Ke schválení","nove":"Approved · Pending approval","proc":"Glossary."},
+  {"dnes":"Jedna správná odpověď · 1 bod · Pevné pořadí odpovědí","nove":"One correct answer · 1 point · Fixed answer order","proc":"Same terms as in the editor."},
+  {"dnes":"Zpětná vazba · Při správné / chybné odpovědi","nove":"Feedback · For a correct / wrong answer","proc":"Same terms as in the editor."},
+  {"dnes":"Použití · Testy se souborem · Kopie v jiných souborech","nove":"Usage · Tests using this bank · Copies in other banks","proc":"“Usage” – not “test assignment”, which means a delivery of a test."},
+  {"dnes":"Kopírovat otázku · Přesunout otázku · Přesunout do koše","nove":"Copy question · Move question · Move to Deleted items","proc":"Glossary: Deleted items; verb first."},
+  {"dnes":"Schválit verzi 2 · Vrátit do konceptu","nove":"Approve version 2 · Return to draft","proc":"Glossary."},
+  {"dnes":"Komentář pro autora (nepovinné, povinné při vrácení)","nove":"Comment for the author (optional; required when returning)","proc":"Plain English."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\". The correct answer carries the words “Correct answer”, not just colour."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Question content is user content in the bank’s language; the demo shows an English version of RO-010.","Glossary gap: Použití (otázky) → Usage – must not be confused with test assignment (použití testu)","Glossary gap: Externí ID → External ID"],
+ "chybi_komponenta":["read-only answer with the correct one marked – as in the Czech page"]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-soubory.html">Question banks</a></li><li><a href="en-soubor-detail.html">Radiation protection – basic principles</a></li><li><span aria-current="page">Question 10</span></li></ol></nav>
+
+<div class="page-head">
+ <div class="stack-2">
+  <div class="row" style="gap:var(--s-2)"><h1 class="t-titulek">Question 10</h1><span class="stav stav--ok">{{I:check}}Approved</span></div>
+  <dl class="meta"><div><dt>Version</dt><dd>1</dd></div><div><dt>Author</dt><dd>Adam Autor</dd></div><div><dt>Edited</dt><dd>4 Sep 2026 04:00</dd></div><div><dt>External ID</dt><dd class="t-kod">RO-010</dd></div></dl>
+ </div>
+ <div class="page-head__actions">
+  <a class="btn" href="en-otazka-historie.html">{{I:obnovit}}History</a>
+  <a class="btn" href="en-otazka-nahled.html">{{I:oko}}Preview as test taker</a>
+  <a class="btn btn--hlavni" href="en-otazka-editor.html">{{I:upravit}}Edit question</a>
+ </div>
+</div>
+
+<div class="layout-aside">
+ <div class="stack-4">
+  <section class="card stack-4" aria-labelledby="obsah-h">
+   <div class="row-between"><h2 id="obsah-h" class="t-nadpis">Question content</h2>
+    <ul class="row" style="gap:var(--s-2)" aria-label="Question properties"><li><span class="stav stav--neutral">One correct answer</span></li><li><span class="stav stav--neutral">1 point</span></li><li><span class="stav stav--neutral">Fixed answer order</span></li></ul></div>
+   <p class="t-nadpis">The diagram shows the penetrating power of three types of ionising radiation. Which arrow represents <b>alpha</b> radiation?</p>
+   <figure class="stack-2" style="max-width:600px">
+    <img src="../assets/img/otazka-pronikavost-zareni.png" width="600" height="345" style="height:auto;border:var(--b-tenka) solid var(--c-linka);background:var(--c-bila)" alt="Diagram: a radiation source on the left; to its right, one behind another, a sheet of paper, an aluminium sheet a few millimetres thick and a thick block of lead. Three arrows labelled 1, 2 and 3 leave the source; each stops at, or is weakened by, a different barrier.">
+    <figcaption class="faq"><details><summary class="t-maly">Image description for screen readers (informative)</summary><div><p class="t-maly">Diagram: a radiation source on the left; to its right, one behind another, a sheet of paper, an aluminium sheet a few millimetres thick and a thick block of lead. Three arrows labelled 1, 2 and 3 leave the source; each stops at, or is weakened by, a different barrier.</p></div></details></figcaption>
+   </figure>
+   <ol class="stack-2" style="list-style:none;padding:0" aria-label="Answers">
+    <li class="option" style="cursor:default;background:var(--c-zvyraznovac-svetly);box-shadow:var(--stin-tvrdy)"><span class="option__bub" style="background:var(--c-grafit);color:var(--c-zvyraznovac)" aria-hidden="true">A</span><span class="row-between" style="flex:1"><span>arrow 1</span><span class="stav stav--ok">{{I:check}}Correct answer</span></span></li>
+    <li class="option" style="cursor:default"><span class="option__bub" aria-hidden="true">B</span><span>arrow 2</span></li>
+    <li class="option" style="cursor:default"><span class="option__bub" aria-hidden="true">C</span><span>arrow 3</span></li>
+    <li class="option" style="cursor:default"><span class="option__bub" aria-hidden="true">D</span><span>it cannot be determined from the diagram</span></li>
+   </ol>
+  </section>
+
+  <section class="card stack" aria-labelledby="zv-h">
+   <h2 id="zv-h" class="t-nadpis">Feedback</h2>
+   <dl class="dl">
+    <dt>For a correct answer</dt><dd class="stack-2"><p>Correct.</p><p>Alpha particles are stopped by a sheet of paper (or the outer layer of skin). Beta radiation is stopped by a few millimetres of aluminium. Gamma radiation is only attenuated by lead, not fully stopped.</p></dd>
+    <dt>For a wrong answer</dt><dd>Alpha particles are stopped by a sheet of paper (or the outer layer of skin). Beta radiation is stopped by a few millimetres of aluminium. Gamma radiation is only attenuated by lead, not fully stopped.</dd>
+   </dl>
+  </section>
+
+  <section class="card stack" aria-labelledby="st-h">
+   <h2 id="st-h" class="t-nadpis">Tags and note</h2>
+   <dl class="dl">
+    <dt>Topics</dt><dd><span class="stav stav--neutral">Types of radiation</span></dd>
+    <dt>Difficulty</dt><dd><span class="stav stav--neutral">Basic</span></dd>
+    <dt>Internal note</dt><dd class="stack-2"><p>Source: ICRP Publication 103; IAEA GSR Part 3 (general physical principles)</p><p class="t-maly">Test takers never see the note.</p></dd>
+   </dl>
+  </section>
+ </div>
+
+ <aside class="stack-4" aria-label="Usage and more actions">
+  <section class="card card--tenka stack-2" aria-labelledby="pou-h">
+   <h2 id="pou-h" class="t-nadpis">Usage</h2>
+   <dl class="dl" style="grid-template-columns:1fr auto">
+    <dt>Tests using this bank</dt><dd class="t-cislo"><a href="en-testy.html">1</a></dd>
+    <dt>Copies in other banks</dt><dd class="t-cislo">0</dd>
+   </dl>
+   <p><a href="en-statistiky-otazka.html">Question statistics</a></p>
+  </section>
+
+  <section class="card card--tenka stack" aria-labelledby="akce-h">
+   <h2 id="akce-h" class="t-nadpis">More actions</h2>
+   <form class="stack-2">
+    <div class="field"><label class="label" for="kop">Copy to bank</label><select class="select" id="kop"><option>Health and safety – employee training</option><option>Cyber security – user training</option></select></div>
+    <button class="btn btn--male" type="button">{{I:kopirovat}}Copy question</button>
+   </form>
+   <hr class="rule-tenka">
+   <form class="stack-2">
+    <div class="field"><label class="label" for="pres">Move to bank</label><select class="select" id="pres" aria-describedby="pres-h"><option>Health and safety – employee training</option><option>Cyber security – user training</option></select><span class="hint" id="pres-h">Tags from this bank’s tag lists will be removed.</span></div>
+    <button class="btn btn--male" type="button">{{I:sipka-vpravo}}Move question</button>
+   </form>
+   <hr class="rule-tenka">
+   <button class="btn btn--male btn--nebezpecne" type="button">{{I:smazat}}Move to Deleted items</button>
+  </section>
+ </aside>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">After saving a change</h3>
+  <div class="alert alert--ok" role="status">{{I:check}}<p>Saved as version 2. The question is pending approval – tests still use version 1.</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Pending approval – reviewer view</h3>
+  <form class="card card--papir stack">
+   <div class="row-between"><p class="t-nadpis">This question is pending approval</p><span class="stav stav--pise">{{I:hodiny}}Pending approval</span></div>
+   <p>Adam Autor sent version 2 on 3 Nov 2026. <a href="en-otazka-historie.html">Compare with version 1</a></p>
+   <div class="field"><label class="label" for="kom">Comment for the author <span class="volitelne">(optional; required when returning)</span></label><textarea class="textarea" id="kom" style="min-height:96px"></textarea></div>
+   <div class="row"><button class="btn btn--hlavni" type="button">{{I:check}}Approve version 2</button><button class="btn" type="button">Return to draft</button></div>
+  </form>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">View permission</h3>
+  <div class="card stack-2"><div class="row-between"><p class="t-nadpis">Question 10</p><div class="row"><a class="btn" href="en-otazka-historie.html">History<span class="sr-only"> (read-only)</span></a><a class="btn" href="en-otazka-nahled.html">Preview<span class="sr-only"> (read-only)</span></a></div></div><p class="t-maly">You have View permission. The question is edited by the bank owner or anyone with Edit permission.</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Question in Deleted items</h3>
+  <div class="alert alert--info">{{I:info}}<div class="stack-2"><p>The question has been in Deleted items since 28 Oct 2026. It will be permanently deleted on 27 Nov 2026.</p><p><button class="btn btn--male" type="button">{{I:obnovit}}Restore question</button></p></div></div>
+ </div>
+</section>

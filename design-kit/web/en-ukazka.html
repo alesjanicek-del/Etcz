@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a guided demo · exam-test</title>
+<meta name="description" content="Leave us your contact details. We’ll get back to you within 2 working days and go through the app with you online in about 30 minutes, using your type of exam.">
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body>
+<a class="skip" href="#obsah">Skip to content</a>
+<header class="site-header">
+ <div class="container site-header__in">
+  <a class="logo" href="en-index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – home" width="170" height="28"></a>
+  <nav class="site-nav" aria-label="Main"><ul><li><a href="en-funkce.html">Features</a></li><li><a href="en-pro-urady.html">Public sector</a></li><li><a href="en-pro-firmy.html">Companies</a></li><li><a href="en-pro-vzdelavani.html">Education</a></li><li><a href="en-bezpecnost.html">Security</a></li><li><a href="en-cenik.html">Pricing</a></li></ul></nav>
+  <div class="site-header__cta">
+   <a class="btn btn--tiche btn--male" href="../app/prihlaseni.html">Sign in</a>
+   <a class="btn btn--hlavni btn--male" href="en-vyzkouset.html">Try the demo</a>
+   <nav class="lang" aria-label="Language / Jazyk"><a href="ukazka.html" lang="cs" hreflang="cs">CS</a><a href="#" lang="en" aria-current="true">EN</a></nav>
+  </div>
+  <details class="menu"><summary class="btn btn--male"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu</summary><nav class="menu__panel" aria-label="Main (mobile)"><a href="en-funkce.html">Features</a><a href="en-pro-urady.html">Public sector</a><a href="en-pro-firmy.html">Companies</a><a href="en-pro-vzdelavani.html">Education</a><a href="en-bezpecnost.html">Security</a><a href="en-cenik.html">Pricing</a><a href="../app/prihlaseni.html">Sign in</a><a href="index.html" lang="cs" hreflang="cs">Česky</a></nav></details>
+ </div>
+</header>
+<main id="obsah">
+<section class="section grid-bg">
+ <div class="container grid-2" style="align-items:start;gap:var(--s-5)">
+  <div class="stack-4">
+   <p class="t-stitek">Guided demo</p>
+   <h1 class="t-display">We’ll show you exam-test with your own exam</h1>
+   <p class="t-perex">Leave us your contact details. We’ll get back to you within 2&nbsp;working days to agree a date. Then we’ll go through the app with you online in about 30&nbsp;minutes, using your type of exam.</p>
+   <ul class="list-check">
+    <li><span>We show the whole path from question to report: building a test, a supervised in-room exam, print and result verification.</span></li>
+    <li><span>We discuss your requirements: number of test takers, branches, accessibility, procurement.</span></li>
+    <li><span>We set up trial access for your organisation.</span></li>
+   </ul>
+   <p>Prefer to email or call? <a href="mailto:obchod@exam-test.cz">obchod@exam-test.cz</a> · <a href="en-kontakt.html">All contacts</a></p>
+   <p class="t-maly">Want to look around on your own first? <a href="en-vyzkouset.html">Try the demo</a> – no registration.</p>
+  </div>
+  <form class="card stack-4" action="en-ukazka-odeslano.html" method="get" novalidate aria-labelledby="f-h">
+<h2 id="f-h" class="t-nadpis">Demo request</h2>
+<fieldset class="stack-2"><legend class="label">How can we help?</legend><div class="stack-2" style="gap:0"><label class="check"><input type="radio" name="duvod" value="ukazka" id="f-duvod-1"><span>Book a guided demo</span></label><label class="check"><input type="radio" name="duvod" value="organizace" id="f-duvod-2"><span>I want the app for my organisation (after trying the demo)</span></label><label class="check"><input type="radio" name="duvod" value="urad" id="f-duvod-3"><span>Price quote for a public body or public contract</span></label><label class="check"><input type="radio" name="duvod" value="dotaz" id="f-duvod-4"><span>Question about features or pricing</span></label><label class="check"><input type="radio" name="duvod" value="sablona" id="f-duvod-5"><span>Template from the upcoming catalogue (free for now)</span></label><label class="check"><input type="radio" name="duvod" value="zavedeni" id="f-duvod-6"><span>Service: help onboarding my organisation</span></label><label class="check"><input type="radio" name="duvod" value="import" id="f-duvod-7"><span>Service: question import or conversion</span></label><label class="check"><input type="radio" name="duvod" value="jina" id="f-duvod-8"><span>Other service: custom questions, instructor training</span></label></div></fieldset>
+<div class="grid-2">
+<div class="field"><label class="label" for="f-org">Organisation</label><input class="input" id="f-org" name="organizace" autocomplete="organization"></div>
+<div class="field"><label class="label" for="f-jmeno">Full name</label><input class="input" id="f-jmeno" name="jmeno" autocomplete="name"></div>
+<div class="field"><label class="label" for="f-email">Email</label><input class="input" type="email" id="f-email" name="email" autocomplete="email"></div>
+<div class="field"><label class="label" for="f-tel">Phone <span class="volitelne">(optional)</span></label><input class="input" type="tel" id="f-tel" name="telefon" autocomplete="tel"></div>
+</div>
+<div class="field"><label class="label" for="f-zprava">Message <span class="volitelne">(optional)</span></label><span class="hint" id="f-zprava-h">For example, what you want to test, how many people you test per year and whether you also test on paper.</span><textarea class="textarea" id="f-zprava" name="zprava" aria-describedby="f-zprava-h"></textarea></div>
+<div class="alert alert--info" role="note"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.3"/></svg><p>Don’t enter test takers’ personal data in the form. We use your details only to handle your enquiry and keep them for 12&nbsp;months from the end of the month it arrived. <a href="en-ochrana-osobnich-udaju.html">Privacy policy</a></p></div>
+<div class="form-actions"><button class="btn btn--hlavni" type="submit">Send enquiry</button><p class="t-maly">We’ll reply within 2&nbsp;working days.</p></div>
+</form>
+ </div>
+</section>
+
+<section class="section section--bila no-print" aria-labelledby="dalsi">
+ <div class="container stack-5">
+  <h2 id="dalsi" class="t-sekce">Other page states</h2>
+  <div class="grid-2" style="align-items:start;gap:var(--s-5)">
+   <div class="stack">
+    <h3 class="t-nadpis">Validation error</h3>
+    <p class="t-maly">After sending with errors: the summary at the top gets focus, and entered values stay.</p>
+   </div>
+   <form class="card stack-4" action="en-ukazka-odeslano.html" method="get" novalidate aria-labelledby="e-h">
+<h2 id="e-h" class="t-nadpis">Demo request – with errors</h2>
+<div class="error-summary stack-2" role="alert" tabindex="-1" aria-labelledby="e-es"><p id="e-es" class="alert__nadpis">We haven’t sent your enquiry. Correct 3&nbsp;fields:</p><ul class="stack-2" style="padding-left:var(--s-4)"><li><a href="#e-duvod-1">Choose how we can help.</a></li><li><a href="#e-org">Enter your organisation’s name.</a></li><li><a href="#e-email">Enter an email address like name@organisation.com.</a></li></ul></div>
+<fieldset class="stack-2" aria-describedby="e-duvod-e"><legend class="label">How can we help?</legend><p class="error" id="e-duvod-e"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12h9"/></svg>Choose how we can help.</p><div class="stack-2" style="gap:0"><label class="check"><input type="radio" name="duvod" value="ukazka" id="e-duvod-1"><span>Book a guided demo</span></label><label class="check"><input type="radio" name="duvod" value="organizace" id="e-duvod-2"><span>I want the app for my organisation (after trying the demo)</span></label><label class="check"><input type="radio" name="duvod" value="urad" id="e-duvod-3"><span>Price quote for a public body or public contract</span></label><label class="check"><input type="radio" name="duvod" value="dotaz" id="e-duvod-4"><span>Question about features or pricing</span></label><label class="check"><input type="radio" name="duvod" value="sablona" id="e-duvod-5"><span>Template from the upcoming catalogue (free for now)</span></label><label class="check"><input type="radio" name="duvod" value="zavedeni" id="e-duvod-6"><span>Service: help onboarding my organisation</span></label><label class="check"><input type="radio" name="duvod" value="import" id="e-duvod-7"><span>Service: question import or conversion</span></label><label class="check"><input type="radio" name="duvod" value="jina" id="e-duvod-8"><span>Other service: custom questions, instructor training</span></label></div></fieldset>
+<div class="grid-2">
+<div class="field"><label class="label" for="e-org">Organisation</label><p class="error" id="e-org-e"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12h9"/></svg>Enter your organisation’s name.</p><input class="input" id="e-org" name="organizace" autocomplete="organization" aria-invalid="true" aria-describedby="e-org-e"></div>
+<div class="field"><label class="label" for="e-jmeno">Full name</label><input class="input" id="e-jmeno" name="jmeno" autocomplete="name" value="Jana Nováková"></div>
+<div class="field"><label class="label" for="e-email">Email</label><p class="error" id="e-email-e"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12h9"/></svg>Enter an email address like name@organisation.com.</p><input class="input" type="email" id="e-email" name="email" autocomplete="email" value="jana.novakova@" aria-invalid="true" aria-describedby="e-email-e"></div>
+<div class="field"><label class="label" for="e-tel">Phone <span class="volitelne">(optional)</span></label><input class="input" type="tel" id="e-tel" name="telefon" autocomplete="tel"></div>
+</div>
+<div class="field"><label class="label" for="e-zprava">Message <span class="volitelne">(optional)</span></label><span class="hint" id="e-zprava-h">For example, what you want to test, how many people you test per year and whether you also test on paper.</span><textarea class="textarea" id="e-zprava" name="zprava" aria-describedby="e-zprava-h"></textarea></div>
+<div class="alert alert--info" role="note"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.3"/></svg><p>Don’t enter test takers’ personal data in the form. We use your details only to handle your enquiry and keep them for 12&nbsp;months from the end of the month it arrived. <a href="en-ochrana-osobnich-udaju.html">Privacy policy</a></p></div>
+<div class="form-actions"><button class="btn btn--hlavni" type="submit">Send enquiry</button><p class="t-maly">We’ll reply within 2&nbsp;working days.</p></div>
+</form>
+  </div>
+  <div class="grid-2" style="align-items:start;gap:var(--s-5)">
+   <div class="stack">
+    <h3 class="t-nadpis">Send error</h3>
+    <p class="t-maly">The server or network failed. Values stay in the form; the message is above the button.</p>
+   </div>
+   <div class="card stack">
+    <div class="alert alert--chyba" role="alert"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p class="alert__nadpis">We couldn’t send your enquiry</p><p>Try again in a moment, or email us at <a href="mailto:obchod@exam-test.cz">obchod@exam-test.cz</a>.</p></div></div>
+    <div class="form-actions"><button class="btn btn--hlavni" type="button">Send enquiry again</button></div>
+   </div>
+  </div>
+  <div class="grid-2" style="align-items:start;gap:var(--s-5)">
+   <div class="stack">
+    <h3 class="t-nadpis">Sending</h3>
+    <p class="t-maly">The button is inactive until the server responds.</p>
+   </div>
+   <div class="card"><div class="form-actions" style="border:0;padding:0"><button class="btn btn--hlavni" type="button" aria-disabled="true">Sending…</button><p class="t-maly" role="status">Sending your enquiry.</p></div></div>
+  </div>
+ </div>
+</section>
+</main>
+<footer class="site-footer"><div class="container">
+ <div class="site-footer__grid"><div class="stack-2"><img src="../assets/logo/exam-test-logo-negativ-pruhledne.svg" alt="exam-test" width="150" height="25"><p>Tests and exams online and on paper. For the public sector, companies and education.</p><p><a href="en-overeni.html">Verify a report</a></p></div>
+ <nav class="stack-2" aria-label="Product"><p class="t-stitek">Product</p><ul><li><a href="en-funkce.html">Features</a></li><li><a href="en-cenik.html">Pricing</a></li><li><a href="en-sablony-testu.html">Test templates and services</a></li><li><a href="en-bezpecnost.html">Security and data</a></li><li><a href="en-napoveda.html">Help</a></li></ul></nav><div class="stack-2"><p class="t-stitek">Contact</p><ul><li><a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a></li><li><a href="tel:+420725311531">+420 725 311 531</a></li><li><a href="en-kontakt.html">Contact and billing details</a></li></ul></div></div>
+ <ul class="row" style="margin-top:var(--s-4)"><li><a href="en-podminky.html">Terms of service</a></li><li><a href="en-ochrana-osobnich-udaju.html">Privacy policy</a></li><li><a href="en-zpracovatelska-smlouva.html">Data processing agreement</a></li><li><a href="en-prohlaseni-o-pristupnosti.html">Accessibility statement</a></li></ul>
+ <div class="site-footer__legal"><p>ABUCO ICT s.r.o. · Company ID 29153905 · Prague, Czech Republic. The Czech version of legal documents is legally binding; English translation in preparation.</p></div>
+</div></footer>
+<script type="application/json" id="spec">{"route": "/en/guided-demo", "nazev": "Guided demo – request (English)", "role": "public – prospects", "sablona": "web (lang=en)", "ucel": "Collect the prospect’s contact details and reason, so sales can arrange an online demo (about 30 minutes).", "hlavni_akce": "Send enquiry", "komponenty": ["2-column layout (grid-2)", "list-check", "card", "fieldset/legend", "check (radio)", "field", "input", "textarea", "hint", "volitelne", "alert--info", "error-summary", "error", "form-actions"], "stavy": ["empty (main): form with no selection; a ?duvod= or ?tarif= parameter preselects the matching option", "validation error: .error-summary at the top (role=alert, receives focus after sending) with links to fields; .error next to the field with its id in aria-describedby and aria-invalid=true; entered values stay", "send error (server/network): .alert--chyba above the button, values stay, email obchod@exam-test.cz offered", "sending: button aria-disabled + text “Sending…”, prevent double submission", "sent: separate page en-ukazka-odeslano.html", "permissions: public page, no sign-in"], "zmeny_ux": ["Structure, states and components are the same as the Czech page (ukazka.html); see its spec for the UX changes.", "Page title and H1 differ on purpose: the title is the glossary action “Book a guided demo”, the H1 is the promise.", "First radio option reads “Book a guided demo” (glossary) so the same words lead to the same thing.", "Error summary drops “please” (“Correct 3 fields:”) – active and short, as in the button rules."], "texty": [{"dnes": "Ukázka s průvodcem", "nove": "Book a guided demo / Guided demo (label)", "proc": "Glossary."}, {"dnes": "Ukážeme vám exam-test na vaší zkoušce", "nove": "We’ll show you exam-test with your own exam", "proc": "Same promise."}, {"dnes": "Poptávka ukázky", "nove": "Demo request", "proc": "Short form heading."}, {"dnes": "Jméno a příjmení", "nove": "Full name", "proc": "Standard English label."}, {"dnes": "(nepovinné)", "nove": "(optional)", "proc": "Only optional fields are marked."}, {"dnes": "Odeslat poptávku", "nove": "Send enquiry", "proc": "Verb first, no “please submit”."}, {"dnes": "Poptávku jsme neodeslali. Opravte prosím 3 pole:", "nove": "We haven’t sent your enquiry. Correct 3 fields:", "proc": "Says what happened and what to do."}, {"dnes": "Vyberte, s čím vám můžeme pomoci. / Vyplňte název organizace. / Zadejte e-mail ve tvaru jmeno@organizace.cz.", "nove": "Choose how we can help. / Enter your organisation’s name. / Enter an email address like name@organisation.com.", "proc": "Error messages say what to do."}, {"dnes": "Poptávku se nepodařilo odeslat", "nove": "We couldn’t send your enquiry", "proc": "Plain, first person plural."}, {"dnes": "Odesílám…", "nove": "Sending…", "proc": "Progress state."}], "pristupnost": ["Same as the Czech page: fieldset/legend, visible labels, autocomplete, error-summary with role=alert and focus, hint via aria-describedby, honeypot hidden from everyone."], "poznamky_pro_kodera": ["Server: POST, on success redirect to /en/guided-demo/sent (PRG).", "Parameters ?duvod= and ?tarif= keep the Czech values (ukazka|organizace|urad|dotaz|sablona|zavedeni|import|jina; start|profi|sit|verejna-sprava).", "Sample name Jana Nováková is kept (sample person).", "Glossary gap: poptávka → enquiry."], "chybi_komponenta": []}</script>
+</body>
+</html>

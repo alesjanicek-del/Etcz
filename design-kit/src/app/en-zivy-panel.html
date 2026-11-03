@@ -1,0 +1,166 @@
+<!--meta {"titulek":"Live monitor – OHS – practice test","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false,"lang":"en","cs_verze":"zivy-panel.html"} -->
+<!--spec {
+ "route":"/pouziti/:id (lang=en)","nazev":"Live monitor – English","role":"instructor","sablona":"app",
+ "ucel":"Follow an exam in real time: who is taking it, how far they are, how much time is left and how they did. Step in by extending time, issuing a handover code or ending an attempt.",
+ "hlavni_akce":"Follow the summary; step in for a test taker (Extend time / Handover code / End attempt)",
+ "komponenty":["crumbs","page-head","meta","card","t-cislo","toolbar","btn","table-wrap","table--stack","mini-bar","stav","dialog","details","field","input","textarea","kod","alert","empty","toast"],
+ "stavy":[
+  "Default: 3 in progress, 3 submitted (drawn).",
+  "Empty: “Nobody has started yet.” + link for test takers (drawn).",
+  "Paused: button changes to Resume automatic updates (aria-pressed=true), “Paused” next to the time (drawn).",
+  "Connection error: alert “The monitor could not be updated. Trying again in 5 s.” – data stays visible with the last update time (drawn).",
+  "Dialogs: Extend time, Handover code (+ resulting code), End attempt (drawn).",
+  "Closed test assignment: alert--info “This test assignment is closed. Attempts in progress can be finished.”",
+  "No permission: the assignment’s creator and administrators only; others 403. Handover for an official test: administrators only – item disabled with a reason."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (zivy-panel.html).",
+  "Summary in EN: “3 in progress · 3 of 6 submitted · 1 passed” – no gender or verb agreement needed, unlike Czech.",
+  "“Pause automatic updates” is longer than in Czech; the toolbar wraps below the summary at 1280 px if needed – checked with check_en.js.",
+  "Number format in EN: 92.3% (decimal point, no space)."],
+ "texty":[
+  {"dnes":"Živý panel","nove":"Live monitor","proc":"Glossary."},
+  {"dnes":"3 píšou · 3 z 6 odevzdali · 1 splnil","nove":"3 in progress · 3 of 6 submitted · 1 passed","proc":"Short; same terms as Test assignments."},
+  {"dnes":"Uzavřít použití","nove":"Close test assignment","proc":"Glossary: použití testu → test assignment."},
+  {"dnes":"2× opustila okno","nove":"Left the window 2×","proc":"Status with icon."},
+  {"dnes":"Kód pro převzetí / Vydat kód pro převzetí","nove":"Handover code / Issue handover code","proc":"Glossary."},
+  {"dnes":"Prodloužit čas","nove":"Extend time","proc":"Verb first."},
+  {"dnes":"Ukončit pokus","nove":"End attempt","proc":"Glossary: pokus → attempt."},
+  {"dnes":"Splněno / Nesplněno","nove":"Passed / Not passed","proc":"Glossary."},
+  {"dnes":"Pozastavit automatickou aktualizaci","nove":"Pause automatic updates","proc":"Verb first."},
+  {"dnes":"Opuštění okna samo neznamená podvod.","nove":"Leaving the window does not in itself mean cheating.","proc":"Same message, neutral tone."}],
+ "pristupnost":[
+  "Same as the Czech page: only the summary is aria-live=polite + aria-atomic; the table updates silently; updates never move focus or close an open menu/dialog.",
+  "Row actions with sr-only test taker name (“Actions: Klára Hnědá”). Czech personal names carry lang=\"cs\".",
+  "Progress: mini-bar aria-hidden; “4 / 10” is read as “4 of 10” via sr-only “of”."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml. The instructor’s UI language is independent of the test assignment’s language for test takers (test_usage.ui_locale) – show it in the meta when it differs from the UI language.",
+  "Handover code valid for 10 minutes; End attempt is irreversible (see Czech page).",
+  "Glossary gap: ukončit pokus → end attempt; prodloužit čas → extend time; opuštění okna → leaving the window."],
+ "chybi_komponenta":["row action menu (dropdown) – details/summary used"]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-pouziti.html">Test assignments</a></li><li><span aria-current="page">OHS – practice test</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Live monitor</p><h1 class="t-titulek">OHS – practice test</h1>
+  <dl class="meta"><div><dt>Method</dt><dd>Public link</dd></div><div><dt>Label</dt><dd>Practice test on the website</dd></div><div><dt>Branch</dt><dd>Prague</dd></div><div><dt>Created</dt><dd>3 Nov 18:27</dd></div></dl></div>
+ <div class="page-head__actions"><a class="btn" href="en-vysledky.html">{{I:check-kruh}}Results</a><button class="btn" type="button">Close test assignment</button></div>
+</div>
+
+<div class="stack-4">
+ <details class="card card--tenka">
+  <summary class="row-between" style="cursor:pointer"><span class="row" style="gap:var(--s-2)">{{I:odkaz}}<b>Link for test takers</b></span><span class="t-maly">At most 200 attempts, 50 at a time</span></summary>
+  <div class="row" style="margin-top:var(--s-3)"><div class="field" style="flex:1 1 280px"><label class="label" for="url">Link</label><input class="input" id="url" readonly value="https://demo.exam-test.cz/o/7QK4M2"></div><button class="btn" type="button" style="align-self:flex-end">{{I:kopirovat}}Copy link</button></div>
+  <p class="t-maly" style="margin-top:var(--s-2)">The link stops working when you close the test assignment.</p>
+ </details>
+
+ <div class="row-between" style="align-items:flex-end">
+  <div class="row" style="gap:var(--s-5)" aria-live="polite" aria-atomic="true" role="status">
+   <p><span class="t-cislo t-titulek">3</span> in progress</p>
+   <p><span class="t-cislo t-titulek">3</span> of <span class="t-cislo t-titulek">6</span> submitted</p>
+   <p><span class="t-cislo t-titulek">1</span> passed</p>
+  </div>
+  <div class="row" style="gap:var(--s-2)">
+   <span class="t-maly row" style="gap:var(--s-1)">{{I:obnovit}}<span>Updated <span class="t-cislo">18:27:45</span> · every 5&nbsp;s</span></span>
+   <button class="btn btn--male" type="button" aria-pressed="false">{{I:pauza}}Pause automatic updates</button>
+   <button class="btn btn--male btn--tiche" type="button">Update now</button>
+  </div>
+ </div>
+
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption class="sr-only">Test takers in the live monitor (6). The table refreshes every 5 seconds.</caption>
+   <thead><tr><th scope="col">Test taker</th><th scope="col">Progress</th><th scope="col" class="num">Time left</th><th scope="col" class="num">Result</th><th scope="col">Alerts</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+   <tbody>
+    <tr><td data-label="Test taker"><b lang="cs">Klára Hnědá</b></td>
+     <td data-label="Progress"><span><span class="mini-bar" aria-hidden="true"><i style="width:40%"></i></span><span class="t-cislo">4<span class="sr-only"> of</span> / 10</span></span></td>
+     <td data-label="Time left" class="num">13:29</td><td data-label="Result" class="num">–</td>
+     <td data-label="Alerts"><span class="stav stav--pozor">{{I:pozor}}Left the window 2×</span></td>
+     <td data-label="Actions"><details><summary class="btn btn--male">Actions<span class="sr-only">: <span lang="cs">Klára Hnědá</span></span>{{I:dolu}}</summary>
+      <ul class="stack-2" style="padding-top:var(--s-2)"><li><button class="btn btn--male btn--tiche" type="button">{{I:hodiny}}Extend time</button></li><li><button class="btn btn--male btn--tiche" type="button">{{I:obrazovka}}Handover code</button></li><li><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">{{I:minus-kruh}}End attempt</button></li></ul></details></td></tr>
+    <tr><td data-label="Test taker"><b lang="cs">Ondřej Žlutý</b></td>
+     <td data-label="Progress"><span><span class="mini-bar" aria-hidden="true"><i style="width:42%"></i></span><span class="t-cislo">5<span class="sr-only"> of</span> / 12</span></span></td>
+     <td data-label="Time left" class="num">13:29</td><td data-label="Result" class="num">–</td><td data-label="Alerts">–</td>
+     <td data-label="Actions"><details><summary class="btn btn--male">Actions<span class="sr-only">: <span lang="cs">Ondřej Žlutý</span></span>{{I:dolu}}</summary>
+      <ul class="stack-2" style="padding-top:var(--s-2)"><li><button class="btn btn--male btn--tiche" type="button">{{I:hodiny}}Extend time</button></li><li><button class="btn btn--male btn--tiche" type="button">{{I:obrazovka}}Handover code</button></li><li><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">{{I:minus-kruh}}End attempt</button></li></ul></details></td></tr>
+    <tr><td data-label="Test taker"><b lang="cs">Marie Růžová</b></td>
+     <td data-label="Progress"><span><span class="mini-bar" aria-hidden="true"><i style="width:55%"></i></span><span class="t-cislo">6<span class="sr-only"> of</span> / 11</span></span></td>
+     <td data-label="Time left" class="num">13:30</td><td data-label="Result" class="num">–</td><td data-label="Alerts">–</td>
+     <td data-label="Actions"><details><summary class="btn btn--male">Actions<span class="sr-only">: <span lang="cs">Marie Růžová</span></span>{{I:dolu}}</summary>
+      <ul class="stack-2" style="padding-top:var(--s-2)"><li><button class="btn btn--male btn--tiche" type="button">{{I:hodiny}}Extend time</button></li><li><button class="btn btn--male btn--tiche" type="button">{{I:obrazovka}}Handover code</button></li><li><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">{{I:minus-kruh}}End attempt</button></li></ul></details></td></tr>
+    <tr><td data-label="Test taker"><b>Jana Zelená</b></td>
+     <td data-label="Progress"><span class="stav stav--neutral">Submitted</span></td><td data-label="Time left" class="num">–</td>
+     <td data-label="Result" class="num"><span class="row" style="gap:var(--s-2);justify-content:flex-end">92.3% <span class="stav stav--ok">{{I:check}}Passed</span></span></td><td data-label="Alerts">–</td>
+     <td data-label="Actions"><a class="btn btn--male btn--tiche" href="en-vysledek-detail.html">Details<span class="sr-only">: Jana Zelená</span></a></td></tr>
+    <tr><td data-label="Test taker"><b>Petr Modrý</b></td>
+     <td data-label="Progress"><span class="stav stav--neutral">Submitted</span></td><td data-label="Time left" class="num">–</td>
+     <td data-label="Result" class="num"><span class="row" style="gap:var(--s-2);justify-content:flex-end">63.6% <span class="stav stav--ne">{{I:minus-kruh}}Not passed</span></span></td><td data-label="Alerts">–</td>
+     <td data-label="Actions"><a class="btn btn--male btn--tiche" href="en-vysledek-detail.html">Details<span class="sr-only">: Petr Modrý</span></a></td></tr>
+    <tr><td data-label="Test taker"><b lang="cs">Ivana Šedá</b></td>
+     <td data-label="Progress"><span class="stav stav--neutral">Submitted</span></td><td data-label="Time left" class="num">–</td>
+     <td data-label="Result" class="num"><span class="row" style="gap:var(--s-2);justify-content:flex-end">77.8% <span class="stav stav--ne">{{I:minus-kruh}}Not passed</span></span></td><td data-label="Alerts">–</td>
+     <td data-label="Actions"><a class="btn btn--male btn--tiche" href="en-vysledek-detail.html">Details<span class="sr-only">: <span lang="cs">Ivana Šedá</span></span></a></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="t-maly">Leaving the window does not in itself mean cheating. Ask the test taker and follow the exam rules.</p>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="grid-2" style="align-items:start">
+  <div class="stack-2">
+   <p class="t-stitek">Dialog: Extend time</p>
+   <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="d1-h" style="position:static;display:block;margin:0;width:100%">
+    <form class="dialog__body stack" method="dialog">
+     <h3 id="d1-h" class="t-nadpis">Extend time: <span lang="cs">Klára Hnědá</span></h3>
+     <p class="t-maly"><span class="t-cislo">13:29</span> left. The test taker will see a message within 30&nbsp;s.</p>
+     <div class="field"><label class="label" for="d1-min">Extend by</label><div class="input-group" style="max-width:180px"><input class="input" id="d1-min" type="number" min="1" max="240" value="10" inputmode="numeric" aria-describedby="d1-min-h"><span class="input-group__suffix" aria-hidden="true">min</span></div><span class="hint" id="d1-min-h">1 to 240 minutes.</span></div>
+     <div class="field"><label class="label" for="d1-duv">Reason</label><span class="hint" id="d1-duv-h">Recorded in the attempt log.</span><input class="input" id="d1-duv" aria-describedby="d1-duv-h"></div>
+    </form>
+    <div class="dialog__foot"><button class="btn" type="button">Cancel</button><button class="btn btn--hlavni" type="button">Extend time</button></div>
+   </div>
+  </div>
+
+  <div class="stack-2">
+   <p class="t-stitek">Dialog: Handover code</p>
+   <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="d2-h" style="position:static;display:block;margin:0;width:100%">
+    <div class="dialog__body stack">
+     <h3 id="d2-h" class="t-nadpis">Handover code: <span lang="cs">Marie Růžová</span></h3>
+     <p>The test taker will continue on another device. The test is blocked on the original one.</p>
+     <div class="field"><label class="label" for="d2-duv">Reason for handover</label><span class="hint" id="d2-duv-h">For example, “phone battery flat, continuing on PC 5”.</span><input class="input" id="d2-duv" aria-describedby="d2-duv-h"></div>
+    </div>
+    <div class="dialog__foot"><button class="btn" type="button">Cancel</button><button class="btn btn--hlavni" type="button">Issue handover code</button></div>
+   </div>
+  </div>
+
+  <div class="stack-2">
+   <p class="t-stitek">Handover code issued</p>
+   <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="d3-h" style="position:static;display:block;margin:0;width:100%">
+    <div class="dialog__body stack">
+     <h3 id="d3-h" class="t-nadpis">Handover code: <span lang="cs">Marie Růžová</span></h3>
+     <p><span class="kod">Q7M4K2</span></p>
+     <p>Give the code to the test taker. On the new device they enter it at <span class="t-kod">/kod</span> in the Handover code field. <b>Valid for 10&nbsp;minutes.</b></p>
+    </div>
+    <div class="dialog__foot"><button class="btn btn--hlavni" type="button">Done</button></div>
+   </div>
+  </div>
+
+  <div class="stack-2">
+   <p class="t-stitek">Dialog: End attempt</p>
+   <div class="dialog" role="alertdialog" aria-modal="false" aria-labelledby="d4-h" aria-describedby="d4-p" style="position:static;display:block;margin:0;width:100%">
+    <div class="dialog__body stack">
+     <h3 id="d4-h" class="t-nadpis">End attempt: <span lang="cs">Ondřej Žlutý</span>?</h3>
+     <p id="d4-p">The attempt is submitted straight away and scored with the answers saved so far (5 of 12). <b>This cannot be undone.</b></p>
+    </div>
+    <div class="dialog__foot"><button class="btn" type="button">Cancel</button><button class="btn btn--nebezpecne" type="button">{{I:minus-kruh}}End attempt</button></div>
+   </div>
+  </div>
+ </div>
+
+ <p class="t-stitek">Paused and connection error</p>
+ <div class="row" style="gap:var(--s-2)"><span class="t-maly">Paused · last update <span class="t-cislo">18:27:45</span></span><button class="btn btn--male" type="button" aria-pressed="true">{{I:prehrat}}Resume automatic updates</button></div>
+ <div class="alert alert--chyba">{{I:pozor}}<p>The monitor could not be updated. Trying again in 5&nbsp;s. Data is from <span class="t-cislo">18:27:45</span>.</p></div>
+
+ <p class="t-stitek">Nobody has started yet</p>
+ <div class="empty stack-2">{{I:uzivatele}}<p><b>Nobody has started yet.</b></p><p class="t-maly">Send the link to test takers. The monitor refreshes as soon as someone starts.</p></div>
+</section>

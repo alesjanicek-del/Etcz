@@ -1,0 +1,91 @@
+<!--meta {"titulek":"Email: test access code","sablona":"cisty","role":"zkouseny","body_class":"grid-bg","lang":"en","cs_verze":"email-pozvanka.html"} -->
+<!--spec {
+ "route":"(email, lang=en)","nazev":"Email: access code / invitation","role":"test taker (recipient)","sablona":"cisty",
+ "ucel":"Deliver the test taker’s personal access code and one clear way into the test. The email must also work as plain text and in email clients that block images.",
+ "hlavni_akce":"Open the test entry page and enter the code",
+ "komponenty":["email","email__head","email__body","kod","btn--hlavni","dl","rule-tenka"],
+ "stavy":["Same states as the Czech page (email-pozvanka.html): HTML and plain-text version (both drawn), code with a test password (“Your instructor will tell you the test password.” – the password is never emailed), test with a date window (“The test is available from 15 Jan 2027, 09:00 to 15 Jan 2027, 12:00.”), extra time (“Time limit: 22 minutes (including 50% extra time).”), demo (not sent, shown in the Demo mailbox with “Sample – this email was not sent.”), delivery error (shown to the instructor, not in this email)."],
+ "zmeny_ux":[
+  "Layout as in the Czech version (email-pozvanka.html).",
+  "Subject “Access code for the test “…”” is about as long as the Czech one; with a long test name it is cut in the inbox preview, so the test name comes last.",
+  "The email language follows the test assignment language (test_usage.ui_locale), not the recipient’s browser."],
+ "texty":[
+  {"dnes":"Přístupový kód k testu „Kybernetická bezpečnost — roční ověření“","nove":"Access code for the test “Cyber security: annual check”","proc":"EN glossary: access code."},
+  {"dnes":"Od · Komu · Předmět","nove":"From · To · Subject","proc":"Standard email headers."},
+  {"dnes":"Dobrý den,","nove":"Hello,","proc":"Neutral greeting without a name, as in Czech."},
+  {"dnes":"Ukázková organizace (demo) vám zadala test …","nove":"Sample organisation (demo) has set you the test …","proc":"UK usage “set a test”."},
+  {"dnes":"Osobní přístupový kód pro: Emil Erben","nove":"Personal access code for: Emil Erben","proc":"EN glossary: personal access codes."},
+  {"dnes":"Otevřít vstup do testu","nove":"Open test entry page","proc":"Verb first; says where it leads."},
+  {"dnes":"Tlačítko nefunguje? Otevřete adresu demo.exam-test.cz/kod a kód opište.","nove":"Button not working? Go to demo.exam-test.cz/kod and type in the code.","proc":"Short, active."},
+  {"dnes":"Časový limit · 15 minut","nove":"Time limit · 15 minutes","proc":"Plain."},
+  {"dnes":"Kód je osobní. Nepředávejte ho dalším lidem – výsledek se zapíše k vašemu jménu.","nove":"The code is personal. Do not share it with anyone – the result will be recorded under your name.","proc":"Cause and consequence in one sentence."},
+  {"dnes":"Po odevzdání kód zadejte znovu a uvidíte výsledek, pokud ho pořadatel zpřístupní.","nove":"After submitting, enter the code again to see your result, if the organiser releases it.","proc":"EN glossary: release results."},
+  {"dnes":"Tento e-mail jste dostali, protože … Správcem vašich údajů je tato organizace. … Aplikaci provozuje ABUCO ICT s.r.o. Test nečekáte? E-mail ignorujte. Na e-mail neodpovídejte.","nove":"You received this email because … This organisation is the controller of your personal data. … The app is operated by ABUCO ICT s.r.o. Not expecting a test? Ignore this email. Do not reply to this email.","proc":"“Controller” is the GDPR term in UK English; short sentences."}],
+ "pristupnost":[
+  "The real email has lang=\"en\" on the html element; a single-column table with role=presentation; H1 in the body.",
+  "Code is text, not an image; on its own line in the plain-text version.",
+  "Plain-text version has the same content in the same order.",
+  "This preview is a page fragment; the real email uses inline styles and system fonts (Arial)."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/emails+intl-icu.en.yaml; do not hard-code.",
+  "Variables as on the Czech page: name, organisation, test name, code, URL /kod (organisation domain), time limit, optional date window and extra time.",
+  "Test and organisation names are data in the organisation’s language; translated here only to show the layout.",
+  "Glossary gap: správce osobních údajů → (data) controller",
+  "Glossary gap: zadat test → set a test",
+  "Glossary gap: Schránka dema → Demo mailbox (as in the app template)"],
+ "chybi_komponenta":[]
+} -->
+<main id="obsah" class="narrow stack-4" style="max-width:680px">
+ <p class="t-stitek">Email preview · Demo mailbox</p>
+ <article class="email" aria-labelledby="em-h">
+  <div class="email__head stack-2">
+   <dl class="meta" style="flex-direction:column;gap:var(--s-1)">
+    <div><dt>From</dt><dd>Sample organisation (demo) via exam-test</dd></div>
+    <div><dt>To</dt><dd>emil.erben@demo.example</dd></div>
+    <div><dt>Subject</dt><dd><b>Access code for the test “Cyber security: annual check”</b></dd></div>
+   </dl>
+  </div>
+  <div class="email__body stack-4">
+   <p><b>Sample organisation (demo)</b></p>
+   <h1 id="em-h" class="t-nadpis">Your test access code</h1>
+   <p>Hello,</p>
+   <p>Sample organisation (demo) has set you the test <b>Cyber security: annual check</b>.</p>
+   <div class="stack-2">
+    <p class="t-stitek">Personal access code for: Emil Erben</p>
+    <p><span class="kod">FFCQH-7B57N</span></p>
+   </div>
+   <div class="stack-2">
+    <p><a class="btn btn--hlavni" href="en-kod.html">Open test entry page</a></p>
+    <p class="t-maly">Button not working? Go to demo.exam-test.cz/kod and type in the code.</p>
+   </div>
+   <dl class="dl">
+    <dt>Time limit</dt><dd>15&nbsp;minutes</dd>
+   </dl>
+   <ul class="list-check">
+    <li>The code is personal. Do not share it with anyone – the result will be recorded under your name.</li>
+    <li>After submitting, enter the code again to see your result, if the organiser releases it.</li>
+   </ul>
+   <hr class="rule-tenka">
+   <p class="t-maly">You received this email because Sample organisation (demo) added your address to an access code. This organisation is the controller of your personal data. <a href="en-informace-o-zpracovani.html">How your data is processed</a>. The app is operated by ABUCO ICT s.r.o. Not expecting a test? Ignore this email. Do not reply to this email.</p>
+  </div>
+ </article>
+
+ <section class="no-print stack-2" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+  <h3 class="t-stitek">Plain-text version (multipart/alternative)</h3>
+  <pre class="card card--tenka t-maly" style="white-space:pre-wrap;font-family:var(--f-mono);margin:0">Hello,
+
+Sample organisation (demo) has set you the test “Cyber security: annual check”.
+
+Personal access code for: Emil Erben
+Code: FFCQH-7B57N
+
+Open the test at https://demo.exam-test.cz/kod and enter the code.
+Time limit: 15 minutes.
+
+– The code is personal. Do not share it with anyone – the result will be recorded under your name.
+– After submitting, enter the code again to see your result, if the organiser releases it.
+
+You received this email because Sample organisation (demo) added your address to an access code. This organisation is the controller of your personal data. How your data is processed: https://demo.exam-test.cz/informace-o-zpracovani. The app is operated by ABUCO ICT s.r.o. Not expecting a test? Ignore this email. Do not reply to this email.</pre>
+ </section>
+</main>

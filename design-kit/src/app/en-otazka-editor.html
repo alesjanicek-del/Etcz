@@ -1,0 +1,339 @@
+<!--meta {"titulek": "Edit question", "sablona": "app", "role": "lektor", "aktivni": "soubory.html", "demo": false, "lang": "en", "cs_verze": "otazka-editor.html"} -->
+<!--spec {
+ "route": "/otazky/nova, /otazky/:id/upravit, /soubory/:id/otazky/nova (lang=en)",
+ "nazev": "Question editor – English",
+ "role": "question author, instructor, administrator – with Edit or Owner permission for the question bank",
+ "sablona": "app",
+ "ucel": "Create or edit a question: type, question text, answers with the correct ones, points, feedback, tags and note. Checks accessibility (image description, screen reader text) and versions.",
+ "hlavni_akce": "Send for approval (with approval turned off: Save question); secondary: Save as draft, Preview as test taker",
+ "komponenty": ["crumbs","page-head","alert","error-summary","layout-aside","card","choice","editor-bar","textarea (contenteditable)","check","field","input","fieldset/legend","stav","list-check","dialog","form-actions","btn--hlavni"],
+ "stavy": ["Same states as the Czech page (otazka-editor.html): new question from Overview (choose a bank), errors on saving, image description dialog, image file error, screen reader text dialog, unsaved content after sign-out, required question in a test in use, returned to draft, approval turned off, saving (“Saving…”), no permission (403: “You can’t edit questions in this question bank. Ask the bank owner.”)."],
+ "zmeny_ux": [
+  "Layout as in the Czech version. Toolbar labels are about as long as in Czech (Image, Image description, Screen reader text); the toolbar wraps onto 2–3 rows at 320 px, as in Czech.",
+  "Sample question RO-010 is translated with correct radiation protection terms: alpha, beta, gamma, penetrating power, shielding, attenuated by lead, dose rate, µSv/h.",
+  "The screen reader text example uses English readings (“ninety microsieverts per hour”, “caesium one hundred and thirty-seven”). In the app this text is content, written in the language of the question bank."
+ ],
+ "texty": [
+  {"dnes": "Upravit otázku · Náhled pro zkoušeného", "nove": "Edit question · Preview as test taker", "proc": "Glossary: test taker; verb first."},
+  {"dnes": "Úpravou vznikne verze 2. Soubor používá 1 test: verzi 2 dostanou nové variace…", "nove": "Editing creates version 2. The bank is used by 1 test: new test versions get version 2…", "proc": "Glossary: test version (variace) – “version” is used for both, so the sentence names them explicitly."},
+  {"dnes": "Obrázek / Popis obrázku / Text pro čtečku", "nove": "Image / Image description / Screen reader text", "proc": "Words instead of symbols."},
+  {"dnes": "Jedna správná odpověď · Více správných odpovědí", "nove": "One correct answer · Several correct answers", "proc": "Plain English; matches SINGLE / MULTI."},
+  {"dnes": "Správná · Připnout na místo · Míchat odpovědi", "nove": "Correct · Pin in place · Shuffle answers", "proc": "Common exam-UI terms."},
+  {"dnes": "Zpětná vazba při správné / chybné odpovědi", "nove": "Feedback for a correct / wrong answer", "proc": "One thing, one word: feedback."},
+  {"dnes": "Interní poznámka · Shrnutí změny", "nove": "Internal note · Change summary", "proc": "Plain English."},
+  {"dnes": "Odeslat ke schválení · Uložit jako koncept · Zrušit úpravy", "nove": "Send for approval · Save as draft · Discard changes", "proc": "Glossary: pending approval, draft; verb first."},
+  {"dnes": "Kontrola otázky", "nove": "Question check", "proc": "Short panel heading."},
+  {"dnes": "Informativní · Dekorativní", "nove": "Informative · Decorative", "proc": "WCAG terminology."},
+  {"dnes": "Obnovit / Zahodit rozepsaný obsah", "nove": "Restore / Discard unsaved content", "proc": "Verb first."}
+ ],
+ "pristupnost": ["Same as the Czech page; html lang=\"en\". Toolbar aria-labels and shortcut titles in English (Bold (Ctrl+B) …)."],
+ "poznamky_pro_kodera": [
+  "Strings come from translations/*+intl-icu.en.yaml; do not hard-code.",
+  "Question content (text, answers, feedback, image description, screen reader text) is user content in the bank’s language (question_pool.language). The demo shows an English version of RO-010.",
+  "Glossary gap: Text pro čtečku → Screen reader text",
+  "Glossary gap: Popis obrázku (alternativní text) → Image description (alt text)",
+  "Glossary gap: schvalovatel → reviewer",
+  "Glossary gap: Zpětná vazba → Feedback",
+  "Glossary gap: Připnout na místo · Míchat odpovědi → Pin in place · Shuffle answers"
+ ],
+ "chybi_komponenta": ["as in the Czech page (rich-text field, toolbar separator, aria-pressed style, figure with description, screen reader text marking, img height:auto, sticky aside, number stepper)"]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-soubory.html">Question banks</a></li><li><a href="en-soubor-detail.html">Radiation protection – basic principles</a></li><li><a href="en-otazka-detail.html">Question 10</a></li><li><span aria-current="page">Edit</span></li></ol></nav>
+
+<div class="page-head">
+ <div class="stack-2">
+  <h1 class="t-titulek">Edit question</h1>
+  <dl class="meta"><div><dt>Question</dt><dd>No. 10 · RO-010</dd></div><div><dt>Status</dt><dd><span class="stav stav--ok">{{I:check}}Approved</span></dd></div><div><dt>Version</dt><dd>1 → 2 after saving</dd></div></dl>
+ </div>
+ <div class="page-head__actions"><a class="btn" href="en-otazka-nahled.html">{{I:oko}}Preview as test taker</a></div>
+</div>
+
+<div class="alert" style="margin-bottom:var(--s-4)">{{I:pozor}}<p>Editing creates version 2. The bank is used by <a href="en-soubor-detail.html">1 test</a>: new test versions get version 2; attempts in progress and printed test versions stay on version 1.</p></div>
+
+<form class="layout-aside" action="en-otazka-detail.html" method="post" novalidate aria-label="Edit question 10">
+ <div class="stack-5">
+
+  <section class="card stack-4" aria-labelledby="s1">
+   <h2 id="s1" class="t-nadpis"><span class="t-cislo">01</span> Question</h2>
+   <fieldset class="stack-2">
+    <legend>Question type</legend>
+    <div class="grid-2" style="gap:var(--s-2)">
+     <label class="choice"><input type="radio" name="typ" value="SINGLE" checked><span class="stack-2"><b>One correct answer</b><span class="t-maly">The test taker chooses one option.</span></span></label>
+     <label class="choice"><input type="radio" name="typ" value="MULTI"><span class="stack-2"><b>Several correct answers</b><span class="t-maly">Correct only if they select all correct answers and no wrong ones.</span></span></label>
+    </div>
+   </fieldset>
+   <div class="field">
+    <span class="label" id="zad-l">Question text</span>
+    <span class="hint" id="zad-h">Add readings for subscripts, superscripts and units (¹³⁷Cs, H₂O, µSv/h) with the Screen reader text button. Images need a description, or mark them as decorative.</span>
+    <div>
+     <div class="editor-bar" role="toolbar" aria-label="Formatting: Question text" aria-controls="zadani"><button type="button" aria-label="Bold" title="Bold (Ctrl+B)" tabindex="0">B</button><button type="button" aria-label="Italic" title="Italic (Ctrl+I)" tabindex="-1" style="font-style:italic">I</button><button type="button" aria-label="Underline" title="Underline (Ctrl+U)" tabindex="-1" style="text-decoration:underline">U</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Superscript" title="Superscript (Ctrl+.)" tabindex="-1">x²</button><button type="button" aria-label="Subscript" title="Subscript (Ctrl+,)" tabindex="-1">x₂</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Bulleted list" title="Bulleted list" tabindex="-1">• –</button><button type="button" aria-label="Numbered list" title="Numbered list" tabindex="-1">1. –</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Insert table" title="Insert table" tabindex="-1">Table</button><button type="button" aria-label="Add table row" title="Add table row" tabindex="-1">+ Row</button><button type="button" aria-label="Add table column" title="Add table column" tabindex="-1">+ Column</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Insert image" title="Insert image" tabindex="-1">Image</button><button type="button" aria-label="Edit image description" title="Edit image description" tabindex="-1">Image description</button><button type="button" title="Screen reader text" tabindex="-1">Screen reader text</button></div>
+     <div class="textarea stack" id="zadani" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="zad-l" aria-describedby="zad-h" style="min-height:200px">
+      <p>The diagram shows the penetrating power of three types of ionising radiation. Which arrow represents <b>alpha</b> radiation?</p>
+      <figure class="card card--tenka stack-2" contenteditable="false" style="padding:var(--s-2);max-width:480px">
+       <img src="../assets/img/otazka-pronikavost-zareni.png" width="600" height="345" style="height:auto" alt="Diagram: a radiation source on the left; to its right, one behind another, a sheet of paper, an aluminium sheet a few millimetres thick and a thick block of lead. Three arrows labelled 1, 2 and 3 leave the source; each stops at, or is weakened by, a different barrier.">
+       <figcaption class="stack-2">
+        <span class="row" style="gap:var(--s-2)"><span class="stav stav--ok" style="white-space:normal">{{I:check}}Informative · description added</span><button class="btn btn--male" type="button">{{I:upravit}}Edit description<span class="sr-only"> of the image in the question</span></button></span>
+        <span class="t-maly">Description: Diagram: a radiation source on the left; to its right, one behind another, a sheet of paper, an aluminium sheet… (268 characters, 150 or fewer recommended)</span>
+       </figcaption>
+      </figure>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <section class="card stack-4" aria-labelledby="s2">
+   <div class="row-between"><h2 id="s2" class="t-nadpis"><span class="t-cislo">02</span> Answers</h2><p class="t-maly" aria-live="polite"><b class="t-cislo">4</b> of 10 possible answers · at least 4</p></div>
+   <fieldset class="stack">
+    <legend class="sr-only">Answers and the correct one</legend>
+    <ol class="stack" style="list-style:none;padding:0">
+   <li class="card card--papir stack" aria-labelledby="odp1-l">
+    <div class="row-between"><p id="odp1-l" class="t-stitek">Answer 1</p><span class="stav stav--ok">{{I:check}}Correct</span></div>
+    <div class="field">
+     <span class="sr-only" id="odp1-lab">Answer 1 text</span>
+     <div><div class="editor-bar" role="toolbar" aria-label="Formatting: Answer 1" aria-controls="odp1"><button type="button" aria-label="Bold" title="Bold (Ctrl+B)" tabindex="0">B</button><button type="button" aria-label="Italic" title="Italic (Ctrl+I)" tabindex="-1" style="font-style:italic">I</button><button type="button" aria-label="Underline" title="Underline (Ctrl+U)" tabindex="-1" style="text-decoration:underline">U</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Superscript" title="Superscript (Ctrl+.)" tabindex="-1">x²</button><button type="button" aria-label="Subscript" title="Subscript (Ctrl+,)" tabindex="-1">x₂</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Bulleted list" title="Bulleted list" tabindex="-1">• –</button><button type="button" aria-label="Numbered list" title="Numbered list" tabindex="-1">1. –</button><span aria-hidden="true" style="width:1px;align-self:stretch;background:var(--c-linka)"></span><button type="button" aria-label="Insert image" title="Insert image" tabindex="-1">Image</button><button type="button" aria-label="Edit image description" title="Edit image description" tabindex="-1">Image description</button><button type="button" title="Screen reader text" tabindex="-1">Screen reader text</button></div>
+     <div class="textarea" id="odp1" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp1-lab" style="min-height:var(--cil-min)">arrow 1</div></div>
+     
+    </div>
+    <div class="row">
+     <label class="check" style="padding-top:0;align-items:center"><input type="radio" name="spravna" value="1" checked>Correct</label>
+     <label class="check" style="padding-top:0;align-items:center"><input type="checkbox" name="pin1">Pin in place</label>
+     <span class="sp" style="flex:1"></span>
+     <button class="btn btn--tiche btn--male" type="button">{{I:smazat}}Remove<span class="sr-only"> answer 1</span></button>
+    </div>
+   </li>
+   <li class="card card--tenka stack" aria-labelledby="odp2-l">
+    <div class="row-between"><p id="odp2-l" class="t-stitek">Answer 2</p></div>
+    <div class="field">
+     <span class="sr-only" id="odp2-lab">Answer 2 text</span>
+     <div>
+     <div class="textarea" id="odp2" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp2-lab" style="min-height:var(--cil-min)">arrow 2</div></div>
+     
+    </div>
+    <div class="row">
+     <label class="check" style="padding-top:0;align-items:center"><input type="radio" name="spravna" value="2">Correct</label>
+     <label class="check" style="padding-top:0;align-items:center"><input type="checkbox" name="pin2">Pin in place</label>
+     <span class="sp" style="flex:1"></span>
+     <button class="btn btn--tiche btn--male" type="button">{{I:smazat}}Remove<span class="sr-only"> answer 2</span></button>
+    </div>
+   </li>
+   <li class="card card--tenka stack" aria-labelledby="odp3-l">
+    <div class="row-between"><p id="odp3-l" class="t-stitek">Answer 3</p></div>
+    <div class="field">
+     <span class="sr-only" id="odp3-lab">Answer 3 text</span>
+     <div>
+     <div class="textarea" id="odp3" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp3-lab" style="min-height:var(--cil-min)">arrow 3</div></div>
+     
+    </div>
+    <div class="row">
+     <label class="check" style="padding-top:0;align-items:center"><input type="radio" name="spravna" value="3">Correct</label>
+     <label class="check" style="padding-top:0;align-items:center"><input type="checkbox" name="pin3">Pin in place</label>
+     <span class="sp" style="flex:1"></span>
+     <button class="btn btn--tiche btn--male" type="button">{{I:smazat}}Remove<span class="sr-only"> answer 3</span></button>
+    </div>
+   </li>
+   <li class="card card--tenka stack" aria-labelledby="odp4-l">
+    <div class="row-between"><p id="odp4-l" class="t-stitek">Answer 4</p></div>
+    <div class="field">
+     <span class="sr-only" id="odp4-lab">Answer 4 text</span>
+     <div>
+     <div class="textarea" id="odp4" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="odp4-lab" style="min-height:var(--cil-min)">it cannot be determined from the diagram</div></div>
+     
+    </div>
+    <div class="row">
+     <label class="check" style="padding-top:0;align-items:center"><input type="radio" name="spravna" value="4">Correct</label>
+     <label class="check" style="padding-top:0;align-items:center"><input type="checkbox" name="pin4">Pin in place</label>
+     <span class="sp" style="flex:1"></span>
+     <button class="btn btn--tiche btn--male" type="button">{{I:smazat}}Remove<span class="sr-only"> answer 4</span></button>
+    </div>
+   </li>
+    </ol>
+   </fieldset>
+   <div><button class="btn" type="button">{{I:plus}}Add answer</button></div>
+   <div class="stack-2">
+    <label class="check"><input type="checkbox" name="michat" aria-describedby="mich-h"><span class="stack-2"><span>Shuffle answers</span><span class="hint" id="mich-h">Each test taker sees a different order. Pinned answers stay in place – useful for “None of the above”.</span></span></label>
+   </div>
+  </section>
+
+  <section class="card stack-4" aria-labelledby="s3">
+   <h2 id="s3" class="t-nadpis"><span class="t-cislo">03</span> Scoring and feedback</h2>
+   <div class="field"><label class="label" for="body">Points</label><input class="input" id="body" name="body" type="number" min="1" max="100" step="1" value="1" inputmode="numeric" aria-describedby="body-h" style="max-width:140px"><span class="hint" id="body-h">Whole number from 1 to 100.</span></div>
+   <p class="hint" id="zv-h">The test taker sees the feedback according to the test settings: after marking or straight after answering. Never in an official test.</p>
+   <div class="field">
+    <span class="label" id="zvok-l">Feedback for a correct answer <span class="volitelne">(optional)</span></span>
+    <div><div class="textarea" id="zvok" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="zvok-l" aria-describedby="zv-h"><p>Correct.</p><p>Alpha particles are stopped by a sheet of paper (or the outer layer of skin). Beta radiation is stopped by a few millimetres of aluminium. Gamma radiation is only attenuated by lead, not fully stopped.</p></div></div>
+   </div>
+   <div class="field">
+    <span class="label" id="zvch-l">Feedback for a wrong answer <span class="volitelne">(optional)</span></span>
+    <div><div class="textarea" id="zvch" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="zvch-l" aria-describedby="zv-h"><p>Alpha particles are stopped by a sheet of paper (or the outer layer of skin). Beta radiation is stopped by a few millimetres of aluminium. Gamma radiation is only attenuated by lead, not fully stopped.</p></div></div>
+   </div>
+  </section>
+
+  <section class="card stack-4" aria-labelledby="s4">
+   <h2 id="s4" class="t-nadpis"><span class="t-cislo">04</span> Tags and note</h2>
+   <div class="grid-2">
+    <fieldset class="stack-2"><legend>Difficulty <span class="t-maly">(bank tag list)</span></legend>
+     <label class="check"><input type="checkbox" name="st" value="pokrocila">Advanced</label>
+     <label class="check"><input type="checkbox" name="st" value="zakladni" checked>Basic</label>
+    </fieldset>
+    <fieldset class="stack-2"><legend>Topics <span class="t-maly">(bank tag list)</span></legend>
+     <label class="check"><input type="checkbox" name="st" value="cvs">Time, distance, shielding</label>
+     <label class="check"><input type="checkbox" name="st" value="dl">Dosimetry and dose limits</label>
+     <label class="check"><input type="checkbox" name="st" value="dz" checked>Types of radiation</label>
+     <label class="check"><input type="checkbox" name="st" value="pp">Workers and designated areas</label>
+     <label class="check"><input type="checkbox" name="st" value="pl">Principles and legislation</label>
+    </fieldset>
+   </div>
+   <p class="t-maly">Only tag lists you may use in this bank are offered. <a href="en-stitky.html">Manage tags</a></p>
+   <div class="field"><label class="label" for="pozn">Internal note <span class="volitelne">(optional)</span></label><textarea class="textarea" id="pozn" name="poznamka" aria-describedby="pozn-h">Source: ICRP Publication 103; IAEA GSR Part 3 (general physical principles)</textarea><span class="hint" id="pozn-h">Test takers never see it, and it is not printed. Changing the note does not create a new version.</span></div>
+   <div class="field"><label class="label" for="shrnuti">Change summary <span class="volitelne">(optional)</span></label><input class="input" id="shrnuti" name="shrnuti" aria-describedby="shr-h"><span class="hint" id="shr-h">Shown in the version history. For example, “Answer 3 clarified”.</span></div>
+  </section>
+
+ </div>
+
+ <aside class="stack-4" aria-label="Question check and saving" style="align-self:start;position:sticky;top:var(--s-3)">
+  <div class="card card--papir stack">
+   <h2 id="kontrola" class="t-nadpis">Question check</h2>
+   <ul class="stack-2" aria-live="polite">
+    <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ok">{{I:check}}<span class="sr-only">Passed:</span></span><span>Question text entered</span></li>
+    <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ok">{{I:check}}<span class="sr-only">Passed:</span></span><span>4 answers (at least 4)</span></li>
+    <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ok">{{I:check}}<span class="sr-only">Passed:</span></span><span>Correct answer selected</span></li>
+    <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ok">{{I:check}}<span class="sr-only">Passed:</span></span><span>Image has a description</span></li>
+    <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ok">{{I:check}}<span class="sr-only">Passed:</span></span><span>Points from 1 to 100</span></li>
+   </ul>
+   <hr class="rule-tenka">
+   <div class="stack-2">
+    <button class="btn btn--hlavni btn--blok" type="submit" name="akce" value="schvalit">Send for approval</button>
+    <button class="btn btn--blok" type="submit" name="akce" value="koncept">Save as draft</button>
+    <a class="btn btn--tiche" href="en-otazka-detail.html">Discard changes</a>
+   </div>
+   <p class="t-maly">Approval is on: version 2 goes into tests only after it is approved.</p>
+   <p class="t-maly">We keep saving your unsaved content in this browser tab. Last saved at <span class="t-cislo">14:32</span>.</p>
+   <p><a href="en-otazka-nahled.html">Preview as test taker</a></p>
+  </div>
+ </aside>
+</form>
+
+<section class="no-print stack-5" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Errors on saving</h3>
+  <div class="error-summary stack-2" role="alert" tabindex="-1" aria-labelledby="es-h">
+   <p id="es-h" class="alert__nadpis">The question can’t be saved. Fix 3 problems:</p>
+   <ul class="stack-2" style="padding-left:var(--s-4)">
+    <li><a href="#odp-e3">A question needs at least 4 answers.</a></li>
+    <li><a href="#spr-e">Select at least one correct answer.</a></li>
+    <li><a href="#img-e">Add a description to the image in the question.</a></li>
+   </ul>
+  </div>
+  <div class="layout-aside">
+   <div class="card stack-4">
+    <div class="field">
+     <span class="label" id="zad-e-l">Question text</span>
+     <div class="textarea stack" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="zad-e-l" aria-describedby="img-e-err">
+      <p>In the image, one person stands 1&nbsp;m from a point source of gamma radiation and a second person stands 2&nbsp;m from it. What dose rate does the second person receive compared with the first?</p>
+      <figure class="card card--tenka stack-2" contenteditable="false" style="padding:var(--s-2);max-width:480px;border-color:var(--c-nesplneno)">
+       <div class="empty" style="padding:var(--s-4)">{{I:soubor}}<span class="t-maly">vzdalenost.png</span></div>
+       <figcaption class="stack-2">
+        <span class="row" style="gap:var(--s-2)"><span class="stav stav--ne">{{I:minus-kruh}}Description missing</span><button class="btn btn--male" type="button" id="img-e">{{I:upravit}}Add description<span class="sr-only"> of the image in the question</span></button></span>
+        <span class="error" id="img-e-err">{{I:pozor}}Describe the image, or mark it as decorative.</span>
+       </figcaption>
+      </figure>
+     </div>
+    </div>
+    <fieldset class="stack" aria-describedby="spr-e-err">
+     <legend id="spr-e">Answers and the correct one</legend>
+     <p class="error" id="spr-e-err">{{I:pozor}}Select at least one correct answer.</p>
+     <div class="card card--tenka row-between"><span>Answer 1: the same</span><label class="check" style="padding-top:0;align-items:center"><input type="radio" name="spr-e">Correct</label></div>
+     <div class="card card--tenka row-between"><span>Answer 2: half</span><label class="check" style="padding-top:0;align-items:center"><input type="radio" name="spr-e">Correct</label></div>
+     <div class="card card--tenka row-between"><span>Answer 3: a quarter</span><label class="check" style="padding-top:0;align-items:center"><input type="radio" name="spr-e">Correct</label></div>
+     <div class="field"><span class="sr-only" id="odp-e3-l">Answer 4 text</span><div class="textarea" id="odp-e3" contenteditable="true" role="textbox" aria-labelledby="odp-e3-l" aria-invalid="true" aria-describedby="odp-e3-err" style="min-height:var(--cil-min)"></div><p class="error" id="odp-e3-err">{{I:pozor}}Enter answer 4. A question needs at least 4.</p></div>
+    </fieldset>
+   </div>
+   <section class="card card--papir stack" aria-labelledby="kontrola-e" style="align-self:start">
+    <p id="kontrola-e" class="t-nadpis">Question check</p>
+    <ul class="stack-2">
+     <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ok">{{I:check}}<span class="sr-only">Passed:</span></span><span>Question text entered</span></li>
+     <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ne">{{I:minus-kruh}}<span class="sr-only">Not passed:</span></span><span>3 answers – 1 missing</span></li>
+     <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ne">{{I:minus-kruh}}<span class="sr-only">Not passed:</span></span><span>No correct answer selected</span></li>
+     <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ne">{{I:minus-kruh}}<span class="sr-only">Not passed:</span></span><span>Image has no description</span></li>
+     <li class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="stav stav--ok">{{I:check}}<span class="sr-only">Passed:</span></span><span>Points from 1 to 100</span></li>
+    </ul>
+   </section>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Dialog – Description of inserted image</h3>
+  <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="dimg-h" style="position:static;margin:0">
+   <div class="dialog__body stack-4">
+    <div class="stack-2"><p id="dimg-h" class="t-nadpis">Description of inserted image</p><p>Screen readers read the description to blind test takers. It is also shown if the image doesn’t load.</p></div>
+    <div class="row" style="align-items:flex-start;flex-wrap:nowrap"><div class="empty" style="padding:var(--s-3);min-width:96px">{{I:soubor}}</div><p class="t-maly">vzdalenost.png · 182&nbsp;kB</p></div>
+    <fieldset class="stack-2">
+     <legend>Image type</legend>
+     <label class="choice"><input type="radio" name="typimg" checked><span class="stack-2"><b>Informative</b><span class="t-maly">Carries information needed to answer: a chart, diagram or sign.</span></span></label>
+     <label class="choice"><input type="radio" name="typimg"><span class="stack-2"><b>Decorative</b><span class="t-maly">Decoration only, not needed to answer. Screen readers skip it.</span></span></label>
+    </fieldset>
+    <div class="field">
+     <label class="label" for="alt-e">Image description (alt text)</label>
+     <span class="hint" id="alt-h">One sentence, about 150 characters at most. Write it so the question can be answered from it. Put a longer chart description in the question text.</span>
+     <textarea class="textarea" id="alt-e" aria-invalid="true" aria-describedby="alt-h alt-err" style="min-height:96px"></textarea>
+     <p class="error" id="alt-err">{{I:pozor}}Describe the image, or choose Decorative.</p>
+    </div>
+   </div>
+   <div class="dialog__foot"><button class="btn" type="button">Cancel</button><button class="btn btn--hlavni" type="button">Insert image</button></div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Image file error</h3>
+  <div class="alert alert--chyba" role="alert">{{I:minus-kruh}}<div><p class="alert__nadpis">The image can’t be inserted.</p><p>The file schema.tiff is not PNG, JPEG or WebP. Use one of these formats, up to 5&nbsp;MB.</p></div></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Dialog – Screen reader text (formula, unit)</h3>
+  <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="dct-h" style="position:static;margin:0">
+   <div class="dialog__body stack-4">
+    <div class="stack-2"><p id="dct-h" class="t-nadpis">Screen reader text</p><p>Screen readers read your text instead of the selected text. Nothing changes on screen.</p></div>
+    <dl class="dl"><dt>Selected text</dt><dd class="t-cislo">90 µSv/h</dd></dl>
+    <div class="field">
+     <label class="label" for="ct">How screen readers should read it</label>
+     <input class="input" id="ct" value="ninety microsieverts per hour" aria-describedby="ct-h">
+     <span class="hint" id="ct-h">For example, “caesium one hundred and thirty-seven” for ¹³⁷Cs or “water, H two O” for H₂O.</span>
+    </div>
+   </div>
+   <div class="dialog__foot"><button class="btn btn--tiche" type="button">Remove screen reader text</button><button class="btn" type="button">Cancel</button><button class="btn btn--hlavni" type="button">Save screen reader text</button></div>
+  </div>
+  <p class="t-maly">In the editor, such text is marked like this:</p>
+  <div class="card card--tenka"><p>At 1&nbsp;m from a point gamma source, the dose rate is <span class="t-zvyraznit" style="text-decoration:underline dotted;text-underline-offset:4px">90 µSv/h</span> <span class="stav stav--info">{{I:info}}Screen reader</span>. What will the dose rate be at about 3&nbsp;m?</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Unsaved content</h3>
+  <div class="alert alert--info" role="status">{{I:obnovit}}<div class="stack-2"><p class="alert__nadpis">You have unsaved content here.</p><p>The app signed you out before you saved the question. The content is only in this browser tab.</p><div class="row"><button class="btn btn--male" type="button">Restore unsaved content</button><button class="btn btn--tiche btn--male" type="button">Discard unsaved content</button></div></div></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Required question in a test in use</h3>
+  <div class="alert alert--chyba">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">This question is required in a test that is in use right now.</p><p>Until someone approves version 2, the test won’t start new attempts or print test versions. Attempts in progress stay on version 1.</p><p>Get the change approved before the exam, or postpone it.</p></div></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Returned to draft</h3>
+  <div class="alert">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">A reviewer returned the question to draft.</p><p>Barbora Veselá, 3 Nov 2026: “Add to the feedback why alpha particles can’t pass through paper.”</p></div></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">New question from Overview – choose a bank</h3>
+  <form class="card stack-4 measure" aria-labelledby="nov-h">
+   <p id="nov-h" class="t-titulek">New question</p>
+   <div class="field"><label class="label" for="soub">Which question bank should the question go in?</label><select class="select" id="soub"><option>Sample set: Health and safety – employee training</option><option>Sample set: Cyber security – user training</option><option>Sample set: Radiation protection – basic principles</option></select><span class="hint">Only banks you may edit are offered.</span></div>
+   <div><button class="btn btn--hlavni" type="button">Continue</button></div>
+  </form>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Approval turned off</h3>
+  <div class="form-actions"><button class="btn btn--hlavni" type="button">Save question</button><a class="btn btn--tiche" href="en-otazka-detail.html">Discard changes</a></div>
+ </div>
+</section>

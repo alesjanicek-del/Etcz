@@ -1,0 +1,59 @@
+<!--meta {"titulek":"Enquiry sent","popis":"Thank you for your enquiry. We’ll get back to you within 2 working days.","sablona":"web","aktivni":"","lang":"en","cs_verze":"ukazka-odeslano.html"} -->
+<!--spec {
+ "route":"/en/guided-demo/sent","nazev":"Enquiry sent – English","role":"public – prospect who has just sent an enquiry","sablona":"web (lang=en)",
+ "ucel":"Confirm the enquiry arrived, say what happens next and when, and offer a useful next step (the demo).",
+ "hlavni_akce":"Try the demo (meanwhile); secondary: back to the homepage",
+ "komponenty":["alert--ok","card card--papir","num-step","dl","row"],
+ "stavy":[
+  "main: enquiry received – summary of sent details (reason, organisation, email)",
+  "direct access without sending (refresh, bookmark): same page without the summary; nothing is resent (PRG)",
+  "error: does not occur – send errors show on the form page (en-ukazka.html, Other page states)",
+  "permissions: public page"],
+ "zmeny_ux":["Structure, states and components are the same as the Czech page (ukazka-odeslano.html); see its spec for the UX changes.","Sample organisation “Krajská agentura” and person are kept in Czech with lang=\"cs\" (sample data)."],
+ "texty":[
+  {"dnes":"Odesláno","nove":"Sent","proc":"Status word with icon."},
+  {"dnes":"Děkujeme, poptávku jsme přijali","nove":"Thank you, we’ve received your enquiry","proc":"Clear confirmation."},
+  {"dnes":"Co jste nám poslali","nove":"What you sent us","proc":"Plain English."},
+  {"dnes":"Spletli jste se v e-mailu? Napište nám na obchod@exam-test.cz.","nove":"Made a mistake in your email address? Write to us at obchod@exam-test.cz.","proc":"Way to fix without resending."},
+  {"dnes":"Co bude dál","nove":"What happens next","proc":"Plain English."},
+  {"dnes":"30 dny zkušebního provozu zdarma","nove":"a 30-day free trial","proc":"Glossary gap: zkušební provoz → free trial."},
+  {"dnes":"Zpět na úvodní stránku","nove":"Back to the homepage","proc":"Says where the link goes."}],
+ "pristupnost":["Same as the Czech page: H1 is the confirmation and receives focus on load (tabindex=-1); summary as dl; check icon is decoration."],
+ "poznamky_pro_kodera":["Summary only from the session after a successful send; hide the block otherwise.","Sample data: Jana Nováková, Krajská agentura (made up)."],
+ "chybi_komponenta":[]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <div class="stack-4">
+   <p><span class="stav stav--ok">{{I:check}}Sent</span></p>
+   <h1 class="t-display" tabindex="-1">Thank you, we’ve received your enquiry</h1>
+   <p class="t-perex">We’ll get back to you within 2&nbsp;working days to agree a date for the demo.</p>
+  </div>
+
+  <div class="card card--papir stack">
+   <h2 class="t-nadpis">What you sent us</h2>
+   <dl class="dl">
+    <dt>How we can help</dt><dd>Book a guided demo</dd>
+    <dt>Organisation</dt><dd lang="cs">Krajská agentura</dd>
+    <dt>Full name</dt><dd lang="cs">Jana Nováková</dd>
+    <dt>Email for our reply</dt><dd>jana.novakova@krajska-agentura.cz</dd>
+   </dl>
+   <p class="t-maly">Made a mistake in your email address? Write to us at <a href="mailto:obchod@exam-test.cz">obchod@exam-test.cz</a>.</p>
+  </div>
+
+  <div class="stack-4">
+   <h2 class="t-sekce">What happens next</h2>
+   <ol class="stack-4">
+    <li class="num-step"><span class="t-cislo">01</span><div class="stack-2"><h3 class="t-nadpis">We get in touch</h3><p>Within 2&nbsp;working days, we’ll email or call you to agree a date.</p></div></li>
+    <li class="num-step"><span class="t-cislo">02</span><div class="stack-2"><h3 class="t-nadpis">We go through the app online</h3><p>In about 30&nbsp;minutes, we show the path from question to report using your type of exam.</p></div></li>
+    <li class="num-step"><span class="t-cislo">03</span><div class="stack-2"><h3 class="t-nadpis">We set up trial access</h3><p>For your organisation, with a 30-day free trial.</p></div></li>
+   </ol>
+  </div>
+
+  <div class="card stack">
+   <h2 class="t-nadpis">In the meantime, try the app yourself</h2>
+   <p>The demo needs no registration. Choose a role and you’re in a demo branch within seconds.</p>
+   <div class="row"><a class="btn btn--hlavni" href="en-vyzkouset.html">Try the demo {{I:sipka-vpravo}}</a><a class="btn btn--tiche" href="en-index.html">Back to the homepage</a></div>
+  </div>
+ </div>
+</section>

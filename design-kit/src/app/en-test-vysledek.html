@@ -1,0 +1,98 @@
+<!--meta {"titulek":"Result – Cyber security: annual check","sablona":"exam","role":"zkouseny","skip":"Skip to result","lang":"en","cs_verze":"test-vysledek.html"} -->
+<!--spec {
+ "route":"/t/:id/vysledek (lang=en)","nazev":"Attempt result","role":"test taker","sablona":"exam",
+ "ucel":"Tell the test taker at once and unambiguously how the test went, and give them proof: a result report with a verification code and, where relevant, a certificate.",
+ "hlavni_akce":"Download result report (PDF)",
+ "komponenty":["exam-head","stav--ok/ne","t-cislo","card","kod","btn--hlavni","feature","alert","dl"],
+ "stavy":["Same states as the Czech page (test-vysledek.html): passed (drawn), not passed with another attempt (drawn), result not released yet (drawn), submitted automatically (drawn, with the right to human review), official test (no correct answers, no certificate – the result report is the proof), no loading state, someone else’s attempt → 404."],
+ "zmeny_ux":[
+  "Layout as in the Czech version (test-vysledek.html).",
+  "“Download result report (PDF)” is about 30% longer than the Czech button; on mobile it takes the full width and wraps to 2 lines at 375 px (icon stays left) – acceptable; a shorter “Download report (PDF)” would break the glossary term.",
+  "Numbers in EN format: 83.3%, 80%; date 3 Nov 2026 at 17:41.",
+  "Result reports and certificates of official tests are always Czech (brand manual 08b)."],
+ "texty":[
+  {"dnes":"Výsledek: 83,3 % + Splněno","nove":"Result: 83.3% + Passed","proc":"EN glossary; decimal point."},
+  {"dnes":"Výsledek · pokus 1 z 3","nove":"Result · attempt 1 of 3","proc":"EN glossary: attempt."},
+  {"dnes":"10 z 12 otázek správně, 14 ze 17 bodů. Práh úspěšnosti byl 80 %.","nove":"10 of 12 questions correct, 14 of 17 points. The pass mark was 80%.","proc":"“Pass mark” as on the test introduction."},
+  {"dnes":"Protokol s ověřovacím kódem","nove":"Result report with verification code","proc":"EN glossary."},
+  {"dnes":"Pravost protokolu ověří kdokoli na exam-test.cz/overeni – bez přihlášení.","nove":"Anyone can check that the result report is genuine at exam-test.cz/overeni – no sign-in needed.","proc":"Explains what the verification code is for."},
+  {"dnes":"Stáhnout protokol (PDF) · Ověřit pravost","nove":"Download result report (PDF) · Check authenticity","proc":"Verb first."},
+  {"dnes":"Osvědčení · platí do 2. 11. 2027","nove":"Certificate · valid until 2 Nov 2027","proc":"EN glossary; EN date."},
+  {"dnes":"Co dál · Správné odpovědi","nove":"What next · Correct answers","proc":"Short headings."},
+  {"dnes":"Výsledek zatím nevidíte. Uvidíte ho, až ho lektor zpřístupní.","nove":"You will see your result here once your instructor releases it.","proc":"EN glossary: release results."},
+  {"dnes":"Zahájit pokus 2 z 3","nove":"Start attempt 2 of 3","proc":"Verb first."},
+  {"dnes":"Test se odevzdal sám po 3. opuštění okna. … O odevzdání rozhodl program, ne člověk. Můžete požádat pořadatele, aby odevzdání i výsledek přezkoumal člověk.","nove":"Your test was submitted automatically after you left the window for the 3rd time. … The decision was made by the software, not a person. You can ask the organiser to have a person review the submission and your result.","proc":"Right to human review (GDPR art. 22) in normal text; faithful translation."}],
+ "pristupnost":[
+  "Same as the Czech page: H1 contains the whole result in words (“Result: 83.3%, Passed”), focus moves to the H1 on load.",
+  "Verification code is text (.kod); its aria-label reads the groups with pauses: “Verification code: H5SAY GVTNY EDXAP 67SXD”.",
+  "PDF links state the format in the text.",
+  "Certificate and training names are translated as sample content; with Czech data, wrap them in lang=\"cs\"."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml; do not hard-code.",
+  "Number and date formatting via Intl (en-GB).",
+  "Note for the Czech page: its aria-label on .kod reads “ET 7Q4K 92MX”, which does not match the visible code H5SAY-GVTNY-EDXAP-67SXD. Fixed in the EN version; the Czech page should be fixed too (aria-label generated from the code).",
+  "The /overeni URL path stays as it is (a route, not a text).",
+  "Glossary gap: Ověřit pravost → Check authenticity",
+  "Glossary gap: práh úspěšnosti → pass mark",
+  "Glossary gap: přezkoumání člověkem → review by a person"],
+ "chybi_komponenta":["large result number (120 px in design B) – the type scale does not allow it, .t-titulek .t-cislo used, as in Czech"]
+} -->
+<header class="exam-head"><div class="exam-head__in">
+ <p class="t-stitek">Cyber security: annual check</p>
+ <p class="t-maly" style="margin-left:auto">Submitted 3&nbsp;Nov&nbsp;2026 at 17:41</p>
+</div></header>
+
+<main id="obsah" class="narrow stack-5">
+ <div class="stack-2">
+  <p class="t-stitek">Result · attempt 1 of 3</p>
+  <h1 class="t-titulek row" tabindex="-1"><span>Result: <span class="t-cislo">83.3%</span></span><span class="stav stav--ok">{{I:check}}Passed</span></h1>
+  <p>10 of 12 questions correct, 14 of 17 points. The pass mark was 80%.</p>
+ </div>
+
+ <section class="card card--papir stack" aria-labelledby="prot-h">
+  <p class="t-stitek" id="prot-h">Result report with verification code</p>
+  <div class="row-between" style="align-items:flex-start;gap:var(--s-4)">
+   <div class="stack-2" style="flex:1 1 280px">
+    <p class="kod" aria-label="Verification code: H5SAY GVTNY EDXAP 67SXD">H5SAY-GVTNY-EDXAP-67SXD</p>
+    <p class="t-maly">Anyone can check that the result report is genuine at exam-test.cz/overeni – no sign-in needed. Share the code only with people you want to show your result to.</p>
+   </div>
+   <div class="stack-2" style="flex:0 1 auto">
+    <a class="btn btn--hlavni" href="../tisk/en-protokol.html">{{I:stahnout}}Download result report (PDF)</a>
+    <a class="btn" href="../web/en-overeni.html">Check authenticity</a>
+   </div>
+  </div>
+ </section>
+
+ <section class="card card--tenka row-between" aria-labelledby="osv-h">
+  <div class="stack-2">
+   <h2 id="osv-h" class="t-nadpis">Certificate</h2>
+   <p>Annual cyber security training · passed 3&nbsp;Nov&nbsp;2026 · <b>valid until 2&nbsp;Nov&nbsp;2027</b></p>
+  </div>
+  <a class="btn" href="../tisk/en-osvedceni.html">{{I:stahnout}}Download certificate (PDF)</a>
+ </section>
+
+ <div class="grid-2">
+  <div class="feature"><h2 class="t-nadpis">What next</h2><p class="t-maly">Your instructor can also see your result. You do not need to do anything else. You can come back to your result later by entering your code, if the organiser allows it.</p></div>
+  <div class="feature"><h2 class="t-nadpis">Correct answers</h2><p class="t-maly">You will see them once your instructor releases them.</p></div>
+ </div>
+
+ <section class="no-print stack-4" aria-labelledby="dalsi" style="padding-top:var(--s-5)">
+  <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+  <div class="stack-2">
+   <h3 class="t-stitek">Not passed, another attempt allowed</h3>
+   <div class="card stack">
+    <p class="t-titulek row"><span>Result: <span class="t-cislo">58.3%</span></span><span class="stav stav--ne">{{I:minus-kruh}}Not passed</span></p>
+    <p>7 of 12 questions correct. The pass mark is 80%. You have 2 attempts left.</p>
+    <p><a class="btn" href="en-test-start.html">Start attempt 2 of 3</a></p>
+   </div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Result not released yet</h3>
+   <div class="alert alert--info">{{I:info}}<div><p class="alert__nadpis">Your test has been submitted.</p><p>The exam organiser will tell you your result. You will see it here once your instructor releases it.</p></div></div>
+  </div>
+  <div class="stack-2">
+   <h3 class="t-stitek">Submitted automatically by monitoring</h3>
+   <div class="alert">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Your test was submitted automatically after you left the window for the 3rd time.</p><p>The answers saved up to that moment were submitted. The decision was made by the software, not a person. You can ask the organiser to have a person review the submission and your result. Write to them as soon as possible and explain why you left the window.</p><p><a href="en-informace-o-zpracovani.html#dohled">Contact the organiser</a></p></div></div>
+  </div>
+ </section>
+</main>

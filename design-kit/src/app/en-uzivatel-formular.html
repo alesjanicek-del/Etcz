@@ -1,0 +1,57 @@
+<!--meta {"titulek":"Invite user","sablona":"app","role":"admin","aktivni":"en-uzivatele.html","demo":false,"lang":"en","cs_verze":"uzivatel-formular.html"} -->
+<!--spec {
+ "route":"/sprava/uzivatele/novy, /:id/upravit (lang=en)","nazev":"Invite / edit user","role":"admin","sablona":"app",
+ "ucel":"Invite a new user to the branch (or edit an existing user’s details) – they set their own password from the email.",
+ "hlavni_akce":"Create user and send invitation (edit: Save changes).",
+ "komponenty":["crumbs","page-head","field","input","select","fieldset","check (radio)","hint","error-summary","error","form-actions","alert"],
+ "stavy":["Same states as uzivatel-formular.html: submit errors (drawn below), edit mode (title “Edit user”, read-only email, Save changes), plan limit, permissions."],
+ "zmeny_ux":["Layout identical to the Czech page. Radio labels (“+25%”) are shorter than in Czech; main button “Create user and send invitation” is longer and may wrap at 320 px."],
+ "texty":[
+  {"dnes":"Pozvat uživatele","nove":"Invite user","proc":"Verb first."},
+  {"dnes":"Uživatel dostane e-mail s odkazem, kde si sám nastaví heslo. Odkaz platí 7 dní a heslo nikdy neuvidíte.","nove":"The user gets an email with a link to set their own password. The link is valid for 7 days and you never see the password.","proc":"Two short sentences."},
+  {"dnes":"(nepovinné)","nove":"(optional)","proc":"Form rules."},
+  {"dnes":"Prodloužení času v testech","nove":"Extra time in tests","proc":"Usual term for access arrangements."},
+  {"dnes":"Pro osoby, které potřebují víc času, např. kvůli zdravotnímu znevýhodnění. Platí ve všech testech s časovým limitem.","nove":"For people who need more time, for example because of a disability. Applies to all tests with a time limit.","proc":"Plain, respectful wording."},
+  {"dnes":"Založit a odeslat pozvánku","nove":"Create user and send invitation","proc":"Says both things that happen."},
+  {"dnes":"Pozvánku nejde odeslat – opravte 2 pole","nove":"The invitation cannot be sent – fix 2 fields","proc":"Error summary."}],
+ "pristupnost":["Same as the Czech page."],
+ "poznamky_pro_kodera":["Behaviour as in uzivatel-formular.html.","Glossary gap: Prodloužení času → Extra time.","Glossary gap: osobní číslo → staff number.","Example email in error: use an English-neutral domain (jan.novak@company.example) rather than firma.cz."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-uzivatele.html">Users</a></li><li><span aria-current="page">Invite user</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Invite user</h1><p class="measure">The user gets an email with a link to set their own password. The link is valid for 7 days and you never see the password.</p></div></div>
+
+<form class="stack-4" action="en-uzivatele.html" method="post" style="max-width:var(--max-text)">
+ <div class="field"><label class="label" for="jm">Full name</label><input class="input" id="jm" name="jmeno" autocomplete="name"></div>
+ <div class="field"><label class="label" for="em">Email</label><span class="hint" id="em-h">The invitation with a link to set a password goes here.</span><input class="input" id="em" name="email" type="email" autocomplete="email" aria-describedby="em-h"></div>
+ <div class="field"><label class="label" for="oc">Staff number <span class="volitelne">(optional)</span></label><span class="hint" id="oc-h">For example, an employee number.</span><input class="input" id="oc" name="osobni_cislo" aria-describedby="oc-h" style="max-width:280px"></div>
+ <fieldset class="stack-2" aria-describedby="pc-h">
+  <legend>Extra time in tests</legend>
+  <span class="hint" id="pc-h">For people who need more time, for example because of a disability. Applies to all tests with a time limit.</span>
+  <div class="row" style="gap:0 var(--s-4)">
+   <label class="check"><input type="radio" name="pc" checked><span>None</span></label>
+   <label class="check"><input type="radio" name="pc"><span>+25%</span></label>
+   <label class="check"><input type="radio" name="pc"><span>+50%</span></label>
+   <label class="check"><input type="radio" name="pc"><span>+100% (double time)</span></label>
+  </div>
+ </fieldset>
+ <div class="grid-2" style="gap:var(--s-3)">
+  <div class="field"><label class="label" for="ro">Role</label><select class="select" id="ro" name="role"><option value="">Choose a role</option><option>Branch administrator</option><option>Instructor</option><option>Student</option></select></div>
+  <div class="field"><label class="label" for="po">Branch</label><select class="select" id="po" name="pobocka"><option>Prague</option></select></div>
+ </div>
+ <p class="t-maly">You can add more roles and branches on the user detail page.</p>
+ <div class="form-actions"><button class="btn btn--hlavni" type="submit">{{I:email}}Create user and send invitation</button><a class="btn btn--tiche" href="en-uzivatele.html">Cancel</a></div>
+</form>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6);max-width:var(--max-text)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">Errors after submitting</p>
+  <div class="error-summary" role="alert" aria-labelledby="es"><p id="es" class="alert__nadpis">The invitation cannot be sent – fix 2 fields</p><ul style="padding-left:var(--s-4)"><li><a href="#em2">Enter an email address.</a></li><li><a href="#ro2">Choose a role.</a></li></ul></div>
+  <div class="field"><label class="label" for="em2">Email</label><input class="input" id="em2" type="email" aria-invalid="true" aria-describedby="em2-e"><span class="error" id="em2-e">{{I:pozor}}Enter an email address, e.g. jan.novak@company.example.</span></div>
+  <div class="field"><label class="label" for="ro2">Role</label><select class="select" id="ro2" aria-invalid="true" aria-describedby="ro2-e"><option>Choose a role</option></select><span class="error" id="ro2-e">{{I:pozor}}Choose a role.</span></div>
+ </div>
+ <div class="stack-2"><p class="t-stitek">Editing – email is read-only</p>
+  <div class="field"><label class="label" for="em3">Email</label><span class="hint" id="em3-h">Only an organisation administrator can change the sign-in email. After a change, the user is signed out on all devices.</span><input class="input" id="em3" readonly value="lektor.lucie@demo.example" aria-describedby="em3-h"></div>
+  <div class="form-actions"><button class="btn btn--hlavni" type="button">Save changes</button><a class="btn btn--tiche" href="en-uzivatel-detail.html">Discard changes</a></div>
+ </div>
+</section>

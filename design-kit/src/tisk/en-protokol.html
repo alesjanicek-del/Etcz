@@ -1,0 +1,150 @@
+<!--meta {"titulek": "Result report – Cyber security: annual check", "sablona": "a4", "lang": "en", "cs_verze": "protokol.html"} -->
+<!--spec {
+ "route": "(PDF) Result → Download result report (PDF) (lang=en)",
+ "nazev": "Result report (A4) – English, non-official tests only",
+ "role": "test taker (copy), instructor/organiser (full report)",
+ "sablona": "a4",
+ "ucel": "English version of the result report for non-official tests: a record of an attempt whose authenticity anyone can check – who, what, when, with what result and how the exam went – with a verification code, QR and timestamp.",
+ "hlavni_akce": "Prove the result; the recipient checks it with the code or QR",
+ "komponenty": [
+  "a4",
+  "t-stitek",
+  "t-kod",
+  "t-cislo",
+  "dl",
+  "stav--ok",
+  "table (print)",
+  "img (QR)"
+ ],
+ "stavy": [
+  "IMPORTANT: for an official test (úřední zkouška) this English version is never generated – the result report is always in Czech (owner’s decision). The English report exists only for non-official tests (documents_follow_examinee).",
+  "Other states as on the Czech page (protokol.html). English wording: Not passed; “The record is saved. It will be timestamped within an hour.”; “Completed after handover to another device”; “Not confirmed – test submitted after the time ran out”; “personal data anonymised”."
+ ],
+ "zmeny_ux": [
+  "Same layout as the Czech version. Labels in the left column are up to 40% longer (e.g. “Training acknowledgement”); the dl column widens, values wrap."
+ ],
+ "texty": [
+  {
+   "dnes": "Protokol o zkoušce · výpis pro zkoušeného",
+   "nove": "Result report · test taker’s copy",
+   "proc": "EN glossary: result report; glossary gap: výpis pro zkoušeného → test taker’s copy."
+  },
+  {
+   "dnes": "Ověřovací kód",
+   "nove": "Verification code",
+   "proc": "EN glossary."
+  },
+  {
+   "dnes": "Splněno · 14 ze 17 bodů · 10 z 12 otázek · práh 80 %",
+   "nove": "Passed · 14 of 17 points · 10 of 12 questions · pass mark 80%",
+   "proc": "EN glossary: Passed; EN number style 80%."
+  },
+  {
+   "dnes": "Přidělení studujícímu",
+   "nove": "Assigned to a student",
+   "proc": "EN glossary pattern “assigned to a group”; glossary gap: studující → student."
+  },
+  {
+   "dnes": "Dohled: zapnutý · 1 opuštění okna (8 s)",
+   "nove": "Monitoring: on · left the window once (8 s)",
+   "proc": "EN glossary: monitoring."
+  },
+  {
+   "dnes": "Potvrzení o seznámení se školením",
+   "nove": "Training acknowledgement",
+   "proc": "Glossary gap; short, common HR term."
+  },
+  {
+   "dnes": "Záznam průběhu · výběr",
+   "nove": "Activity log · selection",
+   "proc": "Glossary gap: záznam průběhu → activity log."
+  },
+  {
+   "dnes": "… potvrzený časovým razítkem nezávislé autority …",
+   "nove": "… confirmed by a timestamp from an independent authority …",
+   "proc": "Glossary gap (same as other EN pages)."
+  },
+  {
+   "dnes": "Ověření potvrzuje, že údaje odpovídají záznamu pořízenému při zkoušce. Neposuzuje, zda zkouška splnila požadavky předpisů.",
+   "nove": "Verification confirms that the data matches the record made during the exam. It does not assess whether the exam met any legal requirements.",
+   "proc": "Legal scope kept in body text size."
+  }
+ ],
+ "pristupnost": [
+  "<html lang=\"en\"> and PDF language en; Czech personal names marked lang=\"cs\".",
+  "Verification code is text (can be copied); QR is only a supplement.",
+  "Result status with icon + word.",
+  "Axe/check: A4 has a fixed width of 210 mm, so the preview sits in a scrollable region (role=region, tabindex=0); at 375 px it scrolls horizontally – acceptable for a print preview."
+ ],
+ "poznamky_pro_kodera": [
+  "Language rule (owner’s decision): the result report and the certificate of an official test (úřední zkouška) are always issued in Czech, whatever the test taker’s language. This English version applies only to non-official tests, where print documents follow the test taker’s language (documents_follow_examinee).",
+  "Generator rule: if test.is_official → always render protokol.html (cs) regardless of the test taker’s or assignment’s language; otherwise use the test taker’s document language.",
+  "Data: demo attempt (83.3%, 14/17 pts, H5SAY-GVTNY-EDXAP-67SXD); event times are a sample.",
+  "The training name (Annual cyber security training) and the trainer are organisation data and appear in the language they were entered in.",
+  "Glossary gap: výpis pro zkoušeného → test taker’s copy; úplný protokol → full report.",
+  "Glossary gap: pořadatel → organiser.",
+  "Glossary gap: časové razítko nezávislé autority → timestamp from an independent authority.",
+  "Glossary gap: práh → pass mark.",
+  "Glossary gap: studující → student."
+ ],
+ "chybi_komponenta": [
+  "verification code box with QR (.overeni-blok) – inline",
+  "printed timeline (event table) – inline styles with tokens"
+ ]
+} -->
+<main id="obsah"><div role="region" aria-label="A4 print preview: Result report" tabindex="0" style="overflow-x:auto">
+<div class="a4" style="display:flex;flex-direction:column;gap:var(--s-3);margin-bottom:var(--s-5);font-size:var(--t-maly);line-height:1.4">
+<header class="row-between" style="align-items:flex-start;gap:var(--s-4);padding-bottom:var(--s-3);border-bottom:var(--b-akcent) solid var(--c-grafit)">
+ <div class="stack-2" style="flex:1">
+  <p><b><span lang="cs">Ukázková organizace</span> (demo)</b></p>
+  <p class="t-stitek">Result report · test taker’s copy</p>
+  <h1 class="t-nadpis">Cyber security: annual check</h1>
+ </div>
+ <div><div class="stack-2" style="border:var(--b-silna) solid var(--c-grafit);padding:var(--s-2) var(--s-3)"><p class="t-stitek">Verification code</p><p class="t-kod t-nadpis">H5SAY-GVTNY-EDXAP-67SXD</p></div>
+</div>
+</header>
+<div style="display:grid;grid-template-columns:1fr 200px;gap:var(--s-4);align-items:start">
+ <section aria-labelledby="zk-h" class="stack-2">
+  <h2 id="zk-h" class="t-stitek">Test taker and exam</h2>
+  <dl class="t-maly" style="display:grid;grid-template-columns:120px 1fr;gap:2px var(--s-3);margin:0">
+   <dt>Test taker</dt><dd class="t-ink"><b><span lang="cs">Zdeněk Zkoušený</span></b></dd>
+   <dt>Delivery method</dt><dd class="t-ink">Assigned to a student · branch Visitor 6013</dd>
+   <dt>Started</dt><dd class="t-ink">3&nbsp;Nov 2026 17:27:12</dd>
+   <dt>Submitted</dt><dd class="t-ink">3&nbsp;Nov 2026 17:41:05 · submitted by the test taker</dd>
+   <dt>Time limit</dt><dd class="t-ink">15&nbsp;min · not extended · attempt 1 of 3</dd>
+   <dt>Monitoring</dt><dd class="t-ink">on · left the window once (8 s)</dd>
+  </dl>
+ </section>
+ <section aria-labelledby="vy-h" class="stack-2" style="border:var(--b-silna) solid var(--c-grafit);padding:var(--s-3)">
+  <h2 id="vy-h" class="t-stitek">Result</h2>
+  <p class="row" style="gap:var(--s-2)"><span class="t-cislo t-titulek">83.3%</span><span class="stav stav--ok">{{I:check}}Passed</span></p>
+  <p class="t-maly">14 of 17 points · 10 of 12 questions · pass mark 80%</p>
+ </section>
+</div>
+<section aria-labelledby="pot-h" class="stack-2">
+ <h2 id="pot-h" class="t-stitek">Training acknowledgement</h2>
+ <p class="t-maly t-ink">Confirmed <span class="t-cislo">3&nbsp;Nov 2026 17:40:58</span> – Annual cyber security training, trainer <span lang="cs">Ing. Pavla Školitelová</span>.</p>
+</section>
+<section aria-labelledby="ot-h" class="stack-2">
+ <h2 id="ot-h" class="t-stitek">Questions and answers</h2>
+ <p class="t-ink">Under the test settings, questions are not listed in the test taker’s copy. The organiser keeps the full report with all questions. Both have the same verification code.</p>
+</section>
+<section aria-labelledby="zp-h" class="stack-2">
+ <h2 id="zp-h" class="t-stitek">Activity log · selection</h2>
+ <table style="width:100%;border-collapse:collapse;font-size:var(--t-maly)">
+  <caption class="sr-only">Timeline of attempt events on 3 Nov 2026 (selection; the full log is in the organiser’s report)</caption>
+  <thead><tr><th scope="col" class="t-stitek" style="text-align:left;font-weight:var(--w-mono);padding:3px var(--s-2);border-bottom:var(--b-silna) solid var(--c-grafit);width:18%">Time</th><th scope="col" class="t-stitek" style="text-align:left;font-weight:var(--w-mono);padding:3px var(--s-2);border-bottom:var(--b-silna) solid var(--c-grafit)">Event</th><th scope="col" class="t-stitek" style="text-align:left;font-weight:var(--w-mono);padding:3px var(--s-2);border-bottom:var(--b-silna) solid var(--c-grafit)">Details</th></tr></thead>
+  <tbody><tr><td class="t-cislo" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">17:27:12</td><td style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">Attempt started</td><td class="t-maly" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">device: computer, Chrome</td></tr><tr><td class="t-cislo" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">17:28:40</td><td style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">Answer to question 1 saved</td><td class="t-maly" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top"></td></tr><tr><td class="t-cislo" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">17:33:02</td><td style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">Left the test window</td><td class="t-maly" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">returned 17:33:10 (8 s)</td></tr><tr><td class="t-cislo" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">17:35:51</td><td style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">Answer to question 7 changed</td><td class="t-maly" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top"></td></tr><tr><td class="t-cislo" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">17:40:58</td><td style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">Training acknowledged</td><td class="t-maly" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top"></td></tr><tr><td class="t-cislo" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">17:41:05</td><td style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">Submitted</td><td class="t-maly" style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top">submitted by the test taker</td></tr></tbody>
+ </table>
+ </section>
+<section aria-labelledby="ov-h" class="row" style="gap:var(--s-3);align-items:flex-start;background:var(--c-papir);padding:var(--s-2) var(--s-3);border-left:var(--b-akcent) solid var(--c-grafit)">
+ <img src="../assets/img/qr-ukazka.png" alt="QR code for checking authenticity; leads to exam-test.cz/overeni with code H5SAY-GVTNY-EDXAP-67SXD" width="120" height="124" style="width:112px;height:auto;image-rendering:pixelated">
+ <div class="stack-2" style="flex:1">
+  <h2 id="ov-h" class="t-text" style="font-weight:var(--w-tucne)">Checking authenticity</h2>
+  <p>Anyone can check authenticity at <b>exam-test.cz/overeni</b> or by scanning the QR code – no sign-in needed. The attempt record is linked to other submitted attempts and confirmed by a timestamp from an independent authority (<span class="t-cislo">3&nbsp;Nov 2026 18:00:00</span>). Any later change would show up during verification.</p>
+  <p class="t-maly">Verification confirms that the data matches the record made during the exam. It does not assess whether the exam met any legal requirements.</p>
+ </div>
+</section>
+<footer class="row-between" style="margin-top:auto;padding-top:var(--s-2);border-top:var(--b-tenka) solid var(--c-grafit)"><p class="t-stitek" style="text-transform:none;letter-spacing:0">Test taker’s copy · H5SAY-GVTNY-EDXAP-67SXD · created 3 Nov 2026 17:42</p><p class="t-stitek" style="text-transform:none;letter-spacing:0">page 1 / 1</p></footer>
+</div>
+</div></main>
