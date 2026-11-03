@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Import questions from XLSX · exam-test</title>
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body>
+<a class="skip" href="#obsah">Skip to content</a>
+<div class="app">
+ <aside class="app-side">
+  <a class="logo" href="en-lektor-prehled.html"><img src="../assets/logo/exam-test-logo-male.svg" alt="exam-test – overview" width="146" height="24"></a>
+  <nav class="app-nav" aria-label="Main"><a href="en-lektor-prehled.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>Overview</a><p class="t-stitek">Questions</p><a href="en-soubory.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h7l2 2h9v11H3z"/></svg>Question banks</a><a href="en-otazky-hledat.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></svg>Search questions</a><a href="en-stitky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg>Tags</a><p class="t-stitek">Testing</p><a href="en-testy.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>Tests</a><a href="en-pouziti.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4l13 8-13 8z"/></svg>Test assignments</a><a href="en-tisk.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V4h10v5M7 17H4v-8h16v8h-3"/><rect x="7" y="14" width="10" height="6"/></svg>Print</a><a href="en-kalendar.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="15"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>Calendar</a><p class="t-stitek">Results</p><a href="en-vysledky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Results</a><a href="en-platnost-skoleni.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Training validity</a><a href="en-statistiky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V4M4 20h16M8 16v-4M12 16V8M16 16v-6"/></svg>Statistics</a></nav>
+ </aside>
+ <div>
+  <header class="app-top">
+   <a class="logo" href="en-lektor-prehled.html"><img src="../assets/logo/exam-test-logo-male.svg" alt="exam-test – overview" width="122" height="20"></a>
+   <span class="stav stav--neutral">Prague branch</span><span class="sp"></span>
+   <a href="en-napoveda.html">Help for this page</a>
+   <a href="en-ucet.html" aria-label="My account: Lucie Lektorová">Lucie Lektorová</a>
+   <nav class="lang" aria-label="Language / Jazyk"><a href="soubor-import.html" lang="cs" hreflang="cs">CS</a><a href="#" lang="en" aria-current="true">EN</a></nav>
+   <details class="menu"><summary class="btn btn--male"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu</summary><nav class="menu__panel app-nav" aria-label="Main (mobile)"><a href="en-lektor-prehled.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>Overview</a><p class="t-stitek">Questions</p><a href="en-soubory.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h7l2 2h9v11H3z"/></svg>Question banks</a><a href="en-otazky-hledat.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></svg>Search questions</a><a href="en-stitky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg>Tags</a><p class="t-stitek">Testing</p><a href="en-testy.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>Tests</a><a href="en-pouziti.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4l13 8-13 8z"/></svg>Test assignments</a><a href="en-tisk.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V4h10v5M7 17H4v-8h16v8h-3"/><rect x="7" y="14" width="10" height="6"/></svg>Print</a><a href="en-kalendar.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="15"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>Calendar</a><p class="t-stitek">Results</p><a href="en-vysledky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Results</a><a href="en-platnost-skoleni.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Training validity</a><a href="en-statistiky.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V4M4 20h16M8 16v-4M12 16V8M16 16v-6"/></svg>Statistics</a><a href="en-ucet.html">My account</a><a href="#">Sign out</a></nav></details>
+  </header>
+  <main id="obsah" class="app-main">
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-soubory.html">Question banks</a></li><li><a href="en-soubor-detail.html">Health and safety – employee training</a></li><li><span aria-current="page">Import XLSX</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Sample set: Health and safety – employee training</p><h1 class="t-titulek">Import questions from XLSX</h1></div></div>
+
+<div class="stack-4">
+ <ol class="steps" aria-label="Import steps" tabindex="0" style="width:0;min-width:100%">
+  <li style="min-width:0"><span aria-current="step">Upload</span></li><li style="min-width:0"><span>Preview</span></li><li style="min-width:0"><span>Done</span></li>
+ </ol>
+
+ <div class="alert"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><p>This bank is used by 1 test. Only newly created test versions will get the imported new versions. Attempts in progress and printed test versions keep the original version.</p></div>
+
+ <form class="card stack-4" action="#nahled" method="post" enctype="multipart/form-data" novalidate>
+  <div class="stack-2">
+   <h2 class="t-nadpis">1. Prepare the spreadsheet</h2>
+   <p>Fill in the template, or use an <a href="#">export of this bank</a> – it has the same format.</p>
+   <p><a class="btn" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11M7 10l5 5 5-5M4 20h16"/></svg>Download blank template (XLSX)</a></p>
+  </div>
+  <div class="faq">
+   <details>
+    <summary>What to enter in each column</summary>
+    <dl class="dl"><dt class="t-kod">externi_id</dt><dd>Your identifier. The same ID updates the question and creates a new version.</dd><dt class="t-kod">typ</dt><dd>SINGLE (one correct answer) or MULTI (several correct answers).</dd><dt class="t-kod">text,<br>odpoved_1–10</dt><dd>Question and answers, at least 4.</dd><dt class="t-kod">spravne</dt><dd>Numbers of the correct answers, for example 1;3.</dd><dt class="t-kod">body</dt><dd>Points: 1 to 100, default 1.</dd><dt class="t-kod">stitky</dt><dd>List:Tag;List:Tag – only from tag lists you may use in this bank.</dd><dt class="t-kod">zpetna_vazba_ok,<br>zpetna_vazba_chyba,<br>poznamka</dt><dd>Optional: feedback for a correct answer, feedback for a wrong answer, note.</dd><dt class="t-kod">obrazek,<br>obrazek_popis</dt><dd>File name in the ZIP archive (separate several with ;) and its description, or <span class="t-kod" lang="cs">dekorativní</span> (decorative).</dd></dl>
+   </details>
+  </div>
+
+  <h2 class="t-nadpis">2. Upload the files</h2>
+  <div class="field">
+   <label class="label" for="xlsx">Spreadsheet with questions (XLSX)</label>
+   <input class="input" id="xlsx" name="xlsx" type="file" accept=".xlsx" aria-describedby="xlsx-h">
+   <p class="hint" id="xlsx-h">Up to 10&nbsp;MB. Formulas in cells are not run; only values are read.</p>
+  </div>
+  <div class="field">
+   <label class="label" for="zip">Images in a ZIP archive <span class="volitelne">(optional)</span></label>
+   <input class="input" id="zip" name="zip" type="file" accept=".zip" aria-describedby="zip-h">
+   <p class="hint" id="zip-h">PNG, JPEG or WebP, each up to 5&nbsp;MB, the whole archive up to 60&nbsp;MB.</p>
+  </div>
+  <label class="check"><input type="checkbox" name="zalozit" aria-describedby="zal-h"><span class="stack-2"><span>Create missing tags</span><span class="hint" id="zal-h">A tag that doesn’t exist is created in the given tag list if you may manage it. Otherwise, the row is skipped.</span></span></label>
+  <div class="form-actions"><button class="btn btn--hlavni" type="submit">Show preview</button><span class="t-maly">Nothing is saved yet.</span><a class="btn btn--tiche" href="en-soubor-detail.html">Cancel import</a></div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">File error</h3>
+  <div class="card stack">
+   <div class="field">
+    <label class="label" for="xlsx-e">Spreadsheet with questions (XLSX)</label>
+    <input class="input" id="xlsx-e" type="file" accept=".xlsx" aria-invalid="true" aria-describedby="xlsx-e-err">
+    <p class="error" id="xlsx-e-err"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg>The file otazky.csv is not XLSX. In Excel, save the spreadsheet as “Excel Workbook (.xlsx)”.</p>
+   </div>
+  </div>
+ </div>
+
+ <div class="stack" id="nahled">
+  <h3 class="t-stitek">Step 2 – import preview</h3>
+  <div class="card stack-4">
+   <ol class="steps" aria-label="Import steps – preview" tabindex="0" style="width:0;min-width:100%"><li class="hotovo" style="min-width:0"><span>Upload</span></li><li style="min-width:0"><span aria-current="step">Preview</span></li><li style="min-width:0"><span>Done</span></li></ol>
+   <div class="stack-2"><p class="t-nadpis" tabindex="-1">Import preview: otazky-bozp.xlsx</p><p>Check what will happen to each row. Nothing is saved until you confirm.</p></div>
+   <div class="kpi" role="list" aria-label="Preview summary" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+    <div role="listitem"><span class="t-cislo">12</span><span class="t-maly">new questions</span></div>
+    <div role="listitem"><span class="t-cislo">3</span><span class="t-maly">new versions</span></div>
+    <div role="listitem"><span class="t-cislo">31</span><span class="t-maly">no change</span></div>
+    <div role="listitem"><span class="t-cislo">2</span><span class="t-maly">skipped</span></div>
+   </div>
+   <div class="table-wrap" role="region" tabindex="0" aria-label="Import preview rows">
+    <table class="table table--stack">
+     <caption>Rows with a change or an error (17 of 48)</caption>
+     <thead><tr><th scope="col" class="num">Row</th><th scope="col">externi_id</th><th scope="col">Question</th><th scope="col">Action</th><th scope="col">Row note</th></tr></thead>
+     <tbody>
+      <tr><td data-label="Row" class="num">2</td><td data-label="externi_id" class="t-kod">BOZP-001</td><td data-label="Question">An employee has reasonable grounds to believe that the assigned work…</td><td data-label="Action"><span class="stav stav--info"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 5v6h-6"/></svg>New version</span></td><td data-label="Note">Answer 3 changed.</td></tr>
+      <tr><td data-label="Row" class="num">36</td><td data-label="externi_id" class="t-kod">BOZP-035</td><td data-label="Question">Who keeps the accident book?</td><td data-label="Action"><span class="stav stav--neutral"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>New question</span></td><td data-label="Note">—</td></tr>
+      <tr><td data-label="Row" class="num">41</td><td data-label="externi_id" class="t-kod">BOZP-040</td><td data-label="Question">Which signs mark an emergency exit?</td><td data-label="Action"><span class="stav stav--ne"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12h9"/></svg>Skipped</span></td><td data-label="Note">The image “vychod.png” has no description. Fill in obrazek_popis, or enter <span lang="cs">dekorativní</span>.</td></tr>
+      <tr><td data-label="Row" class="num">47</td><td data-label="externi_id" class="t-kod">BOZP-046</td><td data-label="Question">How long must an accident record be kept?</td><td data-label="Action"><span class="stav stav--ne"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12h9"/></svg>Skipped</span></td><td data-label="Note">It has only 3 answers. A question needs at least 4.</td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p class="t-maly"><a href="#">Download skipped rows to fix (XLSX)</a> · <a href="#">Also show rows with no change (31)</a></p>
+   <div class="form-actions"><button class="btn btn--hlavni" type="button">Confirm import of 15 questions</button><a class="btn" href="#xlsx"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 16V5M7 10l5-5 5 5M4 20h16"/></svg>Upload a different file</a></div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Processing</h3>
+  <div class="alert alert--info" role="status"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><p>Reading row 120 of 340… Don’t close this page.</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Step 3 – done</h3>
+  <div class="alert alert--ok" role="status"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12.5l5 5L20 6.5"/></svg><div class="stack-2"><p class="alert__nadpis">Import complete: 12 new questions and 3 new versions.</p><p>2 rows were skipped.</p><p><a href="en-soubor-detail.html">Back to the question bank</a></p></div></div>
+ </div>
+</section>
+  </main>
+  <footer class="app-foot"><span>exam-test 0.2.0</span><a href="en-prohlaseni-o-pristupnosti.html">Accessibility statement</a><a href="en-co-je-noveho.html">What’s new</a></footer>
+ </div>
+</div>
+<script type="application/json" id="spec">{"route": "/soubory/:id/import (lang=en)", "nazev": "Import questions from XLSX – English", "role": "instructor, question author, organisation administrator – with Edit or Owner permission for the bank", "sablona": "app", "ucel": "Add or update many questions in a bank from an XLSX spreadsheet, with a preview before saving. Not in the demo (proposal based on the help article Import and export questions).", "hlavni_akce": "Show preview → Confirm import", "komponenty": ["crumbs", "page-head", "steps", "card", "field", "input[type=file]", "check", "faq (details)", "table table--stack", "kpi", "stav", "alert", "error-summary", "form-actions", "btn--hlavni"], "stavy": ["Same states as the Czech page (soubor-import.html): file error, preview, preview with errors only, done, processing (“Reading row 120 of 340…”), no permission."], "zmeny_ux": ["The preview table is wider in English and scrolls horizontally at mid widths, so .table-wrap has role=region, tabindex=0 and aria-label (keyboard scrolling, axe scrollable-region-focusable).", "Layout as in the Czech version. Column names of the template (externi_id, odpoved_1 …) stay as they are – they are the file format, not UI text."], "texty": [{"dnes": "Import otázek z XLSX", "nove": "Import questions from XLSX", "proc": "Verb first."}, {"dnes": "Stáhnout prázdnou šablonu (XLSX)", "nove": "Download blank template (XLSX)", "proc": "Verb first."}, {"dnes": "Zobrazit náhled · Zatím se nic neuloží.", "nove": "Show preview · Nothing is saved yet.", "proc": "Button says what happens."}, {"dnes": "Potvrdit import 15 otázek · Nahrát jiný soubor", "nove": "Confirm import of 15 questions · Upload a different file", "proc": "Verb first."}, {"dnes": "Nová otázka · Nová verze · Beze změny · Přeskočeno", "nove": "New question · New version · No change · Skipped", "proc": "One word for one thing."}, {"dnes": "variace", "nove": "test version", "proc": "Glossary."}, {"dnes": "Sešit Excelu (.xlsx)", "nove": "Excel Workbook (.xlsx)", "proc": "Name of the format in English Excel."}], "pristupnost": ["Same as the Czech page; html lang=\"en\"."], "poznamky_pro_kodera": ["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.", "Column names and SINGLE / MULTI values are part of the file format and are not translated.", "The keyword “dekorativní” in obrazek_popis is shown in Czech (lang=cs) because the importer reads that literal value. To decide: should the importer also accept “decorative”?", "Tag syntax List:Tag is shown in English; the importer reads the real list and tag names, whatever the language.", "Glossary gap: náhled (importu) → preview", "Glossary gap: Přeskočeno · Beze změny · Nová verze → Skipped · No change · New version"], "chybi_komponenta": ["file upload field – as in the Czech page", "import row status – as in the Czech page"]}</script>
+</body>
+</html>

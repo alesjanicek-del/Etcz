@@ -1,0 +1,73 @@
+<!--meta {"titulek":"Supervised in-room exam – new test assignment","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false,"lang":"en","cs_verze":"pouziti-prezencni.html"} -->
+<!--spec {
+ "route":"/pouziti/nove?typ=LIVE (lang=en)","nazev":"New test assignment – supervised in-room exam – English","role":"instructor","sablona":"app",
+ "ucel":"Set up an exam in a room: participants without an account join with the code from the projector screen and the instructor starts the test for everyone at once.",
+ "hlavni_akce":"Create and open the waiting room",
+ "komponenty":["crumbs","page-head","card","field","select","fieldset","check","num-step","alert--info","form-actions"],
+ "stavy":[
+  "Default: label prefilled with the date, language for test takers = organisation default (drawn).",
+  "Error: empty label – .error under the field (drawn).",
+  "Loading: after submit, redirect to the waiting room.",
+  "Official test: same form; handover to another device can then only be allowed by an administrator (alert--info).",
+  "No permission: an instructor without Read access to the test gets 403."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (pouziti-prezencni.html).",
+  "New field “Language for test takers” (Czech / English) – the app already stores it per test assignment (test_usage.ui_locale), but today’s form does not offer it. Placed after Label, as a fieldset of two radios (2 options = radios, not a select). Default: the organisation’s language. Suggested for the Czech page too.",
+  "The language applies to the test taker screens (waiting room, test, result) and emails. Question text stays in the question bank’s language; the result report and certificate of an official test stay Czech (brand manual 08b) – said in the hint.",
+  "The primary button “Create and open waiting room” wraps to two lines at 320 px – allowed."],
+ "texty":[
+  {"dnes":"(nové pole)","nove":"Language for test takers – Czech / English","proc":"Exposes test_usage.ui_locale; a plain label in the test taker’s terms."},
+  {"dnes":"(nové pole) hint","nove":"Used for the test screens and emails. Questions stay in the language they were written in.","proc":"Explains what changes and what does not."},
+  {"dnes":"Označení","nove":"Label","proc":"Short; used to find the exam in results."},
+  {"dnes":"Prodloužit časový limit všem","nove":"Extend the time limit for everyone","proc":"Verb first."},
+  {"dnes":"Co bude dál","nove":"What happens next","proc":"Common heading."},
+  {"dnes":"Vytvořit a otevřít čekárnu","nove":"Create and open waiting room","proc":"Glossary: čekárna → waiting room; says what happens."},
+  {"dnes":"Změnit způsob","nove":"Change method","proc":"Verb first."}],
+ "pristupnost":[
+  "Same as the Czech page: visible labels, hint in aria-describedby, steps as an ol.",
+  "Language for test takers: fieldset with legend and hint linked to the fieldset via aria-describedby; option labels “Czech” and “English” in English (UI language), each radio with lang-neutral value cs|en."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml.",
+  "Language field → test_usage.ui_locale (cs|en); default from the organisation setting. Read-only once the first attempt has started.",
+  "Default label in EN: “Supervised exam {date}” (date format 3 Nov 2026).",
+  "Extension values: 0 | 25 | 50 | 100%."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-testy.html">Tests</a></li><li><a href="en-pouziti-nove.html">Use test</a></li><li><span aria-current="page">Supervised in-room exam</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">New test assignment · Supervised in-room exam</p><h1 class="t-titulek">OHS – practice test</h1></div>
+ <div class="page-head__actions"><a class="btn btn--tiche" href="en-pouziti-nove.html">Change method</a></div>
+</div>
+
+<div class="stack-4" style="max-width:var(--max-text)">
+ <form class="card stack-4" action="en-cekarna-lektor.html" method="post" style="contain:inline-size">
+  <div class="field"><label class="label" for="oznaceni">Label</label><span class="hint" id="oznaceni-h">Use it to find the exam in results. For example, “Room 2 – morning”.</span><input class="input" id="oznaceni" name="oznaceni" value="Supervised exam 3 Nov 2026" aria-describedby="oznaceni-h"></div>
+  <fieldset class="stack-2" aria-describedby="jazyk-h">
+   <legend class="label">Language for test takers</legend>
+   <span class="hint" id="jazyk-h">Used for the test screens and emails. Questions stay in the language they were written in.</span>
+   <div class="row"><label class="check"><input type="radio" name="ui_locale" value="cs" checked>Czech</label><label class="check"><input type="radio" name="ui_locale" value="en">English</label></div>
+  </fieldset>
+  <div class="field"><label class="label" for="prodl">Extend the time limit for everyone</label><span class="hint" id="prodl-h">Extend time for one test taker in the live monitor. The limit is rounded up to whole minutes.</span>
+   <select class="select" id="prodl" name="prodl" aria-describedby="prodl-h" style="max-width:240px"><option>No extension</option><option>+25%</option><option>+50%</option><option>+100%</option></select></div>
+  <div class="stack">
+   <h2 class="t-stitek">What happens next</h2>
+   <ol class="stack">
+    <li class="num-step"><span class="t-cislo">1</span><span>You show the code and QR code on the projector screen.</span></li>
+    <li class="num-step"><span class="t-cislo">2</span><span>Participants enter their name and wait in the waiting room.</span></li>
+    <li class="num-step"><span class="t-cislo">3</span><span>You lock entry and start the test. Everyone gets their own test version.</span></li>
+   </ol>
+  </div>
+  <div class="form-actions">
+   <button class="btn btn--hlavni" type="submit">Create and open waiting room {{I:sipka-vpravo}}</button>
+   <a class="btn btn--tiche" href="en-testy.html">Cancel</a>
+  </div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text);contain:inline-size" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">Error: empty label</p>
+ <div class="field"><label class="label" for="oznaceni-x">Label</label><span class="error" id="oznaceni-x-e">{{I:pozor}}Enter a label for the exam.</span><input class="input" id="oznaceni-x" aria-invalid="true" aria-describedby="oznaceni-x-e"></div>
+ <p class="t-stitek">Official test</p>
+ <div class="alert alert--info">{{I:info}}<p>For an official test, only a branch or organisation administrator can allow a handover to another device.</p></div>
+</section>

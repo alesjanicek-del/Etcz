@@ -1,0 +1,105 @@
+<!--meta {"titulek":"Question bank permissions","sablona":"app","role":"autor","aktivni":"soubory.html","demo":false,"lang":"en","cs_verze":"soubor-prava.html"} -->
+<!--spec {
+ "route":"/soubory/:id/prava (lang=en)","nazev":"Question bank permissions – English","role":"bank owner (question author or instructor); the organisation administrator always has full access","sablona":"app",
+ "ucel":"The bank owner decides who may view, edit or manage the bank, and can transfer ownership.",
+ "hlavni_akce":"Add permission",
+ "komponenty":["crumbs","page-head","table table--stack","dl","choice","field","select","fieldset","form-actions","alert--ok","alert--info","dialog","btn--nebezpecne"],
+ "stavy":["Same states as the Czech page (soubor-prava.html): owner only, error (no user / branch selected, duplicate permission: “This user already has a permission. Change it in the table.”), after adding / removing, transfer dialog, no permission, loading."],
+ "zmeny_ux":["Layout as in the Czech version. The three “To” tiles have shorter labels in English; the permission table headers are slightly longer and wrap on desktop."],
+ "texty":[
+  {"dnes":"Práva k souboru otázek","nove":"Question bank permissions","proc":"Glossary: question bank."},
+  {"dnes":"Čtení · Editace · Vlastník","nove":"View · Edit · Owner","proc":"Common permission names (Google Drive, SharePoint)."},
+  {"dnes":"Komu: Uživateli · Pobočce · Celé organizaci","nove":"To: A user · A branch · The whole organisation","proc":"Glossary: branch."},
+  {"dnes":"Přidat právo · Odebrat","nove":"Add permission · Remove","proc":"Verb first."},
+  {"dnes":"Převést vlastnictví · Ponechat vlastnictví","nove":"Transfer ownership · Keep ownership","proc":"Button says what happens."},
+  {"dnes":"Vyberte uživatele","nove":"Select a user","proc":"Full phrase instead of dashes."},
+  {"dnes":"Vrátit to může jen nová vlastnice.","nove":"Only the new owner can undo this.","proc":"No gender agreement needed in English."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\". Remove button reads “Remove permission: Prague branch”."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Gendered Czech forms (vlastník / vlastnice) map to one English word – one key is enough in the EN catalogue.","Glossary gap: převést vlastnictví → transfer ownership","Glossary gap: úroveň práva → permission level"],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-soubory.html">Question banks</a></li><li><a href="en-soubor-detail.html">Health and safety – employee training</a></li><li><span aria-current="page">Permissions</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Sample set: Health and safety – employee training</p><h1 class="t-titulek">Question bank permissions</h1></div></div>
+
+<div class="stack-5">
+ <div class="stack-2">
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption>What each permission level allows</caption>
+   <thead><tr><th scope="col">Level</th><th scope="col">Use in tests and see statistics</th><th scope="col">Edit questions</th><th scope="col">Grant permissions</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Level"><b>View</b></td><td data-label="Use and statistics"><span class="stav stav--ok">{{I:check}}Yes</span></td><td data-label="Edit"><span class="stav stav--neutral">{{I:minus-kruh}}No</span></td><td data-label="Permissions"><span class="stav stav--neutral">{{I:minus-kruh}}No</span></td></tr>
+    <tr><td data-label="Level"><b>Edit</b></td><td data-label="Use and statistics"><span class="stav stav--ok">{{I:check}}Yes</span></td><td data-label="Edit"><span class="stav stav--ok">{{I:check}}Yes</span></td><td data-label="Permissions"><span class="stav stav--neutral">{{I:minus-kruh}}No</span></td></tr>
+    <tr><td data-label="Level"><b>Owner</b></td><td data-label="Use and statistics"><span class="stav stav--ok">{{I:check}}Yes</span></td><td data-label="Edit"><span class="stav stav--ok">{{I:check}}Yes</span></td><td data-label="Permissions"><span class="stav stav--ok">{{I:check}}Yes</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="t-maly">The organisation administrator always has full access to the bank.</p>
+ </div>
+
+ <section class="stack" aria-labelledby="pridelena">
+  <h2 id="pridelena" class="t-nadpis">Granted permissions</h2>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Granted permissions for the bank (2)</caption>
+    <thead><tr><th scope="col">To</th><th scope="col">Permission</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+    <tbody>
+     <tr><td data-label="To"><div><b>Adam Autor</b> (you)<span class="t-maly">Bank owner</span></div></td><td data-label="Permission">Owner</td><td data-label="Actions"><span class="t-maly">Change by transferring ownership</span></td></tr>
+     <tr><td data-label="To"><div><b>Prague branch</b><span class="t-maly">All branch members</span></div></td><td data-label="Permission">View</td><td data-label="Actions"><button class="btn btn--male btn--nebezpecne" type="button">{{I:minus-kruh}}Remove<span class="sr-only"> permission: Prague branch</span></button></td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+
+ <form class="card stack-4" aria-labelledby="pridat" novalidate>
+  <h2 id="pridat" class="t-nadpis">Add permission</h2>
+  <fieldset class="stack-2">
+   <legend>To</legend>
+   <div class="grid-3" style="gap:var(--s-2)">
+    <label class="choice"><input type="radio" name="komu" value="uzivatel" checked><span class="stack-2"><b>A user</b><span class="t-maly">One colleague</span></span></label>
+    <label class="choice"><input type="radio" name="komu" value="pobocka"><span class="stack-2"><b>A branch</b><span class="t-maly">All its members</span></span></label>
+    <label class="choice"><input type="radio" name="komu" value="organizace"><span class="stack-2"><b>The whole organisation</b><span class="t-maly">All instructors and authors</span></span></label>
+   </div>
+  </fieldset>
+  <div class="grid-2">
+   <div class="field"><label class="label" for="uz">User</label><select class="select" id="uz" name="uzivatel"><option>Select a user</option><option>Barbora Veselá (admin.barbora@demo.example)</option><option>Lucie Lektorová (lektor.lucie@demo.example)</option></select></div>
+   <div class="field"><label class="label" for="ur">Permission level</label><select class="select" id="ur" name="uroven"><option selected>View</option><option>Edit</option></select></div>
+  </div>
+  <div class="form-actions"><button class="btn btn--hlavni" type="submit">{{I:plus}}Add permission</button></div>
+ </form>
+
+ <form class="card stack-4" aria-labelledby="prevod" novalidate>
+  <div class="stack-2"><h2 id="prevod" class="t-nadpis">Transfer ownership</h2><p>The new owner will grant permissions. You will keep Edit permission.</p></div>
+  <div class="field" style="max-width:var(--max-text)"><label class="label" for="nv">New owner</label><select class="select" id="nv" name="novy"><option>Select a user</option><option>Barbora Veselá</option><option>Lucie Lektorová</option></select></div>
+  <div><button class="btn btn--nebezpecne" type="button">Transfer ownership</button></div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">After adding a permission</h3>
+  <div class="alert alert--ok" role="status">{{I:check}}<p>Lucie Lektorová now has <b>Edit</b> permission for the bank.</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Error – no user selected</h3>
+  <div class="card stack">
+   <div class="field"><label class="label" for="uz-e">User</label><select class="select" id="uz-e" aria-invalid="true" aria-describedby="uz-e-err"><option>Select a user</option></select><p class="error" id="uz-e-err">{{I:pozor}}Select the user you are giving permission to.</p></div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Confirm transfer</h3>
+  <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="pv-h" style="position:static;margin:0">
+   <div class="dialog__body stack"><p id="pv-h" class="t-nadpis">Transfer ownership to Lucie Lektorová?</p><p>Lucie Lektorová will grant permissions. You will keep Edit permission. Only the new owner can undo this.</p></div>
+   <div class="dialog__foot"><button class="btn" type="button">Keep ownership</button><button class="btn btn--nebezpecne" type="button">Transfer ownership</button></div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">No permission (you are not the owner)</h3>
+  <div class="alert alert--info">{{I:zamek}}<p>Permissions are granted by the bank owner: <b>Adam Autor</b>. The Granted permissions table is for information only.</p></div>
+ </div>
+</section>

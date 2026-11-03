@@ -1,0 +1,36 @@
+<!--meta {"titulek":"Questions pending approval","sablona":"app","role":"admin","aktivni":"en-ke-schvaleni.html","demo":false,"lang":"en","cs_verze":"ke-schvaleni.html"} -->
+<!--spec {
+ "route":"/ke-schvaleni (lang=en)","nazev":"Questions pending approval","role":"admin (organisation administrators approve; branch administrators only if the organisation allows it)","sablona":"app",
+ "ucel":"List of questions that authors have sent for approval – only an approved version goes into tests.",
+ "hlavni_akce":"Open a question and approve it or return it.",
+ "komponenty":["page-head","alert","table-wrap","table--stack","empty"],
+ "stavy":["Same states as ke-schvaleni.html: empty (“Nothing is pending approval”), question blocks a test (badge “Blocks a test”), no permission (.alert--info), loading/error."],
+ "zmeny_ux":["Layout identical to the Czech page."],
+ "texty":[
+  {"dnes":"Otázky ke schválení","nove":"Questions pending approval","proc":"EN glossary."},
+  {"dnes":"Do nových variací testů se dostane jen schválená verze otázky.","nove":"Only the approved version of a question goes into new test versions.","proc":"EN glossary: test version."},
+  {"dnes":"Otázka / Soubor otázek / Verze / Autor / Odesláno / Dopad","nove":"Question / Question bank / Version / Author / Submitted / Impact","proc":"EN glossary."},
+  {"dnes":"V žádném testu","nove":"Not in any test","proc":"Literal."},
+  {"dnes":"Blokuje test","nove":"Blocks a test","proc":"Short badge."}],
+ "pristupnost":["Same as the Czech page. Menu count (.pocet) has aria-label “3 waiting” (from build.py)."],
+ "poznamky_pro_kodera":["Data as in ke-schvaleni.html.","Glossary gap: Dopad → Impact."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Questions pending approval</h1><p class="t-maly measure">Only the approved version of a question goes into new test versions.</p></div></div>
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Questions pending approval, 1 question</caption>
+  <thead><tr><th scope="col">Question</th><th scope="col">Question bank</th><th scope="col">Version</th><th scope="col">Author</th><th scope="col">Submitted</th><th scope="col">Impact</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Question"><a href="en-otazka-schvalit.html"><b>Which of these passwords is the most secure?</b></a></td><td data-label="Question bank">Sample set: Cyber security – user training</td><td data-label="Version" class="num">v1</td><td data-label="Author">Adam Autor</td><td data-label="Submitted" class="num">3&nbsp;Nov 2026 03:00</td><td data-label="Impact"><span class="t-maly">Not in any test</span></td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">Nothing waiting</p>
+  <div class="empty stack-2">{{I:check-kruh}}<p class="t-nadpis">Nothing is pending approval</p><p class="t-maly">When an author sends a question for approval, it appears here and you see the count in the menu.</p></div></div>
+ <div class="stack-2"><p class="t-stitek">No permission to approve</p>
+  <div class="alert alert--info">{{I:info}}<p>In your organisation, questions are approved by the organisation administrator. You can view this list for information only.</p></div></div>
+</section>

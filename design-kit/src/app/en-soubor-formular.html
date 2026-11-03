@@ -1,0 +1,63 @@
+<!--meta {"titulek":"New question bank","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false,"lang":"en","cs_verze":"soubor-formular.html"} -->
+<!--spec {
+ "route":"/soubory/novy, /soubory/:id/upravit (lang=en)","nazev":"New / edit question bank – English","role":"instructor, question author, administrator (anyone the organisation allows can create; owners and Edit permission can edit)","sablona":"app",
+ "ucel":"Create a new question bank (name and description) or edit the name and description of an existing one.",
+ "hlavni_akce":"Create bank (when editing: Save changes)",
+ "komponenty":["crumbs","page-head","card","field","input","textarea","alert--info","error-summary","form-actions","btn--hlavni"],
+ "stavy":["Same states as the Czech page (soubor-formular.html): new, edit, missing name, after saving, loading (“Creating…”), no permission (403: “Your organisation doesn’t allow you to create question banks. Ask an administrator.”)."],
+ "zmeny_ux":["Layout as in the Czech version; English labels are shorter."],
+ "texty":[
+  {"dnes":"Nový soubor otázek · Upravit soubor otázek","nove":"New question bank · Edit question bank","proc":"Glossary."},
+  {"dnes":"Název souboru otázek","nove":"Question bank name","proc":"Glossary."},
+  {"dnes":"Popis (nepovinné)","nove":"Description (optional)","proc":"Optional fields marked, required ones not."},
+  {"dnes":"Založit soubor · Uložit změny · Zrušit úpravy","nove":"Create bank · Save changes · Discard changes","proc":"Verb first; button says what happens."},
+  {"dnes":"Soubor se založí v pobočce Praha. Budete jeho vlastníkem…","nove":"The bank will be created in the Prague branch. You will be its owner…","proc":"Glossary: branch."},
+  {"dnes":"Opravte prosím 1 údaj","nove":"Fix 1 problem","proc":"No “please”."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\"."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Name max. 200 characters, as in Czech."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-soubory.html">Question banks</a></li><li><span aria-current="page">New question bank</span></li></ol></nav>
+<div class="page-head"><h1 class="t-titulek">New question bank</h1></div>
+
+<form class="card stack-4 measure" action="en-soubor-detail.html" method="post" novalidate>
+ <div class="field">
+  <label class="label" for="nazev">Question bank name</label>
+  <input class="input" id="nazev" name="nazev" aria-describedby="nazev-h">
+  <p class="hint" id="nazev-h">For example, “Fire safety – refresher training”.</p>
+ </div>
+ <div class="field">
+  <label class="label" for="popis">Description <span class="volitelne">(optional)</span></label>
+  <textarea class="textarea" id="popis" name="popis" aria-describedby="popis-h"></textarea>
+  <p class="hint" id="popis-h">Shown in the list of question banks and in the detail. For example, a regulation, version or target group.</p>
+ </div>
+ <div class="alert alert--info">{{I:info}}<p>The bank will be created in the <b>Prague</b> branch. You will be its owner and can grant permissions to others.</p></div>
+ <div class="form-actions"><button class="btn btn--hlavni" type="submit">Create bank</button><a class="btn btn--tiche" href="en-soubory.html">Cancel</a></div>
+</form>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Error – name missing</h3>
+  <div class="card stack-4 measure">
+   <div class="error-summary stack-2" role="alert" tabindex="-1"><p class="alert__nadpis">Fix 1 problem</p><ul style="padding-left:var(--s-4)"><li><a href="#nazev-e">Enter a question bank name.</a></li></ul></div>
+   <div class="field">
+    <label class="label" for="nazev-e">Question bank name</label>
+    <input class="input" id="nazev-e" aria-invalid="true" aria-describedby="nazev-e-err">
+    <p class="error" id="nazev-e-err">{{I:pozor}}Enter a question bank name.</p>
+   </div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Editing an existing bank (/soubory/:id/upravit)</h3>
+  <div class="card stack-4 measure">
+   <nav class="crumbs" aria-label="Breadcrumb – edit"><ol><li><a href="en-soubory.html">Question banks</a></li><li><a href="en-soubor-detail.html">Health and safety – employee training</a></li><li><span aria-current="page">Edit</span></li></ol></nav>
+   <p class="t-titulek">Edit question bank</p>
+   <div class="field"><label class="label" for="nazev-u">Question bank name</label><input class="input" id="nazev-u" value="Sample set: Health and safety – employee training"></div>
+   <div class="field"><label class="label" for="popis-u">Description <span class="volitelne">(optional)</span></label><textarea class="textarea" id="popis-u">Basic health and safety duties of employers, managers and employees, personal protective equipment, workplace injuries…</textarea></div>
+   <div class="form-actions"><button class="btn btn--hlavni" type="button">Save changes</button><a class="btn btn--tiche" href="en-soubor-detail.html">Discard changes</a></div>
+  </div>
+ </div>
+</section>

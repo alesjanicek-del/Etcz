@@ -1,0 +1,79 @@
+<!--meta {"titulek":"Test access – OHS – practice test","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false,"lang":"en","cs_verze":"test-prava.html"} -->
+<!--spec {
+ "route":"/testy/:id/prava (lang=en)","nazev":"Test access – English","role":"instructor","sablona":"app",
+ "ucel":"The test owner shares the test with colleagues, a branch or the whole organisation, and can transfer ownership.",
+ "hlavni_akce":"Add access (Save access); secondary: Transfer ownership",
+ "komponenty":["crumbs","page-head","meta","alert--info","table-wrap","table--stack","card","fieldset","check","select","form-actions","dialog","btn--nebezpecne","empty"],
+ "stavy":[
+  "Default: one share (Adam Autor – Read) and the form (drawn).",
+  "Empty: “You have not shared this test with anyone yet.” (drawn).",
+  "Form error: no instructor selected – .error under the select.",
+  "Transfer confirmation: .dialog with the consequences and a Transfer ownership button (drawn).",
+  "No permission: only the owner manages access; others see the page read-only with the alert “Access is managed by the test owner, Lucie Lektorová.”"],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (test-prava.html).",
+  "Czech “Práva” is “Access” in EN (menu item, page title); levels are Read / Edit / Owner."],
+ "texty":[
+  {"dnes":"Práva k testu","nove":"Test access","proc":"“Rights” sounds legal; “access” is the usual sharing term."},
+  {"dnes":"Komu jste test zpřístupnili","nove":"Who has access","proc":"Shorter heading."},
+  {"dnes":"Administrátor organizace a pobočky má k testu přístup vždy.","nove":"Organisation and branch administrators always have access to the test.","proc":"Glossary: organisation administrator, branch administrator."},
+  {"dnes":"Čtení / Editace / Vlastník","nove":"Read / Edit / Owner","proc":"Common sharing levels."},
+  {"dnes":"Uložit právo","nove":"Save access","proc":"Verb first."},
+  {"dnes":"Převést vlastnictví","nove":"Transfer ownership","proc":"Common term."},
+  {"dnes":"Nový vlastník získá plná práva. Vy si ponecháte právo Editace.","nove":"The new owner gets full access. You keep Edit access.","proc":"Addresses the user."}],
+ "pristupnost":["Same as the Czech page: table caption, Remove with sr-only name (“Remove access: Adam Autor”), fieldsets with legend, native dialog with focus on Cancel."],
+ "poznamky_pro_kodera":["Strings from translations/*+intl-icu.en.yaml.","Glossary gap: právo / práva k testu → access; Čtení / Editace / Vlastník → Read / Edit / Owner."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-testy.html">Tests</a></li><li><a href="en-test-editor-sekce.html">OHS – practice test</a></li><li><span aria-current="page">Access</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Test access</p><h1 class="t-titulek">OHS – practice test</h1>
+  <dl class="meta"><div><dt>Owner</dt><dd>Lucie Lektorová</dd></div><div><dt>Branch</dt><dd>Prague</dd></div></dl></div>
+</div>
+
+<div class="stack-5" style="max-width:var(--max-text)">
+ <section class="stack" aria-labelledby="prid-h">
+  <h2 id="prid-h" class="t-nadpis">Who has access</h2>
+  <div class="alert alert--info">{{I:info}}<p>Organisation and branch administrators always have access to the test.</p></div>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Access granted</caption>
+    <thead><tr><th scope="col">Who</th><th scope="col">Level</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+    <tbody><tr><td data-label="Who"><div><b>Adam Autor</b><span class="t-maly">instructor · autor.adam@demo.example</span></div></td><td data-label="Level">Read</td>
+     <td data-label="Actions"><div class="row" style="gap:var(--s-2);justify-content:flex-end"><a class="btn btn--tiche btn--male" href="#pravo">Change<span class="sr-only"> access: Adam Autor</span></a><button class="btn btn--male btn--nebezpecne" type="button">Remove<span class="sr-only"> access: Adam Autor</span></button></div></td></tr></tbody>
+   </table>
+  </div>
+ </section>
+
+ <form class="card stack" id="pravo" action="en-test-prava.html" method="post" aria-labelledby="pravo-h">
+  <h2 id="pravo-h" class="t-nadpis">Add or change access</h2>
+  <fieldset><legend>Who</legend>
+   <div class="row"><label class="check"><input type="radio" name="komu" checked>An instructor</label><label class="check"><input type="radio" name="komu">A branch</label><label class="check"><input type="radio" name="komu">The whole organisation</label></div>
+  </fieldset>
+  <div class="field"><label class="label" for="lektor">Instructor</label><select class="select" id="lektor" name="lektor"><option value="">Choose an instructor</option><option>Adam Autor (autor.adam@demo.example)</option><option>Barbora Veselá (admin.barbora@demo.example)</option></select></div>
+  <fieldset><legend>Level</legend>
+   <label class="check"><input type="radio" name="uroven" checked><span>Read<span class="hint" style="display:block">Preview and use the test.</span></span></label>
+   <label class="check"><input type="radio" name="uroven"><span>Edit<span class="hint" style="display:block">Also edit sections and settings.</span></span></label>
+   <label class="check"><input type="radio" name="uroven"><span>Owner<span class="hint" style="display:block">Also manage access, archive and move to Deleted items.</span></span></label>
+  </fieldset>
+  <div><button class="btn btn--hlavni" type="submit">Save access</button></div>
+ </form>
+
+ <form class="card card--tenka stack" action="en-test-prava.html" method="post" aria-labelledby="prevod-h">
+  <h2 id="prevod-h" class="t-nadpis">Transfer ownership</h2>
+  <p>The new owner gets full access. You keep Edit access.</p>
+  <div class="field"><label class="label" for="novy">New owner</label><select class="select" id="novy" name="novy"><option value="">Choose an instructor</option><option>Adam Autor (autor.adam@demo.example)</option><option>Barbora Veselá (admin.barbora@demo.example)</option></select></div>
+  <div><button class="btn btn--nebezpecne" type="button">Transfer ownership</button></div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">Test not shared with anyone</p>
+ <div class="empty stack-2">{{I:uzivatele}}<p><b>You have not shared this test with anyone yet.</b></p><p class="t-maly">Add access using the form below.</p></div>
+ <p class="t-stitek">Transfer confirmation (dialog)</p>
+ <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="dlg-h" style="position:static;display:block;margin:0">
+  <div class="dialog__body stack"><h3 id="dlg-h" class="t-nadpis">Transfer the test to Adam Autor?</h3><p>Adam Autor becomes the owner of OHS – practice test. You keep Edit access. Only the new owner can undo this.</p></div>
+  <div class="dialog__foot"><button class="btn" type="button">Cancel</button><button class="btn btn--nebezpecne" type="button">Transfer ownership</button></div>
+ </div>
+</section>

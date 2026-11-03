@@ -1,0 +1,76 @@
+<!--meta {"titulek":"Test statistics","sablona":"app","role":"lektor","aktivni":"en-statistiky.html","demo":false,"lang":"en","cs_verze":"statistiky-test.html"} -->
+<!--spec {
+ "route":"/statistiky/test/:id (lang=en)","nazev":"Test statistics","role":"instructor (organisation administrators also get Branch comparison; question authors have no access)","sablona":"app",
+ "ucel":"Show how a test turned out: number of people, average, median, pass rate, score distribution and ranking.",
+ "hlavni_akce":"Choose a test assignment and read the distribution; open an attempt from the ranking.",
+ "komponenty":["crumbs","page-head","filters","select","kpi","bar","details","table-wrap","table--stack","stav","empty"],
+ "stavy":["Same states as statistiky-test.html: no attempts, small numbers (“< 5”), loading, permissions."],
+ "zmeny_ux":["Layout identical to the Czech page. English KPI labels are plural-neutral (“people”, “attempts”); the coder should use ICU plurals (1 person / 6 people)."],
+ "texty":[
+  {"dnes":"Jen odevzdané pokusy z použití, jejichž výsledky smíte vidět. Nanečisto se nepočítá.","nove":"Only submitted attempts from test assignments whose results you can see. Trial runs are not counted.","proc":"EN glossary."},
+  {"dnes":"Osoba se počítá jednou, i když má více pokusů. Pozná se podle účtu, kódu, identifikátoru nebo jména.","nove":"Each person is counted once, even with several attempts. People are matched by account, code, identifier or name.","proc":"Short sentences."},
+  {"dnes":"Použití testu · Zobrazit","nove":"Test assignment · Show","proc":"EN glossary; verb in the button."},
+  {"dnes":"Rozložení úspěšnosti","nove":"Score distribution","proc":"Usual statistics term."},
+  {"dnes":"Pořadí osob","nove":"Ranking","proc":"Short."},
+  {"dnes":"Plný pruh = splněno (od 80 %), šrafovaný = nesplněno.","nove":"Solid bar = passed (80% and above), hatched = not passed.","proc":"Number format."}],
+ "pristupnost":["Same as the Czech page. Czech names wrapped in lang=\"cs\"."],
+ "poznamky_pro_kodera":["Data as in statistiky-test.html.","Glossary gap: Rozložení úspěšnosti → Score distribution.","Glossary gap: Srovnání poboček → Branch comparison."],
+ "chybi_komponenta":["column histogram – horizontal .bar used"]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-statistiky.html">Statistics</a></li><li><span aria-current="page">Cyber security</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Cyber security – annual check</h1><p class="t-maly">Only submitted attempts from test assignments whose results you can see. Trial runs are not counted.</p></div></div>
+
+<form class="filters" action="en-statistiky-test.html" method="get" aria-label="Choose test assignment">
+ <div class="field" style="flex:2 1 260px"><label class="label" for="st-pouz">Test assignment</label><select class="select" id="st-pouz"><option>All available test assignments (2)</option><option>Annual training · Personal access codes</option><option>Assigned to a test taker</option></select></div>
+ <button class="btn" type="submit">Show</button>
+</form>
+
+<div class="kpi" style="margin-bottom:var(--s-2)">
+ <div><span class="t-cislo">6</span><span class="t-maly">people</span></div>
+ <div><span class="t-cislo">6</span><span class="t-maly">attempts</span></div>
+ <div><span class="t-cislo">72.7%</span><span class="t-maly">average</span></div>
+ <div><span class="t-cislo">81.6%</span><span class="t-maly">median</span></div>
+ <div><span class="t-cislo">3 (50%)</span><span class="t-maly">passed attempts</span></div>
+</div>
+<p class="t-maly" style="margin-bottom:var(--s-5)">Each person is counted once, even with several attempts. People are matched by account, code, identifier or name. 3 people passed the test.</p>
+
+<div class="grid-2" style="align-items:start">
+<section class="stack" aria-labelledby="rozl">
+ <h2 id="rozl" class="t-nadpis">Score distribution</h2>
+ <div class="stack-2">
+  <div class="bar"><span>0–29%</span><span class="bar__track" aria-hidden="true"><span class="bar__fill" style="display:block;width:0"></span></span><span class="t-cislo">0</span></div>
+  <div class="bar"><span>30–39%</span><span class="bar__track" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:50%"></span></span><span class="t-cislo">1</span></div>
+  <div class="bar"><span>40–49%</span><span class="bar__track" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:50%"></span></span><span class="t-cislo">1</span></div>
+  <div class="bar"><span>50–69%</span><span class="bar__track" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:0"></span></span><span class="t-cislo">0</span></div>
+  <div class="bar"><span>70–79%</span><span class="bar__track" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:50%"></span></span><span class="t-cislo">1</span></div>
+  <div class="bar"><span>80–89%</span><span class="bar__track" aria-hidden="true"><span class="bar__fill" style="display:block;width:100%"></span></span><span class="t-cislo">2</span></div>
+  <div class="bar"><span>90–100%</span><span class="bar__track" aria-hidden="true"><span class="bar__fill" style="display:block;width:50%"></span></span><span class="t-cislo">1</span></div>
+ </div>
+ <p class="t-maly">Solid bar = passed (80% and above), hatched = not passed. The number is the count of attempts.</p>
+ <details class="faq"><summary>Show distribution as a table</summary><div>
+  <div class="table-wrap"><table class="table"><caption class="sr-only">Score distribution in 10% bands</caption><thead><tr><th scope="col">Score</th><th scope="col" class="num">Attempts</th></tr></thead><tbody><tr><td>0–29%</td><td class="num">0</td></tr><tr><td>30–39%</td><td class="num">1</td></tr><tr><td>40–49%</td><td class="num">1</td></tr><tr><td>50–69%</td><td class="num">0</td></tr><tr><td>70–79%</td><td class="num">1</td></tr><tr><td>80–89%</td><td class="num">2</td></tr><tr><td>90–100%</td><td class="num">1</td></tr></tbody></table></div>
+ </div></details>
+</section>
+
+<section class="stack" aria-labelledby="por">
+ <h2 id="por" class="t-nadpis">Ranking</h2>
+ <div class="table-wrap"><table class="table table--stack">
+  <caption class="sr-only">Ranking of people by best attempt</caption>
+  <thead><tr><th scope="col" class="num">#</th><th scope="col">Person</th><th scope="col" class="num">Result</th><th scope="col">Status</th></tr></thead>
+  <tbody>
+   <tr><th scope="row" class="num" data-label="Rank">1</th><td data-label="Person"><a href="en-vysledek-detail.html" lang="cs">Ondřej Malý</a></td><td data-label="Result" class="num">100.0%</td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Passed</span></td></tr>
+   <tr><th scope="row" class="num" data-label="Rank">2</th><td data-label="Person"><a href="en-vysledek-detail.html" lang="cs">Radek Beneš</a></td><td data-label="Result" class="num">88.2%</td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Passed</span></td></tr>
+   <tr><th scope="row" class="num" data-label="Rank">3</th><td data-label="Person"><a href="en-vysledek-detail.html" lang="cs">Simona Králová</a></td><td data-label="Result" class="num">86.7%</td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Passed</span></td></tr>
+   <tr><th scope="row" class="num" data-label="Rank">4</th><td data-label="Person"><a href="en-vysledek-detail.html" lang="cs">Vojtěch Sedláček</a></td><td data-label="Result" class="num">76.5%</td><td data-label="Status"><span class="stav stav--ne">{{I:minus-kruh}}Not passed</span></td></tr>
+   <tr><th scope="row" class="num" data-label="Rank">5</th><td data-label="Person"><a href="en-vysledek-detail.html" lang="cs">Tereza Doležalová</a></td><td data-label="Result" class="num">47.1%</td><td data-label="Status"><span class="stav stav--ne">{{I:minus-kruh}}Not passed</span></td></tr>
+   <tr><th scope="row" class="num" data-label="Rank">6</th><td data-label="Person"><a href="en-vysledek-detail.html">Filip Zeman</a></td><td data-label="Result" class="num">37.5%</td><td data-label="Status"><span class="stav stav--ne">{{I:minus-kruh}}Not passed</span></td></tr>
+  </tbody>
+ </table></div>
+</section>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">No submitted attempts</p>
+  <div class="empty stack-2">{{I:graf}}<p class="t-nadpis">No submitted attempts yet</p><p class="t-maly">Statistics appear once the first test is submitted.</p></div></div>
+</section>

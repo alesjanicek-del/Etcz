@@ -1,0 +1,62 @@
+<!--meta {"titulek":"Use test – OHS – practice test","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false,"lang":"en","cs_verze":"pouziti-nove.html"} -->
+<!--spec {
+ "route":"/pouziti/nove (lang=en)","nazev":"Use test – choose a method – English","role":"instructor","sablona":"app",
+ "ucel":"Choose how the test is set: in a room, with personal access codes, assigned to a group, by public link or on paper.",
+ "hlavni_akce":"Continue (to the form for the chosen method)",
+ "komponenty":["crumbs","page-head","fieldset","choice","alert--info","form-actions"],
+ "stavy":[
+  "Default: nothing selected; Continue without a choice shows an error (drawn in Other page states).",
+  "Official test: Public link is disabled with the reason “Not available for an official test.” (drawn).",
+  "Plan without print: the Print option is missing; instead “Your plan does not include print.”",
+  "Test with errors: alert--chyba “The test has errors and cannot be used yet” with a link to the editor.",
+  "No permission: an instructor without Read access gets 403."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (pouziti-nove.html).",
+  "Option names follow the EN glossary: Supervised in-room exam, Personal access codes, Assigned to a group, Public link, Print. For a group assignment the tile title is the action “Assign to a group”.",
+  "The language for test takers is chosen in the next step (form of each method), not here – see en-pouziti-prezencni.html."],
+ "texty":[
+  {"dnes":"Jak chcete test zadat?","nove":"How do you want to set the test?","proc":"Heading is the question the page answers."},
+  {"dnes":"Každý zkoušený dostane vlastní variaci z aktuálních verzí otázek. Použití bude patřit pobočce Praha.","nove":"Each test taker gets their own test version from the current question versions. The test assignment will belong to the Prague branch.","proc":"Glossary: variace → test version, použití → test assignment."},
+  {"dnes":"Prezenční zkouška","nove":"Supervised in-room exam","proc":"Glossary."},
+  {"dnes":"Osobní kódy","nove":"Personal access codes","proc":"Glossary."},
+  {"dnes":"Přidělení skupině","nove":"Assign to a group","proc":"Glossary (assigned to a group) as an action."},
+  {"dnes":"Veřejný odkaz","nove":"Public link","proc":"Glossary."},
+  {"dnes":"Tisk","nove":"Print","proc":"Glossary."},
+  {"dnes":"Pokračovat","nove":"Continue","proc":"One primary action."}],
+ "pristupnost":["Same as the Czech page: fieldset with legend “Method” (sr-only), radio inside label.choice; disabled option keeps its reason in the label."],
+ "poznamky_pro_kodera":["Strings from translations/*+intl-icu.en.yaml.","Glossary gap: studující (s účtem) → learners with an account; Moje testy → My tests."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-testy.html">Tests</a></li><li><span aria-current="page">Use test</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Use test · OHS – practice test</p><h1 class="t-titulek">How do you want to set the test?</h1>
+  <p class="measure">Each test taker gets their own test version from the current question versions. The test assignment will belong to the Prague branch.</p></div>
+</div>
+
+<form class="stack-4" action="en-pouziti-prezencni.html" method="get" style="max-width:var(--max-text)">
+ <input type="hidden" name="test" value="bozp">
+ <fieldset class="stack-2">
+  <legend class="sr-only">Method</legend>
+  <label class="choice"><input type="radio" name="typ" value="LIVE"><span class="stack-2"><span class="row" style="gap:var(--s-2)">{{I:obrazovka}}<b>Supervised in-room exam</b></span><span>People in the room, no account needed. Code and QR code on the projector screen, a waiting room, and you start the test.</span></span></label>
+  <label class="choice"><input type="radio" name="typ" value="CODE"><span class="stack-2"><span class="row" style="gap:var(--s-2)">{{I:klic}}<b>Personal access codes</b></span><span>Each test taker gets their own code, handed out or sent by email. No account needed.</span></span></label>
+  <label class="choice"><input type="radio" name="typ" value="ASSIGNMENT"><span class="stack-2"><span class="row" style="gap:var(--s-2)">{{I:uzivatele}}<b>Assign to a group</b></span><span>Learners with an account see the test in My tests.</span></span></label>
+  <label class="choice"><input type="radio" name="typ" value="LINK"><span class="stack-2"><span class="row" style="gap:var(--s-2)">{{I:odkaz}}<b>Public link</b></span><span>Anyone with the link. For practice tests, email or a website.</span></span></label>
+  <label class="choice"><input type="radio" name="typ" value="PRINT"><span class="stack-2"><span class="row" style="gap:var(--s-2)">{{I:tisk}}<b>Print</b></span><span>Unique test versions on paper, with answer sheets and answer keys.</span></span></label>
+ </fieldset>
+ <div class="form-actions">
+  <button class="btn btn--hlavni" type="submit">Continue {{I:sipka-vpravo}}</button>
+  <a class="btn btn--tiche" href="en-testy.html">Back to tests</a>
+ </div>
+</form>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">Official test: no public link</p>
+ <label class="choice" style="cursor:not-allowed"><input type="radio" name="typ-x" disabled><span class="stack-2"><span class="row" style="gap:var(--s-2)">{{I:odkaz}}<b>Public link</b></span><span>Not available for an official test. Use personal access codes or a supervised in-room exam.</span></span></label>
+ <p class="t-stitek">Error: nothing selected</p>
+ <fieldset class="stack-2" aria-describedby="typ-e">
+  <legend class="label">Method</legend>
+  <span class="error" id="typ-e">{{I:pozor}}Choose how you want to set the test.</span>
+  <label class="choice"><input type="radio" name="typ-y"><span class="stack-2"><span class="row" style="gap:var(--s-2)">{{I:obrazovka}}<b>Supervised in-room exam</b></span></span></label>
+ </fieldset>
+</section>

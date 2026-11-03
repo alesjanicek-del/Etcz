@@ -1,0 +1,150 @@
+<!--meta {"titulek":"Test templates and services","popis":"We are preparing a catalogue of test templates (health and safety, fire safety, first aid, GDPR and more) – free for now and not expert-reviewed. Services to order: onboarding your organisation and converting questions.","sablona":"web","aktivni":"","lang":"en","cs_verze":"sablony-testu.html"} -->
+<!--spec {
+ "route":"/en/test-templates","nazev":"Test templates and services – English","role":"public – customers and prospects","sablona":"web (lang=en)",
+ "ucel":"Introduce the upcoming template catalogue (free, not reviewed) and paid services; prompt a template or service request.",
+ "hlavni_akce":"Request a template (guided demo form with the reason pre-filled)",
+ "komponenty":["hero","stav","alert","card","grid-4","grid-2","num-step","price","list-check","faq","cta-band"],
+ "stavy":["Static page – no states. The catalogue does not exist in the app yet: the whole page is in the “Coming soon” state (label in the hero)."],
+ "zmeny_ux":[
+  "Structure and components are the same as the Czech page (sablony-testu.html); see its spec for the UX changes.",
+  "Topic names that refer to Czech legal concepts (e.g. “osoba seznámená a poučená”) are given a descriptive English name; the Czech term is not shown.",
+  "Request links go to en-ukazka.html?duvod=… with the same parameter values as Czech."],
+ "texty":[
+  {"dnes":"Šablony testů · Připravujeme","nove":"Test templates · Coming soon","proc":"Status label, same as other EN pages."},
+  {"dnes":"Mám zájem o šablonu","nove":"Request a template","proc":"Verb first; says what happens."},
+  {"dnes":"Služby na objednávku","nove":"Services to order","proc":"Short, neutral."},
+  {"dnes":"Šablony jsou zatím zdarma a neověřené","nove":"Templates are free for now and not reviewed","proc":"“Not reviewed” = neprošly odbornou kontrolou; avoids “unverified”, which clashes with report verification."},
+  {"dnes":"Zdarma zatím, ne navždy","nove":"Free for now, not for ever","proc":"British “for ever”."},
+  {"dnes":"0 Kč","nove":"CZK 0","proc":"Currency format from the brief."},
+  {"dnes":"odborně způsobilá osoba","nove":"a qualified person","proc":"Glossary gap – proposed term."},
+  {"dnes":"odborný garant","nove":"your subject-matter expert","proc":"Glossary gap – proposed term."},
+  {"dnes":"Poptat zavedení / Poptat import otázek / Poptat šablonu","nove":"Request onboarding / Request question import / Request a template","proc":"Verb first; distinct link texts (WCAG 2.4.4)."},
+  {"dnes":"nacenění","nove":"quote","proc":"Plain English."}],
+ "pristupnost":["Same as the Czech page: one H1; H2 sections, H3 cards; alerts with icon and title; steps as <ol>; FAQ via details/summary."],
+ "poznamky_pro_kodera":["Request links: en-ukazka.html?duvod=sablona|zavedeni|import|jina – the form preselects the option (proposal).","Template names are for the English page only; the templates themselves are Czech content.","Glossary gap: odborně způsobilá osoba → qualified person; odborný garant → subject-matter expert.","Glossary gap: zavedení do organizace → onboarding.","Glossary gap: osoba seznámená a poučená (elektro) → instructed person (electrical safety) – needs native/domain review."],
+ "chybi_komponenta":[]
+} -->
+<section class="hero grid-bg">
+ <div class="container stack-4">
+  <div class="row" style="gap:var(--s-2)"><p class="t-stitek">Test templates</p><span class="stav stav--pise">{{I:hodiny}}Coming soon</span></div>
+  <h1 class="t-display measure">Ready-made test templates you <span class="t-zvyraznit">adapt to your needs</span></h1>
+  <p class="t-perex measure">You don’t have to start from a blank page. Request a template with a form and we’ll send it to you free of charge as an import file. Then edit it and use it as your own question bank.</p>
+  <div class="row"><a class="btn btn--hlavni" href="en-ukazka.html?duvod=sablona">Request a template</a><a class="btn" href="#sluzby">Services to order</a></div>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="neoverene">
+ <div class="container stack-4">
+  <h2 id="neoverene" class="t-sekce">Templates are free for now and not reviewed</h2>
+  <div class="grid-3">
+   <div class="alert" role="note">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Not reviewed by experts</p><p>They are starting points that your organisation must check and adapt before use. The operator is not responsible for their accuracy, completeness or compliance with regulations. Your organisation is responsible for the content and use of the test.</p><p>We prepare templates from publicly available regulations as at the date stated in each one. Before use, a qualified person must check and adapt them to your regulations, policies and workplace risks.</p></div></div>
+   <div class="alert" role="note">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">A test does not replace statutory training or exams</p><p>A test checks knowledge. Where the law requires training, practical instruction, a practical exam or assessment by an authorised person, committee or authority, the test is only a supplement.</p><p>Passing a test does not in itself grant any authorisation or professional competence.</p></div></div>
+   <div class="alert alert--info" role="note">{{I:info}}<div class="stack-2"><p class="alert__nadpis">Free for now, not for ever</p><p>In future we may charge for new templates and updates; we will announce any change in advance.</p><p>Templates you take over before then stay free for you.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="pripravujeme">
+ <div class="container stack-5">
+  <div class="stack-2"><h2 id="pripravujeme" class="t-sekce">Templates we are preparing</h2><p class="measure">We are already working on these topics. Ask us when a particular template will be available.</p></div>
+  <ul class="grid-4">
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Health and safety</h3><p class="t-maly">Training for employees and managers in all professions.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Fire safety</h3><p class="t-maly">Induction and refresher fire safety training for employees.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">First aid</h3><p class="t-maly">The basics for employees without medical training.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Cybersecurity</h3><p class="t-maly">Training for users who work with a computer, email and a phone.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">GDPR</h3><p class="t-maly">Data protection for employees and managers.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Law in practice</h3><p class="t-maly">Contracts, public procurement and administrative proceedings for officials, clerks and buyers.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Radiation protection</h3><p class="t-maly">Basic principles of radiation protection for radiation workers.</p></li>
+   <li class="card card--tenka stack-2"><h3 class="t-nadpis">Quality and compliance</h3><p class="t-maly">ISO 9001, internal audit, ethics and whistleblower protection.</p></li>
+  </ul>
+  <div class="stack">
+   <h3 class="t-nadpis">Other topics we are considering</h3>
+   <p class="measure">Customer interest decides which templates come next. <a href="en-ukazka.html?duvod=sablona">Tell us which topic you need.</a></p>
+   <ul class="grid-3" style="gap:var(--s-2) var(--s-4);padding-left:var(--s-4)">
+    <li>AI literacy</li><li>Driving a company car</li><li>Food hygiene and HACCP</li><li>Electrical safety: instructed person (theory)</li><li>Hazardous chemicals</li><li>Working at height</li><li>Forklift operation (theory)</li><li>Manual handling</li><li>Records management</li><li>Freedom of information</li><li>Administrative and inspection procedure</li><li>Public procurement</li><li>Anti-money laundering (AML)</li><li>Pupil safety and supervision</li><li>Hand hygiene and infection prevention</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="jak">
+ <div class="container stack-5">
+  <h2 id="jak" class="t-sekce">How it will work</h2>
+  <ol class="grid-4">
+   <li class="num-step"><span class="t-cislo">01</span><div class="stack-2"><h3 class="t-nadpis">Choose a template</h3><p>By topic and target group. For each template we state the date of the regulations it reflects.</p></div></li>
+   <li class="num-step"><span class="t-cislo">02</span><div class="stack-2"><h3 class="t-nadpis">Add it to your account</h3><p>The organisation administrator confirms it, including the terms and the notice that the template has not been reviewed by experts. The template becomes your question bank.</p><p class="t-maly">Until the catalogue is in the app, we send it on request as an import file.</p></div></li>
+   <li class="num-step"><span class="t-cislo">03</span><div class="stack-2"><h3 class="t-nadpis">Edit and approve</h3><p>Add your own policies and risks to the questions and delete what you don’t need. Your subject-matter expert approves the changes.</p></div></li>
+   <li class="num-step"><span class="t-cislo">04</span><div class="stack-2"><h3 class="t-nadpis">Start testing</h3><p>Online, in the room or on paper. Every test taker gets a different test version and a report with their result.</p></div></li>
+  </ol>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="cena">
+ <div class="container grid-2" style="align-items:start">
+  <div class="price price--doporuceny">
+   <p class="t-stitek">Template price</p>
+   <h2 id="cena" class="t-nadpis">Free for now – for all templates in the catalogue</h2>
+   <p class="t-cislo">CZK&nbsp;0</p>
+   <ul class="list-check">
+    <li><span>Applies to the whole organisation, including all branches.</span></li>
+    <li><span>No limit on test takers or tests from one template. Attempts count towards your plan, as with any other test.</span></li>
+    <li><span>Edit the template as much as you like. Your changes stay in your account.</span></li>
+   </ul>
+   <p class="t-maly">If we start charging for the catalogue, we will announce it in advance. Templates you take over before then stay free of charge.</p>
+  </div>
+  <div class="stack">
+   <h2 class="t-nadpis">The catalogue is in preparation</h2>
+   <p>Templates cannot be ordered in the app yet. If you are interested in one, write to us. We’ll reply within 2&nbsp;working days and agree when and how we’ll deliver it.</p>
+   <div class="row"><a class="btn" href="en-ukazka.html?duvod=sablona">Request a template</a></div>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila" id="sluzby" aria-labelledby="sluzby-h">
+ <div class="container stack-5">
+  <div class="stack-2"><h2 id="sluzby-h" class="t-sekce">Services to order</h2><p class="t-perex measure">We’ll help you get started quickly. We price by the amount of work and send a free quote within 2&nbsp;working days.</p><p class="measure">The price depends on the number of questions, users and branches, and the format of your materials. We don’t publish a fixed price. We start work only after you accept the quote.</p></div>
+  <div class="grid-2">
+   <div class="card stack">
+    <h3 class="t-nadpis">Help onboarding your organisation</h3>
+    <ul class="list-check">
+     <li><span>Initial set-up of your organisation, branches, roles and users.</span></li>
+     <li><span>Your first test and its assignment: online, in the room or on paper.</span></li>
+     <li><span>Training for administrators and instructors, online or on site.</span></li>
+    </ul>
+    <div class="row"><a class="btn" href="en-ukazka.html?duvod=zavedeni">Request onboarding</a></div>
+   </div>
+   <div class="card stack">
+    <h3 class="t-nadpis">Question import and conversion</h3>
+    <ul class="list-check">
+     <li><span>From Word, Excel, PDF, Moodle (XML or GIFT), DoTest or paper into your question banks.</span></li>
+     <li><span>We do the conversion, including tags and correct answers.</span></li>
+     <li><span>You check the result in a preview before you approve the questions.</span></li>
+    </ul>
+    <p class="t-maly">You can also import questions from an XLSX sheet yourself.</p>
+    <div class="row"><a class="btn" href="en-ukazka.html?duvod=import">Request question import</a></div>
+   </div>
+  </div>
+  <div class="alert alert--info" role="note">{{I:info}}<p>Don’t send us your question files yet – we’ll ask for them after the quote. Your organisation is responsible for the rights to the materials and for checking the converted content. Need questions tailored to your policy? <a href="en-ukazka.html?duvod=jina">Request another service.</a></p></div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="faq">
+ <div class="container grid-2" style="align-items:start">
+  <h2 id="faq" class="t-sekce">Frequently asked questions about templates</h2>
+  <div class="faq">
+   <details><summary>What exactly is a catalogue template?</summary><div><p>A ready-made question bank on one topic, such as health and safety or GDPR, with a suggested test. Add the template to your account and edit, add or delete questions to suit your regulations and risks. Then use it as your own question bank.</p></div></details>
+   <details><summary>Who is responsible for the questions being correct?</summary><div><p>The organisation that uses the template. Templates have not been reviewed by experts. They are starting points we prepare from publicly available regulations as at the date stated in the template. The operator is not responsible for their accuracy, completeness or compliance with regulations. Before use, a qualified person in your organisation must check and adapt the template.</p></div></details>
+   <details><summary>Does a test replace statutory training or an exam?</summary><div><p>No. A test checks knowledge. It does not replace training the employer must provide, or an exam or assessment that the law reserves for an authorised person, committee or authority. Passing a test does not in itself grant any authorisation or professional competence.</p></div></details>
+   <details><summary>How much does a template cost and how do we get it?</summary><div><p>Templates are free for now. If we start charging, we will announce it in advance, and templates you take over before then stay free of charge. The in-app catalogue is in preparation. Until then, we send templates on request as a question bank file that you import into your account.</p></div></details>
+   <details><summary>Can we edit a template and use it without limits?</summary><div><p>Yes, within your organisation. There is no limit on test takers or tests from one template. Attempts count towards your plan, as with any other test.</p></div></details>
+   <details><summary>Which services can we order and what do they cost?</summary><div><p>Help onboarding your organisation, and question import or conversion – see <a href="#sluzby">Services to order</a>. We price by the amount of work (number of questions, users and branches, format of materials). We send a free quote within 2&nbsp;working days. Order a service with the form; send files only after the quote.</p></div></details>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">We’ll show you the app with your type of exam</h2><p>We’ll go through the app with you online (about 30&nbsp;minutes) and set up trial access for your organisation.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="en-ukazka.html">Book a guided demo</a><a class="btn" href="en-vyzkouset.html">Try the demo</a></div>
+ </div>
+</section>

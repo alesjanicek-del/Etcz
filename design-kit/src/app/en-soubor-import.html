@@ -1,0 +1,111 @@
+<!--meta {"titulek":"Import questions from XLSX","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false,"lang":"en","cs_verze":"soubor-import.html"} -->
+<!--spec {
+ "route":"/soubory/:id/import (lang=en)","nazev":"Import questions from XLSX – English","role":"instructor, question author, organisation administrator – with Edit or Owner permission for the bank","sablona":"app",
+ "ucel":"Add or update many questions in a bank from an XLSX spreadsheet, with a preview before saving. Not in the demo (proposal based on the help article Import and export questions).",
+ "hlavni_akce":"Show preview → Confirm import",
+ "komponenty":["crumbs","page-head","steps","card","field","input[type=file]","check","faq (details)","table table--stack","kpi","stav","alert","error-summary","form-actions","btn--hlavni"],
+ "stavy":["Same states as the Czech page (soubor-import.html): file error, preview, preview with errors only, done, processing (“Reading row 120 of 340…”), no permission."],
+ "zmeny_ux":["The preview table is wider in English and scrolls horizontally at mid widths, so .table-wrap has role=region, tabindex=0 and aria-label (keyboard scrolling, axe scrollable-region-focusable).","Layout as in the Czech version. Column names of the template (externi_id, odpoved_1 …) stay as they are – they are the file format, not UI text."],
+ "texty":[
+  {"dnes":"Import otázek z XLSX","nove":"Import questions from XLSX","proc":"Verb first."},
+  {"dnes":"Stáhnout prázdnou šablonu (XLSX)","nove":"Download blank template (XLSX)","proc":"Verb first."},
+  {"dnes":"Zobrazit náhled · Zatím se nic neuloží.","nove":"Show preview · Nothing is saved yet.","proc":"Button says what happens."},
+  {"dnes":"Potvrdit import 15 otázek · Nahrát jiný soubor","nove":"Confirm import of 15 questions · Upload a different file","proc":"Verb first."},
+  {"dnes":"Nová otázka · Nová verze · Beze změny · Přeskočeno","nove":"New question · New version · No change · Skipped","proc":"One word for one thing."},
+  {"dnes":"variace","nove":"test version","proc":"Glossary."},
+  {"dnes":"Sešit Excelu (.xlsx)","nove":"Excel Workbook (.xlsx)","proc":"Name of the format in English Excel."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\"."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Column names and SINGLE / MULTI values are part of the file format and are not translated.","The keyword “dekorativní” in obrazek_popis is shown in Czech (lang=cs) because the importer reads that literal value. To decide: should the importer also accept “decorative”?","Tag syntax List:Tag is shown in English; the importer reads the real list and tag names, whatever the language.","Glossary gap: náhled (importu) → preview","Glossary gap: Přeskočeno · Beze změny · Nová verze → Skipped · No change · New version"],
+ "chybi_komponenta":["file upload field – as in the Czech page","import row status – as in the Czech page"]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-soubory.html">Question banks</a></li><li><a href="en-soubor-detail.html">Health and safety – employee training</a></li><li><span aria-current="page">Import XLSX</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Sample set: Health and safety – employee training</p><h1 class="t-titulek">Import questions from XLSX</h1></div></div>
+
+<div class="stack-4">
+ <ol class="steps" aria-label="Import steps" tabindex="0" style="width:0;min-width:100%">
+  <li style="min-width:0"><span aria-current="step">Upload</span></li><li style="min-width:0"><span>Preview</span></li><li style="min-width:0"><span>Done</span></li>
+ </ol>
+
+ <div class="alert">{{I:pozor}}<p>This bank is used by 1 test. Only newly created test versions will get the imported new versions. Attempts in progress and printed test versions keep the original version.</p></div>
+
+ <form class="card stack-4" action="#nahled" method="post" enctype="multipart/form-data" novalidate>
+  <div class="stack-2">
+   <h2 class="t-nadpis">1. Prepare the spreadsheet</h2>
+   <p>Fill in the template, or use an <a href="#">export of this bank</a> – it has the same format.</p>
+   <p><a class="btn" href="#">{{I:stahnout}}Download blank template (XLSX)</a></p>
+  </div>
+  <div class="faq">
+   <details>
+    <summary>What to enter in each column</summary>
+    <dl class="dl"><dt class="t-kod">externi_id</dt><dd>Your identifier. The same ID updates the question and creates a new version.</dd><dt class="t-kod">typ</dt><dd>SINGLE (one correct answer) or MULTI (several correct answers).</dd><dt class="t-kod">text,<br>odpoved_1–10</dt><dd>Question and answers, at least 4.</dd><dt class="t-kod">spravne</dt><dd>Numbers of the correct answers, for example 1;3.</dd><dt class="t-kod">body</dt><dd>Points: 1 to 100, default 1.</dd><dt class="t-kod">stitky</dt><dd>List:Tag;List:Tag – only from tag lists you may use in this bank.</dd><dt class="t-kod">zpetna_vazba_ok,<br>zpetna_vazba_chyba,<br>poznamka</dt><dd>Optional: feedback for a correct answer, feedback for a wrong answer, note.</dd><dt class="t-kod">obrazek,<br>obrazek_popis</dt><dd>File name in the ZIP archive (separate several with ;) and its description, or <span class="t-kod" lang="cs">dekorativní</span> (decorative).</dd></dl>
+   </details>
+  </div>
+
+  <h2 class="t-nadpis">2. Upload the files</h2>
+  <div class="field">
+   <label class="label" for="xlsx">Spreadsheet with questions (XLSX)</label>
+   <input class="input" id="xlsx" name="xlsx" type="file" accept=".xlsx" aria-describedby="xlsx-h">
+   <p class="hint" id="xlsx-h">Up to 10&nbsp;MB. Formulas in cells are not run; only values are read.</p>
+  </div>
+  <div class="field">
+   <label class="label" for="zip">Images in a ZIP archive <span class="volitelne">(optional)</span></label>
+   <input class="input" id="zip" name="zip" type="file" accept=".zip" aria-describedby="zip-h">
+   <p class="hint" id="zip-h">PNG, JPEG or WebP, each up to 5&nbsp;MB, the whole archive up to 60&nbsp;MB.</p>
+  </div>
+  <label class="check"><input type="checkbox" name="zalozit" aria-describedby="zal-h"><span class="stack-2"><span>Create missing tags</span><span class="hint" id="zal-h">A tag that doesn’t exist is created in the given tag list if you may manage it. Otherwise, the row is skipped.</span></span></label>
+  <div class="form-actions"><button class="btn btn--hlavni" type="submit">Show preview</button><span class="t-maly">Nothing is saved yet.</span><a class="btn btn--tiche" href="en-soubor-detail.html">Cancel import</a></div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">File error</h3>
+  <div class="card stack">
+   <div class="field">
+    <label class="label" for="xlsx-e">Spreadsheet with questions (XLSX)</label>
+    <input class="input" id="xlsx-e" type="file" accept=".xlsx" aria-invalid="true" aria-describedby="xlsx-e-err">
+    <p class="error" id="xlsx-e-err">{{I:pozor}}The file otazky.csv is not XLSX. In Excel, save the spreadsheet as “Excel Workbook (.xlsx)”.</p>
+   </div>
+  </div>
+ </div>
+
+ <div class="stack" id="nahled">
+  <h3 class="t-stitek">Step 2 – import preview</h3>
+  <div class="card stack-4">
+   <ol class="steps" aria-label="Import steps – preview" tabindex="0" style="width:0;min-width:100%"><li class="hotovo" style="min-width:0"><span>Upload</span></li><li style="min-width:0"><span aria-current="step">Preview</span></li><li style="min-width:0"><span>Done</span></li></ol>
+   <div class="stack-2"><p class="t-nadpis" tabindex="-1">Import preview: otazky-bozp.xlsx</p><p>Check what will happen to each row. Nothing is saved until you confirm.</p></div>
+   <div class="kpi" role="list" aria-label="Preview summary" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+    <div role="listitem"><span class="t-cislo">12</span><span class="t-maly">new questions</span></div>
+    <div role="listitem"><span class="t-cislo">3</span><span class="t-maly">new versions</span></div>
+    <div role="listitem"><span class="t-cislo">31</span><span class="t-maly">no change</span></div>
+    <div role="listitem"><span class="t-cislo">2</span><span class="t-maly">skipped</span></div>
+   </div>
+   <div class="table-wrap" role="region" tabindex="0" aria-label="Import preview rows">
+    <table class="table table--stack">
+     <caption>Rows with a change or an error (17 of 48)</caption>
+     <thead><tr><th scope="col" class="num">Row</th><th scope="col">externi_id</th><th scope="col">Question</th><th scope="col">Action</th><th scope="col">Row note</th></tr></thead>
+     <tbody>
+      <tr><td data-label="Row" class="num">2</td><td data-label="externi_id" class="t-kod">BOZP-001</td><td data-label="Question">An employee has reasonable grounds to believe that the assigned work…</td><td data-label="Action"><span class="stav stav--info">{{I:obnovit}}New version</span></td><td data-label="Note">Answer 3 changed.</td></tr>
+      <tr><td data-label="Row" class="num">36</td><td data-label="externi_id" class="t-kod">BOZP-035</td><td data-label="Question">Who keeps the accident book?</td><td data-label="Action"><span class="stav stav--neutral">{{I:plus}}New question</span></td><td data-label="Note">—</td></tr>
+      <tr><td data-label="Row" class="num">41</td><td data-label="externi_id" class="t-kod">BOZP-040</td><td data-label="Question">Which signs mark an emergency exit?</td><td data-label="Action"><span class="stav stav--ne">{{I:minus-kruh}}Skipped</span></td><td data-label="Note">The image “vychod.png” has no description. Fill in obrazek_popis, or enter <span lang="cs">dekorativní</span>.</td></tr>
+      <tr><td data-label="Row" class="num">47</td><td data-label="externi_id" class="t-kod">BOZP-046</td><td data-label="Question">How long must an accident record be kept?</td><td data-label="Action"><span class="stav stav--ne">{{I:minus-kruh}}Skipped</span></td><td data-label="Note">It has only 3 answers. A question needs at least 4.</td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p class="t-maly"><a href="#">Download skipped rows to fix (XLSX)</a> · <a href="#">Also show rows with no change (31)</a></p>
+   <div class="form-actions"><button class="btn btn--hlavni" type="button">Confirm import of 15 questions</button><a class="btn" href="#xlsx">{{I:nahrat}}Upload a different file</a></div>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Processing</h3>
+  <div class="alert alert--info" role="status">{{I:hodiny}}<p>Reading row 120 of 340… Don’t close this page.</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Step 3 – done</h3>
+  <div class="alert alert--ok" role="status">{{I:check}}<div class="stack-2"><p class="alert__nadpis">Import complete: 12 new questions and 3 new versions.</p><p>2 rows were skipped.</p><p><a href="en-soubor-detail.html">Back to the question bank</a></p></div></div>
+ </div>
+</section>

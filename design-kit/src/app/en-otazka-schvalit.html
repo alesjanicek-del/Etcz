@@ -1,0 +1,63 @@
+<!--meta {"titulek":"Approve question","sablona":"app","role":"admin","aktivni":"en-ke-schvaleni.html","demo":false,"lang":"en","cs_verze":"otazka-schvalit.html"} -->
+<!--spec {
+ "route":"/otazky/:id/schvalit (lang=en)","nazev":"Approve question","role":"admin (organisation administrator; branch administrator only with the organisation’s permission)","sablona":"app",
+ "ucel":"Review the question as the test taker will see it and decide: approve, or return it to the author with a comment.",
+ "hlavni_akce":"Approve question.",
+ "komponenty":["crumbs","page-head","meta","layout-aside","card","card--papir","option__bub","stav","alert","field","textarea","error-summary","form-actions"],
+ "stavy":["Same states as otazka-schvalit.html: return without comment (error summary, drawn below), after approval (“Question approved. It can go into tests from now on.”), after return (“Question returned to draft. The author has been emailed your comment.”), already approved by someone else (“Barbora Veselá already approved this question on 3 Nov at 18:40.”), no permission (403)."],
+ "zmeny_ux":["Layout identical to the Czech page."],
+ "texty":[
+  {"dnes":"Schválení otázky","nove":"Approve question","proc":"Short H1; EN glossary: approve."},
+  {"dnes":"Schválit otázku","nove":"Approve question","proc":"EN glossary; verb + object."},
+  {"dnes":"Vrátit do konceptu","nove":"Return to draft","proc":"EN glossary."},
+  {"dnes":"Autor ho uvidí u otázky a dostane ho e-mailem. Uloží se do historie otázky.","nove":"The author sees it with the question and gets it by email. It is saved in the question history.","proc":"Says who will see it."},
+  {"dnes":"Náhled pro zkoušeného · Jedna správná · 1 bod","nove":"Test taker preview · Single answer · 1 point","proc":"EN glossary: test taker."},
+  {"dnes":"Napište autorovi, co má opravit.","nove":"Tell the author what to fix.","proc":"Error message as an instruction."},
+  {"dnes":"Otázku nejde vrátit","nove":"The question cannot be returned","proc":"Error summary heading."}],
+ "pristupnost":["Same as the Czech page."],
+ "poznamky_pro_kodera":["Behaviour as in otazka-schvalit.html.","Change log entries: “Question approved” / “Question returned to draft”.","Glossary gap: Historie a rozdíly → History and changes.","Glossary gap: Interní poznámka → Internal note."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-ke-schvaleni.html">Pending approval</a></li><li><span aria-current="page">Which of these passwords is the most secure?</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Approve question</h1>
+ <dl class="meta"><div><dt>Question bank</dt><dd>Sample set: Cyber security – user training</dd></div><div><dt>Version</dt><dd>1 · Adam Autor · 3&nbsp;Nov 2026 03:00 · <a href="en-otazka-historie.html">History and changes</a></dd></div></dl></div>
+ <span class="stav stav--pozor">{{I:hodiny}}Pending approval</span>
+</div>
+
+<div class="layout-aside">
+ <div class="stack-4">
+  <section class="card card--papir stack" aria-labelledby="nahled">
+   <h2 id="nahled" class="t-stitek">Test taker preview · Single answer · 1 point</h2>
+   <p class="t-nadpis">Which of these passwords is the most secure?</p>
+   <ol class="stack-2" style="list-style:none;padding:0">
+    <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">1</span><span style="flex:1 1 160px">Password123</span></li>
+    <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">2</span><span style="flex:1 1 160px">Your dog’s name and year of birth</span></li>
+    <li class="card card--tenka row" style="padding:var(--s-2) var(--s-3)"><span class="option__bub" aria-hidden="true">3</span><span style="flex:1 1 160px">A long phrase made of several unrelated words</span><span class="stav stav--ok">{{I:check}}Correct</span></li>
+   </ol>
+  </section>
+  <div class="alert alert--info">{{I:info}}<p><b>Internal note:</b> Approval sample: this question is waiting for approval.</p></div>
+ </div>
+
+ <aside class="stack-4" aria-label="Decision">
+  <form class="card stack" action="en-ke-schvaleni.html" method="post" aria-labelledby="schv">
+   <h2 id="schv" class="t-nadpis">Approve</h2>
+   <p class="t-maly">From now on, the question can go into new test versions.</p>
+   <button class="btn btn--hlavni" type="submit">{{I:check}}Approve question</button>
+  </form>
+  <form class="card stack" action="en-ke-schvaleni.html" method="post" aria-labelledby="vrat">
+   <h2 id="vrat" class="t-nadpis">Return to the author</h2>
+   <div class="field"><label class="label" for="kom">Comment for the author</label><span class="hint" id="kom-h">The author sees it with the question and gets it by email. It is saved in the question history.</span><textarea class="textarea" id="kom" name="komentar" aria-describedby="kom-h"></textarea></div>
+   <button class="btn" type="submit">Return to draft</button>
+  </form>
+ </aside>
+</div>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2"><p class="t-stitek">Return without a comment</p>
+  <div class="card stack" style="max-width:420px">
+   <div class="error-summary" role="alert" aria-labelledby="es-h"><p id="es-h" class="alert__nadpis">The question cannot be returned</p><ul style="padding-left:var(--s-4)"><li><a href="#kom2">Tell the author what to fix.</a></li></ul></div>
+   <div class="field"><label class="label" for="kom2">Comment for the author</label><span class="hint" id="kom2-h">The author sees it with the question and gets it by email.</span><textarea class="textarea" id="kom2" aria-invalid="true" aria-describedby="kom2-e kom2-h"></textarea><span class="error" id="kom2-e">{{I:pozor}}Tell the author what to fix.</span></div>
+   <button class="btn" type="button">Return to draft</button>
+  </div></div>
+</section>

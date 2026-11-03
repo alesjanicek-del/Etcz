@@ -1,0 +1,100 @@
+<!--meta {"titulek":"Question 6 of 12 (offline) – Cyber security: annual check","sablona":"exam","role":"zkouseny","skip":"Skip to question","lang":"en","cs_verze":"test-vypadek.html"} -->
+<!--spec {
+ "route":"/t/:id (offline, lang=en)","nazev":"Question – connection lost","role":"test taker","sablona":"exam",
+ "ucel":"Reassure the test taker when the internet connection drops: they can keep going, answers wait in the browser and are sent automatically. Say clearly what happens to the time and what not to do.",
+ "hlavni_akce":"Keep answering; do not close the window",
+ "komponenty":["exam-head","rail","timer","stav--pise","alert (role=status)","fieldset/legend","option","check","exam-foot","qgrid"],
+ "stavy":["Same states as the Czech page (test-vypadek.html): offline (drawn), connection back (drawn, hides after 10 s), long outage > 5 min (drawn), submitting without a connection (drawn), window closed while offline, loading (whole version preloaded), no permission – not relevant."],
+ "zmeny_ux":[
+  "Layout as in the Czech version (test-vypadek.html).",
+  "Header status “Not sent: 2” is as short as the Czech “Neodesláno: 2”, so the header wraps exactly as in Czech on mobile (status row, timer below).",
+  "The offline banner is about 25% longer; it wraps to one more line at 320 px."],
+ "texty":[
+  {"dnes":"Jste offline.","nove":"You are offline.","proc":"Plain statement."},
+  {"dnes":"Pište dál – odpovědi čekají v tomto prohlížeči a odešlou se samy, až se spojení obnoví. Čas běží dál. Okno nezavírejte.","nove":"Keep going – your answers are waiting in this browser and will be sent automatically when the connection is back. The timer keeps running. Do not close the window.","proc":"Says where the answers are and what to do; short sentences."},
+  {"dnes":"Neodesláno: 2 (+ skryté „odpovědi“)","nove":"Not sent: 2 (+ hidden “answers”)","proc":"Screen reader hears “Not sent: 2 answers”."},
+  {"dnes":"Spojení je zpět. Všechny odpovědi jsou uložené.","nove":"You are back online. All your answers are saved.","proc":"Confirms nothing needs doing."},
+  {"dnes":"Jste offline už 6 minut. … Přišli jste kvůli výpadku o čas? Řekněte to lektorovi","nove":"You have been offline for 6 minutes. … Has the outage cost you time? Tell your instructor","proc":"EN glossary: instructor."},
+  {"dnes":"Test se odevzdá, až se odešlou poslední 2 odpovědi.","nove":"Your test will be submitted once the last 2 answers have been sent.","proc":"Says what happens; nothing else to do."},
+  {"dnes":"5 z 12 zodpovězeno, 2 čekají na odeslání · 1 k návratu","nove":"5 of 12 answered, 2 waiting to be sent · 1 flagged","proc":"EN glossary: flag for review."},
+  {"dnes":"Každý má jinou variaci. Čísla otázek nesrovnávejte se sousedem.","nove":"Everyone gets a different version. Question numbers will not match your neighbour’s.","proc":"EN glossary: test version; same as en-test-otazka.html."}],
+ "pristupnost":[
+  "Same as the Czech page: offline banner is role=status (polite), announced once; focus does not move.",
+  "Header status has a warning icon + word, not just colour.",
+  "Timer: role=timer; announcements only “5 minutes left” and “1 minute left. The test will then be submitted automatically.”"],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml; do not hard-code. “Not sent: {count}” needs ICU plural for the hidden word (answer / answers).",
+  "Offline queue in IndexedDB as on the Czech page.",
+  "Data: question 6 of version UG98N3X6.",
+  "Glossary gap: Neodesláno → Not sent",
+  "Glossary gap: výpadek (spojení) → outage / connection lost"],
+ "chybi_komponenta":["sticky connection status bar under .exam-head – .alert in .exam-body, as in Czech"]
+} -->
+<header class="exam-head"><div class="exam-head__in">
+ <p class="t-stitek">Cyber security: annual check</p>
+ <div class="rail" role="img" aria-label="Progress: 5 of 12 answered, 1 flagged, now on question 6"><i class="z"></i><i class="z"></i><i class="z"></i><i class="z"></i><i class="p"></i><i class="t"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+ <div class="row" style="gap:var(--s-2);margin-left:auto">
+  <p class="stav stav--pise" role="status" id="ulozeno">{{I:pozor}}Not sent: 2<span class="sr-only"> answers</span></p>
+  <span class="stav stav--info">{{I:oko}}Monitoring<span class="sr-only"> is on</span></span>
+  <div class="timer" role="timer"><span class="sr-only">Time left: </span>11:08</div>
+ </div>
+ <p class="sr-only" aria-live="polite" id="cas-hlaseni"></p>
+</div></header>
+
+<main id="obsah" class="exam-body">
+ <div class="alert" role="status" style="grid-column:1/-1">{{I:pozor}}<div><p class="alert__nadpis">You are offline.</p><p>Keep going – your answers are waiting in this browser and will be sent automatically when the connection is back. The timer keeps running. Do not close the window.</p></div></div>
+ <form class="stack-4" action="en-test-otazka.html" method="post" aria-label="Question 6 of 12">
+  <fieldset class="stack">
+   <legend class="stack-2" style="margin-bottom:var(--s-3)">
+    <span class="t-stitek" aria-hidden="true">Question 06 / 12</span>
+    <h1 class="t-nadpis" tabindex="-1"><span class="sr-only">Question 6 of 12: </span>You suspect something unusual is happening (your computer is behaving strangely, unknown files have appeared, you opened a suspicious attachment). What is the right thing to do?</h1>
+   </legend>
+   <div>
+    <label class="option" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="radio" name="o6" value="A"><span class="option__bub">A</span><span>Restart the computer, run an antivirus scan and report the problem if it continues the next day.</span></label>
+    <label class="option" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="radio" name="o6" value="B"><span class="option__bub">B</span><span>Report it only when I am sure it is an attack.</span></label>
+    <label class="option" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="radio" name="o6" value="C"><span class="option__bub">C</span><span>First try to solve the problem myself and report it only if that fails.</span></label>
+    <label class="option" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="radio" name="o6" value="D" checked><span class="option__bub">D</span><span>Report it without delay following the internal procedure, even if I am not sure it is an incident.</span></label>
+   </div>
+  </fieldset>
+  <label class="check"><input type="checkbox" name="pozdeji"><span>Flag this question for review</span></label>
+  <div class="exam-foot">
+   <a class="btn" href="#" aria-label="Previous question" style="flex:0 0 auto">{{I:sipka-vlevo}}</a>
+   <button class="btn btn--hlavni" type="submit">Next question {{I:sipka-vpravo}}</button>
+  </div>
+ </form>
+
+ <aside class="stack" aria-labelledby="prehled-h">
+  <h2 class="t-stitek" id="prehled-h">Questions</h2>
+  <nav class="qgrid" aria-label="Questions" style="grid-template-columns:repeat(auto-fill,44px)">
+   <a class="z" href="en-test-otazka-vice.html" aria-label="Question 1, answered">1</a><a class="z" href="#" aria-label="Question 2, answered">2</a><a class="z" href="en-test-otazka.html" aria-label="Question 3, answered">3</a><a class="z" href="#" aria-label="Question 4, answered">4</a><a class="p" href="#" aria-label="Question 5, flagged">5</a><a href="en-test-vypadek.html" aria-current="step" aria-label="Question 6, current">6</a><a href="#" aria-label="Question 7, not answered">7</a><a href="#" aria-label="Question 8, not answered">8</a><a href="#" aria-label="Question 9, not answered">9</a><a href="#" aria-label="Question 10, not answered">10</a><a href="#" aria-label="Question 11, not answered">11</a><a href="#" aria-label="Question 12, not answered">12</a>
+  </nav>
+  <p class="t-maly"><b class="t-ink">5 of 12</b> answered, 2 waiting to be sent<br><b class="t-ink">1</b> flagged</p>
+  <a class="btn btn--male" href="en-test-odevzdani.html">Review and submit</a>
+  <details class="faq">
+   <summary>How the test works</summary>
+   <div class="stack-2 t-maly">
+    <p>Your answers are saved automatically after every change.</p>
+    <p>Everyone gets a different version. Question numbers will not match your neighbour’s.</p>
+    <p>Monitoring is on: leaving the test window, leaving full screen, copying and pasting are recorded. No camera or microphone is used.</p>
+    <p>Opening this help does not leave the window.</p>
+   </div>
+  </details>
+ </aside>
+</main>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="max-width:1080px;margin:0 auto;padding:var(--s-5) var(--s-3) var(--s-7)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2">
+  <h3 class="t-stitek">Connection back</h3>
+  <div class="row"><p class="t-maly row" style="gap:var(--s-1)">{{I:check}}Saved 14:09</p></div>
+  <div class="alert alert--ok" role="status">{{I:check}}<p><b>You are back online.</b> All your answers are saved.</p></div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Offline for more than 5 minutes</h3>
+  <div class="alert" role="status">{{I:pozor}}<div><p class="alert__nadpis">You have been offline for 6 minutes.</p><p>Your answers are still in this browser. Has the outage cost you time? Tell your instructor. They can give you extra time.</p></div></div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Submitting without a connection</h3>
+  <div class="alert alert--info" role="status">{{I:info}}<div><p class="alert__nadpis">Your test will be submitted once the last 2 answers have been sent.</p><p>You do not need to do anything else. Do not close the window. What counts is the time you selected Submit test.</p></div></div>
+ </div>
+</section>

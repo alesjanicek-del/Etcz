@@ -1,0 +1,46 @@
+<!--meta {"titulek":"Question bank statistics","sablona":"app","role":"lektor","aktivni":"en-statistiky.html","demo":false,"lang":"en","cs_verze":"statistiky-soubor.html"} -->
+<!--spec {
+ "route":"/statistiky/soubor/:id (lang=en)","nazev":"Question bank statistics","role":"instructor (question authors the same – main users; organisation administrators see the breakdown for all branches)","sablona":"app",
+ "ucel":"Find questions that are too hard, too easy or appear in exams in an outdated version.",
+ "hlavni_akce":"Sort by success rate and open a problem question.",
+ "komponenty":["crumbs","page-head","alert","toolbar","select","table-wrap","table--stack","bar","stav","details"],
+ "stavy":["Same states as statistiky-soubor.html: no data (.alert--info “This question bank has not been in any submitted attempt yet.”), hidden (“< 5” / “hidden”), outdated version, loading/error, permissions."],
+ "zmeny_ux":["Layout identical to the Czech page. Badge “Outdated version” is slightly longer than “Neaktuální verze”; it wraps on mobile."],
+ "texty":[
+  {"dnes":"Souhrn za celou organizaci, včetně papírových pokusů, bez pokusů nanečisto. Údaje z cizích poboček s méně než 5 záznamy jsou skryté.","nove":"Summary for the whole organisation, including paper attempts and excluding trial runs. Data from other branches with fewer than 5 records is hidden.","proc":"EN glossary: trial run, branch."},
+  {"dnes":"Seřadit podle","nove":"Sort by","proc":"Standard UI label."},
+  {"dnes":"Úspěšnost (otázky)","nove":"Success rate","proc":"For questions: share of correct answers – differs from a test’s pass rate."},
+  {"dnes":"Neaktuální verze","nove":"Outdated version","proc":"Short badge."},
+  {"dnes":"Zařazena do variací","nove":"In test versions","proc":"EN glossary: test version."},
+  {"dnes":"skryto","nove":"hidden","proc":"Literal."}],
+ "pristupnost":["Same as the Czech page."],
+ "poznamky_pro_kodera":["Data as in statistiky-soubor.html.","Question text truncated to 120 characters with “…” – in English text is longer, so expect more truncation.","Glossary gap: Úspěšnost (otázky) → success rate; Úspěšnost (testu) → pass rate.","Glossary gap: Povinná (otázka) → Mandatory."],
+ "chybi_komponenta":["mini bar in a table cell"]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-statistiky.html">Statistics</a></li><li><span aria-current="page">Cyber security – user training</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Sample set: Cyber security – user training</h1><p class="t-maly measure">Summary for the whole organisation, including paper attempts and excluding trial runs. Data from other branches with fewer than 5 records is hidden.</p></div></div>
+
+<div class="toolbar">
+ <div class="field" style="min-width:220px"><label class="label" for="ss-razeni">Sort by</label><select class="select" id="ss-razeni"><option>Success rate, lowest first</option><option>Question number</option><option>Number of views</option></select></div>
+ <p class="t-maly">24 questions · 6 attempts</p>
+</div>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Questions in the bank, sorted by success rate, lowest first</caption>
+  <thead><tr><th scope="col" class="num">#</th><th scope="col">Question</th><th scope="col" class="num">Shown</th><th scope="col" class="num">Correct</th><th scope="col" style="min-width:170px">Success rate</th><th scope="col">Version</th></tr></thead>
+  <tbody>
+   <tr><td data-label="#" class="num">5</td><td data-label="Question"><span><a href="en-statistiky-otazka.html">An email that looks suspicious arrives in your work inbox…</a><span class="t-maly">Mandatory</span></span></td><td data-label="Shown" class="num">6</td><td data-label="Correct" class="num">2 / 6</td><td data-label="Success rate"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:33%"></span></span><span class="t-cislo">33.3%</span></span></td><td data-label="Version"><span class="stav stav--pozor">{{I:pozor}}Outdated version</span></td></tr>
+   <tr><td data-label="#" class="num">11</td><td data-label="Question"><a href="en-statistiky-otazka.html">How does spear phishing differ from ordinary mass phishing?</a></td><td data-label="Shown" class="num">6</td><td data-label="Correct" class="num">3 / 6</td><td data-label="Success rate"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:50%"></span></span><span class="t-cislo">50.0%</span></span></td><td data-label="Version">v1</td></tr>
+   <tr><td data-label="#" class="num">7</td><td data-label="Question"><a href="en-statistiky-otazka.html">“Technical support” of a well-known software vendor calls you…</a></td><td data-label="Shown" class="num">5</td><td data-label="Correct" class="num">3 / 5</td><td data-label="Success rate"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:60%"></span></span><span class="t-cislo">60.0%</span></span></td><td data-label="Version">v1</td></tr>
+   <tr><td data-label="#" class="num">1</td><td data-label="Question"><a href="en-statistiky-otazka.html">What does the term pretexting mean?</a></td><td data-label="Shown" class="num">6</td><td data-label="Correct" class="num">5 / 6</td><td data-label="Success rate"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:83%"></span></span><span class="t-cislo">83.3%</span></span></td><td data-label="Version">v1</td></tr>
+   <tr><td data-label="#" class="num">3</td><td data-label="Question"><span><a href="en-statistiky-otazka.html">In the car park outside the building you find a USB flash drive labelled “Payroll 2026”…</a><span class="t-maly">Mandatory</span></span></td><td data-label="Shown" class="num">6</td><td data-label="Correct" class="num">6 / 6</td><td data-label="Success rate"><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1;min-width:80px" aria-hidden="true"><span class="bar__fill" style="display:block;width:100%"></span></span><span class="t-cislo">100.0%</span></span></td><td data-label="Version">v1</td></tr>
+  </tbody>
+ </table>
+</div>
+<p class="t-maly" style="margin-top:var(--s-2)">Showing 5 of 24 questions. Views are counted only for online attempts.</p>
+<details class="faq" style="margin-top:var(--s-4)"><summary>By version and branch: question 5</summary><div>
+ <div class="table-wrap"><table class="table table--stack"><caption class="sr-only">Question 5 by version</caption>
+  <thead><tr><th scope="col">Version</th><th scope="col" class="num">In test versions</th><th scope="col" class="num">Shown (attempts)</th><th scope="col" class="num">Total views</th><th scope="col" class="num">Correct / scored</th></tr></thead>
+  <tbody><tr><td data-label="Version">v1 (4&nbsp;Sep 2026)</td><td data-label="In test versions" class="num">4</td><td data-label="Shown" class="num">4</td><td data-label="Views" class="num">5</td><td data-label="Correct" class="num">1 / 4</td></tr><tr><td data-label="Version">v2 (2&nbsp;Nov 2026) current</td><td data-label="In test versions" class="num">2</td><td data-label="Shown" class="num">2</td><td data-label="Views" class="num">2</td><td data-label="Correct" class="num">1 / 2</td></tr><tr><td data-label="Version">Other branches</td><td data-label="In test versions" class="num">hidden</td><td data-label="Shown" class="num">&lt;&nbsp;5</td><td data-label="Views" class="num">&lt;&nbsp;5</td><td data-label="Correct" class="num">hidden</td></tr></tbody></table></div>
+</div></details>

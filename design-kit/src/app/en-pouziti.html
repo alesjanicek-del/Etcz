@@ -1,0 +1,63 @@
+<!--meta {"titulek":"Test assignments","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false,"lang":"en","cs_verze":"pouziti.html"} -->
+<!--spec {
+ "route":"/pouziti (lang=en)","nazev":"Test assignments – English","role":"instructor","sablona":"app",
+ "ucel":"Overview of all test assignments (supervised in-room exams, codes, group assignments, links). From here the instructor opens the live monitor or the waiting room.",
+ "hlavni_akce":"Open the live monitor of an assignment (test name in the row); secondary: Use test (new assignment)",
+ "komponenty":["page-head","tabs","table-wrap","table--stack","stav","btn--male","empty","alert--info"],
+ "stavy":[
+  "Default: 7 open assignments from the demo (drawn).",
+  "Empty: “You have no open test assignments yet.” + link to Tests (drawn).",
+  "Including closed: second tab; closed ones have stav--neutral “Closed” and the closing date.",
+  "Loading: server-rendered; In progress / Submitted counts are a snapshot (live only in the live monitor).",
+  "No permission: the instructor sees their branch’s assignments; other instructors’ ones are read-only."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (pouziti.html).",
+  "Czech “použití” (one use of a test) is “test assignment” in EN – one row = one assignment.",
+  "Method names follow the EN glossary: Supervised in-room exam, Personal access codes, Assigned to a group, Public link. “Supervised in-room exam” wraps to two lines in the Method column – allowed."],
+ "texty":[
+  {"dnes":"Použití testů","nove":"Test assignments","proc":"Glossary: použití testu → test assignment."},
+  {"dnes":"Jedno zadání testu (zkouška, kódy, odkaz…) je jedno použití.","nove":"Each time you set a test (exam, codes, link…) is one test assignment.","proc":"Explains the term."},
+  {"dnes":"Prezenční zkouška","nove":"Supervised in-room exam","proc":"Glossary."},
+  {"dnes":"Osobní kódy","nove":"Personal access codes","proc":"Glossary."},
+  {"dnes":"Přiděleno","nove":"Assigned to a group","proc":"Glossary."},
+  {"dnes":"Veřejný odkaz","nove":"Public link","proc":"Glossary."},
+  {"dnes":"Píše · Odevzdalo","nove":"In progress · Submitted","proc":"Same terms as the live monitor summary."},
+  {"dnes":"Čekárna / Probíhá / Otevřeno / Uzavřeno","nove":"Waiting room / Running / Open / Closed","proc":"Glossary: čekárna → waiting room; status with icon + word."}],
+ "pristupnost":["Same as the Czech page: caption “Open test assignments (7)” (sr-only), data-label, row link = test name + sr-only label."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml; assignment labels are user data.",
+  "Date/time in EN: 3 Nov 18:27.",
+  "Note: “Assigned to a test taker” (single person) and “Assigned to a group” are the same method; label from the glossary."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Testing</p><h1 class="t-titulek">Test assignments</h1>
+  <p class="t-maly measure">Each time you set a test (exam, codes, link…) is one test assignment. Create a new one with Use test.</p></div>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="en-testy.html">{{I:prehrat}}Use test</a></div>
+</div>
+<nav class="tabs" aria-label="Filter test assignments" style="margin-bottom:var(--s-4);contain:inline-size">
+ <a href="en-pouziti.html" aria-current="page">Open (7)</a><a href="#">Including closed</a>
+</nav>
+
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Open test assignments (7)</caption>
+  <thead><tr><th scope="col">Test and label</th><th scope="col">Method</th><th scope="col" class="num">In progress</th><th scope="col" class="num">Submitted</th><th scope="col">Created</th><th scope="col">Status</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Test"><div><a href="en-cekarna-lektor.html"><b>Radiation protection – knowledge check</b><span class="sr-only">, Supervised exam – room 2</span></a><span class="t-maly">Supervised exam – room 2</span></div></td><td data-label="Method"><span class="row" style="gap:var(--s-2)">{{I:obrazovka}}Supervised in-room exam</span></td><td data-label="In progress" class="num">0</td><td data-label="Submitted" class="num">0</td><td data-label="Created"><span class="t-cislo">3 Nov 18:27</span></td><td data-label="Status"><span class="stav stav--pise">{{I:hodiny}}Waiting room</span></td></tr>
+   <tr><td data-label="Test"><div><a href="en-zivy-panel.html"><b>OHS – practice test</b><span class="sr-only">, Practice test on the website</span></a><span class="t-maly">Practice test on the website</span></div></td><td data-label="Method"><span class="row" style="gap:var(--s-2)">{{I:odkaz}}Public link</span></td><td data-label="In progress" class="num">3</td><td data-label="Submitted" class="num">4</td><td data-label="Created"><span class="t-cislo">3 Nov 18:27</span></td><td data-label="Status"><span class="stav stav--info">{{I:prehrat}}Running</span></td></tr>
+   <tr><td data-label="Test"><div><a href="en-zivy-panel.html"><b>Radiation protection – knowledge check</b><span class="sr-only">, Knowledge check – session 1</span></a><span class="t-maly">Knowledge check – session 1</span></div></td><td data-label="Method"><span class="row" style="gap:var(--s-2)">{{I:klic}}Personal access codes</span></td><td data-label="In progress" class="num">0</td><td data-label="Submitted" class="num">2</td><td data-label="Created"><span class="t-cislo">3 Nov 18:27</span></td><td data-label="Status"><span class="stav stav--neutral">Open</span></td></tr>
+   <tr><td data-label="Test"><div><a href="en-zivy-panel.html"><b>Cyber security – annual check</b><span class="sr-only">, Annual training – access codes</span></a><span class="t-maly">Annual training – access codes</span></div></td><td data-label="Method"><span class="row" style="gap:var(--s-2)">{{I:klic}}Personal access codes</span></td><td data-label="In progress" class="num">0</td><td data-label="Submitted" class="num">6</td><td data-label="Created"><span class="t-cislo">3 Nov 18:27</span></td><td data-label="Status"><span class="stav stav--neutral">Open</span></td></tr>
+   <tr><td data-label="Test"><div><a href="en-zivy-panel.html"><b>Radiation protection – knowledge check</b><span class="sr-only">, Assigned to a test taker (radiation protection)</span></a><span class="t-maly">Assigned to a test taker</span></div></td><td data-label="Method"><span class="row" style="gap:var(--s-2)">{{I:uzivatele}}Assigned to a group</span></td><td data-label="In progress" class="num">0</td><td data-label="Submitted" class="num">0</td><td data-label="Created"><span class="t-cislo">3 Nov 18:27</span></td><td data-label="Status"><span class="stav stav--neutral">Open</span></td></tr>
+   <tr><td data-label="Test"><div><a href="en-zivy-panel.html"><b>Cyber security – annual check</b><span class="sr-only">, Assigned to a test taker (cyber security)</span></a><span class="t-maly">Assigned to a test taker</span></div></td><td data-label="Method"><span class="row" style="gap:var(--s-2)">{{I:uzivatele}}Assigned to a group</span></td><td data-label="In progress" class="num">0</td><td data-label="Submitted" class="num">0</td><td data-label="Created"><span class="t-cislo">3 Nov 18:27</span></td><td data-label="Status"><span class="stav stav--neutral">Open</span></td></tr>
+   <tr><td data-label="Test"><div><a href="en-zivy-panel.html"><b>OHS – practice test</b><span class="sr-only">, Assigned to a test taker (OHS)</span></a><span class="t-maly">Assigned to a test taker</span></div></td><td data-label="Method"><span class="row" style="gap:var(--s-2)">{{I:uzivatele}}Assigned to a group</span></td><td data-label="In progress" class="num">0</td><td data-label="Submitted" class="num">0</td><td data-label="Created"><span class="t-cislo">3 Nov 18:27</span></td><td data-label="Status"><span class="stav stav--neutral">Open</span></td></tr>
+  </tbody>
+ </table>
+</div>
+<p class="t-maly" style="margin-top:var(--s-3)">Print batches are in the <a href="en-tisk.html">Print</a> section.</p>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">No open test assignment</p>
+ <div class="empty stack-2">{{I:prehrat}}<p><b>You have no open test assignments yet.</b></p><p class="t-maly">In the list of tests, select Use next to a test and choose how to run it.</p><p><a class="btn" href="en-testy.html">Go to tests</a></p></div>
+</section>

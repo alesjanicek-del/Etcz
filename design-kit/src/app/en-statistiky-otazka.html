@@ -1,0 +1,68 @@
+<!--meta {"titulek":"Question statistics","sablona":"app","role":"lektor","aktivni":"en-statistiky.html","demo":false,"lang":"en","cs_verze":"statistiky-otazka.html"} -->
+<!--spec {
+ "route":"/statistiky/otazka/:id (lang=en)","nazev":"Question statistics","role":"instructor (question authors the same, plus an Edit question link)","sablona":"app",
+ "ucel":"Show how test takers answer one question – so you can spot confusing or too easy answers.",
+ "hlavni_akce":"Read the answer distribution; go to edit the question.",
+ "komponenty":["crumbs","page-head","kpi","bar","table-wrap","table--stack","stav","tabs (versions)"],
+ "stavy":["Same states as statistiky-otazka.html: no data (“This question has not been in any submitted attempt yet.”), several versions, hidden (“< 5”), permissions."],
+ "zmeny_ux":["Layout identical to the Czech page. Answer texts are longer in English; the bar row wraps the label above the bar as in Czech."],
+ "texty":[
+  {"dnes":"Kolikrát zkoušení zvolili jednotlivé odpovědi. Počítají se odevzdané pokusy online i na papíře.","nove":"How many times test takers chose each answer. Submitted attempts online and on paper are counted.","proc":"EN glossary: test taker."},
+  {"dnes":"Jedna správná · Povinná","nove":"Single answer · Mandatory","proc":"Question type label; must match the question editor."},
+  {"dnes":"Otevřít otázku","nove":"Open question","proc":"Verb first."},
+  {"dnes":"Volby odpovědí","nove":"Answer choices","proc":"Plain term."},
+  {"dnes":"Metriky po verzích","nove":"Metrics by version","proc":"Literal."},
+  {"dnes":"Správná · ano / ne","nove":"Correct · yes / no","proc":"Literal."}],
+ "pristupnost":["Same as the Czech page; answer letter is part of the text (“A)”) as in Czech."],
+ "poznamky_pro_kodera":["Data as in statistiky-otazka.html.","Glossary gap: Jedna správná / Více správných → Single answer / Multiple answers (question type).","Glossary gap: vyhodnoceno → scored."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-statistiky.html">Statistics</a></li><li><a href="en-statistiky-soubor.html">Cyber security – user training</a></li><li><span aria-current="page">Question 5</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Question 5 · Single answer · Mandatory</p><h1 class="t-titulek">A suspicious email arrives in your work inbox</h1></div>
+ <div class="page-head__actions"><a class="btn" href="en-otazka-detail.html">Open question</a></div>
+</div>
+<p class="measure" style="margin-bottom:var(--s-4)">An email that looks suspicious arrives in your work inbox: an unexpected attachment and a prompt to click a link. What is the right thing to do?</p>
+
+<div class="kpi" style="margin-bottom:var(--s-5)">
+ <div><span class="t-cislo">6</span><span class="t-maly">shown (attempts)</span></div>
+ <div><span class="t-cislo">2 / 6</span><span class="t-maly">correct / scored</span></div>
+ <div><span class="t-cislo">33.3%</span><span class="t-maly">success rate</span></div>
+</div>
+
+<section class="stack" aria-labelledby="volby" style="margin-bottom:var(--s-5)">
+ <div class="stack-2"><h2 id="volby" class="t-nadpis">Answer choices</h2><p class="t-maly">How many times test takers chose each answer. Submitted attempts online and on paper are counted.</p></div>
+ <nav class="tabs" aria-label="Question version" style="contain:inline-size"><a href="#">Version 1</a><a href="#" aria-current="page">Version 2 (current)</a></nav>
+ <div class="stack">
+  <div class="bar" style="grid-template-columns:minmax(0,1fr)"><span>A) I delete the email permanently and tell no one.</span><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:33%"></span></span><span class="t-cislo">2 (33%)</span></span></div>
+  <div class="bar" style="grid-template-columns:minmax(0,1fr)"><span>B) I reply to the sender and ask whether they really sent the message.</span><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:17%"></span></span><span class="t-cislo">1 (17%)</span></span></div>
+  <div class="bar" style="grid-template-columns:minmax(0,1fr)"><span>C) I forward the email to everyone in my department to warn them.</span><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:17%"></span></span><span class="t-cislo">1 (17%)</span></span></div>
+  <div class="bar" style="grid-template-columns:minmax(0,1fr)"><span class="row" style="gap:var(--s-2)"><span>D) I do not open the attachment or link, and I report the email following the organisation’s internal procedure.</span><span class="stav stav--ok">{{I:check}}Correct</span></span><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1" aria-hidden="true"><span class="bar__fill" style="display:block;width:33%"></span></span><span class="t-cislo">2 (33%)</span></span></div>
+  <div class="bar" style="grid-template-columns:minmax(0,1fr)"><span>E) I open the attachment only on my work computer, because the company antivirus will catch it.</span><span class="row" style="gap:var(--s-2);flex-wrap:nowrap"><span class="bar__track" style="flex:1" aria-hidden="true"><span class="bar__fill bar__fill--pozor" style="display:block;width:0"></span></span><span class="t-cislo">0 (0%)</span></span></div>
+ </div>
+ <p class="t-maly">Solid bar = correct answer, hatched = incorrect. The frequent choice A shows that people do not know they should report a suspicious email.</p>
+ <div class="table-wrap"><table class="table table--stack">
+  <caption>Answer choices, version 2</caption>
+  <thead><tr><th scope="col">Answer</th><th scope="col">Correct</th><th scope="col" class="num">Chosen</th><th scope="col" class="num">Share</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Answer">A) I delete the email permanently…</td><td data-label="Correct">no</td><td data-label="Chosen" class="num">2</td><td data-label="Share" class="num">33%</td></tr>
+   <tr><td data-label="Answer">B) I reply to the sender…</td><td data-label="Correct">no</td><td data-label="Chosen" class="num">1</td><td data-label="Share" class="num">17%</td></tr>
+   <tr><td data-label="Answer">C) I forward the email to colleagues…</td><td data-label="Correct">no</td><td data-label="Chosen" class="num">1</td><td data-label="Share" class="num">17%</td></tr>
+   <tr><td data-label="Answer">D) I do not open the attachment and report…</td><td data-label="Correct"><b>yes</b></td><td data-label="Chosen" class="num">2</td><td data-label="Share" class="num">33%</td></tr>
+   <tr><td data-label="Answer">E) I open the attachment on my work computer…</td><td data-label="Correct">no</td><td data-label="Chosen" class="num">0</td><td data-label="Share" class="num">0%</td></tr>
+  </tbody>
+ </table></div>
+</section>
+
+<section class="stack" aria-labelledby="verze">
+ <h2 id="verze" class="t-nadpis">Metrics by version</h2>
+ <div class="table-wrap" tabindex="0" role="region" aria-label="Question versions table (scrollable)"><table class="table table--stack">
+  <caption class="sr-only">Question metrics by version</caption>
+  <thead><tr><th scope="col">Version</th><th scope="col" class="num">In test versions</th><th scope="col" class="num">Shown (attempts)</th><th scope="col" class="num">Total views</th><th scope="col" class="num">Correct / scored</th><th scope="col" class="num">Success rate</th></tr></thead>
+  <tbody>
+   <tr><td data-label="Version"><b>All versions</b></td><td data-label="In test versions" class="num">6</td><td data-label="Shown" class="num">6</td><td data-label="Views" class="num">7</td><td data-label="Correct" class="num">2 / 6</td><td data-label="Success rate" class="num">33.3%</td></tr>
+   <tr><td data-label="Version">v1 (4&nbsp;Sep 2026)</td><td data-label="In test versions" class="num">4</td><td data-label="Shown" class="num">4</td><td data-label="Views" class="num">5</td><td data-label="Correct" class="num">1 / 4</td><td data-label="Success rate" class="num">25.0%</td></tr>
+   <tr><td data-label="Version">v2 (2&nbsp;Nov 2026) current</td><td data-label="In test versions" class="num">2</td><td data-label="Shown" class="num">2</td><td data-label="Views" class="num">2</td><td data-label="Correct" class="num">1 / 2</td><td data-label="Success rate" class="num">50.0%</td></tr>
+  </tbody>
+ </table></div>
+</section>

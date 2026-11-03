@@ -1,0 +1,67 @@
+<!--meta {"titulek":"Overview","sablona":"app","role":"admin","aktivni":"en-admin-prehled.html","demo":false,"lang":"en","cs_verze":"admin-prehled.html"} -->
+<!--spec {
+ "route":"/ (lang=en)","nazev":"Overview – branch administrator","role":"branch administrator","sablona":"app",
+ "ucel":"After sign-in, show the branch administrator what is waiting for them (approvals), what is running now and how recent exams turned out.",
+ "hlavni_akce":"Start testing; deal with questions pending approval.",
+ "komponenty":["page-head","alert","kpi","card","card__head","table-wrap","table--stack","grid-3","stav"],
+ "stavy":["Same states as admin-prehled.html: nothing pending approval, nothing running (“No testing is running right now.”), first sign-in (“Start here” card), loading/error, role differences."],
+ "zmeny_ux":["Layout identical to the Czech page. Three page-head buttons are slightly longer in English; they wrap to a second row on tablet widths, as in Czech."],
+ "texty":[
+  {"dnes":"Dobrý den, Barbora","nove":"Hello, Barbora","proc":"Friendly, neutral greeting at any time of day."},
+  {"dnes":"Spustit zkoušení","nove":"Start testing","proc":"Verb first."},
+  {"dnes":"1 otázka čeká na vaše schválení. · Zobrazit otázky ke schválení","nove":"1 question is waiting for your approval. · Show questions pending approval","proc":"EN glossary: pending approval."},
+  {"dnes":"právě píše · odevzdáno dnes · nesplnilo – k řešení","nove":"writing now · submitted today · not passed – to follow up","proc":"Same words as Results."},
+  {"dnes":"Živý panel: název použití","nove":"Live monitor: assignment name","proc":"EN glossary; link purpose (WCAG 2.4.4)."},
+  {"dnes":"Veřejný odkaz / Osobní kódy / Prezenční zkouška","nove":"Public link / Personal access codes / Supervised in-room exam","proc":"EN glossary."},
+  {"dnes":"Správa pobočky","nove":"Branch admin","proc":"Same as the menu section (APP_EN)."}],
+ "pristupnost":["Same as the Czech page. Czech names wrapped in lang=\"cs\"."],
+ "poznamky_pro_kodera":["Data as in admin-prehled.html.","Greeting: use the user’s first name; no gendered vocative in English.","Glossary gap: zkoušení (activity) → testing.","Glossary gap: studující (role) → student."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <h1 class="t-titulek">Hello, Barbora</h1>
+ <div class="page-head__actions"><a class="btn" href="en-otazka-editor.html">{{I:plus}}New question</a><a class="btn" href="en-test-novy.html">{{I:plus}}New test</a><a class="btn btn--hlavni" href="en-pouziti-nove.html">{{I:prehrat}}Start testing</a></div>
+</div>
+
+<div class="alert" style="margin-bottom:var(--s-4)">{{I:pozor}}<p><b>1 question is waiting for your approval.</b> <a href="en-ke-schvaleni.html">Show questions pending approval</a></p></div>
+
+<div class="kpi" style="margin-bottom:var(--s-5)">
+ <div><span class="t-cislo">3</span><span class="t-maly">writing now</span></div>
+ <div><span class="t-cislo">8</span><span class="t-maly">submitted today</span></div>
+ <div><span class="t-cislo">3</span><span class="t-maly">not passed – to follow up</span></div>
+</div>
+
+<section class="card" aria-labelledby="prob" style="margin-bottom:var(--s-5)">
+ <div class="card__head"><h2 id="prob" class="t-nadpis">Testing in progress</h2><a href="en-pouziti.html">All test assignments (7)</a></div>
+ <div class="table-wrap" style="border:0">
+  <table class="table table--stack"><caption class="sr-only">Testing in progress, 4 of 7</caption>
+   <thead><tr><th scope="col">Test</th><th scope="col">Method</th><th scope="col" class="num">Writing</th><th scope="col" class="num">Submitted</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+   <tbody>
+    <tr><td data-label="Test"><span><b>Radiation protection – knowledge check</b><span class="t-maly">Room 2</span></span></td><td data-label="Method">Supervised in-room exam</td><td data-label="Writing" class="num">3</td><td data-label="Submitted" class="num">4</td><td data-label="Actions"><a href="en-zivy-panel.html">Live monitor<span class="sr-only">: Radiation protection, room 2</span></a></td></tr>
+    <tr><td data-label="Test"><span><b>Cyber security</b><span class="t-maly">Annual training</span></span></td><td data-label="Method">Personal access codes</td><td data-label="Writing" class="num">0</td><td data-label="Submitted" class="num">6</td><td data-label="Actions"><a href="en-zivy-panel.html">Live monitor<span class="sr-only">: Cyber security, annual training</span></a></td></tr>
+    <tr><td data-label="Test"><span><b>Radiation protection – knowledge check</b><span class="t-maly">Session 1</span></span></td><td data-label="Method">Personal access codes</td><td data-label="Writing" class="num">0</td><td data-label="Submitted" class="num">2</td><td data-label="Actions"><a href="en-zivy-panel.html">Live monitor<span class="sr-only">: Radiation protection, session 1</span></a></td></tr>
+    <tr><td data-label="Test"><span><b>Health and safety – practice test</b><span class="t-maly">Practice test on the website</span></span></td><td data-label="Method">Public link</td><td data-label="Writing" class="num">0</td><td data-label="Submitted" class="num">0</td><td data-label="Actions"><a href="en-zivy-panel.html">Live monitor<span class="sr-only">: Health and safety, practice test on the website</span></a></td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<div class="grid-2" style="align-items:start">
+ <section class="card stack" aria-labelledby="posl">
+  <div class="card__head" style="margin:0"><h2 id="posl" class="t-nadpis">Latest results</h2><a href="en-vysledky.html">Branch results</a></div>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li class="row-between"><span><a href="en-vysledek-detail.html" lang="cs">Radek Beneš</a><span class="t-maly" style="display:block">Cyber security · 81.3%</span></span><span class="stav stav--ok">{{I:check}}Passed</span></li>
+   <li class="row-between"><span><a href="en-vysledek-detail.html" lang="cs">Ondřej Malý</a><span class="t-maly" style="display:block">Cyber security · 100.0%</span></span><span class="stav stav--ok">{{I:check}}Passed</span></li>
+   <li class="row-between"><span><a href="en-vysledek-detail.html" lang="cs">Simona Králová</a><span class="t-maly" style="display:block">Cyber security · 77.8%</span></span><span class="stav stav--ne">{{I:minus-kruh}}Not passed</span></li>
+   <li class="row-between"><span><a href="en-vysledek-detail.html" lang="cs">Michaela Fialová</a><span class="t-maly" style="display:block">Radiation protection · 90.3%</span></span><span class="stav stav--ok">{{I:check}}Passed</span></li>
+  </ul>
+ </section>
+ <section class="card stack" aria-labelledby="sprava">
+  <h2 id="sprava" class="t-nadpis">Branch admin</h2>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li class="row-between"><span><a href="en-uzivatele.html">Users</a><span class="t-maly" style="display:block">Instructors, authors and students in the branch</span></span><span class="t-cislo">3</span></li>
+   <li class="row-between"><span><a href="en-skupiny.html">Student groups</a><span class="t-maly" style="display:block">To assign a test to many people at once</span></span><span class="t-cislo">0</span></li>
+   <li class="row-between"><span><a href="en-audit.html">Change log</a><span class="t-maly" style="display:block">Who changed or downloaded what, and when</span></span><span class="t-cislo">115</span></li>
+  </ul>
+ </section>
+</div>
