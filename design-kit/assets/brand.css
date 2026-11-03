@@ -395,3 +395,11 @@ legend{padding:0;font-weight:var(--w-tucne)}
 .skeleton{display:block;height:14px;background:linear-gradient(90deg,var(--c-linka),var(--c-papir),var(--c-linka));background-size:200% 100%;animation:sk 1.4s linear infinite}
 @keyframes sk{to{background-position:-200% 0}}
 @media (max-width:1023px){.layout-aside>.toc{order:-1}}
+/* ---------- Doplňky v1.3 (zkoušený, tisk) ---------- */
+.option{position:relative}
+.option input{inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.kpi{gap:var(--b-silna);background:var(--c-grafit)}
+.kpi>div,.kpi>div:last-child{border:0;background:var(--c-bila)}
+@media (max-width:639px){.kpi>div{border:0}}
+@media (max-width:479px){.exam-foot{flex-wrap:wrap}.stav{white-space:normal}}
+.conn-bar{position:sticky;top:0;z-index:9;background:var(--c-zvyraznovac-svetly);border-bottom:var(--b-silna) solid var(--c-zvyraznovac);padding:var(--s-2) var(--s-3)}

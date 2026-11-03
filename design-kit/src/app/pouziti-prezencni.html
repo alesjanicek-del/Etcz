@@ -38,7 +38,7 @@
 </div>
 
 <div class="stack-4" style="max-width:var(--max-text)">
- <form class="card stack-4" action="cekarna-lektor.html" method="post">
+ <form class="card stack-4" action="cekarna-lektor.html" method="post" style="contain:inline-size">
   <div class="field"><label class="label" for="oznaceni">Označení</label><span class="hint" id="oznaceni-h">Podle něj zkoušku najdete ve výsledcích. Například „Učebna 2 – dopoledne“.</span><input class="input" id="oznaceni" name="oznaceni" value="Prezenční zkouška 3. 11. 2026" aria-describedby="oznaceni-h"></div>
   <div class="field"><label class="label" for="prodl">Prodloužit časový limit všem</label><span class="hint" id="prodl-h">Jednotlivému zkoušenému prodloužíte čas v živém panelu. Limit se zaokrouhlí nahoru na celé minuty.</span>
    <select class="select" id="prodl" name="prodl" aria-describedby="prodl-h" style="max-width:240px"><option>Bez prodloužení</option><option>+25&nbsp;%</option><option>+50&nbsp;%</option><option>+100&nbsp;%</option></select></div>
@@ -57,7 +57,7 @@
  </form>
 </div>
 
-<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text);contain:inline-size" aria-labelledby="dalsi">
  <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
  <p class="t-stitek">Chyba: prázdné označení</p>
  <div class="field"><label class="label" for="oznaceni-x">Označení</label><span class="error" id="oznaceni-x-e">{{I:pozor}}Vyplňte označení zkoušky.</span><input class="input" id="oznaceni-x" aria-invalid="true" aria-describedby="oznaceni-x-e"></div>

@@ -1,0 +1,144 @@
+<!--meta {"titulek":"Otázka č. 10","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false} -->
+<!--spec {
+ "route":"/otazky/:id","nazev":"Otázka – detail","role":"lektor, autor otázek, administrátor; akce podle práva k souboru a role schvalovatele","sablona":"app",
+ "ucel":"Ukázat otázku tak, jak je uložená (se správnými odpověďmi, zpětnou vazbou, štítky a poznámkou), její stav a verzi, a nabídnout úpravu, náhled, historii a přesun.",
+ "hlavni_akce":"Upravit otázku; vedlejší: Náhled pro zkoušeného, Historie, Kopírovat / Přesunout do souboru",
+ "komponenty":["crumbs","page-head","meta","stav","layout-aside","card","option (jen pro čtení)","dl","field","select","alert","dialog","btn--nebezpecne"],
+ "stavy":[
+  "výchozí (právo Editace): Upravit, Náhled pro zkoušeného, Historie; v bočním panelu Použití a Další akce",
+  "právo Čtení: bez Upravit, Přesunout a Do koše; Kopírovat do souboru jen do souborů, kde má uživatel Editaci",
+  "Ke schválení – pohled schvalovatele (administrátor): nahoře panel Schválit / Vrátit do konceptu s komentářem pro autora",
+  "Vráceno do konceptu: alert s komentářem schvalovatele a tlačítkem Opravit otázku",
+  "po uložení: alert--ok „Uloženo jako verze 2. Čeká na schválení.“",
+  "v koši: alert--info s Obnovit; akce úprav skryté",
+  "Přesunout: potvrzení, že se odeberou štítky ze seznamů původního souboru",
+  "bez oprávnění: bez práva k souboru → 403"],
+ "zmeny_ux":[
+  "Vlastnosti otázky (typ, body, pořadí odpovědí) jako štítky nad zadáním; stav otázky ikonou + slovem u nadpisu.",
+  "Odpovědi vypadají jako v testu (kroužek s písmenem), správná má zvýraznění, stín a štítek ✓ Správná – ne jen text „✓ Správná“ pod odpovědí.",
+  "Obrázek v zadání zobrazuje i svůj popis pro čtečku (rozbalovací Popis obrázku) – autor i schvalovatel zkontrolují alt text.",
+  "Další akce (kopírovat, přesunout, do koše) jsou v bočním panelu, odděleně od obsahu; Do koše je poslední a nebezpečné.",
+  "Použití otázky (testy, kopie) je v panelu s odkazy, ne v řádku textu."],
+ "texty":[
+  {"dnes":"Verze 1 · Adam Autor · 4. 9. 2026 04:00 · Autor: Adam Autor · Externí ID: BOZP-001","nove":"Verze 1 · Autor Adam Autor · Upraveno 4. 9. 2026 04:00 · Externí ID RO-010","proc":"Bez opakovaného jména; každý údaj se štítkem."},
+  {"dnes":"JEDNA SPRÁVNÁ ODPOVĚĎ · 1 BOD · PEVNÉ POŘADÍ ODPOVĚDÍ","nove":"Štítky: Jedna správná odpověď · 1 bod · Pevné pořadí odpovědí","proc":"Ponecháno, jako samostatné štítky."},
+  {"dnes":"Soubor je použit v testech: 1 · kopie otázky v jiných souborech: 0","nove":"Použití: Testy se souborem 1 · Kopie v jiných souborech 0","proc":"Přehledněji v panelu."},
+  {"dnes":"Reakce na správnou odpověď","nove":"Zpětná vazba při správné odpovědi","proc":"Stejné slovo jako v editoru."},
+  {"dnes":"Kopírovat / Přesunout / Do koše","nove":"Kopírovat otázku / Přesunout otázku / Přesunout do koše","proc":"Tlačítko říká, co se stane."}],
+ "pristupnost":[
+  "Odpovědi jsou seznam ol; správná má v textu „Správná odpověď“ (ikona + slovo), ne jen barvu nebo stín.",
+  "Obrázek má alt z editoru; popis je i viditelně v details pro kontrolu.",
+  "Selecty Kopírovat do / Přesunout do mají vlastní label; tlačítka mají jedinečný text.",
+  "Nadpisy: H1 Otázka č. 10, H2 Obsah otázky / Zpětná vazba / Štítky a poznámka / Použití / Další akce."],
+ "poznamky_pro_kodera":[
+  "Data: otázka RO-010 z demo souboru Radiační ochrana – základní principy.",
+  "Přesun odebere štítky ze seznamů původního souboru (upozornit v potvrzení).",
+  "Kopie otázky v jiném souboru je samostatná otázka – úpravy originálu se do ní nepromítnou.",
+  "Podle role: schvalovatel (administrátor organizace, případně administrátor pobočky, pokud to organizace povolí) vidí u stavu Ke schválení tlačítko Schválit."],
+ "chybi_komponenta":["odpověď jen pro čtení s označením správné (option bez input) – použito .option + inline cursor:default"]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="soubory.html">Soubory otázek</a></li><li><a href="soubor-detail.html">Radiační ochrana – základní principy</a></li><li><span aria-current="page">Otázka č. 10</span></li></ol></nav>
+
+<div class="page-head">
+ <div class="stack-2">
+  <div class="row" style="gap:var(--s-2)"><h1 class="t-titulek">Otázka č. 10</h1><span class="stav stav--ok">{{I:check}}Schválená</span></div>
+  <dl class="meta"><div><dt>Verze</dt><dd>1</dd></div><div><dt>Autor</dt><dd>Adam Autor</dd></div><div><dt>Upraveno</dt><dd>4. 9. 2026 04:00</dd></div><div><dt>Externí ID</dt><dd class="t-kod">RO-010</dd></div></dl>
+ </div>
+ <div class="page-head__actions">
+  <a class="btn" href="otazka-historie.html">{{I:obnovit}}Historie</a>
+  <a class="btn" href="otazka-nahled.html">{{I:oko}}Náhled pro zkoušeného</a>
+  <a class="btn btn--hlavni" href="otazka-editor.html">{{I:upravit}}Upravit otázku</a>
+ </div>
+</div>
+
+<div class="layout-aside">
+ <div class="stack-4">
+  <section class="card stack-4" aria-labelledby="obsah-h">
+   <div class="row-between"><h2 id="obsah-h" class="t-nadpis">Obsah otázky</h2>
+    <ul class="row" style="gap:var(--s-2)" aria-label="Vlastnosti otázky"><li><span class="stav stav--neutral">Jedna správná odpověď</span></li><li><span class="stav stav--neutral">1 bod</span></li><li><span class="stav stav--neutral">Pevné pořadí odpovědí</span></li></ul></div>
+   <p class="t-nadpis">Obrázek schematicky znázorňuje pronikavost tří druhů ionizujícího záření. Která šipka odpovídá záření <b>alfa</b>?</p>
+   <figure class="stack-2" style="max-width:600px">
+    <img src="../assets/img/otazka-pronikavost-zareni.png" width="600" height="345" style="height:auto;border:var(--b-tenka) solid var(--c-linka);background:var(--c-bila)" alt="Schéma: zdroj záření vlevo, vpravo za sebou list papíru, hliníkový plech tloušťky několika milimetrů a silný blok olova. Ze zdroje vycházejí tři šipky označené 1, 2 a 3, každá končí nebo je zeslabena u jiné překážky.">
+    <figcaption class="faq"><details><summary class="t-maly">Popis obrázku pro čtečku (informativní)</summary><div><p class="t-maly">Schéma: zdroj záření vlevo, vpravo za sebou list papíru, hliníkový plech tloušťky několika milimetrů a silný blok olova. Ze zdroje vycházejí tři šipky označené 1, 2 a 3, každá končí nebo je zeslabena u jiné překážky.</p></div></details></figcaption>
+   </figure>
+   <ol class="stack-2" style="list-style:none;padding:0" aria-label="Odpovědi">
+    <li class="option" style="cursor:default;background:var(--c-zvyraznovac-svetly);box-shadow:var(--stin-tvrdy)"><span class="option__bub" style="background:var(--c-grafit);color:var(--c-zvyraznovac)" aria-hidden="true">A</span><span class="row-between" style="flex:1"><span>šipka 1</span><span class="stav stav--ok">{{I:check}}Správná odpověď</span></span></li>
+    <li class="option" style="cursor:default"><span class="option__bub" aria-hidden="true">B</span><span>šipka 2</span></li>
+    <li class="option" style="cursor:default"><span class="option__bub" aria-hidden="true">C</span><span>šipka 3</span></li>
+    <li class="option" style="cursor:default"><span class="option__bub" aria-hidden="true">D</span><span>ze schématu to nelze určit</span></li>
+   </ol>
+  </section>
+
+  <section class="card stack" aria-labelledby="zv-h">
+   <h2 id="zv-h" class="t-nadpis">Zpětná vazba</h2>
+   <dl class="dl">
+    <dt>Při správné odpovědi</dt><dd class="stack-2"><p>Správně.</p><p>Částice alfa zastaví už list papíru (nebo povrchová vrstva kůže). Záření beta zastaví několik milimetrů hliníku, záření gama se v olovu jen zeslabuje.</p></dd>
+    <dt>Při chybné odpovědi</dt><dd>Částice alfa zastaví už list papíru (nebo povrchová vrstva kůže). Záření beta zastaví několik milimetrů hliníku, záření gama se v olovu jen zeslabuje.</dd>
+   </dl>
+  </section>
+
+  <section class="card stack" aria-labelledby="st-h">
+   <h2 id="st-h" class="t-nadpis">Štítky a poznámka</h2>
+   <dl class="dl">
+    <dt>Okruhy</dt><dd><span class="stav stav--neutral">Druhy záření</span></dd>
+    <dt>Obtížnost</dt><dd><span class="stav stav--neutral">Základní</span></dd>
+    <dt>Interní poznámka</dt><dd class="stack-2"><p>Zdroj: ICRP Publication 103; IAEA GSR Part 3 (obecné fyzikální principy)</p><p class="t-maly">Zkoušený poznámku nikdy neuvidí.</p></dd>
+   </dl>
+  </section>
+ </div>
+
+ <aside class="stack-4" aria-label="Použití a další akce">
+  <section class="card card--tenka stack-2" aria-labelledby="pou-h">
+   <h2 id="pou-h" class="t-nadpis">Použití</h2>
+   <dl class="dl" style="grid-template-columns:1fr auto">
+    <dt>Testy se souborem</dt><dd class="t-cislo"><a href="testy.html">1</a></dd>
+    <dt>Kopie v jiných souborech</dt><dd class="t-cislo">0</dd>
+   </dl>
+   <p><a href="statistiky-otazka.html">Statistiky otázky</a></p>
+  </section>
+
+  <section class="card card--tenka stack" aria-labelledby="akce-h">
+   <h2 id="akce-h" class="t-nadpis">Další akce</h2>
+   <form class="stack-2">
+    <div class="field"><label class="label" for="kop">Kopírovat do souboru</label><select class="select" id="kop"><option>BOZP – školení zaměstnanců</option><option>Kybernetická bezpečnost – školení uživatelů</option></select></div>
+    <button class="btn btn--male" type="button">{{I:kopirovat}}Kopírovat otázku</button>
+   </form>
+   <hr class="rule-tenka">
+   <form class="stack-2">
+    <div class="field"><label class="label" for="pres">Přesunout do souboru</label><select class="select" id="pres" aria-describedby="pres-h"><option>BOZP – školení zaměstnanců</option><option>Kybernetická bezpečnost – školení uživatelů</option></select><span class="hint" id="pres-h">Odeberou se štítky ze seznamů tohoto souboru.</span></div>
+    <button class="btn btn--male" type="button">{{I:sipka-vpravo}}Přesunout otázku</button>
+   </form>
+   <hr class="rule-tenka">
+   <button class="btn btn--male btn--nebezpecne" type="button">{{I:smazat}}Přesunout do koše</button>
+  </section>
+ </aside>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+
+ <div class="stack">
+  <h3 class="t-stitek">Po uložení úpravy</h3>
+  <div class="alert alert--ok" role="status">{{I:check}}<p>Uloženo jako verze 2. Otázka čeká na schválení – do testů zatím jde verze 1.</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Ke schválení – pohled schvalovatele</h3>
+  <form class="card card--papir stack">
+   <div class="row-between"><p class="t-nadpis">Otázka čeká na schválení</p><span class="stav stav--pise">{{I:hodiny}}Ke schválení</span></div>
+   <p>Verzi 2 odeslal Adam Autor 3. 11. 2026. <a href="otazka-historie.html">Porovnat s verzí 1</a></p>
+   <div class="field"><label class="label" for="kom">Komentář pro autora <span class="volitelne">(nepovinné, povinné při vrácení)</span></label><textarea class="textarea" id="kom" style="min-height:96px"></textarea></div>
+   <div class="row"><button class="btn btn--hlavni" type="button">{{I:check}}Schválit verzi 2</button><button class="btn" type="button">Vrátit do konceptu</button></div>
+  </form>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Právo Čtení</h3>
+  <div class="card stack-2"><div class="row-between"><p class="t-nadpis">Otázka č. 10</p><div class="row"><a class="btn" href="otazka-historie.html">Historie<span class="sr-only"> (jen čtení)</span></a><a class="btn" href="otazka-nahled.html">Náhled<span class="sr-only"> (jen čtení)</span></a></div></div><p class="t-maly">Máte právo Čtení. Otázku upravuje vlastník souboru nebo kdo má Editaci.</p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Otázka v koši</h3>
+  <div class="alert alert--info">{{I:info}}<div class="stack-2"><p>Otázka je v koši od 28. 10. 2026. Trvale se smaže 27. 11. 2026.</p><p><button class="btn btn--male" type="button">{{I:obnovit}}Obnovit otázku</button></p></div></div>
+ </div>
+</section>
