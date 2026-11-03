@@ -1,0 +1,95 @@
+<!--meta {"titulek":"My tests","sablona":"app","role":"zkouseny","aktivni":"en-moje-testy.html","demo":false,"lang":"en","cs_verze":"moje-testy.html"} -->
+<!--spec {
+ "route":"/moje-testy (lang=en)","nazev":"My tests","role":"test taker (learner with an account)","sablona":"app",
+ "ucel":"A learner with an account sees the tests their instructor has assigned to them. For each one they can tell at once what to expect and whether they can start it.",
+ "hlavni_akce":"Start or continue an assigned test",
+ "komponenty":["page-head","card--tenka","stav","meta","btn","btn--hlavni","empty","alert"],
+ "stavy":["Same states as the Czech page (moje-testy.html): list, not open yet, no longer available, empty, loading error, loading, no permission."],
+ "zmeny_ux":[
+  "Layout and behaviour as in the Czech version (moje-testy.html).",
+  "Status labels are shorter or equal in English (In progress, Ready to start, Opens 15 Jan 2027, Not available) – they still fit on one line at 320 px.",
+  "Button labels grow by 10–20% (Continue test, Start test); they wrap below the card text on mobile as in Czech.",
+  "Dates follow the EN format: 15 Jan 2027, 09:00."],
+ "texty":[
+  {"dnes":"Pokračovat v testu","nove":"Continue test + hidden “: test name”","proc":"Verb first; link purpose for screen readers (WCAG 2.4.4)."},
+  {"dnes":"Zahájit test","nove":"Start test","proc":"Verb first; no “please”."},
+  {"dnes":"Rozpracovaný","nove":"In progress","proc":"Common status term in exam UIs."},
+  {"dnes":"K vyplnění","nove":"Ready to start","proc":"Says what the test taker can do; “To be completed” sounds like an instruction."},
+  {"dnes":"Zbývá · Pokus · Dohled zapnutý","nove":"Time left · Attempt · Monitoring: on","proc":"EN glossary: attempt, monitoring (not proctoring)."},
+  {"dnes":"Limit 15 min · bez časového limitu","nove":"Time limit 15 min · No time limit","proc":"“Limit” alone is unclear in English."},
+  {"dnes":"Od 15. 1. 2027","nove":"Opens 15 Jan 2027","proc":"EN date format; a verb makes the short status readable."},
+  {"dnes":"Máte přístupový kód? Zadat kód","nove":"Have an access code? Enter code","proc":"EN glossary: access code."},
+  {"dnes":"Testy, které vám přidělil lektor.","nove":"Tests your instructor has assigned to you.","proc":"EN glossary: instructor; second person."}],
+ "pristupnost":[
+  "Same as the Czech page: list of cards as ul, H2 per test, hidden test name in buttons, status as icon + word, metadata as dl.meta.",
+  "Test names and the user name stay Czech where the data is Czech; the coder marks them with lang=\"cs\" (here only the user name in the header is Czech data)."],
+ "poznamky_pro_kodera":[
+  "Strings from translations/*+intl-icu.en.yaml; do not hard-code.",
+  "Test names come from data in the organisation’s language. They are translated here only to show the layout; with Czech data, wrap them in lang=\"cs\".",
+  "Sorting and data as on the Czech page.",
+  "Glossary gap: Rozpracovaný → In progress",
+  "Glossary gap: K vyplnění → Ready to start",
+  "Glossary gap: úřední zkouška → official exam"],
+ "chybi_komponenta":["list item card (name, status, metadata, action on the right) – built from .card--tenka + .row-between + .meta, as in Czech"]
+} -->
+<div class="page-head">
+ <div class="stack-2">
+  <h1 class="t-titulek">My tests</h1>
+  <p class="t-maly">Tests your instructor has assigned to you.</p>
+ </div>
+</div>
+
+<ul class="stack" style="max-width:960px">
+ <li class="card card--tenka row-between" style="gap:var(--s-4)">
+  <div class="stack-2" style="flex:1 1 320px">
+   <p><span class="stav stav--pise">{{I:hodiny}}In progress</span></p>
+   <h2 class="t-nadpis">Cyber security: annual check</h2>
+   <dl class="meta"><div><dt>Time left</dt><dd class="t-cislo">9&nbsp;min</dd></div><div><dt>Attempt</dt><dd>1 of 3</dd></div><div><dt>Monitoring</dt><dd>on</dd></div></dl>
+  </div>
+  <a class="btn btn--hlavni" href="en-test-otazka.html">Continue test<span class="sr-only">: Cyber security: annual check</span></a>
+ </li>
+ <li class="card card--tenka row-between" style="gap:var(--s-4)">
+  <div class="stack-2" style="flex:1 1 320px">
+   <p><span class="stav stav--info">{{I:prehrat}}Ready to start</span></p>
+   <h2 class="t-nadpis">Radiation protection: knowledge check (official, ZOZ type)</h2>
+   <dl class="meta"><div><dt>Time limit</dt><dd class="t-cislo">30&nbsp;min</dd></div><div><dt>Attempt</dt><dd>1 of 1</dd></div><div><dt>Type</dt><dd>official exam</dd></div></dl>
+  </div>
+  <a class="btn" href="en-test-start.html">Start test<span class="sr-only">: Radiation protection: knowledge check</span></a>
+ </li>
+ <li class="card card--tenka row-between" style="gap:var(--s-4)">
+  <div class="stack-2" style="flex:1 1 320px">
+   <p><span class="stav stav--info">{{I:prehrat}}Ready to start</span></p>
+   <h2 class="t-nadpis">Health and safety: practice test</h2>
+   <dl class="meta"><div><dt>Time limit</dt><dd>No time limit</dd></div><div><dt>Type</dt><dd>practice test</dd></div></dl>
+  </div>
+  <a class="btn" href="en-test-start.html">Start test<span class="sr-only">: Health and safety: practice test</span></a>
+ </li>
+</ul>
+
+<p style="margin-top:var(--s-4)"><a href="en-kod.html">Have an access code? Enter code</a></p>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="margin-top:var(--s-6);max-width:960px">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2">
+  <h3 class="t-stitek">Empty list</h3>
+  <div class="empty stack-2">{{I:soubor}}<p><b>You have no tests assigned yet.</b></p><p class="t-maly">When your instructor assigns you a test, you will find it here. Have an access code? <a href="en-kod.html">Enter access code</a></p></div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Loading error</h3>
+  <div class="alert alert--chyba" role="alert">{{I:pozor}}<div class="stack-2"><p><b>Your tests could not be loaded.</b> Try again in a moment.</p><p><button class="btn btn--male" type="button">Try again</button></p></div></div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Test not open yet</h3>
+  <div class="card card--tenka row-between">
+   <div class="stack-2"><p><span class="stav stav--neutral">{{I:kalendar}}Opens 15&nbsp;Jan&nbsp;2027</span></p><h4 class="t-nadpis">Radiation protection: knowledge check (official, ZOZ type)</h4></div>
+   <p class="t-maly">You can start the test from 15&nbsp;Jan&nbsp;2027, 09:00.</p>
+  </div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Test no longer available</h3>
+  <div class="card card--tenka row-between">
+   <div class="stack-2"><p><span class="stav stav--neutral">{{I:minus-kruh}}Not available</span></p><h4 class="t-nadpis">Health and safety: practice test</h4></div>
+   <p class="t-maly">The test closed on 30&nbsp;Oct&nbsp;2026. Contact your instructor.</p>
+  </div>
+ </div>
+</section>

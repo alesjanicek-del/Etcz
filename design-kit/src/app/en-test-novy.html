@@ -1,0 +1,72 @@
+<!--meta {"titulek":"New test","sablona":"app","role":"lektor","aktivni":"testy.html","demo":false,"lang":"en","cs_verze":"test-novy.html"} -->
+<!--spec {
+ "route":"/testy/novy (lang=en)","nazev":"New test – English","role":"instructor","sablona":"app",
+ "ucel":"Create a test with just a name and instructions for test takers; sections and settings follow in the editor straight away.",
+ "hlavni_akce":"Create the test and continue (editor, step 1 Sections)",
+ "komponenty":["crumbs","page-head","field","textarea","hint","alert--info","form-actions","error-summary"],
+ "stavy":[
+  "Default: empty form, focus in Test name (drawn).",
+  "Error: empty name – error-summary at the top linking to the field; field aria-invalid + .error (drawn).",
+  "Loading: after submit the button is aria-disabled with “Creating test…”; the server redirects to the editor.",
+  "No permission: creating tests disabled – 403 (en-chyba-403.html)."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (test-novy.html).",
+  "The primary button “Create test and continue” is longer than in Czech; at 320 px it wraps to two lines inside the button – allowed, no truncation."],
+ "texty":[
+  {"dnes":"Název testu","nove":"Test name","proc":"Required fields are not marked; optional ones are."},
+  {"dnes":"Popis pro lektory (nepovinné)","nove":"Description for instructors (optional)","proc":"Glossary: lektor → instructor."},
+  {"dnes":"Pokyny pro zkoušené (nepovinné)","nove":"Instructions for test takers (optional)","proc":"Glossary: zkoušený → test taker."},
+  {"dnes":"Zkoušený ho uvidí v záhlaví testu i v protokolu.","nove":"Test takers see it in the test header and in the result report.","proc":"Glossary: protokol → result report."},
+  {"dnes":"Test založíte v pobočce Praha. Pobočku změníte v horní liště.","nove":"You are creating the test in the Prague branch. Change the branch in the top bar.","proc":"Active voice; says how to change it."},
+  {"dnes":"Založit test a pokračovat","nove":"Create test and continue","proc":"Verb first; says what happens."}],
+ "pristupnost":["Same as the Czech page: hints linked via aria-describedby, error-summary role=alert gets focus after submit, autofocus on Test name only."],
+ "poznamky_pro_kodera":["Strings from translations/*+intl-icu.en.yaml.","Branch names are data (Praha shown as Prague only in this sample; real data stays as entered)."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-testy.html">Tests</a></li><li><span aria-current="page">New test</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Testing</p><h1 class="t-titulek">New test</h1></div></div>
+
+<div class="stack-4" style="max-width:var(--max-text)">
+ <div class="stack-2">
+  <p class="t-maly" id="kroky-popis">Once the test is created, you set it up in 3 steps:</p>
+  <ol class="row" aria-describedby="kroky-popis" style="gap:var(--s-2) var(--s-4)"><li class="row" style="gap:var(--s-2)"><span class="t-cislo">01</span>Sections</li><li class="row" style="gap:var(--s-2)"><span class="t-cislo">02</span>Settings</li><li class="row" style="gap:var(--s-2)"><span class="t-cislo">03</span>Check</li></ol>
+ </div>
+
+ <form class="card stack-4" action="en-test-editor-sekce.html" method="post" novalidate>
+  <div class="field">
+   <label class="label" for="nazev">Test name</label>
+   <span class="hint" id="nazev-h">Test takers see it in the test header and in the result report.</span>
+   <input class="input" id="nazev" name="nazev" aria-describedby="nazev-h" autocomplete="off" required>
+  </div>
+  <div class="field">
+   <label class="label" for="popis">Description for instructors <span class="volitelne">(optional)</span></label>
+   <span class="hint" id="popis-h">Test takers do not see it.</span>
+   <textarea class="textarea" id="popis" name="popis" aria-describedby="popis-h" style="min-height:96px"></textarea>
+  </div>
+  <div class="field">
+   <label class="label" for="uvod">Instructions for test takers <span class="volitelne">(optional)</span></label>
+   <span class="hint" id="uvod-h">Test takers see them before they start. For example, how long the test takes or how personal data is processed.</span>
+   <textarea class="textarea" id="uvod" name="uvod" aria-describedby="uvod-h"></textarea>
+  </div>
+  <div class="alert alert--info">{{I:info}}<p>You are creating the test in the <b>Prague</b> branch. Change the branch in the top bar.</p></div>
+  <div class="form-actions">
+   <button class="btn btn--hlavni" type="submit">Create test and continue {{I:sipka-vpravo}}</button>
+   <a class="btn btn--tiche" href="en-testy.html">Cancel</a>
+  </div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">Error: name missing</p>
+ <div class="error-summary stack-2" role="alert" tabindex="-1">
+  <p class="alert__nadpis">The test could not be created</p>
+  <ul style="padding-left:var(--s-4)"><li><a href="#nazev-x">Enter a test name</a></li></ul>
+ </div>
+ <div class="field">
+  <label class="label" for="nazev-x">Test name</label>
+  <span class="hint" id="nazev-x-h">Test takers see it in the test header and in the result report.</span>
+  <span class="error" id="nazev-x-e">{{I:pozor}}Enter a test name.</span>
+  <input class="input" id="nazev-x" aria-invalid="true" aria-describedby="nazev-x-h nazev-x-e">
+ </div>
+</section>
