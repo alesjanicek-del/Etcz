@@ -1,0 +1,115 @@
+<!--meta {"titulek": "Seznamy štítků", "sablona": "app", "role": "lektor", "aktivni": "stitky.html", "demo": false} -->
+<!--spec {
+ "route": "/stitky",
+ "nazev": "Seznamy štítků",
+ "role": "lektor (stejná stránka pro autora otázek a administrátory; liší se, které seznamy smí spravovat)",
+ "sablona": "app",
+ "ucel": "Přehled seznamů štítků podle rozsahu (organizace, pobočka, lektor, soubor otázek) a vstup ke správě štítků nebo založení nového seznamu.",
+ "hlavni_akce": "Nový seznam štítků; otevřít seznam",
+ "komponenty": [
+  "page-head",
+  "toc",
+  "table table--stack",
+  "stav",
+  "empty",
+  "alert--info"
+ ],
+ "stavy": [
+  "výchozí: 4 skupiny podle rozsahu, v každé tabulka nebo prázdný stav",
+  "prázdný rozsah: věta „Zatím žádný seznam.“ + odkaz Založit seznam pro … (jen pokud smí)",
+  "jen pro čtení: seznamy, které uživatel nesmí spravovat, mají odkaz Zobrazit místo Spravovat a štítek Jen čtení",
+  "po založení: alert--ok „Seznam Okruhy je založený. Přidejte do něj štítky.“",
+  "načítání / chyba: kostra tabulek / alert--chyba s Načíst znovu",
+  "bez oprávnění: stránku vidí všichni s rolí; zakládání podle rozsahu (organizace jen administrátor organizace, pobočka administrátor pobočky)"
+ ],
+ "zmeny_ux": [
+  "Rozsahy mají nahoře rychlé odkazy s počtem seznamů (toc) a vysvětlení „kdo seznam vidí“ v jedné tabulce.",
+  "Název seznamu je odkaz (jedinečný díky sr-only doplnění souboru) – dnes 6× „Spravovat seznam Obtížnost“.",
+  "Přidán sloupec Počet štítků; prázdný seznam má štítek Prázdný místo textu „prázdný“.",
+  "Prázdná skupina má kontextové tlačítko (Založit seznam jen pro mě) místo obecné věty.",
+  "Seznamy, které nesmím spravovat, jsou viditelně Jen čtení."
+ ],
+ "texty": [
+  {
+   "dnes": "Štítky slouží ke klasifikaci otázek a k výběru otázek do testů (povolené a zakázané štítky). Seznam může platit pro celou organizaci, pobočku, jen pro vás nebo pro jeden soubor otázek.",
+   "nove": "Štítky třídí otázky a vybírají je do testů (povolené a zakázané štítky). Každý seznam má rozsah – podle něj ho vidí a používají jiní lidé.",
+   "proc": "Kratší věty; rozsahy vysvětluje tabulka."
+  },
+  {
+   "dnes": "Žádný seznam. Založíte ho tlačítkem Nový seznam štítků.",
+   "nove": "Zatím žádný seznam. [Založit seznam jen pro mě]",
+   "proc": "Akce na místě."
+  },
+  {
+   "dnes": "Spravovat seznam Obtížnost",
+   "nove": "Obtížnost (odkaz) + sr-only „– BOZP – školení zaměstnanců“",
+   "proc": "Jedinečný účel odkazu."
+  },
+  {
+   "dnes": "Lektor",
+   "nove": "Jen pro mě (lektor)",
+   "proc": "Srozumitelnější název rozsahu."
+  }
+ ],
+ "pristupnost": [
+  "Každá skupina má H2 a tabulka caption s počtem.",
+  "Štítky v buňce jsou seznam ul; barva štítku se zatím nezobrazuje jako jediný nosič informace.",
+  "Rychlé odkazy (toc) vedou na kotvy H2."
+ ],
+ "poznamky_pro_kodera": [
+  "Rozsahy: Organizace = všichni lektoři organizace; Pobočka = členové pobočky; Lektor = jen autor seznamu; Soubor otázek = kdo má k souboru přístup.",
+  "Podle role: lektor spravuje své seznamy (Jen pro mě) a seznamy souborů s Editací; autor jako vlastník souborů spravuje seznamy svých souborů; administrátor pobočky i seznamy pobočky; administrátor organizace i seznamy organizace.",
+  "V demu má lektor k ukázkovým souborům jen Čtení – proto seznamy souborů jako Jen čtení."
+ ],
+ "chybi_komponenta": [
+  "barevný štítek (tag s barvou ze seznamu) – použito .stav--neutral; barvu štítku je třeba doplnit jako proužek, ne jako barvu textu"
+ ]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Seznamy štítků</h1><p class="measure">Štítky třídí otázky a vybírají je do testů (povolené a zakázané štítky). Každý seznam má rozsah – podle něj ho vidí a používají jiní lidé.</p></div><div class="page-head__actions"><a class="btn btn--hlavni" href="stitky-formular.html">{{I:plus}}Nový seznam štítků</a></div></div>
+
+<div class="stack-5">
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption>Rozsahy seznamů</caption>
+   <thead><tr><th scope="col">Rozsah</th><th scope="col">Kdo seznam vidí a používá</th><th scope="col" class="num">Seznamů</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Rozsah"><a href="#org">Organizace</a></td><td data-label="Kdo vidí">všichni lektoři organizace</td><td data-label="Seznamů" class="num">1</td></tr>
+    <tr><td data-label="Rozsah"><a href="#pob">Pobočka</a></td><td data-label="Kdo vidí">členové pobočky</td><td data-label="Seznamů" class="num">0</td></tr>
+    <tr><td data-label="Rozsah"><a href="#lek">Jen pro mě (lektor)</a></td><td data-label="Kdo vidí">jen vy</td><td data-label="Seznamů" class="num">0</td></tr>
+    <tr><td data-label="Rozsah"><a href="#sou">Soubor otázek</a></td><td data-label="Kdo vidí">kdo má přístup k souboru</td><td data-label="Seznamů" class="num">6</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <section class="stack" aria-labelledby="org">
+  <h2 id="org" class="t-nadpis">Organizace</h2>
+  <div class="table-wrap"><table class="table table--stack"><caption class="sr-only">Seznamy štítků – Organizace (1)</caption>
+   <thead><tr><th scope="col">Název</th><th scope="col">Platí pro</th><th scope="col">Štítky</th><th scope="col" class="num">Počet</th></tr></thead>
+   <tbody><tr><td data-label="Název"><a href="stitky-detail.html">Obecné štítky</a> <span class="stav stav--neutral">{{I:zamek}}Jen čtení</span></td><td data-label="Platí pro">Celá organizace</td><td data-label="Štítky"><span class="stav stav--neutral">Prázdný</span></td><td data-label="Počet" class="num">0</td></tr></tbody>
+  </table></div>
+ </section>
+
+ <section class="stack" aria-labelledby="pob">
+  <h2 id="pob" class="t-nadpis">Pobočka</h2>
+  <div class="card card--tenka"><p>Zatím žádný seznam. Seznamy pobočky zakládá administrátor pobočky.</p></div>
+ </section>
+
+ <section class="stack" aria-labelledby="lek">
+  <h2 id="lek" class="t-nadpis">Jen pro mě (lektor)</h2>
+  <div class="card card--tenka row-between"><p>Zatím žádný seznam. Vidět ho budete jen vy.</p><a class="btn btn--male" href="stitky-formular.html">{{I:plus}}Založit seznam jen pro mě</a></div>
+ </section>
+
+ <section class="stack" aria-labelledby="sou">
+  <h2 id="sou" class="t-nadpis">Soubor otázek</h2>
+  <p class="t-maly">K ukázkovým souborům máte právo Čtení – seznamy vidíte, spravuje je vlastník souboru.</p>
+  <div class="table-wrap"><table class="table table--stack"><caption class="sr-only">Seznamy štítků – Soubor otázek (6)</caption>
+   <thead><tr><th scope="col">Název</th><th scope="col">Platí pro</th><th scope="col">Štítky</th><th scope="col" class="num">Počet</th></tr></thead>
+   <tbody><tr><td data-label="Název"><a href="stitky-detail.html">Obtížnost<span class="sr-only"> – Kybernetická bezpečnost – školení uživatelů</span></a></td><td data-label="Platí pro">Kybernetická bezpečnost – školení uživatelů</td><td data-label="Štítky"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">Pokročilá</span></li><li><span class="stav stav--neutral">Základní</span></li></ul></td><td data-label="Počet" class="num">2</td></tr><tr><td data-label="Název"><a href="stitky-detail.html">Obtížnost<span class="sr-only"> – BOZP – školení zaměstnanců</span></a></td><td data-label="Platí pro">BOZP – školení zaměstnanců</td><td data-label="Štítky"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">Pokročilá</span></li><li><span class="stav stav--neutral">Základní</span></li></ul></td><td data-label="Počet" class="num">2</td></tr><tr><td data-label="Název"><a href="stitky-detail.html">Obtížnost<span class="sr-only"> – Radiační ochrana – základní principy</span></a></td><td data-label="Platí pro">Radiační ochrana – základní principy</td><td data-label="Štítky"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">Pokročilá</span></li><li><span class="stav stav--neutral">Základní</span></li></ul></td><td data-label="Počet" class="num">2</td></tr><tr><td data-label="Název"><a href="stitky-detail.html">Okruhy<span class="sr-only"> – Kybernetická bezpečnost – školení uživatelů</span></a></td><td data-label="Platí pro">Kybernetická bezpečnost – školení uživatelů</td><td data-label="Štítky"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">Hesla a MFA</span></li><li><span class="stav stav--neutral">Hlášení incidentů</span></li><li><span class="stav stav--neutral">Phishing</span></li><li><span class="stav stav--neutral">Práce mimo kancelář</span></li><li><span class="stav stav--neutral">Sociální inženýrství</span></li></ul></td><td data-label="Počet" class="num">5</td></tr><tr><td data-label="Název"><a href="stitky-detail.html">Okruhy<span class="sr-only"> – BOZP – školení zaměstnanců</span></a></td><td data-label="Platí pro">BOZP – školení zaměstnanců</td><td data-label="Štítky"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">OOPP</span></li><li><span class="stav stav--neutral">Povinnosti zaměstnance</span></li><li><span class="stav stav--neutral">Povinnosti zaměstnavatele</span></li><li><span class="stav stav--neutral">Pracovní úraz</span></li><li><span class="stav stav--neutral">Vedoucí zaměstnanci</span></li></ul></td><td data-label="Počet" class="num">5</td></tr><tr><td data-label="Název"><a href="stitky-detail.html">Okruhy<span class="sr-only"> – Radiační ochrana – základní principy</span></a></td><td data-label="Platí pro">Radiační ochrana – základní principy</td><td data-label="Štítky"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">Dozimetrie a limity</span></li><li><span class="stav stav--neutral">Druhy záření</span></li><li><span class="stav stav--neutral">Pracovníci a pásma</span></li><li><span class="stav stav--neutral">Principy a legislativa</span></li><li><span class="stav stav--neutral">Čas, vzdálenost, stínění</span></li></ul></td><td data-label="Počet" class="num">5</td></tr></tbody>
+  </table></div>
+ </section>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack"><h3 class="t-stitek">Po založení seznamu</h3><div class="alert alert--ok" role="status">{{I:check}}<p>Seznam „Obtížnost“ je založený. <a href="stitky-detail.html">Přidejte do něj štítky</a></p></div></div>
+</section>

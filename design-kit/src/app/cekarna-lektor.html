@@ -1,0 +1,101 @@
+<!--meta {"titulek":"Čekárna – Prezenční zkouška – učebna 2","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false} -->
+<!--spec {
+ "route":"/pouziti/:id (čekárna)","nazev":"Prezenční zkouška – čekárna (lektor)","role":"lektor","sablona":"app",
+ "ucel":"Lektor vidí, kdo se do zkoušky připojil, odebere nepovolané a ve chvíli, kdy jsou všichni, uzamkne vstup a spustí test všem najednou.",
+ "hlavni_akce":"Uzamknout vstup a spustit test",
+ "komponenty":["crumbs","page-head","meta","card","card--papir","kod","qr","table-wrap","table--stack","btn--hlavni","btn--nebezpecne","alert","dialog","empty"],
+ "stavy":[
+  "výchozí: 4 účastníci v čekárně, tlačítko aktivní (nakresleno).",
+  "prázdná čekárna: tlačítko disabled s vysvětlením „Zpřístupní se, až se připojí první účastník.“ (nakresleno).",
+  "jmenovec: druhý účastník se stejným jménem se nepřipojí – alert s radou rozlišit jméno rokem narození (nakresleno).",
+  "potvrzení spuštění: dialog „Spustit test pro 4 účastníky? Kdo přijde pozdě, už se nepřipojí.“ (nakresleno).",
+  "načítání: seznam se obnovuje každých 5 s; nový účastník se oznámí jen změnou počtu (aria-live).",
+  "bez oprávnění: čekárnu ovládá autor použití a administrátoři; ostatní 403."],
+ "zmeny_ux":[
+  "Kód a adresa pro připojení jsou velké (.kod) přímo v čekárně – lektor je může nadiktovat i bez projektoru.",
+  "Seznam účastníků je tabulka se jménem, časem připojení a tlačítkem Odebrat (dnes ✕, které koliduje se značkou).",
+  "Hlavní tlačítko ukazuje počet: „Uzamknout vstup a spustit test (4)“ a ptá se dialogem – akce je nevratná pro pozdě příchozí.",
+  "Promítací plocha je tlačítko s ikonou a textem „otevře se v novém okně“ přímo v názvu (ne závorka pod šipkou)."],
+ "texty":[
+  {"dnes":"Čekárna je otevřená – Účastníci se připojí na https://demo.exam-test.cz/live kódem B8HAN4 nebo přes QR na promítací ploše.","nove":"Čekárna je otevřená. Účastníci otevřou demo.exam-test.cz/live a zadají kód:","proc":"Kód jako samostatný velký prvek."},
+  {"dnes":"Čeká 0 účastníků – tlačítko se zpřístupní, až se připojí první účastník.","nove":"V čekárně nikdo není. Tlačítko se zpřístupní, až se připojí první účastník.","proc":"Dvě krátké věty."},
+  {"dnes":"Promítací plocha ↗ (otevře se v novém okně)","nove":"Otevřít promítací plochu (nové okno)","proc":"Sloveso + co; informace o okně v textu tlačítka."},
+  {"dnes":"Odeberte ho tlačítkem ✕.","nove":"Odebrat (tlačítko s textem)","proc":"✕ koliduje se značkou exam-test."}],
+ "pristupnost":[
+  "Počet v čekárně je v aria-live=polite („V čekárně: 4“); tabulka se mění tiše.",
+  "Odebrat má sr-only jméno účastníka; po odebrání se fokus přesune na další řádek nebo na nadpis seznamu.",
+  "Disabled hlavní tlačítko má aria-describedby na vysvětlení, proč je neaktivní.",
+  "Odkaz na promítací plochu: target=_blank s textem „(nové okno)“."],
+ "poznamky_pro_kodera":[
+  "Data z dema: Radiační ochrana – ověření znalostí (typ ZOZ), Prezenční zkouška – učebna 2, kód B8HAN4.",
+  "Po spuštění se stránka přepne na živý panel (stejná URL).",
+  "QR obsahuje URL /live/{kód}."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="pouziti.html">Použití testů</a></li><li><span aria-current="page">Prezenční zkouška – učebna 2</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Prezenční zkouška · čekárna</p><h1 class="t-titulek">Radiační ochrana – ověření znalostí</h1>
+  <dl class="meta"><div><dt>Označení</dt><dd>Prezenční zkouška – učebna 2</dd></div><div><dt>Pobočka</dt><dd>Praha</dd></div><div><dt>Vytvořeno</dt><dd>3. 11. 18:27</dd></div></dl></div>
+ <div class="page-head__actions"><a class="btn" href="promitaci-plocha.html" target="_blank">{{I:obrazovka}}Otevřít promítací plochu (nové okno)</a><button class="btn" type="button">Uzavřít použití</button></div>
+</div>
+
+<div class="layout-aside">
+ <div class="stack-4" style="min-width:0">
+  <section class="card card--papir stack" aria-labelledby="pripojeni-h">
+   <div class="row-between"><h2 id="pripojeni-h" class="t-nadpis">Čekárna je otevřená</h2><span class="stav stav--pise">{{I:hodiny}}Čeká se na start</span></div>
+   <div class="row" style="align-items:center;gap:var(--s-4)">
+    <img class="qr" src="../assets/img/qr-ukazka.png" alt="QR kód pro připojení k prezenční zkoušce" width="120" height="120">
+    <div class="stack-2">
+     <p>Účastníci otevřou <b class="t-kod">demo.exam-test.cz/live</b> a zadají kód:</p>
+     <p><span class="kod">B8HAN4</span></p>
+    </div>
+   </div>
+  </section>
+
+  <section class="stack" aria-labelledby="cekarna-h">
+   <div class="row-between"><h2 id="cekarna-h" class="t-nadpis">V čekárně</h2><p aria-live="polite"><span class="t-cislo t-titulek">4</span> účastníci</p></div>
+   <div class="table-wrap">
+    <table class="table table--stack">
+     <caption class="sr-only">Účastníci v čekárně (4)</caption>
+     <thead><tr><th scope="col">Účastník</th><th scope="col">Připojen</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+     <tbody>
+      <tr><td data-label="Účastník"><b>Klára Hnědá</b></td><td data-label="Připojen"><span class="t-cislo">9:52</span></td><td data-label="Akce"><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">Odebrat<span class="sr-only">: Klára Hnědá</span></button></td></tr>
+      <tr><td data-label="Účastník"><b>Ondřej Žlutý</b></td><td data-label="Připojen"><span class="t-cislo">9:53</span></td><td data-label="Akce"><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">Odebrat<span class="sr-only">: Ondřej Žlutý</span></button></td></tr>
+      <tr><td data-label="Účastník"><b>Marie Růžová</b></td><td data-label="Připojen"><span class="t-cislo">9:55</span></td><td data-label="Akce"><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">Odebrat<span class="sr-only">: Marie Růžová</span></button></td></tr>
+      <tr><td data-label="Účastník"><b>Jan Novák (1985)</b></td><td data-label="Připojen"><span class="t-cislo">9:58</span></td><td data-label="Akce"><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">Odebrat<span class="sr-only">: Jan Novák (1985)</span></button></td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p class="t-maly">Připojil se někdo nepovolaný? Odeberte ho. Jméno účastníka se objeví v protokolu.</p>
+  </section>
+ </div>
+
+ <aside class="card stack" aria-labelledby="start-h" style="align-self:start">
+  <h2 id="start-h" class="t-nadpis">Jsou tu všichni?</h2>
+  <p>Po spuštění dostane každý vlastní variaci. Kdo přijde pozdě, už se nepřipojí.</p>
+  <button class="btn btn--hlavni btn--blok" type="button" style="white-space:normal">{{I:zamek}}Uzamknout vstup a spustit test (4)</button>
+  <p class="t-maly">Průběh pak sledujete v živém panelu na této stránce.</p>
+ </aside>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="grid-2" style="align-items:start">
+  <div class="stack-2">
+   <p class="t-stitek">Prázdná čekárna</p>
+   <div class="card stack">
+    <p id="prazdna-h">V čekárně nikdo není. Tlačítko se zpřístupní, až se připojí první účastník.</p>
+    <button class="btn btn--hlavni btn--blok" type="button" disabled aria-describedby="prazdna-h" style="white-space:normal">{{I:zamek}}Uzamknout vstup a spustit test</button>
+   </div>
+  </div>
+  <div class="stack-2">
+   <p class="t-stitek">Potvrzení spuštění (dialog)</p>
+   <div class="dialog" role="alertdialog" aria-modal="false" aria-labelledby="d-h" aria-describedby="d-p" style="position:static;display:block;margin:0;width:100%">
+    <div class="dialog__body stack"><h3 id="d-h" class="t-nadpis">Spustit test pro 4 účastníky?</h3><p id="d-p">Vstup se uzamkne. Kdo přijde pozdě, už se nepřipojí.</p></div>
+    <div class="dialog__foot"><button class="btn" type="button">Zrušit</button><button class="btn btn--hlavni" type="button">Spustit test</button></div>
+   </div>
+  </div>
+ </div>
+ <p class="t-stitek">Dva účastníci se stejným jménem</p>
+ <div class="alert">{{I:pozor}}<p>Účastník „Jan Novák“ už v čekárně je. Druhý se stejným jménem ať za jméno připíše rok narození, například „Jan Novák (1985)“.</p></div>
+</section>

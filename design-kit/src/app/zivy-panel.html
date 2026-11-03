@@ -1,0 +1,170 @@
+<!--meta {"titulek":"Živý panel – BOZP – cvičný test","sablona":"app","role":"lektor","aktivni":"pouziti.html","demo":false} -->
+<!--spec {
+ "route":"/pouziti/:id","nazev":"Živý panel","role":"lektor","sablona":"app",
+ "ucel":"Sledovat zkoušku v reálném čase: kdo píše, kolik má hotovo, kolik mu zbývá a jak dopadl. Zasáhnout prodloužením času, kódem pro převzetí nebo ukončením pokusu.",
+ "hlavni_akce":"Sledovat souhrn; zasáhnout u zkoušeného (Prodloužit čas / Kód pro převzetí / Ukončit pokus)",
+ "komponenty":["crumbs","page-head","meta","card","t-cislo","toolbar","btn","table-wrap","table--stack","mini-bar","stav","dialog","details","field","input","textarea","kod","alert","empty","toast"],
+ "stavy":[
+  "výchozí: 3 píší, 3 odevzdali (nakresleno).",
+  "prázdný: „Zatím nikdo nezačal.“ + odkaz pro zkoušené (nakresleno).",
+  "pozastaveno: tlačítko se změní na Obnovit automatickou aktualizaci (aria-pressed=true), u času text „Pozastaveno“ (nakresleno).",
+  "chyba spojení: alert „Panel se nepodařilo aktualizovat. Zkusím to znovu za 5 s.“ – data zůstanou viditelná s časem poslední aktualizace (nakresleno).",
+  "dialogy: Prodloužit čas, Kód pro převzetí (+ výsledný kód), Ukončit pokus (nakresleno).",
+  "uzavřené použití: alert--info „Použití je uzavřené. Rozpracované pokusy lze dokončit.“; akce u odevzdaných jen Detail.",
+  "bez oprávnění: panel vidí autor použití a administrátoři; ostatní 403. Převzetí u úředního testu jen administrátor – položka je disabled s důvodem."],
+ "zmeny_ux":[
+  "Souhrn (píše / odevzdalo / splnilo) jsou velká čísla nad tabulkou a jen on je v aria-live – čtečka neopakuje celou tabulku každých 5 s.",
+  "Stav aktualizace (Aktualizováno 18:27:45 · každých 5 s) je u tlačítek Pozastavit a Aktualizovat teď v jednom panelu nástrojů.",
+  "Postup je mini-bar + čísla „4 / 10“; Zbývá v t-cislo; výsledek procentem a stavem Splněno / Nesplněno (ikona + slovo).",
+  "Upozornění „2× opustila okno“ je stav--pozor s ikonou; dohled bez událostí se nezobrazuje (méně šumu).",
+  "Akce u rozpracovaného pokusu jsou v nabídce Akce (details) se třemi položkami; každá otevře dialog s potvrzením. Ukončit pokus je nebezpečné tlačítko a dialog říká, že je to nevratné.",
+  "Odkaz pro zkoušené (u veřejného odkazu), Přístupové kódy a Výjimky z dohledu (u kódů) jsou rozbalovací sekce pod hlavičkou, ne nad panelem."],
+ "texty":[
+  {"dnes":"Odkaz (anonymní) · Cvičný test na webu · pobočka Návštěvník 8982 · vytvořil Lucie Lektorová 3. 11. 2026 18:27","nove":"meta: Způsob Veřejný odkaz · Označení Cvičný test na webu · Pobočka Praha · Vytvořeno 3. 11. 18:27","proc":"Slovník; .meta s popisky."},
+  {"dnes":"0 píše · 6 z 6 odevzdáno · 4 splnilo","nove":"3 píšou · 3 z 6 odevzdali · 1 splnil","proc":"Shoda podmětu s přísudkem; čísla velká."},
+  {"dnes":"Uzavřít","nove":"Uzavřít použití","proc":"Říká co; dialog vysvětlí důsledky (noví se nepřipojí, rozpracovaní dokončí)."},
+  {"dnes":"⚠ opustil(a) okno N×","nove":"2× opustila okno (stav--pozor s ikonou)","proc":"Ikona z komponent, ne znak."},
+  {"dnes":"Povolit převzetí na jiném zařízení","nove":"Kód pro převzetí","proc":"Slovník; tlačítko v dialogu: Vydat kód pro převzetí."},
+  {"dnes":"Prodloužit o (min) (1 až 240) · Důvod (povinné)","nove":"Prodloužit o (minuty) · Důvod – hint: Zapíše se do záznamu pokusu.","proc":"Povinná pole se neoznačují; hint říká proč."}],
+ "pristupnost":[
+  "aria-live=polite a aria-atomic=true má JEN souhrn (3 čísla); tabulka se aktualizuje tiše. Při pozastavení se live souhrn neaktualizuje vůbec.",
+  "Nový zkoušený nebo odevzdání se do live oblasti hlásí jen změnou čísel (např. „4 z 7 odevzdali“), ne výpisem řádků.",
+  "Tlačítko Pozastavit automatickou aktualizaci má aria-pressed; volba se pamatuje v prohlížeči (doporučení pro uživatele čteček v nápovědě).",
+  "Aktualizace nesmí přesunout fokus ani zavřít otevřenou nabídku Akce / dialog: při otevřeném dialogu se řádek neaktualizuje.",
+  "Akce v řádku mají sr-only jméno zkoušeného („Akce: Klára Hnědá“); dialogy jsou nativní dialog s aria-labelledby, fokus na první pole (u Ukončit na Zrušit).",
+  "Postup: mini-bar je aria-hidden, číslo „4 / 10“ je text (čte se „4 z 10“ přes sr-only „z“)."],
+ "poznamky_pro_kodera":[
+  "Polling GET /pouziti/:id/panel.json každých 5 s; diff řádků podle id pokusu, ne překreslení celé tabulky.",
+  "Data z referenčního návrhu (mock l_panel) – BOZP, veřejný odkaz. Řazení: píšící nahoře, pak podle času odevzdání.",
+  "Prodloužení: 1–240 min, důvod povinný, zkoušenému se do 30 s změní časomíra a zobrazí zpráva. Zapisuje se do záznamu pokusu i auditu.",
+  "Kód pro převzetí platí 10 minut; původní zařízení se zablokuje. U úředního testu jen administrátor.",
+  "Ukončit pokus: okamžitě odevzdá s uloženými odpověďmi, výsledek označený „ukončeno lektorem“. Nevratné.",
+  "Promítací plocha se nabízí jen u prezenční zkoušky (viz čekárna)."],
+ "chybi_komponenta":["menu akcí v řádku (dropdown) – použit details/summary"]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="pouziti.html">Použití testů</a></li><li><span aria-current="page">BOZP – cvičný test</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Živý panel</p><h1 class="t-titulek">BOZP – cvičný test</h1>
+  <dl class="meta"><div><dt>Způsob</dt><dd>Veřejný odkaz</dd></div><div><dt>Označení</dt><dd>Cvičný test na webu</dd></div><div><dt>Pobočka</dt><dd>Praha</dd></div><div><dt>Vytvořeno</dt><dd>3. 11. 18:27</dd></div></dl></div>
+ <div class="page-head__actions"><a class="btn" href="vysledky.html">{{I:check-kruh}}Výsledky</a><button class="btn" type="button">Uzavřít použití</button></div>
+</div>
+
+<div class="stack-4">
+ <details class="card card--tenka">
+  <summary class="row-between" style="cursor:pointer"><span class="row" style="gap:var(--s-2)">{{I:odkaz}}<b>Odkaz pro zkoušené</b></span><span class="t-maly">Nejvýše 200 pokusů, 50 najednou</span></summary>
+  <div class="row" style="margin-top:var(--s-3)"><div class="field" style="flex:1 1 280px"><label class="label" for="url">Odkaz</label><input class="input" id="url" readonly value="https://demo.exam-test.cz/o/7QK4M2"></div><button class="btn" type="button" style="align-self:flex-end">{{I:kopirovat}}Kopírovat odkaz</button></div>
+  <p class="t-maly" style="margin-top:var(--s-2)">Odkaz přestane platit uzavřením použití.</p>
+ </details>
+
+ <div class="row-between" style="align-items:flex-end">
+  <div class="row" style="gap:var(--s-5)" aria-live="polite" aria-atomic="true" role="status">
+   <p><span class="t-cislo t-titulek">3</span> píšou</p>
+   <p><span class="t-cislo t-titulek">3</span> z <span class="t-cislo t-titulek">6</span> odevzdali</p>
+   <p><span class="t-cislo t-titulek">1</span> splnil</p>
+  </div>
+  <div class="row" style="gap:var(--s-2)">
+   <span class="t-maly row" style="gap:var(--s-1)">{{I:obnovit}}<span>Aktualizováno <span class="t-cislo">18:27:45</span> · každých 5&nbsp;s</span></span>
+   <button class="btn btn--male" type="button" aria-pressed="false">{{I:pauza}}Pozastavit automatickou aktualizaci</button>
+   <button class="btn btn--male btn--tiche" type="button">Aktualizovat teď</button>
+  </div>
+ </div>
+
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption class="sr-only">Zkoušení v živém panelu (6). Tabulka se obnovuje každých 5 sekund.</caption>
+   <thead><tr><th scope="col">Zkoušený</th><th scope="col">Postup</th><th scope="col" class="num">Zbývá</th><th scope="col" class="num">Výsledek</th><th scope="col">Upozornění</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+   <tbody>
+    <tr><td data-label="Zkoušený"><b>Klára Hnědá</b></td>
+     <td data-label="Postup"><span><span class="mini-bar" aria-hidden="true"><i style="width:40%"></i></span><span class="t-cislo">4<span class="sr-only"> z</span> / 10</span></span></td>
+     <td data-label="Zbývá" class="num">13:29</td><td data-label="Výsledek" class="num">–</td>
+     <td data-label="Upozornění"><span class="stav stav--pozor">{{I:pozor}}2× opustila okno</span></td>
+     <td data-label="Akce"><details><summary class="btn btn--male">Akce<span class="sr-only">: Klára Hnědá</span>{{I:dolu}}</summary>
+      <ul class="stack-2" style="padding-top:var(--s-2)"><li><button class="btn btn--male btn--tiche" type="button">{{I:hodiny}}Prodloužit čas</button></li><li><button class="btn btn--male btn--tiche" type="button">{{I:obrazovka}}Kód pro převzetí</button></li><li><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">{{I:minus-kruh}}Ukončit pokus</button></li></ul></details></td></tr>
+    <tr><td data-label="Zkoušený"><b>Ondřej Žlutý</b></td>
+     <td data-label="Postup"><span><span class="mini-bar" aria-hidden="true"><i style="width:42%"></i></span><span class="t-cislo">5<span class="sr-only"> z</span> / 12</span></span></td>
+     <td data-label="Zbývá" class="num">13:29</td><td data-label="Výsledek" class="num">–</td><td data-label="Upozornění">–</td>
+     <td data-label="Akce"><details><summary class="btn btn--male">Akce<span class="sr-only">: Ondřej Žlutý</span>{{I:dolu}}</summary>
+      <ul class="stack-2" style="padding-top:var(--s-2)"><li><button class="btn btn--male btn--tiche" type="button">{{I:hodiny}}Prodloužit čas</button></li><li><button class="btn btn--male btn--tiche" type="button">{{I:obrazovka}}Kód pro převzetí</button></li><li><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">{{I:minus-kruh}}Ukončit pokus</button></li></ul></details></td></tr>
+    <tr><td data-label="Zkoušený"><b>Marie Růžová</b></td>
+     <td data-label="Postup"><span><span class="mini-bar" aria-hidden="true"><i style="width:55%"></i></span><span class="t-cislo">6<span class="sr-only"> z</span> / 11</span></span></td>
+     <td data-label="Zbývá" class="num">13:30</td><td data-label="Výsledek" class="num">–</td><td data-label="Upozornění">–</td>
+     <td data-label="Akce"><details><summary class="btn btn--male">Akce<span class="sr-only">: Marie Růžová</span>{{I:dolu}}</summary>
+      <ul class="stack-2" style="padding-top:var(--s-2)"><li><button class="btn btn--male btn--tiche" type="button">{{I:hodiny}}Prodloužit čas</button></li><li><button class="btn btn--male btn--tiche" type="button">{{I:obrazovka}}Kód pro převzetí</button></li><li><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">{{I:minus-kruh}}Ukončit pokus</button></li></ul></details></td></tr>
+    <tr><td data-label="Zkoušený"><b>Jana Zelená</b></td>
+     <td data-label="Postup"><span class="stav stav--neutral">Odevzdáno</span></td><td data-label="Zbývá" class="num">–</td>
+     <td data-label="Výsledek" class="num"><span class="row" style="gap:var(--s-2);justify-content:flex-end">92,3&nbsp;% <span class="stav stav--ok">{{I:check}}Splněno</span></span></td><td data-label="Upozornění">–</td>
+     <td data-label="Akce"><a class="btn btn--male btn--tiche" href="vysledek-detail.html">Detail<span class="sr-only">: Jana Zelená</span></a></td></tr>
+    <tr><td data-label="Zkoušený"><b>Petr Modrý</b></td>
+     <td data-label="Postup"><span class="stav stav--neutral">Odevzdáno</span></td><td data-label="Zbývá" class="num">–</td>
+     <td data-label="Výsledek" class="num"><span class="row" style="gap:var(--s-2);justify-content:flex-end">63,6&nbsp;% <span class="stav stav--ne">{{I:minus-kruh}}Nesplněno</span></span></td><td data-label="Upozornění">–</td>
+     <td data-label="Akce"><a class="btn btn--male btn--tiche" href="vysledek-detail.html">Detail<span class="sr-only">: Petr Modrý</span></a></td></tr>
+    <tr><td data-label="Zkoušený"><b>Ivana Šedá</b></td>
+     <td data-label="Postup"><span class="stav stav--neutral">Odevzdáno</span></td><td data-label="Zbývá" class="num">–</td>
+     <td data-label="Výsledek" class="num"><span class="row" style="gap:var(--s-2);justify-content:flex-end">77,8&nbsp;% <span class="stav stav--ne">{{I:minus-kruh}}Nesplněno</span></span></td><td data-label="Upozornění">–</td>
+     <td data-label="Akce"><a class="btn btn--male btn--tiche" href="vysledek-detail.html">Detail<span class="sr-only">: Ivana Šedá</span></a></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="t-maly">Opuštění okna samo neznamená podvod. Zeptejte se zkoušeného a postupujte podle pravidel zkoušky.</p>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+
+ <div class="grid-2" style="align-items:start">
+  <div class="stack-2">
+   <p class="t-stitek">Dialog: Prodloužit čas</p>
+   <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="d1-h" style="position:static;display:block;margin:0;width:100%">
+    <form class="dialog__body stack" method="dialog">
+     <h3 id="d1-h" class="t-nadpis">Prodloužit čas: Klára Hnědá</h3>
+     <p class="t-maly">Zbývá <span class="t-cislo">13:29</span>. Zkoušená uvidí zprávu do 30&nbsp;s.</p>
+     <div class="field"><label class="label" for="d1-min">Prodloužit o</label><div class="input-group" style="max-width:180px"><input class="input" id="d1-min" type="number" min="1" max="240" value="10" inputmode="numeric" aria-describedby="d1-min-h"><span class="input-group__suffix" aria-hidden="true">min</span></div><span class="hint" id="d1-min-h">1 až 240 minut.</span></div>
+     <div class="field"><label class="label" for="d1-duv">Důvod</label><span class="hint" id="d1-duv-h">Zapíše se do záznamu pokusu.</span><input class="input" id="d1-duv" aria-describedby="d1-duv-h"></div>
+    </form>
+    <div class="dialog__foot"><button class="btn" type="button">Zrušit</button><button class="btn btn--hlavni" type="button">Prodloužit čas</button></div>
+   </div>
+  </div>
+
+  <div class="stack-2">
+   <p class="t-stitek">Dialog: Kód pro převzetí</p>
+   <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="d2-h" style="position:static;display:block;margin:0;width:100%">
+    <div class="dialog__body stack">
+     <h3 id="d2-h" class="t-nadpis">Kód pro převzetí: Marie Růžová</h3>
+     <p>Zkoušená bude pokračovat na jiném zařízení. Na původním se test zablokuje.</p>
+     <div class="field"><label class="label" for="d2-duv">Důvod převzetí</label><span class="hint" id="d2-duv-h">Například „vybitý telefon, pokračuje na PC 5“.</span><input class="input" id="d2-duv" aria-describedby="d2-duv-h"></div>
+    </div>
+    <div class="dialog__foot"><button class="btn" type="button">Zrušit</button><button class="btn btn--hlavni" type="button">Vydat kód pro převzetí</button></div>
+   </div>
+  </div>
+
+  <div class="stack-2">
+   <p class="t-stitek">Kód pro převzetí vydaný</p>
+   <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="d3-h" style="position:static;display:block;margin:0;width:100%">
+    <div class="dialog__body stack">
+     <h3 id="d3-h" class="t-nadpis">Kód pro převzetí: Marie Růžová</h3>
+     <p><span class="kod">Q7M4K2</span></p>
+     <p>Sdělte kód zkoušené. Na novém zařízení ho zadá na stránce <span class="t-kod">/kod</span> do pole Kód pro převzetí. <b>Platí 10&nbsp;minut.</b></p>
+    </div>
+    <div class="dialog__foot"><button class="btn btn--hlavni" type="button">Hotovo</button></div>
+   </div>
+  </div>
+
+  <div class="stack-2">
+   <p class="t-stitek">Dialog: Ukončit pokus</p>
+   <div class="dialog" role="alertdialog" aria-modal="false" aria-labelledby="d4-h" aria-describedby="d4-p" style="position:static;display:block;margin:0;width:100%">
+    <div class="dialog__body stack">
+     <h3 id="d4-h" class="t-nadpis">Ukončit pokus: Ondřej Žlutý?</h3>
+     <p id="d4-p">Pokus se hned odevzdá a vyhodnotí s odpověďmi uloženými do této chvíle (5 z 12). <b>Nelze to vrátit.</b></p>
+    </div>
+    <div class="dialog__foot"><button class="btn" type="button">Zrušit</button><button class="btn btn--nebezpecne" type="button">{{I:minus-kruh}}Ukončit pokus</button></div>
+   </div>
+  </div>
+ </div>
+
+ <p class="t-stitek">Pozastaveno a chyba spojení</p>
+ <div class="row" style="gap:var(--s-2)"><span class="t-maly">Pozastaveno · poslední stav <span class="t-cislo">18:27:45</span></span><button class="btn btn--male" type="button" aria-pressed="true">{{I:prehrat}}Obnovit automatickou aktualizaci</button></div>
+ <div class="alert alert--chyba">{{I:pozor}}<p>Panel se nepodařilo aktualizovat. Zkusím to znovu za 5&nbsp;s. Údaje jsou z <span class="t-cislo">18:27:45</span>.</p></div>
+
+ <p class="t-stitek">Zatím nikdo nezačal</p>
+ <div class="empty stack-2">{{I:uzivatele}}<p><b>Zatím nikdo nezačal.</b></p><p class="t-maly">Pošlete zkoušeným odkaz. Panel se sám obnoví, jakmile někdo začne.</p></div>
+</section>

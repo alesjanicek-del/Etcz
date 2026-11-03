@@ -1,0 +1,91 @@
+<!--meta {"titulek":"Nová tisková dávka – BOZP – cvičný test","sablona":"app","role":"lektor","aktivni":"tisk.html","demo":false} -->
+<!--spec {
+ "route":"/pouziti/nove?typ=PRINT","nazev":"Nová tisková dávka","role":"lektor","sablona":"app",
+ "ucel":"Vytvořit zadaný počet unikátních papírových variací testu. Vznikne PDF zadání, odpovědních listů a klíčů.",
+ "hlavni_akce":"Vytvořit dávku",
+ "komponenty":["crumbs","page-head","layout-aside","card","kpi","dl","table-wrap","table--stack","field","input-group","alert","option (náhled)","option__bub","vice","form-actions"],
+ "stavy":[
+  "výchozí: 30 variací předvyplněno, náhled jedné variace vpravo (nakresleno).",
+  "víc variací, než kolik je unikátních: alert – další variace zopakují nejméně použité kombinace a klíč je označí (nakresleno).",
+  "chyba: počet mimo 1–500 nebo nad roční limit – .error u pole (nakresleno).",
+  "jiná dávka se právě generuje v pobočce: alert „Počkejte, až se předchozí dávka dokončí.“ a tlačítko disabled.",
+  "bez oprávnění: tarif bez tisku – volba Tisk se v Použít test nenabízí; přímý přístup 403."],
+ "zmeny_ux":[
+  "Klíčové údaje (Max. unikátních variací, otázek ve variaci, odhad stran) jsou .kpi nad formulářem.",
+  "Pole Počet variací má příponu „variací“ a hint s limitem 500; dopad na roční limit pokusů je hned u tlačítka, ne pod ním drobně.",
+  "Pobočka je jen informace (dl), ne pseudo-pole.",
+  "Náhled jedné variace je v pravém sloupci zkrácený na 2 otázky s tlačítkem Jiná variace; celý náhled na samostatné stránce Náhled variace.",
+  "Vysvětlení „unikátní variace“ (34 slov) zkráceno na 1 větu u čísla."],
+ "texty":[
+  {"dnes":"Max. unikátních variací ≥ 10 000 – Unikátní variace = jiný výběr otázek, pořadí otázek nebo pořadí odpovědí. Odhad podle počtu otázek v sekcích, …","nove":"≥ 10 000 unikátních variací – Liší se výběrem otázek nebo pořadím otázek a odpovědí.","proc":"Krátce; detail v nápovědě."},
+  {"dnes":"Každá variace je unikátní. Jedna dávka může mít nejvýše 500 variací.","nove":"Nejvýše 500 v jedné dávce.","proc":"Unikátnost řeší kpi a varování."},
+  {"dnes":"Vznikne zadání, odpovědní listy a samostatný soubor s klíči. Každá variace se započítá jako pokus do ročního limitu.","nove":"Vznikne zadání, odpovědní listy a klíče v PDF. Každá variace se započítá jako 1 pokus do ročního limitu.","proc":"Důležité běžným textem u tlačítka."},
+  {"dnes":"Náhodný náhled – neukládá se a nespotřebuje kombinaci.","nove":"Náhled se neukládá a nespotřebuje variaci.","proc":"Pojem variace (slovník), ne kombinace."}],
+ "pristupnost":[
+  "Pole Počet variací: label, hint a přípona (aria-hidden, jednotka je i v labelu).",
+  "Náhled je aside s H2; otázky jsou ol bez formulářových prvků.",
+  "Varování o opakovaných kombinacích se objeví v aria-live při změně počtu."],
+ "poznamky_pro_kodera":[
+  "Data z dema (BOZP): sekce BOZP, 34 kandidátů, 10–12 náhodně, 10 otázek ve variaci, odhad 2–3 strany A4.",
+  "Dávka se připravuje na pozadí; po vytvoření redirect na detail dávky se stavem Připravuje se.",
+  "Dávka i variace patří aktivní pobočce; pobočku mění horní lišta."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="tisk.html">Tisk</a></li><li><span aria-current="page">Nová tisková dávka</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Nová tisková dávka</p><h1 class="t-titulek">BOZP – cvičný test</h1>
+  <dl class="meta"><div><dt>Pobočka</dt><dd>Praha</dd></div></dl></div>
+ <div class="page-head__actions"><a class="btn btn--tiche" href="pouziti-nove.html">Změnit způsob</a></div>
+</div>
+
+<div class="layout-aside">
+ <div class="stack-4" style="min-width:0">
+  <div class="kpi">
+   <div><span class="t-cislo">≥&nbsp;10&nbsp;000</span><span class="t-maly">unikátních variací</span></div>
+   <div><span class="t-cislo">10</span><span class="t-maly">otázek ve variaci</span></div>
+   <div><span class="t-cislo">2–3</span><span class="t-maly">strany A4 zadání</span></div>
+   <div><span class="t-cislo">34</span><span class="t-maly">kandidátů v sekci BOZP</span></div>
+  </div>
+  <p class="t-maly">Variace se liší výběrem otázek nebo pořadím otázek a odpovědí.</p>
+
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Sekce testu</caption>
+    <thead><tr><th scope="col">Sekce</th><th scope="col" class="num">Kandidátů</th><th scope="col" class="num">Náhodně</th></tr></thead>
+    <tbody><tr><td data-label="Sekce">BOZP</td><td data-label="Kandidátů" class="num">34</td><td data-label="Náhodně" class="num">10–12</td></tr></tbody>
+   </table>
+  </div>
+
+  <form class="card stack-4" action="tisk-davka.html" method="post">
+   <div class="field"><label class="label" for="pocet">Počet variací</label><span class="hint" id="pocet-h">Nejvýše 500 v jedné dávce.</span>
+    <div class="input-group" style="max-width:220px"><input class="input" id="pocet" name="pocet" type="number" min="1" max="500" value="30" inputmode="numeric" aria-describedby="pocet-h"><span class="input-group__suffix" aria-hidden="true">variací</span></div></div>
+   <div class="field"><label class="label" for="oznaceni">Označení <span class="volitelne">(nepovinné)</span></label><span class="hint" id="oznaceni-h">Například „Zkouška 12. 11. – skupina A“.</span><input class="input" id="oznaceni" name="oznaceni" aria-describedby="oznaceni-h"></div>
+   <p>Vznikne zadání, odpovědní listy a klíče v PDF. Každá variace se započítá jako 1&nbsp;pokus do ročního limitu.</p>
+   <div class="form-actions">
+    <button class="btn btn--hlavni" type="submit">{{I:tisk}}Vytvořit dávku</button>
+    <a class="btn btn--tiche" href="tisk.html">Zrušit</a>
+   </div>
+  </form>
+ </div>
+
+ <aside class="stack" aria-labelledby="nahled-h" style="align-self:start;min-width:0">
+  <div class="row-between"><h2 id="nahled-h" class="t-nadpis">Náhled jedné variace</h2></div>
+  <p class="t-maly">Náhled se neukládá a nespotřebuje variaci. Skutečné variace se vylosují při vytvoření dávky.</p>
+  <ol class="stack" aria-label="Otázky náhledu">
+   <li class="card card--tenka stack-2"><p class="t-stitek">Otázka 1</p><p>Kdo může zaměstnanci dát pokyn, aby se podrobil zjištění, zda není pod vlivem alkoholu?</p>
+    <ol class="stack-2"><li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start"><span class="option__bub" aria-hidden="true">A</span><span class="t-maly">výhradně lékař pracovnělékařských služeb</span></li><li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start"><span class="option__bub" aria-hidden="true">B</span><span class="t-maly">oprávněný vedoucí zaměstnanec, kterého zaměstnavatel písemně určil</span></li><li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start"><span class="option__bub" aria-hidden="true">C</span><span class="t-maly">kterýkoli spolupracovník, který má podezření</span></li><li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start"><span class="option__bub" aria-hidden="true">D</span><span class="t-maly">výhradně Policie České republiky</span></li></ol></li>
+   <li class="card card--tenka stack-2"><p class="row" style="gap:var(--s-2)"><span class="t-stitek">Otázka 2</span><span class="vice">Více odpovědí</span></p><p>Ve kterých situacích je zaměstnavatel povinen zajistit školení o předpisech BOZP?</p><p class="t-maly">A–E · 5 odpovědí</p></li>
+  </ol>
+  <div class="row"><a class="btn btn--male" href="tisk-nova-davka.html">{{I:obnovit}}Jiná variace</a><a class="btn btn--male btn--tiche" href="test-nahled.html">Celý náhled</a></div>
+ </aside>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Víc variací, než kolik je unikátních</p>
+ <div class="alert" role="status">{{I:pozor}}<p>Test umožňuje jen 240 unikátních variací. Dalších 60 zopakuje nejméně použité kombinace. Klíč je označí „opakovaná kombinace“.</p></div>
+ <p class="t-stitek">Chyba: počet mimo rozsah</p>
+ <div class="field"><label class="label" for="pocet-x">Počet variací</label><span class="error" id="pocet-x-e">{{I:pozor}}Zadejte 1 až 500 variací.</span><div class="input-group" style="max-width:220px"><input class="input" id="pocet-x" type="number" value="600" aria-invalid="true" aria-describedby="pocet-x-e"><span class="input-group__suffix" aria-hidden="true">variací</span></div></div>
+ <p class="t-stitek">Jiná dávka se generuje</p>
+ <div class="alert alert--info">{{I:hodiny}}<p>V pobočce Praha se právě připravuje jiná tisková dávka. Počkejte, až se dokončí.</p></div>
+</section>

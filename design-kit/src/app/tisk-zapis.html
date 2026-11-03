@@ -1,0 +1,116 @@
+<!--meta {"titulek":"Zápis papírových odpovědí – Kybernetická bezpečnost","sablona":"app","role":"lektor","aktivni":"tisk.html","demo":false} -->
+<!--spec {
+ "route":"/tisk/:id/papirove-odpovedi","nazev":"Zápis papírových odpovědí","role":"lektor","sablona":"app",
+ "ucel":"Přepsat zaškrtnuté odpovědi z papírového odpovědního listu do aplikace a hned je vyhodnotit. Lektor jich zapisuje desítky za sebou, proto rychle a z klávesnice.",
+ "hlavni_akce":"Zapsat a vyhodnotit (a pokračovat dalším listem)",
+ "komponenty":["crumbs","page-head","layout-aside","card","field","input--kod","table-wrap","table (mřížka listu)","check","vice","kbd","kpi","alert","error-summary","btn--hlavni"],
+ "stavy":[
+  "zápis listu: variace UG98N3X6 vybraná, 7 z 12 otázek zapsáno, aktivní řádek 08 (nakresleno).",
+  "výběr variace: pole Kód variace + Vybrat variaci, případně Načíst QR kód (nakresleno).",
+  "neplatný kód: „Kód UG98N3X7 v této dávce není. Zkontrolujte kód na listu.“ (nakresleno).",
+  "variace už zapsaná: alert s výsledkem a volbou Uložit opravný záznam (pole Důvod opravy) (nakresleno).",
+  "uloženo: alert--ok s výsledkem a fokus do pole kódu dalšího listu (nakresleno).",
+  "bez oprávnění: zapisuje jen autor použití nebo administrátor pobočky; ostatním alert--info a formulář chybí."],
+ "zmeny_ux":[
+  "Mřížka odpovědí má stejné rozvržení jako papírový odpovědní list: otázky 01–12 pod sebou, sloupce A–G zarovnané, štítek VÍCE u otázek s více odpověďmi. Oči lektora skáčou mezi listem a obrazovkou po stejných pozicích.",
+  "Návrh: Rychlé psaní – lektor píše písmena z listu (acdeg), Enter = další otázka, „-“ = nevyplněno, Backspace v prázdném poli = předchozí otázka. Aktivní řádek je zvýrazněný.",
+  "Kontrola vpravo ukazuje, kolik otázek je zapsáno a které chybí („Zbývá: 08–12“), v aria-live.",
+  "Po uložení zůstane lektor na stránce: výsledek v alertu, fokus do pole Kód variace dalšího listu (Zapsat a další list).",
+  "Kód variace a jméno zkoušeného jsou v hlavičce listu vedle sebe jako na papíře.",
+  "Oprava zapsaného listu je viditelná cesta (Uložit opravný záznam + Důvod opravy), ne jen věta v nápovědě."],
+ "texty":[
+  {"dnes":"Kód variace – Opište kód z odpovědního listu (nebo jej načtěte čtečkou QR kódu).","nove":"Kód variace – Je vpravo nahoře na listu. Můžete ho i načíst čtečkou QR kódu.","proc":"Řekne kde; „jej“ → „ho“."},
+  {"dnes":"Zaškrtnuté odpovědi podle listu – U otázek s jednou správnou odpovědí lze vybrat jen jedno písmeno; nevyplněnou otázku nechte „—“.","nove":"Zaškrtněte, co zkoušený zaškrtl na listu. U otázky s jednou odpovědí jde vybrat jen jedno písmeno.","proc":"Kratší; „–“ vysvětluje sloupec Nic."},
+  {"dnes":"1 (více)","nove":"01 + štítek VÍCE","proc":"Stejně jako na odpovědním listu."},
+  {"dnes":"Zapsat a vyhodnotit","nove":"Zapsat a vyhodnotit / Zapsat a další list","proc":"Druhé tlačítko pro sériový zápis."}],
+ "pristupnost":[
+  "Mřížka je table s caption „Odpovědi variace UG98N3X6“; řádek má th scope=row (číslo otázky), sloupce th scope=col (A–G, Nic). Každý vstup má sr-only label „Otázka 1: A“.",
+  "Otázky s jednou odpovědí jsou radio skupina (šipky mění písmeno), s více odpověďmi checkboxy.",
+  "Rychlé psaní je obyčejné textové pole s labelem a nápovědou; aktuální otázka se hlásí přes aria-live („Otázka 08“). Zaškrtnutí v mřížce se mění synchronně – mřížka zůstává ovladatelná i bez rychlého psaní.",
+  "Aktivní řádek má aria-current=true a zvýraznění pozadím (nejen barvou – i šipka ve sloupci čísla).",
+  "Kontrola „7 z 12 zapsáno · Zbývá: 08–12“ je v aria-live=polite.",
+  "Po uložení se fokus přesune do pole Kód variace a alert--ok se přečte (role=status)."],
+ "poznamky_pro_kodera":[
+  "Data z dema: Kybernetická bezpečnost – roční ověření, dávka Náhled pro návrh, variace UG98N3X6, 12 otázek (1, 4, 5, 11 více odpovědí; počty odpovědí 7,5,4,6,6,4,4,4,4,4,6,4).",
+  "Rychlé psaní: parser písmen a–g (bez ohledu na velikost), u otázky s jednou odpovědí bere první písmeno; neplatné písmeno (mimo rozsah otázky) = krátká chyba pod polem, nic se nezaškrtne.",
+  "Kód variace: input--kod, autocomplete=off, po 8 znacích automaticky Vybrat variaci.",
+  "Oprava: odevzdaný pokus se nepřepisuje; vznikne opravný záznam s vlastním protokolem, původní je „Nahrazen opravou“. Do ročního limitu se nepočítá.",
+  "Výsledek v Výsledky bude označený „papír“."],
+ "chybi_komponenta":["políčko odpovědního listu v aplikaci (čtvereček s písmenem, zaškrtnuté = grafit + žluté písmeno jako v mocku zapis) – použito .check s sr-only písmenem a písmena v záhlaví sloupců","zvýrazněný aktivní řádek tabulky (.table tr[aria-current]) – použito inline pozadí tokenem"]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="tisk.html">Tisk</a></li><li><a href="tisk-davka.html">Náhled pro návrh</a></li><li><span aria-current="page">Zápis papírových odpovědí</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Zápis papírových odpovědí · 1 z 2 listů</p><h1 class="t-titulek">Kybernetická bezpečnost – roční ověření</h1></div>
+ <div class="page-head__actions"><button class="btn" type="button">{{I:qr}}Načíst QR kód telefonem</button></div>
+</div>
+
+<form class="layout-aside" action="tisk-zapis.html" method="post">
+ <div class="card stack" style="padding:0;min-width:0">
+  <div class="row" style="padding:var(--s-3) var(--s-4);border-bottom:var(--b-silna) solid var(--c-grafit);align-items:flex-end">
+   <div class="field" style="flex:0 1 220px"><label class="label" for="kod">Kód variace</label><input class="input input--kod" id="kod" name="kod" value="UG98N3X6" autocomplete="off" aria-describedby="kod-h"><span class="hint" id="kod-h">Vpravo nahoře na listu.</span></div>
+   <div class="field" style="flex:1 1 220px"><label class="label" for="jmeno">Jméno zkoušeného</label><input class="input" id="jmeno" name="jmeno" value="Jana Zelená" autocomplete="off"><span class="hint">Opište z listu.</span></div>
+  </div>
+  <div class="stack-2" style="padding:0 var(--s-4)">
+   <p class="t-maly">Zaškrtněte, co zkoušený zaškrtl na listu. U otázky s jednou odpovědí jde vybrat jen jedno písmeno.</p>
+  </div>
+  <div class="table-wrap" style="border-width:var(--b-silna) 0 0">
+   <table class="table">
+    <caption class="sr-only">Odpovědi variace UG98N3X6</caption>
+    <thead><tr><th scope="col">Otázka</th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th><th scope="col">E</th><th scope="col">F</th><th scope="col">G</th><th scope="col"><span aria-hidden="true">–</span><span class="sr-only">Bez odpovědi</span></th></tr></thead>
+    <tbody>
+<tr><th scope="row"><span class="t-cislo">01</span> <span class="vice">více</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q1" checked><span class="sr-only">Otázka 1: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q1"><span class="sr-only">Otázka 1: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q1" checked><span class="sr-only">Otázka 1: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q1" checked><span class="sr-only">Otázka 1: D</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q1" checked><span class="sr-only">Otázka 1: E</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q1"><span class="sr-only">Otázka 1: F</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q1" checked><span class="sr-only">Otázka 1: G</span></label></td><td></td></tr>
+<tr><th scope="row"><span class="t-cislo">02</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q2"><span class="sr-only">Otázka 2: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q2" checked><span class="sr-only">Otázka 2: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q2"><span class="sr-only">Otázka 2: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q2"><span class="sr-only">Otázka 2: D</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q2"><span class="sr-only">Otázka 2: E</span></label></td><td></td><td></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q2"><span class="sr-only">Otázka 2: bez odpovědi</span></label></td></tr>
+<tr><th scope="row"><span class="t-cislo">03</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q3"><span class="sr-only">Otázka 3: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q3" checked><span class="sr-only">Otázka 3: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q3"><span class="sr-only">Otázka 3: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q3"><span class="sr-only">Otázka 3: D</span></label></td><td></td><td></td><td></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q3"><span class="sr-only">Otázka 3: bez odpovědi</span></label></td></tr>
+<tr><th scope="row"><span class="t-cislo">04</span> <span class="vice">více</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q4" checked><span class="sr-only">Otázka 4: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q4"><span class="sr-only">Otázka 4: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q4" checked><span class="sr-only">Otázka 4: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q4"><span class="sr-only">Otázka 4: D</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q4"><span class="sr-only">Otázka 4: E</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q4" checked><span class="sr-only">Otázka 4: F</span></label></td><td></td><td></td></tr>
+<tr><th scope="row"><span class="t-cislo">05</span> <span class="vice">více</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q5" checked><span class="sr-only">Otázka 5: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q5" checked><span class="sr-only">Otázka 5: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q5"><span class="sr-only">Otázka 5: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q5"><span class="sr-only">Otázka 5: D</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q5" checked><span class="sr-only">Otázka 5: E</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q5"><span class="sr-only">Otázka 5: F</span></label></td><td></td><td></td></tr>
+<tr><th scope="row"><span class="t-cislo">06</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q6"><span class="sr-only">Otázka 6: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q6"><span class="sr-only">Otázka 6: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q6"><span class="sr-only">Otázka 6: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q6" checked><span class="sr-only">Otázka 6: D</span></label></td><td></td><td></td><td></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q6"><span class="sr-only">Otázka 6: bez odpovědi</span></label></td></tr>
+<tr><th scope="row"><span class="t-cislo">07</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q7" checked><span class="sr-only">Otázka 7: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q7"><span class="sr-only">Otázka 7: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q7"><span class="sr-only">Otázka 7: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q7"><span class="sr-only">Otázka 7: D</span></label></td><td></td><td></td><td></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q7"><span class="sr-only">Otázka 7: bez odpovědi</span></label></td></tr>
+<tr aria-current="true" style="background:var(--c-zvyraznovac-svetly)"><th scope="row"><span class="t-cislo">08</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q8"><span class="sr-only">Otázka 8: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q8"><span class="sr-only">Otázka 8: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q8"><span class="sr-only">Otázka 8: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q8"><span class="sr-only">Otázka 8: D</span></label></td><td></td><td></td><td></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q8" checked><span class="sr-only">Otázka 8: bez odpovědi</span></label></td></tr>
+<tr><th scope="row"><span class="t-cislo">09</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q9"><span class="sr-only">Otázka 9: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q9"><span class="sr-only">Otázka 9: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q9"><span class="sr-only">Otázka 9: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q9"><span class="sr-only">Otázka 9: D</span></label></td><td></td><td></td><td></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q9" checked><span class="sr-only">Otázka 9: bez odpovědi</span></label></td></tr>
+<tr><th scope="row"><span class="t-cislo">10</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q10"><span class="sr-only">Otázka 10: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q10"><span class="sr-only">Otázka 10: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q10"><span class="sr-only">Otázka 10: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q10"><span class="sr-only">Otázka 10: D</span></label></td><td></td><td></td><td></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q10" checked><span class="sr-only">Otázka 10: bez odpovědi</span></label></td></tr>
+<tr><th scope="row"><span class="t-cislo">11</span> <span class="vice">více</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q11"><span class="sr-only">Otázka 11: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q11"><span class="sr-only">Otázka 11: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q11"><span class="sr-only">Otázka 11: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q11"><span class="sr-only">Otázka 11: D</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q11"><span class="sr-only">Otázka 11: E</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="checkbox" name="q11"><span class="sr-only">Otázka 11: F</span></label></td><td></td><td></td></tr>
+<tr><th scope="row"><span class="t-cislo">12</span></th><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q12"><span class="sr-only">Otázka 12: A</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q12"><span class="sr-only">Otázka 12: B</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q12"><span class="sr-only">Otázka 12: C</span></label></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q12"><span class="sr-only">Otázka 12: D</span></label></td><td></td><td></td><td></td><td><label class="check" style="padding-top:0;justify-content:center;position:relative"><input type="radio" name="q12" checked><span class="sr-only">Otázka 12: bez odpovědi</span></label></td></tr>
+
+    </tbody>
+   </table>
+  </div>
+ </div>
+
+ <aside class="stack" style="align-self:start" aria-label="Rychlé psaní a kontrola">
+  <div class="card stack-2">
+   <h2 class="t-stitek">Rychlé psaní</h2>
+   <div class="field"><label class="label" for="rychle">Odpovědi otázky <span class="t-cislo" aria-live="polite">08</span></label><input class="input input--kod" id="rychle" autocomplete="off" aria-describedby="rychle-h" style="text-transform:none"></div>
+   <div class="stack-2 t-maly" id="rychle-h">
+    <p>Pište písmena z listu, <span class="kbd">Enter</span> = další otázka.</p>
+    <p><span class="kbd">acdeg</span> → A, C, D, E, G</p>
+    <p><span class="kbd">-</span> → nevyplněno</p>
+    <p><span class="kbd">Backspace</span> v prázdném poli → předchozí otázka</p>
+   </div>
+  </div>
+  <div class="card stack-2" aria-live="polite">
+   <h2 class="t-stitek">Kontrola</h2>
+   <p><span class="t-cislo t-titulek">7</span> z <span class="t-cislo t-titulek">12</span> zapsáno</p>
+   <p class="t-maly">Zbývá: 08–12</p>
+  </div>
+  <button class="btn btn--hlavni btn--blok" type="submit">Zapsat a vyhodnotit</button>
+  <button class="btn btn--blok" type="submit" name="dalsi" value="1">Zapsat a další list {{I:sipka-vpravo}}</button>
+ </aside>
+</form>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Výběr variace</p>
+ <div class="card row" style="align-items:flex-end">
+  <div class="field" style="flex:0 1 240px"><label class="label" for="kod-v">Kód variace</label><input class="input input--kod" id="kod-v" autocomplete="off" aria-describedby="kod-v-h"></div>
+  <button class="btn" type="button">Vybrat variaci</button>
+  <p class="hint" id="kod-v-h" style="flex:1 1 100%">Vpravo nahoře na listu. Můžete ho i načíst čtečkou QR kódu.</p>
+ </div>
+ <p class="t-stitek">Neplatný kód</p>
+ <div class="field"><label class="label" for="kod-x">Kód variace</label><span class="error" id="kod-x-e">{{I:pozor}}Kód UG98N3X7 v této dávce není. Zkontrolujte kód na listu.</span><input class="input input--kod" id="kod-x" value="UG98N3X7" aria-invalid="true" aria-describedby="kod-x-e" style="max-width:240px"></div>
+ <p class="t-stitek">Uloženo</p>
+ <div class="alert alert--ok" role="status">{{I:check-kruh}}<div class="stack-2"><p><b>Zapsáno: Jana Zelená, 83,3&nbsp;%.</b> <span class="stav stav--ok">{{I:check}}Splněno</span></p><p>Zapsané jsou 2 z 2 listů. <a href="vysledek-detail.html">Zobrazit výsledek</a></p></div></div>
+ <p class="t-stitek">Variace už zapsaná – oprava</p>
+ <div class="alert">{{I:pozor}}<div class="stack-2"><p class="alert__nadpis">Variace R2PW7T5K je už zapsaná (Petr Modrý, 75,0&nbsp;%).</p><p>Opravou vznikne nový záznam s vlastním protokolem. Původní zůstane dohledatelný jako „Nahrazen opravou“.</p></div></div>
+ <div class="field"><label class="label" for="duvod">Důvod opravy</label><span class="hint" id="duvod-h">Zapíše se do záznamu pokusu.</span><input class="input" id="duvod" aria-describedby="duvod-h"></div>
+ <div><button class="btn" type="button">Uložit opravný záznam</button></div>
+</section>

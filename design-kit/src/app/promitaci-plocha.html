@@ -1,0 +1,63 @@
+<!--meta {"titulek":"Promítací plocha – Radiační ochrana","sablona":"cisty","body_class":"","role":"lektor","demo":false} -->
+<!--spec {
+ "route":"/pouziti/:id/plocha","nazev":"Promítací plocha","role":"lektor","sablona":"cisty",
+ "ucel":"Okno pro projektor v učebně: velký kód, QR kód a adresa, aby se účastníci připojili ze svých zařízení. Bez jmen účastníků.",
+ "hlavni_akce":"Žádná – plocha se jen promítá; lektor ji může přepnout na celou obrazovku",
+ "komponenty":["projektor","section--grafit","kod","qr","t-sekce","t-stitek","t-cislo","btn"],
+ "stavy":[
+  "čekárna otevřená: kód, QR a adresa (nakresleno).",
+  "test spuštěn: místo kódu velký text „Test běží. Vstup je uzavřen.“ a počty Píše / Odevzdáno (nakresleno).",
+  "uzavřeno: „Zkouška skončila. Děkujeme.“ a počet odevzdaných.",
+  "výpadek spojení: drobný text dole „Spojení přerušeno – zkouším znovu“ (kód zůstává vidět).",
+  "bez oprávnění: plochu otevře jen lektor použití; bez přihlášení přesměrování na přihlášení."],
+ "zmeny_ux":[
+  "Tmavá plocha (grafit) s papírovým kódem – na projektoru má vyšší kontrast a neoslňuje v zatemněné učebně.",
+  "Kód má největší písmo systému (56 px) a mezery mezi znaky; adresa je nad ním v t-kod.",
+  "QR kód je 288 px (3× --s-7), čitelný z posledních lavic.",
+  "Počty Připojeno / Píše / Odevzdáno jsou dole jako stavový řádek; jména se nezobrazují (ochrana osobních údajů).",
+  "Tlačítko Na celou obrazovku je v rohu a při celé obrazovce se skryje."],
+ "texty":[
+  {"dnes":"Otevřete https://demo.exam-test.cz/live a zadejte kód MAQGU2","nove":"1 Otevřete demo.exam-test.cz/live · 2 Zadejte kód · nebo naskenujte QR kód","proc":"Kroky jako číslovaný postup; bez https://."},
+  {"dnes":"Připojeno 0 · Píše 0 · Odevzdáno 0","nove":"Připojeno 4 · Píše 0 · Odevzdáno 0","proc":"Beze změny textu; čísla v t-cislo."}],
+ "pristupnost":[
+  "Jediné H1 = název testu; kód je v elementu s aria-label „Kód B 8 H A N 4“ (čtečka po znacích).",
+  "Počty jsou v aria-live=polite (pro lektora se čtečkou), aktualizace každých 5 s.",
+  "Kontrast papír na grafitu 14:1; minimální velikost textu na ploše 22 px.",
+  "Plocha nemá žádné interaktivní prvky kromě Na celou obrazovku (Esc ji ukončí)."],
+ "poznamky_pro_kodera":[
+  "Šablona cisty, main.projektor.section--grafit (min-height 100vh, obsah na střed).",
+  "Kód v demu: MAQGU2 / B8HAN4 – zde B8HAN4 (shodně s čekárnou).",
+  "Plocha se otevírá v novém okně z čekárny; po spuštění testu se přepne sama (polling 5 s).",
+  "QR obsahuje /live/{kód}; obrázek generovat jako SVG nebo PNG ≥ 600 px."],
+ "chybi_komponenta":["větší QR pro projektor (.qr--velky) – použita inline šířka calc(var(--s-7)*3)"]
+} -->
+<main id="obsah" class="projektor section--grafit">
+ <div class="stack-5" style="width:100%;max-width:var(--max-web)">
+  <div class="row-between">
+   <p class="t-stitek">Prezenční zkouška · Praha</p>
+   <button class="btn btn--male" type="button">{{I:obrazovka}}Na celou obrazovku</button>
+  </div>
+  <h1 class="t-sekce">Radiační ochrana – ověření znalostí</h1>
+  <div class="row" style="justify-content:center;gap:var(--s-6);align-items:center">
+   <img class="qr" src="../assets/img/qr-ukazka.png" alt="QR kód pro připojení ke zkoušce" width="288" height="288" style="width:calc(var(--s-7)*3);height:calc(var(--s-7)*3)">
+   <ol class="stack-4" style="text-align:left">
+    <li class="stack-2"><span class="t-stitek">1 · Otevřete</span><span class="t-kod t-nadpis">demo.exam-test.cz/live</span></li>
+    <li class="stack-2" style="align-items:flex-start"><span class="t-stitek">2 · Zadejte kód</span><span class="kod" aria-label="Kód B 8 H A N 4">B8HAN4</span></li>
+    <li><span class="t-perex">nebo naskenujte QR kód</span></li>
+   </ol>
+  </div>
+  <p class="t-nadpis" aria-live="polite">Připojeno <span class="t-cislo">4</span> · Píše <span class="t-cislo">0</span> · Odevzdáno <span class="t-cislo">0</span></p>
+ </div>
+</main>
+
+<section class="no-print section section--grafit" aria-labelledby="dalsi" style="text-align:center">
+ <div class="container stack-4">
+  <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+  <p class="t-stitek">Test spuštěn</p>
+  <p class="t-sekce">Test běží. Vstup je uzavřen.</p>
+  <p class="t-nadpis">Píše <span class="t-cislo">4</span> · Odevzdáno <span class="t-cislo">0</span></p>
+  <p class="t-stitek">Zkouška skončila</p>
+  <p class="t-sekce">Zkouška skončila. Děkujeme.</p>
+  <p class="t-nadpis">Odevzdáno <span class="t-cislo">4</span></p>
+ </div>
+</section>

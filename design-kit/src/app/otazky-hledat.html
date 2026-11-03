@@ -1,0 +1,106 @@
+<!--meta {"titulek":"Hledat otázky","sablona":"app","role":"lektor","aktivni":"otazky-hledat.html","demo":false} -->
+<!--spec {
+ "route":"/otazky/hledat","nazev":"Hledat otázky","role":"lektor, autor otázek, administrátor pobočky i organizace – hledá se jen v souborech, ke kterým má uživatel právo","sablona":"app",
+ "ucel":"Najít otázku napříč všemi soubory otázek podle textu, poznámky, autora, data, stavu, souboru a štítků.",
+ "hlavni_akce":"Hledat (a otevřít nalezenou otázku)",
+ "komponenty":["page-head","filters","field","input","select","fieldset","check","faq (details)","table table--stack","stav","t-zvyraznit","pager","empty"],
+ "stavy":[
+  "úvodní (bez dotazu): empty s nápovědou k zápisu dotazu a příklady",
+  "výsledky (nakresleno): počet, tabulka se zvýrazněnou shodou, odkaz na soubor",
+  "bez výsledku: věta + 3 důvody (nemáte právo k souboru, otázka je v koši, filtr je úzký) a Zrušit filtr",
+  "načítání: role=status „Hledám…“ a kostra tabulky",
+  "chyba: alert--chyba s Zkusit znovu",
+  "bez oprávnění: hledá se jen v souborech s právem – nikdy 403; ve výsledcích nejsou soubory bez práva"],
+ "zmeny_ux":[
+  "Výchozí pole jsou jen Fulltext a Soubory otázek; ostatní (poznámka, autor, datum, stav, štítky) v Další filtry s počtem zapnutých filtrů.",
+  "Shoda je ve výsledku zvýrazněná (t-zvyraznit) a u každé otázky je soubor jako odkaz.",
+  "Aktivní filtry se ukážou nad výsledky jako souhrn s Zrušit filtr.",
+  "Prázdný výsledek vysvětluje 3 nejčastější důvody z nápovědy (Proč otázku nenacházím).",
+  "Příklady zápisu dotazu (uvozovky, minus) jsou klikací – vloží se do pole (návrh)."],
+ "texty":[
+  {"dnes":"Hledat a filtrovat otázky","nove":"(nadpis odstraněn – H1 Hledat otázky stačí)","proc":"Jednou a na jednom místě."},
+  {"dnes":"Funguje i bez diakritiky. Frázi uzavřete do uvozovek, slovo vyloučíte znakem minus.","nove":"Funguje i bez diakritiky. Frázi dejte do uvozovek, slovo vyloučíte minusem: zareni -alfa","proc":"Kratší + příklad."},
+  {"dnes":"Bez výběru se hledá ve všech souborech, ke kterým máte přístup.","nove":"Ponecháno","proc":"Odpovídá pravidlům."},
+  {"dnes":"Zadejte hledaný text nebo nastavte filtr. Hledá se ve všech souborech otázek, ke kterým máte přístup.","nove":"Zadejte hledaný text nebo nastavte filtr.","proc":"Druhá věta už je u pole Soubory otázek."},
+  {"dnes":"Hledat · Zrušit filtr","nove":"Hledat · Zrušit filtr","proc":"Ponecháno."}],
+ "pristupnost":[
+  "Formulář role=search s aria-label; výsledek „Nalezeno otázek: 2“ v aria-live=polite a fokus na něj po odeslání.",
+  "Zvýraznění shody je <mark> (čtečka může oznámit), ne jen barva.",
+  "Výběr souborů a štítků jako fieldset s checkboxy; volba alespoň jeden / všechny jako radio.",
+  "Tabulka s caption, odkaz zadání vede na detail otázky."],
+ "poznamky_pro_kodera":[
+  "Fulltext hledá v zadání, odpovědích a poznámce; bez diakritiky; fráze v uvozovkách; minus vylučuje.",
+  "Stejný filtr je v detailu souboru (soubor-detail.html) – sdílet komponentu.",
+  "Výsledky 25 na stránku, řazení podle relevance; GET parametry v URL (sdílitelný odkaz).",
+  "Ukázkový dotaz „alfa“ a počet výsledků jsou ilustrační (otázky č. 10 a 11 jsou z dema)."],
+ "chybi_komponenta":["zvýraznění shody ve výsledcích (mark) – použita třída t-zvyraznit na <mark>; prohlížečové výchozí pozadí <mark> je třeba v brand.css vynulovat"]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Hledat otázky</h1><p class="t-maly">Hledá se ve všech souborech otázek, ke kterým máte přístup.</p></div><div class="page-head__actions"><a class="btn" href="soubory.html">{{I:slozka}}Soubory otázek</a></div></div>
+
+<form class="card stack-4" action="otazky-hledat.html" method="get" role="search" aria-label="Hledat otázky">
+ <div class="filters" style="margin-bottom:0">
+  <div class="field" style="flex:2 1 320px"><label class="label" for="q">Fulltext (zadání, odpovědi, poznámka)</label><input class="input" id="q" name="q" type="search" value="alfa" aria-describedby="q-h"><span class="hint" id="q-h">Funguje i bez diakritiky. Frázi dejte do uvozovek, slovo vyloučíte minusem: <span class="t-kod">zareni -alfa</span></span></div>
+ </div>
+ <fieldset class="stack-2">
+  <legend>Soubory otázek</legend>
+  <div class="row" style="gap:0 var(--s-4)">
+   <label class="check"><input type="checkbox" name="soubor" value="bozp">BOZP – školení zaměstnanců</label>
+   <label class="check"><input type="checkbox" name="soubor" value="kyber">Kybernetická bezpečnost – školení uživatelů</label>
+   <label class="check"><input type="checkbox" name="soubor" value="ro" checked>Radiační ochrana – základní principy</label>
+  </div>
+  <p class="hint">Bez výběru se hledá ve všech souborech, ke kterým máte přístup.</p>
+ </fieldset>
+ <div class="faq">
+  <details>
+   <summary>Další filtry: poznámka, autor, datum, stav, štítky</summary>
+   <div class="stack">
+    <div class="grid-3">
+     <div class="field"><label class="label" for="pozn">Poznámka obsahuje</label><input class="input" id="pozn" name="poznamka"></div>
+     <div class="field"><label class="label" for="autor">Autor</label><select class="select" id="autor" name="autor"><option>Všichni autoři</option><option>Adam Autor</option></select></div>
+     <div class="field"><label class="label" for="stav">Stav</label><select class="select" id="stav" name="stav"><option>Všechny stavy</option><option>Koncept</option><option>Ke schválení</option><option>Schválená</option></select></div>
+     <div class="field"><label class="label" for="od">Vytvořeno od</label><input class="input" id="od" name="od" type="date"></div>
+     <div class="field"><label class="label" for="do">Vytvořeno do</label><input class="input" id="do" name="do" type="date"></div>
+    </div>
+    <fieldset class="stack-2"><legend>Štítky</legend>
+     <div class="row" style="gap:0 var(--s-4)"><label class="check"><input type="checkbox" name="s">Okruhy: Druhy záření</label><label class="check"><input type="checkbox" name="s">Okruhy: Čas, vzdálenost, stínění</label><label class="check"><input type="checkbox" name="s">Obtížnost: Základní</label><label class="check"><input type="checkbox" name="s">Obtížnost: Pokročilá</label></div>
+    </fieldset>
+    <fieldset><legend>Otázka musí mít</legend><div class="row"><label class="check"><input type="radio" name="sh" checked>alespoň jeden ze zvolených štítků</label><label class="check"><input type="radio" name="sh">všechny zvolené štítky</label></div></fieldset>
+   </div>
+  </details>
+ </div>
+ <div class="row"><button class="btn btn--hlavni" type="submit">{{I:hledat}}Hledat</button><a class="btn btn--tiche" href="otazky-hledat.html">Zrušit filtr</a></div>
+</form>
+
+<div class="stack" style="margin-top:var(--s-5)">
+ <div class="row-between"><p aria-live="polite" tabindex="-1"><b>Nalezeno otázek: <span class="t-cislo">2</span></b> <span class="t-maly">· „alfa“ v souboru Radiační ochrana</span></p></div>
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption class="sr-only">Nalezené otázky (2)</caption>
+   <thead><tr><th scope="col">Zadání</th><th scope="col">Soubor otázek</th><th scope="col">Štítky</th><th scope="col">Stav</th><th scope="col" class="num">Verze</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Zadání"><div><a href="otazka-detail.html">Obrázek schematicky znázorňuje pronikavost tří druhů ionizujícího záření. Která šipka odpovídá záření <mark class="t-zvyraznit" style="color:inherit">alfa</mark>?</a><span class="t-maly">Otázka č. 10 · RO-010</span></div></td><td data-label="Soubor otázek"><a href="soubor-detail.html">Radiační ochrana – základní principy</a></td><td data-label="Štítky"><ul class="stack-2"><li><span class="stav stav--neutral">Druhy záření</span></li><li><span class="stav stav--neutral">Základní</span></li></ul></td><td data-label="Stav"><span class="stav stav--ok">{{I:check}}Schválená</span></td><td data-label="Verze" class="num">v1</td></tr>
+    <tr><td data-label="Zadání"><div><a href="otazka-detail.html">Proč jsou radionuklidy vyzařující částice <mark class="t-zvyraznit" style="color:inherit">alfa</mark> nejnebezpečnější při vnitřní kontaminaci (po vdechnutí nebo požití)?</a><span class="t-maly">Otázka č. 11</span></div></td><td data-label="Soubor otázek"><a href="soubor-detail.html">Radiační ochrana – základní principy</a></td><td data-label="Štítky"><ul class="stack-2"><li><span class="stav stav--neutral">Druhy záření</span></li></ul></td><td data-label="Stav"><span class="stav stav--ok">{{I:check}}Schválená</span></td><td data-label="Verze" class="num">v1</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack">
+  <h3 class="t-stitek">Úvodní stav – bez dotazu</h3>
+  <div class="empty stack-2">{{I:hledat}}<p class="t-nadpis">Zadejte hledaný text nebo nastavte filtr</p><p class="t-maly">Například <span class="t-kod">"osobní dozimetr"</span> pro přesnou frázi nebo <span class="t-kod">zareni -alfa</span> bez slova alfa.</p></div>
+ </div>
+ <div class="stack">
+  <h3 class="t-stitek">Bez výsledku</h3>
+  <div class="card stack" role="status">
+   <p><b>Žádná otázka neodpovídá dotazu.</b> Nejčastější důvody:</p>
+   <ul class="list-check">
+    <li>Nemáte právo k souboru, ve kterém otázka je. Požádejte vlastníka souboru.</li>
+    <li>Otázka je v koši. Najdete ji v detailu souboru na záložce Koš otázek.</li>
+    <li>Filtr je příliš úzký. Zkuste méně podmínek.</li>
+   </ul>
+   <p><a class="btn btn--male" href="otazky-hledat.html">Zrušit filtr</a></p>
+  </div>
+ </div>
+</section>

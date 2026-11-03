@@ -1,0 +1,76 @@
+<!--meta {"titulek":"Tisková dávka – Kybernetická bezpečnost","sablona":"app","role":"lektor","aktivni":"tisk.html","demo":false} -->
+<!--spec {
+ "route":"/tisk/:id","nazev":"Tisková dávka – detail","role":"lektor","sablona":"app",
+ "ucel":"Stáhnout PDF dávky (zadání, odpovědní listy, klíče) a po zkoušce zapsat papírové odpovědi jednotlivých variací.",
+ "hlavni_akce":"Zapsat papírové odpovědi; vedlejší: stáhnout PDF",
+ "komponenty":["crumbs","page-head","meta","stav","grid-3","card","btn","alert","table-wrap","table--stack","mini-bar","empty"],
+ "stavy":[
+  "hotovo: soubory ke stažení a přehled zápisu (nakresleno).",
+  "připravuje se: alert--info s textem „Dávka se připravuje. Stránka se obnoví sama.“ a tlačítka stažení disabled (nakresleno).",
+  "opakované kombinace: alert – „5 variací opakuje kombinaci, klíč je označí.“",
+  "chyba přípravy: alert--chyba s důvodem (roční limit, souběžná dávka) a tlačítkem Zkusit znovu.",
+  "bez oprávnění: zápis odpovědí jen autor použití a administrátor pobočky – ostatním tlačítko Zapsat chybí a je vysvětlení (nakresleno)."],
+ "zmeny_ux":[
+  "Tři soubory jako tři karty se stejnou strukturou (co obsahuje, počet stran, Stáhnout PDF); klíče mají stav „Důvěrné“ přímo na kartě.",
+  "Přibyl přehled variací: kód, zkoušený, stav zápisu a výsledek – lektor vidí, které listy ještě nezapsal.",
+  "Zápis papírových odpovědí je hlavní akce stránky po zkoušce (btn--hlavni), s postupem „1 z 2 listů zapsáno“.",
+  "Informace o auditu stažení je běžný text pod kartami, ne drobný text pod tlačítkem."],
+ "texty":[
+  {"dnes":"Náhled pro návrh · pobočka Návštěvník 6013 · 2 variace · vytvořil Lucie Lektorová 3. 11. 2026 18:20","nove":"meta: Označení Náhled pro návrh · Variací 2 · Pobočka Praha · Vytvořila Lucie Lektorová, 3. 11. 18:20","proc":".meta s popisky."},
+  {"dnes":"Stav: Hotovo","nove":"Hotovo (stav--ok)","proc":"Stav ikonou + slovem."},
+  {"dnes":"Klíče a vyhodnocovací tabulka (PDF) · Důvěrné – nerozdávat zkoušeným","nove":"Klíče a vyhodnocovací tabulka · stav Důvěrné · Nerozdávejte je zkoušeným.","proc":"Důležité ne drobně; činně."},
+  {"dnes":"Každé stažení se zapisuje do auditu.","nove":"Každé stažení se zapíše do záznamu změn.","proc":"Pojem z navigace (Záznam změn)."}],
+ "pristupnost":[
+  "Karty souborů: H3 + popis; tlačítko Stáhnout má sr-only název souboru („Stáhnout PDF: Klíče“).",
+  "Disabled stažení ve stavu Připravuje se má aria-describedby na vysvětlení.",
+  "Tabulka variací má caption; stav zápisu ikonou + slovem."],
+ "poznamky_pro_kodera":[
+  "Data z dema: Kybernetická bezpečnost – roční ověření, Náhled pro návrh, 2 variace, kód variace UG98N3X6. Druhý kód a výsledek jsou ilustrační.",
+  "PDF: zadání (8 stran), listy (2 strany), klíče (2 strany) – počty stran z vygenerovaných PDF.",
+  "Polling stavu dávky každých 5 s, dokud není Hotovo."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="tisk.html">Tisk</a></li><li><span aria-current="page">Náhled pro návrh</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Tisková dávka</p><h1 class="t-titulek">Kybernetická bezpečnost – roční ověření</h1>
+  <dl class="meta"><div><dt>Označení</dt><dd>Náhled pro návrh</dd></div><div><dt>Variací</dt><dd>2</dd></div><div><dt>Pobočka</dt><dd>Praha</dd></div><div><dt>Vytvořila</dt><dd>Lucie Lektorová, 3. 11. 18:20</dd></div></dl></div>
+ <div class="page-head__actions"><span class="stav stav--ok">{{I:check}}Hotovo</span></div>
+</div>
+
+<div class="stack-5">
+ <section class="stack" aria-labelledby="soubory-h">
+  <h2 id="soubory-h" class="t-nadpis">Soubory ke stažení</h2>
+  <div class="grid-3">
+   <div class="card stack-2"><h3 class="t-text"><b>Zadání</b></h3><p class="t-maly">Všechny variace, každá s kódem v záhlaví · 8 stran</p><p><a class="btn btn--male" href="../tisk/zadani.html">{{I:stahnout}}Stáhnout PDF<span class="sr-only">: Zadání</span></a></p></div>
+   <div class="card stack-2"><h3 class="t-text"><b>Odpovědní listy</b></h3><p class="t-maly">Kód variace, QR kód a mřížka odpovědí · 2 strany</p><p><a class="btn btn--male" href="../tisk/odpovedni-list.html">{{I:stahnout}}Stáhnout PDF<span class="sr-only">: Odpovědní listy</span></a></p></div>
+   <div class="card card--papir stack-2"><div class="row-between"><h3 class="t-text"><b>Klíče</b></h3><span class="stav stav--ne">{{I:zamek}}Důvěrné</span></div><p class="t-maly">Klíče a vyhodnocovací tabulka · 2 strany</p><p>Nerozdávejte je zkoušeným.</p><p><a class="btn btn--male" href="../tisk/klice.html">{{I:stahnout}}Stáhnout PDF<span class="sr-only">: Klíče</span></a></p></div>
+  </div>
+  <p class="t-maly">Každé stažení se zapíše do záznamu změn.</p>
+ </section>
+
+ <section class="stack" aria-labelledby="zapis-h">
+  <div class="row-between">
+   <div class="stack-2"><h2 id="zapis-h" class="t-nadpis">Papírové odpovědi</h2><p><span class="mini-bar" aria-hidden="true"><i style="width:50%"></i></span><span class="t-cislo">1</span> z <span class="t-cislo">2</span> listů zapsáno</p></div>
+   <a class="btn btn--hlavni" href="tisk-zapis.html">{{I:upravit}}Zapsat papírové odpovědi</a>
+  </div>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Variace dávky a stav zápisu</caption>
+    <thead><tr><th scope="col">Kód variace</th><th scope="col">Zkoušený</th><th scope="col">Zápis</th><th scope="col" class="num">Výsledek</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+    <tbody>
+     <tr><td data-label="Kód variace"><span class="t-kod">R2PW7T5K</span></td><td data-label="Zkoušený">Petr Modrý</td><td data-label="Zápis"><span class="stav stav--ok">{{I:check}}Zapsáno</span></td><td data-label="Výsledek" class="num"><span class="row" style="gap:var(--s-2);justify-content:flex-end">75,0&nbsp;% <span class="stav stav--ne">{{I:minus-kruh}}Nesplněno</span></span></td><td data-label="Akce"><a class="btn btn--male btn--tiche" href="vysledek-detail.html">Detail<span class="sr-only">: Petr Modrý</span></a></td></tr>
+     <tr><td data-label="Kód variace"><span class="t-kod">UG98N3X6</span></td><td data-label="Zkoušený">–</td><td data-label="Zápis"><span class="stav stav--neutral">Nezapsáno</span></td><td data-label="Výsledek" class="num">–</td><td data-label="Akce"><a class="btn btn--male btn--tiche" href="tisk-zapis.html">Zapsat<span class="sr-only">: variace UG98N3X6</span></a></td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Dávka se připravuje</p>
+ <div class="alert alert--info" id="prip">{{I:hodiny}}<p><b>Dávka se připravuje.</b> Stránka se obnoví sama. Soubory stáhnete, až bude hotová.</p></div>
+ <div class="card stack-2" style="max-width:360px"><h3 class="t-text"><b>Zadání</b></h3><p><button class="btn btn--male" type="button" disabled aria-describedby="prip">{{I:stahnout}}Stáhnout PDF<span class="sr-only">: Zadání</span></button></p></div>
+ <p class="t-stitek">Lektor, který použití nezaložil</p>
+ <div class="alert alert--info">{{I:info}}<p>Odpovědi do dávky zapisuje Lucie Lektorová nebo administrátor pobočky. Soubory si stáhnout můžete.</p></div>
+</section>

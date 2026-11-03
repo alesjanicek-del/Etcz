@@ -29,10 +29,10 @@ APP_NAV['admin'] = [(None, [('admin-prehled.html', 'Přehled', 'domu')]),
 USER = {'lektor': 'Lucie Lektorová', 'autor': 'Adam Autor', 'admin': 'Barbora Veselá', 'zkouseny': 'Zdeněk Zkoušený'}
 HOME = {'lektor': 'lektor-prehled.html', 'autor': 'autor-prehled.html', 'admin': 'admin-prehled.html', 'zkouseny': 'moje-testy.html'}
 
-def head(t, popis=''):
+def head(t, popis='', lang='cs'):
     d = f'<meta name="description" content="{html.escape(popis)}">\n' if popis else ''
     return f'''<!doctype html>
-<html lang="cs">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,7 +41,9 @@ def head(t, popis=''):
 <link rel="stylesheet" href="../assets/brand.css">
 </head>'''
 
+WEB_NAV_EN = [('en-funkce.html', 'Features'), ('#', 'Public sector'), ('#', 'Companies'), ('#', 'Education'), ('#', 'Security'), ('#', 'Pricing')]
 def web(meta, body):
+    if meta.get('lang') == 'en': return web_en(meta, body)
     a = meta.get('aktivni', '')
     nav = ''.join(f'<li><a href="{h}"{" aria-current=\"page\"" if h == a else ""}>{t}</a></li>' for h, t in WEB_NAV)
     mnav = ''.join(f'<a href="{h}"{" aria-current=\"page\"" if h == a else ""}>{t}</a>' for h, t in WEB_NAV)
@@ -54,12 +56,12 @@ def web(meta, body):
   <nav class="site-nav" aria-label="Hlavní"><ul>{nav}</ul></nav>
   <div class="site-header__cta">
    <a class="btn btn--tiche btn--male" href="../app/prihlaseni.html">Přihlásit</a>
-   <a class="btn btn--male" href="vyzkouset.html">Vyzkoušet demo</a>
-   <a class="btn btn--hlavni btn--male" href="ukazka.html">Ukázka s průvodcem</a>
+   <a class="btn btn--hlavni btn--male" href="vyzkouset.html">Vyzkoušet demo</a>
+   <nav class="lang" aria-label="Jazyk / Language"><a href="index.html" lang="cs" aria-current="true">CS</a><a href="en-index.html" lang="en" hreflang="en">EN</a></nav>
   </div>
   <details class="menu">
    <summary class="btn btn--male">{I('menu')}Menu</summary>
-   <nav class="menu__panel" aria-label="Hlavní (mobil)">{mnav}<a href="../app/prihlaseni.html">Přihlásit</a>
+   <nav class="menu__panel" aria-label="Hlavní (mobil)">{mnav}<a href="../app/prihlaseni.html">Přihlásit</a><a href="en-index.html" lang="en" hreflang="en">English</a>
     <div class="row" style="margin-top:var(--s-3)"><a class="btn" href="vyzkouset.html">Vyzkoušet demo</a><a class="btn btn--hlavni" href="ukazka.html">Ukázka s průvodcem</a></div>
    </nav>
   </details>
@@ -78,9 +80,37 @@ def web(meta, body):
   </div>
   <div class="site-footer__legal row-between"><p>ABUCO ICT s.r.o. · IČO 29153905 · Třebohostická 987/5, 100 00 Praha 10</p>
    <ul class="row"><li><a href="podminky.html">Obchodní podmínky</a></li><li><a href="ochrana-osobnich-udaju.html">Ochrana osobních údajů</a></li><li><a href="zpracovatelska-smlouva.html">Zpracovatelská smlouva</a></li><li><a href="prohlaseni-o-pristupnosti.html">Prohlášení o přístupnosti</a></li></ul></div>
+  <p class="row" style="margin-top:var(--s-3)"><span class="t-maly">Jazyk / Language:</span><a href="index.html" lang="cs" aria-current="true">Česky</a><a href="en-index.html" lang="en" hreflang="en">English</a></p>
   <p class="t-maly" style="margin-top:var(--s-2)">Web nepoužívá analytické ani reklamní cookies, jen <a href="ochrana-osobnich-udaju.html#cookies">technicky nezbytné</a>.</p>
  </div>
 </footer>'''
+
+def web_en(meta, body):
+    a = meta.get('aktivni', '')
+    nav = ''.join(f'<li><a href="{h}"{" aria-current=\"page\"" if h == a else ""}>{t}</a></li>' for h, t in WEB_NAV_EN)
+    return f'''{head(meta['titulek'], meta.get('popis', ''), 'en')}
+<body>
+<a class="skip" href="#obsah">Skip to content</a>
+<header class="site-header">
+ <div class="container site-header__in">
+  <a class="logo" href="en-index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – home" width="170" height="28"></a>
+  <nav class="site-nav" aria-label="Main"><ul>{nav}</ul></nav>
+  <div class="site-header__cta">
+   <a class="btn btn--tiche btn--male" href="../app/prihlaseni.html">Sign in</a>
+   <a class="btn btn--hlavni btn--male" href="#">Try the demo</a>
+   <nav class="lang" aria-label="Language / Jazyk"><a href="index.html" lang="cs" hreflang="cs">CS</a><a href="en-index.html" lang="en" aria-current="true">EN</a></nav>
+  </div>
+  <details class="menu"><summary class="btn btn--male">{I('menu')}Menu</summary><nav class="menu__panel" aria-label="Main (mobile)">{''.join(f'<a href="{h}">{t}</a>' for h, t in WEB_NAV_EN)}<a href="../app/prihlaseni.html">Sign in</a><a href="index.html" lang="cs" hreflang="cs">Česky</a></nav></details>
+ </div>
+</header>
+<main id="obsah">
+{body}
+</main>
+<footer class="site-footer"><div class="container">
+ <div class="site-footer__grid"><div class="stack-2"><img src="../assets/logo/exam-test-logo-negativ-pruhledne.svg" alt="exam-test" width="150" height="25"><p>Tests and exams online and on paper. For the public sector, companies and education.</p><p><a href="#">Verify a protocol</a></p></div>
+ <div class="stack-2"><p class="t-stitek">Contact</p><ul><li><a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a></li><li><a href="tel:+420725311531">+420 725 311 531</a></li></ul></div></div>
+ <div class="site-footer__legal"><p>ABUCO ICT s.r.o. · Company ID 29153905 · Prague, Czech Republic. The Czech version of legal documents is legally binding; English translation in preparation.</p></div>
+</div></footer>'''
 
 def appnav(role, a, mobile=False):
     out = []

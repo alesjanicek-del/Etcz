@@ -1,0 +1,53 @@
+<!--meta {"titulek":"Tisk","sablona":"app","role":"lektor","aktivni":"tisk.html","demo":false} -->
+<!--spec {
+ "route":"/tisk","nazev":"Tisk – dávky","role":"lektor","sablona":"app",
+ "ucel":"Přehled tiskových dávek pobočky: papírové variace testu se zadáním, odpovědními listy a klíči. Odtud lektor stáhne PDF a zapíše papírové odpovědi.",
+ "hlavni_akce":"Otevřít dávku (stáhnout PDF, zapsat odpovědi); vedlejší: Nová tisková dávka",
+ "komponenty":["page-head","table-wrap","table--stack","stav","btn","empty","alert--info"],
+ "stavy":[
+  "výchozí: 2 dávky, jedna hotová, jedna se připravuje (nakresleno).",
+  "prázdný: „Zatím tu nejsou žádné tiskové dávky.“ s tlačítkem Nová tisková dávka (nakresleno).",
+  "připravuje se: stav--pise „Připravuje se“, stránka se obnovuje sama; počet zapsaných listů „–“.",
+  "chyba: stav--ne „Chyba“ s odkazem Zkusit znovu (např. při překročení ročního limitu pokusů).",
+  "bez oprávnění: tarif bez tisku – místo tabulky alert--info „Tisk váš tarif neobsahuje.“; dávky jiných poboček se nezobrazují."],
+ "zmeny_ux":[
+  "Nová dávka jde založit přímo odsud (Nová tisková dávka → výběr testu); dnes jen návod přes Testy → Použít.",
+  "Tabulka ukazuje i postup zápisu papírových odpovědí („1 z 2 listů zapsáno“) – lektor vidí, co mu zbývá.",
+  "Stav dávky ikonou + slovem."],
+ "texty":[
+  {"dnes":"Tiskové dávky použití, ke kterým máte přístup. Novou dávku vytvoříte v přehledu Testy tlačítkem Použít a volbou „Zvolit: Tisk“.","nove":"Papírové variace testu se zadáním, odpovědními listy a klíči. Vidíte dávky své pobočky.","proc":"Co tu je a čí; návod nahrazuje tlačítko."},
+  {"dnes":"Zatím tu nejsou žádné tiskové dávky. Otevřete test v přehledu Testy, klikněte na Použít a zvolte „Zvolit: Tisk“. Dávka se vytvoří pro vaši aktivní pobočku.","nove":"Zatím tu nejsou žádné tiskové dávky. Dávka se vytvoří pro vaši pobočku Praha.","proc":"Návod nahrazuje tlačítko Nová tisková dávka v prázdném stavu."},
+  {"dnes":"Stav: Hotovo","nove":"Hotovo (stav--ok s ikonou)","proc":"Stav ikonou + slovem."}],
+ "pristupnost":[
+  "Tabulka s caption a data-label; odkaz Otevřít dávku má sr-only název testu a označení.",
+  "Stav Připravuje se: řádek se obnoví sám; změna na Hotovo se oznámí jedinou větou v aria-live nad tabulkou („Dávka Zkouška 12. 11. je hotová“)."],
+ "poznamky_pro_kodera":[
+  "Data z dema: Kybernetická bezpečnost – roční ověření, Náhled pro návrh, 2 variace, Lucie Lektorová, 3. 11. 2026 18:20, Hotovo. Druhý řádek je ilustrační (označení z hintu formuláře).",
+  "Nová tisková dávka vede na Testy (výběr testu) → Použít → Tisk; z detailu testu rovnou na /pouziti/nove?typ=PRINT.",
+  "Viditelnost: dávky aktivní pobočky, i kolegů; jiné pobočky ne."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Zkoušení</p><h1 class="t-titulek">Tisk</h1>
+  <p class="t-maly measure">Papírové variace testu se zadáním, odpovědními listy a klíči. Vidíte dávky své pobočky.</p></div>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="testy.html">{{I:tisk}}Nová tisková dávka</a></div>
+</div>
+<p class="sr-only" aria-live="polite"></p>
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Tiskové dávky (2)</caption>
+  <thead><tr><th scope="col">Test a označení</th><th scope="col" class="num">Variací</th><th scope="col">Zapsáno</th><th scope="col">Vytvořeno</th><th scope="col">Stav</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+  <tbody>
+   <tr><td data-label="Test"><div><b>Kybernetická bezpečnost – roční ověření</b><span class="t-maly">Náhled pro návrh · Lucie Lektorová</span></div></td><td data-label="Variací" class="num">2</td><td data-label="Zapsáno"><span><span class="mini-bar" aria-hidden="true"><i style="width:50%"></i></span>1 z 2 listů</span></td><td data-label="Vytvořeno"><span class="t-cislo" style="white-space:nowrap">3. 11. 18:20</span></td><td data-label="Stav"><span class="stav stav--ok">{{I:check}}Hotovo</span></td><td data-label="Akce"><a class="btn btn--male" href="tisk-davka.html">Otevřít<span class="sr-only">: Kybernetická bezpečnost, Náhled pro návrh</span></a></td></tr>
+   <tr><td data-label="Test"><div><b>BOZP – cvičný test</b><span class="t-maly">Zkouška 12. 11. – skupina A · Lucie Lektorová</span></div></td><td data-label="Variací" class="num">30</td><td data-label="Zapsáno">–</td><td data-label="Vytvořeno"><span class="t-cislo" style="white-space:nowrap">3. 11. 18:31</span></td><td data-label="Stav"><span class="stav stav--pise">{{I:hodiny}}Připravuje se</span></td><td data-label="Akce"><a class="btn btn--male" href="tisk-davka.html">Otevřít<span class="sr-only">: BOZP, Zkouška 12. 11. – skupina A</span></a></td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Žádná dávka</p>
+ <div class="empty stack-2">{{I:tisk}}<p><b>Zatím tu nejsou žádné tiskové dávky.</b></p><p class="t-maly">Dávka se vytvoří pro vaši pobočku Praha.</p><p><a class="btn" href="testy.html">Nová tisková dávka</a></p></div>
+ <p class="t-stitek">Tarif bez tisku</p>
+ <div class="alert alert--info">{{I:info}}<p>Tisk váš tarif neobsahuje. Rozšíření tarifu domluví administrátor organizace.</p></div>
+</section>

@@ -1,0 +1,101 @@
+<!--meta {"titulek":"Historie otázky č. 10","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false} -->
+<!--spec {
+ "route":"/otazky/:id/historie","nazev":"Historie verzí otázky","role":"lektor, autor otázek, administrátor (kdo má k souboru přístup); schvalovatel sem chodí porovnat verze","sablona":"app",
+ "ucel":"Ukázat, kdo, kdy a co na otázce změnil: verze, rozdíl mezi dvěma verzemi, historii štítků a záznamy (vytvoření, schválení, přesuny).",
+ "hlavni_akce":"Porovnat dvě verze",
+ "komponenty":["crumbs","page-head","table table--stack","stav","check (radio v tabulce)","card","timeline","dl","btn"],
+ "stavy":[
+  "výchozí: 2 a více verzí – tabulka s volbou Od / Do a rozdíl posledních dvou verzí",
+  "jen 1 verze: tabulka s jedním řádkem, místo rozdílu věta „Otázka má zatím jen 1 verzi – není co porovnat.“",
+  "rozdíl bez změny obsahu (změna jen interní poznámky): „Obsah se nezměnil. Změnila se interní poznámka.“",
+  "načítání rozdílu: role=status „Porovnávám…“",
+  "bez oprávnění: bez práva k souboru → 403"],
+ "zmeny_ux":[
+  "Verze se vybírají přímo v tabulce (sloupce Od a Do s přepínači), tlačítko Porovnat verze je pod tabulkou – dnes samostatná pole Od verze / Do verze.",
+  "Rozdíl je čitelný: odebrané a přidané řádky mají vlevo značku − / + i slovo pro čtečku, podbarvení je jen doplněk; správná odpověď je označena slovem „správná“ místo [x].",
+  "Stav verze (aktuální, ke schválení, schválená) je štítek ikonou + slovem.",
+  "Historie štítků a záznamy jsou pod rozdílem; záznamy jako časová osa (.timeline)."],
+ "texty":[
+  {"dnes":"Časová osa verzí otázky","nove":"Verze otázky","proc":"Kratší popisek tabulky."},
+  {"dnes":"v1 aktuální","nove":"v1 · [Schválená] · aktuální v testech","proc":"Rozlišení: poslední verze vs. verze, která jde do testů."},
+  {"dnes":"Porovnat","nove":"Porovnat verze","proc":"Tlačítko říká co."},
+  {"dnes":"Značka [x] označuje správnou odpověď","nove":"(správná)","proc":"Slovo místo symbolu."},
+  {"dnes":"Záznamy auditu / Audit otázky","nove":"Záznamy o otázce","proc":"Bez žargonu, jedno jméno."},
+  {"dnes":"– (platí)","nove":"Platí","proc":"Bez pomlčky."}],
+ "pristupnost":[
+  "Tabulka verzí má caption; přepínače Od / Do mají label „Porovnat od verze 1“ (sr-only).",
+  "Rozdíl je seznam řádků; každý řádek začíná sr-only „Odebráno:“ / „Přidáno:“; barva není jediný nosič informace.",
+  "Po porovnání se fokus přesune na nadpis Rozdíl verze 1 a 2."],
+ "poznamky_pro_kodera":[
+  "Ukázková data: v1 je z dema; v2 (koncept ke schválení) je ilustrační – navazuje na editor (otazka-editor.html).",
+  "Použito ve variacích = počet variací testů s danou verzí (statistiky po verzích jsou ve Statistikách otázky).",
+  "Změna interní poznámky novou verzi nevytvoří, ale objeví se v Záznamech."],
+ "chybi_komponenta":["zobrazení rozdílu (diff řádky −/+) – použity .card--tenka řádky s inline pozadím var(--c-nesplneno-bg) / var(--c-splneno-bg)"]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="soubory.html">Soubory otázek</a></li><li><a href="soubor-detail.html">Radiační ochrana – základní principy</a></li><li><a href="otazka-detail.html">Otázka č. 10</a></li><li><span aria-current="page">Historie</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Otázka č. 10 · RO-010</p><h1 class="t-titulek">Historie otázky</h1></div><div class="page-head__actions"><a class="btn" href="otazka-detail.html">{{I:sipka-vlevo}}Zpět na otázku</a></div></div>
+
+<div class="stack-5">
+ <form class="stack" action="#rozdil" method="get">
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption>Verze otázky (2)</caption>
+    <thead><tr><th scope="col">Verze</th><th scope="col">Stav</th><th scope="col">Autor změny</th><th scope="col">Datum a čas</th><th scope="col">Shrnutí změny</th><th scope="col" class="num">Ve variacích</th><th scope="col">Od</th><th scope="col">Do</th></tr></thead>
+    <tbody>
+     <tr><td data-label="Verze" class="t-cislo">v2</td><td data-label="Stav"><span class="stav stav--pise">{{I:hodiny}}Ke schválení</span></td><td data-label="Autor změny">Adam Autor</td><td data-label="Datum a čas" class="t-cislo" style="white-space:nowrap">3. 11. 2026 14:35</td><td data-label="Shrnutí změny">Upřesněna zpětná vazba</td><td data-label="Ve variacích" class="num">0</td><td data-label="Od"><label class="check" style="padding-top:0"><input type="radio" name="od" value="2"><span class="sr-only">Porovnat od verze 2</span></label></td><td data-label="Do"><label class="check" style="padding-top:0"><input type="radio" name="do" value="2" checked><span class="sr-only">Porovnat do verze 2</span></label></td></tr>
+     <tr><td data-label="Verze" class="t-cislo">v1</td><td data-label="Stav"><div class="stack-2"><span class="stav stav--ok">{{I:check}}Schválená</span><span class="t-maly">Platí v testech</span></div></td><td data-label="Autor změny">Adam Autor</td><td data-label="Datum a čas" class="t-cislo" style="white-space:nowrap">4. 9. 2026 04:00</td><td data-label="Shrnutí změny">Ukázková sada radiacni-ochrana 1.2.1, otázka v1</td><td data-label="Ve variacích" class="num">0</td><td data-label="Od"><label class="check" style="padding-top:0"><input type="radio" name="od" value="1" checked><span class="sr-only">Porovnat od verze 1</span></label></td><td data-label="Do"><label class="check" style="padding-top:0"><input type="radio" name="do" value="1"><span class="sr-only">Porovnat do verze 1</span></label></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <div><button class="btn" type="submit">Porovnat verze</button></div>
+ </form>
+
+ <section class="card stack" aria-labelledby="rozdil" id="rozdil-sekce">
+  <h2 id="rozdil" class="t-nadpis" tabindex="-1">Rozdíl verze 1 a 2</h2>
+  <p class="t-maly">Změnila se jen zpětná vazba při chybné odpovědi. Zadání, odpovědi a správná odpověď jsou stejné.</p>
+  <dl class="dl">
+   <dt>Zadání</dt><dd>Beze změny</dd>
+   <dt>Odpovědi</dt><dd>Beze změny: šipka 1 (správná), šipka 2, šipka 3, ze schématu to nelze určit</dd>
+   <dt>Zpětná vazba při chybné odpovědi</dt>
+   <dd class="stack-2">
+    <p class="card card--tenka" style="padding:var(--s-2) var(--s-3);background:var(--c-nesplneno-bg)"><b aria-hidden="true">−&nbsp;</b><span class="sr-only">Odebráno: </span>Částice alfa zastaví už list papíru (nebo povrchová vrstva kůže).</p>
+    <p class="card card--tenka" style="padding:var(--s-2) var(--s-3);background:var(--c-splneno-bg)"><b aria-hidden="true">+&nbsp;</b><span class="sr-only">Přidáno: </span>Částice alfa zastaví už list papíru, proto je správně šipka 1.</p>
+   </dd>
+  </dl>
+ </section>
+
+ <section class="stack" aria-labelledby="stitky-h">
+  <h2 id="stitky-h" class="t-nadpis">Historie štítků</h2>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Historie štítků otázky</caption>
+    <thead><tr><th scope="col">Štítek</th><th scope="col">Přiřazen</th><th scope="col">Odebrán</th></tr></thead>
+    <tbody>
+     <tr><td data-label="Štítek">Okruhy: Druhy záření</td><td data-label="Přiřazen" class="t-cislo">3. 11. 2026 03:00</td><td data-label="Odebrán"><span class="stav stav--ok">{{I:check}}Platí</span></td></tr>
+     <tr><td data-label="Štítek">Obtížnost: Základní</td><td data-label="Přiřazen" class="t-cislo">3. 11. 2026 03:00</td><td data-label="Odebrán"><span class="stav stav--ok">{{I:check}}Platí</span></td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+
+ <section class="stack" aria-labelledby="zaz-h">
+  <h2 id="zaz-h" class="t-nadpis">Záznamy o otázce</h2>
+  <ol class="timeline">
+   <li class="akt"><p><b>Odesláno ke schválení (v2)</b></p><p class="t-maly">3. 11. 2026 14:35:02 · Adam Autor</p></li>
+   <li><p><b>Schválení (v1)</b></p><p class="t-maly">3. 11. 2026 03:00:13 · Barbora Veselá</p></li>
+   <li><p><b>Vytvoření (v1)</b></p><p class="t-maly">4. 9. 2026 04:00:13 · Adam Autor</p></li>
+  </ol>
+ </section>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack">
+  <h3 class="t-stitek">Jen 1 verze</h3>
+  <div class="card card--tenka"><p>Otázka má zatím jen 1 verzi – není co porovnat.</p></div>
+ </div>
+ <div class="stack">
+  <h3 class="t-stitek">Změnila se jen poznámka</h3>
+  <div class="alert alert--info">{{I:info}}<p>Obsah se nezměnil. Změnila se interní poznámka – nová verze proto nevznikla.</p></div>
+ </div>
+</section>

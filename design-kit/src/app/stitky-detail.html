@@ -1,0 +1,85 @@
+<!--meta {"titulek":"Obtížnost · Seznam štítků","sablona":"app","role":"autor","aktivni":"stitky.html","demo":false} -->
+<!--spec {
+ "route":"/stitky/:id","nazev":"Seznam štítků – detail","role":"kdo smí seznam spravovat: autor / lektor u svých seznamů a seznamů souborů s Editací, administrátor pobočky u seznamů pobočky, administrátor organizace u všech; ostatní vidí jen pro čtení","sablona":"app",
+ "ucel":"Spravovat štítky v jednom seznamu: přidat, přejmenovat, změnit barvu, smazat nepoužitý štítek a přejmenovat seznam.",
+ "hlavni_akce":"Přidat štítek",
+ "komponenty":["crumbs","page-head","meta","table table--stack","field","input","input[type=color]","form-actions","alert--ok","alert--info","btn--male","btn--nebezpecne"],
+ "stavy":[
+  "výchozí (správce): tabulka štítků s úpravou v řádku, formulář Přidat štítek, Přejmenovat seznam",
+  "jen pro čtení (lektor s právem Čtení k souboru): tabulka bez polí, nahoře alert--info „Seznam spravuje vlastník souboru: Adam Autor.“",
+  "prázdný seznam: v tabulce věta „Seznam je zatím prázdný. Přidejte první štítek.“ a fokus do pole Název",
+  "chyba: prázdný název / duplicitní název v seznamu – chyba u pole",
+  "smazání: jen štítek, který nikdy nebyl přiřazen; u používaného je tlačítko neaktivní s vysvětlením",
+  "po uložení / přidání: alert--ok v role=status",
+  "bez oprávnění: seznam jiného lektora (rozsah Lektor) → 403"],
+ "zmeny_ux":[
+  "Rozsah seznamu je nahoře v .meta s odkazem na soubor otázek.",
+  "Úprava štítku v řádku: Název + Barva + Uložit štítek – Uložit má sr-only jméno štítku (jako dnes).",
+  "Sloupec Přiřazení ukazuje počet otázek jako odkaz na Hledat otázky s tímto štítkem (návrh).",
+  "Smazat je u používaného štítku neaktivní a vedle je proč (aria-describedby) – dnes chybí vysvětlení.",
+  "Přejmenovat seznam je oddělená sekce dole (méně častá akce)."],
+ "texty":[
+  {"dnes":"Rozsah: Soubor otázek – Ukázková sada: Kybernetická bezpečnost — školení uživatelů","nove":"Rozsah: Soubor otázek · Kybernetická bezpečnost – školení uživatelů","proc":"Formát .meta, typografická pomlčka."},
+  {"dnes":"Název a barva · Přiřazení · Smazat","nove":"Název · Barva · Přiřazeno otázkám · Akce","proc":"Jeden sloupec = jedna věc."},
+  {"dnes":"Přidat","nove":"Přidat štítek","proc":"Tlačítko říká co."},
+  {"dnes":"Uložit (přejmenování seznamu)","nove":"Uložit název seznamu","proc":"Odliší se od Uložit štítek."},
+  {"dnes":"(nápověda) Smazat lze jen štítek, který nikdy nebyl přiřazen žádné otázce.","nove":"Štítek je přiřazený 14 otázkám, smazat ho nejde. Můžete ho přejmenovat.","proc":"Vysvětlení u neaktivního tlačítka."}],
+ "pristupnost":[
+  "Každé pole v řádku má label (sr-only „Název štítku Pokročilá“, „Barva štítku Pokročilá“).",
+  "Neaktivní Smazat má aria-disabled a aria-describedby na důvod; zůstává fokusovatelné.",
+  "Výběr barvy: nativní input type=color; barva je jen doplněk – štítek se vždy čte názvem.",
+  "Hlášení po uložení v role=status."],
+ "poznamky_pro_kodera":[
+  "Název štítku max. 100 znaků; v rámci seznamu jedinečný.",
+  "Barva: dnes volná (input type=color, výchozí #64748b). Doporučení: omezit na pevnou sadu ze značky (proužek / tečka, nikdy barva textu).",
+  "Historie přiřazení štítků je v Historii otázky."],
+ "chybi_komponenta":["vzorník barvy štítku / pevná sada barev – použit nativní input type=color s .input","úprava v řádku tabulky (inline edit) – poskládáno z .input a .btn--male"]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="stitky.html">Seznamy štítků</a></li><li><span aria-current="page">Obtížnost</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Seznam štítků</p><h1 class="t-titulek">Obtížnost</h1>
+  <dl class="meta"><div><dt>Rozsah</dt><dd>Soubor otázek · <a href="soubor-detail.html">Kybernetická bezpečnost – školení uživatelů</a></dd></div><div><dt>Štítků</dt><dd>2</dd></div></dl>
+ </div>
+</div>
+
+<div class="stack-5">
+ <section class="stack" aria-labelledby="st-h">
+  <h2 id="st-h" class="t-nadpis">Štítky v seznamu</h2>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Štítky v seznamu Obtížnost (2)</caption>
+    <thead><tr><th scope="col">Název</th><th scope="col">Barva</th><th scope="col" class="num">Přiřazeno otázkám</th><th scope="col"><span class="sr-only">Akce</span></th></tr></thead>
+    <tbody>
+     <tr><td data-label="Název"><label class="sr-only" for="n1">Název štítku Pokročilá</label><input class="input" id="n1" value="Pokročilá" maxlength="100" style="min-width:0"></td><td data-label="Barva"><label class="sr-only" for="c1">Barva štítku Pokročilá</label><input class="input" id="c1" type="color" value="#64748b" style="width:72px;padding:4px"></td><td data-label="Přiřazeno" class="num"><a href="otazky-hledat.html">14<span class="sr-only"> otázek se štítkem Pokročilá</span></a></td><td data-label="Akce"><div class="row" style="gap:var(--s-2);justify-content:flex-end"><button class="btn btn--male" type="button">Uložit<span class="sr-only"> štítek Pokročilá</span></button><button class="btn btn--male btn--nebezpecne" type="button" aria-disabled="true" aria-describedby="sm1">Smazat<span class="sr-only"> štítek Pokročilá</span></button></div><span class="t-maly" id="sm1">Přiřazený 14 otázkám – nejde smazat.</span></td></tr>
+     <tr><td data-label="Název"><label class="sr-only" for="n2">Název štítku Základní</label><input class="input" id="n2" value="Základní" maxlength="100" style="min-width:0"></td><td data-label="Barva"><label class="sr-only" for="c2">Barva štítku Základní</label><input class="input" id="c2" type="color" value="#64748b" style="width:72px;padding:4px"></td><td data-label="Přiřazeno" class="num"><a href="otazky-hledat.html">20<span class="sr-only"> otázek se štítkem Základní</span></a></td><td data-label="Akce"><div class="row" style="gap:var(--s-2);justify-content:flex-end"><button class="btn btn--male" type="button">Uložit<span class="sr-only"> štítek Základní</span></button><button class="btn btn--male btn--nebezpecne" type="button" aria-disabled="true" aria-describedby="sm2">Smazat<span class="sr-only"> štítek Základní</span></button></div><span class="t-maly" id="sm2">Přiřazený 20 otázkám – nejde smazat.</span></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="t-maly">Smazat jde jen štítek, který nikdy nebyl přiřazen žádné otázce. Používaný štítek přejmenujte – historie otázek zůstane zachovaná.</p>
+ </section>
+
+ <form class="card stack-4" aria-labelledby="pr-h" novalidate>
+  <h2 id="pr-h" class="t-nadpis">Přidat štítek</h2>
+  <div class="row" style="align-items:flex-start">
+   <div class="field" style="flex:1 1 240px"><label class="label" for="nn">Název</label><input class="input" id="nn" maxlength="100" aria-describedby="nn-h"><span class="hint" id="nn-h">Například „Středně obtížná“.</span></div>
+   <div class="field"><label class="label" for="nc">Barva</label><input class="input" id="nc" type="color" value="#64748b" style="width:72px;padding:4px"></div>
+  </div>
+  <div><button class="btn btn--hlavni" type="submit">{{I:plus}}Přidat štítek</button></div>
+ </form>
+
+ <form class="card card--tenka stack" aria-labelledby="pj-h" novalidate>
+  <h2 id="pj-h" class="t-nadpis">Přejmenovat seznam</h2>
+  <div class="field" style="max-width:var(--max-text)"><label class="label" for="ns">Název seznamu štítků</label><input class="input" id="ns" value="Obtížnost"></div>
+  <div><button class="btn" type="submit">Uložit název seznamu</button></div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <div class="stack"><h3 class="t-stitek">Jen pro čtení</h3><div class="alert alert--info">{{I:zamek}}<p>Seznam spravuje vlastník souboru: <b>Adam Autor</b>. Štítky můžete přiřazovat otázkám, ale ne měnit.</p></div></div>
+ <div class="stack"><h3 class="t-stitek">Duplicitní název</h3>
+  <div class="card stack"><div class="field"><label class="label" for="nn-e">Název</label><input class="input" id="nn-e" value="Základní" aria-invalid="true" aria-describedby="nn-e-err"><p class="error" id="nn-e-err">{{I:pozor}}Štítek „Základní“ už v seznamu je.</p></div></div>
+ </div>
+ <div class="stack"><h3 class="t-stitek">Prázdný seznam</h3><div class="card card--tenka"><p>Seznam je zatím prázdný. Přidejte první štítek.</p></div></div>
+ <div class="stack"><h3 class="t-stitek">Po přidání</h3><div class="alert alert--ok" role="status">{{I:check}}<p>Štítek „Středně obtížná“ je přidaný.</p></div></div>
+</section>
