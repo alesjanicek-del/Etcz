@@ -1,0 +1,102 @@
+<!--meta {"titulek":"Náhled pro zkoušeného · Otázka č. 10","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false} -->
+<!--spec {
+ "route":"/otazky/:id/nahled","nazev":"Náhled otázky pro zkoušeného","role":"lektor, autor otázek, administrátor (kdo má k souboru alespoň Čtení)","sablona":"app",
+ "ucel":"Ukázat otázku přesně tak, jak ji uvidí zkoušený v testu (bez správných odpovědí, poznámky a zpětné vazby), a co z ní přečte čtečka obrazovky.",
+ "hlavni_akce":"Zkontrolovat a vrátit se k úpravě (Upravit otázku)",
+ "komponenty":["crumbs","page-head","alert--info","tabs","card card--papir","option","option--vice","t-stitek","dl","btn--hlavni"],
+ "stavy":[
+  "výchozí: náhled jako v testu (komponenty .option ze zkoušky), lze klikat, nic se neukládá",
+  "Více správných: option--vice (čtverečky) a pokyn „Vyberte všechny správné odpovědi.“",
+  "náhled konceptu / verze ke schválení: nad náhledem štítek „Verze 2 – koncept, zkoušení ji zatím neuvidí“",
+  "záložka Co přečte čtečka: textový přepis v pořadí čtení (zadání, popis obrázku, texty pro čtečku, pokyn, odpovědi)",
+  "obrázek bez popisu (koncept): v přepisu čtečky alert--chyba „Obrázek nemá popis – čtečka ho přeskočí bez informace.“",
+  "bez oprávnění: bez práva k souboru → 403"],
+ "zmeny_ux":[
+  "Náhled používá skutečné komponenty zkoušky (option, bublina s písmenem, pokyn s počtem bodů) – dnes je to obyčejný seznam textů.",
+  "Nová záložka Co přečte čtečka: autor ověří popis obrázku a texty pro čtečku bez spouštění čtečky (návrh).",
+  "Upozornění na míchání je u náhledu: „Pořadí odpovědí je pevné“ nebo „Pořadí se v testu míchá“ podle nastavení otázky.",
+  "Tlačítka Zpět na otázku a Upravit otázku nahoře – náhled je kontrolní krok."],
+ "texty":[
+  {"dnes":"Takto otázku uvidí zkoušený – bez označení správných odpovědí, interní poznámky a zpětné vazby. Pořadí odpovědí se v testu může míchat.","nove":"Takto otázku uvidí zkoušený: bez správných odpovědí, interní poznámky a zpětné vazby. Pořadí odpovědí je u této otázky pevné.","proc":"Konkrétně podle nastavení otázky místo „může“."},
+  {"dnes":"Vyberte jednu odpověď. (1 bod)","nove":"Vyberte jednu odpověď. · 1 bod","proc":"Ponecháno; body jako metadata."}],
+ "pristupnost":[
+  "Odpovědi jsou fieldset/legend (legend = zadání) s radio/checkbox – stejně jako v testu.",
+  "Záložky Náhled / Co přečte čtečka jsou odkazy na dvě URL (?pohled=ctecka), ne JS tablist.",
+  "Přepis čtečky je seznam ol v pořadí čtení; text pro čtečku je odlišen štítkem.",
+  "Výběr v náhledu se neukládá – oznámeno textem nad náhledem."],
+ "poznamky_pro_kodera":[
+  "Komponenty náhledu sdílet se stránkou test-otazka (skupina Z), aby náhled vždy odpovídal testu.",
+  "Přepis čtečky generovat z uloženého HTML: alt obrázků, aria-label u textů pro čtečku, dekorativní obrázky vynechat.",
+  "Podle role: všechny role vidí totéž; tlačítko Upravit otázku jen s právem Editace.","Odpovědi v ukázce Více správných jsou ilustrační (zadání otázky č. 12 je z dema, odpovědi ne)."],
+ "chybi_komponenta":["rámeček „takto to vypadá v testu“ (device frame) – použito .card.card--papir s .grid-bg"]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="soubory.html">Soubory otázek</a></li><li><a href="soubor-detail.html">Radiační ochrana – základní principy</a></li><li><a href="otazka-detail.html">Otázka č. 10</a></li><li><span aria-current="page">Náhled</span></li></ol></nav>
+<div class="page-head">
+ <h1 class="t-titulek">Náhled pro zkoušeného</h1>
+ <div class="page-head__actions"><a class="btn" href="otazka-detail.html">{{I:sipka-vlevo}}Zpět na otázku</a><a class="btn btn--hlavni" href="otazka-editor.html">{{I:upravit}}Upravit otázku</a></div>
+</div>
+
+<div class="stack-4">
+ <div class="alert alert--info">{{I:info}}<p>Takto otázku uvidí zkoušený: bez správných odpovědí, interní poznámky a zpětné vazby. Pořadí odpovědí je u této otázky pevné. Výběr se tu neukládá.</p></div>
+
+ <nav class="tabs" aria-label="Pohled"><a href="otazka-nahled.html" aria-current="page">Na obrazovce</a><a href="#ctecka">Co přečte čtečka</a></nav>
+
+ <div class="grid-bg" style="padding:var(--s-4) var(--s-3);border:var(--b-tenka) solid var(--c-linka)">
+  <form class="card card--papir stack-4" style="max-width:760px;margin:0 auto">
+   <p class="t-stitek">Otázka 10 · 1 bod</p>
+   <fieldset class="stack-4">
+    <legend class="t-nadpis">Obrázek schematicky znázorňuje pronikavost tří druhů ionizujícího záření. Která šipka odpovídá záření <b>alfa</b>?</legend>
+    <img src="../assets/img/otazka-pronikavost-zareni.png" width="600" height="345" style="height:auto;border:var(--b-tenka) solid var(--c-linka)" alt="Schéma: zdroj záření vlevo, vpravo za sebou list papíru, hliníkový plech tloušťky několika milimetrů a silný blok olova. Ze zdroje vycházejí tři šipky označené 1, 2 a 3, každá končí nebo je zeslabena u jiné překážky.">
+    <p class="t-maly">Vyberte jednu odpověď.</p>
+    <div>
+     <label class="option"><input type="radio" name="o"><span class="option__bub" aria-hidden="true">A</span><span>šipka 1</span></label>
+     <label class="option"><input type="radio" name="o"><span class="option__bub" aria-hidden="true">B</span><span>šipka 2</span></label>
+     <label class="option"><input type="radio" name="o"><span class="option__bub" aria-hidden="true">C</span><span>šipka 3</span></label>
+     <label class="option"><input type="radio" name="o"><span class="option__bub" aria-hidden="true">D</span><span>ze schématu to nelze určit</span></label>
+    </div>
+   </fieldset>
+  </form>
+ </div>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+
+ <div class="stack" id="ctecka">
+  <h3 class="t-stitek">Záložka Co přečte čtečka</h3>
+  <div class="card stack">
+   <p class="t-maly">Přepis v pořadí, v jakém ho čtečka přečte. Obrázky a texty pro čtečku jsou označené.</p>
+   <ol class="stack-2" style="padding-left:var(--s-4)">
+    <li>„Otázka 10, 1 bod.“</li>
+    <li>„Obrázek schematicky znázorňuje pronikavost tří druhů ionizujícího záření. Která šipka odpovídá záření alfa?“</li>
+    <li><span class="stav stav--info">{{I:info}}Obrázek</span> „Schéma: zdroj záření vlevo, vpravo za sebou list papíru, hliníkový plech tloušťky několika milimetrů a silný blok olova. Ze zdroje vycházejí tři šipky označené 1, 2 a 3, každá končí nebo je zeslabena u jiné překážky.“</li>
+    <li>„Vyberte jednu odpověď.“</li>
+    <li>„Přepínač, šipka 1, 1 ze 4.“ … „ze schématu to nelze určit, 4 ze 4.“</li>
+   </ol>
+  </div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Obrázek bez popisu (koncept)</h3>
+  <div class="alert alert--chyba">{{I:minus-kruh}}<p>Obrázek nemá popis. Čtečka ho přeskočí a nevidomý zkoušený nebude moci odpovědět. <a href="otazka-editor.html">Doplnit popis v editoru</a></p></div>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Více správných odpovědí</h3>
+  <fieldset class="card card--papir stack" style="max-width:760px">
+   <legend class="sr-only">Které materiály jsou vhodné ke zpomalení a stínění neutronů?</legend>
+   <p class="t-nadpis" aria-hidden="true">Které materiály jsou vhodné ke zpomalení a stínění neutronů? <span class="vice">Více odpovědí</span></p>
+   <p class="t-maly">Vyberte všechny správné odpovědi.</p>
+   <div>
+    <label class="option option--vice"><input type="checkbox"><span class="option__bub" aria-hidden="true">A</span><span>voda</span></label>
+    <label class="option option--vice"><input type="checkbox" checked><span class="option__bub" aria-hidden="true">B</span><span>polyethylen</span></label>
+    <label class="option option--vice"><input type="checkbox"><span class="option__bub" aria-hidden="true">C</span><span>papír</span></label>
+   </div>
+  </fieldset>
+ </div>
+
+ <div class="stack">
+  <h3 class="t-stitek">Náhled konceptu</h3>
+  <p><span class="stav stav--pise">{{I:upravit}}Verze 2 – koncept, zkoušení ji zatím neuvidí</span></p>
+ </div>
+</section>

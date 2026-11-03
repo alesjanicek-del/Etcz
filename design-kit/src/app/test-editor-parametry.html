@@ -3,7 +3,7 @@
  "route":"/testy/:id/upravit/parametry","nazev":"Editor testu – 2 Parametry","role":"lektor","sablona":"app",
  "ucel":"Nastavit, jak test proběhne (čas, pokusy, zobrazení), co zkoušený uvidí po odevzdání a jak se hodnotí. Patří sem i název a pokyny (dřív krok Základ).",
  "hlavni_akce":"Uložit a pokračovat na kontrolu",
- "komponenty":["crumbs","page-head","meta","steps","field","input","textarea","select","fieldset","check","faq (details)","alert","form-actions","error-summary"],
+ "komponenty":["crumbs","page-head","meta","steps","field","input","input-group","textarea","select","fieldset","check","faq (details)","alert","form-actions","error-summary"],
  "stavy":[
   "výchozí: parametry předvyplněné z nastavení organizace (nakresleno).",
   "uzamčené parametry: test už ostře vyplnili – alert--info nahoře a pole Časový limit, Pokusy, Zobrazení výsledků, Zpětná vazba, Hodnocení a Úřední režim jsou disabled s vysvětlením (nakresleno v Dalších stavech).",
@@ -55,7 +55,7 @@
 
  <fieldset class="stack">
   <legend class="t-nadpis" style="margin-bottom:var(--s-3)">Průběh testu</legend>
-  <div class="field"><label class="label" for="limit">Časový limit <span class="volitelne">(nepovinné)</span></label><span class="hint" id="limit-h">V minutách. Prázdné pole = bez limitu.</span><div class="row" style="gap:var(--s-2)"><input class="input" id="limit" name="limit" type="number" min="1" inputmode="numeric" aria-describedby="limit-h" style="max-width:120px"><span class="t-maly">min</span></div></div>
+  <div class="field"><label class="label" for="limit">Časový limit v minutách <span class="volitelne">(nepovinné)</span></label><span class="hint" id="limit-h">Prázdné pole = bez limitu.</span><div class="input-group" style="max-width:180px"><input class="input" id="limit" name="limit" type="number" min="1" inputmode="numeric" aria-describedby="limit-h"><span class="input-group__suffix" aria-hidden="true">min</span></div></div>
   <label class="check"><input type="checkbox" name="michat" checked><span>Míchat pořadí otázek<span class="hint" style="display:block">Každá variace má jiné pořadí. Vznikne víc unikátních variací.</span></span></label>
   <fieldset><legend>Zobrazení otázek</legend>
    <label class="check"><input type="radio" name="zobr" checked>Jedna otázka na stránku</label>
@@ -101,7 +101,7 @@
     <label class="check"><input type="radio" name="typ"><span>Známky podle pásem<span class="hint" style="display:block">Známka podle procenta. Splní, kdo má zadanou známku nebo lepší.</span></span></label>
     <label class="check"><input type="radio" name="typ"><span>Povinné otázky správně a práh %<span class="hint" style="display:block">Splní, kdo má všechny povinné otázky správně a dosáhne prahu.</span></span></label>
    </fieldset>
-   <div class="field"><label class="label" for="prah">Práh úspěšnosti</label><div class="row" style="gap:var(--s-2)"><input class="input" id="prah" type="number" min="0" max="100" value="80" inputmode="numeric" style="max-width:120px"><span class="t-maly">%</span></div></div>
+   <div class="field"><label class="label" for="prah">Práh úspěšnosti v&nbsp;%</label><div class="input-group" style="max-width:180px"><input class="input" id="prah" type="number" min="0" max="100" value="80" inputmode="numeric"><span class="input-group__suffix" aria-hidden="true">%</span></div></div>
    <label class="check"><input type="checkbox" checked><span>Částečné body u otázek s více správnými odpověďmi</span></label>
    <p class="t-maly">Váhu sekcí nastavíte v jednotlivých sekcích.</p>
   </div>
