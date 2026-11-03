@@ -1,0 +1,88 @@
+<!--meta {"titulek":"Question 10 history","sablona":"app","role":"lektor","aktivni":"soubory.html","demo":false,"lang":"en","cs_verze":"otazka-historie.html"} -->
+<!--spec {
+ "route":"/otazky/:id/historie (lang=en)","nazev":"Question version history – English","role":"instructor, question author, administrator (anyone with access to the bank); reviewers come here to compare versions","sablona":"app",
+ "ucel":"Show who changed what on the question and when: versions, the difference between two versions, tag history and records (creation, approval, moves).",
+ "hlavni_akce":"Compare two versions",
+ "komponenty":["crumbs","page-head","table table--stack","stav","check (radio in table)","card","timeline","dl","btn"],
+ "stavy":["Same states as the Czech page (otazka-historie.html): only 1 version, only the note changed, comparing (“Comparing…”), no permission (403)."],
+ "zmeny_ux":["Layout as in the Czech version. Column “In test versions” is longer than “Ve variacích”; header wraps on desktop."],
+ "texty":[
+  {"dnes":"Historie otázky","nove":"Question history","proc":"Plain English."},
+  {"dnes":"Verze · Stav · Autor změny · Datum a čas · Shrnutí změny · Ve variacích · Od · Do","nove":"Version · Status · Changed by · Date and time · Change summary · In test versions · From · To","proc":"Glossary: test version (variace)."},
+  {"dnes":"Platí v testech","nove":"Used in tests","proc":"Distinguishes the latest version from the one tests use."},
+  {"dnes":"Porovnat verze","nove":"Compare versions","proc":"Verb first."},
+  {"dnes":"Rozdíl verze 1 a 2","nove":"Differences between version 1 and 2","proc":"Plain English."},
+  {"dnes":"Odebráno: / Přidáno:","nove":"Removed: / Added:","proc":"Screen reader prefixes."},
+  {"dnes":"Záznamy o otázce","nove":"Question records","proc":"No jargon (“audit”)."},
+  {"dnes":"Platí (štítek)","nove":"Current","proc":"Tag still assigned."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\". Radio labels “Compare from version 1” (sr-only)."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Change summaries are user content; the demo import summary “Sample set radiacni-ochrana 1.2.1” keeps the set code.","Glossary gap: Záznamy (audit) → records"],
+ "chybi_komponenta":["diff rows – as in the Czech page"]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-soubory.html">Question banks</a></li><li><a href="en-soubor-detail.html">Radiation protection – basic principles</a></li><li><a href="en-otazka-detail.html">Question 10</a></li><li><span aria-current="page">History</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Question 10 · RO-010</p><h1 class="t-titulek">Question history</h1></div><div class="page-head__actions"><a class="btn" href="en-otazka-detail.html">{{I:sipka-vlevo}}Back to question</a></div></div>
+
+<div class="stack-5">
+ <form class="stack" action="#rozdil" method="get">
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption>Question versions (2)</caption>
+    <thead><tr><th scope="col">Version</th><th scope="col">Status</th><th scope="col">Changed by</th><th scope="col">Date and time</th><th scope="col">Change summary</th><th scope="col" class="num">In test versions</th><th scope="col">From</th><th scope="col">To</th></tr></thead>
+    <tbody>
+     <tr><td data-label="Version" class="t-cislo">v2</td><td data-label="Status"><span class="stav stav--pise">{{I:hodiny}}Pending approval</span></td><td data-label="Changed by">Adam Autor</td><td data-label="Date and time" class="t-cislo" style="white-space:nowrap">3 Nov 2026 14:35</td><td data-label="Change summary">Feedback clarified</td><td data-label="In test versions" class="num">0</td><td data-label="From"><label class="check" style="padding-top:0"><input type="radio" name="od" value="2"><span class="sr-only">Compare from version 2</span></label></td><td data-label="To"><label class="check" style="padding-top:0"><input type="radio" name="do" value="2" checked><span class="sr-only">Compare to version 2</span></label></td></tr>
+     <tr><td data-label="Version" class="t-cislo">v1</td><td data-label="Status"><div class="stack-2"><span class="stav stav--ok">{{I:check}}Approved</span><span class="t-maly">Used in tests</span></div></td><td data-label="Changed by">Adam Autor</td><td data-label="Date and time" class="t-cislo" style="white-space:nowrap">4 Sep 2026 04:00</td><td data-label="Change summary">Sample set radiacni-ochrana 1.2.1, question v1</td><td data-label="In test versions" class="num">0</td><td data-label="From"><label class="check" style="padding-top:0"><input type="radio" name="od" value="1" checked><span class="sr-only">Compare from version 1</span></label></td><td data-label="To"><label class="check" style="padding-top:0"><input type="radio" name="do" value="1"><span class="sr-only">Compare to version 1</span></label></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <div><button class="btn" type="submit">Compare versions</button></div>
+ </form>
+
+ <section class="card stack" aria-labelledby="rozdil" id="rozdil-sekce">
+  <h2 id="rozdil" class="t-nadpis" tabindex="-1">Differences between version 1 and 2</h2>
+  <p class="t-maly">Only the feedback for a wrong answer has changed. The question text, answers and correct answer are the same.</p>
+  <dl class="dl">
+   <dt>Question text</dt><dd>No change</dd>
+   <dt>Answers</dt><dd>No change: arrow 1 (correct), arrow 2, arrow 3, it cannot be determined from the diagram</dd>
+   <dt>Feedback for a wrong answer</dt>
+   <dd class="stack-2">
+    <p class="card card--tenka" style="padding:var(--s-2) var(--s-3);background:var(--c-nesplneno-bg)"><b aria-hidden="true">−&nbsp;</b><span class="sr-only">Removed: </span>Alpha particles are stopped by a sheet of paper (or the outer layer of skin).</p>
+    <p class="card card--tenka" style="padding:var(--s-2) var(--s-3);background:var(--c-splneno-bg)"><b aria-hidden="true">+&nbsp;</b><span class="sr-only">Added: </span>Alpha particles are stopped by a sheet of paper, so arrow 1 is correct.</p>
+   </dd>
+  </dl>
+ </section>
+
+ <section class="stack" aria-labelledby="stitky-h">
+  <h2 id="stitky-h" class="t-nadpis">Tag history</h2>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Question tag history</caption>
+    <thead><tr><th scope="col">Tag</th><th scope="col">Assigned</th><th scope="col">Removed</th></tr></thead>
+    <tbody>
+     <tr><td data-label="Tag">Topics: Types of radiation</td><td data-label="Assigned" class="t-cislo">3 Nov 2026 03:00</td><td data-label="Removed"><span class="stav stav--ok">{{I:check}}Current</span></td></tr>
+     <tr><td data-label="Tag">Difficulty: Basic</td><td data-label="Assigned" class="t-cislo">3 Nov 2026 03:00</td><td data-label="Removed"><span class="stav stav--ok">{{I:check}}Current</span></td></tr>
+    </tbody>
+   </table>
+  </div>
+ </section>
+
+ <section class="stack" aria-labelledby="zaz-h">
+  <h2 id="zaz-h" class="t-nadpis">Question records</h2>
+  <ol class="timeline">
+   <li class="akt"><p><b>Sent for approval (v2)</b></p><p class="t-maly">3 Nov 2026 14:35:02 · Adam Autor</p></li>
+   <li><p><b>Approved (v1)</b></p><p class="t-maly">3 Nov 2026 03:00:13 · Barbora Veselá</p></li>
+   <li><p><b>Created (v1)</b></p><p class="t-maly">4 Sep 2026 04:00:13 · Adam Autor</p></li>
+  </ol>
+ </section>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack">
+  <h3 class="t-stitek">Only 1 version</h3>
+  <div class="card card--tenka"><p>This question has only 1 version so far – there is nothing to compare.</p></div>
+ </div>
+ <div class="stack">
+  <h3 class="t-stitek">Only the note changed</h3>
+  <div class="alert alert--info">{{I:info}}<p>The content hasn’t changed. Only the internal note changed, so no new version was created.</p></div>
+ </div>
+</section>

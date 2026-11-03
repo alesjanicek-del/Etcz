@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verify a report · exam-test</title>
+<meta name="description" content="Check that an exam-test result report or certificate is genuine. All you need is the verification code from the report – no sign-in needed.">
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body>
+<a class="skip" href="#obsah">Skip to content</a>
+<header class="site-header">
+ <div class="container site-header__in">
+  <a class="logo" href="en-index.html"><img src="../assets/logo/exam-test-logo.svg" alt="exam-test – home" width="170" height="28"></a>
+  <nav class="site-nav" aria-label="Main"><ul><li><a href="en-funkce.html">Features</a></li><li><a href="en-pro-urady.html">Public sector</a></li><li><a href="en-pro-firmy.html">Companies</a></li><li><a href="en-pro-vzdelavani.html">Education</a></li><li><a href="en-bezpecnost.html">Security</a></li><li><a href="en-cenik.html">Pricing</a></li></ul></nav>
+  <div class="site-header__cta">
+   <a class="btn btn--tiche btn--male" href="../app/prihlaseni.html">Sign in</a>
+   <a class="btn btn--hlavni btn--male" href="en-vyzkouset.html">Try the demo</a>
+   <nav class="lang" aria-label="Language / Jazyk"><a href="overeni.html" lang="cs" hreflang="cs">CS</a><a href="#" lang="en" aria-current="true">EN</a></nav>
+  </div>
+  <details class="menu"><summary class="btn btn--male"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu</summary><nav class="menu__panel" aria-label="Main (mobile)"><a href="en-funkce.html">Features</a><a href="en-pro-urady.html">Public sector</a><a href="en-pro-firmy.html">Companies</a><a href="en-pro-vzdelavani.html">Education</a><a href="en-bezpecnost.html">Security</a><a href="en-cenik.html">Pricing</a><a href="../app/prihlaseni.html">Sign in</a><a href="index.html" lang="cs" hreflang="cs">Česky</a></nav></details>
+ </div>
+</header>
+<main id="obsah">
+<section class="section grid-bg">
+ <div class="container stack-5" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <div class="stack-4">
+   <p class="t-stitek">Authenticity check · no sign-in</p>
+   <h1 class="t-display">Verify an exam report</h1>
+   <p class="t-perex">Find out whether a result report or certificate is genuine and has not been changed since the exam.</p>
+  </div>
+  <form class="card card--papir stack" action="en-overeni-vysledek.html" method="get" aria-label="Verify a report">
+   <div class="field">
+    <label class="label" for="kod">Verification code from the report or certificate</label>
+    <span class="hint" id="kod-h">You’ll find it on the report or certificate, next to the QR code. It has 20&nbsp;characters in the format <span class="t-kod">XXXXX-XXXXX-XXXXX-XXXXX</span>. You don’t need to type the hyphens or spaces.</span>
+    <input class="input input--kod" id="kod" name="kod" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="kod-h">
+   </div>
+   <div class="row"><button class="btn btn--hlavni" type="submit">Verify report</button></div>
+  </form>
+
+  <div class="stack-4">
+   <h2 class="t-sekce">How verification works</h2>
+   <ol class="stack-4">
+    <li class="num-step"><span class="t-cislo">01</span><div class="stack-2"><h3 class="t-nadpis">Scan the QR code</h3><p>The QR code on the report or certificate opens the verification result directly. Or type the code into the field above.</p></div></li>
+    <li class="num-step"><span class="t-cislo">02</span><div class="stack-2"><h3 class="t-nadpis">Compare the details</h3><p>The page shows the organisation, test, date and result. Compare them with the paper.</p></div></li>
+    <li class="num-step"><span class="t-cislo">03</span><div class="stack-2"><h3 class="t-nadpis">Check the certificate’s validity</h3><p>If the exam has a certificate, you’ll also see the training name, the “Valid until” date and the certificate status.</p></div></li>
+   </ol>
+   <div class="alert alert--info" role="note"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.3"/></svg><div class="stack-2"><p class="alert__nadpis">What verification confirms</p><p>That the details match the record made during the exam and that nobody has changed them since. It does not assess whether the exam met regulatory requirements.</p><p>To protect personal data, the test taker’s name is shown only as initials, for example “J.&nbsp;N.”</p></div></div>
+   <p><a href="en-napoveda.html#overeni">Help: what each verification result means</a></p>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila no-print" aria-labelledby="dalsi">
+ <div class="container stack-4" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <h2 id="dalsi" class="t-sekce">Other page states</h2>
+  <h3 class="t-nadpis">Error: code in the wrong format</h3>
+  <form class="card stack" action="#" method="get" aria-label="Verify a report – error">
+   <div class="field">
+    <label class="label" for="kod-e">Verification code from the report or certificate</label>
+    <span class="hint" id="kod-e-h">You’ll find it on the report or certificate, next to the QR code. It has 20&nbsp;characters in the format <span class="t-kod">XXXXX-XXXXX-XXXXX-XXXXX</span>. You don’t need to type the hyphens or spaces.</span>
+    <p class="error" id="kod-e-e"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M7.5 12h9"/></svg>The code has 20&nbsp;characters. You entered 12. Check it against the report.</p>
+    <input class="input input--kod" id="kod-e" name="kod" value="H5SAY-GVTNY-ED" autocomplete="off" aria-invalid="true" aria-describedby="kod-e-h kod-e-e">
+   </div>
+   <div class="row"><button class="btn btn--hlavni" type="submit">Verify report</button></div>
+  </form>
+  <h3 class="t-nadpis">Error: too many attempts</h3>
+  <div class="alert alert--chyba" role="alert"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 17h-19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p class="alert__nadpis">You’ve entered too many codes in a row</p><p>For security reasons, we limit code entry for a while. Try again in a few minutes.</p></div></div>
+ </div>
+</section>
+</main>
+<footer class="site-footer"><div class="container">
+ <div class="site-footer__grid"><div class="stack-2"><img src="../assets/logo/exam-test-logo-negativ-pruhledne.svg" alt="exam-test" width="150" height="25"><p>Tests and exams online and on paper. For the public sector, companies and education.</p><p><a href="en-overeni.html">Verify a report</a></p></div>
+ <nav class="stack-2" aria-label="Product"><p class="t-stitek">Product</p><ul><li><a href="en-funkce.html">Features</a></li><li><a href="en-cenik.html">Pricing</a></li><li><a href="en-sablony-testu.html">Test templates and services</a></li><li><a href="en-bezpecnost.html">Security and data</a></li><li><a href="en-napoveda.html">Help</a></li></ul></nav><div class="stack-2"><p class="t-stitek">Contact</p><ul><li><a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a></li><li><a href="tel:+420725311531">+420 725 311 531</a></li><li><a href="en-kontakt.html">Contact and billing details</a></li></ul></div></div>
+ <ul class="row" style="margin-top:var(--s-4)"><li><a href="en-podminky.html">Terms of service</a></li><li><a href="en-ochrana-osobnich-udaju.html">Privacy policy</a></li><li><a href="en-zpracovatelska-smlouva.html">Data processing agreement</a></li><li><a href="en-prohlaseni-o-pristupnosti.html">Accessibility statement</a></li></ul>
+ <div class="site-footer__legal"><p>ABUCO ICT s.r.o. · Company ID 29153905 · Prague, Czech Republic. The Czech version of legal documents is legally binding; English translation in preparation.</p></div>
+</div></footer>
+<script type="application/json" id="spec">{"route": "/en/verify", "nazev": "Verify a report – form (English)", "role": "public – anyone holding a report (employer, public body, test taker)", "sablona": "web (lang=en)", "ucel": "Let anyone, without signing in, check that a result report or certificate is genuine and unchanged.", "hlavni_akce": "Verify report", "komponenty": ["card card--papir", "field", "input--kod", "hint", "error", "btn--hlavni", "num-step", "alert--info"], "stavy": ["empty (main): form; if ?kod= arrives from the QR code, the page shows the result straight away (en-overeni-vysledek.html)", "error – wrong format: message next to the field with the number of characters entered; value stays", "error – too many attempts: alert (code entry rate limit, see Security); the developer adds the exact wait time from the app limit", "loading: button “Verifying…” aria-disabled, usually instant", "result (valid / not found / changed …): en-overeni-vysledek.html", "permissions: public page"], "zmeny_ux": ["Structure, states and components are the same as the Czech page (overeni.html); see its spec for the UX changes.", "Button reads “Verify report”, the same as on the EN homepage form."], "texty": [{"dnes": "Ověřit protokol o zkoušce", "nove": "Verify an exam report", "proc": "Glossary: result report; verb first."}, {"dnes": "Ověření pravosti · bez přihlášení", "nove": "Authenticity check · no sign-in", "proc": "Short label."}, {"dnes": "Ověřovací kód z protokolu nebo osvědčení", "nove": "Verification code from the report or certificate", "proc": "Glossary: verification code, certificate."}, {"dnes": "Ověřit protokol", "nove": "Verify report", "proc": "Same as EN homepage."}, {"dnes": "Platí do", "nove": "Valid until", "proc": "Label name on the certificate (to match EN certificate if one exists)."}, {"dnes": "Kód má 20 znaků. Zadali jste 12. Zkontrolujte ho podle protokolu.", "nove": "The code has 20 characters. You entered 12. Check it against the report.", "proc": "Says what is wrong and what to do."}, {"dnes": "Zadali jste příliš mnoho kódů za sebou", "nove": "You’ve entered too many codes in a row", "proc": "Plain English."}], "pristupnost": ["Same as the Czech page: visible label, hint and error in aria-describedby; autocomplete=off, autocapitalize=characters, spellcheck=false; no maxlength."], "poznamky_pro_kodera": ["Normalisation: remove spaces and hyphens, convert to upper case.", "GET /en/verify?kod=… (the QR code itself points to the Czech URL; show EN when the browser language is EN – proposal).", "Initials example “J. N.” kept."], "chybi_komponenta": []}</script>
+</body>
+</html>

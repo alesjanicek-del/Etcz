@@ -1,0 +1,49 @@
+<!--meta {"titulek":"Print","sablona":"app","role":"lektor","aktivni":"tisk.html","demo":false,"lang":"en","cs_verze":"tisk.html"} -->
+<!--spec {
+ "route":"/tisk (lang=en)","nazev":"Print – batches – English","role":"instructor","sablona":"app",
+ "ucel":"Overview of the branch’s print batches: paper test versions with test papers, answer sheets and answer keys. From here the instructor downloads PDFs and enters paper answers.",
+ "hlavni_akce":"Open a batch (download PDF, enter answers); secondary: New print batch",
+ "komponenty":["page-head","table-wrap","table--stack","stav","btn","empty","alert--info"],
+ "stavy":[
+  "Default: 2 batches, one ready, one being prepared (drawn).",
+  "Empty: “There are no print batches yet.” with a New print batch button (drawn).",
+  "Being prepared: stav--pise “Preparing”, the page refreshes itself; sheets entered “–”.",
+  "Error: stav--ne “Error” with a Try again link (e.g. annual attempt limit exceeded).",
+  "No permission: plan without print – alert--info “Your plan does not include print.” instead of the table (drawn)."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (tisk.html).",
+  "Column “Entered” shows “1 of 2 sheets” – EN plural via ICU."],
+ "texty":[
+  {"dnes":"Tisk","nove":"Print","proc":"Glossary."},
+  {"dnes":"Papírové variace testu se zadáním, odpovědními listy a klíči.","nove":"Paper test versions with test papers, answer sheets and answer keys.","proc":"Glossary: variace → test version."},
+  {"dnes":"Nová tisková dávka","nove":"New print batch","proc":"Short noun phrase, as in Czech."},
+  {"dnes":"Hotovo / Připravuje se","nove":"Ready / Preparing","proc":"Status with icon + word."},
+  {"dnes":"Tisk váš tarif neobsahuje.","nove":"Your plan does not include print.","proc":"Glossary: tarif → plan."}],
+ "pristupnost":["Same as the Czech page: caption and data-label; Open link with sr-only test name and label; status change announced once in aria-live."],
+ "poznamky_pro_kodera":["Strings from translations/*+intl-icu.en.yaml.","Glossary gap: tisková dávka → print batch; zadání (tištěné) → test paper; odpovědní list → answer sheet; klíč → answer key."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Testing</p><h1 class="t-titulek">Print</h1>
+  <p class="t-maly measure">Paper test versions with test papers, answer sheets and answer keys. You see your branch’s batches.</p></div>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="en-testy.html">{{I:tisk}}New print batch</a></div>
+</div>
+<p class="sr-only" aria-live="polite"></p>
+<div class="table-wrap">
+ <table class="table table--stack">
+  <caption class="sr-only">Print batches (2)</caption>
+  <thead><tr><th scope="col">Test and label</th><th scope="col" class="num">Versions</th><th scope="col">Entered</th><th scope="col">Created</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+  <tbody>
+   <tr><td data-label="Test"><div><b>Cyber security – annual check</b><span class="t-maly">Preview for the design · Lucie Lektorová</span></div></td><td data-label="Versions" class="num">2</td><td data-label="Entered"><span><span class="mini-bar" aria-hidden="true"><i style="width:50%"></i></span>1 of 2 sheets</span></td><td data-label="Created"><span class="t-cislo" style="white-space:nowrap">3 Nov 18:20</span></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Ready</span></td><td data-label="Actions"><a class="btn btn--male" href="en-tisk-davka.html">Open<span class="sr-only">: Cyber security, Preview for the design</span></a></td></tr>
+   <tr><td data-label="Test"><div><b>OHS – practice test</b><span class="t-maly">Exam 12 Nov – group A · Lucie Lektorová</span></div></td><td data-label="Versions" class="num">30</td><td data-label="Entered">–</td><td data-label="Created"><span class="t-cislo" style="white-space:nowrap">3 Nov 18:31</span></td><td data-label="Status"><span class="stav stav--pise">{{I:hodiny}}Preparing</span></td><td data-label="Actions"><a class="btn btn--male" href="en-tisk-davka.html">Open<span class="sr-only">: OHS, Exam 12 Nov – group A</span></a></td></tr>
+  </tbody>
+ </table>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <p class="t-stitek">No batch</p>
+ <div class="empty stack-2">{{I:tisk}}<p><b>There are no print batches yet.</b></p><p class="t-maly">The batch will be created for your Prague branch.</p><p><a class="btn" href="en-testy.html">New print batch</a></p></div>
+ <p class="t-stitek">Plan without print</p>
+ <div class="alert alert--info">{{I:info}}<p>Your plan does not include print. An organisation administrator can arrange an upgrade.</p></div>
+</section>

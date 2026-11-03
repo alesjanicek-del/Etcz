@@ -174,7 +174,7 @@ def app_en(meta, body):
    <a class="logo" href="{home}"><img src="../assets/logo/exam-test-logo-male.svg" alt="exam-test – overview" width="122" height="20"></a>
    {pob}<span class="sp"></span>
    <a href="en-napoveda.html">Help for this page</a>
-   <a href="en-ucet.html" aria-label="My account: {USER[role]}">{USER[role]}</a>
+   <a href="en-ucet.html" aria-label="My account: {USER[role]}"><span lang="cs">{USER[role]}</span></a>
    <nav class="lang" aria-label="Language / Jazyk"><a href="{meta.get('cs_verze', '#')}" lang="cs" hreflang="cs">CS</a><a href="#" lang="en" aria-current="true">EN</a></nav>
    <details class="menu"><summary class="btn btn--male">{I('menu')}Menu</summary><nav class="menu__panel app-nav" aria-label="Main (mobile)">{appnav(role, a, lang='en')}<a href="en-ucet.html">My account</a><a href="#">Sign out</a></nav></details>
   </header>

@@ -1,0 +1,72 @@
+<!--meta {"titulek":"Verify a report","popis":"Check that an exam-test result report or certificate is genuine. All you need is the verification code from the report – no sign-in needed.","sablona":"web","aktivni":"","lang":"en","cs_verze":"overeni.html"} -->
+<!--spec {
+ "route":"/en/verify","nazev":"Verify a report – form (English)","role":"public – anyone holding a report (employer, public body, test taker)","sablona":"web (lang=en)",
+ "ucel":"Let anyone, without signing in, check that a result report or certificate is genuine and unchanged.",
+ "hlavni_akce":"Verify report",
+ "komponenty":["card card--papir","field","input--kod","hint","error","btn--hlavni","num-step","alert--info"],
+ "stavy":[
+  "empty (main): form; if ?kod= arrives from the QR code, the page shows the result straight away (en-overeni-vysledek.html)",
+  "error – wrong format: message next to the field with the number of characters entered; value stays",
+  "error – too many attempts: alert (code entry rate limit, see Security); the developer adds the exact wait time from the app limit",
+  "loading: button “Verifying…” aria-disabled, usually instant",
+  "result (valid / not found / changed …): en-overeni-vysledek.html",
+  "permissions: public page"],
+ "zmeny_ux":["Structure, states and components are the same as the Czech page (overeni.html); see its spec for the UX changes.","Button reads “Verify report”, the same as on the EN homepage form."],
+ "texty":[
+  {"dnes":"Ověřit protokol o zkoušce","nove":"Verify an exam report","proc":"Glossary: result report; verb first."},
+  {"dnes":"Ověření pravosti · bez přihlášení","nove":"Authenticity check · no sign-in","proc":"Short label."},
+  {"dnes":"Ověřovací kód z protokolu nebo osvědčení","nove":"Verification code from the report or certificate","proc":"Glossary: verification code, certificate."},
+  {"dnes":"Ověřit protokol","nove":"Verify report","proc":"Same as EN homepage."},
+  {"dnes":"Platí do","nove":"Valid until","proc":"Label name on the certificate (to match EN certificate if one exists)."},
+  {"dnes":"Kód má 20 znaků. Zadali jste 12. Zkontrolujte ho podle protokolu.","nove":"The code has 20 characters. You entered 12. Check it against the report.","proc":"Says what is wrong and what to do."},
+  {"dnes":"Zadali jste příliš mnoho kódů za sebou","nove":"You’ve entered too many codes in a row","proc":"Plain English."}],
+ "pristupnost":["Same as the Czech page: visible label, hint and error in aria-describedby; autocomplete=off, autocapitalize=characters, spellcheck=false; no maxlength."],
+ "poznamky_pro_kodera":["Normalisation: remove spaces and hyphens, convert to upper case.","GET /en/verify?kod=… (the QR code itself points to the Czech URL; show EN when the browser language is EN – proposal).","Initials example “J. N.” kept."],
+ "chybi_komponenta":[]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <div class="stack-4">
+   <p class="t-stitek">Authenticity check · no sign-in</p>
+   <h1 class="t-display">Verify an exam report</h1>
+   <p class="t-perex">Find out whether a result report or certificate is genuine and has not been changed since the exam.</p>
+  </div>
+  <form class="card card--papir stack" action="en-overeni-vysledek.html" method="get" aria-label="Verify a report">
+   <div class="field">
+    <label class="label" for="kod">Verification code from the report or certificate</label>
+    <span class="hint" id="kod-h">You’ll find it on the report or certificate, next to the QR code. It has 20&nbsp;characters in the format <span class="t-kod">XXXXX-XXXXX-XXXXX-XXXXX</span>. You don’t need to type the hyphens or spaces.</span>
+    <input class="input input--kod" id="kod" name="kod" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="kod-h">
+   </div>
+   <div class="row"><button class="btn btn--hlavni" type="submit">Verify report</button></div>
+  </form>
+
+  <div class="stack-4">
+   <h2 class="t-sekce">How verification works</h2>
+   <ol class="stack-4">
+    <li class="num-step"><span class="t-cislo">01</span><div class="stack-2"><h3 class="t-nadpis">Scan the QR code</h3><p>The QR code on the report or certificate opens the verification result directly. Or type the code into the field above.</p></div></li>
+    <li class="num-step"><span class="t-cislo">02</span><div class="stack-2"><h3 class="t-nadpis">Compare the details</h3><p>The page shows the organisation, test, date and result. Compare them with the paper.</p></div></li>
+    <li class="num-step"><span class="t-cislo">03</span><div class="stack-2"><h3 class="t-nadpis">Check the certificate’s validity</h3><p>If the exam has a certificate, you’ll also see the training name, the “Valid until” date and the certificate status.</p></div></li>
+   </ol>
+   <div class="alert alert--info" role="note">{{I:info}}<div class="stack-2"><p class="alert__nadpis">What verification confirms</p><p>That the details match the record made during the exam and that nobody has changed them since. It does not assess whether the exam met regulatory requirements.</p><p>To protect personal data, the test taker’s name is shown only as initials, for example “J.&nbsp;N.”</p></div></div>
+   <p><a href="en-napoveda.html#overeni">Help: what each verification result means</a></p>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila no-print" aria-labelledby="dalsi">
+ <div class="container stack-4" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <h2 id="dalsi" class="t-sekce">Other page states</h2>
+  <h3 class="t-nadpis">Error: code in the wrong format</h3>
+  <form class="card stack" action="#" method="get" aria-label="Verify a report – error">
+   <div class="field">
+    <label class="label" for="kod-e">Verification code from the report or certificate</label>
+    <span class="hint" id="kod-e-h">You’ll find it on the report or certificate, next to the QR code. It has 20&nbsp;characters in the format <span class="t-kod">XXXXX-XXXXX-XXXXX-XXXXX</span>. You don’t need to type the hyphens or spaces.</span>
+    <p class="error" id="kod-e-e">{{I:minus-kruh}}The code has 20&nbsp;characters. You entered 12. Check it against the report.</p>
+    <input class="input input--kod" id="kod-e" name="kod" value="H5SAY-GVTNY-ED" autocomplete="off" aria-invalid="true" aria-describedby="kod-e-h kod-e-e">
+   </div>
+   <div class="row"><button class="btn btn--hlavni" type="submit">Verify report</button></div>
+  </form>
+  <h3 class="t-nadpis">Error: too many attempts</h3>
+  <div class="alert alert--chyba" role="alert">{{I:pozor}}<div><p class="alert__nadpis">You’ve entered too many codes in a row</p><p>For security reasons, we limit code entry for a while. Try again in a few minutes.</p></div></div>
+ </div>
+</section>
