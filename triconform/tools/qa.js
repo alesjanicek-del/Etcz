@@ -1,5 +1,6 @@
 // QA rebrandu B „Týden“ – spouští se na PC proti testu (Basic auth z proměnných prostředí, heslo se nikam nevypisuje).
 //   set TC_USER=… & set TC_PASS=…   (PowerShell: $env:TC_USER='…'; $env:TC_PASS='…')
+//   (axe-core: npm i axe-core v adresáři, odkud se spouští)
 //   node triconform/tools/qa.js https://test.triconform.com /prihlaseni /zapomenute-heslo [další cesty]
 //   volitelně TC_STATE=cesta/k/storageState.json pro stránky po přihlášení (ukázková organizace na testu)
 // Výstup: řádek na stránku × šířku × motiv (písma, pozadí, H1, logo, tlačítko, přetečení, axe) + snímky do ./qa-out/
@@ -7,7 +8,7 @@ const { chromium } = require('playwright');
 const fs = require('fs'); const path = require('path');
 const [base, ...paths] = process.argv.slice(2);
 if (!base || !paths.length) { console.error('použití: node qa.js <base-url> <cesta> [cesta…]'); process.exit(2); }
-const axePath = require.resolve('axe-core/axe.min.js');
+const axePath = require.resolve('axe-core/axe.min.js', { paths: [process.cwd(), __dirname] });
 const AX = fs.readFileSync(axePath, 'utf8');
 const OUT = path.resolve('qa-out'); fs.mkdirSync(OUT, { recursive: true });
 const cred = process.env.TC_USER ? { username: process.env.TC_USER, password: process.env.TC_PASS || '' } : undefined;
