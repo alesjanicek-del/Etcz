@@ -1,0 +1,66 @@
+<!--meta {"titulek": "Tag lists", "sablona": "app", "role": "lektor", "aktivni": "stitky.html", "demo": false, "lang": "en", "cs_verze": "stitky.html"} -->
+<!--spec {
+ "route": "/stitky (lang=en)", "nazev": "Tag lists – English", "role": "instructor (same page for question authors and administrators; they differ in which lists they may manage)", "sablona": "app",
+ "ucel": "Overview of tag lists by scope (organisation, branch, instructor, question bank) and entry point to managing tags or creating a new list.",
+ "hlavni_akce": "New tag list; open a list",
+ "komponenty": ["page-head","toc","table table--stack","stav","empty","alert--info"],
+ "stavy": ["Same states as the Czech page (stitky.html): empty scope, read-only lists, after creating, loading / error, permissions by scope."],
+ "zmeny_ux": ["Layout as in the Czech version. Sample tag names translated; tag chips wrap onto more lines on mobile, as in Czech."],
+ "texty": [
+  {"dnes": "Seznamy štítků · Nový seznam štítků", "nove": "Tag lists · New tag list", "proc": "Glossary: tag list."},
+  {"dnes": "Štítky třídí otázky a vybírají je do testů (povolené a zakázané štítky).", "nove": "Tags sort questions and select them for tests (allowed and excluded tags).", "proc": "Glossary: tag."},
+  {"dnes": "Rozsah · Organizace · Pobočka · Jen pro mě (lektor) · Soubor otázek", "nove": "Scope · Organisation · Branch · Only me (instructor) · Question bank", "proc": "Glossary: branch, instructor, question bank."},
+  {"dnes": "Jen čtení · Prázdný", "nove": "Read-only · Empty", "proc": "Status words."},
+  {"dnes": "Založit seznam jen pro mě", "nove": "Create a list just for me", "proc": "Verb first."}],
+ "pristupnost": ["Same as the Czech page; html lang=\"en\"."],
+ "poznamky_pro_kodera": ["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Tag and list names are user content; the demo shows English samples.","Glossary gap: rozsah (seznamu) → scope","Glossary gap: povolené / zakázané štítky → allowed / excluded tags"],
+ "chybi_komponenta": ["coloured tag – as in the Czech page"]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Tag lists</h1><p class="measure">Tags sort questions and select them for tests (allowed and excluded tags). Each list has a scope that decides who else sees and uses it.</p></div><div class="page-head__actions"><a class="btn btn--hlavni" href="en-stitky-formular.html">{{I:plus}}New tag list</a></div></div>
+
+<div class="stack-5">
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption>List scopes</caption>
+   <thead><tr><th scope="col">Scope</th><th scope="col">Who sees and uses the list</th><th scope="col" class="num">Lists</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Scope"><a href="#org">Organisation</a></td><td data-label="Who sees it">all instructors in the organisation</td><td data-label="Lists" class="num">1</td></tr>
+    <tr><td data-label="Scope"><a href="#pob">Branch</a></td><td data-label="Who sees it">branch members</td><td data-label="Lists" class="num">0</td></tr>
+    <tr><td data-label="Scope"><a href="#lek">Only me (instructor)</a></td><td data-label="Who sees it">only you</td><td data-label="Lists" class="num">0</td></tr>
+    <tr><td data-label="Scope"><a href="#sou">Question bank</a></td><td data-label="Who sees it">anyone with access to the bank</td><td data-label="Lists" class="num">6</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <section class="stack" aria-labelledby="org">
+  <h2 id="org" class="t-nadpis">Organisation</h2>
+  <div class="table-wrap"><table class="table table--stack"><caption class="sr-only">Tag lists – Organisation (1)</caption>
+   <thead><tr><th scope="col">Name</th><th scope="col">Applies to</th><th scope="col">Tags</th><th scope="col" class="num">Count</th></tr></thead>
+   <tbody><tr><td data-label="Name"><a href="en-stitky-detail.html">General tags</a> <span class="stav stav--neutral">{{I:zamek}}Read-only</span></td><td data-label="Applies to">Whole organisation</td><td data-label="Tags"><span class="stav stav--neutral">Empty</span></td><td data-label="Count" class="num">0</td></tr></tbody>
+  </table></div>
+ </section>
+
+ <section class="stack" aria-labelledby="pob">
+  <h2 id="pob" class="t-nadpis">Branch</h2>
+  <div class="card card--tenka"><p>No lists yet. Branch lists are created by the branch administrator.</p></div>
+ </section>
+
+ <section class="stack" aria-labelledby="lek">
+  <h2 id="lek" class="t-nadpis">Only me (instructor)</h2>
+  <div class="card card--tenka row-between"><p>No lists yet. Only you will see it.</p><a class="btn btn--male" href="en-stitky-formular.html">{{I:plus}}Create a list just for me</a></div>
+ </section>
+
+ <section class="stack" aria-labelledby="sou">
+  <h2 id="sou" class="t-nadpis">Question bank</h2>
+  <p class="t-maly">You have View permission for the sample banks – you can see their lists; the bank owner manages them.</p>
+  <div class="table-wrap"><table class="table table--stack"><caption class="sr-only">Tag lists – Question bank (6)</caption>
+   <thead><tr><th scope="col">Name</th><th scope="col">Applies to</th><th scope="col">Tags</th><th scope="col" class="num">Count</th></tr></thead>
+   <tbody><tr><td data-label="Name"><a href="en-stitky-detail.html">Difficulty<span class="sr-only"> – Cyber security – user training</span></a></td><td data-label="Applies to">Cyber security – user training</td><td data-label="Tags"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">Advanced</span></li><li><span class="stav stav--neutral">Basic</span></li></ul></td><td data-label="Count" class="num">2</td></tr><tr><td data-label="Name"><a href="en-stitky-detail.html">Difficulty<span class="sr-only"> – Health and safety – employee training</span></a></td><td data-label="Applies to">Health and safety – employee training</td><td data-label="Tags"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">Advanced</span></li><li><span class="stav stav--neutral">Basic</span></li></ul></td><td data-label="Count" class="num">2</td></tr><tr><td data-label="Name"><a href="en-stitky-detail.html">Difficulty<span class="sr-only"> – Radiation protection – basic principles</span></a></td><td data-label="Applies to">Radiation protection – basic principles</td><td data-label="Tags"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">Advanced</span></li><li><span class="stav stav--neutral">Basic</span></li></ul></td><td data-label="Count" class="num">2</td></tr><tr><td data-label="Name"><a href="en-stitky-detail.html">Topics<span class="sr-only"> – Cyber security – user training</span></a></td><td data-label="Applies to">Cyber security – user training</td><td data-label="Tags"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">Passwords and MFA</span></li><li><span class="stav stav--neutral">Incident reporting</span></li><li><span class="stav stav--neutral">Phishing</span></li><li><span class="stav stav--neutral">Working away from the office</span></li><li><span class="stav stav--neutral">Social engineering</span></li></ul></td><td data-label="Count" class="num">5</td></tr><tr><td data-label="Name"><a href="en-stitky-detail.html">Topics<span class="sr-only"> – Health and safety – employee training</span></a></td><td data-label="Applies to">Health and safety – employee training</td><td data-label="Tags"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">PPE</span></li><li><span class="stav stav--neutral">Employee duties</span></li><li><span class="stav stav--neutral">Employer duties</span></li><li><span class="stav stav--neutral">Workplace injury</span></li><li><span class="stav stav--neutral">Managers</span></li></ul></td><td data-label="Count" class="num">5</td></tr><tr><td data-label="Name"><a href="en-stitky-detail.html">Topics<span class="sr-only"> – Radiation protection – basic principles</span></a></td><td data-label="Applies to">Radiation protection – basic principles</td><td data-label="Tags"><ul class="row" style="gap:var(--s-1)"><li><span class="stav stav--neutral">Dosimetry and dose limits</span></li><li><span class="stav stav--neutral">Types of radiation</span></li><li><span class="stav stav--neutral">Workers and designated areas</span></li><li><span class="stav stav--neutral">Principles and legislation</span></li><li><span class="stav stav--neutral">Time, distance, shielding</span></li></ul></td><td data-label="Count" class="num">5</td></tr></tbody>
+  </table></div>
+ </section>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack"><h3 class="t-stitek">After creating a list</h3><div class="alert alert--ok" role="status">{{I:check}}<p>Tag list “Difficulty” created. <a href="en-stitky-detail.html">Add tags to it</a></p></div></div>
+</section>

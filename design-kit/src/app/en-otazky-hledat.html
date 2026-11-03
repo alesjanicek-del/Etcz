@@ -1,0 +1,88 @@
+<!--meta {"titulek":"Search questions","sablona":"app","role":"lektor","aktivni":"otazky-hledat.html","demo":false,"lang":"en","cs_verze":"otazky-hledat.html"} -->
+<!--spec {
+ "route":"/otazky/hledat (lang=en)","nazev":"Search questions – English","role":"instructor, question author, branch and organisation administrator – searches only banks the user has permission for","sablona":"app",
+ "ucel":"Find a question across all question banks by text, note, author, date, status, bank and tags.",
+ "hlavni_akce":"Search (and open a question found)",
+ "komponenty":["page-head","filters","field","input","select","fieldset","check","faq (details)","table table--stack","stav","t-zvyraznit","pager","empty"],
+ "stavy":["Same states as the Czech page (otazky-hledat.html): start (no query), no results with 3 reasons, loading (“Searching…”), error (Try again), no permission (never 403; banks without permission are left out)."],
+ "zmeny_ux":["Layout as in the Czech version. Sample query “alpha”; query syntax examples in English (radiation -alpha, \"personal dosimeter\")."],
+ "texty":[
+  {"dnes":"Hledat otázky · Hledat","nove":"Search questions · Search","proc":"Verb first."},
+  {"dnes":"Funguje i bez diakritiky. Frázi dejte do uvozovek, slovo vyloučíte minusem.","nove":"Ignores accents. Put a phrase in quotes; exclude a word with a minus sign.","proc":"“Diacritics” is uncommon in English UI; “accents” is clearer."},
+  {"dnes":"Bez výběru se hledá ve všech souborech, ke kterým máte přístup.","nove":"If you select none, all banks you can access are searched.","proc":"Glossary: question bank."},
+  {"dnes":"Nalezeno otázek: 2","nove":"Questions found: 2","proc":"Plain English."},
+  {"dnes":"Žádná otázka neodpovídá dotazu.","nove":"No question matches your search.","proc":"Plain English."},
+  {"dnes":"Otázka je v koši… na záložce Koš otázek.","nove":"The question is in Deleted items… on the Deleted questions tab.","proc":"Glossary: Deleted items."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\"."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Search matches the content language: an English query finds English questions only. Accent-insensitive search still applies to Czech banks.","Second sample question (No. 11) is from the demo and translated."],
+ "chybi_komponenta":["match highlight (mark) – as in the Czech page"]
+} -->
+<div class="page-head"><div class="stack-2"><h1 class="t-titulek">Search questions</h1><p class="t-maly">Searches all question banks you can access.</p></div><div class="page-head__actions"><a class="btn" href="en-soubory.html">{{I:slozka}}Question banks</a></div></div>
+
+<form class="card stack-4" action="en-otazky-hledat.html" method="get" role="search" aria-label="Search questions">
+ <div class="filters" style="margin-bottom:0">
+  <div class="field" style="flex:2 1 320px"><label class="label" for="q">Full text (question, answers, note)</label><input class="input" id="q" name="q" type="search" value="alpha" aria-describedby="q-h"><span class="hint" id="q-h">Ignores accents. Put a phrase in quotes; exclude a word with a minus sign: <span class="t-kod">radiation -alpha</span></span></div>
+ </div>
+ <fieldset class="stack-2">
+  <legend>Question banks</legend>
+  <div class="row" style="gap:0 var(--s-4)">
+   <label class="check"><input type="checkbox" name="soubor" value="bozp">Health and safety – employee training</label>
+   <label class="check"><input type="checkbox" name="soubor" value="kyber">Cyber security – user training</label>
+   <label class="check"><input type="checkbox" name="soubor" value="ro" checked>Radiation protection – basic principles</label>
+  </div>
+  <p class="hint">If you select none, all banks you can access are searched.</p>
+ </fieldset>
+ <div class="faq">
+  <details>
+   <summary>More filters: note, author, date, status, tags</summary>
+   <div class="stack">
+    <div class="grid-3">
+     <div class="field"><label class="label" for="pozn">Note contains</label><input class="input" id="pozn" name="poznamka"></div>
+     <div class="field"><label class="label" for="autor">Author</label><select class="select" id="autor" name="autor"><option>All authors</option><option>Adam Autor</option></select></div>
+     <div class="field"><label class="label" for="stav">Status</label><select class="select" id="stav" name="stav"><option>All statuses</option><option>Draft</option><option>Pending approval</option><option>Approved</option></select></div>
+     <div class="field"><label class="label" for="od">Created from</label><input class="input" id="od" name="od" type="date"></div>
+     <div class="field"><label class="label" for="do">Created to</label><input class="input" id="do" name="do" type="date"></div>
+    </div>
+    <fieldset class="stack-2"><legend>Tags</legend>
+     <div class="row" style="gap:0 var(--s-4)"><label class="check"><input type="checkbox" name="s">Topics: Types of radiation</label><label class="check"><input type="checkbox" name="s">Topics: Time, distance, shielding</label><label class="check"><input type="checkbox" name="s">Difficulty: Basic</label><label class="check"><input type="checkbox" name="s">Difficulty: Advanced</label></div>
+    </fieldset>
+    <fieldset><legend>Questions must have</legend><div class="row"><label class="check"><input type="radio" name="sh" checked>at least one of the selected tags</label><label class="check"><input type="radio" name="sh">all selected tags</label></div></fieldset>
+   </div>
+  </details>
+ </div>
+ <div class="row"><button class="btn btn--hlavni" type="submit">{{I:hledat}}Search</button><a class="btn btn--tiche" href="en-otazky-hledat.html">Clear filter</a></div>
+</form>
+
+<div class="stack" style="margin-top:var(--s-5)">
+ <div class="row-between"><p aria-live="polite" tabindex="-1"><b>Questions found: <span class="t-cislo">2</span></b> <span class="t-maly">· “alpha” in the bank Radiation protection</span></p></div>
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption class="sr-only">Questions found (2)</caption>
+   <thead><tr><th scope="col">Question</th><th scope="col">Question bank</th><th scope="col">Tags</th><th scope="col">Status</th><th scope="col" class="num">Version</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Question"><div><a href="en-otazka-detail.html">The diagram shows the penetrating power of three types of ionising radiation. Which arrow represents <mark class="t-zvyraznit" style="color:inherit">alpha</mark> radiation?</a><span class="t-maly">Question 10 · RO-010</span></div></td><td data-label="Question bank"><a href="en-soubor-detail.html">Radiation protection – basic principles</a></td><td data-label="Tags"><ul class="stack-2"><li><span class="stav stav--neutral">Types of radiation</span></li><li><span class="stav stav--neutral">Basic</span></li></ul></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Approved</span></td><td data-label="Version" class="num">v1</td></tr>
+    <tr><td data-label="Question"><div><a href="en-otazka-detail.html">Why are <mark class="t-zvyraznit" style="color:inherit">alpha</mark>-emitting radionuclides most hazardous in internal contamination (after inhalation or ingestion)?</a><span class="t-maly">Question 11</span></div></td><td data-label="Question bank"><a href="en-soubor-detail.html">Radiation protection – basic principles</a></td><td data-label="Tags"><ul class="stack-2"><li><span class="stav stav--neutral">Types of radiation</span></li></ul></td><td data-label="Status"><span class="stav stav--ok">{{I:check}}Approved</span></td><td data-label="Version" class="num">v1</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack">
+  <h3 class="t-stitek">Start – no query</h3>
+  <div class="empty stack-2">{{I:hledat}}<p class="t-nadpis">Enter search text or set a filter</p><p class="t-maly">For example, <span class="t-kod">"personal dosimeter"</span> for an exact phrase or <span class="t-kod">radiation -alpha</span> without the word alpha.</p></div>
+ </div>
+ <div class="stack">
+  <h3 class="t-stitek">No results</h3>
+  <div class="card stack" role="status">
+   <p><b>No question matches your search.</b> The most common reasons:</p>
+   <ul class="list-check">
+    <li>You don’t have permission for the bank the question is in. Ask the bank owner.</li>
+    <li>The question is in Deleted items. You’ll find it in the bank detail, on the Deleted questions tab.</li>
+    <li>The filter is too narrow. Try fewer conditions.</li>
+   </ul>
+   <p><a class="btn btn--male" href="en-otazky-hledat.html">Clear filter</a></p>
+  </div>
+ </div>
+</section>

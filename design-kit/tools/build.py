@@ -123,8 +123,9 @@ def appnav(role, a, mobile=False, lang='cs'):
         if sec: out.append(f'<p class="t-stitek">{APP_EN.get(sec, sec) if lang == "en" else sec}</p>')
         for it in items:
             h, t, ic = it
+            hit = h == a or ('en-' + h) == a
             if lang == 'en': h, t = 'en-' + h, APP_EN.get(t, t)
-            cur = ' aria-current="page"' if h == a else ''
+            cur = ' aria-current="page"' if hit else ''
             extra = ('<span class="pocet" aria-label="3 waiting">3</span><!-- count from data -->' if lang == 'en' else '<span class="pocet" aria-label="3 čekají">3</span><!-- počet z dat -->') if h.endswith('ke-schvaleni.html') else ''
             out.append(f'<a href="{h}"{cur}>{I(ic)}{t}{extra}</a>')
     return ''.join(out)
