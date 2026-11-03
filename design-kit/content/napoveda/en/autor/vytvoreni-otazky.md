@@ -49,7 +49,7 @@ If the question breaks the rules, a summary of errors appears at the top, with l
 
 ## Unsaved content after you are signed out
 
-The editor keeps saving your unsaved question content in this browser tab. If the application signs you out before you save the question (for example, after inactivity), you see **Unsaved draft content** at the top when you sign in again and open the editor:
+The editor keeps saving your unsaved question content in this browser tab. The application may sign you out before you save the question (for example, after inactivity). When you sign in again and open the editor, you see **Unsaved draft content** at the top:
 
 - **Restore unsaved content** puts what you had written back into the form. Then save the question as usual.
 - **Discard unsaved content** deletes it, and the editor keeps the last saved version.

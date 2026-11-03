@@ -6,13 +6,13 @@ translation: unofficial-draft
 
 # Roles and permissions
 
-What an organisation administrator, branch administrator, instructor, question author, student and test taker without an account can do.
+What an organisation administrator, branch administrator, instructor, question author, learner and test taker without an account can do.
 
 ## Roles
 
 Each user can have several roles, including in different branches. The question author role is usually combined with the instructor role.
 
-| What you can do | Organisation administrator | Branch administrator | Instructor | Question author | Student | Test taker without an account |
+| What you can do | Organisation administrator | Branch administrator | Instructor | Question author | Learner | Test taker without an account |
 |---|---|---|---|---|---|---|
 | Organisation settings, logo, texts, data retention | yes | — | — | — | — | — |
 | Branches | creates and edits | sees own | — | — | — | — |
@@ -47,7 +47,7 @@ How to grant permissions is described in [Question banks](../autor/soubory-otaze
 ## Who can do what in branches
 
 - **Instructors** work in the branches where they have a role. They can have several and switch between them with the **Active branch** switcher.
-- **Branch administrators** manage the instructors, students and groups in their branch. They cannot see other branches.
+- **Branch administrators** manage the instructors, learners and groups in their branch. They cannot see other branches.
 - **Organisation administrators** see all branches and results with no branch.
 
 *For roles: everyone*

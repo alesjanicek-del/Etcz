@@ -6,7 +6,7 @@ translation: unofficial-draft
 
 # Submission and result
 
-How to submit the test, confirm the training acknowledgement, what happens when time runs out and what you see after submitting (result, result report, certificate).
+How to submit the test, confirm the training, what happens when time runs out and what you see after submitting (result, result report, certificate).
 
 ## Submitting
 
@@ -18,9 +18,9 @@ Once you submit, you can no longer change your answers.
 
 When time runs out, the app submits the test automatically. All answers saved before the time limit ended are kept.
 
-## Training acknowledgement
+## Confirmation of training
 
-For some training (for example, health and safety), your organisation needs proof that you have been made aware of the training content. On the summary before submitting, you then see a **Training acknowledgement** box with the training name, the trainer and the syllabus.
+For some training (for example, health and safety), your organisation needs proof that you have been made aware of the training content. On the summary before submitting, you then see a **Confirmation of training** box with the training name, the trainer and the syllabus.
 
 1. Read the syllabus.
 2. Tick “I confirm that I have read and understood the training content…”.
@@ -55,12 +55,12 @@ If the test issues a certificate and you pass, your result shows the training na
 - Your organisation issues the certificate. It is not an official document issued by a public authority.
 - Before the certificate expires, your organisation may send you an email reminder (only if you have an account or received your code by email). If you do not want reminders, contact your organisation.
 
-## Students with an account
+## Learners with an account
 
-You can find your results at any time under **My results** in the menu. Until your instructor releases the result, the test shows “not yet released”. Download the result report with **Download PDF** and the certificate with **Download certificate**. For certificates, you also see the expiry date and the status (valid, expired).
+You can find your results at any time under **My results** in the menu. Until your instructor releases the result, the test shows “not yet released”. Download the result report with **Result report (PDF)** and the certificate with **Certificate (PDF)**. For certificates, you also see the expiry date and the status (valid, expired).
 
 ## Test takers without an account
 
 You see your result, result report and certificate on the page shown after you submit. You can return to them later by entering your code again on the **Enter test** page, if the organiser allows it. If your instructor releases results later, the organiser will tell you your result.
 
-*For roles: Test taker, Student*
+*For roles: Test taker, Learner*

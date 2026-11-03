@@ -6,7 +6,7 @@ translation: unofficial-draft
 
 # Getting started
 
-## [Signing in, password and signing out](prihlaseni.md)
+## [Signing in, passwords and signing out](prihlaseni.md)
 
 How to sign in for the first time, what to do if you forget your password, and how to sign out on all devices.
 
@@ -29,7 +29,7 @@ What you will find in the menu and on the Overview page, and why it matters whic
 
 ## [Roles and permissions](role-a-opravneni.md)
 
-What an organisation administrator, branch administrator, instructor, question author, student and test taker without an account can do.
+What an organisation administrator, branch administrator, instructor, question author, learner and test taker without an account can do.
 
 - [Who can do what in the app](role-a-opravneni.md)
 

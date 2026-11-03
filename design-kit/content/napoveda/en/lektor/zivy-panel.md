@@ -19,7 +19,7 @@ For each test taker:
 - **Remaining**: time remaining (“—” once submitted),
 - **Result**: for submitted attempts, the percentage and Passed or Not passed,
 - **Last activity**,
-- **Alerts**: “⚠ left the window N×” (the test taker switched to another window or app), “↔ other device” (the test was handed over to another device), “disconnected N×”. If monitoring is on for the test, there is also a “Monitoring: …” badge with the number and type of events, and “Submitted by monitoring”. See [Exam monitoring](dohled-nad-zkouskou.md).
+- **Alerts**: “⚠ left the window N×” (the test taker switched to another window or app); “↔ other device” (the test was handed over to another device); “disconnected N×”. If monitoring is on for the test, there is also a “Monitoring: …” badge with the number and type of events, and “Submitted by monitoring”. See [Exam monitoring](dohled-nad-zkouskou.md).
 
 ## Auto-refresh
 

@@ -16,7 +16,7 @@ The number of the version you are using is at the bottom of the left-hand menu.
 
 ## When the app is updated
 
-- The provider does not install new versions during an exam entered in the exam calendar, or in the 2 hours before or after it.
+- The operator does not install new versions during an exam entered in the exam calendar, or in the 2 hours before or after it.
 - A bar at the top of the page warns you in advance about planned maintenance.
 
 ## Current user guide

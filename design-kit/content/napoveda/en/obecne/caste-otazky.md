@@ -42,10 +42,10 @@ Questions and tests, printing and your account – what the messages mean and wh
 
 **I’ve lost the phone with my authenticator app.** See [Two-step verification](../zaciname/overeni-ve-dvou-krocich.md).
 
-**The app signed me out.** See [Signing in, password and signing out](../zaciname/prihlaseni.md).
+**The app signed me out.** See [Signing in, passwords and signing out](../zaciname/prihlaseni.md).
 
 ## Didn’t find an answer?
 
-Ask your organisation’s administrator. The customer’s authorised representative or the organisation administrator can submit a support request (see [Reporting a fault and support requests](../objednatel/hlaseni-vady.md)).
+Ask your organisation’s administrator. The customer’s authorised representative or the organisation administrator can submit a support request (see Reporting a fault and support requests<!-- TODO link: ../objednatel/hlaseni-vady.md (article not in crawl, slug unconfirmed) -->).
 
 *For roles: Question author, Instructor, Branch administrator, Organisation administrator*

@@ -22,7 +22,7 @@ The batch is prepared in the background. The page refreshes itself. When it is r
 
 - **Question papers (PDF)**: all test versions, each with a code in the header,
 - **Answer sheets (PDF)**: sheets with the version code, a QR code and an answer grid,
-- **Answer keys and marking table (PDF)**: confidential. Do not give them to test takers.
+- **Answer keys and scoring table (PDF)**: confidential. Do not give them to test takers.
 
 Every download is recorded in the change log.
 
@@ -32,7 +32,7 @@ You can find all print batches in **Tests and exams → Print**. You see your ac
 
 ## Entering paper answers
 
-Paper answers are entered by the instructor who created the test assignment, or by a branch administrator. Other instructors in the branch can see the batch and answer keys, but cannot enter answers into it (only the assignment’s creator and administrators can see its results).
+Paper answers are entered by the instructor who created the test assignment, or by a branch administrator. Other instructors in the branch can see the batch and answer keys, but cannot enter answers. Only the assignment’s creator and administrators can see its results.
 
 1. In the batch, select **Enter paper answers**.
 2. Type in the **Version code** from the answer sheet, or scan it with a QR code reader. Select **Select version**.

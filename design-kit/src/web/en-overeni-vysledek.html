@@ -1,0 +1,124 @@
+<!--meta {"titulek":"Report verification result","popis":"Result of checking that an exam-test result report is genuine.","sablona":"web","aktivni":"","lang":"en","cs_verze":"overeni-vysledek.html"} -->
+<!--spec {
+ "route":"/en/verify?kod=…","nazev":"Verify a report – result (valid and invalid), English","role":"public – anyone with a verification code","sablona":"web (lang=en)",
+ "ucel":"Say clearly whether the report is genuine, and show details to compare with the paper (organisation, test, date, result, certificate).",
+ "hlavni_akce":"Compare details with the report; secondary: Verify another code",
+ "komponenty":["stav","alert--ok|chyba|pozor|info","card card--papir","dl","kod","btn"],
+ "stavy":[
+  "valid (main): Report is genuine + timestamp; certificate valid",
+  "not found: No record with this code – check the code; the code field is prefilled for correction",
+  "invalid – changed: Record does not match – it has been changed; contact the organiser",
+  "invalid – replaced / voided: a correction record or replacement attempt with the stated code applies (link to its verification)",
+  "awaiting timestamp: Record is saved, timestamp within an hour",
+  "certificate expired: for a genuine report, certificate status “Expired” (stav--ne); the report stays genuine",
+  "anonymised record: “personal data anonymised” instead of initials; verification works",
+  "organisation no longer uses the app: verified against the archive (alert--info)",
+  "permissions: public page"],
+ "zmeny_ux":[
+  "Structure, states and components are the same as the Czech page (overeni-vysledek.html); see its spec for the UX changes.",
+  "Sample test and training names are translated for the English page; in the real app they show as entered by the organisation (usually Czech).",
+  "Dates in English format “3 Nov 2026”, percentage “100.0%”."],
+ "texty":[
+  {"dnes":"Pravý · Protokol je pravý","nove":"Genuine · This report is genuine","proc":"Status word with icon; H1 carries the result."},
+  {"dnes":"Protokol odpovídá záznamu v aplikaci a je opatřen časovým razítkem.","nove":"The report matches the record in the app and carries a timestamp.","proc":"Short, factual."},
+  {"dnes":"Splněno","nove":"Passed","proc":"Glossary."},
+  {"dnes":"Osvědčení · Platné · Platí do","nove":"Certificate · Valid · Valid until","proc":"Glossary: certificate."},
+  {"dnes":"Ověřit jiný kód","nove":"Verify another code","proc":"Verb first."},
+  {"dnes":"Nenalezen · Záznam s tímto kódem nebyl nalezen","nove":"Not found · No record found with this code","proc":"Plain English."},
+  {"dnes":"Neplatný · Záznam neodpovídá – byl změněn","nove":"Invalid · The record does not match – it has been changed","proc":"Plain English."},
+  {"dnes":"Neplatí · Protokol byl nahrazen opravným záznamem","nove":"Not valid · This report has been replaced by a correction record","proc":"Glossary gap: opravný záznam → correction record."},
+  {"dnes":"Ověření se dokončuje","nove":"Verification in progress","proc":"Status label."},
+  {"dnes":"Prošlé","nove":"Expired","proc":"Certificate status."},
+  {"dnes":"pořadatel zkoušky","nove":"exam organiser","proc":"Glossary gap – proposed term."}],
+ "pristupnost":["Same as the Czech page: H1 carries the result; status always icon + word; verification code in .t-kod; initials explained; “Verify another code” leads to a labelled form."],
+ "poznamky_pro_kodera":["Data: demo attempt Ondřej Malý (initials O. M.), test “Kybernetická bezpečnost — roční ověření” (shown here translated), 3 Nov 2026, 100.0%, code H5SAY-GVTNY-EDXAP-67SXD, certificate valid until 2 Nov 2027.","Organisation name placeholder “Ukázková organizace, pobočka Praha” shown as “Demo organisation, Prague branch”.","Glossary gap: opravný záznam → correction record; náhradní pokus → replacement attempt.","Glossary gap: pořadatel zkoušky → exam organiser."],
+ "chybi_komponenta":[]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <div class="stack-4">
+   <p class="t-stitek">Verification result · code <span class="t-kod">H5SAY-GVTNY-EDXAP-67SXD</span></p>
+   <p><span class="stav stav--ok">{{I:check}}Genuine</span></p>
+   <h1 class="t-display">This report is genuine</h1>
+   <p class="t-perex">The report matches the record in the app and carries a timestamp. Compare the details shown with the paper.</p>
+  </div>
+
+  <div class="card card--papir stack">
+   <h2 class="t-nadpis">Details from the verified record</h2>
+   <dl class="dl">
+    <dt>Organisation</dt><dd>Demo organisation, Prague branch</dd>
+    <dt>Test</dt><dd>Cybersecurity — annual check</dd>
+    <dt>Test taker</dt><dd>O.&nbsp;M. <span class="t-maly">(initials only, to protect personal data)</span></dd>
+    <dt>Exam date</dt><dd><span class="t-cislo">3 Nov 2026</span></dd>
+    <dt>Result</dt><dd class="row" style="gap:var(--s-2)"><span class="t-cislo">100.0%</span><span class="stav stav--ok">{{I:check}}Passed</span></dd>
+    <dt>Verification code</dt><dd class="t-kod">H5SAY-GVTNY-EDXAP-67SXD</dd>
+   </dl>
+  </div>
+
+  <div class="card stack">
+   <div class="row-between"><h2 class="t-nadpis">Certificate</h2><span class="stav stav--ok">{{I:check}}Valid</span></div>
+   <dl class="dl">
+    <dt>Training</dt><dd>Annual cybersecurity training</dd>
+    <dt>Valid until</dt><dd><span class="t-cislo">2 Nov 2027</span></dd>
+    <dt>Certificate status</dt><dd>valid</dd>
+   </dl>
+   <p class="t-maly">The expiry date is part of the verified record, so nobody can change it later. The certificate is issued by the organisation shown; it is not an official document of a public authority.</p>
+  </div>
+
+  <div class="alert alert--info" role="note">{{I:info}}<p>Verification confirms that the details match the record made during the exam and that nobody has changed them since. It does not assess whether the exam met regulatory requirements.</p></div>
+  <div class="row"><a class="btn" href="en-overeni.html">Verify another code</a><a class="btn btn--tiche" href="en-napoveda.html#overeni">What verification results mean</a></div>
+ </div>
+</section>
+
+<section class="section section--bila no-print" aria-labelledby="dalsi">
+ <div class="container stack-5" style="max-width:calc(var(--max-text) + 2 * var(--s-5))">
+  <h2 id="dalsi" class="t-sekce">Other page states</h2>
+
+  <div class="stack">
+   <h3 class="t-nadpis">Code not found</h3>
+   <div class="card stack">
+    <p><span class="stav stav--ne">{{I:minus-kruh}}Not found</span></p>
+    <p class="t-titulek">No record found with this code</p>
+    <p>Check that you copied the code correctly. The most common mistakes are mixing up <span class="t-kod">0</span> and <span class="t-kod">O</span>, or a missing character.</p>
+    <form class="stack" action="en-overeni-vysledek.html" method="get" aria-label="Verify the code again">
+     <div class="field"><label class="label" for="kod-n">Verification code from the report or certificate</label><input class="input input--kod" id="kod-n" name="kod" value="H5SAY-GVTNY-EDXAP-67SXO" autocomplete="off" spellcheck="false"></div>
+     <div class="row"><button class="btn btn--hlavni" type="submit">Verify again</button></div>
+    </form>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-nadpis">Invalid: the record has been changed</h3>
+   <div class="card stack">
+    <p><span class="stav stav--ne">{{I:minus-kruh}}Invalid</span></p>
+    <p class="t-titulek">The record does not match – it has been changed</p>
+    <div class="alert alert--chyba" role="alert">{{I:pozor}}<p>The record was changed after submission. Don’t rely on this report, and contact the exam organiser.</p></div>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-nadpis">Invalid: the report has been replaced</h3>
+   <div class="card stack">
+    <p><span class="stav stav--ne">{{I:minus-kruh}}Not valid</span></p>
+    <p class="t-titulek">This report has been replaced by a correction record</p>
+    <p>The paper exam was corrected (an error when entering the answers). The valid report has the verification code <a class="t-kod" href="en-overeni-vysledek.html?kod=B9RBR-ZBBW8-XNNQV-R4Z6Y">B9RBR-ZBBW8-XNNQV-R4Z6Y</a>.</p>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-nadpis">Awaiting timestamp</h3>
+   <div class="card stack">
+    <p><span class="stav stav--pise">{{I:hodiny}}Verification in progress</span></p>
+    <p>The record is saved. It will get its timestamp within an hour; then you can repeat the verification.</p>
+   </div>
+  </div>
+
+  <div class="stack">
+   <h3 class="t-nadpis">Certificate expired</h3>
+   <div class="card stack">
+    <div class="row-between"><p class="t-nadpis">Certificate</p><span class="stav stav--ne">{{I:minus-kruh}}Expired</span></div>
+    <p>The certificate has expired and the training needs to be repeated. The report itself stays genuine.</p>
+   </div>
+  </div>
+ </div>
+</section>

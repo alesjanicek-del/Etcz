@@ -25,10 +25,10 @@ Some addresses need manual approval, for example if they look like the name of a
 ## What the free trial includes
 
 - 30 days free, no payment card needed,
-- 100 attempts, 1 branch and 3 staff (administrators, instructors and question authors combined, including you),
+- 100 attempts, 1 branch and 3 staff users (administrators, instructors and question authors combined, including you),
 - the same features as the paid Start plan.
 
-You can see how much is left on the **Plan and usage** page. You then order a plan (see [Plan and invoices](../admin-organizace/tarif-a-faktury.md)). If the trial ends without an order, your organisation becomes read-only. You do not lose your data.
+You can see how much is left on the **Plan and usage** page. You then order a plan (see [Plan, orders and invoices](../admin-organizace/tarif-a-faktury.md)). If the trial ends without an order, your organisation becomes read-only. You do not lose your data.
 
 ## First sign-in: two-step verification
 
@@ -40,16 +40,16 @@ Organisation administrators must have two-step verification turned on. Straight 
 2. Create a question bank and add questions, or import them from an XLSX file (see [Question banks](../autor/soubory-otazek.md)).
 3. Build a test (see [Building a test step by step](../lektor/sestaveni-testu.md)).
 4. Try the test yourself with **Trial run**. This attempt does not count towards your limit.
-5. Start testing: codes, link, assigned to a group or supervised in-room exam (see [Ways to deliver a test](../lektor/zpusoby-zadani-testu.md)).
+5. Start testing: codes, link, assigned to a group or supervised in-room exam (see [Ways to assign a test](../lektor/zpusoby-zadani-testu.md)).
 
-On the **Overview** page, the **First steps** guide takes you through these steps. If you hid the guide, reopen it with **Show the first steps guide**.
+On the **Overview** page, the **Getting started** guide takes you through these steps. If you hid the guide, reopen it with **Show the first steps guide**.
 
 ## Demo without registration
 
-If the website shows the **Try the demo** button, you can try the app in a ready-made sample organisation without registering or a password. Emails from the demo are in **Demo inbox** in the menu. Demo data is deleted every night. Details are in [Public demo without registration](verejne-demo.md).
+If the website shows the **Try the demo** button, you can try the app in a ready-made sample organisation without registering or a password. Emails from the demo are in **Demo mailbox** in the menu. Demo data is deleted every night. Details are in [Public demo without registration](verejne-demo.md).
 
 ## Book a guided demo
 
-Are you a public authority, or do you need a contract and individual terms? On the website, click **Book a guided demo**, enter your contact details and the provider will get in touch.
+Are you a public authority, or do you need a contract and individual terms? On the website, click **Book a guided demo**, enter your contact details and the operator will get in touch.
 
 *For roles: Organisation administrator*

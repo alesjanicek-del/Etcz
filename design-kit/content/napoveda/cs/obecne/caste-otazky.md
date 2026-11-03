@@ -45,6 +45,6 @@ Otázky a testy, tisk a účet – co znamenají hlášky a co dělat.
 
 ## Nenašli jste odpověď
 
-Zeptejte se administrátora své organizace. Zmocněnec objednatele nebo administrátor organizace může zadat požadavek na podporu (kapitola [Hlášení vady a požadavku na podporu](../objednatel/hlaseni-vady.md)).
+Zeptejte se administrátora své organizace. Zmocněnec objednatele nebo administrátor organizace může zadat požadavek na podporu (kapitola Hlášení vady a požadavku na podporu<!-- TODO link: ../objednatel/hlaseni-vady.md (article not in crawl, slug unconfirmed) -->).
 
 *Pro role: Autor otázek, Lektor, Administrátor pobočky, Administrátor organizace*

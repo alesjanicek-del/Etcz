@@ -24,4 +24,4 @@ Do you need more time because of a disability or health condition? Ask your inst
 
 You will find details, and a contact for reporting accessibility problems, in the **Accessibility statement** in the footer of every page.
 
-*For roles: Test taker, Student*
+*For roles: Test taker, Learner*

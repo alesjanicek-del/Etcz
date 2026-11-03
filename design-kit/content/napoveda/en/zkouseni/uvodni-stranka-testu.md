@@ -16,7 +16,7 @@ What you see before you start, the test password and extra time for disabilities
 - an **Exam instructions** box with the organiser’s instructions,
 - for a test with monitoring, an “Exam monitoring is on” box saying what is recorded and whether the test submits automatically if you leave the window repeatedly. More in [Exam monitoring](dohled-nad-zkouskou.md).
 
-Details about how answers are saved and what is logged (starting, viewing questions, changing answers, leaving the window and submitting) are in the expandable **More about this test** section below the **Start test** button. It also has a **Data processing information** link.
+Details about how answers are saved and what is logged (starting, viewing questions, changing answers, leaving the window and submitting) are in the expandable **More about this test** section below the **Start test** button. It also has a **How we process your data** link.
 
 The timer starts only when you click **Start test**. It then keeps running, even if you close the browser.
 
@@ -34,4 +34,4 @@ Do you need more time because of a disability or health condition? Ask your inst
 
 If you have already started the test, you see **You have an attempt in progress** and a **Continue test** button. The timer has kept running in the meantime.
 
-*For roles: Test taker, Student*
+*For roles: Test taker, Learner*

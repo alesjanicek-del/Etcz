@@ -58,6 +58,6 @@ Candidates with a disability ask for extra time in advance. You set it on their 
 
 - Anyone can verify that a result report is genuine on the report verification page (see [Verifying a result report](../zkouseni/overeni-protokolu.md)).
 - When the retention period ends, test takers’ personal data is anonymised. The result report stays verifiable.
-- If you need to keep a record for longer (for example, for an appeal), the organisation administrator can protect it with **Protect record** (see Personal data, anonymisation and data export).
+- Do you need to keep a record for longer (for example, for an appeal)? The organisation administrator can protect it with **Protect record** (see Personal data, anonymisation and data export).
 
 *For roles: Instructor, Branch administrator, Organisation administrator, Customer (authorised representative)*

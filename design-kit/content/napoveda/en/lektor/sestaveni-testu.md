@@ -74,7 +74,7 @@ Save with **Save and go to check**.
 
 The check summarises the sections and parameters, the total number of questions and **Possible unique test versions**.
 
-Unique test versions differ in the selection of questions, the order of questions (if question shuffling is on) or the order of answers (for questions with answer shuffling). Print and online exams count them the same way. A selection of questions that nobody has had yet comes first. Then comes a new question order, and finally a new answer order. Trial runs do not count. When all combinations have been used, online exams continue with the least used combination. Printing is never refused: extra test versions repeat the least used combinations, and the batch and answer key say so clearly.
+Unique test versions differ in the selection of questions, the question order (if question shuffling is on) or the answer order (if answer shuffling is on). Print and online exams count them the same way. A selection of questions that nobody has had yet comes first. Then comes a new question order, and finally a new answer order. Trial runs do not count. When all combinations have been used, online exams continue with the least used combination. Printing is never refused: extra test versions repeat the least used combinations, and the batch and answer key say so clearly.
 
 In **Expected number of attempts**, enter how many people you expect and select **Recalculate**. If there are too few test versions, the application suggests how to widen the selection.
 

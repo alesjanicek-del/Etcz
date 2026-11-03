@@ -16,7 +16,7 @@ Step-by-step guides for using the app, based on what you need to do. Chapters fo
 - [How to take and submit the test](zkouseni/vyplnovani-testu.md)
 - [Test taker FAQ](zkouseni/caste-otazky-zkousenych.md)
 
-## Common tasks
+## Most common tasks
 
 - [How to enter an access code](zkouseni/jak-se-dostat-k-testu.md)
 - [How to sign in](zaciname/prihlaseni.md)
@@ -33,10 +33,10 @@ Step-by-step guides for using the app, based on what you need to do. Chapters fo
 
 ### Getting started (6)
 
-- [Signing in, password and signing out](zaciname/prihlaseni.md) – How to sign in for the first time, what to do if you forget your password, and how to sign out on all devices.
+- [Signing in, passwords and signing out](zaciname/prihlaseni.md) – How to sign in for the first time, what to do if you forget your password, and how to sign out on all devices.
 - [Two-step verification (2FA)](zaciname/overeni-ve-dvou-krocich.md) – Why you must set up two-step verification, how to turn it on and what to do if you lose your phone.
 - [Screen layout and active branch](zaciname/rozvrzeni-obrazovky.md) – What you will find in the menu and on the Overview page, and why it matters which branch you are working in.
-- [Roles and permissions](zaciname/role-a-opravneni.md) – What an organisation administrator, branch administrator, instructor, question author, student and test taker without an account can do.
+- [Roles and permissions](zaciname/role-a-opravneni.md) – What an organisation administrator, branch administrator, instructor, question author, learner and test taker without an account can do.
 - [Getting started with a free trial](zaciname/zkusebni-provoz.md) – Registering your organisation, verifying your email, mandatory two-step verification and your first steps during 30 days free.
 - [Public demo without registration](zaciname/verejne-demo.md) – What the public demo is, how to start it, what you can try and what happens to the data.
 
@@ -44,12 +44,12 @@ Step-by-step guides for using the app, based on what you need to do. Chapters fo
 
 ### For test takers (9)
 
-- [How to get to your test](zkouseni/jak-se-dostat-k-testu.md) – Access code, supervised in-room exam, a link from the organiser or a student account.
+- [How to get to your test](zkouseni/jak-se-dostat-k-testu.md) – Access code, supervised in-room exam, a link from the organiser or a learner account.
 - [Test start page](zkouseni/uvodni-stranka-testu.md) – What you see before you start, the test password and extra time for disabilities or health conditions.
 - [Taking the test](zkouseni/vyplnovani-testu.md) – Time left, question overview, flagging for review, one or more correct answers, and saving.
 - [Exam monitoring](zkouseni/dohled-nad-zkouskou.md) – What monitoring means, what is recorded, the warning after leaving the window, and full screen.
 - [Lost connection, closed window, another device](zkouseni/vypadek-a-jine-zarizeni.md) – What to do if your internet drops, you close the window by mistake or your phone battery dies.
-- [Submission and result](zkouseni/odevzdani-a-vysledek.md) – How to submit the test, confirm the training acknowledgement, what happens when time runs out and what you see after submitting (result, result report, certificate).
+- [Submission and result](zkouseni/odevzdani-a-vysledek.md) – How to submit the test, confirm the training, what happens when time runs out and what you see after submitting (result, result report, certificate).
 - [Verifying a result report](zkouseni/overeni-protokolu.md) – How anyone, without signing in, can check that a result report or certificate is genuine and unchanged, and whether a certificate is still valid.
 - [Accessibility for test takers](zkouseni/pristupnost.md) – Keyboard use, screen reader labels, text zoom and extra time for people with disabilities or health conditions.
 - [Test taker FAQ](zkouseni/caste-otazky-zkousenych.md) – What the messages mean when you enter a code, and what to do when something does not work.
@@ -75,9 +75,9 @@ Guides for other roles. Useful when you need to know what a colleague can do.
 
 ## Downloads and printouts
 
-- Instructions for test takers (1 page, PDF) – to hand out in the room; printable browser version
+- Instructions for test takers (PDF, 1 page) – to hand out in the room; printable browser version
 - User guide: Test taker (PDF)
-- User guide: Student (PDF)
+- User guide: Learner (PDF)
 - [What’s new in the app](objednatel/nove-verze.md)
 
 Didn’t find what you need? Contact support.

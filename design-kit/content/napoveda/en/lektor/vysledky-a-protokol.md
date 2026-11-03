@@ -30,7 +30,7 @@ To see results for a single assignment, select **Results** in its details.
 
 - **Supervised in-room exams** show results for each exam held in the room.
 - **Assigned tests** show, for each learner and group, who has passed, not passed or not yet started the test.
-- **Training validity** shows who has a valid certificate and whose certificate expires soon (see [Training validity and renewal reminders](platnost-skoleni-a-pripominky.md)).
+- **Training validity** shows who has a valid certificate and whose certificate expires soon (see [Training validity and refresher reminders](platnost-skoleni-a-pripominky.md)).
 
 ## Attempt details
 
@@ -45,9 +45,9 @@ Details for specialists (checksums) are in the collapsed **Technical details** s
 
 ## Result report (PDF)
 
-In the attempt details, select **Result report (PDF)**. The result report contains the organisation’s logo and details, the time limit and extra time, all questions and answers, the result, the activity record, the verification code and a QR code for checking authenticity (see [Verifying a result report](../zkouseni/overeni-protokolu.md)).
+In the attempt details, select **Result report (PDF)**. The result report contains the organisation’s logo and details, the time limit and extra time, all questions and answers, and the result. It also has the activity record, the verification code and a QR code for checking authenticity (see [Verifying a result report](../zkouseni/overeni-protokolu.md)).
 
-Test takers can only download a test taker’s summary. It has the same verification code, but shows questions only as far as the test’s results display setting allows (never with correct answers for an official test). The summary is marked as such in its header. So for the file (for example, as an annex to the official exam minutes), keep the result report downloaded here, in the attempt details.
+Test takers can only download a test taker’s summary. It has the same verification code. But it shows questions only as far as the test’s results display setting allows (never with correct answers for an official test). The summary is marked as such in its header. So for the file (for example, as an annex to the official exam minutes), keep the result report downloaded here, in the attempt details.
 
 Every result report download is recorded in the change log.
 

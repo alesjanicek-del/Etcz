@@ -31,7 +31,7 @@ Each type of event is recorded at most a few times a minute. This stops a stuck 
 
 ## Official test
 
-For an official test, only an organisation administrator, or an administrator of the branch the test belongs to, can turn on **Submit after leaving the window repeatedly**. By saving the settings, they approve this mode. Their name and the approval time are shown on the test and recorded in the change log. If someone else later changes the mode or the number, the approval is cancelled and the test cannot be saved. A copy of an official test does not inherit the approval. Until an administrator approves it, test takers are only warned.
+For an official test, only certain administrators can turn on **Submit after leaving the window repeatedly**. This means an organisation administrator or an administrator of the test’s branch. By saving the settings, they approve this mode. Their name and the approval time are shown on the test and recorded in the change log. If someone else later changes the mode or the number, the approval is cancelled and the test cannot be saved. A copy of an official test does not inherit the approval. Until an administrator approves it, test takers are only warned.
 
 ## What the test taker knows in advance
 
@@ -39,7 +39,7 @@ Before starting, the test taker sees on the test start page that monitoring is o
 
 During the test, a permanent monitoring notice is shown above the questions, with the link **About monitoring and data processing**. This link and the footer links (privacy information, accessibility statement) open in a window on the test page itself. So reading them does not count as leaving the window.
 
-Extra time for test takers with a disability works with monitoring too. If a test taker uses an aid that takes over the window (for example dictation, a separate magnifier, or some screen readers and voice control), set an exemption for them (see below). Automatic submission could submit their test against their will and put them at a disadvantage because of their disability. It is enough to know about the aid. Do not ask for a diagnosis.
+Extra time for test takers with a disability works with monitoring too. Some aids take over the window, for example dictation, a separate magnifier, or some screen readers and voice control. If a test taker uses one, set an exemption for them (see below). Automatic submission could submit their test against their will and put them at a disadvantage because of their disability. It is enough to know about the aid. Do not ask for a diagnosis.
 
 ## Monitoring exemption for one test taker
 
@@ -52,14 +52,14 @@ The exemption applies to attempts the test taker starts after you save. An attem
 Your organisation, as the data controller, is responsible for turning on monitoring and for decisions about its consequences (terms of service, Art. 8.3; data processing agreement, Art. 4.3). Recommendations:
 
 - **Turn it on only where it is needed.** For practice tests and routine training, **Off** or **Record only** is usually enough. Keep automatic submission for exams where something depends on the result, and only when you have no other supervision.
-- **Employees.** For tests for your own employees, tell them in advance about the scope of the checks and how they are carried out (Czech Labour Code, Section 316(3)). The test start page tells every test taker, but you can also mention it in the invitation or in an internal policy.
-- **Impact assessment (DPIA).** Before turning on automatic submission widely, especially for public authorities, employees or large numbers of test takers, consider a data protection impact assessment (Art. 35 GDPR). Talk to your data protection officer. The operator can provide a description of the feature on request.
-- **Automatic submission is decided by software, not by a person.** If something depends on the exam result (a job, a licence, an official exam), the test taker must be able to ask for a review by a person (Art. 22 GDPR). The information for test takers says so, but your organisation handles the requests.
+- **Employees.** If you test your own employees, tell them in advance what is checked and how (Czech Labour Code, Section 316(3)). The test start page tells every test taker, but you can also mention it in the invitation or in an internal policy.
+- **Impact assessment (DPIA).** Before you turn on automatic submission widely, consider a data protection impact assessment (Art. 35 GDPR). This applies especially to public authorities, employees or large numbers of test takers. Talk to your data protection officer. The operator can provide a description of the feature on request.
+- **Automatic submission is decided by software, not by a person.** Something may depend on the exam result (a job, a licence, an official exam). Then the test taker must be able to ask for a review by a person (Art. 22 GDPR). The information for test takers says so, but your organisation handles the requests.
 - **Your own privacy information text.** The “Exam monitoring” section is shown below your own text too. Its legal basis refers to your text. So mention the technical record of test activity in your text as well.
 
 ## When a test taker disputes an automatic submission
 
-A submitted attempt cannot be reopened or changed. So a review means that a person assesses the circumstances and decides whether the result stands. An attempt submitted by monitoring has the notice “Submitted by monitoring, awaiting review” in the result details, and the badge **Awaiting review** in the live monitor.
+A submitted attempt cannot be reopened or changed. So a review means that a person assesses the circumstances and decides whether the result stands. In the result details, an attempt submitted by monitoring has the notice “Submitted by monitoring, awaiting review”. In the live monitor, it has the badge **Awaiting review**.
 
 1. Open the result details and go through the timeline of monitoring events (when and for how long the test taker was outside the window).
 2. Hear the test taker out: a technical problem, a system notification, an assistive aid.
@@ -68,7 +68,7 @@ A submitted attempt cannot be reopened or changed. So a review means that a pers
    - **Invalidate and allow a replacement attempt**: the attempt is no longer valid. It does not count in results, statistics or exports, and any certificate from it is invalid. The test taker can take the test again with the same code or from **My tests**. The replacement attempt does not count towards the maximum number of attempts. The assignment must still be open at that time.
 4. Enter a reason (at least 5 characters, no health information) and save.
 
-You can make only one decision, and you cannot undo it. The reason, name and time are recorded with the result, in the PDF result report and in the change log. The test taker gets an email if their account or access code has an email address. Otherwise, tell them the decision yourself. The public result report verification shows only the status (result accepted / attempt invalidated, with a link to the replacement attempt), not the reason or the events. The invalidated attempt stays in the unchangeable record. You can find it through the assignment’s live monitor. The replacement attempt links to it.
+You can make only one decision, and you cannot undo it. The reason, name and time are recorded with the result, in the PDF result report and in the change log. The test taker gets an email if their account or access code has an email address. Otherwise, tell them the decision yourself. Public result report verification shows only the status, not the reason or the events. The status is “result accepted” or “attempt invalidated”, with a link to the replacement attempt. The invalidated attempt stays in the unchangeable record. You can find it through the assignment’s live monitor. The replacement attempt links to it.
 
 For an official test, only an organisation administrator or a branch administrator can review a submission by monitoring. Instructors see that the decision belongs to an administrator.
 

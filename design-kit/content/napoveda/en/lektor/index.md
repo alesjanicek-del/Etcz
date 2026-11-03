@@ -79,7 +79,7 @@ Optional light-touch monitoring without a camera: leaving the window is recorded
 - How to assess a submission made by monitoring
 - How to exempt a test taker who uses an assistive aid
 
-## [Training validity and renewal reminders](platnost-skoleni-a-pripominky.md)
+## [Training validity and refresher reminders](platnost-skoleni-a-pripominky.md)
 
 Who has a valid certificate, whose certificate expires soon and whose has expired. XLSX export and email reminders before expiry.
 

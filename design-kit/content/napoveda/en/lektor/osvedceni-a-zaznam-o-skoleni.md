@@ -36,7 +36,7 @@ After personal data is anonymised, or after a paper exam is corrected, the certi
 
 ## Trainee confirmation
 
-On the summary before submitting, the test taker sees the training name, trainer and syllabus. They tick the text “I confirm that I have been briefed on the content of the training “…” and that I understand it.” Without ticking it, they cannot submit the test themselves. Test takers learn about the confirmation on the test start page.
+On the summary before submitting, the test taker sees the training name, trainer and syllabus. They tick this text: “I confirm that I have been briefed on the content of the training “…” and that I understand it.” Without ticking it, they cannot submit the test themselves. Test takers learn about the confirmation on the test start page.
 
 Fill in the **Training syllabus** field. Without a syllabus, the confirmation refers only to the training name. The record will not show what the employee was briefed on.
 
@@ -52,11 +52,11 @@ Fill in the **Training syllabus** field. Without a syllabus, the confirmation re
 The record contains the organisation, the training name and syllabus, the trainer, the period and a list of the people trained. For each person, it shows name, staff number, email, confirmation time, test result, certificate expiry and verification code. It includes only people whose results you are allowed to see (instructors their own assignments, branch administrators their branch).
 
 - Attempts from a link without a name are not in the record, because they do not prove that a named person was briefed. The record states how many there were.
-- At the end, the PDF has optional fields for the signatures of the trainer and the responsible person, if you also want to sign the record on paper.
+- At the end, the PDF has optional signature fields for the trainer and the responsible person. Use them if you also want to sign the record on paper.
 
 ## Things to keep in mind
 
-Your organisation is responsible for the content and scope of the training. The training must really take place. The test and confirmation do not replace it, they only provide evidence of it. The Czech Labour Code (Section 103) requires employers to set the content and frequency of training and the way knowledge is checked, and to keep training records.
+Your organisation is responsible for the content and scope of the training. The training must really take place. The test and confirmation do not replace it, they only provide evidence of it. Under the Czech Labour Code (Section 103), employers set the content and frequency of training and how knowledge is checked. They must also keep training records.
 
 According to a statement by the State Labour Inspection Office (ref. 2932/1.30/22-2 of 2 May 2022), the employer chooses the form of the record. Instead of signatures on an attendance sheet, a unique electronic record can be used. It must prove that each employee was briefed by name. Whether the record is enough in a particular case is for the inspection to decide. So the application does not claim that electronic confirmation always replaces a signature.
 

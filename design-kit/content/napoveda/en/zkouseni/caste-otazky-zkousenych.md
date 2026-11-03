@@ -44,7 +44,7 @@ Your instructor removed you from the waiting room, for example by mistake. Speak
 
 ## Does the app record what I do?
 
-Yes, but only in the test window: starting, viewing questions, changing answers, leaving the test window and submitting. The app does not monitor your camera, microphone or other programs. The record is there to document how the exam went. Details are in the personal data processing information; the link is on the test start page.
+Yes, but only in the test window: starting, viewing questions, changing answers, leaving the test window and submitting. The app does not monitor your camera, microphone or other programs. The record is there to document how the exam went. Details are in the privacy notice; the link is on the test start page.
 
 ## Can I open help during the test?
 
@@ -54,4 +54,4 @@ Yes. Below the test name, expand **How the test works**. Do not open other windo
 
 See [Submission and result](odevzdani-a-vysledek.md).
 
-*For roles: Test taker, Student*
+*For roles: Test taker, Learner*

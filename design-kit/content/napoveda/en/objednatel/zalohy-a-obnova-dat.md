@@ -20,7 +20,7 @@ Questions, tests, results, result reports and organisation settings are backed u
 
 You can restore many things yourself, straight away:
 
-- a question or question bank from **Deleted items** (within 30 days; see [Deleted items and restoring](../autor/kos-a-obnoveni.md)),
+- a question or question bank from **Deleted items** (within 30 days; see Deleted items and restoring<!-- TODO link: ../autor/kos-a-obnoveni.md (article not in crawl, slug unconfirmed) -->),
 - an earlier version of a question from its history (see [Question versions and history](../autor/verze-a-historie.md)).
 
 Submitted attempts and result reports cannot be deleted or changed, so they never need restoring.
@@ -32,17 +32,17 @@ Submitted attempts and result reports cannot be deleted or changed, so they neve
 3. In the description, say what should be restored, to which date and why.
 4. Click **Send request**.
 
-The customer’s authorised representative or the organisation administrator can submit the request. The provider restores the data within 48 hours of receiving the request. The restore affects only your organisation; it does not affect other organisations’ data.
+The customer’s authorised representative or the organisation administrator can submit the request. The operator restores the data within 48 hours of receiving the request. The restore affects only your organisation; it does not affect other organisations’ data.
 
 A restore returns all of your organisation’s data to how it was when the backup was made:
 
 - Attempts submitted after the backup was made disappear from the app. The verification page will then not find result reports that test takers have already received for them. So before you submit a request, download an export of your organisation’s data and consider whether you really need the restore.
-- The provider repeats any anonymisation done after the backup was made, so personal data does not come back.
+- The operator repeats any anonymisation done after the backup was made, so personal data does not come back.
 
-If you only need part of the data back (for example, one test), say so in the request. The provider will agree the approach with you.
+If you only need part of the data back (for example, one test), say so in the request. The operator will agree the approach with you.
 
 ## Exporting all data
 
-Want your own copy of the data, for example when your contract ends? The organisation administrator can download an export of the whole organisation (see [Personal data, anonymisation and data export](../admin-organizace/osobni-udaje.md)).
+Want your own copy of the data, for example when your contract ends? The organisation administrator can download an export of the whole organisation (see Personal data, anonymisation and data export<!-- TODO link: ../admin-organizace/osobni-udaje.md (article not in crawl, slug unconfirmed) -->).
 
 *For roles: Organisation administrator, Customer (authorised representative)*

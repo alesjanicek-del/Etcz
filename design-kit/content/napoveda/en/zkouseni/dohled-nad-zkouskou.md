@@ -43,6 +43,6 @@ If you use assistive technology that takes over the window (such as dictation or
 
 ## Disagree with automatic submission?
 
-Automatic submission after leaving the window repeatedly was decided by software, not a person. You have the right to give your view and to ask a person at the exam organiser to review the submission and the result. Write to them as soon as possible after the exam and explain why you left the window. The organiser can keep the result or allow you a new attempt. You will find the organiser’s contact details and more information in the personal data processing information, under “Exam monitoring” (linked in the footer of the test page).
+Automatic submission after leaving the window repeatedly was decided by software, not a person. You have the right to give your view and to ask a person at the exam organiser to review the submission and the result. Write to them as soon as possible after the exam and explain why you left the window. The organiser can keep the result or allow you a new attempt. You will find the organiser’s contact details and more information in the privacy notice, under “Exam monitoring” (linked in the footer of the test page).
 
-*For roles: Test taker, Student*
+*For roles: Test taker, Learner*

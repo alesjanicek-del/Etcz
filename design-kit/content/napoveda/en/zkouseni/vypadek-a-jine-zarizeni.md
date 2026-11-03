@@ -19,7 +19,7 @@ Carry on answering. When the connection is back, your answers are saved automati
 Your saved answers are not lost. But the timer keeps running.
 
 - **With a code:** enter the same code again on the code entry page. You continue where you left off.
-- **With a student account:** in **My tests**, click **Continue**.
+- **With a learner account:** in **My tests**, click **Continue test**.
 - **With a link or at a supervised in-room exam:** open the test page again in the same browser, for example from your history. If that does not work, speak to your instructor.
 
 ## Continuing on another device
@@ -36,4 +36,4 @@ The test is blocked on the original device. The timer keeps running in the meant
 
 Did you lose time because of an outage? Tell your instructor. They can give you extra time and record the reason.
 
-*For roles: Test taker, Student*
+*For roles: Test taker, Learner*

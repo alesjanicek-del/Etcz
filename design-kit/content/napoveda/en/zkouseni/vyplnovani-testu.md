@@ -27,7 +27,7 @@ You can click any number.
 
 - A question with more than one correct answer says “(more than one correct answer)” in its heading. Without this note, the question has one correct answer.
 - For a question with more than one correct answer, select all the correct answers and no incorrect ones.
-- Tick **Flag for review** to mark a question.
+- Tick **Flag this question for review** to mark a question.
 
 Depending on the test settings, you see:
 
@@ -52,4 +52,4 @@ Do not open other windows or apps during the test. Leaving the test window is re
 
 You can use the test with a keyboard only (Tab, Space, arrow keys), and elements are labelled for screen readers (we are preparing a manual test with a screen reader). It also works when zoomed up to 400%. Details are in [Accessibility for test takers](pristupnost.md).
 
-*For roles: Test taker, Student*
+*For roles: Test taker, Learner*

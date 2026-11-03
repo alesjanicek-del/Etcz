@@ -6,18 +6,18 @@ translation: unofficial-draft
 
 # For customers
 
-## [Reporting a fault and support requests](hlaseni-vady.md)
+## Reporting a fault and support requests<!-- TODO link: hlaseni-vady.md (article not in crawl, slug unconfirmed) -->
 
 Who can submit a request, how to submit it, types of request and what to include. Reporting for test takers without an account.
 
-- [How to report a fault in the app](hlaseni-vady.md)
-- [Who can submit a support request](hlaseni-vady.md)
+- How to report a fault in the app<!-- TODO link: hlaseni-vady.md (article not in crawl, slug unconfirmed) -->
+- Who can submit a support request<!-- TODO link: hlaseni-vady.md (article not in crawl, slug unconfirmed) -->
 
-## [Support response times and contacts](lhuty-a-kontakty.md)
+## Support response times and contacts<!-- TODO link: lhuty-a-kontakty.md (article not in crawl, slug unconfirmed) -->
 
 Support hours, and deadlines for response, analysis, resolution, fault fixing and data restore.
 
-- [What are the support response times?](lhuty-a-kontakty.md)
+- What are the support response times?<!-- TODO link: lhuty-a-kontakty.md (article not in crawl, slug unconfirmed) -->
 
 ## [Backups and data restore](zalohy-a-obnova-dat.md)
 

@@ -5,18 +5,18 @@ source: https://demo.exam-test.cz/napoveda/objednatel
 
 # Pro objednatele
 
-## [Hlášení vady a požadavku na podporu](hlaseni-vady.md)
+## Hlášení vady a požadavku na podporu<!-- TODO link: hlaseni-vady.md (article not in crawl, slug unconfirmed) -->
 
 Kdo smí požadavek zadat, jak ho zadat, druhy požadavků a co do něj napsat. Hlášení pro zkoušené bez účtu.
 
-- [Jak nahlásit vadu aplikace](hlaseni-vady.md)
-- [Kdo smí zadat požadavek na podporu](hlaseni-vady.md)
+- Jak nahlásit vadu aplikace<!-- TODO link: hlaseni-vady.md (article not in crawl, slug unconfirmed) -->
+- Kdo smí zadat požadavek na podporu<!-- TODO link: hlaseni-vady.md (article not in crawl, slug unconfirmed) -->
 
-## [Lhůty a kontakty podpory](lhuty-a-kontakty.md)
+## Lhůty a kontakty podpory<!-- TODO link: lhuty-a-kontakty.md (article not in crawl, slug unconfirmed) -->
 
 Pracovní doba podpory, lhůty pro odpověď, analýzu, vyřešení, odstranění vady a obnovu dat.
 
-- [Jaké jsou lhůty podpory](lhuty-a-kontakty.md)
+- Jaké jsou lhůty podpory<!-- TODO link: lhuty-a-kontakty.md (article not in crawl, slug unconfirmed) -->
 
 ## [Zálohy a obnova dat](zalohy-a-obnova-dat.md)
 

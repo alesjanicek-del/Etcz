@@ -19,7 +19,7 @@ Zálohují se otázky, testy, výsledky, protokoly a nastavení organizace.
 
 Řadu věcí vrátíte sami a hned:
 
-- otázku nebo soubor otázek z koše (do 30 dní, kapitola [Koš a obnovení](../autor/kos-a-obnoveni.md)),
+- otázku nebo soubor otázek z koše (do 30 dní, kapitola Koš a obnovení<!-- TODO link: ../autor/kos-a-obnoveni.md (article not in crawl, slug unconfirmed) -->),
 - starší verzi otázky z její historie (kapitola [Verze a historie otázky](../autor/verze-a-historie.md)).
 
 Odevzdané pokusy a protokoly nelze smazat ani změnit, obnovu nepotřebují.
@@ -42,6 +42,6 @@ Pokud potřebujete vrátit jen část dat (například jeden test), napište to 
 
 ## Export všech dat
 
-Chcete mít vlastní kopii dat, například při ukončení smlouvy? Administrátor organizace si stáhne export celé organizace (kapitola [Osobní údaje, anonymizace a export dat](../admin-organizace/osobni-udaje.md)).
+Chcete mít vlastní kopii dat, například při ukončení smlouvy? Administrátor organizace si stáhne export celé organizace (kapitola Osobní údaje, anonymizace a export dat<!-- TODO link: ../admin-organizace/osobni-udaje.md (article not in crawl, slug unconfirmed) -->).
 
 *Pro role: Administrátor organizace, Objednatel (zmocněnec)*

@@ -1,5 +1,5 @@
 ---
-title: Training validity and renewal reminders
+title: Training validity and refresher reminders
 source: https://demo.exam-test.cz/napoveda/lektor/platnost-skoleni-a-pripominky
 translation: unofficial-draft
 ---
@@ -30,7 +30,7 @@ Attempts from codes without an email, from links and from supervised in-room exa
 
 ## Email reminders
 
-The settings are in **Administration → Organisation settings → Training renewal reminders**:
+The settings are in **Administration → Organisation settings → Refresher training reminders**:
 
 - **Send certificate expiry reminders**: turns all reminders on or off.
 - **Days before expiry to send a reminder**: “30, 7” by default. Leave empty to send only a reminder after expiry.
@@ -51,7 +51,7 @@ The reminder summary contains test takers’ names. Send it only to the people w
 
 ## Retention period and certificate validity
 
-The results retention period (**Organisation settings → Data and texts**) can be shorter than a certificate’s validity. So that a certificate does not lose its holder’s name before it expires, the application anonymises an attempt with a valid certificate only 30 days after the certificate expires. Certificates with no expiry do not delay anonymisation. **Organisation settings** warns you about such a difference and shows how many attempts are being kept for this reason.
+The results retention period (**Organisation settings → Data and texts**) can be shorter than a certificate’s validity. A certificate should not lose its holder’s name before it expires. So the application anonymises an attempt with a valid certificate only 30 days after the certificate expires. Certificates with no expiry do not delay anonymisation. **Organisation settings** warns you about such a difference and shows how many attempts are being kept for this reason.
 
 Manual anonymisation of a person at their request is not restricted. The certificate can then no longer be downloaded.
 

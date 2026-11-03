@@ -8,7 +8,7 @@ translation: unofficial-draft
 
 ## [How to get to your test](jak-se-dostat-k-testu.md)
 
-Access code, supervised in-room exam, a link from the organiser or a student account.
+Access code, supervised in-room exam, a link from the organiser or a learner account.
 
 - [How to enter an access code](jak-se-dostat-k-testu.md)
 - [How to join a supervised in-room exam](jak-se-dostat-k-testu.md)
@@ -42,7 +42,7 @@ What to do if your internet drops, you close the window by mistake or your phone
 
 ## [Submission and result](odevzdani-a-vysledek.md)
 
-How to submit the test, confirm the training acknowledgement, what happens when time runs out and what you see after submitting (result, result report, certificate).
+How to submit the test, confirm the training, what happens when time runs out and what you see after submitting (result, result report, certificate).
 
 - [How to submit the test](odevzdani-a-vysledek.md)
 - [Where to find your result](odevzdani-a-vysledek.md)
@@ -69,4 +69,4 @@ What the messages mean when you enter a code, and what to do when something does
 
 ---
 
-Instructions for test takers (1 page, PDF)
+Instructions for test takers (PDF, 1 page)

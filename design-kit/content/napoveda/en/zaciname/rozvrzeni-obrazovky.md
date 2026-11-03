@@ -12,7 +12,7 @@ What you will find in the menu and on the Overview page, and why it matters whic
 
 The left-hand menu shows only the items your role can use. On a phone, open the menu with the **☰ Menu** button at the top left.
 
-Items are grouped into **Questions**, **Tests and exams**, **Evaluation** and **Administration**. At the bottom is the **Account and support** group with **My account**, **Support** and **What’s new**. (In the public demo, **Demo inbox** replaces **Support**; see [Public demo without registration](verejne-demo.md).)
+Items are grouped into **Questions**, **Tests and exams**, **Evaluation** and **Administration**. At the bottom is the **Account and support** group with **My account**, **Support** and **What’s new**. (In the public demo, **Demo mailbox** replaces **Support**; see [Public demo without registration](verejne-demo.md).)
 
 ## Active branch
 
@@ -28,15 +28,15 @@ The active branch decides two things:
 - new question banks, tests, test assignments and print batches are created in the active branch,
 - under **Print** in the menu, you see only the active branch’s print batches (organisation administrators see batches for all branches).
 
-The active branch does not filter results or test assignments. You see them in every branch where you are an instructor or branch administrator, as described in [Results and result report](../lektor/vysledky-a-protokol.md). To see one branch in the results overview, use the **Branch** filter. You also see question banks and tests based on your permissions, whatever the active branch.
+The active branch does not filter results or test assignments. You see them in every branch where you are an instructor or branch administrator, as described in [Results, result reports and releasing results](../lektor/vysledky-a-protokol.md). To see one branch in the results overview, use the **Branch** filter. You also see question banks and tests based on your permissions, whatever the active branch.
 
 ## Overview
 
 **Overview** is the first page after you sign in. It shows:
 
 - the quick actions **New question**, **New test** and **Start testing**,
-- **Exams in progress** with a **Live monitor** link,
-- your plan details, the number of questions pending approval (**Questions pending approval**) and **Recent results**.
+- **Tests in progress** with a **Live monitor** link,
+- your plan details, the number of questions pending approval (**Questions pending approval**) and **Latest results**.
 
 ## Help and footer
 
@@ -46,6 +46,6 @@ The footer has links to the **Accessibility statement**, **Support** with the su
 
 ## You cannot see what is outside your scope
 
-If you open a link to a record you have no access to (for example, another branch’s print batch), the app shows a “Page not found” page. This is intentional. For example, print batches and answer keys are strictly separated by branch.
+If you open a link to a record you have no access to (for example, another branch’s print batch), the app shows a “We couldn’t find this page” page. This is intentional. For example, print batches and answer keys are strictly separated by branch.
 
 *For roles: Question author, Instructor, Branch administrator, Organisation administrator*

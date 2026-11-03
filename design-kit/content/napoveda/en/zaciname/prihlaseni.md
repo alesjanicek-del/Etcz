@@ -1,10 +1,10 @@
 ---
-title: Signing in, password and signing out
+title: Signing in, passwords and signing out
 source: https://demo.exam-test.cz/napoveda/zaciname/prihlaseni
 translation: unofficial-draft
 ---
 
-# Signing in, password and signing out
+# Signing in, passwords and signing out
 
 How to sign in for the first time, what to do if you forget your password, and how to sign out on all devices.
 
@@ -31,7 +31,7 @@ If your organisation allows it, there is an **Email me a sign-in link** option b
 - The link stops working if you change your password, sign out on all devices or sign in again.
 - Ignore any link you did not request. Without it, nobody can sign in to your account.
 
-How to turn this on for your organisation is described in [Signing in with an email link](../admin-organizace/prihlaseni-odkazem.md).
+How to turn this on for your organisation is described in [Sign-in with an email link](../admin-organizace/prihlaseni-odkazem.md).
 
 ## First sign-in from an invitation
 
@@ -70,7 +70,7 @@ Forgot to sign out on someone else’s computer? In **My account**, click **Sign
 
 The app signs you out when:
 
-- you have been inactive for a while (administrators, authors and instructors after 30 minutes, students after 60 minutes),
+- you have been inactive for a while (administrators, authors and instructors after 30 minutes, learners after 60 minutes),
 - 12 hours have passed since you signed in (applies to everyone),
 - you changed your password or an administrator changed your email,
 - an administrator deactivated your account or reset your two-step verification,
@@ -78,12 +78,12 @@ The app signs you out when:
 
 ## Warning before you are signed out
 
-2 minutes before you are signed out for inactivity, a **You will be signed out soon** window appears with a countdown. Click **Stay signed in** or press Esc to stay signed in and carry on working.
+2 minutes before you are signed out for inactivity, a **You’ll be signed out in 2 minutes** window appears with a countdown. Click **Stay signed in** or press Esc to stay signed in and carry on working.
 
 The 12-hour limit cannot be extended. The window also warns you 2 minutes before it; save your work and sign in again. After you sign in, you return to the page you were on.
 
 The app keeps saving a question you are writing in the editor to the browser tab. You can restore it after you sign in again; see [Creating a question](../autor/vytvoreni-otazky.md).
 
-After you click **Sign out**, the sign-in page shows “You have been signed out.” On a shared computer (such as a classroom), this confirms that signing out worked.
+After you click **Sign out**, the sign-in page shows “You have signed out.” On a shared computer (such as a classroom), this confirms that signing out worked.
 
-*For roles: Student, Question author, Instructor, Branch administrator, Organisation administrator*
+*For roles: Learner, Question author, Instructor, Branch administrator, Organisation administrator*

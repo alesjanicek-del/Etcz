@@ -18,7 +18,7 @@ The demo is available only when the website shows the **Try the demo** button. W
 
 1. On the website, click **Try the demo**.
 2. Choose a role: instructor, question author, branch administrator or test taker. **Instructor and test taker side by side** opens a supervised in-room exam in two windows. You can see how the test taker’s answers appear in the instructor’s live monitor.
-3. Click **Start demo**. A few seconds later, you are signed in to your sample branch.
+3. Click **Start the demo**. A few seconds later, you are signed in to your sample branch.
 
 You can start the demo up to 5 times an hour from one connection. If too many visitors start the demo in one day, new starts are paused until the next day.
 
@@ -27,10 +27,10 @@ You can start the demo up to 5 times an hour from one connection. If too many vi
 At the top of the page is a yellow demo bar. It contains:
 
 - **Switch role**: changes your role in the same branch, and the data stays,
-- **Demo inbox**: emails the app would send (invitations, access codes, results); the demo never sends any email,
+- **Demo mailbox**: emails the app would send (invitations, access codes, results); the demo never sends any email,
 - **Book a guided demo** and **I want the app for my organisation**.
 
-In the menu, **Demo inbox** replaces **Support**. Some parts of the app are not in the demo: organisation settings, plan, branches, support requests, question bank import, organisation data export, account password and two-step verification. Instead, you see a “Not available in the demo” page. Branch content in the demo has upper limits, for example on the number of questions, tests and PDF downloads per hour.
+In the menu, **Demo mailbox** replaces **Support**. Some parts of the app are not in the demo: organisation settings, plan, branches, support requests, question bank import, organisation data export, account password and two-step verification. Instead, you see a “Not available in the demo” page. Branch content in the demo has upper limits, for example on the number of questions, tests and PDF downloads per hour.
 
 ## What happens to the data
 

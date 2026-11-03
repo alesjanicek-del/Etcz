@@ -19,7 +19,7 @@ Terms used in the app and how they match the terms in the tender documentation.
 | Branch administrator | Manages the users and groups of their branch. |
 | Instructor | Builds tests, delivers them and evaluates them. |
 | Question author | Creates and edits questions in question banks. |
-| Student | A person with an account who can be assigned a test. |
+| Learner | A person with an account who can be assigned a test. |
 | Test taker | Anyone taking a test, with or without an account. |
 | Supervised in-room exam participant | A test taker who joined with the code from the projector screen. People in the room and in the waiting room are called “participants” before the test starts; after it starts, they are test takers. See [Supervised in-room exam with a waiting room](../lektor/prezencni-zkouska.md). |
 | Question bank | A named group of questions with assigned permissions. |
@@ -41,7 +41,7 @@ Terms used in the app and how they match the terms in the tender documentation.
 | Official test | A mode for official exams: no links, no feedback and no correct answers shown. |
 | Print batch | Test versions for printing, with answer sheets and answer keys. |
 | Answer sheet, answer key, scoring table | Printouts for a paper exam. |
-| Scoring method | The rule that decides whether a test taker has passed the test (percentage, points, grades). |
+| Grading method | The rule that decides whether a test taker has passed the test (percentage, points, grades). |
 | Result report | A PDF record of an attempt with a verification code. |
 | Verification code | The code on a result report that anyone can use to verify it is genuine. |
 | Live monitor | Real-time view of an exam in progress. |
@@ -57,7 +57,7 @@ The left column gives the Czech terms used in the tender documentation.
 | Term in the tender documentation | Term in the app |
 |---|---|
 | <span lang="cs">okruh otázek, bazén otázek</span> (question area, question pool) | question bank |
-| <span lang="cs">studující</span> (student) | student (with an account) or test taker (without an account) |
+| <span lang="cs">studující</span> (student) | learner (with an account) or test taker (without an account) |
 | <span lang="cs">uchazeč</span> (applicant; professional competence exam) | test taker |
 | <span lang="cs">lektor</span> (instructor) | instructor |
 | <span lang="cs">pobočka</span> (branch) | branch |
