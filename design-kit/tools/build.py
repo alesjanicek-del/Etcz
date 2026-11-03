@@ -41,7 +41,7 @@ def head(t, popis='', lang='cs'):
 <link rel="stylesheet" href="../assets/brand.css">
 </head>'''
 
-WEB_NAV_EN = [('#', 'Features'), ('#', 'Public sector'), ('#', 'Companies'), ('#', 'Education'), ('#', 'Security'), ('#', 'Pricing')]
+WEB_NAV_EN = [('en-funkce.html', 'Features'), ('en-pro-urady.html', 'Public sector'), ('en-pro-firmy.html', 'Companies'), ('en-pro-vzdelavani.html', 'Education'), ('en-bezpecnost.html', 'Security'), ('en-cenik.html', 'Pricing')]
 def web(meta, body):
     if meta.get('lang') == 'en': return web_en(meta, body)
     a = meta.get('aktivni', '')
@@ -97,8 +97,8 @@ def web_en(meta, body):
   <nav class="site-nav" aria-label="Main"><ul>{nav}</ul></nav>
   <div class="site-header__cta">
    <a class="btn btn--tiche btn--male" href="../app/prihlaseni.html">Sign in</a>
-   <a class="btn btn--hlavni btn--male" href="#">Try the demo</a>
-   <nav class="lang" aria-label="Language / Jazyk"><a href="index.html" lang="cs" hreflang="cs">CS</a><a href="en-index.html" lang="en" aria-current="true">EN</a></nav>
+   <a class="btn btn--hlavni btn--male" href="en-vyzkouset.html">Try the demo</a>
+   <nav class="lang" aria-label="Language / Jazyk"><a href="{meta.get('cs_verze', 'index.html')}" lang="cs" hreflang="cs">CS</a><a href="#" lang="en" aria-current="true">EN</a></nav>
   </div>
   <details class="menu"><summary class="btn btn--male">{I('menu')}Menu</summary><nav class="menu__panel" aria-label="Main (mobile)">{''.join(f'<a href="{h}">{t}</a>' for h, t in WEB_NAV_EN)}<a href="../app/prihlaseni.html">Sign in</a><a href="index.html" lang="cs" hreflang="cs">Česky</a></nav></details>
  </div>
@@ -107,23 +107,30 @@ def web_en(meta, body):
 {body}
 </main>
 <footer class="site-footer"><div class="container">
- <div class="site-footer__grid"><div class="stack-2"><img src="../assets/logo/exam-test-logo-negativ-pruhledne.svg" alt="exam-test" width="150" height="25"><p>Tests and exams online and on paper. For the public sector, companies and education.</p><p><a href="#">Verify a protocol</a></p></div>
- <div class="stack-2"><p class="t-stitek">Contact</p><ul><li><a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a></li><li><a href="tel:+420725311531">+420 725 311 531</a></li></ul></div></div>
+ <div class="site-footer__grid"><div class="stack-2"><img src="../assets/logo/exam-test-logo-negativ-pruhledne.svg" alt="exam-test" width="150" height="25"><p>Tests and exams online and on paper. For the public sector, companies and education.</p><p><a href="en-overeni.html">Verify a report</a></p></div>
+ <nav class="stack-2" aria-label="Product"><p class="t-stitek">Product</p><ul><li><a href="en-funkce.html">Features</a></li><li><a href="en-cenik.html">Pricing</a></li><li><a href="en-sablony-testu.html">Test templates and services</a></li><li><a href="en-bezpecnost.html">Security and data</a></li><li><a href="en-napoveda.html">Help</a></li></ul></nav><div class="stack-2"><p class="t-stitek">Contact</p><ul><li><a href="mailto:podpora@exam-test.cz">podpora@exam-test.cz</a></li><li><a href="tel:+420725311531">+420 725 311 531</a></li><li><a href="en-kontakt.html">Contact and billing details</a></li></ul></div></div>
+ <ul class="row" style="margin-top:var(--s-4)"><li><a href="en-podminky.html">Terms of service</a></li><li><a href="en-ochrana-osobnich-udaju.html">Privacy policy</a></li><li><a href="en-zpracovatelska-smlouva.html">Data processing agreement</a></li><li><a href="en-prohlaseni-o-pristupnosti.html">Accessibility statement</a></li></ul>
  <div class="site-footer__legal"><p>ABUCO ICT s.r.o. · Company ID 29153905 · Prague, Czech Republic. The Czech version of legal documents is legally binding; English translation in preparation.</p></div>
 </div></footer>'''
 
-def appnav(role, a, mobile=False):
+APP_EN = {'Přehled':'Overview','Otázky':'Questions','Soubory otázek':'Question banks','Hledat otázky':'Search questions','Štítky':'Tags','Ke schválení':'Pending approval',
+ 'Zkoušení':'Testing','Testy':'Tests','Použití testů':'Test assignments','Tisk':'Print','Kalendář':'Calendar','Vyhodnocení':'Results','Výsledky':'Results',
+ 'Platnost školení':'Training validity','Statistiky':'Statistics','Správa pobočky':'Branch admin','Uživatelé':'Users','Skupiny studujících':'Student groups','Záznam změn':'Change log',
+ 'Moje testy':'My tests','Moje výsledky':'My results'}
+def appnav(role, a, mobile=False, lang='cs'):
     out = []
     for sec, items in APP_NAV[role]:
-        if sec: out.append(f'<p class="t-stitek">{sec}</p>')
+        if sec: out.append(f'<p class="t-stitek">{APP_EN.get(sec, sec) if lang == "en" else sec}</p>')
         for it in items:
             h, t, ic = it
+            if lang == 'en': h, t = 'en-' + h, APP_EN.get(t, t)
             cur = ' aria-current="page"' if h == a else ''
-            extra = '<span class="pocet" aria-label="3 čekají">3</span><!-- počet z dat -->' if h == 'ke-schvaleni.html' else ''
+            extra = ('<span class="pocet" aria-label="3 waiting">3</span><!-- count from data -->' if lang == 'en' else '<span class="pocet" aria-label="3 čekají">3</span><!-- počet z dat -->') if h.endswith('ke-schvaleni.html') else ''
             out.append(f'<a href="{h}"{cur}>{I(ic)}{t}{extra}</a>')
     return ''.join(out)
 
 def app(meta, body):
+    if meta.get('lang') == 'en': return app_en(meta, body)
     role = meta.get('role', 'lektor'); a = meta.get('aktivni', ''); home = HOME[role]
     demo = '''<div class="demo-bar" role="region" aria-label="Upozornění dema"><b>Demo</b><span>Data se mažou každou noc ve 3:00.</span><a href="#">Přepnout roli</a><a href="schranka-dema.html">Schránka dema</a><a href="../web/ukazka.html">Chci aplikaci pro organizaci</a></div>''' if meta.get('demo') else ''
     pob = '' if role == 'zkouseny' else '<span class="stav stav--neutral">Pobočka Praha</span>'
@@ -150,6 +157,34 @@ def app(meta, body):
  </div>
 </div>'''
 
+def app_en(meta, body):
+    role = meta.get('role', 'lektor'); a = meta.get('aktivni', ''); home = 'en-' + HOME[role]
+    demo = '''<div class="demo-bar" role="region" aria-label="Demo notice"><b>Demo</b><span>Data is deleted every night at 3:00.</span><a href="#">Switch role</a><a href="en-schranka-dema.html">Demo mailbox</a><a href="../web/en-ukazka.html">Get the app for my organisation</a></div>''' if meta.get('demo') else ''
+    pob = '' if role == 'zkouseny' else '<span class="stav stav--neutral">Prague branch</span>'
+    return f'''{head(meta['titulek'], '', 'en')}
+<body>
+<a class="skip" href="#obsah">Skip to content</a>
+{demo}<div class="app">
+ <aside class="app-side">
+  <a class="logo" href="{home}"><img src="../assets/logo/exam-test-logo-male.svg" alt="exam-test – overview" width="146" height="24"></a>
+  <nav class="app-nav" aria-label="Main">{appnav(role, a, lang='en')}</nav>
+ </aside>
+ <div>
+  <header class="app-top">
+   <a class="logo" href="{home}"><img src="../assets/logo/exam-test-logo-male.svg" alt="exam-test – overview" width="122" height="20"></a>
+   {pob}<span class="sp"></span>
+   <a href="en-napoveda.html">Help for this page</a>
+   <a href="en-ucet.html" aria-label="My account: {USER[role]}">{USER[role]}</a>
+   <nav class="lang" aria-label="Language / Jazyk"><a href="{meta.get('cs_verze', '#')}" lang="cs" hreflang="cs">CS</a><a href="#" lang="en" aria-current="true">EN</a></nav>
+   <details class="menu"><summary class="btn btn--male">{I('menu')}Menu</summary><nav class="menu__panel app-nav" aria-label="Main (mobile)">{appnav(role, a, lang='en')}<a href="en-ucet.html">My account</a><a href="#">Sign out</a></nav></details>
+  </header>
+  <main id="obsah" class="app-main">
+{body}
+  </main>
+  <footer class="app-foot"><span>exam-test 0.2.0</span><a href="en-prohlaseni-o-pristupnosti.html">Accessibility statement</a><a href="en-co-je-noveho.html">What’s new</a></footer>
+ </div>
+</div>'''
+
 def exam(meta, body):
     return f'''{head(meta['titulek'], '', meta.get('lang', 'cs'))}
 <body class="grid-bg">
@@ -159,11 +194,11 @@ def exam(meta, body):
 def cisty(meta, body):
     return f'''{head(meta['titulek'], meta.get('popis', ''), meta.get('lang', 'cs'))}
 <body class="{meta.get('body_class', 'grid-bg')}">
-<a class="skip" href="#obsah">Přeskočit na obsah</a>
+<a class="skip" href="#obsah">{'Skip to content' if meta.get('lang') == 'en' else 'Přeskočit na obsah'}</a>
 {body}'''
 
 def a4(meta, body):
-    return f'''{head(meta['titulek'])}
+    return f'''{head(meta['titulek'], '', meta.get('lang', 'cs'))}
 <body style="background:var(--c-mrizka);padding:var(--s-5) 0">
 {body}'''
 

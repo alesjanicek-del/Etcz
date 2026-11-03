@@ -54,6 +54,9 @@ function walk(d) { const p = path.join(ROOT, d); if (!fs.existsSync(p)) return [
     c.paras.forEach(s => rep.text.push({ id: 'dlouhy-odstavec', level: 'varovani', msg: s }));
     const kit = await p.evaluate(() => !!document.querySelector('meta[name=kit-stranka]'));
     if (!kit) BANNED.forEach(re => { const m = c.text.match(re); if (m) rep.text.push({ id: 'zakazana-formulace', level: 'chyba', msg: `Zastaralá formulace „${m[0]}“` }) });
+    const lang = await p.evaluate(() => document.documentElement.lang);
+    if (lang === 'en') { const cz = await p.evaluate(() => { const out = []; const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n; while (n = w.nextNode()) { const t = n.textContent.trim(); if (!t || !/[ěščřžůňťďĚŠČŘŽŮŇŤĎ]/.test(t)) continue; const el = n.parentElement; if (el.closest('[lang=cs],.no-check,script,style')) continue; out.push(t.slice(0, 40)); } return out; });
+      if (cz.length) rep.text.push({ id: 'cestina-v-en', level: 'chyba', msg: `Čeština v anglické stránce (${cz.length}×, mimo lang="cs"): „${cz.slice(0, 4).join('“, „')}“` }); }
     rep.stats = { stylu_textu: Object.keys(c.styles).length, slov: c.words };
     // specifikace
     const spec = await p.evaluate(() => { const s = document.getElementById('spec'); if (!s) return null; try { return JSON.parse(s.textContent) } catch (e) { return { _chyba: e.message } } });
