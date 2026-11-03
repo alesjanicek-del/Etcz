@@ -1,0 +1,68 @@
+<!--meta {"titulek":"Question 3 of 12 – Cyber security: annual check","sablona":"exam","role":"zkouseny","skip":"Skip to question","lang":"en"} -->
+<!--spec {"route": "/t/:id (lang=en)", "nazev": "Question – English (sample)", "role": "test taker", "sablona": "exam", "ucel": "English version of the question screen: shows that the test taker interface works in the language chosen for the test assignment (test_usage.ui_locale).", "hlavni_akce": "Choose an answer and go to the next question", "komponenty": ["exam-head", "rail", "timer", "option", "qgrid", "exam-foot", "alert"], "stavy": ["Same states as the Czech page: window left, answer not saved, last 5 minutes."], "zmeny_ux": ["Same layout as the Czech version – English strings are on average 20–35 % longer; tested with tools/check_en.js at 320 and 1280 px.", "Button labels follow the EN glossary in the brand manual: Next question, Flag for review, Review and submit."], "texty": [{"dnes": "(cs) Další otázka", "nove": "Next question", "proc": "EN glossary"}, {"dnes": "(cs) Vrátit se později", "nove": "Flag this question for review", "proc": "Common exam-UI term"}, {"dnes": "(cs) Dohled", "nove": "Monitoring", "proc": "Not “proctoring” – implies camera; we do not use one"}], "pristupnost": ["<html lang=\"en\">, question content in English; if the question bank is Czech, mark the question with lang=\"cs\".", "Timer and saved status announced as on the Czech page."], "poznamky_pro_kodera": ["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.", "Question content language is question_pool.language – may differ from UI language."], "chybi_komponenta": []} -->
+<header class="exam-head"><div class="exam-head__in">
+ <p class="t-stitek">Cyber security: annual check</p>
+ <div class="rail" role="img" aria-label="Progress: 2 of 12 answered, 1 flagged, now on question 3"><i class="z"></i><i class="z"></i><i class="t"></i><i></i><i class="p"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+ <div class="row" style="gap:var(--s-2);margin-left:auto">
+  <p class="t-maly row" style="gap:var(--s-1)" role="status" id="ulozeno">{{I:check}}Saved 14:02</p>
+  <span class="stav stav--info">{{I:oko}}Monitoring<span class="sr-only"> is on</span></span>
+  <div class="timer" role="timer"><span class="sr-only">Time left: </span>14:57</div>
+ </div>
+ <p class="sr-only" aria-live="polite" id="cas-hlaseni"></p>
+</div></header>
+
+<main id="obsah" class="exam-body">
+ <form class="stack-4" action="#" method="post" aria-label="Question 3 of 12">
+  <fieldset class="stack">
+   <legend class="stack-2" style="margin-bottom:var(--s-3)">
+    <span class="t-stitek" aria-hidden="true">Question 03 / 12</span>
+    <h1 class="t-nadpis" tabindex="-1"><span class="sr-only">Question 3 of 12: </span>Your organisation provides a regulated service under the Cyber Security Act. You discover a security incident. Which statement is correct?</h1>
+   </legend>
+   <div>
+    <label class="option" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="radio" name="o3" value="A"><span class="option__bub">A</span><span>Every employee must report the incident directly to the national authority and does not need to report it internally.</span></label>
+    <label class="option" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="radio" name="o3" value="B"><span class="option__bub">B</span><span>The organisation reports the incident only once it is fully resolved, within 30&nbsp;days at the latest.</span></label>
+    <label class="option" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="radio" name="o3" value="C" checked><span class="option__bub">C</span><span>The employee reports the incident internally; the organisation files the statutory report, the first one within 24&nbsp;hours of discovery.</span></label>
+    <label class="option" style="position:relative"><input style="inset:0;width:100%;height:100%;margin:0;cursor:pointer" type="radio" name="o3" value="D"><span class="option__bub">D</span><span>Only incidents involving a personal data leak must be reported.</span></label>
+   </div>
+  </fieldset>
+  <label class="check"><input type="checkbox" name="pozdeji"><span>Flag this question for review</span></label>
+  <div class="exam-foot">
+   <a class="btn" href="#" aria-label="Previous question" style="flex:0 0 auto">{{I:sipka-vlevo}}</a>
+   <button class="btn btn--hlavni" type="submit">Next question {{I:sipka-vpravo}}</button>
+  </div>
+ </form>
+
+ <aside class="stack" aria-labelledby="prehled-h">
+  <h2 class="t-stitek" id="prehled-h">Questions</h2>
+  <nav class="qgrid" aria-label="Questions" style="grid-template-columns:repeat(auto-fill,44px)">
+   <a class="z" href="#" aria-label="Question 1, answered">1</a><a class="z" href="#" aria-label="Question 2, answered">2</a><a href="en-test-otazka.html" aria-current="step" aria-label="Question 3, current">3</a><a href="#" aria-label="Question 4, not answered">4</a><a class="p" href="#" aria-label="Question 5, flagged">5</a><a href="#" aria-label="Question 6, not answered">6</a><a href="#" aria-label="Question 7, not answered">7</a><a href="#" aria-label="Question 8, not answered">8</a><a href="#" aria-label="Question 9, not answered">9</a><a href="#" aria-label="Question 10, not answered">10</a><a href="#" aria-label="Question 11, not answered">11</a><a href="#" aria-label="Question 12, not answered">12</a>
+  </nav>
+  <p class="t-maly"><b class="t-ink">2 of 12</b> answered<br><b class="t-ink">1</b> flagged</p>
+  <a class="btn btn--male" href="#">Review and submit</a>
+  <details class="faq">
+   <summary>How the test works</summary>
+   <div class="stack-2 t-maly">
+    <p>Your answers are saved automatically after every change.</p>
+    <p>Everyone gets a different version. Question numbers will not match your neighbour’s.</p>
+    <p>Monitoring is on: leaving the test window, leaving full screen, copying and pasting are recorded. No camera or microphone is used.</p>
+    <p>Opening this help does not leave the window.</p>
+   </div>
+  </details>
+ </aside>
+</main>
+
+<section class="no-print stack-4" aria-labelledby="dalsi" style="max-width:1080px;margin:0 auto;padding:var(--s-5) var(--s-3) var(--s-7)">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack-2">
+  <h3 class="t-stitek">Leaving the window (monitoring)</h3>
+  <div class="alert" role="alert">{{I:pozor}}<div class="stack-2"><p><b>You left the test window. This has been recorded.</b> Nothing is blocked. Please carry on with the test.</p><p><button class="btn btn--male" type="button">OK, continue</button></p></div></div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Answer could not be saved</h3>
+  <div class="alert alert--chyba" role="alert">{{I:pozor}}<div class="stack-2"><p><b>Your answer to question 3 could not be saved.</b> We retry every 10&nbsp;seconds. Until then it stays in this browser.</p><p><button class="btn btn--male" type="button">Try saving again</button></p></div></div>
+ </div>
+ <div class="stack-2">
+  <h3 class="t-stitek">Last 5 minutes</h3>
+  <div class="row"><div class="timer timer--dojde"><span class="sr-only">Time left: </span>04:59</div><p class="t-maly">The timer turns yellow. Screen readers announce “5 minutes left” once. When time is up, the test is submitted automatically.</p></div>
+ </div>
+</section>

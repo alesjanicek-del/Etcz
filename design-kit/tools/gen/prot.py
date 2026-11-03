@@ -1,0 +1,68 @@
+from common import *
+TD='style="padding:3px var(--s-2);border-bottom:var(--b-tenka) solid var(--c-linka);vertical-align:top"'
+ev=[("17:27:12","Zahájení pokusu","zařízení: počítač, Chrome"),("17:28:40","Odpověď na otázku 1 uložena",""),("17:33:02","Opuštění okna testu","návrat 17:33:10 (8 s)"),("17:35:51","Odpověď na otázku 7 změněna",""),("17:40:58","Potvrzení o seznámení se školením",""),("17:41:05","Odevzdání","odevzdal zkoušený")]
+evr=''.join(f'<tr><td class="t-cislo" {TD}>{a}</td><td {TD}>{b}</td><td class="t-maly" {TD}>{c}</td></tr>' for a,b,c in ev)
+QR='<img src="../assets/img/qr-ukazka.png" alt="QR kód pro ověření pravosti, vede na exam-test.cz/overeni s kódem H5SAY-GVTNY-EDXAP-67SXD" width="120" height="124" style="width:112px;height:auto;image-rendering:pixelated">'
+inner=f'''<header class="row-between" style="align-items:flex-start;gap:var(--s-4);padding-bottom:var(--s-3);border-bottom:var(--b-akcent) solid var(--c-grafit)">
+ <div class="stack-2" style="flex:1">
+  <p><b>Ukázková organizace (demo)</b></p>
+  <p class="t-stitek">Protokol o&nbsp;zkoušce · výpis pro zkoušeného</p>
+  <h1 class="t-nadpis">{TEST}</h1>
+ </div>
+ <div><div class="stack-2" style="border:var(--b-silna) solid var(--c-grafit);padding:var(--s-2) var(--s-3)"><p class="t-stitek">Ověřovací kód</p><p class="t-kod t-nadpis">H5SAY-GVTNY-EDXAP-67SXD</p></div>
+</div>
+</header>
+<div style="display:grid;grid-template-columns:1fr 200px;gap:var(--s-4);align-items:start">
+ <section aria-labelledby="zk-h" class="stack-2">
+  <h2 id="zk-h" class="t-stitek">Zkoušený a průběh</h2>
+  <dl class="t-maly" style="display:grid;grid-template-columns:120px 1fr;gap:2px var(--s-3);margin:0">
+   <dt>Zkoušený</dt><dd class="t-ink"><b>Zdeněk Zkoušený</b></dd>
+   <dt>Způsob zadání</dt><dd class="t-ink">Přidělení studujícímu · pobočka Návštěvník 6013</dd>
+   <dt>Zahájeno</dt><dd class="t-ink">3.&nbsp;11.&nbsp;2026 17:27:12</dd>
+   <dt>Odevzdáno</dt><dd class="t-ink">3.&nbsp;11.&nbsp;2026 17:41:05 · odevzdal zkoušený</dd>
+   <dt>Časový limit</dt><dd class="t-ink">15&nbsp;min · bez prodloužení · pokus 1 z 3</dd>
+   <dt>Dohled</dt><dd class="t-ink">zapnutý · 1 opuštění okna (8 s)</dd>
+  </dl>
+ </section>
+ <section aria-labelledby="vy-h" class="stack-2" style="border:var(--b-silna) solid var(--c-grafit);padding:var(--s-3)">
+  <h2 id="vy-h" class="t-stitek">Výsledek</h2>
+  <p class="row" style="gap:var(--s-2)"><span class="t-cislo t-titulek">83,3&nbsp;%</span><span class="stav stav--ok">{{{{I:check}}}}Splněno</span></p>
+  <p class="t-maly">14 ze 17 bodů · 10 z 12 otázek · práh 80&nbsp;%</p>
+ </section>
+</div>
+<section aria-labelledby="pot-h" class="stack-2">
+ <h2 id="pot-h" class="t-stitek">Potvrzení o&nbsp;seznámení se školením</h2>
+ <p class="t-maly t-ink">Potvrzeno <span class="t-cislo">3.&nbsp;11.&nbsp;2026 17:40:58</span> – Roční školení kybernetické bezpečnosti, školitel Ing. Pavla Školitelová.</p>
+</section>
+<section aria-labelledby="ot-h" class="stack-2">
+ <h2 id="ot-h" class="t-stitek">Otázky a odpovědi</h2>
+ <p class="t-ink">Ve výpisu pro zkoušeného se otázky podle nastavení testu neuvádějí. Úplný protokol se všemi otázkami vede pořadatel. Ověřovací kód je na obou stejný.</p>
+</section>
+<section aria-labelledby="zp-h" class="stack-2">
+ <h2 id="zp-h" class="t-stitek">Záznam průběhu · výběr</h2>
+ <table style="width:100%;border-collapse:collapse;font-size:var(--t-maly)">
+  <caption class="sr-only">Časová osa událostí pokusu 3. 11. 2026 (výběr; úplný záznam je v protokolu pořadatele)</caption>
+  <thead><tr><th scope="col" class="t-stitek" style="text-align:left;font-weight:var(--w-mono);padding:3px var(--s-2);border-bottom:var(--b-silna) solid var(--c-grafit);width:18%">Čas</th><th scope="col" class="t-stitek" style="text-align:left;font-weight:var(--w-mono);padding:3px var(--s-2);border-bottom:var(--b-silna) solid var(--c-grafit)">Událost</th><th scope="col" class="t-stitek" style="text-align:left;font-weight:var(--w-mono);padding:3px var(--s-2);border-bottom:var(--b-silna) solid var(--c-grafit)">Podrobnosti</th></tr></thead>
+  <tbody>{evr}</tbody>
+ </table>
+ </section>
+<section aria-labelledby="ov-h" class="row" style="gap:var(--s-3);align-items:flex-start;background:var(--c-papir);padding:var(--s-2) var(--s-3);border-left:var(--b-akcent) solid var(--c-grafit)">
+ {QR}
+ <div class="stack-2" style="flex:1">
+  <h2 id="ov-h" class="t-text" style="font-weight:var(--w-tucne)">Ověření pravosti</h2>
+  <p>Pravost ověří kdokoli na <b>exam-test.cz/overeni</b> nebo načtením QR kódu – bez přihlášení. Záznam pokusu je provázaný s&nbsp;ostatními odevzdanými pokusy a&nbsp;potvrzený časovým razítkem nezávislé autority (<span class="t-cislo">3.&nbsp;11.&nbsp;2026 18:00:00</span>). Dodatečná změna by se při ověření projevila.</p>
+  <p class="t-maly">Ověření potvrzuje, že údaje odpovídají záznamu pořízenému při zkoušce. Neposuzuje, zda zkouška splnila požadavky předpisů.</p>
+ </div>
+</section>
+{foot('Výpis pro zkoušeného · H5SAY-GVTNY-EDXAP-67SXD · vytvořeno 3. 11. 2026 17:42','strana 1 / 1')}'''
+spec={"route":"(PDF) Výsledek → Stáhnout protokol (PDF)","nazev":"Protokol o výsledku (A4)","role":"zkoušený (výpis), lektor/pořadatel (úplný protokol)","sablona":"a4",
+"ucel":"Doklad o pokusu, jehož pravost ověří kdokoli: kdo, co, kdy, s jakým výsledkem, jak zkouška proběhla – s ověřovacím kódem, QR a časovým razítkem.",
+"hlavni_akce":"Doložit výsledek; příjemce ho ověří kódem nebo QR",
+"komponenty":["a4","t-stitek","t-kod","t-cislo","dl","stav--ok","table (tisková)","img (QR)"],
+"stavy":["výpis pro zkoušeného (nakresleno): otázky podle nastavení testu – zde neuvedeny","úplný protokol (pořadatel): za Záznamem průběhu následuje tabulka všech otázek v pořadí variace (verze otázky, zvolené a správné odpovědi, body); záhlaví „Protokol o zkoušce“ bez „výpis“","nesplněno: .stav--ne „Nesplněno“","časové razítko ještě není (do hodiny po odevzdání): „Záznam je uložen. Časové razítko dostane do hodiny.“","odevzdáno automaticky dohledem / po vypršení času / lektorem: řádek Odevzdáno uvádí, kdo a proč","převzetí na jiném zařízení: řádek „Dokončeno po převzetí na jiném zařízení“ + důvod","bez potvrzení školení: „Nepotvrzeno – test odevzdán po vypršení času“","anonymizováno: místo jména „osobní údaje anonymizovány“, ověření funguje dál"],
+"zmeny_ux":["Návrh nového protokolu ve směru B (bez pečeti ze směru A): ověřovací kód v rámečku + QR vpravo nahoře, stejně jako kód variace na odpovědním listu.","Výsledek je samostatný rámeček s procenty, stavem (ikona + slovo) a body – na první pohled.","Potvrzení o seznámení se školením je vlastní řádek s časem (doklad pro BOZP/školení).","Záznam průběhu je tabulka časů (zahájení, zobrazení, změny odpovědí, opuštění okna, potvrzení, odevzdání) – podle popisu na webu „časová osa průběhu každého pokusu“.","Blok Ověření pravosti vysvětluje kód, QR a časové razítko běžným textem a říká i co ověření neposuzuje (z nápovědy).","Záhlaví „výpis pro zkoušeného“ odliší výpis od úplného protokolu (nápověda lektora)."],
+"texty":[{"dnes":"(PDF protokolu nebylo v podkladech)","nove":"Protokol o zkoušce · výpis pro zkoušeného","proc":"Označení výpisu podle nápovědy."},{"dnes":"Odevzdané pokusy jsou navzájem provázané a pravidelně je potvrzuje časové razítko nezávislé autority. Dodatečná změna výsledku se při ověření projeví. (web)","nove":"Záznam pokusu je provázaný s ostatními odevzdanými pokusy a potvrzený časovým razítkem nezávislé autority (datum). Dodatečná změna by se při ověření projevila.","proc":"Stejný slib, konkrétně pro tento pokus."},{"dnes":"Ověření potvrzuje, že údaje odpovídají záznamu pořízenému při zkoušce a že je od té doby nikdo nezměnil. Neposuzuje, zda zkouška splnila požadavky předpisů. (nápověda)","nove":"beze změny (zkráceno)","proc":"Právní vymezení na dokladu."}],
+"pristupnost":["PDF: tagované (nadpisy, tabulky s záhlavím, alt u QR a loga), jazyk cs, pořadí čtení shora dolů – PDF/UA.","Ověřovací kód je text (dá se zkopírovat), QR je jen doplněk.","Stav výsledku ikonou + slovem (ČB tisk).","HTML náhled: H1 název testu, sekce H2 (štítky), dl, tabulka s caption a th scope.","Axe/kontrola: A4 má pevnou šířku 210 mm, náhled je v posuvné oblasti (role=region, tabindex=0); na mobilu 375 px se posouvá vodorovně – přijatelné u náhledu tisku. Na mobilu zkoušený PDF otevře v prohlížeči PDF."],
+"poznamky_pro_kodera":["Data: demo pokus z test-vysledek (83,3 %, 14/17 b., H5SAY-GVTNY-EDXAP-67SXD); časy událostí jsou ukázka.","QR vede na /overeni?kod=H5SAY-GVTNY-EDXAP-67SXD; v návrhu je ukázkový obrázek assets/img/qr-ukazka.png (nekóduje tento kód).","Logo a údaje organizace + vlastní text patičky protokolu z nastavení organizace.","Každé stažení protokolu se zapíše do auditu."],
+"chybi_komponenta":["rámeček ověřovacího kódu s QR (.overeni-blok) – inline","tisková časová osa (tabulka událostí) – inline styly s tokeny"]}
+write('protokol.html',{"titulek":"Protokol o zkoušce – "+TEST,"sablona":"a4"},spec,page(inner),'Protokol o zkoušce')

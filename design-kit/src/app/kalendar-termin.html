@@ -1,0 +1,62 @@
+<!--meta {"titulek":"Nový termín zkoušky","sablona":"app","role":"lektor","aktivni":"kalendar.html","demo":false} -->
+<!--spec {
+ "route":"/kalendar/novy, /kalendar/:id/upravit","nazev":"Termín zkoušky – formulář","role":"lektor","sablona":"app",
+ "ucel":"Zapsat nebo upravit termín zkoušky, aby se v jeho době aplikace neaktualizovala.",
+ "hlavni_akce":"Uložit termín",
+ "komponenty":["crumbs","page-head","card","field","input","select","grid-2","alert--info","form-actions","error-summary","btn--nebezpecne"],
+ "stavy":[
+  "nový termín: prázdný formulář (nakresleno).",
+  "úprava: nadpis Upravit termín, předvyplněná pole a tlačítko Odstranit termín (nakresleno v Dalších stavech).",
+  "chyba: konec před začátkem – error-summary + .error u pole Konec (nakresleno).",
+  "načítání: uložení = POST a návrat do kalendáře s toastem „Termín uložen“.",
+  "bez oprávnění: upravit smí autor, administrátor organizace a lektor či administrátor pobočky termínu; jinak 403."],
+ "zmeny_ux":[
+  "Začátek a konec vedle sebe (grid-2); hint o pražském čase jednou pro oba.",
+  "Výběr použití testu ukazuje jen otevřená použití a je jasně nepovinný.",
+  "Tlačítko Uložit termín (dnes Uložit); v úpravě navíc Odstranit termín s dialogem."],
+ "texty":[
+  {"dnes":"Název (povinné) – Např. „Zkouška odborné způsobilosti – Brno“.","nove":"Název – Například „Zkouška odborné způsobilosti – Brno“.","proc":"Bez „(povinné)“; bez zkratky Např."},
+  {"dnes":"V době zkoušky (±2 h) se aplikace neaktualizuje. · Časy zadávejte v místním čase (Praha).","nove":"V pražském čase. V době zkoušky a 2 hodiny před i po se aplikace neaktualizuje.","proc":"Jedna nápověda u časů."},
+  {"dnes":"Použití testu (nepovinné) – – bez vazby –","nove":"Použití testu (nepovinné) – Bez vazby na použití","proc":"Bez pomlček."},
+  {"dnes":"Uložit","nove":"Uložit termín","proc":"Sloveso + co."}],
+ "pristupnost":[
+  "Pole Začátek a Konec mají společný hint přes aria-describedby.",
+  "Chyba Konec: aria-invalid + .error s id; error-summary s odkazem na pole.",
+  "Select má viditelný label s (nepovinné)."],
+ "poznamky_pro_kodera":[
+  "datetime-local; ukládat v Europe/Prague.",
+  "Možnosti selectu: „test · označení“ z otevřených použití pobočky (demo: 7 položek)."],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Drobečková navigace" style="margin-bottom:var(--s-3)"><ol><li><a href="kalendar.html">Kalendář zkoušek</a></li><li><span aria-current="page">Nový termín</span></li></ol></nav>
+<div class="page-head"><div class="stack-2"><p class="t-stitek">Kalendář zkoušek</p><h1 class="t-titulek">Nový termín zkoušky</h1></div></div>
+
+<form class="card stack-4" action="kalendar.html" method="post" style="max-width:var(--max-text)">
+ <div class="field"><label class="label" for="nazev">Název</label><span class="hint" id="nazev-h">Například „Zkouška odborné způsobilosti – Brno“.</span><input class="input" id="nazev" name="nazev" aria-describedby="nazev-h"></div>
+ <fieldset class="stack-2" aria-describedby="cas-h"><legend>Kdy</legend>
+  <span class="hint" id="cas-h">V pražském čase. V době zkoušky a 2&nbsp;hodiny před i po se aplikace neaktualizuje.</span>
+  <div class="grid-2" style="gap:var(--s-3)">
+   <div class="field"><label class="label" for="zacatek">Začátek</label><input class="input" id="zacatek" name="zacatek" type="datetime-local"></div>
+   <div class="field"><label class="label" for="konec">Konec</label><input class="input" id="konec" name="konec" type="datetime-local"></div>
+  </div>
+ </fieldset>
+ <div class="field"><label class="label" for="pouziti">Použití testu <span class="volitelne">(nepovinné)</span></label>
+  <select class="select" id="pouziti" name="pouziti"><option>Bez vazby na použití</option><option>BOZP – cvičný test · Cvičný test na webu</option><option>Radiační ochrana – ověření znalostí · Prezenční zkouška – učebna 2</option><option>Radiační ochrana – ověření znalostí · Ověření znalostí – 1. termín</option><option>Radiační ochrana – ověření znalostí · Přiděleno zkoušenému</option><option>Kybernetická bezpečnost – roční ověření · Přiděleno zkoušenému</option><option>Kybernetická bezpečnost – roční ověření · Roční školení – přístupové kódy</option><option>BOZP – cvičný test · Přiděleno zkoušenému</option></select></div>
+ <div class="form-actions">
+  <button class="btn btn--hlavni" type="submit">Uložit termín</button>
+  <a class="btn btn--tiche" href="kalendar.html">Zrušit</a>
+ </div>
+</form>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6);max-width:var(--max-text)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Další stavy stránky</h2>
+ <p class="t-stitek">Úprava termínu</p>
+ <div class="card stack">
+  <h3 class="t-nadpis">Upravit termín zkoušky</h3>
+  <div class="field"><label class="label" for="nazev-u">Název</label><input class="input" id="nazev-u" value="Prezenční zkouška – učebna 2"></div>
+  <div class="form-actions"><button class="btn btn--hlavni" type="button">Uložit termín</button><a class="btn btn--tiche" href="kalendar.html">Zrušit</a><button class="btn btn--nebezpecne" type="button" style="margin-left:auto">{{I:smazat}}Odstranit termín</button></div>
+ </div>
+ <p class="t-stitek">Chyba: konec před začátkem</p>
+ <div class="error-summary stack-2" role="alert" tabindex="-1"><p class="alert__nadpis">Termín se nepodařilo uložit</p><ul style="padding-left:var(--s-4)"><li><a href="#konec-x">Konec musí být po začátku</a></li></ul></div>
+ <div class="field"><label class="label" for="konec-x">Konec</label><span class="error" id="konec-x-e">{{I:pozor}}Konec musí být po začátku (5. 11. 2026, 10:00).</span><input class="input" id="konec-x" type="datetime-local" value="2026-11-05T09:00" aria-invalid="true" aria-describedby="konec-x-e" style="max-width:320px"></div>
+</section>

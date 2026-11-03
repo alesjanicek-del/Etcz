@@ -11,7 +11,7 @@ REVIZE = json.load(open('tools/revize.json')) if os.path.exists('tools/revize.js
 def rep(f):
     p = os.path.join('reports', f.replace('.html', '.json'))
     return json.load(open(p)) if os.path.exists(p) else None
-SKUP = [('W', 'Veřejný web'), ('A1', 'Aplikace · přihlášení, přehledy, otázky'), ('A2', 'Aplikace · testy, zadání, tisk, kalendář'), ('A3', 'Aplikace · výsledky, statistiky, správa, účet, nápověda'), ('Z', 'Zkoušený, e-mail a tiskové dokumenty')]
+SKUP = [('W', 'Veřejný web'), ('A1', 'Aplikace · přihlášení, přehledy, otázky'), ('A2', 'Aplikace · testy, zadání, tisk, kalendář'), ('A3', 'Aplikace · výsledky, statistiky, správa, účet, nápověda'), ('Z', 'Zkoušený, e-mail a tiskové dokumenty'), ('EN', 'Angličtina – vzorové stránky')]
 HEAD = lambda t, cur: f'''<!doctype html>
 <html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="kit-stranka" content="1"><title>{t} · exam-test design kit</title><link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/brand.css">
 <style>.kit-nav{{display:flex;flex-wrap:wrap;gap:var(--s-1);margin-left:auto}}.kit-nav a{{display:inline-flex;align-items:center;min-height:var(--cil-min);padding:0 12px;color:var(--c-grafit);text-decoration:none;font-weight:var(--w-tucne);font-size:var(--t-maly)}}.kit-nav a[aria-current]{{background:var(--c-grafit);color:var(--c-papir)}}.site-header__in{{flex-wrap:wrap;padding-block:var(--s-2)}}@media (max-width:767px){{.kit-nav{{margin-left:0}}}}

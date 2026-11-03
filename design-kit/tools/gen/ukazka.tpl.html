@@ -1,0 +1,84 @@
+<!--meta {"titulek":"Ukázka s průvodcem","popis":"Nechte nám kontakt. Ozveme se do 2 pracovních dnů a asi za 30 minut s vámi online projdeme aplikaci na vašem typu zkoušky.","sablona":"web","aktivni":""} -->
+<!--spec {
+ "route":"/ukazka (dnes /demo)","nazev":"Ukázka s průvodcem – poptávka","role":"veřejnost – zájemce o aplikaci","sablona":"web",
+ "ucel":"Získat kontakt zájemce a důvod poptávky, aby obchod mohl domluvit online ukázku (asi 30 minut).",
+ "hlavni_akce":"Odeslat poptávku",
+ "komponenty":["layout 2 sloupce (grid-2)","list-check","card","fieldset/legend","check (radio)","field","input","textarea","hint","volitelne","alert--info","error-summary","error","form-actions"],
+ "stavy":[
+  "prázdný (hlavní): formulář bez výběru; pokud přijde parametr ?duvod= nebo ?tarif=, je předvybraná odpovídající volba",
+  "chyba validace: nahoře .error-summary (role=alert, fokus na něj po odeslání) s odkazy na pole; u pole .error s id v aria-describedby a aria-invalid=true; vyplněné hodnoty zůstanou",
+  "chyba odeslání (server/síť): .alert--chyba nad tlačítkem, hodnoty zůstanou, nabídnut e-mail obchod@exam-test.cz",
+  "odesílání: tlačítko aria-disabled + text „Odesílám…“, zabránit dvojímu odeslání",
+  "odesláno: samostatná stránka ukazka-odeslano.html",
+  "oprávnění: veřejná stránka, bez přihlášení"],
+ "zmeny_ux":[
+  "Route /demo → /ukazka: „demo“ je samoobsluha (Vyzkoušet demo), tato stránka je schůzka (Ukázka s průvodcem). Přesměrovat 301.",
+  "Povinná pole bez hvězdiček a bez „(povinné)“; nepovinná mají „(nepovinné)“ – dnes jsou u každého pole oba druhy označení.",
+  "Volby důvodu jako přepínače s cílem 44 px; text první volby sjednocen se slovníkem.",
+  "Chyby: souhrn nahoře + hláška u pole; formulář nemaže vyplněné údaje.",
+  "Upozornění „nepište osobní údaje zkoušených“ je .alert v běžné velikosti u tlačítka (pravidlo 3).",
+  "Pod tlačítkem lhůta odpovědi (2 pracovní dny) – očekávání hned u akce.",
+  "Návrh: předvyplnění důvodu z parametru ?duvod= (odkazy z ceníku a šablon)."],
+ "texty":[
+  {"dnes":"Ukážeme vám exam-test","nove":"Ukázka s průvodcem","proc":"Název stránky = název akce ve slovníku; slib je v perexu."},
+  {"dnes":"Ukázka aplikace","nove":"Ukázka s průvodcem","proc":"Slovník."},
+  {"dnes":"(povinné)","nove":"(bez označení)","proc":"Povinné pole bez hvězdiček; označují se jen nepovinná."},
+  {"dnes":"Toto pole nevyplňujte","nove":"(pole skryté před uživateli i čtečkami)","proc":"Past na roboty nemá být čitelná ani pro čtečku – dnes ji čtečka přečte."},
+  {"dnes":"Raději napíšete nebo zavoláte? Kontakty najdete na stránce Kontakt.","nove":"Raději napíšete nebo zavoláte? obchod@exam-test.cz · Kontakt","proc":"E-mail přímo na stránce – o krok méně."},
+  {"dnes":"(nové)","nove":"Vyberte, s čím vám můžeme pomoci. / Vyplňte název organizace. / Zadejte e-mail ve tvaru jmeno@organizace.cz.","proc":"Návrh chybových hlášek: říkají, co udělat."}],
+ "pristupnost":[
+  "Skupina voleb ve fieldset/legend; chyba skupiny svázaná přes aria-describedby na fieldsetu.",
+  "Každé pole má viditelný label; autocomplete (organization, name, email, tel).",
+  "Error-summary má role=alert a po neúspěšném odeslání dostane fokus; odkazy vedou na id polí.",
+  "Hint u zprávy svázaný přes aria-describedby.",
+  "Pole-past (honeypot) má aria-hidden, tabindex=-1 a je mimo obrazovku – nesmí se dostat do pořadí fokusu."],
+ "poznamky_pro_kodera":["Odeslání na server: POST, po úspěchu přesměrování na /ukazka/odeslano (PRG).","Honeypot pole „web“ – v návrhu nevykresleno.","Parametry ?duvod=ukazka|organizace|urad|dotaz|sablona|zavedeni|import|jina a ?tarif=… předvyberou volbu (tarif → „organizace“, verejna-sprava → „urad“).","V kitu je action=ukazka-odeslano.html (GET) jen pro proklik návrhu."],
+ "chybi_komponenta":[]
+} -->
+<section class="section grid-bg">
+ <div class="container grid-2" style="align-items:start;gap:var(--s-5)">
+  <div class="stack-4">
+   <p class="t-stitek">Ukázka s průvodcem</p>
+   <h1 class="t-display">Ukážeme vám exam-test na vaší zkoušce</h1>
+   <p class="t-perex">Nechte nám kontakt. Ozveme se do 2&nbsp;pracovních dnů a domluvíme termín. Online s&nbsp;vámi pak asi za 30&nbsp;minut projdeme aplikaci na vašem typu zkoušky.</p>
+   <ul class="list-check">
+    <li><span>Ukážeme cestu od otázky po protokol: sestavení testu, prezenční zkoušku, tisk a ověření výsledku.</span></li>
+    <li><span>Probereme vaše požadavky: počet zkoušených, pobočky, přístupnost, nákup.</span></li>
+    <li><span>Připravíme vám zkušební přístup pro vaši organizaci.</span></li>
+   </ul>
+   <p>Raději napíšete nebo zavoláte? <a href="mailto:obchod@exam-test.cz">obchod@exam-test.cz</a> · <a href="kontakt.html">Všechny kontakty</a></p>
+   <p class="t-maly">Chcete se nejdřív podívat sami? <a href="vyzkouset.html">Vyzkoušet demo</a> – bez registrace.</p>
+  </div>
+  {{FORM:f|prazdny||Poptávka ukázky}}
+ </div>
+</section>
+
+<section class="section section--bila no-print" aria-labelledby="dalsi">
+ <div class="container stack-5">
+  <h2 id="dalsi" class="t-sekce">Další stavy stránky</h2>
+  <div class="grid-2" style="align-items:start;gap:var(--s-5)">
+   <div class="stack">
+    <h3 class="t-nadpis">Chyba validace</h3>
+    <p class="t-maly">Po odeslání s&nbsp;chybami: souhrn nahoře dostane fokus, vyplněné hodnoty zůstanou.</p>
+   </div>
+   {{FORM:e|chyba||Poptávka ukázky – s chybami|h}}
+  </div>
+  <div class="grid-2" style="align-items:start;gap:var(--s-5)">
+   <div class="stack">
+    <h3 class="t-nadpis">Chyba odeslání</h3>
+    <p class="t-maly">Server nebo síť selhaly. Hodnoty zůstanou ve formuláři, hláška je nad tlačítkem.</p>
+   </div>
+   <div class="card stack">
+    <div class="alert alert--chyba" role="alert">{{I:pozor}}<div><p class="alert__nadpis">Poptávku se nepodařilo odeslat</p><p>Zkuste to prosím znovu za chvíli, nebo nám napište na <a href="mailto:obchod@exam-test.cz">obchod@exam-test.cz</a>.</p></div></div>
+    <div class="form-actions"><button class="btn btn--hlavni" type="button">Odeslat poptávku znovu</button></div>
+   </div>
+  </div>
+  <div class="grid-2" style="align-items:start;gap:var(--s-5)">
+   <div class="stack">
+    <h3 class="t-nadpis">Odesílání</h3>
+    <p class="t-maly">Tlačítko je neaktivní, dokud server neodpoví.</p>
+   </div>
+   <div class="card"><div class="form-actions" style="border:0;padding:0"><button class="btn btn--hlavni" type="button" aria-disabled="true">Odesílám…</button><p class="t-maly" role="status">Odesíláme poptávku.</p></div></div>
+  </div>
+ </div>
+</section>

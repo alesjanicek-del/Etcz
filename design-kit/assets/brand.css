@@ -426,3 +426,24 @@ mark{background:var(--c-zvyraznovac-svetly);color:var(--c-grafit);box-shadow:ins
 .site-header .lang{display:none}
 @media (min-width:1440px){.site-header .lang{display:inline-flex}}
 .site-footer .row a{display:inline-flex;align-items:center;min-height:var(--cil-min)}
+/* ---------- Doplňky v1.5 (EN délky, zkoušení) ---------- */
+.tabs{flex-wrap:wrap;overflow:visible;contain:none}
+.hero__grid>*{min-width:0}
+h1,h2,h3,.t-display,.t-sekce,.t-titulek,.t-nadpis{overflow-wrap:break-word;hyphens:auto}
+.table tr[aria-current]{background:var(--c-zvyraznovac-svetly)}
+.qr--velky{width:288px;height:288px}
+.row-menu{position:relative;display:inline-block}
+.row-menu>summary{list-style:none;cursor:pointer}
+.row-menu>summary::-webkit-details-marker{display:none}
+.row-menu__panel{position:absolute;right:0;top:calc(100% + 4px);z-index:30;min-width:220px;background:var(--c-bila);border:var(--b-silna) solid var(--c-grafit);box-shadow:var(--stin-tvrdy);display:flex;flex-direction:column}
+.row-menu__panel a,.row-menu__panel button{display:flex;align-items:center;gap:var(--s-2);min-height:var(--cil-min);padding:0 var(--s-3);color:var(--c-grafit);text-decoration:none;background:none;border:0;font:inherit;text-align:left;cursor:pointer}
+.row-menu__panel a:hover,.row-menu__panel button:hover{background:var(--c-zvyraznovac-svetly)}
+.switch input{appearance:none;width:48px;height:28px;border:var(--b-silna) solid var(--c-grafit);background:var(--c-bila);position:relative;cursor:pointer;margin:0}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--c-grafit)}
+.switch input:checked{background:var(--c-zvyraznovac)}
+.switch input:checked::after{left:23px}
+.switch input:focus-visible{box-shadow:var(--fokus)}
+.sheet-box{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:var(--b-silna) solid var(--c-grafit);background:var(--c-bila);font:var(--w-mono-tucne) var(--t-stitek) var(--f-mono);color:var(--c-seda)}
+.sheet-box--x{background:var(--c-grafit);color:var(--c-zvyraznovac)}
+@media (max-width:1023px){.layout-aside--aside-first>:last-child{order:-1}}
+.table-wrap{max-width:100%;overflow-x:auto}

@@ -41,7 +41,7 @@ def head(t, popis='', lang='cs'):
 <link rel="stylesheet" href="../assets/brand.css">
 </head>'''
 
-WEB_NAV_EN = [('en-funkce.html', 'Features'), ('#', 'Public sector'), ('#', 'Companies'), ('#', 'Education'), ('#', 'Security'), ('#', 'Pricing')]
+WEB_NAV_EN = [('#', 'Features'), ('#', 'Public sector'), ('#', 'Companies'), ('#', 'Education'), ('#', 'Security'), ('#', 'Pricing')]
 def web(meta, body):
     if meta.get('lang') == 'en': return web_en(meta, body)
     a = meta.get('aktivni', '')
@@ -151,13 +151,13 @@ def app(meta, body):
 </div>'''
 
 def exam(meta, body):
-    return f'''{head(meta['titulek'])}
+    return f'''{head(meta['titulek'], '', meta.get('lang', 'cs'))}
 <body class="grid-bg">
 <a class="skip" href="#obsah">{meta.get('skip', 'Přeskočit na obsah')}</a>
 {body}'''
 
 def cisty(meta, body):
-    return f'''{head(meta['titulek'], meta.get('popis', ''))}
+    return f'''{head(meta['titulek'], meta.get('popis', ''), meta.get('lang', 'cs'))}
 <body class="{meta.get('body_class', 'grid-bg')}">
 <a class="skip" href="#obsah">Přeskočit na obsah</a>
 {body}'''

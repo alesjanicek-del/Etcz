@@ -1,0 +1,114 @@
+<!--meta {"titulek":"Nápověda","popis":"Postupy pro práci s aplikací exam-test podle role: zkoušení, autoři otázek, lektoři, administrátoři a objednatelé. Příručky PDF ke stažení.","sablona":"web","aktivni":""} -->
+<!--spec {
+ "route":"/napoveda","nazev":"Nápověda – rozcestník (veřejná)","role":"veřejnost – zkoušení i uživatelé bez přihlášení","sablona":"web",
+ "ucel":"Rychle dovést zkoušeného k řešení potíže s testem a ostatní role k jejich kapitolám; nabídnout příručky PDF.",
+ "hlavni_akce":"Hledat v nápovědě; zkoušený: otevřít kapitolu pro zkoušené",
+ "komponenty":["field + input (search)","btn","card card--papir","grid-2","faq (details) jako sbalitelné sekce","list s odkazy","alert--info"],
+ "stavy":[
+  "hlavní: rozcestník; sekce Pro zkoušené rozbalená, ostatní role sbalené",
+  "hledání – výsledky: samostatný výpis (nápověda v aplikaci, skupina A3); prázdný výsledek: „Nic jsme nenašli“ + tipy",
+  "načítání / chyba: statická stránka, nevznikají",
+  "oprávnění: veřejná; přihlášený uživatel má stejné kapitoly v aplikaci (app/napoveda.html) s rozbalenou svou rolí"],
+ "zmeny_ux":[
+  "Zkoušený je na prvním místě: velká karta „Jdete na test nebo zkoušku?“ s 8 nejčastějšími úkoly – dnes jsou úkoly a kapitoly pro zkoušené ve dvou blocích se stejným obsahem.",
+  "Ostatní role ve sbalitelných sekcích s počtem kapitol; každá kapitola = odkaz + jedna věta popisu.",
+  "Vyhledávání nahoře, s viditelným labelem a příklady v hintu.",
+  "Příručky PDF jako seznam s formátem v textu odkazu.",
+  "Kotvy #zkouseni a #overeni (odkazují na ně stránky Kontakt a Ověření)."],
+ "texty":[
+  {"dnes":"Postupy pro práci s aplikací podle toho, co potřebujete udělat. Kapitoly pro vaši roli jsou rozbalené, ostatní najdete níže.","nove":"Postupy podle toho, co potřebujete udělat. Jdete na test? Začněte první kartou.","proc":"Na veřejném webu role neznáme; věta o rozbalení neplatí."},
+  {"dnes":"Hledat","nove":"Hledat v nápovědě","proc":"Tlačítko říká co."},
+  {"dnes":"Způsoby zadání testu – Prezenční zkouška, přístupové kódy pro osoby, přidělení studujícím, anonymní odkaz a tisk.","nove":"Způsoby použití testu – Prezenční zkouška, osobní kódy, přidělení skupině, veřejný odkaz a tisk.","proc":"Slovník (zakázané: Přístupové kódy pro osoby, Odkaz (anonymní))."},
+  {"dnes":"Výsledky, protokol a uvolnění výsledků","nove":"Výsledky, protokol a zpřístupnění výsledků","proc":"Slovník: Zpřístupnit výsledky."},
+  {"dnes":"Co je heslo k testu","nove":"Co je heslo k testu","proc":"Beze změny."},
+  {"dnes":"Celá sekce pro zkoušené","nove":"Všechny kapitoly pro zkoušené","proc":"Jasnější cíl odkazu."},
+  {"dnes":"Nenašli jste, co potřebujete? Obraťte se na pořadatele zkoušky nebo na administrátora své organizace.","nove":"beze změny","proc":"Odpovídá pravidlům."}],
+ "pristupnost":[
+  "Vyhledávání: form role=search, label + hint v aria-describedby.",
+  "Sbalitelné sekce přes details/summary s počtem kapitol v textu summary.",
+  "Jediné H1, karty H2, kapitoly jsou odkazy v seznamu (ne nadpisy).",
+  "Odkazy na PDF mají formát v textu."],
+ "poznamky_pro_kodera":["Kapitoly odkazují na šablonu článku ../app/napoveda-clanek.html (skupina A3); kodér doplní skutečné URL.","PDF příručky: doplnit URL (dnes #)."],
+ "chybi_komponenta":[]
+} -->
+<section class="section grid-bg">
+ <div class="container stack-5">
+  <div class="stack-4">
+   <h1 class="t-display">Nápověda</h1>
+   <p class="t-perex measure">Postupy podle toho, co potřebujete udělat. Jdete na test? Začněte první kartou.</p>
+   <form role="search" class="stack-2" action="../app/napoveda.html" method="get" style="max-width:var(--max-text)">
+    <label class="label" for="q">Hledat v&nbsp;nápovědě</label>
+    <span class="hint" id="q-h">Například „zapomenuté heslo“, „prodloužit čas“ nebo „vytisknout klíče“. Diakritiku psát nemusíte.</span>
+    <div class="row" style="flex-wrap:nowrap;gap:var(--s-2)"><input class="input" type="search" id="q" name="q" aria-describedby="q-h"><button class="btn btn--hlavni" type="submit">{{I:hledat}}Hledat<span class="sr-only"> v nápovědě</span></button></div>
+   </form>
+  </div>
+
+  <div class="card card--papir stack-4" id="zkouseni" aria-labelledby="zk-h">
+   <div class="stack-2"><p class="t-stitek">Pro zkoušené</p><h2 id="zk-h" class="t-sekce">Jdete na test nebo zkoušku?</h2></div>
+   <div class="grid-2" style="gap:var(--s-4) var(--s-5)">
+    <div class="stack">
+     <h3 class="t-nadpis">Nejčastější úkoly</h3>
+     <ul class="stack-2" style="list-style:none;padding:0">
+      <li><a href="../app/napoveda-clanek.html">Jak zadat přístupový kód</a></li>
+      <li><a href="../app/napoveda-clanek.html">Co je heslo k&nbsp;testu</a></li>
+      <li><a href="../app/napoveda-clanek.html">Jak vyplňovat test</a></li>
+      <li><a href="../app/napoveda-clanek.html">Co znamená dohled nad zkouškou</a></li>
+      <li><a href="../app/napoveda-clanek.html">Co dělat při výpadku internetu</a></li>
+      <li><a href="../app/napoveda-clanek.html">Jak odevzdat test</a></li>
+      <li><a href="../app/napoveda-clanek.html">Jak požádat o více času</a></li>
+      <li><a href="../app/napoveda-clanek.html">Co dělat, když kód není platný</a></li>
+     </ul>
+    </div>
+    <div class="stack">
+     <h3 class="t-nadpis">Kapitoly pro zkoušené</h3>
+     <ul class="stack-4" style="list-style:none;padding:0">
+      <li class="stack-2" style="gap:var(--s-1)"><a href="../app/napoveda-clanek.html">Jak se dostanete k&nbsp;testu</a><span class="t-maly">Přístupový kód, prezenční zkouška v&nbsp;místnosti, odkaz od pořadatele nebo účet studujícího.</span></li>
+      <li class="stack-2" style="gap:var(--s-1)"><a href="../app/napoveda-clanek.html">Úvodní stránka testu</a><span class="t-maly">Co uvidíte před zahájením, heslo k&nbsp;testu a prodloužení času kvůli zdravotnímu znevýhodnění.</span></li>
+      <li class="stack-2" style="gap:var(--s-1)"><a href="../app/napoveda-clanek.html">Vyplňování testu</a><span class="t-maly">Zbývající čas, přehled otázek, Vrátit se později, jedna nebo více správných odpovědí a ukládání.</span></li>
+      <li class="stack-2" style="gap:var(--s-1)"><a href="../app/napoveda-clanek.html">Výpadek spojení, zavřené okno, jiné zařízení</a><span class="t-maly">Co dělat, když vypadne internet, omylem zavřete okno nebo se vybije telefon.</span></li>
+      <li class="stack-2" style="gap:var(--s-1)" id="overeni"><a href="../app/napoveda-clanek.html">Ověření pravosti protokolu</a><span class="t-maly">Jak kdokoli bez přihlášení ověří, že protokol nebo osvědčení je pravé a nezměněné a zda osvědčení ještě platí.</span></li>
+     </ul>
+     <p><a href="../app/napoveda.html#zkouseni">Všechny kapitoly pro zkoušené (9)</a></p>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="role">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack">
+   <h2 id="role" class="t-sekce">Ostatní role</h2>
+   <p>Postupy pro jiné role. Hodí se, když potřebujete vědět, co může udělat kolega.</p>
+  </div>
+  <div class="faq">
+{{ROLES}}
+  </div>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="stahnout">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack">
+   <h2 id="stahnout" class="t-sekce">Ke stažení a k&nbsp;tisku</h2>
+   <p class="t-maly">Příručky odpovídají aktuální verzi aplikace. <a href="../app/co-je-noveho.html">Co je nového v&nbsp;aplikaci</a></p>
+  </div>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:tisk}}<span><a href="#">Pokyny pro zkoušené (1 strana, PDF)</a> – k&nbsp;rozdání do místnosti</span></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:stahnout}}<a href="#">Příručka: Zkoušený (PDF)</a></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:stahnout}}<a href="#">Příručka: Studující (PDF)</a></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:stahnout}}<a href="#">Příručka: Autor otázek (PDF)</a></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:stahnout}}<a href="#">Příručka: Lektor (PDF)</a></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:stahnout}}<a href="#">Příručka: Administrátor pobočky (PDF)</a></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:stahnout}}<a href="#">Příručka: Administrátor organizace (PDF)</a></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:stahnout}}<a href="#">Příručka: Objednatel (zmocněnec) (PDF)</a></li>
+   <li class="row" style="gap:var(--s-2);flex-wrap:nowrap;align-items:flex-start">{{I:stahnout}}<a href="#">Celá příručka (PDF)</a></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section section--bila" aria-label="Kontakt">
+ <div class="container">
+  <div class="alert alert--info" role="note">{{I:info}}<p>Nenašli jste, co potřebujete? Obraťte se na pořadatele zkoušky nebo na administrátora své organizace.</p></div>
+ </div>
+</section>

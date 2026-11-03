@@ -1,0 +1,98 @@
+<!--meta {"titulek": "Tests and exams online and on paper", "popis": "exam-test for the public sector, companies and education: a different test version for everyone, exams in the room or on paper, and a report anyone can verify.", "sablona": "web", "aktivni": "", "lang": "en"} -->
+<!--spec {"route": "/en/", "nazev": "Homepage – English", "role": "public – buyers", "sablona": "web (lang=en)", "ucel": "English homepage for the planned /en/ site (WP15). Same structure as the Czech homepage so both stay in sync.", "hlavni_akce": "Try the demo", "komponenty": ["site-header (EN)", "hero", "facts", "feature", "faq", "cta-band"], "stavy": ["Static page."], "zmeny_ux": ["Header shows Sign in + one primary action (Try the demo); the language switch CS/EN is in the header from 1440 px, in the mobile menu and in the footer.", "Links to pages that exist only in Czech say “(in Czech)” and have hreflang=\"cs\" – per owner decision, legal texts stay Czech with a note."], "texty": [{"dnes": "Jeden test. Pro každého jiná variace. Online i na papíře.", "nove": "One test. A different version for everyone. Online and on paper.", "proc": "Same promise; “version” instead of “variation” (more natural in EN)."}, {"dnes": "Ukázka s průvodcem", "nove": "Book a guided demo", "proc": "Verb first; distinguishes from self-service demo."}, {"dnes": "Živý panel", "nove": "Live monitor", "proc": "“Live view” flagged for native review; “monitor” says what it does."}], "pristupnost": ["<html lang=\"en\">; Czech-only link targets marked lang=\"cs\" hreflang=\"cs\".", "Language switch is a nav with aria-label “Language / Jazyk”, current language aria-current."], "poznamky_pro_kodera": ["Real URLs: /en/…; add <link rel=\"alternate\" hreflang> pairs and x-default.", "EN copy is a proposal for native review (handoff list)."], "chybi_komponenta": []} -->
+
+<section class="hero grid-bg">
+ <div class="container hero__grid">
+  <div class="stack-4">
+   <p class="t-stitek">For the public sector, companies and education</p>
+   <h1 class="t-display">One test. A <span class="t-zvyraznit">different version</span> for everyone. Online and on paper.</h1>
+   <p class="t-perex measure">Check what employees, applicants and students know. Every result comes with a report that anyone can verify – no sign-in needed.</p>
+   <div class="row"><a class="btn btn--hlavni" href="#">Try the demo {{I:sipka-vpravo}}</a><a class="btn" href="#">Book a guided demo</a></div>
+   <p class="t-maly">The demo needs no registration. We schedule guided demos within 2 working days.</p>
+   <div class="facts"><div><b>No install</b><span class="t-maly">runs in the browser</span></div><div><b>WCAG 2.1 AA</b><span class="t-maly">test taker interface</span></div><div><b>EU</b><span class="t-maly">data in Germany</span></div></div>
+  </div>
+  <form class="card card--papir stack" action="#" method="get" aria-labelledby="ov-h">
+   <p class="t-stitek">Verification</p>
+   <h2 id="ov-h" class="t-nadpis">Got a report? Verify it.</h2>
+   <div class="field"><label class="label" for="kod">Code from the report</label><input class="input input--kod" id="kod" name="kod" placeholder="H5SAY-GVTNY-EDXAP-67SXD" autocomplete="off" aria-describedby="kod-h"><span class="hint" id="kod-h">You will find it next to the QR code. No sign-in needed.</span></div>
+   <button class="btn btn--hlavni" type="submit">Verify report</button>
+  </form>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="rozdil">
+ <div class="container stack-5">
+  <div class="stack-2"><p class="t-stitek">What makes us different</p><h2 id="rozdil" class="t-sekce">Three things you won’t find elsewhere</h2></div>
+  <div class="grid-3">
+   <div class="feature"><p class="t-cislo t-titulek">1 test → N versions</p><h3 class="t-nadpis">Neighbours get different tests</h3><p>Required and random questions, shuffled questions and answers. Every test taker gets their own version.</p></div>
+   <div class="feature"><p class="t-cislo t-titulek">online = paper</p><h3 class="t-nadpis">The same test on screen and on paper</h3><p>In the room via QR code, with personal codes, by link – or as printed versions with answer sheets and keys.</p></div>
+   <div class="feature"><p class="t-cislo t-titulek">H5SAY-GVTNY-EDXAP-67SXD</p><h3 class="t-nadpis">Results that stand up</h3><p>Every attempt produces a report with a verification code. Any later change would show up on verification.</p></div>
+  </div>
+  <p><a href="#">All features by role</a></p>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="produkt">
+ <div class="container stack-4">
+  <h2 id="produkt" class="t-sekce">The instructor sees the whole room</h2>
+  <p class="t-perex measure">The live monitor shows who is writing, how far they are and how they did. Instructors can extend time or issue a handover code to continue on another computer.</p>
+  <figure class="browser"><div class="browser__bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="../assets/img/zivy-panel.png" alt="Live monitor of a safety exam: 3 writing, 4 of 7 submitted, 1 passed. For each test taker: progress, time left, result and alerts." width="1280" height="800" loading="lazy"></figure>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="koho">
+ <div class="container stack-4">
+  <h2 id="koho" class="t-sekce">Who exam-test is for</h2>
+  <ul class="stack-2" style="list-style:none;padding:0">
+   <li class="card"><a class="row-between" href="#firmy" style="text-decoration:none;color:inherit"><span class="stack-2"><span class="t-nadpis">Companies and workplace safety</span><span class="t-maly">Health & safety and fire training, periodic re-testing, one overview across all sites.</span></span><span class="btn btn--male" aria-hidden="true">{{I:sipka-vpravo}}</span></a></li>
+   <li class="card"><a class="row-between" href="#urady" style="text-decoration:none;color:inherit"><span class="stack-2"><span class="t-nadpis">Public sector</span><span class="t-maly">Professional competence exams, reports for the file, accessibility as required by law.</span></span><span class="btn btn--male" aria-hidden="true">{{I:sipka-vpravo}}</span></a></li>
+   <li class="card"><a class="row-between" href="#skoly" style="text-decoration:none;color:inherit"><span class="stack-2"><span class="t-nadpis">Schools and courses</span><span class="t-maly">Shared questions for the whole team, practice tests with feedback, final exams.</span></span><span class="btn btn--male" aria-hidden="true">{{I:sipka-vpravo}}</span></a></li>
+   <li class="card"><a class="row-between" href="#strediska" style="text-decoration:none;color:inherit"><span class="stack-2"><span class="t-nadpis">Training centres</span><span class="t-maly">End-of-course exams for different clients and locations, a report for every graduate.</span></span><span class="btn btn--male" aria-hidden="true">{{I:sipka-vpravo}}</span></a></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section" aria-labelledby="jak">
+ <div class="container stack-5">
+  <h2 id="jak" class="t-sekce">How it works</h2>
+  <ol class="grid-4">
+   <li class="num-step"><span class="t-cislo">01</span><div class="stack-2"><h3 class="t-nadpis">Prepare questions</h3><p>In the editor or by XLSX import. We can convert your existing tests.</p></div></li>
+   <li class="num-step"><span class="t-cislo">02</span><div class="stack-2"><h3 class="t-nadpis">Build the test</h3><p>Required questions, random picks from question banks, time limit and scoring.</p></div></li>
+   <li class="num-step"><span class="t-cislo">03</span><div class="stack-2"><h3 class="t-nadpis">Deliver it</h3><p>In the room, with personal codes, by link, by assignment – or print it.</p></div></li>
+   <li class="num-step"><span class="t-cislo">04</span><div class="stack-2"><h3 class="t-nadpis">Evaluate and prove</h3><p>Instant results, a report with a verification code, spreadsheet export.</p></div></li>
+  </ol>
+ </div>
+</section>
+
+<section class="section section--grafit" aria-labelledby="odolnost">
+ <div class="container grid-2" style="align-items:start">
+  <div class="stack-3"><h2 id="odolnost" class="t-sekce">A Wi-Fi outage won’t stop the exam</h2><p class="t-perex">Answers are saved after every change. If the connection drops, they wait in the browser and are sent automatically.</p></div>
+  <ul class="list-check">
+   <li><span><b>Handover to another computer.</b> The instructor issues a code and the test taker continues where they left off.</span></li>
+   <li><span><b>No password for test takers.</b> An access code is enough – no account needed.</span></li>
+   <li><span><b>Data kept apart.</b> Each branch sees only its own data; administrators use two-step verification.</span></li>
+   <li><span><b>Data in the EU.</b> Servers in Germany, export any time, free of charge. <a href="#">Security in detail</a></span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="section section--bila" aria-labelledby="faq">
+ <div class="container grid-2" style="align-items:start">
+  <h2 id="faq" class="t-sekce">Frequently asked questions</h2>
+  <div class="faq">
+   <details><summary>Does it prevent cheating?</summary><div><p>Not completely, and we don’t claim it does. The app does not lock the computer. But everyone gets a different version, and the instructor sees who left the window, copied text or lost the connection. For high-stakes exams we recommend a supervised exam in the room.</p></div></details>
+   <details><summary>Can people with disabilities take the test?</summary><div><p>Yes. The test taker interface is designed to WCAG 2.1 AA and works with a keyboard. Instructors can give individual people extra time. Known gaps are listed in the <a href="prohlaseni-o-pristupnosti.html" lang="cs" hreflang="cs">accessibility statement (in Czech)</a>.</p></div></details>
+   <details><summary>How much does it cost?</summary><div><p>Companies and schools pay an annual plan from CZK 9,900 excl. VAT, based on attempts, branches and users. Public bodies receive an individual quote. <a href="cenik.html" lang="cs" hreflang="cs">Pricing (in Czech)</a></p></div></details>
+   <details><summary>Our tests are in Word or on paper. How do we convert them?</summary><div><p>Import questions from an XLSX sheet. We convert Word, PDF, Moodle or paper tests for you – free quote within 2 working days.</p></div></details>
+   <details><summary>Can we test on paper?</summary><div><p>Yes. Print any number of versions with answer sheets and keys. The instructor enters the paper answers and they are scored just like online.</p></div></details>
+   <details><summary>Can we leave at any time?</summary><div><p>Yes. Export questions and results any time. After the contract ends, we delete the data within 60 days.</p></div></details>
+  </div>
+ </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta">
+ <div class="container row-between">
+  <div class="stack-2"><h2 id="cta" class="t-sekce">Try it with your own exam</h2><p>We’ll show you the app online in about 30 minutes, using your type of exam.</p></div>
+  <div class="row"><a class="btn btn--hlavni" href="#">Book a guided demo</a><a class="btn" href="#">Try the demo</a></div>
+ </div>
+</section>

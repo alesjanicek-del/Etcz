@@ -1,0 +1,52 @@
+from common import *
+opts=[7,5,4,6,6,4,4,4,4,4,6,4]; vice={1,4,5,11}
+L='ABCDEFG'
+rows=''
+for i,n in enumerate(opts,1):
+    cells=''.join(f'<td style="padding:var(--s-1) 0">{BOX if j<n else ""}</td>' for j in range(7))
+    tag='<span class="vice">Více odpovědí</span>' if i in vice else ''
+    rows+=f'<tr style="border-bottom:var(--b-tenka) dashed var(--c-mrizka)"><th scope="row" class="t-cislo t-nadpis" style="text-align:left;padding:var(--s-1) 0">{i:02d}<span class="sr-only"> ({n} možností{", více odpovědí" if i in vice else ""})</span></th><td style="padding:var(--s-1) 0">{tag}</td>{cells}</tr>\n'
+head=''.join(f'<th scope="col" class="t-stitek" style="font-weight:var(--w-mono);padding-bottom:var(--s-2)">{c}</th>' for c in L)
+inner=f'''<header class="row-between" style="align-items:flex-start;gap:var(--s-4);padding-bottom:var(--s-3);border-bottom:var(--b-akcent) solid var(--c-grafit)">
+ <div class="stack-2" style="flex:1">
+  <p class="row" style="gap:var(--s-2)"><img src="../assets/logo/exam-test-znacka.svg" alt="" width="20" height="20"><b class="t-kod" style="letter-spacing:0">exam-test</b><span class="t-stitek">Ukázková organizace (demo) · Návštěvník 6013</span></p>
+  <p class="t-stitek">Odpovědní list · variace 1 z 2</p>
+  <h1 class="t-nadpis">{TEST}</h1>
+ </div>
+ <div class="row" style="gap:var(--s-3);align-items:stretch">
+  <div class="stack-2" style="border:var(--b-silna) solid var(--c-grafit);padding:var(--s-3);text-align:center;justify-content:center"><p class="t-stitek">Kód variace</p><p class="t-kod t-titulek">UG98N3X6</p><p class="t-maly">stejný jako na zadání</p></div>
+  <img src="../assets/img/qr-ukazka.png" alt="QR kód variace UG98N3X6 pro načtení při zápisu odpovědí" width="120" height="124" style="width:120px;height:auto;image-rendering:pixelated">
+ </div>
+</header>
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:var(--s-3)">
+ <div style="border:var(--b-silna) solid var(--c-grafit);padding:var(--s-2) var(--s-3);min-height:var(--s-6)"><p class="t-stitek">Jméno a příjmení</p></div>
+ <div style="border:var(--b-silna) solid var(--c-grafit);padding:var(--s-2) var(--s-3);min-height:var(--s-6)"><p class="t-stitek">Podpis</p></div>
+</div>
+<div class="alert" style="align-items:center;flex-wrap:wrap;gap:var(--s-2) var(--s-3)">
+ <p><b>Jak vyplnit</b></p>
+ <p class="row" style="gap:var(--s-2)"><span aria-hidden="true" style="display:grid;place-items:center;width:var(--s-5);height:var(--s-5);border:var(--b-silna) solid var(--c-grafit);background:var(--c-bila)">{{{{I:zavrit}}}}</span>křížek = moje odpověď</p>
+ <p class="row" style="gap:var(--s-2)"><span aria-hidden="true" style="display:block;width:var(--s-5);height:var(--s-5);background:var(--c-grafit)"></span>začerněno = oprava, neplatí</p>
+</div>
+<table style="width:100%;border-collapse:collapse;text-align:center">
+ <caption class="sr-only">Políčka pro odpovědi: řádek = otázka, sloupec = písmeno odpovědi. U otázek bez štítku označte jedno písmeno.</caption>
+ <thead><tr style="border-bottom:var(--b-silna) solid var(--c-grafit)"><th scope="col" class="t-stitek" style="text-align:left;font-weight:var(--w-mono);padding-bottom:var(--s-2);width:12%">Otázka</th><th scope="col" style="width:20%"><span class="sr-only">Poznámka</span></th>{head}</tr></thead>
+ <tbody>
+{rows} </tbody>
+</table>
+<div class="row" style="border:var(--b-silna) dashed var(--c-seda);padding:var(--s-3);gap:var(--s-5);align-items:flex-end">
+ <p class="t-stitek">Vyplní lektor</p>
+ <p class="stack-2" style="flex:1"><span class="t-maly">Body</span><span class="t-cislo t-nadpis" style="border-bottom:var(--b-tenka) solid var(--c-grafit);text-align:right;padding-bottom:var(--s-1)">/ 17</span></p>
+ <p class="stack-2" style="flex:1"><span class="t-maly">Zapsáno do aplikace · podpis</span><span style="border-bottom:var(--b-tenka) solid var(--c-grafit);height:var(--s-5)"></span></p>
+</div>
+{foot(TEST+' · Odpovědní list · UG98N3X6','strana 1 / 2')}'''
+spec={"route":"(PDF) Tisk → dávka → Odpovědní listy","nazev":"Odpovědní list (A4)","role":"zkoušený (vyplňuje), lektor (zapisuje)","sablona":"a4",
+"ucel":"Papírový list, na který zkoušený křížkem zapíše odpovědi své variace. Lektor z něj odpovědi zapíše do aplikace (Zápis papírových odpovědí) podle kódu nebo QR.",
+"hlavni_akce":"Označit odpovědi křížkem; lektor: načíst QR a zapsat odpovědi",
+"komponenty":["a4","t-stitek","t-kod","vice","alert","table (vlastní, tisková)","t-cislo"],
+"stavy":["jedna strana = jedna variace (v PDF dávky za sebou, strana x / počet variací)","variace s 4–7 možnostmi: počet políček odpovídá skutečnému počtu možností otázky (prázdné buňky bez políčka)","více než 20 otázek: list pokračuje na další straně se stejnou hlavičkou a kódem","prázdný/chyba/načítání/oprávnění: netýká se (PDF generuje lektor v Tisku)"],
+"zmeny_ux":["Kód variace je velký v rámečku vpravo nahoře s poznámkou „stejný jako na zadání“ a QR kódem pro rychlý zápis – dnes je kód malý vpravo a ještě jednou v pokynu.","Legenda Jak vyplnit ukazuje křížek i opravu (začernění) obrázkem – dnešní list opravu nepopisuje.","Otázky s více odpověďmi mají štítek „Více odpovědí“ přímo na listu (jako v zadání a online).","Řádky jsou oddělené přerušovanou čarou a čísla otázek jsou dvoumístná mono (01–12) – stejné číslování jako online a v zadání.","Pole Vyplní lektor (body / max. bodů a podpis zapisovatele) na konci listu – papírový doklad, kdo odpovědi přepsal.","Rohové značky pro zarovnání při skenování (návrh pro budoucí strojové čtení)."],
+"texty":[{"dnes":"Zvolené odpovědi označte křížkem v políčku. Kód variace: UG98N3X6 (musí být stejný jako na zadání).","nove":"Jak vyplnit: křížek = moje odpověď · začerněno = oprava, neplatí + u kódu „stejný jako na zadání“","proc":"Jednou a na jednom místě; obrázek místo věty."},{"dnes":"Kybernetická bezpečnost — roční ověření – odpovědní list","nove":"Odpovědní list · variace 1 z 2 (štítek) + název testu (nadpis)","proc":"Typ dokumentu ve štítku, název jako nadpis."},{"dnes":"Kybernetická bezpečnost — roční ověření · Odpovědní listy · strana 1/2","nove":"Kybernetická bezpečnost — roční ověření · Odpovědní list · UG98N3X6 · strana 1 / 2","proc":"Kód variace i v patičce – rozpadlý stoh listů se dá složit."}],
+"pristupnost":["Tiskový dokument: kontrast grafit na bílé, políčka 24 px (≈ 6,4 mm) s rámečkem 2 px – dobře viditelné i pro slabozraké.","Pro zkoušeného, který nemůže psát rukou: lektor test zadá online (stejná variace) – nápověda lektora.","HTML náhled: tabulka s caption, th scope pro řádky i sloupce, políčka aria-hidden; sr-only u čísla otázky říká počet možností.","Axe/kontrola: A4 má pevnou šířku 210 mm, proto je obalena posuvnou oblastí (role=region, tabindex=0) – na mobilu 375 px se posouvá vodorovně, což je u náhledu tisku přijatelné; samotné PDF se na mobilu zobrazuje v prohlížeči PDF."],
+"poznamky_pro_kodera":["Generovat do PDF (A4, okraje 14/16 mm); rohové značky 6 mm od okraje.","Data: dávka „Náhled pro návrh“, 2 variace, variace 1 UG98N3X6, max. 17 bodů; počty možností z PDF dema (1:7, 2:5, 3:4, 4:6, 5:6, 6–10:4, 11:6, 12:4).","QR obsahuje kód variace (pro Zápis papírových odpovědí); v návrhu je ukázkový obrázek assets/img/qr-ukazka.png.","Barvy jen grafit/bílá/šedá + světle žlutá legenda (při ČB tisku zůstane čitelná)."],
+"chybi_komponenta":["tisková tabulka odpovědí s políčky (.answer-box) – inline styly s tokeny","rámeček kódu variace s QR (.kod-variace)","rohové ořezové značky (.a4__znacky)"]}
+write('odpovedni-list.html',{"titulek":"Odpovědní list – "+TEST,"sablona":"a4"},spec,page(inner,crop=True),'Odpovědní list')

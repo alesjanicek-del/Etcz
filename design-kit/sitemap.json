@@ -749,5 +749,18 @@
   "route": "(PDF)",
   "nazev": "Osvědčení / záznam o školení (A4)",
   "skupina": "Z"
+ },
+ {
+  "soubor": "web/en-index.html",
+  "route": "/en/",
+  "nazev": "Homepage – English (vzor)",
+  "skupina": "EN"
+ },
+ {
+  "soubor": "app/en-test-otazka.html",
+  "route": "/t/:id (en)",
+  "nazev": "Question – English (vzor)",
+  "role": "zkouseny",
+  "skupina": "EN"
  }
 ]
