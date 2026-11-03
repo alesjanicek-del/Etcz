@@ -1,0 +1,65 @@
+<!--meta {"titulek":"Exam calendar","sablona":"app","role":"lektor","aktivni":"kalendar.html","demo":false,"lang":"en","cs_verze":"kalendar.html"} -->
+<!--spec {
+ "route":"/kalendar (lang=en)","nazev":"Exam calendar – English","role":"instructor","sablona":"app",
+ "ucel":"Record the dates of real exams. During them (±2 hours) the operator does not install new versions or schedule maintenance.",
+ "hlavni_akce":"Add an exam date",
+ "komponenty":["page-head","alert--info","toolbar","check","table-wrap","table--stack","btn--male","btn--tiche","dialog","empty"],
+ "stavy":[
+  "Default: upcoming exam dates (drawn).",
+  "Empty: “You have no exam dates yet.” with why to add them (drawn).",
+  "Past dates: Show past dates checkbox; past ones have stav--neutral “Took place”.",
+  "Delete confirmation: dialog (drawn).",
+  "No permission: Edit / Delete only for the creator, an organisation administrator and an instructor or branch administrator of the date’s branch; other branches’ dates are not shown."],
+ "zmeny_ux":[
+  "Layout and behaviour as on the Czech page (kalendar.html).",
+  "Date format in EN: 5 Nov 2026, 10:00–12:00 (24-hour clock, as in the rest of the app)."],
+ "texty":[
+  {"dnes":"Kalendář zkoušek","nove":"Exam calendar","proc":"Plain term."},
+  {"dnes":"Zapište termíny skutečných zkoušek. V jejich době a 2 hodiny před i po se aplikace neaktualizuje.","nove":"Add the dates of real exams. The app is not updated during them or for 2 hours before and after.","proc":"Call to action + benefit."},
+  {"dnes":"Přidat termín","nove":"Add exam date","proc":"Verb + object."},
+  {"dnes":"Zobrazit minulé termíny","nove":"Show past dates","proc":"Short."},
+  {"dnes":"Probíhá – bez aktualizací","nove":"In progress – no updates","proc":"Status with icon."},
+  {"dnes":"Odstranit","nove":"Delete","proc":"Removes the calendar entry only; the test assignment stays."}],
+ "pristupnost":["Same as the Czech page: caption “Upcoming exam dates (1)”, data-label, Delete dialog with focus on Cancel."],
+ "poznamky_pro_kodera":["Strings from translations/*+intl-icu.en.yaml.","Times in local time (Prague).","Glossary gap: termín (zkoušky) → exam date; kalendář zkoušek → exam calendar."],
+ "chybi_komponenta":[]
+} -->
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Testing</p><h1 class="t-titulek">Exam calendar</h1></div>
+ <div class="page-head__actions"><a class="btn btn--hlavni" href="en-kalendar-termin.html">{{I:plus}}Add exam date</a></div>
+</div>
+
+<div class="stack-4">
+ <div class="alert alert--info">{{I:info}}<p>Add the dates of real exams. The app is not updated during them or for 2&nbsp;hours before and after.</p></div>
+ <form class="toolbar" action="en-kalendar.html" method="get"><label class="check"><input type="checkbox" name="minule" value="1">Show past dates</label><button class="btn btn--male" type="submit">Apply</button></form>
+ <div class="table-wrap">
+  <table class="table table--stack">
+   <caption class="sr-only">Upcoming exam dates (1)</caption>
+   <thead><tr><th scope="col">Date</th><th scope="col">Name</th><th scope="col">Test assignment</th><th scope="col">Created by</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+   <tbody>
+    <tr><td data-label="Date"><span class="t-cislo" style="white-space:nowrap">5 Nov 2026, 10:00–12:00</span></td><td data-label="Name"><b>Supervised exam – room 2</b></td>
+     <td data-label="Test assignment"><div><a href="en-cekarna-lektor.html">Radiation protection – knowledge check</a><span class="t-maly">Supervised exam – room 2</span></div></td><td data-label="Created by">Lucie Lektorová</td>
+     <td data-label="Actions"><div class="row" style="gap:var(--s-2);justify-content:flex-end"><a class="btn btn--male btn--tiche" href="en-kalendar-termin.html">Edit<span class="sr-only">: Supervised exam – room 2</span></a><button class="btn btn--male btn--tiche btn--nebezpecne" type="button">Delete<span class="sr-only">: Supervised exam – room 2</span></button></div></td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="grid-2" style="align-items:start">
+  <div class="stack-2">
+   <p class="t-stitek">No exam date</p>
+   <div class="empty stack-2">{{I:kalendar}}<p><b>You have no exam dates yet.</b></p><p class="t-maly">A recorded date protects the exam from app updates.</p><p><a class="btn" href="en-kalendar-termin.html">Add exam date</a></p></div>
+  </div>
+  <div class="stack-2">
+   <p class="t-stitek">Delete confirmation (dialog)</p>
+   <div class="dialog" role="alertdialog" aria-modal="false" aria-labelledby="d-h" style="position:static;display:block;margin:0;width:100%">
+    <div class="dialog__body stack"><h3 id="d-h" class="t-nadpis">Delete the exam date Supervised exam – room 2?</h3><p>5 Nov 2026, 10:00–12:00. The test assignment stays unchanged.</p></div>
+    <div class="dialog__foot"><button class="btn" type="button">Cancel</button><button class="btn btn--nebezpecne" type="button">Delete exam date</button></div>
+   </div>
+  </div>
+ </div>
+ <p class="t-stitek">Exam in progress</p>
+ <p><span class="stav stav--pise">{{I:hodiny}}In progress – no updates</span></p>
+</section>

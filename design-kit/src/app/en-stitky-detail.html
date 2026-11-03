@@ -1,0 +1,66 @@
+<!--meta {"titulek":"Difficulty · Tag list","sablona":"app","role":"lektor","aktivni":"stitky.html","demo":false,"lang":"en","cs_verze":"stitky-detail.html"} -->
+<!--spec {
+ "route":"/stitky/:id (lang=en)","nazev":"Tag list – detail – English","role":"whoever may manage the list by its scope; others read-only","sablona":"app",
+ "ucel":"Manage the tags in one tag list: rename, change colour, add, delete unused tags, rename the list.",
+ "hlavni_akce":"Add tag",
+ "komponenty":["crumbs","page-head","meta","table table--stack","field","input","input[type=color]","btn--male","btn--nebezpecne","alert","form-actions"],
+ "stavy":["Same states as the Czech page (stitky-detail.html): read-only, empty list, empty or duplicate name, delete only unused tags, after saving / adding, no permission (403)."],
+ "zmeny_ux":["Layout as in the Czech version. “Used in 14 questions – can’t be deleted.” is about as long as Czech."],
+ "texty":[
+  {"dnes":"Seznam štítků · Štítky v seznamu","nove":"Tag list · Tags in this list","proc":"Glossary: tag list, tag."},
+  {"dnes":"Název · Barva · Přiřazeno otázkám","nove":"Name · Colour · Used in questions","proc":"British spelling: colour."},
+  {"dnes":"Přidat štítek · Uložit název seznamu · Přejmenovat seznam","nove":"Add tag · Save list name · Rename list","proc":"Verb first."},
+  {"dnes":"Přiřazený 14 otázkám – nejde smazat.","nove":"Used in 14 questions – can’t be deleted.","proc":"Reason next to the disabled button."},
+  {"dnes":"Pokročilá · Základní · Středně obtížná","nove":"Advanced · Basic · Intermediate","proc":"Sample tag names translated."}],
+ "pristupnost":["Same as the Czech page; html lang=\"en\". Row field labels “Name of tag Advanced”, “Colour of tag Advanced” (sr-only)."],
+ "poznamky_pro_kodera":["Strings come from translations/*+intl-icu.en.yaml; do not hard-code.","Tag names are user content; the demo shows English samples.","Glossary gap: Přejmenovat → Rename"],
+ "chybi_komponenta":[]
+} -->
+<nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--s-3)"><ol><li><a href="en-stitky.html">Tag lists</a></li><li><span aria-current="page">Difficulty</span></li></ol></nav>
+<div class="page-head">
+ <div class="stack-2"><p class="t-stitek">Tag list</p><h1 class="t-titulek">Difficulty</h1>
+  <dl class="meta"><div><dt>Scope</dt><dd>Question bank · <a href="en-soubor-detail.html">Cyber security – user training</a></dd></div><div><dt>Tags</dt><dd>2</dd></div></dl>
+ </div>
+</div>
+
+<div class="stack-5">
+ <section class="stack" aria-labelledby="st-h">
+  <h2 id="st-h" class="t-nadpis">Tags in this list</h2>
+  <div class="table-wrap">
+   <table class="table table--stack">
+    <caption class="sr-only">Tags in the list Difficulty (2)</caption>
+    <thead><tr><th scope="col">Name</th><th scope="col">Colour</th><th scope="col" class="num">Used in questions</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+    <tbody>
+     <tr><td data-label="Name"><label class="sr-only" for="n1">Name of tag Advanced</label><input class="input" id="n1" value="Advanced" maxlength="100" style="min-width:0"></td><td data-label="Colour"><label class="sr-only" for="c1">Colour of tag Advanced</label><input class="input" id="c1" type="color" value="#64748b" style="width:72px;padding:4px"></td><td data-label="Used in" class="num"><a href="en-otazky-hledat.html">14<span class="sr-only"> questions with tag Advanced</span></a></td><td data-label="Actions"><div class="row" style="gap:var(--s-2);justify-content:flex-end"><button class="btn btn--male" type="button">Save<span class="sr-only"> tag Advanced</span></button><button class="btn btn--male btn--nebezpecne" type="button" aria-disabled="true" aria-describedby="sm1">Delete<span class="sr-only"> tag Advanced</span></button></div><span class="t-maly" id="sm1">Used in 14 questions – can’t be deleted.</span></td></tr>
+     <tr><td data-label="Name"><label class="sr-only" for="n2">Name of tag Basic</label><input class="input" id="n2" value="Basic" maxlength="100" style="min-width:0"></td><td data-label="Colour"><label class="sr-only" for="c2">Colour of tag Basic</label><input class="input" id="c2" type="color" value="#64748b" style="width:72px;padding:4px"></td><td data-label="Used in" class="num"><a href="en-otazky-hledat.html">20<span class="sr-only"> questions with tag Basic</span></a></td><td data-label="Actions"><div class="row" style="gap:var(--s-2);justify-content:flex-end"><button class="btn btn--male" type="button">Save<span class="sr-only"> tag Basic</span></button><button class="btn btn--male btn--nebezpecne" type="button" aria-disabled="true" aria-describedby="sm2">Delete<span class="sr-only"> tag Basic</span></button></div><span class="t-maly" id="sm2">Used in 20 questions – can’t be deleted.</span></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="t-maly">You can delete only a tag that has never been assigned to a question. Rename a tag that is in use – the question history is kept.</p>
+ </section>
+
+ <form class="card stack-4" aria-labelledby="pr-h" novalidate>
+  <h2 id="pr-h" class="t-nadpis">Add tag</h2>
+  <div class="row" style="align-items:flex-start">
+   <div class="field" style="flex:1 1 240px"><label class="label" for="nn">Name</label><input class="input" id="nn" maxlength="100" aria-describedby="nn-h"><span class="hint" id="nn-h">For example, “Intermediate”.</span></div>
+   <div class="field"><label class="label" for="nc">Colour</label><input class="input" id="nc" type="color" value="#64748b" style="width:72px;padding:4px"></div>
+  </div>
+  <div><button class="btn btn--hlavni" type="submit">{{I:plus}}Add tag</button></div>
+ </form>
+
+ <form class="card card--tenka stack" aria-labelledby="pj-h" novalidate>
+  <h2 id="pj-h" class="t-nadpis">Rename list</h2>
+  <div class="field" style="max-width:var(--max-text)"><label class="label" for="ns">Tag list name</label><input class="input" id="ns" value="Difficulty"></div>
+  <div><button class="btn" type="submit">Save list name</button></div>
+ </form>
+</div>
+
+<section class="no-print stack-4" style="margin-top:var(--s-6)" aria-labelledby="dalsi">
+ <h2 id="dalsi" class="t-nadpis">Other page states</h2>
+ <div class="stack"><h3 class="t-stitek">Read-only</h3><div class="alert alert--info">{{I:zamek}}<p>This list is managed by the bank owner: <b>Adam Autor</b>. You can assign its tags to questions, but not change them.</p></div></div>
+ <div class="stack"><h3 class="t-stitek">Duplicate name</h3>
+  <div class="card stack"><div class="field"><label class="label" for="nn-e">Name</label><input class="input" id="nn-e" value="Basic" aria-invalid="true" aria-describedby="nn-e-err"><p class="error" id="nn-e-err">{{I:pozor}}The tag “Basic” is already in this list.</p></div></div>
+ </div>
+ <div class="stack"><h3 class="t-stitek">Empty list</h3><div class="card card--tenka"><p>This list is empty. Add the first tag.</p></div></div>
+ <div class="stack"><h3 class="t-stitek">After adding</h3><div class="alert alert--ok" role="status">{{I:check}}<p>Tag “Intermediate” added.</p></div></div>
+</section>
