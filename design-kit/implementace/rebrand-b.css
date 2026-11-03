@@ -176,7 +176,6 @@
 .web-section-alt { background: #FFFFFF; }
 .web-card, .web-plan-card { border-radius: 0 !important; border: 2px solid #22262A; background: #fff; box-shadow: none; }
 .web-card-link:hover { background: #FFF7D1; }
-.web-check li::before { border-radius: 0; background: #22262A; }
 .web-btn-lg { min-height: 48px; }
 .web-cta { background: #F2CB2E; }
 .web-footer { background: #22262A; color: #F6F4EC; }
