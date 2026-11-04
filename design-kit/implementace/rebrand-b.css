@@ -187,3 +187,9 @@
 .web-badge-soon { border-radius: 0; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .06em; }
 .web-menu-open, .web-menu-close { border-radius: 0 !important; border: 2px solid #22262A !important; background: #fff; font-weight: 700; }
 .web-menu-panel { border-radius: 0 !important; border: 2px solid #22262A; box-shadow: 4px 4px 0 #22262A; }
+
+/* ---------- 6. Reflow 320 px: tabulky bez obalu .table-wrap (např. role na detailu uživatele) ---------- */
+/* position:relative drží uvnitř i absolutní .sr-only v záhlaví, jinak utíká mimo posuvník */
+@media (max-width: 30rem) {
+  main table:not(.table-wrap table) { display: block; position: relative; max-width: 100%; overflow-x: auto; }
+}
